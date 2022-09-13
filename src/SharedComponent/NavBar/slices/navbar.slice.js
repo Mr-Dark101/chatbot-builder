@@ -6,7 +6,7 @@ export const toggleNavbar = (open) => async dispatch => {
 }
 
 const initialState = {
-    open: false
+    open: true
 }
 
 const navbar = createSlice({

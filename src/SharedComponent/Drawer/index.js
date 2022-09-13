@@ -18,11 +18,11 @@ const DrawerComponent = ({open, direction = "left", toggleDrawer, data}) => {
     }
     const list = (data) => {
         return (
-            data?.map(({icon, value, route, isBlank}, i) => {
+            data?.map(({icon, route, isBlank}, i) => {
                 return (
                     <ListItem button key={i} className={`nav-text on`}>
                         <ListItemIcon>
-                            <img alt={"#"} src={icon}/>
+                            <img alt={"#"} src={icon} style={{margin: 'auto'}} />
                         </ListItemIcon>
                         <div className={`nav-a on`}
                              onClick={(e) => {
@@ -30,7 +30,7 @@ const DrawerComponent = ({open, direction = "left", toggleDrawer, data}) => {
                                  e.stopPropagation();
                                  e.preventDefault();
                              }}>
-                            {value}
+                            
                         </div>
                     </ListItem>
                 )
@@ -39,13 +39,18 @@ const DrawerComponent = ({open, direction = "left", toggleDrawer, data}) => {
     }
 
     return (
-        <Drawer
-            anchor={direction}
-            open={open}
-            onClose={toggleDrawer}
-        >
-            {list(data)}
-        </Drawer>
+        <>
+            <Drawer
+                
+                anchor={direction}
+                open={open}
+                onClose={toggleDrawer}
+                className="left_navbar"
+            >
+
+                {list(data)}
+            </Drawer>
+        </>
     );
 };
 

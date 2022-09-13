@@ -2,13 +2,14 @@ import React from 'react';
 import DrawerComponent from "../Drawer";
 import {useDispatch, useSelector} from "react-redux";
 import {toggleNavbar} from "./slices/navbar.slice";
-import home_icon from "../../assets/Image 1/home_.png";
-import analysis_icon from "../../assets/Image 1/analytics_.png";
-import chat_icon from "../../assets/Image 1/chat_.png";
-import chatBotFace_icon from "../../assets/Image 1/chatbotFace.svg";
-import teams_icon from "../../assets/Image 1/teams_.png";
-import users_icon from "../../assets/Image 1/users_.png";
-import tags_icon from "../../assets/Image 1/tags_.svg";
+import home_icon from "../../assets/Image 1/DCLogoVector2.svg";
+import analysis_icon from "../../assets/Image 1/analytics.svg";
+import chat_icon from "../../assets/Image 1/chat-manager.svg";
+import chatBotFace_icon from "../../assets/Image 1/chatbot.svg";
+import chatbot_builder from "../../assets/Image 1/chatbot-builder.svg";
+import teams_icon from "../../assets/Image 1/campign-manager.svg";
+import users_icon from "../../assets/Image 1/whatsapp.svg";
+import tags_icon from "../../assets/Image 1/contacts.svg";
 import {STRINGS} from "../../utils/base";
 
 const navbarData = [
@@ -32,6 +33,12 @@ const navbarData = [
     },
     {
         icon: chatBotFace_icon,
+        value: "Chatbot",
+        isBlank: true,
+        route: `http://localhost:8090/eoceanwab/chatbotbuilder/index`
+    },
+    {
+        icon: chatbot_builder,
         value: "Chatbot builder",
         isBlank: true,
         route: `http://localhost:8090/eoceanwab/chatbotbuilder/index`
@@ -48,12 +55,7 @@ const navbarData = [
         isBlank: true,
         route: `http://localhost:8090/eoceanwab/accountsettings/index`
     },
-    // {
-    //     icon: quick_chat_icon,
-    //     value: "Quick Reply",
-    // isBlank: true,
-    //     route: `${STRINGS.ROUTES.ROOT}`
-    // },
+    
     {
         icon: tags_icon,
         value: "What's New",
@@ -64,6 +66,8 @@ const navbarData = [
 ]
 
 const NavBar = () => {
+
+
     const navbar = useSelector(({Reducers}) => Reducers.navbar)
     let {open} = navbar;
 
@@ -75,7 +79,11 @@ const NavBar = () => {
 
 
     return (
+       
+        
+
         <DrawerComponent open={open} data={navbarData} direction={"left"} toggleDrawer={toggleDrawer}/>
+        
     )
     // return (
     //     <div className="nav-bar-cont">

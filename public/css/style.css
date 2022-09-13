@@ -32207,3 +32207,17 @@ img.away, img.busy, img.offline, img.online {
 }
 
 
+/*new css*/
+
+.left_navbar .css-4t3x6l-MuiPaper-root-MuiDrawer-paper{
+  background-color: #10163A;
+}
+.left_navbar .css-bshv44-MuiButtonBase-root-MuiListItem-root{
+  padding-top: 20px;
+  padding-bottom: 20px;
+  justify-content: center;
+}
+
+/*new css*/
+
+
