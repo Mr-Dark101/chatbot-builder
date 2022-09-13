@@ -1,0 +1,15 @@
+/****************************/
+/** Imports Plugin css **/
+/****************************/
+@import url(assets/vendor_components/bootstrap/dist/css/bootstrap.css);
+@import url(assets/vendor_components/perfect-scrollbar/css/perfect-scrollbar.css);
+@import url(assets/vendor_components/morris.js/morris.css);
+@import url(assets/vendor_components/select2/dist/css/select2.min.css);
+
+@import url(assets/vendor_components/bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css);
+@import url(assets/vendor_components/bootstrap-tagsinput/dist/bootstrap-tagsinput.css);
+
+@import url(assets/vendor_components/c3/c3.min.css);
+@import url(assets/vendor_components/weather-icons/weather-icons.css);
+
+/*# sourceMappingURL=vendors_css.css.map */

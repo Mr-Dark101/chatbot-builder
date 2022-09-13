@@ -1,0 +1,10 @@
+<svg id="smart_toy_black_24dp" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+  <g id="Group_5035" data-name="Group 5035">
+    <rect id="Rectangle_3252" data-name="Rectangle 3252" width="32" height="32" fill="none"/>
+  </g>
+  <g id="Group_5037" data-name="Group 5037" transform="translate(1.333 2.667)">
+    <g id="Group_5036" data-name="Group 5036">
+      <path id="Path_44260" data-name="Path 44260" d="M26.333,11.333V8.667A2.675,2.675,0,0,0,23.667,6h-4a4,4,0,1,0-8,0h-4A2.675,2.675,0,0,0,5,8.667v2.667a4,4,0,0,0,0,8v5.333a2.675,2.675,0,0,0,2.667,2.667h16a2.675,2.675,0,0,0,2.667-2.667V19.333a4,4,0,0,0,0-8ZM23.667,24.667h-16v-16h16Zm-12-8a2,2,0,1,1,2-2A2,2,0,0,1,11.667,16.667Zm10-2a2,2,0,1,1-2-2A2,2,0,0,1,21.667,14.667ZM10.333,19.333H21V22H10.333Z" transform="translate(-1 -2)" fill="#bcbcbc"/>
+    </g>
+  </g>
+</svg>

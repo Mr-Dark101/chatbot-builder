@@ -1,0 +1,45 @@
+// Font Family
+$roboto: "Roboto", sans-serif;
+$noto: "Noto Sans JP", sans-serif;
+$OptimalMedium: "Optima nova LT Medium";
+// Colors ---------------
+$primary-color: #000000;
+$secondary-color: #EDDCC0;
+$text-color: #35F5C6;
+$heading-color: #666;
+$bg-color: #363A77;
+$bdr-color: #C0C0C0;
+$hover-color:#CDB786;
+$text-secondary: #BEC2C2;
+$white: #ffffff;
+$lightgray: #f0f0f0;
+$mandy: #e65550;
+$brightsun: #ffc849;
+$spray: #61d6ef;
+$btn-bg: #363A77;
+$text-bg: #363A77;
+$shadow-bg: #00000029;
+$heading-bg: #535353;
+$light-bg: #f7f6f6;
+// Responsive Variables
+$_5xl: "only screen and (min-width: 2000px) and (max-width: 5999px)";
+$_3xl: "only screen and (min-width: 1601px) and (max-width: 1999px)";
+$xxl: "(min-width: 1600px)";
+$xl: "only screen and (min-width: 1200px) and (max-width: 1599px)";
+
+$_2xl: "only screen and (min-width: 1024px) and (max-width: 1439px)";
+//$_4xl: "only screen and (min-width: 1350px) and (max-width: 1449px)";
+
+
+$lg: "only screen and (min-width: 992px) and (max-width: 1199px)";
+$md: "only screen and (min-width: 768px) and (max-width: 991px)";
+$sm: "(max-width: 767px)";
+$lsm: "only screen and (min-width: 576px) and (max-width: 767px)";
+$xsm: "(max-width: 575px)";
+$mXsm: "only screen and (min-width: 400px) and (max-width: 574px)";
+$tiny: "(max-width: 399px)";
+$mTiny: "only screen and (min-width: 200px) and (max-width: 398px)";
+
+//spacing
+$v-sp-lg: 2rem;
+$v-sp-sm: 1rem;

@@ -1,0 +1,52 @@
+import React from 'react';
+import {Drawer, ListItem, ListItemIcon} from '@mui/material';
+import {useHistory} from "react-router-dom";
+
+
+const DrawerComponent = ({open, direction = "left", toggleDrawer, data}) => {
+    // const match = useLocation();
+    const history = useHistory();
+    // let {pathname} = match;
+    // console.log(pathname)
+    const handleRoute = ({route, isBlank}) => {
+        if (!isBlank) {
+            history.push(route)
+        } else {
+            window.open(route)
+        }
+
+    }
+    const list = (data) => {
+        return (
+            data?.map(({icon, value, route, isBlank}, i) => {
+                return (
+                    <ListItem button key={i} className={`nav-text on`}>
+                        <ListItemIcon>
+                            <img alt={"#"} src={icon}/>
+                        </ListItemIcon>
+                        <div className={`nav-a on`}
+                             onClick={(e) => {
+                                 handleRoute({route, isBlank});
+                                 e.stopPropagation();
+                                 e.preventDefault();
+                             }}>
+                            {value}
+                        </div>
+                    </ListItem>
+                )
+            })
+        )
+    }
+
+    return (
+        <Drawer
+            anchor={direction}
+            open={open}
+            onClose={toggleDrawer}
+        >
+            {list(data)}
+        </Drawer>
+    );
+};
+
+export default DrawerComponent;

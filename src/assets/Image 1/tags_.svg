@@ -1,0 +1,5 @@
+<svg id="local_offer_black_24dp" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+  <path id="Path_44267" data-name="Path 44267" d="M0,0H32V32H0Z" fill="none"/>
+  <path id="Path_44268" data-name="Path 44268" d="M27.88,14.773l-12-12A2.65,2.65,0,0,0,14,2H4.667A2.675,2.675,0,0,0,2,4.667V14a2.661,2.661,0,0,0,.787,1.893l12,12a2.65,2.65,0,0,0,1.88.773,2.607,2.607,0,0,0,1.88-.787l9.333-9.333a2.607,2.607,0,0,0,.787-1.88A2.693,2.693,0,0,0,27.88,14.773ZM16.667,26.013,4.667,14V4.667H14V4.653l12,12Z" transform="translate(0.667 0.667)" fill="#bababa"/>
+  <circle id="Ellipse_704" data-name="Ellipse 704" cx="2" cy="2" r="2" transform="translate(7 7)" fill="#bababa"/>
+</svg>

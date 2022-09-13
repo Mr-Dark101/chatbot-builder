@@ -1,0 +1,1064 @@
+ @font-face { font-family: Gilroy; font-weight: bold; src: url('fonts/Gilroy-FREE/Gilroy-FREE/Gilroy-ExtraBold.otf'); } 
+ @font-face { font-family: Gilroy; src: url('fonts/Gilroy-FREE/Gilroy-FREE/Gilroy-Light.otf');}
+
+.table{
+	margin-bottom: 0px;
+}
+.table tbody tr:last-child{
+	border-bottom: 0px;
+}
+.table tbody tr{
+	border-bottom: 1px solid #D5CAD5;
+	font-family: 'Lato', sans-serif;
+}
+.table tbody tr td{
+	border: 0;
+	font-weight: 500;
+	font-size: 14px;
+	line-height: 20px;
+	font-family: 'Inter', sans-serif;
+	color: #000000;
+}
+.table tbody tr td a{
+	font-weight: 600;
+	font-size: 14px;
+	line-height: 20px;
+	color: #1164A3;
+	font-family: 'Inter', sans-serif;
+}
+.table-responsive{
+	border: 1px solid #D5CAD5;
+	border-radius: 10px 10px 0px 0px !important;
+	margin-bottom: 20px;
+}
+.table thead.bg-primary{
+	background-color: #E9E4E9 !important;
+	border-bottom: 1px solid #D4CAD4 !important;
+	
+}
+.table thead.bg-primary tr{
+	border-radius: 10px 10px 0px 0px !important;
+}
+.table thead.bg-primary th{
+	color: #350D36;
+	font-size: 14px;
+	line-height: 18px;
+	padding: 18px;
+	letter-spacing: 0.2px;
+	font-weight: bold;
+	font-family: 'Inter', sans-serif;
+}
+.table thead.bg-primary th:first-child{
+	border-radius: 10px 0px 0px 0px;
+}
+.table thead.bg-primary th:last-child{
+	border-radius: 0px 10px 0px 0px;
+}
+.table>:not(:first-child){
+	border-top: 0px;
+}
+.table tbody td{
+	font-size: 14px;
+	line-height: 16px;
+	font-weight: 400;
+	color: #252733;
+	padding: 20px !important;
+	letter-spacing: 0.1px;
+}
+a{
+	text-decoration: none;
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 20px;
+	color: #1164A3;
+	font-family: 'Mulish', sans-serif;
+}
+.page-title{
+	font-family: 'Lato', sans-serif;
+	font-size: 36px;
+	line-height: 43px;
+	letter-spacing: 0.3px;
+	font-weight: 700;
+	color: #115F9D;
+	margin: 0px 0px 20px !important;
+}
+input{
+	border: 1px solid #CCCCCC;
+	padding: 12px !important;
+	border-radius: 3px;
+	color: #212529;
+	border-color: #ccc !important;
+	font-size: 14px;
+	line-height: 144%;
+	font-family: 'Lato', sans-serif;
+	width: 100%;
+}
+textarea{
+	border-color: #ccc !important;
+}
+.react-select__value-container{
+	padding: 0px 8px !important;
+}
+.react-select__input-container {
+	padding: 0px !important;
+	margin: 0px !important;
+}
+.react-select__input-container input{	padding-left: 0px !important;padding-right: 0px !important;}
+.input-group .input-group-addon{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-color: #ccc !important;
+	padding: 8px 18px;
+}
+.login_dropdown{
+	right: 0;
+	left: unset !important;
+	border: 1px solid #F2EFF2;
+	box-shadow: 0px 4px 40px rgba(255, 196, 196, 0.24);
+	border-radius: 10px;
+	min-width: 19rem;
+	top: 140% !important;
+	padding: 40px 0px 40px;
+}
+.login_dropdown .user_img{
+	width: 109px;
+	background-color: rgba(53, 13, 54, 0.7);
+	height: 109px;
+	border-radius: 10px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: auto;
+}
+.login_dropdown .user_img .user_name_main_text{
+	font-size: 29px;
+	color: #fff;
+	line-height: 18px;
+	font-family: 'Inter', sans-serif;
+	font-weight: 400;
+}
+.login_dropdown .login_user_name{
+	font-size: 20px;
+	line-height: 20px;
+	letter-spacing: 0.3px;
+	text-align: center;
+	font-weight: 400;
+	font-family: 'Inter', sans-serif;
+	color: #0F1825;
+	margin: 30px 0px;
+}
+
+.login_dropdown .login_dropdown_btn{
+	border: 1px solid #BBBBBB;
+	border-radius: 5px;
+	background-color: #fff;
+	padding: 10px 15px;
+	font-size: 16px;
+	color: #0F1825;
+	width: 177px;
+	line-height: 23px;
+	font-family: 'Inter', sans-serif;
+	font-weight: 600;
+	margin: 10px 0px;
+}
+.patient_img_section .img_edit_section{
+	display: none;
+	background-color: rgba(53, 13, 54, 0.5);
+	width: 109px;
+	height: 109px;
+	border-radius: 10px;
+	position: absolute;
+	z-index: 9;
+
+}
+.patient_img_section .img_edit_section p{
+	font-size: 8px;
+	line-height: 10px;
+	color: #fff;
+	margin-top: 80px;
+	font-family: 'Lato', sans-serif;
+	text-align: center;
+}
+.patient_img_section .img_edit_section i{
+	font-size: 8px;
+	margin-top: 10px;
+	color: #fff;
+	margin-left: 5px;
+}
+.patient_img_section:hover .img_edit_section{
+	display: block;
+}
+.upload_file{
+	border: 0;
+	padding: 0;
+}
+.upload_file::-webkit-file-upload-button {
+  visibility: hidden;
+}
+.upload_file::before {
+  	content: 'Upload Picture';
+  	display: inline-block;
+  	border: 1px solid #BBBBBB !important;
+	border-radius: 6px;
+	padding: 10px 31px;
+	font-family: 'Inter', sans-serif;
+	font-size: 16px;
+	line-height: 144%;
+	font-weight: 600;
+	color: #000000 !important;
+	background-color: #fff;
+}
+.upload_file:hover::before {
+  	border: 1px solid #999999 !important;
+	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+}
+.upload_file:active::before {
+  background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
+}
+.patient_tabs_section li.active a{	
+	background-color: #F8F7F8 !important;
+	border-radius: 0px 25px 25px 0px;
+	color: #000;
+}
+.patient_tabs_section li.active .border_left{
+	border-left: 4px solid #CD2553;
+	padding: 20px 0px;
+	position: absolute;
+	border-radius: 0px 4px 4px 0px;
+}
+
+.patient_profile_tabs_section ul li a.active{
+	border-bottom: 3px solid #000 !important;
+
+}
+
+
+
+
+
+/*codes Section Start css*/
+
+.codes_tab_section_heading{
+	background-color: #f5f5f5;
+	border: 1px solid #ccc;
+	padding: 15px;
+}
+.codes_tab_section_heading h1{
+	font-size: 16px;
+	line-height: 16px;
+	color: #252733;
+	font-family: 'Mulish', sans-serif;
+	font-weight: 700;
+	letter-spacing: 0.3px;
+	margin: 0px;
+}
+.search_section{
+	padding: 25px 0px;
+}
+.icdcode_section .page_heading{
+	margin: 0px;
+
+}
+.icdcode_section .icdcode_heading_section{
+	padding: 20px;
+	border-bottom: 1px solid #ccc;
+}
+.icdcode_section .icdcode_accordion_section .accordion-header{
+	margin: 0px !important;
+}
+.icdcode_section .icdcode_accordion_section .accordion-button{
+	background-color: #f5f5f5;
+	font-size: 14px;
+	font-family: 'Mulish', sans-serif;
+	font-weight: 600;
+	line-height: 20px;
+	letter-spacing: 0.3px;
+	color: #000;
+} 
+.icdcode_section .icdcode_accordion_section .accordion-button:not(.collapsed){
+	color: #000;
+}   
+.icdcode_section .icdcode_accordion_section .accordion_inner_section ul{
+	margin: 0px;
+	padding: 0px;
+	list-style-type: none;
+}
+.icdcode_section .icdcode_accordion_section .accordion_inner_row{
+	display: flex;
+	align-items: center;
+	padding: 10px 0px;
+}
+.icdcode_section .icdcode_accordion_section .accordion_inner_row p{
+	font-size: 14px;
+	font-family: 'Mulish', sans-serif;
+	font-weight: 400;
+	margin: 0px 20px;
+}
+.icdcode_section .accordion_inner_row .specific_code_text{
+	font-size: 10px;
+	font-family: 'Mulish', sans-serif;
+	font-weight: 400;
+	line-height: 14px;
+	letter-spacing: 0.2px;
+	color: #34C700;
+}
+.icdcode_section .accordion_inner_row .non_specific_code_text{
+	font-size: 10px;
+	font-family: 'Mulish', sans-serif;
+	font-weight: 400;
+	line-height: 14px;
+	letter-spacing: 0.2px;
+	color: #FF0000;
+}
+
+.icdcode_section .accordion_inner_row .non_specific_code_text_red{
+	font-size: 10px;
+	font-family: 'Mulish', sans-serif;
+	font-weight: 400;
+	line-height: 14px;
+	letter-spacing: 0.2px;
+	color: #FF0000;
+}
+
+.icdcode_section .accordion_inner_row .non_specific_code_text_green{
+	font-size: 10px;
+	font-family: 'Mulish', sans-serif;
+	font-weight: 400;
+	line-height: 14px;
+	letter-spacing: 0.2px;
+	color: green;
+}
+.icdcode_section .icdcode_accordion_section .accordion-item:last-of-type .accordion-button.collapsed{
+	border-radius: 0px;
+}
+.icdcode_section .icdcode_accordion_section .accordion-item:first-of-type .accordion-button{
+	border-radius: 0px;
+}
+
+.icdcode_section .icdcode_accordion_section .accordion-button::after {
+      background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='%23333' xmlns='http://www.w3.org/2000/svg'%3e%3cpath fill-rule='evenodd' d='M8 0a1 1 0 0 1 1 1v6h6a1 1 0 1 1 0 2H9v6a1 1 0 1 1-2 0V9H1a1 1 0 0 1 0-2h6V1a1 1 0 0 1 1-1z' clip-rule='evenodd'/%3e%3c/svg%3e");
+      transform: scale(.7) !important;
+    }
+    .icdcode_section .icdcode_accordion_section .accordion-button:not(.collapsed)::after {
+      background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='%23333' xmlns='http://www.w3.org/2000/svg'%3e%3cpath fill-rule='evenodd' d='M0 8a1 1 0 0 1 1-1h14a1 1 0 1 1 0 2H1a1 1 0 0 1-1-1z' clip-rule='evenodd'/%3e%3c/svg%3e");
+    }
+
+/*codes Section end Css*/
+
+
+/*new patient css*/
+.patient_data_top_section{
+	background-color: #fff;
+	position: relative;
+	border-radius: 10px;
+	padding: 15px 25px;
+	border: 1px solid #F2EFF2;
+	margin-bottom: 45px;
+	box-shadow: 0px 4px 40px rgba(255, 196, 196, 0.24);
+}
+.patient_data_top_section .patient_name{
+	font-size: 24px;
+	color: #350D36;
+	line-height: 20px;
+	letter-spacing: 0.3px;
+	font-weight: 700;
+	font-family: 'Inter', sans-serif;
+}
+.patient_data_top_section .patient_name i{
+	color: #468FFC;
+}
+.patient_data_top_section .patient_img_main_section{
+	width: 109px;
+	float: right;
+}
+.patient_data_top_section .patient_data_section{
+	width: 100%;
+}
+.patient_data_top_section .para_text_section p{
+	margin: 0px;
+	font-size: 12px;
+	line-height: 20px;
+	color: #350D36;
+	letter-spacing: 0.3px;
+	font-weight: 400;
+	font-family: 'Inter', sans-serif;
+}
+.patient_data_top_section .para_text_section{
+	height: 40px;
+}
+.patient_data_top_section .head_text_section span{
+	font-size: 10px;
+	line-height: 20px;
+	font-weight: 400;
+	font-family: 'Inter', sans-serif;
+	color: rgba(53, 13, 54, 0.7);
+	letter-spacing: 0.3px;
+	text-transform: uppercase;
+}
+.react-select__menu{
+	z-index: 9999 !important;
+	position: absolute !important;
+}
+
+/*new patient css*/
+
+/*flowboard Page Start Css*/
+
+.flowboard_page ul{
+	margin: 0px;
+	padding: 0px;
+	list-style-type: none;
+}
+.flowboard_page ul li{
+	display: inline-block;
+	width: 19%;
+	margin-right: 12px;
+	vertical-align: top;
+}
+.flowboard_page .flowboard_card{
+	background-color: #fff;
+	border-radius: 10px;
+	box-shadow: 0px 4px 40px rgba(255, 196, 196, 0.24);
+	border: 1px solid #F2EFF2;
+	margin-bottom: 20px;
+}
+.flowboard_page .flowboard_card .card_head_section{
+	padding: 15px 22px;
+	border-bottom: 1px solid #F2EFF2;
+}
+.flowboard_page .flowboard_card .card_head_section h5{
+	font-size: 14px;
+	line-height: 18px;
+	color: #350D36;
+	letter-spacing: 0.3px;
+	font-weight: 600;
+	font-family: 'Inter', sans-serif;
+	margin: 0px;
+}
+.flowboard_page .flowboard_card .patient_card_section{
+	padding: 20px 22px;
+	border-bottom: 1px solid #F2EFF2;
+	background-image: linear-gradient(180deg, rgba(248, 247, 248, 0.7) 0%, rgba(248, 247, 248, 0) 100%);
+}
+.flowboard_page .flowboard_card .patient_card_section ul li{
+	width: auto;
+}
+.flowboard_page .flowboard_card .patient_card_section:last-child{
+	border-bottom: 0px;
+}
+.flowboard_page .flowboard_card .patient_card_section h5{
+	margin: 0px 0px 4px;
+
+}
+.flowboard_page .flowboard_card .patient_card_section h5 a{
+	font-size: 14px;
+	font-weight: 600;
+	font-family: 'Inter', sans-serif;
+	line-height: 20px;
+	color: #1164A3;
+}
+.flowboard_page .flowboard_card .patient_card_section span{
+	font-size: 12px;
+	line-height: 16px;
+	color: #757575;
+	letter-spacing: 0.1px;
+	font-family: 'Inter', sans-serif;
+	font-weight: 400;
+}
+.flowboard_page .flowboard_card .patient_card_section p{
+	font-size: 14px;
+	line-height: 20px;
+	font-weight: 600;
+	color: #5D3D5E;
+	letter-spacing: 0.2px;
+	font-family: 'Inter', sans-serif;
+	margin: 0px;
+}
+.flowboard_page .flowboard_card .patient_card_section .co_pay_link a{
+	color: #CD2553;
+	font-size: 14px;
+	font-weight: 700;
+	letter-spacing: 0.2px;
+	line-height: 20px;
+	font-family: 'Inter', sans-serif;
+	float: right;
+}
+.flowboard_page .flowboard_card .patient_card_section .btn_section{
+	margin: 10px 0px;
+}
+
+/*flowboard Page End Css*/
+
+/*Patient Visit Page Start Css*/
+
+.patient_visit_nav{
+  margin: 0px;
+  padding: 0px;
+  list-style-type: none;
+}
+.patient_visit_nav .accordion-button:not(.collapsed){
+  color: unset;
+  background-color: unset;
+  box-shadow: unset;
+}
+.patient_visit_nav .accordion-button:not(.collapsed)::after{
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23212529'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e") !important;
+}
+.patient_visit_nav .accordion-body{
+  padding: 0px 0px 0px 30px;
+}
+.patient_visit_nav .accordion-body ul{
+	margin: 0px;
+	padding: 0px;
+	list-style-type: none;
+}
+.patient_visit_nav li{
+  display: block;
+  padding: 5px 0px;
+}
+.patient_visit_nav li a{
+  color: #350D36;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  font-family: 'Inter', sans-serif;
+}
+.patient_visit_nav li .border_left{
+  border-left: 4px solid transparent;
+  padding: 20px 0px;
+  position: absolute;
+}
+.patient_visit_nav li a .img_box{
+  margin-right: 10px;
+  width: 20px;
+  text-align: center;
+}
+
+.vital_visit_section{
+	background-color: #fff;
+	border: 1px solid #F2EFF2;
+	box-shadow: 0px 4px 40px rgba(255, 196, 196, 0.24);
+	border-radius: 10px;
+}
+.vital_visit_section ul{
+	margin: 0px;
+	padding: 0px;
+	list-style-type: none;
+}
+.vital_visit_section ul li{
+	border-bottom: 1px solid #D4CAD4;
+	padding: 20px 5px;
+	text-align: center;
+}
+.vital_visit_section ul li:last-child{
+	border-bottom: 0px;
+}
+
+.vital_visit_section ul li h2{
+	font-size: 14px;
+	line-height: 18px;
+	letter-spacing: 0.3px;
+	font-weight: 600;
+	font-family: 'Inter', sans-serif;
+	margin: 0px;
+	color: #350D36;
+}
+.vital_visit_section ul li h4{
+	font-size: 12px;
+	line-height: 16px;
+	letter-spacing: 0.1px;
+	font-family: 'Mulish', sans-serif;
+	font-weight: 400;
+	margin: 3px 0px 0px;
+}
+.vital_visit_section ul li p{
+	font-size: 10px;
+	line-height: 13px;
+	color: #350D36;
+	font-family: 'Mulish', sans-serif;
+	font-weight: 500;
+	margin: 3px 0px 0px;
+}
+.vital_visit_section ul li a{
+	color: #1164A3;
+	font-size: 8px;
+	line-height: 13px;
+	letter-spacing: 0.2px;
+	font-family: 'Inter', sans-serif;
+	font-weight: 400;
+	margin: 3px 0px 0px;
+	text-decoration: underline;
+}
+.patient_visit_main_heading{
+	font-size: 20px;
+	line-height: 20px;
+	letter-spacing: 0.3px;
+	font-family: 'Inter', sans-serif;
+	font-weight: 600;
+	color: #350D36;
+	margin: 0px 0px 15px;
+}
+.patient_visit_page .patient_visit_bg{
+	background-color: #fff;
+	border: 1px solid #F2EFF2;
+	border-radius: 10px;
+	box-shadow: 0px 4px 40px rgba(255, 196, 196, 0.24);
+}
+.patient_visit_page .patient_visit_bg .patient_visit_bg_head_section{
+	padding: 15px 20px;
+	border-bottom: 1px solid #CCCCCC;
+}
+.patient_visit_page .patient_visit_bg .patient_visit_bg_head_section h3{
+	font-size: 14px;
+	line-height: 18px;
+	color: #350D36;
+	font-family: 'Inter', sans-serif;
+	font-weight: 600;
+	letter-spacing: 0.3px;
+	margin: 0px;
+}
+.patient_visit_page .patient_visit_bg .patient_visit_bg_head_section a{
+	font-size: 14px;
+	line-height: 20px;
+	letter-spacing: 0.3px;
+	font-weight: 700;
+	color: #000;
+}
+.patient_visit_page .patient_visit_bg .patient_visit_no_data_section{
+	padding: 50px 0px;
+}
+.patient_visit_page .patient_visit_bg .patient_visit_no_data_section img{
+	margin-bottom: 15px;
+}
+.patient_visit_page .patient_visit_bg .patient_visit_no_data_section p{
+	font-family: 'Inter', sans-serif;
+	font-weight: 500;
+	font-size: 14px;
+	line-height: 20px;
+	letter-spacing: 0.3px;
+	color: #ccc;
+	margin-bottom: 15px;
+}
+.patient_visit_page .patient_visit_bg .patient_visit_bg_data_section{
+	padding: 20px;
+}
+.patient_visit_page .patient_visit_bg .patient_visit_bg_data_section h3{
+	font-size: 14px;
+	line-height: 18px;
+	color: #350D36;
+	font-family: 'Inter', sans-serif;
+	font-weight: 600;
+	letter-spacing: 0.3px;
+	margin: 0px 0px 20px;
+}
+.patient_visit_page .patient_visit_bg .patient_visit_bg_data_section i{
+	color: #ccc;
+	font-size: 50px;
+	margin-bottom: 20px;
+}
+.patient_visit_page .patient_visit_bg .patient_visit_bg_data_section p{
+	font-size: 16px;
+	line-height: 16px;
+	color: #757575;
+	letter-spacing: 0.1px;
+	text-align: center;
+}
+.patient_visit_page .patient_visit_bg .patient_visit_data_dropdown{
+	width: 236px;
+	border: 1px solid #DFE0EB;
+	border-radius: 8px;
+}
+.patient_visit_page .patient_visit_bg .patient_visit_data_dropdown .dropdown_head_section{
+	padding: 10px 15px;
+	border-bottom: 1px solid #CCCCCC;
+}
+.patient_visit_page .patient_visit_bg .patient_visit_data_dropdown .dropdown_head_section h3{
+	font-size: 14px;
+	line-height: 20px;
+	letter-spacing: 0.3px;
+	font-family: 'Mulish', sans-serif;
+	font-weight: 700;
+	color: #000;
+}
+.patient_visit_page .patient_visit_bg .patient_visit_data_dropdown .dropdown_head_section a{
+	font-size: 10px;
+	color: #3751FF;
+	line-height: 12px;
+	font-family: 'Mulish', sans-serif;
+	letter-spacing: 0.3px;
+	padding: 4px 0px;
+}
+.patient_visit_page .patient_visit_bg .patient_visit_data_dropdown .dropdown_data_section{
+	padding: 10px 15px;
+}
+.patient_visit_page .patient_visit_bg .patient_visit_data_dropdown .dropdown_data_section ul{
+	margin: 0px;
+	padding: 0px;
+	list-style-type: none;
+}
+.patient_visit_page .patient_visit_bg .patient_visit_data_dropdown .dropdown_data_section ul li{
+	padding: 10px 0px;
+}
+.patient_visit_page .patient_visit_social_history_data h3{
+	font-size: 14px;
+	line-height: 20px;
+	font-weight: 600;
+	color: #350D36;
+	font-family: 'Inter', sans-serif;
+	margin: 10px 0px 20px;
+}
+.patient_visit_page .appointment_social_history_card{
+	margin-bottom: 10px;
+}
+.patient_visit_page .appointment_social_history_card .accordion-item{
+	border: 0;
+	border-radius: 10px;
+}
+.patient_visit_page .appointment_social_history_card .accordion-item .accordion-header{
+	margin: 0px;
+}
+.patient_visit_page .appointment_social_history_card .accordion-item .accordion-button{
+	border-radius: 10px 10px 0px 0px;
+	border: 1px solid #D4CAD4;
+	background-color: #E9E4E9;
+}
+.patient_visit_page .appointment_social_history_card .accordion-item .accordion-button::after{
+	background-image: url(../images/chevron_down_icon.png);
+	background-size: unset;
+	width: 14px;
+	height: 9px;
+}
+.patient_visit_page .appointment_social_history_card .accordion-item .accordion-button:focus{
+	background-color: #fff;
+	transition: unset;
+	box-shadow: unset;
+}
+.patient_visit_page .appointment_social_history_card .accordion-item .accordion-button:not(.collapsed){
+	transition: unset;
+	box-shadow: unset;
+	background-color: #fff;
+}
+.patient_visit_page .appointment_social_history_card .accordion-item .accordion-button.collapsed{
+	border-radius: 10px;
+	border: 1px solid #D5CAD5;
+	background-color: #E9E4E9;
+}
+.patient_visit_page .appointment_social_history_card .accordion-item .accordion-collapse.show, .patient_visit_page .appointment_social_history_card .accordion-item .accordion-collapse.collapsing{
+	border: 1px solid #D5CAD5;
+	border-top: 0px;
+	border-radius: 0px 0px 10px 10px;
+}
+.patient_visit_page .appointment_social_history_card .accordion-item .accordion-header h3{
+	margin: 0px;
+}
+.patient_visit_page .patient_visit_social_history_data .social_history_main_data{
+	display: flex;
+	align-items: center;
+	margin-bottom: 20px;
+}
+.patient_visit_page .patient_visit_social_history_data .social_history_main_data p{
+	font-size: 12px;
+	line-height: 20px;
+	color: #350D36;
+	font-family: 'Inter', sans-serif;
+	text-align: left;
+	font-weight: 500;
+	margin: 0px;
+}
+.physical_accordion_section{
+	border-bottom: 1px solid #D5CAD5;
+}
+.physical_accordion_section .accordion-item{
+	border: 0;
+}
+.physical_accordion_section .accordion-header{
+	margin: 0px;
+}
+.physical_accordion_section .accordion-item:first-of-type{
+	border-radius: 0px;
+}
+.physical_accordion_section .accordion-item:last-of-type{
+	border-radius: 0px;
+}
+.physical_accordion_section .accordion-button{
+	padding: 10px 12px;
+	color: #350D36;
+	font-family: 'Inter', sans-serif;
+	font-weight: 600;
+	font-size: 14px;
+	line-height: 20px;
+	border: 1px solid #D5CAD5;
+	border-bottom: 0px;
+}
+.physical_accordion_section .accordion-button:not(.collapsed){
+	background-color: #E9E4E9;
+	border: 1px solid #D5CAD5;
+	border-bottom: 0;
+	font-weight: 700;
+}
+.physical_accordion_section .accordion-button:not(.collapsed)::after{
+	background-image: url(/app/images/chevron_down_icon.png);
+}
+.physical_accordion_section .accordion-button::after{
+	background-image: url(/app/images/chevron_down_icon.png);
+	background-size: unset;
+	width: 14px;
+	height: 9px;
+}
+.physical_accordion_section .accordion-button:focus{
+	box-shadow: unset;
+}
+.physical_accordion_section .accordion-body{
+	padding: 0px;
+}
+.physical_accordion_section .accordion_inner_section ul{
+	margin: 0px;
+	padding: 0px;
+	list-style-type: none;
+}
+.physical_accordion_section .accordion_inner_section .accordion_inner_row{
+	display: flex;
+	align-items: center;
+	border: 1px solid #D5CAD5;
+	border-bottom: 0;
+	padding: 10px 15px;
+}
+.physical_accordion_section .accordion_inner_section .accordion_inner_row p{
+	margin: 0px 0px 0px 5px;
+	font-size: 12px;
+	line-height: 15px;
+	font-family: 'Inter', sans-serif;
+	font-weight: 600;
+	color: #000;
+}
+
+
+.MuiPaper-root:nth-of-type(3){position: fixed!important; left: 20%}
+
+/*Patient Visit Page End Css*/
+
+/*Dashboard Page Start Css*/
+
+.dashboard_page .dashboard_box_area{
+	margin: 30px 0px;
+	padding: 0px;
+	list-style-type: none;
+}
+.dashboard_page .dashboard_box_area li{
+	display: inline-block;
+	margin-right: 10px;
+}
+.dashboard_page .dashboard_box_area li:last-child{
+	float: right;
+	margin-right: 0px;
+}
+.dashboard_page .dashboard_box_area li .dashboard_patient_box{
+	width: 120px;
+	height: 80px;
+	box-shadow: 0px 4px 40px rgba(255, 196, 196, 0.24);
+	border-radius: 10px;
+	background: #FFFFFF;
+	border: 1px solid rgba(53, 13, 54, 0.15);
+	padding: 15px;
+	text-align: center;
+}
+.dashboard_page .dashboard_box_area li .dashboard_patient_box h3{
+	font-size: 20px;
+	color: #0EA5E9;
+	line-height: 20px;
+	font-family: 'Inter', sans-serif;
+	font-weight: 700;
+	margin: 0px 0px 10px;
+}
+.dashboard_page .dashboard_box_area li .dashboard_patient_box p{
+	height: 20px;
+	font-size: 10px;
+	line-height: 10px;
+	font-family: 'Mulish', sans-serif;
+	color: #350D36;
+	font-weight: 700;
+}
+.dashboard_page .dashboard_patient_card{
+	background-color: #fff;
+	border: 1px solid #F2EFF2;
+	border-radius: 10px;
+	box-shadow: 0px 4px 40px rgba(255, 196, 196, 0.24);
+	margin: 0px 0px 30px;
+}
+.dashboard_page .dashboard_patient_card .patient_card_head_section{
+	border-bottom: 1px solid #F2EFF2;
+	padding: 15px 20px;
+}
+.dashboard_page .dashboard_patient_card .patient_card_head_section .card_heading{
+	font-size: 14px;
+	color: #350D36;
+	font-weight: 600;
+	line-height: 18px;
+	font-family: 'Inter', sans-serif;
+	margin: 0px;
+}
+.dashboard_page .dashboard_patient_card .patient_card_head_section .patient_card_button{
+	border: 1px solid #2BAC76;
+	background: #fff;
+	color: #2BAC76;
+	font-size: 12px;
+	font-family: 'Inter', sans-serif;
+	font-weight: 600;
+	border-radius: 25px;
+	padding: 3px 12px;
+}
+.dashboard_page .dashboard_patient_card .patient_card_body_section{
+	border-bottom: 1px solid #F2EFF2;
+	padding: 12px 20px;
+}
+.dashboard_page .dashboard_patient_card .patient_card_body_section:last-child{
+	border-bottom: 0px;
+}
+.dashboard_page .dashboard_patient_card .patient_card_body_section .body_text{
+	color: #350D36;
+	font-family: 'Inter', sans-serif;
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 18px;
+	margin: 0px 0px 5px;
+}
+.dashboard_page .dashboard_patient_card .patient_card_body_section span{
+	color: #757575;
+	font-weight: 400;
+	font-size: 12px;
+	line-height: 16px;
+	font-family: 'Inter', sans-serif;
+	margin: 0px;
+}
+.dashboard_page .dashboard_patient_card .patient_card_body_section p{
+	color: #350D36;
+	font-family: 'Inter', sans-serif;
+	font-weight: 400;
+	font-size: 12px;
+	line-height: 18px;
+	margin: 0px;
+}
+.dashboard_page .dashboard_patient_card .patient_card_body_section h4{
+	margin: 0px 0px 3px;
+} 
+.dashboard_page .dashboard_patient_card .patient_card_body_section h4 a{
+	color: #1164A3;
+	font-weight: 600;
+	font-size: 14px;
+	line-height: 20px;
+	font-family: 'Inter', sans-serif;
+
+}
+
+/*Dashboard Page End Css*/
+
+/*variable_data_section Start Css*/
+
+.variable_data_bg{
+	background-color: #FFFFFF;
+	border: 1px solid #F2EFF2;
+	box-shadow: 0px 4px 40px rgba(255, 196, 196, 0.24);
+	border-radius: 10px;
+	padding: 30px 10px;
+}
+.variable_data_bg .variable_main_heading{
+	color: #350D36;
+	font-size: 14px;
+	line-height: 17px;
+	font-family: 'Inter', sans-serif;
+	font-weight: 600;
+	margin: 0px;
+}
+.variable_data_bg .accordion-item{
+	border: 1px solid #D5CAD5;
+	border-radius: 10px;
+	margin-top: 15px;
+
+}
+.variable_data_bg .accordion-item .accordion-header{
+	margin-top: 0px;
+
+}
+.variable_data_bg .accordion-item .accordion-button{
+	border-radius: 10px;
+	font-size: 14px;
+	line-height: 18px;
+	font-family: 'Inter', sans-serif;
+	font-weight: 600;
+	color: #350D36;
+	/*background-color: #E9E4E9;*/
+}
+.variable_data_bg .accordion-item:first-of-type .accordion-button{
+	border-radius: 10px;
+}
+.variable_data_bg .accordion-button:not(.collapsed){
+	background-color: unset;
+	box-shadow: unset;
+}
+.variable_data_bg .accordion-button:focus{
+	box-shadow: unset;
+	border-color: unset;
+}
+.variable_data_bg .accordion-item:last-of-type .accordion-button.collapsed{
+	border-radius: 10px;
+}
+.variable_data_bg .accordion-body{
+	padding: 0px 0px 25px;
+}
+.variable_data_bg .accordion-body .accordion_text_section{
+	padding: 10px 20px;
+	border-bottom: 1px solid #D4CAD4;
+}
+.variable_data_bg .accordion-body .accordion_text_section h4{
+	font-size: 14px;
+	line-height: 17px;
+	font-family: 'Inter', sans-serif;
+	font-weight: 700;
+	color: #350D36;
+	margin: 0px;
+}
+.variable_data_bg .accordion-body .accordion_text_section p{
+	font-size: 12px;
+	line-height: 20px;
+	font-family: 'Inter', sans-serif;
+	font-weight: 500;
+	color: #000;
+	margin: 0px;
+}
+.variable_data_bg .accordion-button.collapsed{
+	background-color: #E9E4E9;
+	
+	
+}
+.variable_data_bg .accordion-button:not(.collapsed)::after{
+	background-image: url(/app/images/chevron_down_icon.png);
+}
+.variable_data_bg .accordion-button::after{
+	background-image: url(/app/images/chevron_down_icon.png);
+	background-size: unset;
+	width: 14px;
+	height: 9px;
+}
+.left_tabs_menu_section ul{
+	margin: 0px;
+	padding: 5px 0px;
+	list-style-type: none;
+}
+.left_tabs_menu_section .left_tabs{
+	border: 1px solid #F2EFF2;
+  box-shadow: 0px 4px 40px rgb(255 196 196 / 24%);
+  border-radius: 10px;
+}
+.left_tabs_menu_section .left_tabs li{
+	padding: 5px 0px;
+}
+.left_tabs_menu_section .left_tabs li a .img_box{
+	width: 20px;
+	margin-right: 10px;
+}
+
+/*variable_data_section End Css*/

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 80 80">
+  <g id="create_new_bot_ic" data-name="create new bot ic" transform="translate(-160 -208)">
+    <rect id="Rectangle_3259" data-name="Rectangle 3259" width="80" height="80" transform="translate(160 208)" fill="none"/>
+    <g id="Icon_ionic-md-add-circle-outline" data-name="Icon ionic-md-add-circle-outline" transform="translate(168.333 215.5)">
+      <path id="Path_44269" data-name="Path 44269" d="M47.406,33.969H33.969V47.406H27.406V33.969H13.969V27.406H27.406V13.969h6.563V27.406H47.406Z" transform="translate(1.812 1.812)" fill="#363a77"/>
+      <path id="Path_44270" data-name="Path 44270" d="M37,11.063a25.927,25.927,0,1,1-18.344,7.594A25.83,25.83,0,0,1,37,11.063M37,4.5A32.5,32.5,0,1,0,69.5,37,32.5,32.5,0,0,0,37,4.5Z" transform="translate(-4.5 -4.5)" fill="#363a77"/>
+    </g>
+  </g>
+</svg>

@@ -1,25 +1,97 @@
-import logo from './logo.svg';
-import './App.css';
+import React,{useState,useContext,useMemo} from "react";
+import axios from "axios";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import {Provider} from "react-redux";
+import store from "./store";
+import {Suspense} from "react";
+import {BrowserRouter} from "react-router-dom";
+import "./App.scss";
+import 'antd/dist/antd.min.css'
+import Layout from "./Layouts/layout";
+import { isExpired, decodeToken } from "react-jwt";
+import { UserContext } from "./context/UserContext";
+//import "bootstrap/dist/css/bootstrap.min.css";
+//import "./App.css";
 
-function App() {
+//import "./Style.css";
+import Navigation from "./Navigator/navigation.js"
+
+import Routes from './routes';
+
+
+
+
+const App = () => {
+ const token = (localStorage.getItem("user")) ? decodeToken(JSON.parse(localStorage.getItem("user")).accessToken) : null;
+  const [user, setUser] = useState(token);
+const value = useMemo(() => ({ user, setUser }), [user, setUser]);
+
+const [loader, setLoader] = useState(false);
+//const { user, setUser } = useContext(UserContext);
+ 
+
+
+axios.interceptors.request.use(
+    config => {
+       // const token = localStorage.getItem('user');
+        const user = JSON.parse(localStorage.getItem('user'));
+        setLoader(true)
+        if (user) {
+            config.headers['x-access-token'] =  user.accessToken;
+        }
+        config.headers['Content-Type'] = 'application/json';
+
+        return config;
+    },
+   
+    error => {
+         setLoader(false)
+        Promise.reject(error)
+});
+
+
+axios.interceptors.response.use((response) => { // block to handle success case
+    setLoader(false)
+   
+
+    return response
+ }, function (error) { // block to handle error case
+    const originalRequest = error.config;
+     setLoader(false)
+    if (error.response.status === 403 || error.response.status === 401) { // Added this condition to avoid infinite loop 
+
+        
+        localStorage.removeItem("user")
+        // Redirect to any unauthorised route to avoid infinite loop...
+        return Promise.reject(error);
+    }
+
+
+    
+     
+ 
+    
+    return Promise.reject(error);
+});
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+
+
+    <>
+    <Provider store={store}>
+            <BrowserRouter>
+                <Suspense fallback={<div>Loading...</div>}>
+                    <Layout>
+                        <UserContext.Provider value={value}>
+                            <Navigation/>
+                        </UserContext.Provider>
+                    </Layout>
+                </Suspense>
+            </BrowserRouter>
+        </Provider>
+    </>
   );
-}
+};
 
 export default App;

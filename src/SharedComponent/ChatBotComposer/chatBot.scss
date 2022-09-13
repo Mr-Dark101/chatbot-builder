@@ -1,0 +1,285 @@
+.chat-bot-container {
+  display: flex;
+  position: fixed;
+  bottom: 15px;
+  right: 15px;
+  z-index: 4;
+  //min-width: 300px;
+  min-width: 450px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 0 12px 2px grey;
+
+  .content-hld {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    //height: 400px;
+    height: 100%;
+    border-radius: inherit;
+    background: url("../../assets/bg_chat_img.jpeg") repeat center ;
+
+    .head {
+      display: flex;
+      width: 100%;
+      height: 50px;
+      border-radius: 8px 8px 0 0;
+      //background-color: #075e55;
+      background-color: #515156;
+      //background-color: transparent;
+
+      .lft {
+        .a-hld {
+          display: flex;
+          width: 100%;
+
+          .av {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          }
+
+          .a-sec {
+            display: flex;
+            flex-direction: column;
+            color: white;
+            width: 100%;
+            margin: 0 1rem;
+
+            .txt {
+              white-space: nowrap;
+              font-size: 14px;
+              font-weight: bolder;
+            }
+
+            .sub-txt {
+              font-size: 12px;
+            }
+          }
+
+
+        }
+      }
+    }
+
+    .section {
+      display: flex;
+      width: 100%;
+      //height: 300px;
+      height: 75vh;
+      //background-color: white;
+
+      .chat-body {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        overflow: auto;
+
+        .no-data-found{
+          display: flex;
+          width: 100%;
+          height: 100%;
+          align-items: center;
+          justify-content: center;
+          color: grey;
+          font-size: 12px;
+          font-weight: 700;
+        }
+
+        .msg-row {
+          display: flex;
+          width: 100%;
+
+          .msg-box {
+            display: flex;
+            flex-direction: column;
+            padding: 0.5rem 1rem;
+            margin: 1rem;
+            position: relative;
+
+            .msg {
+              font-size: 14px;
+              font-weight: bolder;
+              display: flex;
+              flex-wrap: wrap;
+              flex-direction: column;
+              max-width: 220px;
+
+              .sub-txt {
+                //white-space: nowrap;
+                color: $heading-color;
+                font-size: 12px;
+                padding: 0.5rem;
+                p{
+                  margin-bottom: 0;
+                }
+              }
+
+              .sub-img-tag{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 100%;
+                border-radius: 5px;
+                flex-direction: column;
+                text-align: center;
+                //height: 100px;
+                img{
+                  width: inherit;
+                  height: inherit;
+                  border-radius: inherit;
+                }
+                .icon{
+                  display: flex;
+                  width: 90px;
+
+                  a{
+                    width: inherit;
+                    height: inherit;
+                    border-radius: inherit;
+                    img{
+                      width: inherit;
+                      height: inherit;
+                      border-radius: inherit;
+                    }
+                  }
+                }
+                video{
+                  border-radius: 5px;
+                  height: 120px;
+                }
+              }
+            }
+
+            .sub-text {
+              font-size: 9px;
+              color: grey;
+              font-weight: bolder;
+            }
+
+          }
+
+          .msg-box.me {
+            right: 0;
+            background-color: #e2ffc7;
+            border-radius: 5px 0 5px 5px;
+            box-shadow: 4px 4px 6px -4px grey;
+
+            &::after {
+              content: "";
+              position: absolute;
+              right: -10px;
+              top: 0;
+              width: 10px;
+              height: 10px;
+              background-color: transparent;
+              border-top: 17px solid #e2ffc7;
+              border-right: 10px solid transparent;
+            }
+          }
+
+          .msg-box.frm {
+            box-shadow: -4px 4px 13px -4px grey;
+            border-radius: 0 5px 5px 5px;
+            background-color: white;
+
+            &::after {
+              content: "";
+              position: absolute;
+              left: -10px;
+              top: 0;
+              width: 10px;
+              height: 10px;
+              background-color: transparent;
+              border-top: 17px solid white;
+              border-left: 10px solid transparent;
+            }
+
+            .opt-hld {
+              display: flex;
+              flex-direction: column;
+              margin: 0.5rem 0;
+
+              .btn {
+                display: flex;
+                padding: 0.5rem 1rem;
+                border-radius: 4px;
+                outline: none;
+                font-weight: 800;
+                margin: 0.3rem 0;
+              }
+
+              .btn.light-filled {
+                background-color: #5841CE1F;
+                color: #5841CE;
+              }
+            }
+          }
+        }
+
+        .msg-row.me {
+          justify-content: flex-end;
+        }
+
+      }
+    }
+
+    .foot {
+      display: flex;
+      height: 50px;
+      width: 100%;
+
+      .msg-send-composer {
+        display: flex;
+        align-content: center;
+        width: 100%;
+        box-shadow: 0 0 13px -4px grey;
+        margin: 0.2rem 0.5rem 0.5rem 0.5rem;
+        padding: 1rem;
+        border-radius: 20px;
+        background-color: white;
+
+        .emo-hld {
+          display: flex;
+          align-items: center;
+          margin: 0 0.3rem;
+
+          img {
+            cursor: pointer;
+          }
+        }
+
+        .txt-area {
+          display: flex;
+          width: 100%;
+          align-items: center;
+
+          .inp {
+            display: flex;
+            border: none;
+            background-color: transparent;
+            caret-color: #075e55;
+            caret-shape: bar;
+            outline: none;
+          }
+        }
+
+        .attachments {
+          display: flex;
+          align-items: center;
+          margin: 0 0.3rem;
+
+          .icon{
+            display: flex;
+            margin: 0 0.3rem;
+            img {
+              cursor: pointer;
+            }
+          }
+        }
+      }
+    }
+
+  }
+}
+
