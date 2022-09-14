@@ -21,7 +21,7 @@ import {
 } from "./slices/addTrigger.slice";
 let updatedTriggers = [];
 let counter = 0;
-const ConditionList = ({props,apiHandle,dataIndex,apiData}) => {
+const ConditionList = ({props,apiHandle,dataIndex,apiData,updatedTriggersVal}) => {
 
     
 
@@ -38,6 +38,10 @@ const ConditionList = ({props,apiHandle,dataIndex,apiData}) => {
     template: false,
     openFallBackComposer: false,
     triggerOpt: "",
+    triggerOptApi: "",
+    triggerOptResponse: "",
+    optLoopBack:"",
+    
     triggerValueName: "",
     uploadedFile: {},
     updateMenus: {
@@ -58,12 +62,15 @@ const dispatch = useDispatch();
 let {handleTriggerClose, currentBotData, trigger, getAllTypes} = props;
 const [init, setInit] = useState(defaultState);
   let {isText,isApi, isMedia, isLoopBack, template, currentData, openFallBackComposer, triggerOpt, triggerValueName, values, descriptionType,
-        isConfirm, confirmationTxt,isAlert} = init;
+        isConfirm, confirmationTxt,isAlert,triggerOptApi,triggerOptResponse,optLoopBack} = init;
 
- let {name, triggerMenus, description, fallBackResponse, caption, loopBackId, loopBackText, routToAgent, type,apiId,apiText} = currentData;
+ let {name, triggerMenus, description, fallBackResponse, caption, loopBackId, loopBackText, routToAgent, type,apiId,apiText,conditionLabel,conditionValue} = currentData;
 const [isData] = useState(!$.isEmptyObject(trigger.currentTriggerData));
-let {triggersList, currentTriggerData, isChild, childBotId, urls, isUpdatedList, menuTextUpdateSuccess} = trigger;
+let {triggersList, currentTriggerData, isChild, childBotId, urls, isUpdatedList, menuTextUpdateSuccess,apiList} = trigger;
 let {id, userId,published} = currentBotData;
+
+
+
 const getContentByType = (data) => {
         if (data.loopBackTriggerId !== "") {
             // console.log("getContentByType", data?.loopBackText)
@@ -162,6 +169,9 @@ const handleAddOptions = () => {
                     triggerMenus: [...init.currentData.triggerMenus, {
                         name: triggerOpt,
                         id: `b${id}_t${counter}${createGuid()}`,
+                        api:triggerOptApi,
+                        response:triggerOptResponse,
+                        loopback:optLoopBack
                     }]
                 }
             })
@@ -364,10 +374,41 @@ const handleResponseSelect = (name) => {
         <div style={{border:'1px solid #ccc',borderColor:'#000',width:'100%',borderWidth:1,padding:10,marginTop:10}}>
         <div className="row" >
             <div className="col-sm-6">Label
-                <input type="text" class="form-control" />
+                
+
+                <input className="inp" value={conditionLabel}
+                                           placeholder="Label"
+                                           
+
+
+                                           onChange={(e) => {
+                                                           setInit({
+                                                               ...init,
+                                                               currentData: {
+                                                                   ...init.currentData,
+                                                                   conditionLabel: e.target.value
+                                                               }
+                                                           })
+                                                           e.preventDefault();
+                                                       }}
+                                    />
             </div>
             <div className="col-sm-6">Value
-            <input type="text" class="form-control" />
+            
+
+             <input className="inp" value={conditionValue}
+                                           placeholder="Label"
+                                            onChange={(e) => {
+                                                           setInit({
+                                                               ...init,
+                                                               currentData: {
+                                                                   ...init.currentData,
+                                                                   conditionValue: e.target.value
+                                                               }
+                                                           })
+                                                           e.preventDefault();
+                                                       }}
+                                    />
             </div>
         </div>
 
@@ -804,6 +845,67 @@ const handleResponseSelect = (name) => {
                                                setInit({
                                                    ...init,
                                                    triggerOpt: e.target.value
+                                               })
+                                           }}
+                                    />
+
+
+
+                                    <Select
+                                                labelId="demo-simple-select-standard-label"
+                                                id="demo-simple-select-standard"
+                                                value={triggerOptApi}
+                                                onChange={(e) => {
+                                               setInit({
+                                                   ...init,
+                                                   triggerOptApi: e.target.value
+                                               })
+
+
+                                           }}
+                                                label="Api"
+                                            >
+                                                {
+                                                    apiList?.map((tr) => {
+                                                        return (
+                                                            <MenuItem value={tr.id}>{tr.name}</MenuItem>
+                                                        )
+                                                    })
+                                                }
+                                                <MenuItem value="0">Loop Back</MenuItem>
+                                            </Select>
+
+
+
+                                             <Select
+                                                labelId="demo-simple-select-standard-label"
+                                                id="demo-simple-select-standard"
+                                                value={optLoopBack}
+                                                onChange={(e) => {
+                                                    setInit({
+                                                   ...init,
+                                                   optLoopBack: e.target.value
+                                               })
+                                                }}
+                                                label="Age"
+                                            >
+                                                {
+                                                    updatedTriggersVal?.map((tr) => {
+                                                        return (
+                                                            <MenuItem value={tr.id}>{tr.name}</MenuItem>
+                                                        )
+                                                    })
+                                                }
+                                            </Select>
+
+                                    
+
+                                    <input className="inp" value={triggerOptResponse}
+                                           placeholder="Response"
+                                           onChange={(e) => {
+                                               setInit({
+                                                   ...init,
+                                                   triggerOptResponse: e.target.value
                                                })
                                            }}
                                     />

@@ -34,6 +34,8 @@ const ChatBotComposer = ({onClose}) => {
     const msgArea = useRef(null);
     const dispatch = useDispatch();
     const [apiId, setApiId] = useState(0);
+    const [triggerType, setTriggerType] = useState('M');
+    const [apiData, setApiData] = useState([]);
     const setMenus = (item) => {
         if (item.toTrigger !== null) {
             if (item.toTrigger.menus.length > 0) {
@@ -124,7 +126,11 @@ const ChatBotComposer = ({onClose}) => {
                 if (data[i].values.map((a) => a.toLowerCase()).includes(text.toLowerCase())) {
                     
                     trigger = data[i];
+                    
                     setApiId(data[i].api_id)
+                    setTriggerType(data[i].triggerType);
+                    setApiData(data[i].apiData);
+                    
                      
                     // console.log("loopBackTrigger ---",text)
                     // console.log("loopBackTrigger ---",data[i].values)
@@ -190,9 +196,7 @@ const ChatBotComposer = ({onClose}) => {
                     
                     scrollOnMessage();
                 }
-                // if (data[i].menus.length > 0) {
-                //     data[i].menus.map((m) => getChildren(m, text))
-                // }
+                
             }
         } else {
             if(Object.keys(loopBackTrigger).length > 0){
@@ -223,37 +227,42 @@ const ChatBotComposer = ({onClose}) => {
             }else{
                 
                 
-                
-                const apiResponse = await ApiData(text,apiId).then((rData) => {
+               if(triggerType == 'A'){
+                        const apiResponse = await ApiData(text,apiId).then((rData) => {
 
-                        return rData;
-                });
-                
-                            trigger = {
-                                    id: createGuid(),
-                                    response: apiResponse.message,
+                                return rData;
+                        });
 
-                                    type:"TEXT",
-                                        menus: ApiMenu(apiResponse.data),
+
+
+                                 trigger = buildMessage(apiResponse);
+
+
+                                 if(trigger){
+
+
+                                     setInit({
+                                    ...init,
+                                        messages: !$.isEmptyObject(trigger) ? [...init.messages, {
+                                            text: text,
+                                            id: "me"
+                                        }, trigger] : [...init.messages, {text: text, id: "me"}],
+                                        data: !$.isEmptyObject(trigger) ? trigger.menus.length > 0 ? trigger.menus.map((d) => {
+                                                if (d.toTrigger !== null) {
+                                                    return d.toTrigger
+                                                }
+                                            }).filter((d) => d !== undefined) : [loopBackTrigger] : []
+                                    });
+                                    trigger = {};
+                                    // updatedTriggers = [];
+                                    msgArea.current.value = "";
                                  }
 
-
-
-                                 setInit({
-                                ...init,
-                                    messages: !$.isEmptyObject(trigger) ? [...init.messages, {
-                                        text: text,
-                                        id: "me"
-                                    }, trigger] : [...init.messages, {text: text, id: "me"}],
-                                    data: !$.isEmptyObject(trigger) ? trigger.menus.length > 0 ? trigger.menus.map((d) => {
-                                            if (d.toTrigger !== null) {
-                                                return d.toTrigger
-                                            }
-                                        }).filter((d) => d !== undefined) : [loopBackTrigger] : []
-                                });
-                                trigger = {};
-                                // updatedTriggers = [];
-                                msgArea.current.value = "";
+               }
+                
+                
+                
+                           
                     
 
                 
@@ -266,141 +275,86 @@ const ChatBotComposer = ({onClose}) => {
 
     }
 
+    const buildMessage = (apiResponse) => {
+
+        let buildData = [];
+
+         apiData.map((rsData,index) =>{
+                const rs = rsData.dataValue;
+               
+                const cField = apiResponse.data.data.data[rs.conditionLabel];
+                if(cField == rs.conditionValue){
+
+
+                    
+
+
+                    buildData.push({description:rs.description,conditionLabel:rs.conditionLabel,conditionValue:rs.conditionValue,triggerMenus:rs.triggerMenus})
+                }
+
+                
+        })
+
+        if(buildData.length == 0){
+            trigger = {
+                                    id: createGuid(),
+                                    response: "No Response",
+
+                                    type:"TEXT",
+                                    menus: [],
+                                 }
+                                return trigger;
+        }
+        trigger = {
+                                    id: createGuid(),
+                                    response: buildData[0].description,
+
+                                    type:"TEXT",
+                                    menus: ApiMenu(buildData[0].triggerMenus),
+                                 }
+                    return trigger;
+
+       
+       
+        
+    }
+
     const ApiMenu = (apiResponse) => {
-            console.log(apiResponse.data.data.financial_status)
             let menu = [];
-            if(apiResponse.data.data.financial_status == 'pending'){
-                 menu =  [
+            apiResponse.map((mm,index) => {
+                    let optLoopBack = ""
+                    if(mm.api == 0){
+                        optLoopBack = mm.loopback;
 
-                                            
-                                            {
+                    }
+                    menu.push({
                                                 "id": createGuid(),
-                                                "text": "1-Cancel Order",
+                                                "text": mm.name,
                                                 "toTriggerId": createGuid(),
                                                 "toTrigger": {
                                                     "id": createGuid(),
-                                                    "name": "Cancel Order",
+                                                    "name": mm.name,
                                                     "values": [
-                                                        "c1"
+                                                        mm.name
                                                     ],
                                                     "fallBackResponse": "",
                                                     "loopBackText": [
                                                         ""
                                                     ],
-                                                    "loopBackTriggerId": "",
+                                                    "loopBackTriggerId": optLoopBack,
                                                     "menus": [],
                                                     "startTrigger": false,
                                                     "type": "TEXT",
                                                     "routeToAgent": false,
-                                                    "response": "Order Has been Canceled",
+                                                    "response": mm.response,
                                                     "urls": [],
                                                     "caption": ""
                                                 }
-                                            },
-                                            {
-                                                "id": createGuid(),
-                                                "text": "2-Refund Order",
-                                                "toTriggerId": createGuid(),
-                                                "toTrigger": {
-                                                    "id": createGuid(),
-                                                    "name": "Refund Order",
-                                                    "values": [
-                                                        "c2"
-                                                    ],
-                                                    "fallBackResponse": "",
-                                                    "loopBackText": [
-                                                        ""
-                                                    ],
-                                                    "loopBackTriggerId": "",
-                                                    "menus": [],
-                                                    "startTrigger": false,
-                                                    "type": "TEXT",
-                                                    "routeToAgent": false,
-                                                    "response": "Order Has been Refund",
-                                                    "urls": [],
-                                                    "caption": ""
-                                                }
-                                            },
-                                            {
-                                                "id": createGuid(),
-                                                "text": "0-Back",
-                                                "toTriggerId": createGuid(),
-                                                "toTrigger": {
-                                                    "id": createGuid(),
-                                                    "name": "Back to Menu",
-                                                    "values": [
-                                                        "c0"
-                                                    ],
-                                                    "fallBackResponse": '',
-                                                    "loopBackText": [
-                                                        ""
-                                                    ],
-                                                    "loopBackTriggerId": "B4660_T6",
-                                                    "menus": [],
-                                                    "startTrigger": false,
-                                                    "type": "TEXT",
-                                                    "routeToAgent": false,
-                                                    "response": "",
-                                                    "urls": [],
-                                                    "caption": ""
-                                                }
-                                            }
-                                        ]
-            }else{
-                menu =  [
-
-                                            
-                                            
-                                            {
-                                                "id": createGuid(),
-                                                "text": "2-View Order",
-                                                "toTriggerId": createGuid(),
-                                                "toTrigger": {
-                                                    "id": createGuid(),
-                                                    "name": "View Order",
-                                                    "values": [
-                                                        "v2"
-                                                    ],
-                                                    "fallBackResponse": "",
-                                                    "loopBackText": [
-                                                        ""
-                                                    ],
-                                                    "loopBackTriggerId": "",
-                                                    "menus": [],
-                                                    "startTrigger": false,
-                                                    "type": "TEXT",
-                                                    "routeToAgent": false,
-                                                    "response": "Order Has been Viewed",
-                                                    "urls": [],
-                                                    "caption": ""
-                                                }
-                                            },
-                                            {
-                                                "id": createGuid(),
-                                                "text": "0-Back",
-                                                "toTriggerId": createGuid(),
-                                                "toTrigger": {
-                                                    "id": createGuid(),
-                                                    "name": "Back to Menu",
-                                                    "values": [
-                                                        "back"
-                                                    ],
-                                                    "fallBackResponse": '',
-                                                    "loopBackText": [
-                                                        ""
-                                                    ],
-                                                    "loopBackTriggerId": "B4660_T6",
-                                                    "menus": [],
-                                                    "startTrigger": false,
-                                                    "type": "TEXT",
-                                                    "routeToAgent": false,
-                                                    "response": "",
-                                                    "urls": [],
-                                                    "caption": ""
-                                                }
-                                            }
-                                        ]
-            }
+                                            })
+            })
+            //console.log(apiData)
+            
+           
 
             return menu
     }

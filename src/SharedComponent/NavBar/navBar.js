@@ -73,6 +73,8 @@ const NavBar = () => {
         dispatch(toggleNavbar(false))
     }
 
+   
+
 
     return (
         <DrawerComponent open={open} data={navbarData} direction={"left"} toggleDrawer={toggleDrawer}/>

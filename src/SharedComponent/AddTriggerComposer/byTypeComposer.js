@@ -174,6 +174,8 @@ const ByTypeComposer = ({props,triggerType}) => {
         routToAgent: false,
         type: "TEXT",
         triggerMenus: [],
+        conditionLabel:"",
+        conditionValue:"",
     }}
         //conditionArray.push(newData) 
         setCondition([...condition,newData])
@@ -225,8 +227,9 @@ const ByTypeComposer = ({props,triggerType}) => {
 
             setApiMenu();
             if(currentTriggerData.toTrigger){
-             conditionArray = currentTriggerData.toTrigger.apiData;
-             setCondition(JSON.parse(JSON.stringify(currentTriggerData.toTrigger.apiData)));
+                conditionArray = currentTriggerData.toTrigger.apiData;
+                setCondition(JSON.parse(JSON.stringify(currentTriggerData.toTrigger.apiData)));
+                setApiData(currentTriggerData.toTrigger.apiData)
             }
         }
         
@@ -518,7 +521,7 @@ const ByTypeComposer = ({props,triggerType}) => {
             "name": obj.title,
             "response": description,
             "templatename": obj.template,
-            "api_id": 1,
+            "api_id": currentData.apiId,
             "apiData":apiData,
             'triggerType':triggerType,
             "routeToAgent": obj.routToAgent,
@@ -1011,7 +1014,7 @@ const ByTypeComposer = ({props,triggerType}) => {
                                                 
 
                                                 return (
-                                                            <ConditionList dataIndex={i} apiData={tr.dataValue} props={props} apiHandle={apiHandle} />
+                                                            <ConditionList dataIndex={i} apiData={tr.dataValue} props={props} updatedTriggersVal={updatedTriggers} apiHandle={apiHandle} />
                                                  )
 
                                             })
