@@ -77,6 +77,8 @@ const NavBar = () => {
         dispatch(toggleNavbar(false))
     }
 
+   
+
 
     return (
        
