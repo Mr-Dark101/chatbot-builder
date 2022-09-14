@@ -20,6 +20,7 @@ export default function Layout(props) {
             <div className="section-hld">
                 <div className="nav-bar-hld">
                     <NavBar/>
+                    
                 </div>
                 <div className="main-section">
                     {props.children}

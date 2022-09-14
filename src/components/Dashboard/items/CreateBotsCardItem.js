@@ -89,7 +89,7 @@ const CreateBotsCardItem = (props) => {
              }}
         >
 
-            <div className="card-content flex-column">
+            <div className="card-content">
                 <div className="card-start justify-content-center pt-4 pb-4" >
                     <div className="card-circle on" style={{
                         backgroundColor: "initial", border: "none",
