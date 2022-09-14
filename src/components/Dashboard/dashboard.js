@@ -210,6 +210,11 @@ const Dashboard = () => {
 
     return (
         <div className="dashboard-hld ov-des overflow-auto">
+
+            <div className="home_top_section">
+
+            </div>
+
             <CreateBotComposer
                 currentUser={currentUser}
                 data={updateBotData}
@@ -232,7 +237,7 @@ const Dashboard = () => {
                 modalInfo={confirmationInfo}
                 handleCancel={alertClose}
             />
-            <div className="head">
+            <div className="head" style={{display: 'none'}}>
                 <div className="head-rt">
                     <div className="txt">
                         Create a Bot
@@ -310,7 +315,7 @@ const Dashboard = () => {
                     {/*</NavLink>*/}
                 </div>
             </div>
-            <div className="head">
+            <div className="head" style={{display: 'none'}}>
                 <div className="head-rt">
                     <div className="txt">
                         My Bots

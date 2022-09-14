@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Modal } from "@mui/material";
 import whatsAppIcon from "../../../assets/whatsapp.png";
+// import TextField from "../../crud/FormElements";
 import whatsAppIconWhite from "../../../assets/whatsapp.png";
 import facebookIcon from "../../../assets/whatsapp.png";
 // import facebookIcon from "../../../assets/facebook-icon.png";
@@ -159,16 +160,22 @@ const CreateBotComposer = (props) => {
     }
 
     const body = (
-        <div className="modal-content">
+        <div className="modal-content home_bot_modal">
             <div className="modal-header">
                 <div className="header-lft">
                     <div className="txt">
                         {
-                            data !== null ? "Update Bot" : !selectCategory ? "Where would you like to deploy your Bot?" : "Create your bot"
+                            data !== null ? "Update Bot" : !selectCategory ? "Create New Bot" : "Create your bot"
                         }
                     </div>
                 </div>
                 <div className="header-rt" />
+            </div>
+
+            <div className="bot_name_section">
+                <h5>Bot Name</h5>
+
+                <input type="text" placeholder="My Bot"  />
             </div>
             <div className="modal-section">
                 {
@@ -211,7 +218,26 @@ const CreateBotComposer = (props) => {
                                         <img alt="Facebook" src={comingSoon ? comingSoonIcon : facebookIcon} />
                                     </div>
                                     <div className={`txt ${selected === "wa" && "on"}`}>
-                                        {comingSoon ? "Coming Soon" : "Facebook"}
+                                        {comingSoon ? "Coming Soon" : "Messenger"}
+                                    </div>
+                                </div>
+
+                                <div style={{ width: "50%" }} onMouseOver={() => {
+                                    setInit({
+                                        ...init,
+                                        comingSoon: true
+                                    })
+                                }} onMouseOut={() => {
+                                    setInit({
+                                        ...init,
+                                        comingSoon: false
+                                    })
+                                }} className={`category-box ${selected === "wa" && "on-facebook"}`}>
+                                    <div className={`icon on-messenger-app`}>
+                                        <img alt="Facebook" src={comingSoon ? comingSoonIcon : facebookIcon} />
+                                    </div>
+                                    <div className={`txt ${selected === "wa" && "on"}`}>
+                                        {comingSoon ? "Coming Soon" : "Instagram"}
                                     </div>
                                 </div>
                                 {/*<div className={`category-box ${selected === "ma" && "on-messenger-app"}`}*/}
@@ -321,6 +347,10 @@ const CreateBotComposer = (props) => {
                         </div>
 
                 }
+            </div>
+
+            <div className="bot_description_section">
+                <textarea placeholder="description" />
             </div>
             <div className="modal-footer">
                 <div className="actions">
