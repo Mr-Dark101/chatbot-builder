@@ -23,6 +23,57 @@ export function Form(props) {
 }
 
 
+export function TextGroupField(props) {
+    const { name, label, placeholder, icon, ...rest } = props
+    return (
+        <>
+        
+        <div class="form-group">
+            {label && <label htmlFor={name}>{label}</label>}
+
+            <div class="input-group">
+                      <div class="input-group-addon">
+                        <i class={icon}></i>
+                      </div>
+
+            <Field
+                className="form-control"
+                type="text"
+                name={name}
+                id={name}
+                placeholder={placeholder || ""} 
+                {...rest}
+            />
+            
+            </div>
+            <ErrorMessage name={name} render={msg => <div style={{ color: 'red' }} >{msg}</div>} />
+        </div>
+            
+        </>
+    )
+}
+
+export function TextAreaField(props) {
+    const { rows,name, label, placeholder, ...rest } = props
+    return (
+        <>
+        
+            {label && <label htmlFor={name}>{label}</label>}
+            <Field
+                className="form-control"
+                as="textarea"
+                rows={rows}
+                name={name}
+                id={name}
+                placeholder={placeholder || ""} 
+                {...rest}
+            />
+            <ErrorMessage name={name} render={msg => <div style={{ color: 'red' }} >{msg}</div>} />
+
+            
+        </>
+    )
+}
 
 export function TextFieldColor(props) {
     const { name, label, placeholder, ...rest } = props

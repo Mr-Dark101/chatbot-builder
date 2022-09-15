@@ -4,6 +4,7 @@ export const STRINGS = {
     ROUTES: {
         ROOT: `${DOMAIN_PREFIX}/`,
         BWS: `${DOMAIN_PREFIX}/bws`,
+        SETTINGS: `${DOMAIN_PREFIX}/settings`,
         TEMPLATES: `${DOMAIN_PREFIX}/dashboard`,
         ANALYTICS: `${DOMAIN_PREFIX}/analytics`,
         CHAT: `${DOMAIN_PREFIX}/chat_manager`,

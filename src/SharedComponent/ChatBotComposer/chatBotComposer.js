@@ -377,6 +377,32 @@ const ChatBotComposer = ({onClose}) => {
 
     const ApiMenu = (apiResponse,xparam) => {
             let menu = [];
+
+            const backMenu = {
+                                                "id": createGuid(),
+                                                "text": '99 - Back',
+                                                "toTriggerId": createGuid(),
+                                                "toTrigger": {
+                                                    "id": createGuid(),
+                                                    "name": 'Back',
+                                                    "values": [
+                                                        '99'
+                                                    ],
+                                                    "fallBackResponse": "",
+                                                    "loopBackText": [
+                                                        ""
+                                                    ],
+                                                    "loopBackTriggerId": 'optLoopBack',
+                                                    "menus": [],
+                                                    "startTrigger": false,
+                                                    
+                                                    "type": "TEXT",
+                                                    "routeToAgent": false,
+                                                    "response": "",
+                                                    "urls": [],
+                                                    "caption": ""
+                                                }
+                                            }
             apiResponse.map(async (mm,index) => {
                     let optLoopBack = ""
                     if(mm.api == 0){
@@ -417,7 +443,7 @@ const ChatBotComposer = ({onClose}) => {
             })
             //console.log(apiData)
             
-           
+            menu.push(backMenu)
 
             return menu
     }

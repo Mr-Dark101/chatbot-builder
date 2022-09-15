@@ -8,9 +8,9 @@ import {useSelector} from "react-redux";
 const Navigation = () => {
     const history = useHistory();
     const dashboard = useSelector(({Reducers})=> Reducers.dashboard)
-    console.log('nasir')
-    console.log(dashboard.currentUser)
+   
     useEffect(() => {
+        console.log(window.location.pathname)
         if(dashboard.currentUser !== 0 || localStorage.getItem("userId") !== null){
             if(window.location.pathname === "/"){
                 window.onloadend = () => {
@@ -18,7 +18,7 @@ const Navigation = () => {
                 }
             }else{
                 window.onload = () => {
-                    history.push(`${STRINGS.ROUTES.ROOT}?org=${localStorage.getItem("userId")}`);
+                    history.push(`${STRINGS.ROUTES.SETTINGS}?org=${localStorage.getItem("userId")}`);
                 }
             }
         }
@@ -31,6 +31,7 @@ const Navigation = () => {
 
     return (
         <div className="content-hld">
+        
             <Switch>
                 {
                     routes.map(({path, exact, component, isPrivate}) => {
@@ -46,6 +47,7 @@ const Navigation = () => {
                     })
                 }
             </Switch>
+           
         </div>
     );
 };

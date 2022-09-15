@@ -52,8 +52,8 @@ const navbarData = [
     {
         icon: users_icon,
         value: "Settings",
-        isBlank: true,
-        route: `http://localhost:8090/eoceanwab/accountsettings/index`
+        isBlank: false,
+        route: `${STRINGS.ROUTES.SETTINGS}?org=${localStorage.getItem("userId")}`
     },
     
     {
@@ -72,7 +72,7 @@ const NavBar = () => {
     let {open} = navbar;
 
     const dispatch = useDispatch();
-    console.log("navbar", open)
+ 
     const toggleDrawer = () => {
         dispatch(toggleNavbar(false))
     }
@@ -83,8 +83,11 @@ const NavBar = () => {
     return (
        
         
+        <>
+            
 
         <DrawerComponent open={open} data={navbarData} direction={"left"} toggleDrawer={toggleDrawer}/>
+        </>
         
     )
     // return (

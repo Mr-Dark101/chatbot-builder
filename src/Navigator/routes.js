@@ -4,6 +4,7 @@ import {lazy} from "react";
 const Dashboard = lazy(() => import("../components/Dashboard/dashboard"));
 const BuildWorkSpace = lazy(() => import("../components/BuilderWorkSpace/buildWorkSpace"));
 const Templates = lazy(()=> import ("../components/Templates/templates"));
+const Settings = lazy(()=> import ("../components/Settings/settings"));
 
 
 const Login = lazy(() => import("../components/Login/login"));
@@ -27,6 +28,15 @@ export const routes = [
         name: "Bot Template",
         path: `${STRINGS.ROUTES.TEMPLATES}`,
         component: Templates,
+        isPrivate: false,
+        exact: true
+    },
+
+
+    {
+        name: "Settings",
+        path: `${STRINGS.ROUTES.SETTINGS}`,
+        component: Settings,
         isPrivate: false,
         exact: true
     },

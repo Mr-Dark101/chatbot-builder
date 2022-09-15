@@ -110,15 +110,7 @@ const Templates = () => {
                         Bot Template
                     </div>
                 </div>
-                {/*<div className="head-center">*/}
-                {/*    <div className="txt">*/}
-                {/*        {name} -*/}
-                {/*        <span> {phoneNumber} </span>*/}
-                {/*    </div>*/}
-                {/*    <div className="icon" >*/}
-                {/*        <img alt={"#"} src={draft_icon} height={24} width={48}/>*/}
-                {/*    </div>*/}
-                {/*</div>*/}
+               
                 <div className="head-lft">
                     <div className="btn-hld">
 

@@ -2,7 +2,6 @@ import React from 'react';
 import {Drawer, ListItem, ListItemIcon} from '@mui/material';
 import {useHistory} from "react-router-dom";
 
-
 const DrawerComponent = ({open, direction = "left", toggleDrawer, data}) => {
     // const match = useLocation();
     const history = useHistory();
@@ -21,17 +20,14 @@ const DrawerComponent = ({open, direction = "left", toggleDrawer, data}) => {
             data?.map(({icon, route, isBlank}, i) => {
                 return (
                     <ListItem button key={i} className={`nav-text on`}>
-                        <ListItemIcon>
-                            <img alt={"#"} src={icon} style={{margin: 'auto'}} />
-                        </ListItemIcon>
-                        <div className={`nav-a on`}
-                             onClick={(e) => {
+                        <ListItemIcon onClick={(e) => {
                                  handleRoute({route, isBlank});
                                  e.stopPropagation();
                                  e.preventDefault();
                              }}>
-                            
-                        </div>
+                            <img alt={"#"} src={icon} style={{margin: 'auto'}} />
+                        </ListItemIcon>
+                        
                     </ListItem>
                 )
             })
@@ -40,6 +36,8 @@ const DrawerComponent = ({open, direction = "left", toggleDrawer, data}) => {
 
     return (
         <>
+
+        
             <Drawer
                 
                 anchor={direction}
@@ -50,6 +48,12 @@ const DrawerComponent = ({open, direction = "left", toggleDrawer, data}) => {
 
                 {list(data)}
             </Drawer>
+
+
+            
+                
+               
+            
         </>
     );
 };
