@@ -38,6 +38,7 @@ const ConditionList = ({props,apiHandle,dataIndex,apiData,updatedTriggersVal}) =
     template: false,
     openFallBackComposer: false,
     triggerOpt: "",
+    triggerOptLabel:"",
     triggerOptApi: "",
     triggerOptResponse: "",
     optLoopBack:"",
@@ -46,7 +47,12 @@ const ConditionList = ({props,apiHandle,dataIndex,apiData,updatedTriggersVal}) =
     uploadedFile: {},
     updateMenus: {
         selectedMenuId: null,
-        text: ""
+        text: "",
+        name: "",
+        label: "",
+        api: "",
+        responsee: "",
+        loopback:"",
     },
     currentData: apiData,
     updateTriggerObject: {
@@ -62,7 +68,7 @@ const dispatch = useDispatch();
 let {handleTriggerClose, currentBotData, trigger, getAllTypes} = props;
 const [init, setInit] = useState(defaultState);
   let {isText,isApi, isMedia, isLoopBack, template, currentData, openFallBackComposer, triggerOpt, triggerValueName, values, descriptionType,
-        isConfirm, confirmationTxt,isAlert,triggerOptApi,triggerOptResponse,optLoopBack} = init;
+        isConfirm, confirmationTxt,isAlert,triggerOptApi,triggerOptResponse,optLoopBack,triggerOptLabel} = init;
 
  let {name, triggerMenus, description, fallBackResponse, caption, loopBackId, loopBackText, routToAgent, type,apiId,apiText,conditionLabel,conditionValue} = currentData;
 const [isData] = useState(!$.isEmptyObject(trigger.currentTriggerData));
@@ -168,6 +174,7 @@ const handleAddOptions = () => {
                     ...init.currentData,
                     triggerMenus: [...init.currentData.triggerMenus, {
                         name: triggerOpt,
+                        label:triggerOptLabel,
                         id: `b${id}_t${counter}${createGuid()}`,
                         api:triggerOptApi,
                         response:triggerOptResponse,
@@ -739,14 +746,158 @@ const handleResponseSelect = (name) => {
                                                                                ...init,
                                                                                updateMenus: {
                                                                                    ...init.updateMenus,
-                                                                                   text: e.target.value
+                                                                                   name: e.target.value
                                                                                }
                                                                            })
                                                                        }}/>
                                                                 :
                                                                 m.name
                                                             }
+
+
                                                         </button>
+
+                                                        <button className="btn-outline" style={{
+                                                            width: "220px",
+                                                            whiteSpace: "nowrap",
+                                                            textAlign: "center",
+                                                            overflowX: "auto"
+                                                        }}>
+                                                            {init.updateMenus.selectedMenuId === m.main_id ?
+                                                                <input type="text" defaultValue={m.label}
+                                                                       onChange={(e) => {
+                                                                           setInit({
+                                                                               ...init,
+                                                                               updateMenus: {
+                                                                                   ...init.updateMenus,
+                                                                                   label: e.target.value
+                                                                               }
+                                                                           })
+                                                                       }}/>
+                                                                :
+                                                                m.label
+                                                            }
+
+                                                            
+                                                        </button>
+
+                                                        <button className="btn-outline" style={{
+                                                            width: "220px",
+                                                            whiteSpace: "nowrap",
+                                                            textAlign: "center",
+                                                            overflowX: "auto"
+                                                        }}>
+                                                            {init.updateMenus.selectedMenuId === m.main_id ?
+                                                                
+
+                                                                       <Select
+                                                                        labelId="demo-simple-select-standard-label"
+                                                                        id="demo-simple-select-standard"
+                                                                        value={m.api}
+                                                                        onChange={(e) => {
+                                                                           setInit({
+                                                                               ...init,
+                                                                               updateMenus: {
+                                                                                   ...init.updateMenus,
+                                                                                   api: e.target.value
+                                                                               }
+                                                                           })
+                                                                        }}
+                                                                        label="Age"
+                                                                    >
+                                                                        {
+                                                                            apiList?.map((tr) => {
+                                                                                return (
+                                                                                    <MenuItem value={tr.id}>{tr.name}</MenuItem>
+                                                                                )
+                                                                            })
+
+                                                                        }
+                                                                        <MenuItem value="0">Loop Back</MenuItem>
+                                                                    </Select>
+                                                                :
+                                                                m.api
+                                                            }
+
+                                                            
+                                                        </button>
+
+
+                                                        {m.api == 0  ? (
+
+                                                            <button className="btn-outline" style={{
+                                                                width: "220px",
+                                                                whiteSpace: "nowrap",
+                                                                textAlign: "center",
+                                                                overflowX: "auto"
+                                                            }}>
+                                                                {init.updateMenus.selectedMenuId === m.main_id ?
+                                                                    <Select
+                                                                            labelId="demo-simple-select-standard-label"
+                                                                            id="demo-simple-select-standard"
+                                                                            value={m.loopback}
+                                                                            onChange={(e) => {
+                                                                               setInit({
+                                                                                   ...init,
+                                                                                   updateMenus: {
+                                                                                       ...init.updateMenus,
+                                                                                       loopback: e.target.value
+                                                                                   }
+                                                                               })
+                                                                            }}
+                                                                            label="Age"
+                                                                        >
+                                                                            {
+                                                                                updatedTriggersVal?.map((tr) => {
+                                                                                    return (
+                                                                                        <MenuItem value={tr.id}>{tr.name}</MenuItem>
+                                                                                    )
+                                                                                })
+                                                                            }
+                                                                        </Select>
+                                                                    :
+                                                                    m.loopback
+                                                                }
+
+                                                                
+                                                            </button>
+
+
+
+
+                                                            ) : (
+
+
+
+                                                                <button className="btn-outline" style={{
+                                                            width: "220px",
+                                                            whiteSpace: "nowrap",
+                                                            textAlign: "center",
+                                                            overflowX: "auto"
+                                                        }}>
+                                                            {init.updateMenus.selectedMenuId === m.main_id ?
+                                                                <input type="text" defaultValue={m.response}
+                                                                       onChange={(e) => {
+                                                                           setInit({
+                                                                               ...init,
+                                                                               updateMenus: {
+                                                                                   ...init.updateMenus,
+                                                                                   response: e.target.value
+                                                                               }
+                                                                           })
+                                                                       }}/>
+                                                                :
+                                                                m.response
+                                                            }
+
+                                                            
+                                                        </button>
+
+
+                                                            )}
+                                                        
+
+                                                        
                                                     </React.Fragment>
                                                     <div className="icon">
 
@@ -764,21 +915,28 @@ const handleResponseSelect = (name) => {
                                                                                         onClick={() => {
                                                                                             setInit({
                                                                                                 ...init,
-                                                                                                updatePending: true,
+                                                                                                updatePending: false,
                                                                                                 currentData: {
                                                                                                     ...init.currentData,
                                                                                                     triggerMenus: init.currentData.triggerMenus.map((t) => {
                                                                                                         if (t.id === m.id) {
-                                                                                                            t.name = init.updateMenus.text
+                                                                                                            t.name = init.updateMenus.name
+                                                                                                            t.label = init.updateMenus.label
+                                                                                                            t.response = init.updateMenus.response
+                                                                                                            t.api = init.updateMenus.api
+                                                                                                            t.loopback = init.updateMenus.loopback
+
                                                                                                         }
+
+                                                                                                        console.log(t)
                                                                                                         return t
                                                                                                     })
                                                                                                 }
                                                                                             })
-                                                                                            dispatch(UpdateTriggerMenusText({
-                                                                                                id: init.updateMenus.selectedMenuId,
-                                                                                                text: init.updateMenus.text,
-                                                                                            }));
+                                                                                            // dispatch(UpdateTriggerMenusText({
+                                                                                            //     id: init.updateMenus.selectedMenuId,
+                                                                                            //     text: init.updateMenus.text,
+                                                                                            // }));
                                                                                         }
                                                                                         }>
                                                                                     Update
@@ -809,6 +967,11 @@ const handleResponseSelect = (name) => {
                                                                                                   ...init,
                                                                                                   updateMenus: {
                                                                                                       selectedMenuId: m.main_id,
+                                                                                                      name:m.name,
+                                                                                                      api:m.api,
+                                                                                                      response:m.response,
+                                                                                                      loopback:m.loopback,
+                                                                                                      label:m.label,
                                                                                                       text: "",
                                                                                                   }
                                                                                               })
@@ -832,26 +995,91 @@ const handleResponseSelect = (name) => {
                                     )
                                 }
                             </div>
-                            <div className="txt-field">
-                                <div className="label">
-                                    <div className="sub-txt">
-                                        Option Label
+
+                            <div className="row">
+                                <div className="col-sm-3">
+                                     
+                                     <div className="txt-field">
+                                        <div className="label">
+                                            <div className="sub-txt">
+                                                Option Key
+                                            </div>
+                                        </div>
+                                        <div className="input">
+                                            
+
+
+
+                                            <input className="inp" value={triggerOpt}
+                                                   placeholder="Write Trigger Option (if any)"
+                                                   onChange={(e) => {
+                                                       setInit({
+                                                           ...init,
+                                                           triggerOpt: e.target.value
+                                                       })
+                                                   }}
+                                            />
+
+
+
+                                                    
+
+                                            
+
+                                           
+                                        </div>
+                                    </div>
+
+                                     
+                                </div>
+                                <div className="col-sm-3">
+                                    
+
+                                    <div className="txt-field">
+                                        <div className="label">
+                                            <div className="sub-txt">
+                                                Option Label
+                                            </div>
+                                        </div>
+                                        <div className="input">
+                                            
+
+
+
+                                            <input className="inp" value={triggerOptLabel}
+                                                   placeholder="Write Trigger Option (if any)"
+                                                   onChange={(e) => {
+                                                       setInit({
+                                                           ...init,
+                                                           triggerOptLabel: e.target.value
+                                                       })
+                                                   }}
+                                            />
+
+
+
+                                                    
+
+                                            
+
+                                           
+                                        </div>
                                     </div>
                                 </div>
-                                <div className="input">
-                                    <input className="inp" value={triggerOpt}
-                                           placeholder="Write Trigger Option (if any)"
-                                           onChange={(e) => {
-                                               setInit({
-                                                   ...init,
-                                                   triggerOpt: e.target.value
-                                               })
-                                           }}
-                                    />
+                                <div className="col-sm-3">
+
+                                    <div className="txt-field">
+                                        <div className="label">
+                                            <div className="sub-txt">
+                                                Api
+                                            </div>
+                                        </div>
+                                        <div className="input">
+                                            
 
 
 
-                                    <Select
+                                            <Select
                                                 labelId="demo-simple-select-standard-label"
                                                 id="demo-simple-select-standard"
                                                 value={triggerOptApi}
@@ -876,8 +1104,38 @@ const handleResponseSelect = (name) => {
                                             </Select>
 
 
+                                                    
 
-                                             <Select
+                                            
+
+                                           
+                                        </div>
+                                    </div>
+
+                                    
+
+
+                                    
+                                </div>
+                                <div className="col-sm-3">
+
+
+
+                                    <div className="txt-field">
+                                        <div className="label">
+                                            <div className="sub-txt">
+                                                Response
+                                            </div>
+                                        </div>
+                                        <div className="input">
+                                            
+
+
+                                        {triggerOptApi == 0 ? (
+
+
+
+                                            <Select
                                                 labelId="demo-simple-select-standard-label"
                                                 id="demo-simple-select-standard"
                                                 value={optLoopBack}
@@ -898,19 +1156,43 @@ const handleResponseSelect = (name) => {
                                                 }
                                             </Select>
 
-                                    
 
-                                    <input className="inp" value={triggerOptResponse}
-                                           placeholder="Response"
-                                           onChange={(e) => {
-                                               setInit({
-                                                   ...init,
-                                                   triggerOptResponse: e.target.value
-                                               })
-                                           }}
-                                    />
+                                            ) : (
+
+
+
+                                                <input className="inp" value={triggerOptResponse}
+                                                   placeholder="Response"
+                                                   onChange={(e) => {
+                                                       setInit({
+                                                           ...init,
+                                                           triggerOptResponse: e.target.value
+                                                       })
+                                                   }}
+                                            />
+
+
+                                            )}
+                                             
+
+
+                                             
+
+
+                                                    
+
+                                            
+
+                                           
+                                        </div>
+                                    </div>
+
+                                       
+
+                                       
                                 </div>
                             </div>
+                            
                             <div className="add-btn">
                                 <button className="btn-outlined" onClick={handleAddOptions}>
                                     Add Option

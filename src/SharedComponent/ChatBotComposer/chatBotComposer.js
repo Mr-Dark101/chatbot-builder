@@ -131,12 +131,24 @@ const ChatBotComposer = ({onClose}) => {
                     setTriggerType(data[i].triggerType);
                     setApiData(data[i].apiData);
                     
-                     
-                    // console.log("loopBackTrigger ---",text)
-                    // console.log("loopBackTrigger ---",data[i].values)
-                    // console.log("loopBackTrigger ---",data[i])
+                    console.log(trigger)
+
+                    if(trigger.xapi > 0){
+
+                        const apiResponse = await ApiData(trigger.xparam,trigger.xapi).then((rData) => {
+
+                                return rData;
+                        });
+                    }
+                    
+                  
                     let currentLoopBackPreview = updatedTriggers.filter((fl) => fl.id === trigger.loopBackTriggerId && trigger.loopBackText.length === 1).length > 0 ? updatedTriggers.filter((fl) => fl.id === trigger.loopBackTriggerId)[0] : {}
-                   
+                    if(!$.isEmptyObject(currentLoopBackPreview)){
+
+                        setApiId(currentLoopBackPreview.api_id)
+                        setApiData(currentLoopBackPreview.apiData);
+                        setTriggerType(currentLoopBackPreview.triggerType)
+                    }
                     // console.log("loopBackTrigger ^^",currentLoopBackPreview)
                     setInit({
                         ...init,
@@ -144,6 +156,7 @@ const ChatBotComposer = ({onClose}) => {
                             text: text,
                             id: "me"
                         }, currentLoopBackPreview] : !$.isEmptyObject(trigger) ? [...init.messages, {
+
                             text: text,
                             id: "me"
                         }, trigger] : [...init.messages, {text: text, id: "me"}],
@@ -153,6 +166,8 @@ const ChatBotComposer = ({onClose}) => {
                             }
                         }).filter((d) => d !== undefined) : data[i].menus.map((d) => {
                             if (d.toTrigger !== null) {
+
+
                                 return d.toTrigger
                             }
                         }).filter((d) => d !== undefined),
@@ -200,9 +215,44 @@ const ChatBotComposer = ({onClose}) => {
             }
         } else {
             if(Object.keys(loopBackTrigger).length > 0){
-                 
 
-                 trigger = {
+
+
+                if(triggerType == 'A'){
+                        const apiResponse = await ApiData(text,apiId).then((rData) => {
+
+                                return rData;
+                        });
+
+
+
+                                 trigger = buildMessage(apiResponse);
+
+
+                                 if(trigger){
+
+
+                                     setInit({
+                                    ...init,
+                                        messages: !$.isEmptyObject(trigger) ? [...init.messages, {
+                                            text: text,
+                                            id: "me"
+                                        }, trigger] : [...init.messages, {text: text, id: "me"}],
+                                        data: !$.isEmptyObject(trigger) ? trigger.menus.length > 0 ? trigger.menus.map((d) => {
+                                                if (d.toTrigger !== null) {
+
+                                                    return d.toTrigger
+                                                }
+                                            }).filter((d) => d !== undefined) : [loopBackTrigger] : []
+                                    });
+                                    trigger = {};
+                                    // updatedTriggers = [];
+                                    msgArea.current.value = "";
+                                 }
+
+               }else{
+
+                        trigger = {
                     id: createGuid(),
                     response: "End",
                     type:"TEXT"
@@ -217,6 +267,8 @@ const ChatBotComposer = ({onClose}) => {
                     // data: triggersList
                     data: !$.isEmptyObject(loopBackTrigger) ? loopBackTrigger.menus.length > 0 ? loopBackTrigger.menus.map((d) => {
                         if (d.toTrigger !== null) {
+
+
                             return d.toTrigger
                         }
                     }).filter((d) => d !== undefined) : [loopBackTrigger] : []
@@ -224,6 +276,10 @@ const ChatBotComposer = ({onClose}) => {
                 trigger = {};
                 // updatedTriggers = [];
                 msgArea.current.value = "";
+               }
+                 
+
+                 
             }else{
                 
                 
@@ -235,7 +291,7 @@ const ChatBotComposer = ({onClose}) => {
 
 
 
-                                 trigger = buildMessage(apiResponse);
+                                 trigger = buildMessage(apiResponse,text);
 
 
                                  if(trigger){
@@ -275,7 +331,7 @@ const ChatBotComposer = ({onClose}) => {
 
     }
 
-    const buildMessage = (apiResponse) => {
+    const buildMessage = (apiResponse,xparam) => {
 
         let buildData = [];
 
@@ -310,7 +366,7 @@ const ChatBotComposer = ({onClose}) => {
                                     response: buildData[0].description,
 
                                     type:"TEXT",
-                                    menus: ApiMenu(buildData[0].triggerMenus),
+                                    menus: ApiMenu(buildData[0].triggerMenus,xparam),
                                  }
                     return trigger;
 
@@ -319,17 +375,22 @@ const ChatBotComposer = ({onClose}) => {
         
     }
 
-    const ApiMenu = (apiResponse) => {
+    const ApiMenu = (apiResponse,xparam) => {
             let menu = [];
-            apiResponse.map((mm,index) => {
+            apiResponse.map(async (mm,index) => {
                     let optLoopBack = ""
                     if(mm.api == 0){
                         optLoopBack = mm.loopback;
 
                     }
+                    // if(mm.api > 0){
+
+                    //     const apiReturn =  await dispatch(ApiOrder(xparam,mm.api))
+                    //     return  apiReturn;
+                    // }
                     menu.push({
                                                 "id": createGuid(),
-                                                "text": mm.name,
+                                                "text": mm.name + " - " + mm.label,
                                                 "toTriggerId": createGuid(),
                                                 "toTrigger": {
                                                     "id": createGuid(),
@@ -344,6 +405,8 @@ const ChatBotComposer = ({onClose}) => {
                                                     "loopBackTriggerId": optLoopBack,
                                                     "menus": [],
                                                     "startTrigger": false,
+                                                    'xparam':xparam,
+                                                    'xapi': mm.api,
                                                     "type": "TEXT",
                                                     "routeToAgent": false,
                                                     "response": mm.response,
