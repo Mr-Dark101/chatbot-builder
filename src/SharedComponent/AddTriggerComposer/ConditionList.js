@@ -1074,7 +1074,7 @@ const handleResponseSelect = (name) => {
                                                 Api
                                             </div>
                                         </div>
-                                        <div className="input">
+                                        <div className="input" style={{display: 'block'}}>
                                             
 
 
@@ -1127,7 +1127,7 @@ const handleResponseSelect = (name) => {
                                                 Response
                                             </div>
                                         </div>
-                                        <div className="input">
+                                        <div className="input" style={{display: 'block'}}>
                                             
 
 
@@ -1193,16 +1193,18 @@ const handleResponseSelect = (name) => {
                                 </div>
                             </div>
                             
-                            <div className="add-btn">
+                            <div className="add-btn api_button_section">
                                 <button className="btn-outlined" onClick={handleAddOptions}>
                                     Add Option
+                                </button>
+
+                                <button className="btn btn-danger" onClick={saveCondition}>
+                                     Save Condition
                                 </button>
                             </div>
 
                             <div className="add-btn">
-                                 <button className="btn btn-danger" onClick={saveCondition}>
-                                     Save Condition
-                                </button>
+                                 
                             </div>
                         </div>
 
