@@ -32284,7 +32284,7 @@ img.away, img.busy, img.offline, img.online {
   font-size: 20px !important;
 }
 .css-1160xiw-MuiPaper-root-MuiDrawer-paper{
-  width: 636px !important;
+  /*width: 636px !important;*/
   background-color: rgba(16, 22, 58, 0.75) !important;
   padding: 20px 0px;
 }

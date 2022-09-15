@@ -870,7 +870,7 @@ const ByTypeComposer = ({props,triggerType}) => {
                                         </div>
                                     </div>
                                     <div className="input" style={{justifyContent: 'space-between'}}>
-                                        <div style={{width: '69%'}}>
+                                        <div style={{width: '80%'}}>
                                             <input className="inp" value={triggerValueName} onChange={(e) => {
                                                 setInit({
                                                     ...init,
@@ -880,7 +880,7 @@ const ByTypeComposer = ({props,triggerType}) => {
                                         </div>
 
                                         <div>                                          
-                                            <button type="button" className="btn btn_add_option">Add Options</button>
+                                            <button type="button" onClick={() => handleAddTriggerValue()} className="btn btn_add_option">Add Options</button>
                                         </div>
                                     </div>
                                 </div>
@@ -903,7 +903,7 @@ const ByTypeComposer = ({props,triggerType}) => {
                                     )
                                 }
                             </div>
-                            <div className="rnb" style={{display: 'none'}}>
+                            <div className="rnb">
                                 <button className="btn-rnb">
                                     Reg([^0-9])|
                                 </button>
