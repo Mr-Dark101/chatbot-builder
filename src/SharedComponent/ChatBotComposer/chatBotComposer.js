@@ -252,6 +252,8 @@ const ChatBotComposer = ({onClose}) => {
 
                }else{
 
+
+
                         trigger = {
                     id: createGuid(),
                     response: "End",
@@ -345,25 +347,57 @@ const ChatBotComposer = ({onClose}) => {
                     
 
 
-                    buildData.push({description:rs.description,conditionLabel:rs.conditionLabel,conditionValue:rs.conditionValue,triggerMenus:rs.triggerMenus})
+                    buildData.push({description:rs.description,conditionLabel:rs.conditionLabel,conditionValue:rs.conditionValue,triggerMenus:rs.triggerMenus,data:apiResponse.data.data.data})
                 }
 
                 
         })
 
         if(buildData.length == 0){
-            trigger = {
+
+
+            const backMenu = [{
+                                                "id": createGuid(),
+                                                "text": '99 - Back',
+                                                "toTriggerId": createGuid(),
+                                                "toTrigger": {
+                                                    "id": createGuid(),
+                                                    "name": 'Back',
+                                                    "values": [
+                                                        '99'
+                                                    ],
+                                                    "fallBackResponse": "",
+                                                    "loopBackText": [
+                                                        ""
+                                                    ],
+                                                    "loopBackTriggerId": 'B4658_T6',
+                                                    "menus": [],
+                                                    "startTrigger": false,
+                                                    
+                                                    "type": "TEXT",
+                                                    "routeToAgent": false,
+                                                    "response": "",
+                                                    "urls": [],
+                                                    "caption": ""
+                                                }
+                                            }]
+                                trigger = {
                                     id: createGuid(),
                                     response: "No Response",
 
                                     type:"TEXT",
-                                    menus: [],
+                                    menus: backMenu,
                                  }
                                 return trigger;
         }
-        trigger = {
+
+        let customDesc = buildData[0].description;
+
+        customDesc = customDesc.replace('{data}',JSON.stringify(buildData[0].data))
+
+                    trigger = {
                                     id: createGuid(),
-                                    response: buildData[0].description,
+                                    response: customDesc,
 
                                     type:"TEXT",
                                     menus: ApiMenu(buildData[0].triggerMenus,xparam),
@@ -378,7 +412,7 @@ const ChatBotComposer = ({onClose}) => {
     const ApiMenu = (apiResponse,xparam) => {
             let menu = [];
 
-            const backMenu = {
+            const backMenu = [{
                                                 "id": createGuid(),
                                                 "text": '99 - Back',
                                                 "toTriggerId": createGuid(),
@@ -392,7 +426,7 @@ const ChatBotComposer = ({onClose}) => {
                                                     "loopBackText": [
                                                         ""
                                                     ],
-                                                    "loopBackTriggerId": 'optLoopBack',
+                                                    "loopBackTriggerId": 'B4658_T6',
                                                     "menus": [],
                                                     "startTrigger": false,
                                                     
@@ -402,7 +436,7 @@ const ChatBotComposer = ({onClose}) => {
                                                     "urls": [],
                                                     "caption": ""
                                                 }
-                                            }
+                                            }]
             apiResponse.map(async (mm,index) => {
                     let optLoopBack = ""
                     if(mm.api == 0){
@@ -429,7 +463,7 @@ const ChatBotComposer = ({onClose}) => {
                                                         ""
                                                     ],
                                                     "loopBackTriggerId": optLoopBack,
-                                                    "menus": [],
+                                                    "menus": backMenu,
                                                     "startTrigger": false,
                                                     'xparam':xparam,
                                                     'xapi': mm.api,
@@ -443,7 +477,7 @@ const ChatBotComposer = ({onClose}) => {
             })
             //console.log(apiData)
             
-            menu.push(backMenu)
+            
 
             return menu
     }
