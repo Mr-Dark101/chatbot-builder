@@ -18,7 +18,7 @@ const Navigation = () => {
                 }
             }else{
                 window.onload = () => {
-                    history.push(`${STRINGS.ROUTES.SETTINGS}?org=${localStorage.getItem("userId")}`);
+                    history.push(`${STRINGS.ROUTES.ROOT}?org=${localStorage.getItem("userId")}`);
                 }
             }
         }
