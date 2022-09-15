@@ -20,13 +20,13 @@ const AddTriggerComposer = (props) => {
 
     useEffect(() => {
         let tVal = 'M';
-        setBtnMessageStyle({backgroundColor:'#363A77',width:'100%',color:'#fff'})
-            setBtnApiStyle({backgroundColor:'#fff',width:'100%',color:'#000'})
+        setBtnMessageStyle({backgroundColor:'#10163A',width:'100%',color:'#fff',borderRadius: '5px 5px 0px 0px'})
+            setBtnApiStyle({backgroundColor:'#fff',width:'100%',color:'#000',borderRadius: '5px 5px 0px 0px'})
         if(props.trigger.currentTriggerData.toTrigger){
             tVal = props.trigger.currentTriggerData.toTrigger.triggerType;
 
-             setBtnMessageStyle({backgroundColor:'#fff',width:'100%',color:'#000'})
-            setBtnApiStyle({backgroundColor:'#363A77',width:'100%',color:'#fff'})
+             setBtnMessageStyle({backgroundColor:'#fff',width:'100%',color:'#000',borderRadius: '5px 5px 0px 0px'})
+            setBtnApiStyle({backgroundColor:'#10163A',width:'100%',color:'#fff',borderRadius: '5px 5px 0px 0px'})
         }
         setTriggerType(tVal)
     }, []);
@@ -34,28 +34,28 @@ const AddTriggerComposer = (props) => {
     const meClick = (param) => {
         
         if(param == 'M'){
-            setBtnMessageStyle({backgroundColor:'#363A77',width:'100%',color:'#fff'})
-            setBtnApiStyle({backgroundColor:'#fff',width:'100%',color:'#000'})
+            setBtnMessageStyle({backgroundColor:'#10163A',width:'100%',color:'#fff',borderRadius: '5px 5px 0px 0px'})
+            setBtnApiStyle({backgroundColor:'#fff',width:'100%',color:'#000',borderRadius: '5px 5px 0px 0px'})
         }else{
 
-            setBtnMessageStyle({backgroundColor:'#fff',width:'100%',color:'#000'})
-            setBtnApiStyle({backgroundColor:'#363A77',width:'100%',color:'#fff'})
+            setBtnMessageStyle({backgroundColor:'#fff',width:'100%',color:'#000',borderRadius: '5px 5px 0px 0px'})
+            setBtnApiStyle({backgroundColor:'#10163A',width:'100%',color:'#fff',borderRadius: '5px 5px 0px 0px'})
         }
         setTriggerType(param)
     }
 
     return (
         <>
-         <div className="row">
-                            <div className="col-sm-6">
-                           
-                                <button onClick={() => meClick('M')} className="btn btn-block {btn-primary}" style={btnMessageStyle}>Message</button>
-                            
-                            </div>
-                            <div className="col-sm-6">
-                                <button onClick={() => meClick('A')} className="btn btn-block btn-secondry" style={btnApiStyle}>API</button>
-                            </div>
-         </div>
+         <ul className="right_bar_top_section">
+            <li>
+           
+                <button onClick={() => meClick('M')} className="btn btn-block {btn-primary}" style={btnMessageStyle}>Message</button>
+            
+            </li>
+            <li>
+                <button onClick={() => meClick('A')} className="btn btn-block btn-secondry" style={btnApiStyle}>API</button>
+            </li>
+         </ul>
 
             <ByTypeComposer props={props} triggerType={triggerType} />
          </>
