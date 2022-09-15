@@ -918,6 +918,17 @@ const ByTypeComposer = ({props,triggerType}) => {
                             <div className="txt" style={{marginTop: '10px',marginBottom: '20px'}}>
                                 Response
                             </div>
+
+                            <div className="row">
+                                <div className="col-sm-6">
+                                   
+                                        <button onClick={() => meClickCondition('C')} className="btn btn-block {btn-primary}" style={btnMessageStyle}>Condition Response</button>
+                                </div>
+                                <div className="col-sm-6">
+                                     <button onClick={() => meClickCondition('S')} className="btn btn-block {btn-primary}" style={btnMessageStyle}> Simple Response</button>
+                                </div>
+
+                            </div>  
                             <div className="tcb">
                             
                            
