@@ -1,7 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import trash_icon from "../../assets/Custom Size - 4/Icon metro-cancel.svg";
+import edit_icon from "../../assets/Custom Size - 4/edit.svg";
 import delete_icon from "../../assets/Group 4968.svg";
 import upload_icon from "../../assets/Icon metro-cloud-upload.svg";
+
 import $ from "jquery";
 import {useDispatch} from "react-redux";
 import {createGuid, getGeneratedId, STRINGS} from "../../utils/base";
@@ -840,11 +842,6 @@ const ByTypeComposer = ({props,triggerType}) => {
                 <div className="trigger-card">
                     <div className="card-content">
                         <div className="row__">
-                            <div className="txt">
-                                Trigger {triggerType}
-                            </div>
-                        </div>
-                        <div className="row__">
                             <div className="txt-field">
                                 <div className="label">
                                     <div className="sub-txt">
@@ -852,7 +849,7 @@ const ByTypeComposer = ({props,triggerType}) => {
                                     </div>
                                 </div>
                                 <div className="input">
-                                    <input className="inp" value={name} onChange={(e) => {
+                                    <input className="inp" placeholder="Welcome Message" value={name} onChange={(e) => {
                                         setInit({
                                             ...init,
                                             currentData: {
@@ -865,23 +862,26 @@ const ByTypeComposer = ({props,triggerType}) => {
                             </div>
                         </div>
                         <div className="row__">
-                            <div className="txt">
-                                Initiate Conversation with
-                            </div>
                             <div className="row__">
                                 <div className="txt-field">
                                     <div className="label">
                                         <div className="sub-txt">
-                                            Trigger Value Name
+                                            Initiate Conversation with
                                         </div>
                                     </div>
-                                    <div className="input">
-                                        <input className="inp" value={triggerValueName} onChange={(e) => {
-                                            setInit({
-                                                ...init,
-                                                triggerValueName: e.target.value
-                                            })
-                                        }} placeholder="Please Enter Value"/>
+                                    <div className="input" style={{justifyContent: 'space-between'}}>
+                                        <div style={{width: '69%'}}>
+                                            <input className="inp" value={triggerValueName} onChange={(e) => {
+                                                setInit({
+                                                    ...init,
+                                                    triggerValueName: e.target.value
+                                                })
+                                            }} placeholder="Please Enter Value"/>
+                                        </div>
+
+                                        <div>                                          
+                                            <button type="button" className="btn btn_add_option">Add Options</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -903,20 +903,20 @@ const ByTypeComposer = ({props,triggerType}) => {
                                     )
                                 }
                             </div>
-                            <div className="rnb">
+                            <div className="rnb" style={{display: 'none'}}>
                                 <button className="btn-rnb">
                                     Reg([^0-9])|
                                 </button>
                             </div>
-                            <div className="add-btn">
+                            <div className="add-btn" style={{display: 'none'}}>
                                 <button className="btn-outlined" onClick={() => handleAddTriggerValue()}>
                                     Add Values
                                 </button>
                             </div>
                         </div>
-                        <div className="row__">
-                            <div className="txt">
-                                Trigger Response
+                        <div className="row__" style={{marginBottom: '0px'}}>
+                            <div className="txt" style={{marginTop: '10px',marginBottom: '20px'}}>
+                                Response
                             </div>
                             <div className="tcb">
                             
@@ -961,7 +961,7 @@ const ByTypeComposer = ({props,triggerType}) => {
                                 </button>
                             </div>
                         </div>
-                        <div className="row__">
+                        <div className="row__" style={{marginTop: '0px'}}>
                             
                             {
                                 isText && (
@@ -1237,13 +1237,13 @@ const ByTypeComposer = ({props,triggerType}) => {
                                     Route to agent
                                 </div>
 
-                                <div className="ab-txt" onClick={() => {
+                                <div className="ab-txt fallback_button" onClick={() => {
                                     setInit({
                                         ...init,
                                         openFallBackComposer: !openFallBackComposer
                                     })
                                 }}>
-                                    Add Fall-Back Response
+                                    <i className="fa fa-plus-circle"></i> Add Fall-Back Response
                                 </div>
                                  </>
                         ) : null}
@@ -1282,9 +1282,35 @@ const ByTypeComposer = ({props,triggerType}) => {
                         {triggerType == 'M' ? (
                              <>
                         <div className="row__">
-                            <div className="txt">
-                                Trigger Menu
+                            <div>
+                                <button className="btn_response" type="button"><i className="fa fa-plus-circle"></i>Add Response</button>
                             </div>
+                            
+                            <div className="txt-field">
+                                <div className="label">
+                                    <div className="sub-txt">
+                                        Menu Options
+                                    </div>
+                                </div>
+                                <div className="input">
+                                    <input className="inp" value={triggerOpt}
+                                           placeholder="Write Trigger Option (if any)"
+                                           onChange={(e) => {
+                                               setInit({
+                                                   ...init,
+                                                   triggerOpt: e.target.value
+                                               })
+                                           }}
+                                    />
+
+                                    <div className="add-btn">
+                                        <button className="btn-outlined" onClick={handleAddOptions}>
+                                            Add Option
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
                             <div className="selected-menus">
                                 {
                                     triggerMenus.length > 0 && (
@@ -1382,7 +1408,17 @@ const ByTypeComposer = ({props,triggerType}) => {
                                                             />
                                                         }
 
-                                                        <img alt={"#"} src={delete_icon} onClick={() => {
+                                                        <img alt={"#"} src={edit_icon} onClick={() => {
+                                                            setInit({
+                                                                ...init,
+                                                                currentData: {
+                                                                    ...init.currentData,
+                                                                    triggerMenus: init.currentData.triggerMenus.filter((d) => d.id !== m.id)
+                                                                }
+                                                            })
+                                                        }}/>
+
+                                                        <img alt={"#"} src={trash_icon} onClick={() => {
                                                             setInit({
                                                                 ...init,
                                                                 currentData: {
@@ -1398,29 +1434,7 @@ const ByTypeComposer = ({props,triggerType}) => {
                                     )
                                 }
                             </div>
-                            <div className="txt-field">
-                                <div className="label">
-                                    <div className="sub-txt">
-                                        Option Label
-                                    </div>
-                                </div>
-                                <div className="input">
-                                    <input className="inp" value={triggerOpt}
-                                           placeholder="Write Trigger Option (if any)"
-                                           onChange={(e) => {
-                                               setInit({
-                                                   ...init,
-                                                   triggerOpt: e.target.value
-                                               })
-                                           }}
-                                    />
-                                </div>
-                            </div>
-                            <div className="add-btn">
-                                <button className="btn-outlined" onClick={handleAddOptions}>
-                                    Add Option
-                                </button>
-                            </div>
+                            
                         </div>
 
                         </>
@@ -1428,11 +1442,9 @@ const ByTypeComposer = ({props,triggerType}) => {
                     </div>
                     <div className="card-end">
                         <div className="c-footer">
-                            <div className="icon">
-                                <img alt={"#"} src={delete_icon}/>
-                            </div>
+                            
                             <div className="actions-btn">
-                                <button className="btn-transparent" onClick={handleTriggerClose}>Cancel</button>
+                                
                                 {
                                     isUpdatedList ? (
                                         <button className="btn-filled"
@@ -1451,7 +1463,7 @@ const ByTypeComposer = ({props,triggerType}) => {
                                         }}/></button>
                                     )
                                 }
-
+                                <button className="btn-transparent" onClick={handleTriggerClose}>Cancel</button>
 
                             </div>
                         </div>

@@ -140,7 +140,7 @@
   .btn-outline:hover, .btn-outline:active, .btn-outline.active {
     background-color: #234173;
     border-color: #234173;
-    color: #ffffff !important; }
+    color: #ffffff; }
 
 .show > .btn-outline.dropdown-toggle {
   background-color: #234173;
