@@ -1,9 +1,3 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 80 80">
-  <g id="create_new_bot_ic" data-name="create new bot ic" transform="translate(-160 -208)">
-    <rect id="Rectangle_3259" data-name="Rectangle 3259" width="80" height="80" transform="translate(160 208)" fill="none"/>
-    <g id="Icon_ionic-md-add-circle-outline" data-name="Icon ionic-md-add-circle-outline" transform="translate(168.333 215.5)">
-      <path id="Path_44269" data-name="Path 44269" d="M47.406,33.969H33.969V47.406H27.406V33.969H13.969V27.406H27.406V13.969h6.563V27.406H47.406Z" transform="translate(1.812 1.812)" fill="#363a77"/>
-      <path id="Path_44270" data-name="Path 44270" d="M37,11.063a25.927,25.927,0,1,1-18.344,7.594A25.83,25.83,0,0,1,37,11.063M37,4.5A32.5,32.5,0,1,0,69.5,37,32.5,32.5,0,0,0,37,4.5Z" transform="translate(-4.5 -4.5)" fill="#363a77"/>
-    </g>
-  </g>
+<svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M9 0.25C6.68802 0.277893 4.47859 1.20872 2.84366 2.84366C1.20872 4.47859 0.277893 6.68802 0.25 9C0.277893 11.312 1.20872 13.5214 2.84366 15.1563C4.47859 16.7913 6.68802 17.7221 9 17.75C11.312 17.7221 13.5214 16.7913 15.1563 15.1563C16.7913 13.5214 17.7221 11.312 17.75 9C17.7221 6.68802 16.7913 4.47859 15.1563 2.84366C13.5214 1.20872 11.312 0.277893 9 0.25ZM14 9.625H9.625V14H8.375V9.625H4V8.375H8.375V4H9.625V8.375H14V9.625Z" fill="white"/>
 </svg>

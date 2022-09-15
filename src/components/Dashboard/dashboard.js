@@ -36,13 +36,13 @@ const defaultState = {
 }
 
 const createArray = [{
-    id: 1, name: "Build a New Bot from Scratch", icon_1: built_add_icon, icon_2: built_add_icon_white,
+    id: 1, name: "Add New Bot", icon_1: built_add_icon, icon_2: built_add_icon_white,
 },
     {
         id: 2,
-        name: "Build a New Bot from Template",
-        icon_1: dashboard_customize,
-        icon_2: dashboard_customize_white,
+        name: "Build New Bot",
+        icon_1: built_add_icon,
+        icon_2: built_add_icon_white,
     }
 ]
 

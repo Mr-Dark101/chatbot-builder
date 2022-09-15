@@ -62,11 +62,12 @@
         display: flex;
         border: none;
         text-decoration: none;
+        background-color: #363A77;
         cursor: pointer;
         box-shadow: 1px 1px 2px #00000029, 1px 3px 12px #00000029;
         border-radius: 8px;
         margin: 1rem;
-        padding: 0.5rem;
+        padding: 12px 15px;
 
         &:hover {
           background-color: $bg-color;
@@ -102,7 +103,7 @@
           .card-start {
             display: flex;
             align-items: center;
-            width: 100%;
+            width: 15%;
 
             .card-circle {
               background-color: $text-bg;
@@ -123,14 +124,16 @@
           .card-center {
             display: flex;
             flex-direction: column;
-            margin: 0 1rem;
-            width: 100%;
+            margin: 0 0rem;
+            width: 85%;
 
             .txt {
               // white-space: nowrap;
-              color: $bg-color;
-              font-weight: bolder;
-              font-size: 18px;
+              color: #fff;
+              font-family: 'Arial';
+              font-weight: 400;
+              font-size: 16px;
+              line-height: 18px;
 
               &.center{
                 text-align: center;

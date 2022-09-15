@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {useHistory} from "react-router-dom";
 import {useDispatch} from "react-redux";
+
 // import {SetUpdateBotData} from "../slices/dashboard.slice";
 // import $ from "jquery";
 import {Avatar as Av} from "@mui/material";
@@ -93,10 +94,10 @@ const CreateBotsCardItem = (props) => {
                 <div className="card-start justify-content-center pt-4 pb-4" >
                     <div className="card-circle on" style={{
                         backgroundColor: "initial", border: "none",
-                        width: "60px", height: "60px"
+                        width: "18px", height: "18px"
                     }}>
                         <Av
-                            sx={{ width: 60, height: 60 }}
+                            sx={{ width: 18, height: 18 }}
                             src={!onHover ? icon_1 : icon_2}
                         />
                     </div>

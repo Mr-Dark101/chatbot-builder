@@ -74,7 +74,7 @@ const CreateBotsCardItem = (props) => {
 
     return (
         <div className={`card ${selected && "on"}`} style={{
-            width: "208px",
+            width: "153px",
         }} onClick={() => onClick(id)} onMouseOver={()=>{
             setInit({
                 ...init,
@@ -89,14 +89,14 @@ const CreateBotsCardItem = (props) => {
              }}
         >
 
-            <div className="card-content flex-column">
-                <div className="card-start justify-content-center pt-4 pb-4" >
+            <div className="card-content">
+                <div className="card-start justify-content-center" >
                     <div className="card-circle on" style={{
                         backgroundColor: "initial", border: "none",
-                        width: "60px", height: "60px"
+                        width: "18px", height: "18px"
                     }}>
                         <Av
-                            sx={{ width: 60, height: 60 }}
+                            sx={{ width: 18, height: 18 }}
                             src={!onHover ? icon_1 : icon_2}
                         />
                     </div>
@@ -107,11 +107,7 @@ const CreateBotsCardItem = (props) => {
                     }}>{name}</div>
                     {/*<div className="sub-txt">{phoneNumber}</div>*/}
                 </div>
-                <div className="card-ends">
-                    <div className="icon">
-
-                    </div>
-                </div>
+                
             </div>
         </div>
     );

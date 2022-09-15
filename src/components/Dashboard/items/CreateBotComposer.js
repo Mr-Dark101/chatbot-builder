@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Modal } from "@mui/material";
-import whatsAppIcon from "../../../assets/whatsapp.png";
+import whatsAppIcon from "../../../assets/Image 1/logos_whatsapp-icon.svg";
 // import TextField from "../../crud/FormElements";
 import whatsAppIconWhite from "../../../assets/whatsapp.png";
-import facebookIcon from "../../../assets/whatsapp.png";
+import MessengerIcon from "../../../assets/Image 1/logos_messenger.svg";
+import InstagramIcon from "../../../assets/Image 1/insta_icon.svg";
 // import facebookIcon from "../../../assets/facebook-icon.png";
 import comingSoonIcon from "../../../assets/whatsapp.png";
 // import messengerIcon from "../../../assets/Icon awesome-facebook-messenger.svg";
@@ -181,14 +182,14 @@ const CreateBotComposer = (props) => {
                 {
                     !selectCategory ?
                         (
-                            <div className="bot-category-holder justify-content-center">
-                                <div style={{ width: "50%" }}
+                            <div className="bot-category-holder">
+                                <div style={{ width: '119px',height: '122px' }}
                                     className={`category-box ${selected === "wa" && "on-whats-app"}`}
                                     onClick={() => handleSelectBot("wa")}
                                     onMouseOver={() => {
                                         setInit({
                                             ...init,
-                                            onHover: true
+                                            onHover: false
                                         })
                                     }} onMouseOut={() => {
                                         setInit({
@@ -197,16 +198,16 @@ const CreateBotComposer = (props) => {
                                         })
                                     }}>
                                     <div className={`icon on-whats-app`}>
-                                        <img alt="WhatsApp" src={!onHover ? whatsAppIcon : whatsAppIconWhite} />
+                                        <img className="img-responsive" alt="WhatsApp" src={!onHover ? whatsAppIcon : whatsAppIconWhite} style={{width: '52px',height: '52px'}} />
                                     </div>
                                     <div className={`txt ${selected === "wa" && "on"}`}>
                                         WhatsApp
                                     </div>
                                 </div>
-                                <div style={{ width: "50%" }} onMouseOver={() => {
+                                <div style={{ width: '119px',height: '122px' }} onMouseOver={() => {
                                     setInit({
                                         ...init,
-                                        comingSoon: true
+                                        comingSoon: false
                                     })
                                 }} onMouseOut={() => {
                                     setInit({
@@ -215,17 +216,17 @@ const CreateBotComposer = (props) => {
                                     })
                                 }} className={`category-box ${selected === "wa" && "on-facebook"}`}>
                                     <div className={`icon on-messenger-app`}>
-                                        <img alt="Facebook" src={comingSoon ? comingSoonIcon : facebookIcon} />
+                                        <img alt="Facebook" src={comingSoon ? comingSoonIcon : MessengerIcon} style={{width: '52px',height: '52px'}} />
                                     </div>
                                     <div className={`txt ${selected === "wa" && "on"}`}>
                                         {comingSoon ? "Coming Soon" : "Messenger"}
                                     </div>
                                 </div>
 
-                                <div style={{ width: "50%" }} onMouseOver={() => {
+                                <div style={{ width: '119px',height: '122px' }} onMouseOver={() => {
                                     setInit({
                                         ...init,
-                                        comingSoon: true
+                                        comingSoon: false
                                     })
                                 }} onMouseOut={() => {
                                     setInit({
@@ -234,7 +235,7 @@ const CreateBotComposer = (props) => {
                                     })
                                 }} className={`category-box ${selected === "wa" && "on-facebook"}`}>
                                     <div className={`icon on-messenger-app`}>
-                                        <img alt="Facebook" src={comingSoon ? comingSoonIcon : facebookIcon} />
+                                        <img alt="Facebook" src={comingSoon ? comingSoonIcon : InstagramIcon} style={{width: '78px',height: '78px'}} />
                                     </div>
                                     <div className={`txt ${selected === "wa" && "on"}`}>
                                         {comingSoon ? "Coming Soon" : "Instagram"}
@@ -350,14 +351,14 @@ const CreateBotComposer = (props) => {
             </div>
 
             <div className="bot_description_section">
-                <textarea placeholder="description" />
+                <textarea placeholder="description" rows="5" />
             </div>
             <div className="modal-footer">
                 <div className="actions">
-                    <button className="btn transparent" onClick={handleCloseModal}>Cancel</button>
+                    
                     {
                         !selectCategory ?
-                            <button className="btn filled" onClick={handleSelectCategorySubmit}>Continue</button> :
+                            <button className="btn filled" onClick={handleSelectCategorySubmit}><i className="fa fa-plus-circle"></i>Add New Bot</button> :
                             <button className="btn filled"
                                 onClick={handleCreateBotSubmit}>{data !== null ? "Update" : "Create"}</button>
                     }

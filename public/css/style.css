@@ -32242,11 +32242,50 @@ img.away, img.busy, img.offline, img.online {
 }
 ._modal .home_bot_modal.modal-content .modal-section .bot-category-holder .category-box{
   margin: 0px 20px 0px 0px;
+  box-shadow: unset;
+  border: 1px solid #DCDEDF;
 }
 .home_bot_modal .bot_name_section{
   margin-top: 30px;
 }
-
+.home_bot_modal .bot_name_section h5{
+  font-family: 'Arial' !important;
+  font-size: 16px;
+  line-height: 18px;
+}
+.home_bot_modal .modal-section{
+  margin-top: 30px;
+}
+.home_bot_modal .bot_description_section{
+  margin-top: 30px;
+}
+.home_bot_modal .modal-header .txt{
+  font-family: 'Arial' !important;
+  font-size: 16px !important;
+  line-height: 18px;
+}
+.home_bot_modal .modal-footer{
+  justify-content: flex-start;
+  margin-top: 30px;
+}
+.home_bot_modal .modal-footer .actions{
+  justify-content: flex-start !important;
+  align-items: center !important;
+}
+.home_bot_modal.modal-content .modal-footer .actions .btn.filled{
+  font-size: 16px !important;
+  font-weight: 400;
+  font-family: 'Arial' !important;
+}
+.home_bot_modal.modal-content .modal-footer .actions .btn.filled i{
+  margin-right: 15px;
+  font-size: 20px !important;
+}
+.css-1160xiw-MuiPaper-root-MuiDrawer-paper{
+  width: 40% !important;
+  background-color: rgba(16, 22, 58, 0.75) !important;
+  padding: 20px 0px;
+}
 
 /*new css*/
 
