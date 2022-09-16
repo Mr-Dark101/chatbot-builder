@@ -32333,6 +32333,19 @@ img.away, img.busy, img.offline, img.online {
 .btn_response i{
   margin-right: 13px;
 }
+.api_button_section{
+  width: 100% !important;
+  margin-top: 20px !important;
+}
+.api_button_section .btn-outlined{
+  margin-right: 20px;
+}
+.css-1yk1gt9-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root{
+  display: block !important;
+}
+.css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input.css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input.css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input{
+  padding: 13px 0px 13px 15px !important;
+}
 
 /*new css*/
 
