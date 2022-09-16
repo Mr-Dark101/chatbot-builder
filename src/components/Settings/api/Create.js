@@ -133,10 +133,7 @@ const FormSchema = Yup.object().shape({
  
 
   return (
-    <>
-    
-
-    
+    <> 
       <div class="row">       
         <div class="col-12">
           <div>
@@ -219,9 +216,9 @@ const FormSchema = Yup.object().shape({
                 })}
 
                         
-                        <Link onClick={() => addField('email')}>Add</Link>
+                         <Link onClick={() => addField('email')}>Add</Link>
 
-                        {JSON.stringify(headerField)}
+                        
                          <div className="field_section mb-20">
                           <TextAreaField 
                             name="payload"

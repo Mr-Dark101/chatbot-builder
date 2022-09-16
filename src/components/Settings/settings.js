@@ -1,10 +1,17 @@
 import React, {useEffect, useState} from 'react';
 import back_icon from "../../assets/back-icon.svg";
+import myprofile from "../../assets/setting/myprofile.svg";
+import channel from "../../assets/setting/channel.svg";
+import integration from "../../assets/setting/integration.svg";
+import api from "../../assets/setting/api.svg";
+import api_white from "../../assets/setting/api_white.svg";
+import users from "../../assets/setting/user.svg";
 import {STRINGS} from "../../utils/base";
 import {useDispatch, useSelector} from "react-redux";
 import {CloseBotComposer, removingBreadcrumb, resetState} from "../Dashboard/slices/dashboard.slice";
 import {useHistory} from "react-router-dom";
 import Api from "./Api";
+import Profile from "./Profile";
 const defaultState = {
     isAlert: false,
     isUpdatedList: false,
@@ -39,6 +46,10 @@ useEffect(() => {
         if(param === 'Api'){
           setContentPage(<Api />);
         }
+
+        if(param === 'Profile'){
+          setContentPage(<Profile />);
+        }
    
     
     };
@@ -63,20 +74,23 @@ useEffect(() => {
                     </div>
             </div>
             <div className="ws-section">
-                <div className="dashboard-hld">
+                <div className="dashboard-hld setting_page_section">
                     <div className="row">
                          <div className="col-sm-3">
+                            <div className="setting_left_bar_section">
+                                <ul>
+                                    <li><a href="#" onClick={() => changeContent('Profile')}><img alt={"#"} src={myprofile}/>My Profile</a></li>
+                                    <li><a href="#"><img alt={"#"} src={channel}/>Channels</a></li>
+                                    <li><a href="#"><img alt={"#"} src={integration}/>Integration</a></li>
+                                    <li><a href="#" onClick={() => changeContent('Api')} className="active"><img alt={"#"} src={api}/>API's</a></li>
+                                    <li><a href="#"><img alt={"#"} src={api}/>Api Template</a></li>
+                                    <li><a href="#"><img alt={"#"} src={users}/>Users</a></li>
 
-                            <ul>
-                                <li>My Profile</li>
-                                <li>Channels</li>
-                                <li>Integration</li>
-                                <li><a href="#" onClick={() => changeContent('Api')}><i className="fa fa-cog"></i> Apis</a></li>
-                                <li>Api Template</li>
-                                <li>Users</li>
-                            </ul>   
+                                </ul>
+                            </div>   
                          </div>
                          <div className="col-sm-9">
+
                             {contentPage}
 
                          </div>

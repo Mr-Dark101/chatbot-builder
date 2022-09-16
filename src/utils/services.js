@@ -1,7 +1,10 @@
 import axios from "axios";
 
 // const BASE_URL = `http://13.214.26.9:8080`;
-const BASE_URL = `https://abeb-111-119-183-14.ngrok.io`;
+
+const BASE_URL = `https://8f81-111-119-183-14.ngrok.io/`;
+
+
 
 export const API = axios.create({
     baseURL: BASE_URL,
