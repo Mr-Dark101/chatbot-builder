@@ -5,6 +5,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {CloseBotComposer, removingBreadcrumb, resetState} from "../Dashboard/slices/dashboard.slice";
 import {useHistory} from "react-router-dom";
 import Api from "./Api";
+import Profile from "./Profile";
 const defaultState = {
     isAlert: false,
     isUpdatedList: false,
@@ -39,6 +40,10 @@ useEffect(() => {
         if(param === 'Api'){
           setContentPage(<Api />);
         }
+
+        if(param === 'Profile'){
+          setContentPage(<Profile />);
+        }
    
     
     };
@@ -68,10 +73,10 @@ useEffect(() => {
                          <div className="col-sm-3">
 
                             <ul>
-                                <li>My Profile</li>
+                                <li><a href="#" onClick={() => changeContent('Profile')}>My Profile</a></li>
                                 <li>Channels</li>
                                 <li>Integration</li>
-                                <li><a href="#" onClick={() => changeContent('Api')}><i className="fa fa-cog"></i> Apis</a></li>
+                                <li><a href="#" onClick={() => changeContent('Api')}>API</a></li>
                                 <li>Api Template</li>
                                 <li>Users</li>
                             </ul>   

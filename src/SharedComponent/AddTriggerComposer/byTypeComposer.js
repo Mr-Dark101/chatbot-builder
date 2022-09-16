@@ -27,6 +27,7 @@ import {PublishedBot} from "../../components/BuilderWorkSpace/slices/workSpace.s
 // import TriggerCard from "../TreeComponent/items/TriggerCard";
 import ConditionList from "./ConditionList";
 
+
 const defaultState = {
     isConfirm: false,
     isAlert: false,
@@ -41,6 +42,8 @@ const defaultState = {
     openFallBackComposer: false,
     triggerOpt: "",
     triggerValueName: "",
+    simpleLabel:"",
+    simpleValue:"",
     uploadedFile: {},
     updateMenus: {
         selectedMenuId: null,
@@ -62,7 +65,8 @@ const defaultState = {
         startTrigger: true,
         routToAgent: false,
         type: "TEXT",
-        triggerMenus: []
+        triggerMenus: [],
+        
     },
     updateTriggerObject: {
         botId: 0,
@@ -70,6 +74,7 @@ const defaultState = {
         userId: 0
     },
     values: [],
+    simpleValues:[],
     descriptionType: "response"
 
 }
@@ -105,7 +110,7 @@ const ByTypeComposer = ({props,triggerType}) => {
     const [init, setInit] = useState(defaultState);
     const [isData] = useState(!$.isEmptyObject(trigger.currentTriggerData));
     let {isText,isMedia, isLoopBack, template, currentData, openFallBackComposer, triggerOpt, triggerValueName, values, descriptionType,
-        isConfirm, confirmationTxt,isAlert} = init;
+        isConfirm, confirmationTxt,isAlert,simpleLabel,simpleValue,simpleValues} = init;
     let {name, triggerMenus, description, fallBackResponse, caption, loopBackId, loopBackText, routToAgent, type,apiId,apiText} = currentData;
     let {id, userId,published} = currentBotData;
   
@@ -116,6 +121,7 @@ const ByTypeComposer = ({props,triggerType}) => {
     
     
     const [condition, setCondition] = useState([]);
+    const [simpleCondition, setSimpleCondition] = useState([]);
 
     let conditionArray = [];
     const [apiData, setApiData] = useState([]);
@@ -141,6 +147,26 @@ const ByTypeComposer = ({props,triggerType}) => {
         }
     }
 
+
+    const [conditionType, setConditionType] = useState('C');
+
+
+    const [btnConditionStyle, setBtnConditionStyle] = useState({width:'100%'});
+    const [btnSimpleStyle, setBtnSimpleStyle] = useState({width:'100%'});
+
+    const meClickCondition = (param) => {
+        
+        if(param == 'C'){
+            setBtnConditionStyle({backgroundColor:'#10163A',width:'100%',color:'#fff',borderRadius: '5px 5px 0px 0px'})
+            setBtnSimpleStyle({backgroundColor:'#fff',width:'100%',color:'#000',borderRadius: '5px 5px 0px 0px'})
+        }else{
+
+            setBtnConditionStyle({backgroundColor:'#fff',width:'100%',color:'#000',borderRadius: '5px 5px 0px 0px'})
+            setBtnSimpleStyle({backgroundColor:'#10163A',width:'100%',color:'#fff',borderRadius: '5px 5px 0px 0px'})
+        }
+        setConditionType(param)
+    }
+
    const apiHandle = (dataValue,dataIndex) => {
 
 
@@ -158,6 +184,25 @@ const ByTypeComposer = ({props,triggerType}) => {
 
         setApiData(condition)
    }
+
+   const apiHandleCondition = (dataValue,dataIndex) => {
+
+
+        
+
+
+
+        setSimpleCondition((old) => {
+              let _test = [...old];
+              //const index = _test.findIndex((val) => val._id === dataIndex);
+              //@ts-ignore
+              _test[dataIndex].dataValue = dataValue;
+              return _test;
+        })
+
+        setApiData(simpleCondition)
+   }
+   
     const addCondition = () => {
         const newData = {api_id:1,dataValue:{
         id: "",
@@ -176,12 +221,16 @@ const ByTypeComposer = ({props,triggerType}) => {
         routToAgent: false,
         type: "TEXT",
         triggerMenus: [],
+        
         conditionLabel:"",
         conditionValue:"",
     }}
         //conditionArray.push(newData) 
         setCondition([...condition,newData])
     }
+
+
+    
 
     const setApiMenu = () => {
 
@@ -283,6 +332,7 @@ const ByTypeComposer = ({props,triggerType}) => {
                     type: currentTriggerData.toTrigger !== undefined ? currentTriggerData.toTrigger.type : currentTriggerData.type,
                     routToAgent: currentTriggerData.toTrigger !== undefined ? currentTriggerData.toTrigger.routeToAgent : currentTriggerData.routeToAgent,
                     values: currentTriggerData.toTrigger !== undefined ? currentTriggerData.toTrigger.values : currentTriggerData.values,
+
                     description: currentTriggerData.toTrigger !== undefined ? currentTriggerData.toTrigger.response : currentTriggerData.response,
                     fallBackResponse: currentTriggerData.toTrigger !== undefined ? currentTriggerData.toTrigger.fallBackResponse : currentTriggerData.fallBackResponse,
                     caption: currentTriggerData.toTrigger !== undefined ? currentTriggerData.toTrigger.caption : currentTriggerData.caption,
@@ -293,8 +343,11 @@ const ByTypeComposer = ({props,triggerType}) => {
                     }) : currentTriggerData?.menus.map((m) => {
                         return {name: m.text, id: m.toTriggerId, main_id: m.id}
                     }),
+
+                  
                 },
                 values: currentTriggerData.toTrigger !== undefined ? currentTriggerData.toTrigger.values : currentTriggerData.values,
+                simpleValues: currentTriggerData.toTrigger !== undefined ? currentTriggerData.toTrigger.simpleValues : currentTriggerData.simpleValues,
             });
         } else {
             setInit({
@@ -353,6 +406,8 @@ const ByTypeComposer = ({props,triggerType}) => {
                 openFallBackComposer: false,
                 triggerOpt: "",
                 triggerValueName: "",
+                simpleLabel:"",
+                simpleValue:"",
                 uploadedFile: {},
                 currentData: {
                     id: "",
@@ -369,7 +424,8 @@ const ByTypeComposer = ({props,triggerType}) => {
                     startTrigger: true,
                     routToAgent: false,
                     type: "",
-                    triggerMenus: []
+                    triggerMenus: [],
+                    
                 },
                 updateTriggerObject: {
                     botId: 0,
@@ -506,6 +562,7 @@ const ByTypeComposer = ({props,triggerType}) => {
             template: currentData.template,
             routToAgent: currentData.routToAgent,
             caption: currentData.caption,
+            simpleValues:init.simpleValues,
 
         }
         let triggersListObj = {
@@ -526,6 +583,8 @@ const ByTypeComposer = ({props,triggerType}) => {
             "api_id": currentData.apiId,
             "apiData":apiData,
             'triggerType':triggerType,
+            'conditionType':conditionType,
+            'simpleValues': obj.simpleValues,
             "routeToAgent": obj.routToAgent,
             // "caption": obj.caption,
             "caption": caption !== undefined ? caption : "",
@@ -717,6 +776,31 @@ const ByTypeComposer = ({props,triggerType}) => {
             }
         }
     }
+
+
+const addSimpleCondition = () => {
+        if (simpleLabel !== "" && simpleValue !== "") {
+            setInit({
+                ...init,
+                simpleLabel: "",
+               
+                simpleValues: [...init.simpleValues, {
+                        label: simpleLabel,
+                        value:simpleValue,
+                        
+                    }]
+            })
+        } else {
+            setInit({
+                ...init,
+                isAlert: true,
+                isUpdatedList: true,
+                confirmationTxt: "Please add label first."
+            })
+            // alert("Please add value first.")
+        }
+    }
+
 
     const handleAddTriggerValue = () => {
         if (triggerValueName !== "") {
@@ -918,17 +1002,27 @@ const ByTypeComposer = ({props,triggerType}) => {
                             <div className="txt" style={{marginTop: '10px',marginBottom: '20px'}}>
                                 Response
                             </div>
+                            {triggerType == 'A' ? (
 
-                            <div className="row">
+                                <>
+
+                                <div className="row">
                                 <div className="col-sm-6">
                                    
-                                        <button onClick={() => meClickCondition('C')} className="btn btn-block {btn-primary}" style={btnMessageStyle}>Condition Response</button>
+                                        <button onClick={() => meClickCondition('C')} className="btn btn-block {btn-primary}" style={btnConditionStyle}>Condition Response</button>
                                 </div>
                                 <div className="col-sm-6">
-                                     <button onClick={() => meClickCondition('S')} className="btn btn-block {btn-primary}" style={btnMessageStyle}> Simple Response</button>
+                                     <button onClick={() => meClickCondition('S')} className="btn btn-block {btn-primary}" style={btnSimpleStyle}> Simple Response</button>
                                 </div>
 
-                            </div>  
+                            </div>
+                            <br />
+
+                                </>
+
+
+                            ) : null}
+                            
                             <div className="tcb">
                             
                            
@@ -1017,7 +1111,7 @@ const ByTypeComposer = ({props,triggerType}) => {
 
 
 
-                                    {triggerType == 'A' ? (
+                                    {triggerType == 'A' && conditionType == 'C' ? (
                                             <div>
                                             {
                                             condition?.map((tr,i) => {
@@ -1025,7 +1119,8 @@ const ByTypeComposer = ({props,triggerType}) => {
                                                 
 
                                                 return (
-                                                            <ConditionList dataIndex={i} apiData={tr.dataValue} props={props} updatedTriggersVal={updatedTriggers} apiHandle={apiHandle} />
+                                                           
+                                                        <ConditionList dataIndex={i} apiData={tr.dataValue} props={props} updatedTriggersVal={updatedTriggers} apiHandle={apiHandle} /> 
                                                  )
 
                                             })
@@ -1049,6 +1144,69 @@ const ByTypeComposer = ({props,triggerType}) => {
                                        </div>
 
                                     ) : null}
+
+
+                                    {triggerType == 'A' && conditionType == 'S' ? (
+
+                                    <>
+                                            <div>
+                                            
+
+
+                                                        <div className="row" >
+            <div className="col-sm-6">Label
+                
+
+                    <input className="inp" value={simpleLabel} onChange={(e) => {
+                                                    setInit({
+                                                        ...init,
+                                                        simpleLabel: e.target.value
+                                                    })
+                                                }} placeholder="Please Enter Label"/>
+
+                
+            </div>
+            <div className="col-sm-6">Value
+            
+                        <input className="inp" value={simpleValue} onChange={(e) => {
+                                                            setInit({
+                                                                ...init,
+                                                                simpleValue: e.target.value
+                                                            })
+                                                        }} placeholder="Please Enter Value"/>
+
+            
+            </div>
+        </div>
+
+                                                        
+                                               
+                                        <br />
+                                        <div className="actions-btn">
+                                
+                            
+                                                <button className="btn btn-primary" 
+                                                    onClick={() => addSimpleCondition()}
+                                                >
+                                               Add Label</button>
+                                               
+                                       </div>
+                                       </div>
+                                       {
+                                        simpleValues.map((s,i) => {
+
+                                            return (
+                                                <div className="row">
+                                                    <div className="col-sm-6">{s.label}</div>
+                                                    <div className="col-sm-6">{s.value}</div>
+                                                </div>
+                                            )
+                                        })
+                                       }
+                                       </>
+
+                                    ) : null}
+
                                 </>
                                 )
                             }

@@ -57,7 +57,7 @@ const AddTriggerComposer = (props) => {
             </li>
          </ul>
 
-            <ByTypeComposer props={props} triggerType={triggerType} />
+            <ByTypeComposer props={props}  triggerType={triggerType} />
          </>
     );
 };
