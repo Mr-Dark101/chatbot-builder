@@ -248,6 +248,19 @@ const ByTypeComposer = ({props,triggerType}) => {
     }
 
     useEffect(() => {
+
+
+        let tVal = 'C';
+        setBtnConditionStyle({backgroundColor:'#10163A',width:'100%',color:'#fff',borderRadius: '5px 5px 0px 0px'})
+            setBtnSimpleStyle({backgroundColor:'#fff',width:'100%',color:'#000',borderRadius: '5px 5px 0px 0px'})
+        if(props.trigger.currentTriggerData.toTrigger.conditionType == 'S'){
+            tVal = props.trigger.currentTriggerData.toTrigger.conditionType;
+
+             setBtnConditionStyle({backgroundColor:'#fff',width:'100%',color:'#000',borderRadius: '5px 5px 0px 0px'})
+            setBtnSimpleStyle({backgroundColor:'#10163A',width:'100%',color:'#fff',borderRadius: '5px 5px 0px 0px'})
+        }
+        setConditionType(tVal)
+
         if (triggersList.length > 0) {
             Object.values(triggersList).forEach((d) => {
                 triggersIds.push(d.id);
