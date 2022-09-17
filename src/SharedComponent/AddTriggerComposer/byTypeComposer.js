@@ -1019,16 +1019,16 @@ const addSimpleCondition = () => {
 
                                 <>
 
-                                <div className="row">
-                                <div className="col-sm-6">
+                                <ul className="right_bar_top_section" style={{paddingLeft: '0px',paddingRight: '0px'}}>
+                                    <li>
                                    
                                         <button onClick={() => meClickCondition('C')} className="btn btn-block {btn-primary}" style={btnConditionStyle}>Condition Response</button>
-                                </div>
-                                <div className="col-sm-6">
+                                    </li>
+                                    <li>
                                      <button onClick={() => meClickCondition('S')} className="btn btn-block {btn-primary}" style={btnSimpleStyle}> Simple Response</button>
-                                </div>
+                                    </li>
 
-                            </div>
+                                </ul>
                             <br />
 
                                 </>
@@ -1240,7 +1240,7 @@ const addSimpleCondition = () => {
                                             <div className="txt-field">
                                                 <div className="label">
                                                     <div className="sub-text">
-                                                        Write a Caption
+                                                        Caption
                                                     </div>
                                                 </div>
                                                 <div className="input">
@@ -1255,9 +1255,10 @@ const addSimpleCondition = () => {
                                             <FormControl component="fieldset" style={{
                                                 marginTop: "1rem 0"
                                             }}>
-                                                <FormLabel component="legend">Media Type</FormLabel>
+                                                
                                                 <RadioGroup
                                                     aria-label="gender"
+                                                    className="media_radio_section"
                                                     style={{
                                                         flexDirection: "row"
                                                     }}
@@ -1273,6 +1274,7 @@ const addSimpleCondition = () => {
                                                         })
                                                     }}
                                                 >
+                                                <FormLabel component="legend">Media Type</FormLabel>
                                                     {
                                                         getAllTypes?.map((t) => {
                                                             if (t !== "TEXT" && t !== "TEMPLATE")
@@ -1294,22 +1296,31 @@ const addSimpleCondition = () => {
                                             </FormControl>
                                             <React.Fragment>
                                                 <div className="up-txt">
-                                    <span>
-                                        <img alt={"#"} src={upload_icon}/>
-                                    </span>
+                                                    
                                                     <div className="txt">
-                                                        Drag here OR
+                                                        Drop File Here for Upload
                                                     </div>
                                                 </div>
                                                 <div className="actions">
                                                     <label htmlFor="upload-input">
-                                                        <div className="btn-upload">Upload File</div>
+                                                        <div className="btn-upload">
+                                                            <span>
+                                                                <img alt={"#"} src={upload_icon}/>
+                                                            </span>
+                                                        Upload File</div>
                                                     </label>
                                                     <input id="upload-input" className="upload-input"
                                                            type="file"
                                                            accept="/*"
                                                            onChange={e => handleFileUpload(e, 2)}/>
 
+                                                </div>
+
+                                                <div className="up-txt">
+                                                    
+                                                    <div className="txt">
+                                                        .mp4, .avi of max 10MB are allowed
+                                                    </div>
                                                 </div>
                                             </React.Fragment>
                                         </div>

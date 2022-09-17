@@ -32162,7 +32162,6 @@ img.away, img.busy, img.offline, img.online {
   .page_data_setting{
     background-color: #fff;
     padding: 0px;
-    border: 1px solid #DFE0EB;
     border-radius: 8px;
   }
   .setting_tabs{
@@ -32283,7 +32282,7 @@ img.away, img.busy, img.offline, img.online {
   margin-right: 15px;
   font-size: 20px !important;
 }
-.css-1160xiw-MuiPaper-root-MuiDrawer-paper{
+.MuiDrawer-root .MuiPaper-root{
   /*width: 636px !important;*/
   background-color: rgba(16, 22, 58, 0.75) !important;
   padding: 20px 0px;
@@ -32315,7 +32314,7 @@ img.away, img.busy, img.offline, img.online {
 .ql-container.ql-snow{
   background-color: #fff;
 }
-.css-1tpd8cx-MuiButtonBase-root-MuiCheckbox-root{
+.composer-container .composer-content .trigger-card .card-content .row__ .acts .ab-txt .check-box .MuiCheckbox-root{
   color: #fff !important;
 }
 .btn_response{
@@ -32340,11 +32339,96 @@ img.away, img.busy, img.offline, img.online {
 .api_button_section .btn-outlined{
   margin-right: 20px;
 }
-.css-1yk1gt9-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root{
+.composer-container .composer-content .trigger-card .card-content .row__ .txt-field .input .MuiOutlinedInput-root{
   display: block !important;
 }
-.css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input.css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input.css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input{
+#demo-simple-select-standard{
   padding: 13px 0px 13px 15px !important;
+}
+.upload-prv .txt-field .label .sub-text{
+  font-weight: 500;
+  font-size: 14px !important;
+  line-height: 17px;
+  color: #000 !important;
+  font-family: 'Inter', sans-serif;
+  text-align: left;
+  margin-bottom: 10px;
+}
+.media_radio_section{
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.media_radio_section legend{
+  display: flex;
+  width: auto;
+  margin-bottom: 0px;
+  align-items: center;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  color: #000;
+  font-family: 'Inter', sans-serif;
+  margin-right: 20px;
+}
+.media_radio_section .MuiTypography-root{
+  font-weight: 500 !important;
+  font-size: 14px !important;
+  line-height: 17px;
+  color: #000 !important;
+  font-family: 'Inter', sans-serif;
+}
+.media_radio_section .MuiSvgIcon-root{
+  color: #000;
+}
+.upload-prv .txt-field{
+  border-bottom: 0px !important;
+}
+.add_api_section .field_label{
+  color: #fff;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  font-family: 'Inter', sans-serif;
+}
+.setting_page_section{
+  background-color: #fff;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+.setting_left_bar_section{
+  padding: 20px;
+  border-right: 1px solid #ccc;
+  height: 100%;
+}
+.setting_left_bar_section ul{
+  margin: 0px;
+  padding: 0px;
+  list-style-type: none;
+}
+.setting_left_bar_section ul li{
+  margin-bottom: 10px;
+}
+.setting_left_bar_section ul li a{
+  color: #000;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+  display: flex;
+  align-items: center;
+  padding: 15px 20px;
+}
+.setting_left_bar_section ul li a:hover{
+  background-color: #595B79;
+  border-radius: 5px;
+  color: #fff;
+}
+.setting_left_bar_section ul li a.active{
+  background-color: #595B79;
+  border-radius: 5px;
+  color: #fff;
+}
+.setting_left_bar_section ul li a img{
+  margin-right: 20px;
 }
 
 /*new css*/

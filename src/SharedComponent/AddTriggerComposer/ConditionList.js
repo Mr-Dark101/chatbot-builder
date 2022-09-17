@@ -378,9 +378,9 @@ const handleResponseSelect = (name) => {
 
     return (
         <>
-        <div style={{border:'1px solid #ccc',borderColor:'#000',width:'100%',borderWidth:1,padding:10,marginTop:10}}>
-        <div className="row" >
-            <div className="col-sm-6">Label
+        <div className="add_api_section" style={{border:'1px solid #ccc',borderColor:'#fff',width:'100%',borderWidth:1,padding:10,marginTop:10}}>
+        <div className="row">
+            <div className="col-sm-6"><span className="field_label">Label</span>
                 
 
                 <input className="inp" value={conditionLabel}
@@ -400,7 +400,7 @@ const handleResponseSelect = (name) => {
                                                        }}
                                     />
             </div>
-            <div className="col-sm-6">Value
+            <div className="col-sm-6"><span className="field_label">Value</span>
             
 
              <input className="inp" value={conditionValue}
@@ -421,8 +421,8 @@ const handleResponseSelect = (name) => {
 
 
 
-        <div className="row__">
-                            <div className="txt">
+        <div className="row__" style={{marginTop: '15px',marginBottom: '0px'}}>
+                            <div className="txt" style={{marginBottom: '15px'}}>
                                 Trigger Response
                             </div>
                             <div className="tcb">
@@ -457,7 +457,7 @@ const handleResponseSelect = (name) => {
                             </div>
                         </div>
 
-                         <div className="row__">
+                         <div className="row__" style={{marginTop: '0px'}}>
                            
                             {
                                 isText && (
@@ -485,7 +485,7 @@ const handleResponseSelect = (name) => {
                                             <div className="txt-field">
                                                 <div className="label">
                                                     <div className="sub-text">
-                                                        Write a Caption
+                                                        Caption
                                                     </div>
                                                 </div>
                                                 <div className="input">
@@ -509,9 +509,10 @@ const handleResponseSelect = (name) => {
                                             <FormControl component="fieldset" style={{
                                                 marginTop: "1rem 0"
                                             }}>
-                                                <FormLabel component="legend">Media Type</FormLabel>
+                                                
                                                 <RadioGroup
                                                     aria-label="gender"
+                                                    className="media_radio_section"
                                                     style={{
                                                         flexDirection: "row"
                                                     }}
@@ -527,6 +528,7 @@ const handleResponseSelect = (name) => {
                                                         })
                                                     }}
                                                 >
+                                                <FormLabel component="legend">Media Type</FormLabel>
                                                     {
                                                         getAllTypes?.map((t) => {
                                                             if (t !== "TEXT" && t !== "TEMPLATE")
@@ -548,22 +550,30 @@ const handleResponseSelect = (name) => {
                                             </FormControl>
                                             <React.Fragment>
                                                 <div className="up-txt">
-                                    <span>
-                                        <img alt={"#"} src={upload_icon}/>
-                                    </span>
+                                    
                                                     <div className="txt">
-                                                        Drag here OR
+                                                        Drop File Here for Upload
                                                     </div>
                                                 </div>
                                                 <div className="actions">
                                                     <label htmlFor="upload-input">
-                                                        <div className="btn-upload">Upload File</div>
+                                                        <div className="btn-upload"><span>
+                                                            <img alt={"#"} src={upload_icon}/>
+                                                        </span>
+                                                        Upload File</div>
                                                     </label>
                                                     <input id="upload-input" className="upload-input"
                                                            type="file"
                                                            accept="/*"
                                                            onChange={e => handleFileUpload(e, 2)}/>
 
+                                                </div>
+
+                                                <div className="up-txt">
+                                                    
+                                                    <div className="txt">
+                                                        .mp4, .avi of max 10MB are allowed
+                                                    </div>
                                                 </div>
                                             </React.Fragment>
                                         </div>
@@ -722,7 +732,7 @@ const handleResponseSelect = (name) => {
                             }
                             
                         </div>
-                        <div className="row__">
+                        <div className="row__" style={{marginTop: '20px'}}>
                             <div className="txt">
                                 Menu Option
                             </div>
@@ -1174,15 +1184,6 @@ const handleResponseSelect = (name) => {
 
                                             )}
                                              
-
-
-                                             
-
-
-                                                    
-
-                                            
-
                                            
                                         </div>
                                     </div>
