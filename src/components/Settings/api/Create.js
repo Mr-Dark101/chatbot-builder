@@ -137,7 +137,7 @@ const FormSchema = Yup.object().shape({
       <div class="row">       
         <div class="col-12">
           <div>
-          <div className="page_data_clinic">
+          <div className="page_data_clinic api_form_section">
             
              {!successful && (
             <Form
@@ -147,20 +147,20 @@ const FormSchema = Yup.object().shape({
             onSubmit={onSubmit}
           >
 
-            
+                <h5 className="main_heading">Add New Custom API</h5>
                 
                 <div className="row">
                     <div className="col-9">
 
-                       <div className="field_section mb-20">
+                       <div className="field_section">
                           <TextField 
                             name="name"
-                            label="Name"
+                            label="Api Name"
                           />
                         </div>
 
 
-                         <div className="field_section mb-20">
+                         <div className="field_section">
                           <SelectField 
                             name="api_type"
                             label="Type"
@@ -186,7 +186,7 @@ const FormSchema = Yup.object().shape({
                           />
                         </div>
 
-                        <h3>Header</h3>
+                        <label style={{marginBottom: '0px'}}>Header</label>
                         
 
                         {headerField && headerField.map((x, i) => {
@@ -215,9 +215,9 @@ const FormSchema = Yup.object().shape({
                   );
                 })}
 
-                        
-                         <Link onClick={() => addField('email')}>Add</Link>
-
+                        <div className="my-20">
+                         <button className="primary" onClick={() => addField('email')}>Add</button>
+                        </div>
                         
                          <div className="field_section mb-20">
                           <TextAreaField 
@@ -245,7 +245,7 @@ const FormSchema = Yup.object().shape({
                     
                 
 
-            <div className="mt-20">
+            <div>
                 <SubmitButton
                  title="Update"
                  className="primary"

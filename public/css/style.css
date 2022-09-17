@@ -32430,6 +32430,25 @@ img.away, img.busy, img.offline, img.online {
 .setting_left_bar_section ul li a img{
   margin-right: 20px;
 }
+.api_form_section{
+  margin: 20px 0px;
+}
+.api_form_section .main_heading{
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 18px;
+  color: #000;
+}
+.api_form_section label{
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 18px;
+  color: #000;
+  margin-bottom: 10px;
+}
+.primary{
+  border: 1px solid #10163A !important;
+}
 
 /*new css*/
 
