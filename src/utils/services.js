@@ -2,7 +2,7 @@ import axios from "axios";
 
 // const BASE_URL = `http://13.214.26.9:8080`;
 
-const BASE_URL = `http://localhost:3030/`;
+const BASE_URL = `https://27b5-202-69-53-133.ngrok.io`;
 
 
 

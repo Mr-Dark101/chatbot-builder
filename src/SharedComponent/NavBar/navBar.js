@@ -10,6 +10,9 @@ import chatbot_builder from "../../assets/Image 1/chatbot-builder.svg";
 import teams_icon from "../../assets/Image 1/campign-manager.svg";
 import users_icon from "../../assets/Image 1/whatsapp.svg";
 import tags_icon from "../../assets/Image 1/contacts.svg";
+import star_icon from "../../assets/Image 1/star.png";
+import billing_icon from "../../assets/Image 1/billing.svg";
+import setting_icon from "../../assets/Image 1/settings.svg";
 import {STRINGS} from "../../utils/base";
 
 
@@ -97,25 +100,117 @@ const NavBar = () => {
         
     // )
     return (
-        <div className="nav-bar-cont">
+        <div className="nav-bar-cont left_navbar">
+            <div className="left_bar_top_section">
+            <div className="nLink-group">
+                <Link to={`${STRINGS.ROUTES.ROOT}?org=${localStorage.getItem("userId")}`} className="nLink">
+                    <div className="icon"><img alt={"#"} src={home_icon}/></div>
+                    <div/>
+                </Link>
+            </div>
+
+            <div className="nLink-group">
+                
+
+                <Link to={`${STRINGS.ROUTES.ROOT}?org=${localStorage.getItem("userId")}`} className="nLink">
+                    <div className="icon"><img alt={"#"} src={analysis_icon}/></div>
+                    <div/>
+                </Link>                             
+                
+            </div>
             <div className="nLink-group">
                 
 
                 <Link to={`${STRINGS.ROUTES.ROOT}?org=${localStorage.getItem("userId")}`} className="nLink">
                     <div className="icon"><img alt={"#"} src={chat_icon}/></div>
                     <div/>
-                </Link>
+                </Link>                             
                 
             </div>
+
+            <div className="nLink-group">
+                
+
+                <Link to={`${STRINGS.ROUTES.ROOT}?org=${localStorage.getItem("userId")}`} className="nLink">
+                    <div className="icon"><img alt={"#"} src={chatBotFace_icon}/></div>
+                    <div/>
+                </Link>                             
+                
+            </div>
+
+            <div className="nLink-group">
+                
+
+                <Link to={`${STRINGS.ROUTES.ROOT}?org=${localStorage.getItem("userId")}`} className="nLink">
+                    <div className="icon"><img alt={"#"} src={chatbot_builder}/></div>
+                    <div/>
+                </Link>                             
+                
+            </div>
+
+            <div className="nLink-group">
+                
+
+                <Link to={`${STRINGS.ROUTES.ROOT}?org=${localStorage.getItem("userId")}`} className="nLink">
+                    <div className="icon"><img alt={"#"} src={teams_icon}/></div>
+                    <div/>
+                </Link>                             
+                
+            </div>
+
+            <div className="nLink-group">
+                
+
+                <Link to={`${STRINGS.ROUTES.ROOT}?org=${localStorage.getItem("userId")}`} className="nLink">
+                    <div className="icon"><img alt={"#"} src={users_icon}/></div>
+                    <div/>
+                </Link>                             
+                
+            </div>
+
+            <div className="nLink-group">
+                
+
+                <Link to={`${STRINGS.ROUTES.ROOT}?org=${localStorage.getItem("userId")}`} className="nLink">
+                    <div className="icon"><img alt={"#"} src={tags_icon}/></div>
+                    <div/>
+                </Link>                             
+                
+            </div>
+            </div>
+
+            <div className="left_bar_end_section">
             <div className="nLink-group">
                 
 
             <Link to="/settings" className="nLink">
-                    <div className="icon"><img alt={"#"} src={tags_icon}/></div>
+                    <div className="icon"><img alt={"#"} src={star_icon}/></div>
                     <div/>
                 </Link>
                
             </div>
+
+            <div className="nLink-group">
+                
+
+            <Link to="/settings" className="nLink">
+                    <div className="icon"><img alt={"#"} src={billing_icon}/></div>
+                    <div/>
+                </Link>
+               
+            </div>
+
+            <div className="nLink-group">
+                
+
+            <Link to="/settings" className="nLink">
+                    <div className="icon"><img alt={"#"} src={setting_icon}/></div>
+                    <div/>
+                </Link>
+               
+            </div>
+            </div>
+
         </div>
     );
 };
