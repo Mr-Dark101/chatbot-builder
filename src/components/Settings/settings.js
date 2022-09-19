@@ -12,6 +12,10 @@ import {CloseBotComposer, removingBreadcrumb, resetState} from "../Dashboard/sli
 import {useHistory} from "react-router-dom";
 import Api from "./Api";
 import Profile from "./Profile";
+import Industry from "./Industry";
+import Platform from "./Platform";
+import Integration from "./Integration";
+import ApiTemplate from "./ApiTemplate";
 const defaultState = {
     isAlert: false,
     isUpdatedList: false,
@@ -31,7 +35,7 @@ const Settings = () => {
 useEffect(() => {
    
     
-    changeContent('Api');
+    changeContent('ApiTemplate');
     
 
   }, []);
@@ -47,8 +51,24 @@ useEffect(() => {
           setContentPage(<Api />);
         }
 
+        if(param === 'ApiTemplate'){
+          setContentPage(<ApiTemplate />);
+        }
+
         if(param === 'Profile'){
           setContentPage(<Profile />);
+        }
+
+        if(param === 'Industry'){
+          setContentPage(<Industry dataName="industry" pageName="Industry"  />);
+        }
+
+        if(param === 'Platform'){
+          setContentPage(<Platform dataName="platform" pageName="Platform"  />);
+        }
+
+        if(param === 'Integration'){
+          setContentPage(<Integration  />);
         }
    
     
@@ -81,9 +101,11 @@ useEffect(() => {
                                 <ul>
                                     <li><a href="#" onClick={() => changeContent('Profile')}><img alt={"#"} src={myprofile}/>My Profile</a></li>
                                     <li><a href="#"><img alt={"#"} src={channel}/>Channels</a></li>
-                                    <li><a href="#"><img alt={"#"} src={integration}/>Integration</a></li>
+                                    <li><a href="#" onClick={() => changeContent('Industry')}><img alt={"#"} src={myprofile}/>Industry</a></li>
+                                    <li><a href="#" onClick={() => changeContent('Platform')}><img alt={"#"} src={myprofile}/>Platform</a></li>
+                                    <li><a href="#" onClick={() => changeContent('Integration')}><img alt={"#"} src={integration}/>Integration</a></li>
                                     <li><a href="#" onClick={() => changeContent('Api')} className="active"><img alt={"#"} src={api}/>API's</a></li>
-                                    <li><a href="#"><img alt={"#"} src={api}/>Api Template</a></li>
+                                    <li><a href="#" onClick={() => changeContent('ApiTemplate')}><img alt={"#"} src={api}/>Api Template</a></li>
                                     <li><a href="#"><img alt={"#"} src={users}/>Users</a></li>
 
                                 </ul>

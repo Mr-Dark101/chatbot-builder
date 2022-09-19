@@ -38,6 +38,8 @@ const ChatBotComposer = ({onClose}) => {
     const [conditionType, setConditionType] = useState('C');
     const [apiData, setApiData] = useState([]);
     const [simpleValues, setSimpleValues] = useState([]);
+
+    const [backMenuId, setBackMenuId] = useState('');
     const setMenus = (item) => {
         if (item.toTrigger !== null) {
             if (item.toTrigger.menus.length > 0) {
@@ -133,7 +135,11 @@ const ChatBotComposer = ({onClose}) => {
                     setTriggerType(data[i].triggerType);
                     setApiData(data[i].apiData);
 
+                   
 
+                    if(data[i].startTrigger){
+                        setBackMenuId(data[i].id)
+                    }
                     setConditionType(data[i].conditionType);
                     setSimpleValues(data[i].simpleValues);
                     
@@ -357,7 +363,7 @@ const ChatBotComposer = ({onClose}) => {
                                                     "loopBackText": [
                                                         ""
                                                     ],
-                                                    "loopBackTriggerId": 'B4663_T6',
+                                                    "loopBackTriggerId": backMenuId,
                                                     "menus": [],
                                                     "startTrigger": false,
                                                     
@@ -453,7 +459,7 @@ const ChatBotComposer = ({onClose}) => {
                                                     "loopBackText": [
                                                         ""
                                                     ],
-                                                    "loopBackTriggerId": 'B4663_T6',
+                                                    "loopBackTriggerId": backMenuId,
                                                     "menus": [],
                                                     "startTrigger": false,
                                                     
