@@ -11,9 +11,9 @@ export default function Layout(props) {
 
     return (
         <div className="main-container">
-            <div className="header-hld">
+            {/*<div className="header-hld">
                 <Header handleToggle/>
-            </div>
+            </div>*/}
             
             {/* <div className="breadcrumbs-holder">
                 <CustomBreadcrumbs breadcrumbs={dashboard.Breadcrumbs}/>

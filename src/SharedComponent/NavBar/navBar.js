@@ -12,6 +12,12 @@ import users_icon from "../../assets/Image 1/whatsapp.svg";
 import tags_icon from "../../assets/Image 1/contacts.svg";
 import {STRINGS} from "../../utils/base";
 
+
+import {
+  
+  Link
+} from "react-router-dom";
+
 const navbarData = [
     {
         icon: home_icon,
@@ -80,32 +86,38 @@ const NavBar = () => {
    
 
 
-    return (
+    // return (
        
         
-        <>
+    //     <>
             
 
-        <DrawerComponent open={open} data={navbarData} direction={"left"} toggleDrawer={toggleDrawer}/>
-        </>
+    //     <DrawerComponent open={open} data={navbarData} direction={"left"} toggleDrawer={toggleDrawer}/>
+    //     </>
         
-    )
-    // return (
-    //     <div className="nav-bar-cont">
-    //         <div className="nLink-group">
-    //             <NavLink to={STRINGS.ROUTES.ROOT} className="nLink">
-    //                 <div className="icon"><img alt={"#"} src={dashboard_icon}/></div>
-    //                 <div/>
-    //             </NavLink>
-    //         </div>
-    //         <div className="nLink-group">
-    //             <NavLink to={STRINGS.ROUTES.ROOT} className="nLink">
-    //                 <div className="icon"><img alt={"#"} src={stats_icon}/></div>
-    //                 <div/>
-    //             </NavLink>
-    //         </div>
-    //     </div>
-    // );
+    // )
+    return (
+        <div className="nav-bar-cont">
+            <div className="nLink-group">
+                
+
+                <Link to={`${STRINGS.ROUTES.ROOT}?org=${localStorage.getItem("userId")}`} className="nLink">
+                    <div className="icon"><img alt={"#"} src={chat_icon}/></div>
+                    <div/>
+                </Link>
+                
+            </div>
+            <div className="nLink-group">
+                
+
+            <Link to="/settings" className="nLink">
+                    <div className="icon"><img alt={"#"} src={tags_icon}/></div>
+                    <div/>
+                </Link>
+               
+            </div>
+        </div>
+    );
 };
 
 export default NavBar;
