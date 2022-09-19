@@ -32210,13 +32210,22 @@ img.away, img.busy, img.offline, img.online {
 
 /*new css*/
 
-.left_navbar .css-4t3x6l-MuiPaper-root-MuiDrawer-paper{
+.left_navbar{
   background-color: #10163A;
+  padding: 0px 10px;
+  position: relative;
+  height: 1000px;
 }
-.left_navbar .css-bshv44-MuiButtonBase-root-MuiListItem-root{
+.left_navbar .left_bar_end_section{
+  bottom: 0;
+  position: absolute;
+  right: 0;
+  left: 0;
+}
+.left_navbar .nLink-group{
   padding-top: 20px;
   padding-bottom: 20px;
-  justify-content: center;
+  text-align: center;
 }
 .main-container .section-hld{
   background-color: #f5f5f5;
@@ -32448,6 +32457,37 @@ img.away, img.busy, img.offline, img.online {
 }
 .primary{
   border: 1px solid #10163A !important;
+}
+.simple_response_section{
+  border: 1px solid #fff;
+  padding: 10px;
+  margin: 10px 0px;
+}
+.simple_response_section .field_label{
+  color: #fff;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  font-family: 'Inter', sans-serif;
+}
+.simple_response_section .add_label_section{
+  margin: 10px 0px;
+}
+.simple_response_section .add_label_section span{
+  color: #fff;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  font-family: 'Inter', sans-serif;
+}
+.composer-container .composer-content .trigger-card .card-content .row__ .txt-field .MuiInputBase-root{
+  color: #fff;
+}
+.composer-container .composer-content .trigger-card .card-content .row__ .txt-field .MuiSvgIcon-root{
+  color: #fff;
+}
+.composer-container .composer-content .trigger-card .card-content .row__ .txt-field .MuiOutlinedInput-notchedOutline{
+  border: 1px solid #fff;
 }
 
 /*new css*/

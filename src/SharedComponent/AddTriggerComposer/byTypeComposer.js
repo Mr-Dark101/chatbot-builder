@@ -1162,12 +1162,12 @@ const addSimpleCondition = () => {
                                     {triggerType == 'A' && conditionType == 'S' ? (
 
                                     <>
-                                            <div>
+                                            <div className="simple_response_section">
                                             
 
 
                                                         <div className="row" >
-            <div className="col-sm-6">Label
+            <div className="col-sm-6"><span className="field_label">Label</span>
                 
 
                     <input className="inp" value={simpleLabel} onChange={(e) => {
@@ -1179,7 +1179,7 @@ const addSimpleCondition = () => {
 
                 
             </div>
-            <div className="col-sm-6">Value
+            <div className="col-sm-6"><span className="field_label">Value</span>
             
                         <input className="inp" value={simpleValue} onChange={(e) => {
                                                             setInit({
@@ -1198,25 +1198,27 @@ const addSimpleCondition = () => {
                                         <div className="actions-btn">
                                 
                             
-                                                <button className="btn btn-primary" 
+                                                <button className="btn primary" 
                                                     onClick={() => addSimpleCondition()}
                                                 >
                                                Add Label</button>
                                                
                                        </div>
-                                       </div>
+                                       
                                        {
                                         simpleValues.map((s,i) => {
 
                                             return (
-                                                <div className="row">
-                                                    <div className="col-sm-6">{s.label}</div>
-                                                    <div className="col-sm-6">{s.value}</div>
+                                                <div className="row add_label_section">
+                                                    <div className="col-sm-6"><span>{s.label}</span></div>
+                                                    <div className="col-sm-6"><span>{s.value}</span></div>
                                                 </div>
                                             )
                                         })
                                        }
+                                       </div>
                                        </>
+
 
                                     ) : null}
 
