@@ -37,13 +37,13 @@ const retrieveList = () => {
       
       
        
-         <div>
-            <div>Industry</div>
+         <div className="integration_page">
+            <div className="page_heading">Industry</div>
 
             {listData.map((rs,index) => (
                  
                 <>
-                    <div><b>{rs.name}</b></div>
+                    <div className="section_main_heading">{rs.name}</div>
 
                     <Platform row={rs} subPage={subPage} loadList={loadList} industry_id={rs.id} />
                  </>
