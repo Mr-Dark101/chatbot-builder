@@ -24,7 +24,7 @@ useEffect(() => {
   
 
   const retrieveList = () => {
-    CrudService.getAll('api_bot',true)
+    CrudService.getAll('api_bot&build_type=C',true)
       .then(response => {
         setListData(response.data);
         console.log(response.data);

@@ -143,7 +143,7 @@ const ChatBotComposer = ({onClose}) => {
                     setConditionType(data[i].conditionType);
                     setSimpleValues(data[i].simpleValues);
                     
-                    console.log(trigger)
+                    
 
                     if(trigger.xapi > 0){
 
@@ -408,16 +408,39 @@ const ChatBotComposer = ({onClose}) => {
         let customDesc = '';
 
         if(conditionType == 'S' && triggerType == 'A'){
+            
+             if(Array.isArray(apiResponse.data.data.data)){
+                 
+                    apiResponse.data.data.data.map((mdata) => {
 
-             
-             simpleValues.map((s,i) => {
+
+                            simpleValues.map((s,i) => {
                 
               
+
+                                customDesc = customDesc  + s.label + ":" + mdata[s.value] + '<br />';
+                            
+                            
+                            })
+
+                            customDesc = customDesc + '<br/><hr>'
+                    })
+
+             }else{
+
+
+                simpleValues.map((s,i) => {
                 
+              
+
                     customDesc = customDesc  + s.label + ":" + apiResponse.data.data.data[s.value] + '<br />';
                 
                 
-             })
+                })
+
+
+             }   
+             
              trigger = {
                                     id: createGuid(),
                                     response: customDesc,
