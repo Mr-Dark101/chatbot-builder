@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { Form, TextField, SelectField, SubmitButton,CheckBoxField,TextGroupField,TextAreaField } from '../../crud/FormElements';
 import * as Yup from 'yup';
 import CrudService from "../../../services/crud.service";
+import AddTriggerComposer from "./AddTriggerComposer";
 import { Link } from "react-router-dom";
 const Create = ({rs,retrieveList,loadList}) => {
 
@@ -10,16 +11,19 @@ const Create = ({rs,retrieveList,loadList}) => {
   const [validationSchema, setValidationSchema] = useState({});
 
   const [insuranceList, setInsuranceList] = useState([]);
-  const [insuranceTypeList, setInsuranceTypeList] = useState([]);
+  const [apiList, setApiList] = useState([]);
+  const [platformList, setPlatformList] = useState([]);
 
 const [successful, setSuccessful] = useState(false);
 const [message, setMessage] = useState();
+const [apiDataMaster, setApiDataMaster] = useState([]);
 const [headerField, setHeaderField] = useState([{"keyOther":"","valueOther":""}]);
 useEffect(() => {
    
     
     //retrieveMasterList('insurance');
-    //retrieveMasterList('insurance_type');
+    retrieveMasterList('api_bot');
+    retrieveMasterList('platform');
     
 
    
@@ -29,7 +33,7 @@ useEffect(() => {
 const addField = (param) => {
     
     setHeaderField([...headerField,{}])
-  
+    
   
 }
 
@@ -38,13 +42,15 @@ const typeList = [{value:'get',label:"GET"},{value:"post",label:'POST'}]
   const retrieveMasterList = (url) => {
     CrudService.ListValue('master/list-value?type=' + url)
       .then(response => {
-            if(url == 'insurance'){
-                setInsuranceList(response.data);
+            if(url == 'api_bot'){
+                setApiList(response.data);
             }
 
-            if(url == 'insurance_type'){
-                setInsuranceTypeList(response.data);
+            if(url == 'platform'){
+                setPlatformList(response.data);
             }
+
+            
 
             
             
@@ -66,6 +72,9 @@ const [formData, setFormData] = useState({
     url:"",
     header:"",
     payload:"",
+    build_type:'T',
+    platform_id:'',
+    template_data:'',
    
     
     
@@ -81,12 +90,29 @@ const FormSchema = Yup.object().shape({
     name: Yup.string()
           .required('Required'),
     api_type: Yup.string()
+          .required('Required'),
+
+   platform_id: Yup.string()
           .required('Required')
    
    
 });
 
+const apiHandleConditionMaster = (conditionType,triggerType,data) => {
 
+
+        
+        let newData = [];
+        if(conditionType == 'S'){
+          newData = {conditionType:conditionType,triggerType:triggerType,simpleData:data}
+        }else{
+          newData = {conditionType:conditionType,triggerType:triggerType,simpleData:data}
+        }
+        
+        
+
+        setApiDataMaster(newData)
+   }
 
   
   
@@ -95,7 +121,8 @@ const FormSchema = Yup.object().shape({
 
     const onSubmit = (values, { setSubmitting, resetForm, setStatus }) => {
         
-      values.header = JSON.stringify(headerField);
+      
+      values.template_data = JSON.stringify(apiDataMaster);
         CrudService.register(values,'api_bot',true).then(
         (response) => {
           //setModalValue('')
@@ -130,14 +157,27 @@ const FormSchema = Yup.object().shape({
     
     
  };
- 
+ const props = {trigger:{
+      urls:[],
+      triggersList:[],
+      apiList:apiList,
+      currentTriggerData:{},
+      currentBotData:{
+
+        id:"",
+        userId:"",
+        published:"",
+      },
+
+
+}}
 
   return (
     <> 
       <div class="row">       
         <div class="col-12">
           <div>
-          <div className="page_data_clinic api_form_section">
+          <div className="page_data_clinic api_form_section" style={{overflow:'scroll',height:800}}>
             
              {!successful && (
             <Form
@@ -186,38 +226,15 @@ const FormSchema = Yup.object().shape({
                           />
                         </div>
 
-                        <label style={{marginBottom: '0px'}}>Header</label>
-                        
-
-                        {headerField && headerField.map((x, i) => {
-                  return (
-                    <div className="row">
-                            <div className="col-sm-4">
-                                 <TextField 
-                                    name="keyOther"
-                                    placeholder="Key"
-                                    value={x.key}
-                                    onChange={e => handleInputChange(e, i,'phone')}
-                                  />
-                            </div>
-                             <div className="col-sm-6">
-
-                                   <TextField 
-                                      name="valueOther"
-                                      placeholder="Value"
-                                      onChange={e => handleInputChange(e, i,'phone')}
-                                      
-                                    />
-                             </div>
-                        
-                      
-                    </div>
-                  );
-                })}
-
-                        <div className="my-20">
-                         <button className="primary" onClick={() => addField('email')}>Add</button>
+                        <div className="field_section">
+                          <SelectField 
+                            name="platform_id"
+                            label="Platform"
+                            options={platformList}
+                          />
                         </div>
+
+                        
                         
                          <div className="field_section mb-20">
                           <TextAreaField 
@@ -240,8 +257,13 @@ const FormSchema = Yup.object().shape({
                     
 
             <h2>Message</h2>
-                
+            <div className="row">
+                <div className="col-sm-10">
+                    <AddTriggerComposer apiHandleConditionMaster={apiHandleConditionMaster} props={props}  />
 
+                </div>
+            </div>
+            
                     
                 
 

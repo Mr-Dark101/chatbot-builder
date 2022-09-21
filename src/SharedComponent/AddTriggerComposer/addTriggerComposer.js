@@ -25,6 +25,8 @@ const AddTriggerComposer = (props) => {
         if(props.trigger.currentTriggerData.toTrigger){
             tVal = props.trigger.currentTriggerData.toTrigger.triggerType;
 
+           
+
              setBtnMessageStyle({backgroundColor:'#fff',width:'100%',color:'#000',borderRadius: '5px 5px 0px 0px'})
             setBtnApiStyle({backgroundColor:'#10163A',width:'100%',color:'#fff',borderRadius: '5px 5px 0px 0px'})
         }

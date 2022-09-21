@@ -411,7 +411,12 @@ const ChatBotComposer = ({onClose}) => {
 
              
              simpleValues.map((s,i) => {
-                customDesc = customDesc  + s.label + ":" + apiResponse.data.data.data[s.value] + '<br />';
+                
+              
+                
+                    customDesc = customDesc  + s.label + ":" + apiResponse.data.data.data[s.value] + '<br />';
+                
+                
              })
              trigger = {
                                     id: createGuid(),

@@ -1,12 +1,12 @@
 import React, {useEffect, useState} from 'react';
-import trash_icon from "../../assets/Custom Size - 4/Icon metro-cancel.svg";
-import edit_icon from "../../assets/Custom Size - 4/edit.svg";
-import delete_icon from "../../assets/Group 4968.svg";
-import upload_icon from "../../assets/Icon metro-cloud-upload.svg";
+import trash_icon from "../../../assets/Custom Size - 4/Icon metro-cancel.svg";
+import edit_icon from "../../../assets/Custom Size - 4/edit.svg";
+import delete_icon from "../../../assets/Group 4968.svg";
+import upload_icon from "../../../assets/Icon metro-cloud-upload.svg";
 
 import $ from "jquery";
 import {useDispatch} from "react-redux";
-import {createGuid, getGeneratedId, STRINGS} from "../../utils/base";
+import {createGuid, getGeneratedId, STRINGS} from "../../../utils/base";
 import {
     onSuccessUpdateMenuText,
     resetTheUrls,
@@ -14,16 +14,16 @@ import {
     UpdateTriggerMenusText,
     uploadFile,
     
-} from "./slices/addTrigger.slice";
-import {Checkbox, FormControl, FormControlLabel, FormLabel, MenuItem, Radio, RadioGroup, Select,ListSubheader} from '@mui/material';
-import TextEditor from "../Items/ReactTextEditor/TextEditor";
+} from "../../../SharedComponent/AddTriggerComposer/slices/addTrigger.slice";
+import {Checkbox, FormControl, FormControlLabel, FormLabel, MenuItem, Radio, RadioGroup, Select} from '@mui/material';
+import TextEditor from "../../../SharedComponent/Items/ReactTextEditor/TextEditor";
 import {EditOutlined, SyncOutlined} from "@ant-design/icons";
-import AudioPlayerDefault from "../AudioPlayer/audioPlayer";
-import documentIcon from "../../assets/file.png";
-import defaultImage from "../../assets/default_image.png";
-import ConfirmModal from "../ConfirmModal/ConfirmModal";
-import AlertModal from "../ConfirmModal/AlertModal";
-import {PublishedBot} from "../../components/BuilderWorkSpace/slices/workSpace.slice";
+import AudioPlayerDefault from "../../../SharedComponent/AudioPlayer/audioPlayer";
+import documentIcon from "../../../assets/file.png";
+import defaultImage from "../../../assets/default_image.png";
+import ConfirmModal from "../../../SharedComponent/ConfirmModal/ConfirmModal";
+import AlertModal from "../../../SharedComponent/ConfirmModal/AlertModal";
+
 // import TriggerCard from "../TreeComponent/items/TriggerCard";
 import ConditionList from "./ConditionList";
 
@@ -88,23 +88,16 @@ let counter = 0;
 
 let apiMenu = [];
 
-const ByTypeComposer = ({props,triggerType}) => {
+const ByTypeComposer = ({props,triggerType,apiHandleConditionMaster}) => {
 
     
 
     
-    
-
-    // if(props.trigger.currentTriggerData.toTrigger.type == 'TEXT' || props.trigger.currentTriggerData.toTrigger.type == 'API'){
-    //     if(triggerType == 'A'){
-    //         props.trigger.currentTriggerData.toTrigger.type = 'API'
-    //     }else{
-    //         props.trigger.currentTriggerData.toTrigger.type = 'TEXT'
-    //     }
-    // }
 
 
     let {handleTriggerClose, currentBotData, trigger, getAllTypes} = props;
+
+ 
 
     const dispatch = useDispatch();
     const [init, setInit] = useState(defaultState);
@@ -112,8 +105,7 @@ const ByTypeComposer = ({props,triggerType}) => {
     let {isText,isMedia, isLoopBack, template, currentData, openFallBackComposer, triggerOpt, triggerValueName, values, descriptionType,
         isConfirm, confirmationTxt,isAlert,simpleLabel,simpleValue,simpleValues} = init;
     let {name, triggerMenus, description, fallBackResponse, caption, loopBackId, loopBackText, routToAgent, type,apiId,apiText} = currentData;
-    let {id, userId,published} = currentBotData;
-  
+
     let {triggersList, currentTriggerData, isChild, childBotId, urls, isUpdatedList, menuTextUpdateSuccess,apiList} = trigger;
     // console.log("setBotData",currentBotData)
 
@@ -182,29 +174,26 @@ const ByTypeComposer = ({props,triggerType}) => {
               return _test;
         })
 
-        setApiData(condition)
-   }
+       
 
-   const apiHandleCondition = (dataValue,dataIndex) => {
+        setApiData(condition);
 
-
+        const saveData = handleSubmitTrigger();
+       
+         apiHandleConditionMaster(conditionType,triggerType,saveData);
         
-
-
-
-        setSimpleCondition((old) => {
-              let _test = [...old];
-              //const index = _test.findIndex((val) => val._id === dataIndex);
-              //@ts-ignore
-              _test[dataIndex].dataValue = dataValue;
-              return _test;
-        })
-
-        setApiData(simpleCondition)
    }
+
+
+const saveSimpleResponse = () => {
+
+         const saveData = handleSubmitTrigger();
+         apiHandleConditionMaster(conditionType,triggerType,saveData);
+    }
+
    
     const addCondition = () => {
-        const newData = {api_id:1,dataValue:{
+        const newData = {api_id:'not use',dataValue:{
         id: "",
         name: "",
         template: "",
@@ -289,15 +278,17 @@ const ByTypeComposer = ({props,triggerType}) => {
                 return tl;
             });
 
-            setApiMenu();
-            
+
+        }
+        
+
+        setApiMenu();
+            console.log(currentTriggerData.toTrigger)
             if(currentTriggerData.toTrigger){
                 conditionArray = currentTriggerData.toTrigger.apiData;
                 setCondition(JSON.parse(JSON.stringify(currentTriggerData.toTrigger.apiData)));
                 setApiData(currentTriggerData.toTrigger.apiData)
             }
-        }
-        
 
         return () => {
             updatedTriggers = [];
@@ -322,7 +313,8 @@ const ByTypeComposer = ({props,triggerType}) => {
     //         currentTriggerPreview = {};
     //     }
     // }, [])
-
+   const id = "nasir"
+   const userId = "nasir"
     useEffect(() => {
         if (isData) {
             setInit({
@@ -555,9 +547,7 @@ const ByTypeComposer = ({props,triggerType}) => {
         })
     }
 
-    const handlePublishBot = (obj) => {
-        dispatch(PublishedBot(obj))
-    }
+    
 
     const handleSubmitTrigger = () => {
         let obj = {
@@ -608,6 +598,8 @@ const ByTypeComposer = ({props,triggerType}) => {
             "urls": obj.urls === undefined ? [] : !obj.urls ? [] : obj.urls,
         }
 
+        return triggersListObj;
+
         if ($.isEmptyObject(currentTriggerData)) {
             updatedTriggers.push(triggersListObj)
             let updateObj = {
@@ -615,8 +607,9 @@ const ByTypeComposer = ({props,triggerType}) => {
                 "triggersList": updatedTriggers,
                 "userId": userId
             }
-            dispatch(UpdateTrigger(updateObj));
             updatedTriggers = [];
+            return  updateObj;
+            
         } else {
             let updatedBots = updatedTriggers.filter((fl) => fl.id !== triggersListObj.id);
             let updateObj = {
@@ -624,12 +617,13 @@ const ByTypeComposer = ({props,triggerType}) => {
                 "triggersList": [...updatedBots, triggersListObj],
                 "userId": userId
             }
-            if(published){
-                handlePublishBot({botId: id, isPublished: false, userId})
-            }
-            dispatch(UpdateTrigger(updateObj));
-            updatedTriggers = [];
+            updatedTriggers =[]
+           return  updateObj;
+            //dispatch(UpdateTrigger(updateObj));
+           
         }
+
+        
         setInit({
             ...init,
             isConfirm: false,
@@ -747,7 +741,6 @@ const ByTypeComposer = ({props,triggerType}) => {
     }
 
     const handleTextAreaChange = (text, type) => {
-       
         if (text !== "") {
             if (type === "fallBackResponse") {
                 setInit({
@@ -793,7 +786,7 @@ const ByTypeComposer = ({props,triggerType}) => {
     }
 
 
-const addSimpleCondition = () => {
+const addSimpleCondition =  () => {
         if (simpleLabel !== "" && simpleValue !== "") {
             setInit({
                 ...init,
@@ -805,6 +798,8 @@ const addSimpleCondition = () => {
                         
                     }]
             })
+            
+            
         } else {
             setInit({
                 ...init,
@@ -814,96 +809,13 @@ const addSimpleCondition = () => {
             })
             // alert("Please add value first.")
         }
+
+
     }
 
 
-    const handleAddTriggerValue = () => {
-        if (triggerValueName !== "") {
-            setInit({
-                ...init,
-                triggerValueName: "",
-                values: [...init.values, triggerValueName]
-            })
-        } else {
-            setInit({
-                ...init,
-                isAlert: true,
-                isUpdatedList: true,
-                confirmationTxt: "Please add value first."
-            })
-            // alert("Please add value first.")
-        }
-    }
-const apiChange = (api_id) => {
+   
 
-
-    
-
-    let fApi = apiList.filter((d) => d.id == api_id)
-    fApi = fApi[0]
-    
-    if(fApi.build_type == 'T'){
-        const templateData = JSON.parse(fApi.template_data).simpleData;
-
-       if(templateData.conditionType == 'C'){
-            setCondition(templateData.apiData);
-            meClickCondition(templateData.conditionType)
-            setInit({
-                ...init,
-                isText: true,
-                    isMedia: false,
-                   
-                    isLoopBack: false,
-                    template: false,
-                currentData: {
-                    ...init.currentData,
-                    apiId: api_id,
-                    description: templateData.response,
-                    type: "TEXT",
-                },
-                descriptionType: 'response'
-            });
-
-
-            
-       }else{
-            setCondition([])
-            setInit({
-                ...init,
-                 isText: true,
-                    isMedia: false,
-                   
-                    isLoopBack: false,
-                    template: false,
-                simpleLabel: "",
-                currentData: {
-                    ...init.currentData,
-                    apiId: api_id,
-                    description: templateData.response,
-                    type: "TEXT",
-                },
-                descriptionType: 'response',
-                simpleValues: templateData.simpleValues
-            })
-            meClickCondition(templateData.conditionType)
-       }
-       
-       //handleTextAreaChange(templateData.response,'response')
-        //console.log(init.currentData)
-        //setConditionType(templateData.conditionType)
-    
-    }else{
-        setCondition([])
-        setInit({
-            ...init,
-            currentData: {
-                ...init.currentData,
-                apiId: api_id
-            }
-        });
-    }
-    
-}
     const getContentByType = (data) => {
         if (data.loopBackTriggerId !== "") {
             // console.log("getContentByType", data?.loopBackText)
@@ -991,7 +903,7 @@ const apiChange = (api_id) => {
     }
 
     return (
-        <div className="composer-container">
+        <div className="composer-container"  style={{backgroundColor:'rgba(16, 22, 58, 0.75)'}}>
             <ConfirmModal
                 visible={isConfirm}
                 handleOk={handleSubmitTrigger}
@@ -1009,131 +921,8 @@ const apiChange = (api_id) => {
             <div className="composer-content">
                 <div className="trigger-card">
                     <div className="card-content">
-                        <div className="row__">
-                            <div className="txt-field">
-                                <div className="label">
-                                    <div className="sub-txt">
-                                        Trigger name
-                                    </div>
-                                </div>
-                                <div className="input">
-                                    <input className="inp" placeholder="Welcome Message" value={name} onChange={(e) => {
-                                        setInit({
-                                            ...init,
-                                            currentData: {
-                                                ...init.currentData,
-                                                name: e.target.value
-                                            }
-                                        })
-                                    }}/>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="row__">
-                            <div className="row__">
-                                <div className="txt-field">
-                                    <div className="label">
-                                        <div className="sub-txt">
-                                            Initiate Conversation with
-                                        </div>
-                                    </div>
-                                    <div className="input" style={{justifyContent: 'space-between'}}>
-                                        <div style={{width: '80%'}}>
-                                            <input className="inp" value={triggerValueName} onChange={(e) => {
-                                                setInit({
-                                                    ...init,
-                                                    triggerValueName: e.target.value
-                                                })
-                                            }} placeholder="Please Enter Value"/>
-                                        </div>
-
-                                        <div>                                          
-                                            <button type="button" onClick={() => handleAddTriggerValue()} className="btn btn_add_option">Add Options</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="s-tags">
-                                {
-                                    values.length > 0 && (
-                                        values.map((v) => {
-                                            return (
-                                                <div className="tag-box">
-                                                    <div className="txt">
-                                                        {v}
-                                                    </div>
-                                                    <div className="icon" onClick={() => handleValueRemove(v)}>
-                                                        <img alt={"#"} src={trash_icon}/>
-                                                    </div>
-                                                </div>
-                                            )
-                                        })
-                                    )
-                                }
-                            </div>
-                            <div className="rnb">
-                                <button className="btn-rnb">
-                                    Reg([^0-9])|
-                                </button>
-                            </div>
-                            <div className="add-btn" style={{display: 'none'}}>
-                                <button className="btn-outlined" onClick={() => handleAddTriggerValue()}>
-                                    Add Values
-                                </button>
-                            </div>
-                        </div>
-
-                        <div className="row__" style={{marginTop: '0px'}}>
-
-                                    {triggerType == 'A' ? (
-
-                                            <div className="txt-field">
-                                            <Select
-                                                labelId="demo-simple-select-standard-label"
-                                                id="demo-simple-select-standard"
-                                                value={apiId}
-                                                onChange={(e) => {
-                                                    
-                                                    apiChange(e.target.value)
-                                                    e.preventDefault();
-                                                }}
-                                                label="Api"
-                                            >
-                                            <ListSubheader>API Template</ListSubheader>
-                                                {
-                                                    apiMenu?.map((tr) => {
-                                                         
-                                                          if(tr.build_type == 'T'){
-                                                           return (<MenuItem value={tr.id}>{tr.name}</MenuItem>)
-                                                          }
-                                                            
-                                                        
-                                                    })
-                                                }
-
-                                               
-
-                                                <ListSubheader>Custom API</ListSubheader>
-                                                {
-                                                    apiMenu?.map((tr) => {
-                                                         
-                                                          if(tr.build_type == 'C'){
-                                                           return (<MenuItem value={tr.id}>{tr.name}</MenuItem>)
-                                                          }
-                                                            
-                                                        
-                                                    })
-                                                }
-
-                                                
-                                            </Select>
-                                            </div>
-
-
-                                    ) : null}
-                        </div>
-
-
+                       
+                      
                         <div className="row__" style={{marginBottom: '0px'}}>
                             <div className="txt" style={{marginTop: '10px',marginBottom: '20px'}}>
                                 Response
@@ -1145,10 +934,10 @@ const apiChange = (api_id) => {
                                 <ul className="right_bar_top_section" style={{paddingLeft: '0px',paddingRight: '0px'}}>
                                     <li>
                                    
-                                        <button onClick={() => meClickCondition('C')} className="btn btn-block {btn-primary}" style={btnConditionStyle}>Condition Response</button>
+                                        <button type="button" onClick={() => meClickCondition('C')} className="btn btn-block {btn-primary}" style={btnConditionStyle}>Condition Response</button>
                                     </li>
                                     <li>
-                                     <button onClick={() => meClickCondition('S')} className="btn btn-block {btn-primary}" style={btnSimpleStyle}> Simple Response</button>
+                                     <button type="button" onClick={() => meClickCondition('S')} className="btn btn-block {btn-primary}" style={btnSimpleStyle}> Simple Response</button>
                                     </li>
 
                                 </ul>
@@ -1202,14 +991,13 @@ const apiChange = (api_id) => {
                                 </button>
                             </div>
                         </div>
-                        
                         <div className="row__" style={{marginTop: '0px'}}>
                             
                             {
                                 isText && (
                                 <>
 
-                                    
+                                   
                                     <TextEditor
                                         type={"response"}
                                         defaultText={description}
@@ -1237,7 +1025,7 @@ const apiChange = (api_id) => {
                                         <div className="actions-btn">
                                 
                             
-                                                <button className="btn btn-primary" style={{
+                                                <button type="button" className="btn btn-primary" style={{
                                                                     width: "100%",
                                                                     whiteSpace: "nowrap",
                                                                     textAlign: "center",
@@ -1292,7 +1080,7 @@ const apiChange = (api_id) => {
                                         <div className="actions-btn">
                                 
                             
-                                                <button className="btn primary" 
+                                                <button type="button" className="btn primary" 
                                                     onClick={() => addSimpleCondition()}
                                                 >
                                                Add Label</button>
@@ -1311,6 +1099,10 @@ const apiChange = (api_id) => {
                                         })
                                        }
                                        </div>
+
+                                       <button type="button" className="btn btn-danger" onClick={saveSimpleResponse}>
+                                     Save Simple Response
+                                </button>
                                        </>
 
 
@@ -1593,7 +1385,7 @@ const apiChange = (api_id) => {
                                     />
 
                                     <div className="add-btn">
-                                        <button className="btn-outlined" onClick={handleAddOptions}>
+                                        <button type="button" className="btn-outlined" onClick={handleAddOptions}>
                                             Add Option
                                         </button>
                                     </div>
@@ -1729,34 +1521,7 @@ const apiChange = (api_id) => {
                         </>
                         ) : null}
                     </div>
-                    <div className="card-end">
-                        <div className="c-footer">
-                            
-                            <div className="actions-btn">
-                                
-                                {
-                                    isUpdatedList ? (
-                                        <button className="btn-filled"
-                                                onClick={() => {
-                                                    setInit({
-                                                        ...init,
-                                                        isConfirm: true,
-                                                        isUpdatedList: false,
-                                                        confirmationTxt: `Are You Sure? You Want to ${isData ? "Update " : "Add "} Trigger`
-                                                    })
-                                                }}> {isData ? "Update " : "Add "}
-                                            Trigger</button>
-                                    ) : (
-                                        <button className="btn-filled"><SyncOutlined spin style={{
-                                            color: `${STRINGS.COLOR.SEC}`
-                                        }}/></button>
-                                    )
-                                }
-                                <button className="btn-transparent" onClick={handleTriggerClose}>Cancel</button>
-
-                            </div>
-                        </div>
-                    </div>
+                    
                 </div>
             </div>
         </div>

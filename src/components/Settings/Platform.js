@@ -1,24 +1,21 @@
 import React, { useState, useEffect } from "react";
-import CrudMaster from "../crud/CrudMaster";
-const Platform = ({pageName,dataName}) => {
+import List from './platform/List'
+const Platform = ({rs}) => {
 
-
-const formSchema = {
-    name: {
-        type: "text",
-        label: "",
-        required: true
-    },
-    
-   
+const subPage = (pageName) => {
+  setViewPage(pageName)
 }
+const loadList = () => {
+  setViewPage(<List rs={rs} subPage={subPage} loadList={loadList} />)
+}
+const [viewPage, setViewPage] = useState(<List rs={rs} subPage={subPage} loadList={loadList} />);
 
   return (
     <>
       
       
        
-         <CrudMaster title={pageName} master={true} serviceUrl={dataName} dataAttr={{'Name':'name'}} formSchema={formSchema} />
+          {viewPage}
       
           
        

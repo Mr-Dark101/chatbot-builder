@@ -30,7 +30,7 @@ const Settings = () => {
     const {dashboard} = useSelector(({Reducers}) => Reducers);
     const dispatch = useDispatch();
     const history = useHistory();
-
+     const [activeClass, setActiveClass] = useState('');
 
 useEffect(() => {
    
@@ -46,7 +46,7 @@ useEffect(() => {
     }
 
      const changeContent = (param,pageName,dataName) => {
-   
+        setActiveClass(param);
         if(param === 'Api'){
           setContentPage(<Api />);
         }
@@ -74,6 +74,19 @@ useEffect(() => {
     
     };
 
+    const Menu = [
+
+        {name:'My Profile',controller:'Profile',icon:myprofile},
+        {name:'Channels',controller:'Channels',icon:myprofile},
+        {name:'Industry',controller:'Industry',icon:myprofile},
+        {name:'Platform',controller:'Platform',icon:myprofile},
+        {name:'Integration',controller:'Integration',icon:integration},
+        {name:'Api',controller:'Api',icon:api},
+        {name:'Api Template',controller:'ApiTemplate',icon:api},
+        {name:'Users',controller:'User',icon:api},
+
+    ]
+
     return (
         <div className="ws-hld">
 
@@ -99,14 +112,20 @@ useEffect(() => {
                          <div className="col-sm-3">
                             <div className="setting_left_bar_section">
                                 <ul>
-                                    <li><a href="#" onClick={() => changeContent('Profile')}><img alt={"#"} src={myprofile}/>My Profile</a></li>
-                                    <li><a href="#"><img alt={"#"} src={channel}/>Channels</a></li>
-                                    <li><a href="#" onClick={() => changeContent('Industry')}><img alt={"#"} src={myprofile}/>Industry</a></li>
-                                    <li><a href="#" onClick={() => changeContent('Platform')}><img alt={"#"} src={myprofile}/>Platform</a></li>
-                                    <li><a href="#" onClick={() => changeContent('Integration')}><img alt={"#"} src={integration}/>Integration</a></li>
-                                    <li><a href="#" onClick={() => changeContent('Api')} className="active"><img alt={"#"} src={api}/>API's</a></li>
-                                    <li><a href="#" onClick={() => changeContent('ApiTemplate')}><img alt={"#"} src={api}/>Api Template</a></li>
-                                    <li><a href="#"><img alt={"#"} src={users}/>Users</a></li>
+                                {
+                                    Menu.map((m,i) => (
+                                    <>
+                                    {m.controller == activeClass ? 
+                                        (<li ><a href="#" className="active"  onClick={() => changeContent(m.controller)}><img alt={"#"} src={m.icon}/>{m.name}</a></li>
+                                    ) : 
+
+                                    (<li><a href="#"  onClick={() => changeContent(m.controller)}><img alt={"#"} src={m.icon}/>{m.name}</a></li>
+                                    )
+
+                                    }
+                                    </>
+                               ))}
+                                    
 
                                 </ul>
                             </div>   

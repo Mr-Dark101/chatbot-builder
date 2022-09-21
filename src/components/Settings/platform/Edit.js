@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,useRef } from "react";
 
 import {  TextField, SelectField, SubmitButton,CheckBoxField,TextGroupField,TextAreaField,SwtichField } from '../../crud/FormElements';
 import * as Yup from 'yup';
 import CrudService from "../../../services/crud.service";
 import { Link } from "react-router-dom";
-import AddTriggerComposer from "./AddTriggerComposer";
+
 import {
     Formik,
     Form,
@@ -21,19 +21,24 @@ const Edit = ({rs,retrieveList,loadList}) => {
  
   const [validationSchema, setValidationSchema] = useState({});
 
-  const [apiList, setApiList] = useState([]);
-  const [platformList, setPlatformList] = useState([]);;
+  const [industryList, setIndustryList] = useState([]);
+
 
 const [successful, setSuccessful] = useState(false);
 const [message, setMessage] = useState();
+ const fileInputRef = useRef();
 
-const [apiDataMaster, setApiDataMaster] = useState([]);
+
+ const [selectedFile, setSelectedFile] = useState();
+  const [isFilePicked, setIsFilePicked] = useState(false);
+const [isSelected, setIsSelected] = useState(false)
+
 
 useEffect(() => {
    
     
-    retrieveMasterList('api_bot');
-    retrieveMasterList('platform');
+     retrieveMasterList('industry');
+    // retrieveMasterList('insurance_type');
     
     
    
@@ -46,13 +51,11 @@ const typeList = [{value:'get',label:"GET"},{value:"post",label:'POST'}]
   const retrieveMasterList = (url) => {
     CrudService.ListValue('master/list-value?type=' + url)
       .then(response => {
-            if(url == 'api_bot'){
-                setApiList(response.data);
+            if(url == 'industry'){
+                setIndustryList(response.data);
             }
 
-            if(url == 'platform'){
-                setPlatformList(response.data);
-            }
+           
 
             
             
@@ -69,13 +72,9 @@ const typeList = [{value:'get',label:"GET"},{value:"post",label:'POST'}]
 
 const [formData, setFormData] = useState({
     name: rs.name,
-    api_type: rs.api_type,
-    description:rs.description,
-    url:rs.url,
-    header:rs.header,
-    payload:rs.payload,
-    build_type:'T',
-    platform_id:rs.platform_id,
+    industry_id: rs.industry_id,
+    logo:rs.logo,
+   
     id: rs.id
    
    
@@ -86,57 +85,32 @@ const [formData, setFormData] = useState({
 const FormSchema = Yup.object().shape({
     name: Yup.string()
           .required('Required'),
-    api_type: Yup.string()
+    industry_id: Yup.string()
           .required('Required')
    
    
 });
 
 
-const apiHandleConditionMaster = (conditionType,triggerType,data) => {
 
 
-        
-        let newData = [];
-        if(conditionType == 'S'){
-          newData = {conditionType:conditionType,triggerType:triggerType,simpleData:data}
-        }else{
-          newData = {conditionType:conditionType,triggerType:triggerType,simpleData:data}
-        }
-        
-        
-
-        setApiDataMaster(newData)
-   }
-
-
-
-   const props = {trigger:{
-      urls:[],
-      triggersList:[],
-      apiList:apiList,
-      currentTriggerData:{
-        toTrigger:JSON.parse(rs.template_data).simpleData
-
-      },
-      currentBotData:{
-
-        id:"",
-        userId:"",
-        published:"",
-      },
-
-}}
-
-
-
-//const props  = {urls:[],triggersList:[],apiList:apiList,trigger:{currentTriggerData:rs.template_data.simpleData}};
+  
+  
 
     
 
     const onSubmit = (values, { setSubmitting, resetForm, setStatus }) => {
-       values.template_data = JSON.stringify(apiDataMaster);
-        CrudService.edit(values,'api_bot',true).then(
+
+
+       const formData = new FormData();
+
+      formData.append('file', selectedFile);
+      formData.append('name', values.name);
+      formData.append('industry_id', values.industry_id);
+      formData.append('id', values.id);
+
+     
+        CrudService.edit(formData,'platform',true).then(
         (response) => {
           //setModalValue('')
           
@@ -159,9 +133,14 @@ const apiHandleConditionMaster = (conditionType,triggerType,data) => {
         }
       );
     }
-
-
- 
+ const changeHandler = (event) => {
+    setSelectedFile(event.target.files[0]);
+    setIsSelected(true);
+  };
+    
+ const fileInputClicked = () => {
+        fileInputRef.current.click();
+    }
 
   return (
     <>
@@ -170,7 +149,7 @@ const apiHandleConditionMaster = (conditionType,triggerType,data) => {
     
       <div class="row">       
         <div class="col-12">
-          <div className="page_data_clinic api_form_section" style={{overflow:'scroll',height:800}}>
+          <div class="page_data_clinic">
           <div>
             
              {!successful && (
@@ -206,54 +185,38 @@ const apiHandleConditionMaster = (conditionType,triggerType,data) => {
 
                          <div className="field_section mb-20">
                           <SelectField 
-                            name="api_type"
-                            label="Type"
-                            options={typeList}
+                            name="industry_id"
+                            label="Industry"
+                            options={industryList}
                           />
                         </div>
-                        <div className="field_section mb-20">
-                          <TextField 
-                            name="url"
-                            label="Url"
-                          />
-                        </div>
-
-
-                        <div className="field_section mb-20">
-                          <TextAreaField 
-                            name="description"
-                            label="Description"
-
-                            placeholder="Description"
-                            rows="3"
-                          />
-                        </div>
-
-                        <div className="field_section">
-                          <SelectField 
-                            name="platform_id"
-                            label="Platform"
-                            options={platformList}
-                          />
-                        </div>
-
                         
 
 
-                      {values.api_type == "post" ? (
+                        <div>
+                
+                
+                <div className="drop-container"
+                   onClick={fileInputClicked}
+                   
+                >
+                    <div className="drop-message">
+                        Drop a File here to upload.<br />
+                        or<br />
+                        <a href="#">Browse File</a>
+                    </div>
+                    <input type="file" 
+                    ref={fileInputRef}
+                    className="file-input" name="file" onChange={changeHandler} />
+                   
+                </div>
+                <div className="file-display-container">
+                    
+                </div>
+            </div>
 
 
-                         <div className="field_section mb-20">
-                          <TextAreaField 
-                            name="payload"
-                            label="Payload"
-                            placeholder="Payload"
-                            rows="3"
-                          />
-                        </div>
-
-                      ) : null}
-                       
+                        
     
                         
                    
@@ -265,13 +228,7 @@ const apiHandleConditionMaster = (conditionType,triggerType,data) => {
                     
 
                     
-                <h2>Message</h2>
-            <div className="row">
-                <div className="col-sm-10">
-                    <AddTriggerComposer apiHandleConditionMaster={apiHandleConditionMaster} props={props}  />
-
-                </div>
-            </div>
+                
 
                     
                 

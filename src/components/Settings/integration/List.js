@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import CrudService from "../../../services/crud.service";
-import PlatformHeader from './PlatformHeader';
-const Platform = ({industry_id,subPage,loadList,row}) => {
+import Platform from './Platform';
+
+
+const List = ({rs,loadList,subPage}) => {
 
 const [listData, setListData] = useState([]);
 
@@ -17,7 +19,7 @@ useEffect(() => {
 const retrieveList = () => {
    
    
-    CrudService.getAll('platform&industry_id=' + industry_id,true)
+    CrudService.getAll('industry',true)
       .then(response => {
         
 
@@ -36,18 +38,16 @@ const retrieveList = () => {
       
        
          <div>
-            
-            <ul>
+            <div>Industry</div>
+
             {listData.map((rs,index) => (
                  
                 <>
-                    
-                    <li onClick={() => subPage(<PlatformHeader subPage={subPage}  loadList={loadList} retrieveList={retrieveList} rs={rs} industry_name={row.name} />)}> <img src={`http://localhost:3050/uploads/platform/${rs.logo}`} / ><br/><b>{rs.name}</b></li>
+                    <div><b>{rs.name}</b></div>
 
-                    
+                    <Platform row={rs} subPage={subPage} loadList={loadList} industry_id={rs.id} />
                  </>
             ))}
-            </ul>
          </div> 
       
           
@@ -57,4 +57,4 @@ const retrieveList = () => {
   );
 };
 
-export default Platform;
+export default List;
