@@ -57,6 +57,10 @@ const AddTriggerComposer = (props) => {
             <li>
                 <button onClick={() => meClick('A')} className="btn btn-block btn-secondry" style={btnApiStyle}>API</button>
             </li>
+
+            <li>
+                <button onClick={() => meClick('F')} className="btn btn-block btn-secondry" style={btnApiStyle}>Form</button>
+            </li>
          </ul>
 
             <ByTypeComposer props={props}  triggerType={triggerType} />

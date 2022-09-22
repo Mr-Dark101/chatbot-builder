@@ -56,6 +56,9 @@ const defaultState = {
         loopBackId: "",
         loopBackText: [""],
         apiId: "",
+        formEndText:"",
+        formStartText:"",
+        form_id:"",
         apiText: [""],
         values: [],
         description: "",
@@ -111,10 +114,10 @@ const ByTypeComposer = ({props,triggerType}) => {
     const [isData] = useState(!$.isEmptyObject(trigger.currentTriggerData));
     let {isText,isMedia, isLoopBack, template, currentData, openFallBackComposer, triggerOpt, triggerValueName, values, descriptionType,
         isConfirm, confirmationTxt,isAlert,simpleLabel,simpleValue,simpleValues} = init;
-    let {name, triggerMenus, description, fallBackResponse, caption, loopBackId, loopBackText, routToAgent, type,apiId,apiText} = currentData;
+    let {name, triggerMenus, description, fallBackResponse, caption, loopBackId, loopBackText, routToAgent, type,apiId,apiText,form_id,formStartText,formEndText} = currentData;
     let {id, userId,published} = currentBotData;
   
-    let {triggersList, currentTriggerData, isChild, childBotId, urls, isUpdatedList, menuTextUpdateSuccess,apiList} = trigger;
+    let {triggersList, currentTriggerData, isChild, childBotId, urls, isUpdatedList, menuTextUpdateSuccess,apiList,formList} = trigger;
     // console.log("setBotData",currentBotData)
 
 
@@ -125,6 +128,7 @@ const ByTypeComposer = ({props,triggerType}) => {
 
     let conditionArray = [];
     const [apiData, setApiData] = useState([]);
+    const [formData, setFormData] = useState([]);
     const setMenus = (item) => {
         if (item.toTrigger !== null) {
             if (item.toTrigger.menus.length > 0) {
@@ -211,6 +215,8 @@ const ByTypeComposer = ({props,triggerType}) => {
         loopBackId: "",
         loopBackText: [""],
         apiId: "",
+        formStartText:"",
+        formEndText:"",
         apiText: [""],
         values: [],
         description: "",
@@ -304,24 +310,7 @@ const ByTypeComposer = ({props,triggerType}) => {
         }
     }, [triggerType]);
 
-    // useEffect(() => {
-    //     if (currentTriggerData.toTrigger !== undefined) {
-    //         if (updatedTriggers.length > 0) {
-    //             // updatedTriggers.forEach((upd)=>{
-    //             //     // console.log("currentTriggerData >>>",upd.id)
-    //             //     // console.log("currentTriggerData >>>",currentTriggerData.toTrigger.loopBackTriggerId)
-    //             //     if(upd.id === currentTriggerData.toTrigger.loopBackTriggerId){
-    //             //         console.log("currentTriggerData >>>",upd)
-    //             //         currentTriggerPreview = upd
-    //             //     }
-    //             //
-    //             // })
-    //         }
-    //     }
-    //     return () => {
-    //         currentTriggerPreview = {};
-    //     }
-    // }, [])
+    
 
     useEffect(() => {
         if (isData) {
@@ -340,6 +329,9 @@ const ByTypeComposer = ({props,triggerType}) => {
                     loopBackId: currentTriggerData.toTrigger !== undefined ? currentTriggerData.toTrigger.loopBackTriggerId : currentTriggerData.loopBackTriggerId,
                     loopBackText: currentTriggerData.toTrigger !== undefined ? currentTriggerData.toTrigger.loopBackText : currentTriggerData.loopBackText,
                     apiId: currentTriggerData.toTrigger !== undefined ? currentTriggerData.toTrigger.api_id : currentTriggerData.api_id,
+                    form_id: currentTriggerData.toTrigger !== undefined ? currentTriggerData.toTrigger.form_id : currentTriggerData.form_id,
+                    formStartText: currentTriggerData.toTrigger !== undefined ? currentTriggerData.toTrigger.formStartText : currentTriggerData.formStartText,
+                    formEndText: currentTriggerData.toTrigger !== undefined ? currentTriggerData.toTrigger.formEndText : currentTriggerData.formEndText,
                     apiText: currentTriggerData.toTrigger !== undefined ? currentTriggerData.toTrigger.loopBackText : currentTriggerData.loopBackText,
                     startTrigger: currentTriggerData.toTrigger !== undefined ? currentTriggerData.toTrigger.startTrigger : currentTriggerData.startTrigger,
                     urls: currentTriggerData.toTrigger !== undefined ? currentTriggerData.toTrigger.urls !== undefined && currentTriggerData.toTrigger.urls.length > 0 && currentTriggerData.toTrigger.urls : currentTriggerData.urls !== undefined && currentTriggerData.urls.length > 0 && currentTriggerData.urls,
@@ -430,6 +422,9 @@ const ByTypeComposer = ({props,triggerType}) => {
                     loopBackId: "",
                     loopBackText: [""],
                     apiId: "",
+                    formEndText:"",
+                    formStartText:"",
+                    form_id:"",
                     apiText: [""],
                     values: [],
                     description: "",
@@ -572,6 +567,9 @@ const ByTypeComposer = ({props,triggerType}) => {
             loopBackId: currentData.loopBackId,
 
             apiId: currentData.apiId,
+            formEndText:currentData.formEndText,
+            formStartText:currentData.formStartText,
+            form_id: currentData.form_id,
             apiText: currentData.apiText,
             template: currentData.template,
             routToAgent: currentData.routToAgent,
@@ -595,6 +593,9 @@ const ByTypeComposer = ({props,triggerType}) => {
             "response": description,
             "templatename": obj.template,
             "api_id": currentData.apiId,
+            "form_id": currentData.form_id,
+            "formStartText": currentData.formStartText,
+            "formEndText": currentData.formEndText,
             "apiData":apiData,
             'triggerType':triggerType,
             'conditionType':conditionType,
@@ -904,18 +905,32 @@ const apiChange = (api_id) => {
     }
     
 }
+
+
+const formChange = (form_id) => {
+
+
+    
+
+    let fApi = formList.filter((d) => d.id == form_id)
+    fApi = fApi[0]
+    
+    setFormData(JSON.parse(fApi.form_data));
+
+
+    setInit({
+            ...init,
+            currentData: {
+                ...init.currentData,
+                form_id: form_id
+            }
+        });
+    
+    
+}
     const getContentByType = (data) => {
         if (data.loopBackTriggerId !== "") {
-            // console.log("getContentByType", data?.loopBackText)
-            // let str = $.parseHTML(data.loopBackText !== undefined && data.loopBackText.length > 0 ? data.loopBackText[0]: "");
-            // $(`#${data.id}`).html(str);
-            //
-            // return (
-            //     <div className="sub-txt" id={`${data.id}`}>
-            //         {/*<iframe title='myFrame' className="iframeBody hide-scroll"*/}
-            //         {/*        src={"data:text/html," + encodeURIComponent(data.response)}*/}
-            //         {/*        style={{border: "none", outline: "none", width: "100", height: "100px"}}/>*/}
-            //     </div>)
+            
 
         } else {
             switch (data.type) {
@@ -1131,7 +1146,53 @@ const apiChange = (api_id) => {
 
 
                                     ) : null}
+
+
+
+                                    {triggerType == 'F' ? (
+
+                                            <div className="txt-field">
+                                           
+                                            <Select
+                                                labelId="demo-simple-select-standard-label"
+                                                id="demo-simple-select-standard"
+                                                value={form_id}
+                                                onChange={(e) => {
+                                                    
+                                                    formChange(e.target.value)
+                                                    e.preventDefault();
+                                                }}
+                                                label="Form"
+                                            >
+                                           
+                                                {
+                                                    formList?.map((tr) => {
+                                                         
+                                                         
+                                                           return (<MenuItem value={tr.id}>{tr.name}</MenuItem>)
+                                                          
+                                                            
+                                                        
+                                                    })
+                                                }
+
+                                               
+
+                                               
+
+                                                
+                                            </Select>
+                                            </div>
+
+
+                                    ) : null}
                         </div>
+
+
+                        
+                        {triggerType == 'A' || triggerType == 'M' ? (
+                            <>
+
 
 
                         <div className="row__" style={{marginBottom: '0px'}}>
@@ -1202,7 +1263,7 @@ const apiChange = (api_id) => {
                                 </button>
                             </div>
                         </div>
-                        
+
                         <div className="row__" style={{marginTop: '0px'}}>
                             
                             {
@@ -1538,6 +1599,74 @@ const apiChange = (api_id) => {
                         ) : null}
                             </div>
                         </div>
+
+
+                        </>
+
+
+                        ) : (
+
+                        <>
+                            <div style={{color:'#fff'}}>
+                                From Start Message
+
+                                <input className="inp" style={{color:'#000'}} value={formStartText}
+                                           placeholder="From Start Message"
+                                           onChange={(e) => {
+                                              
+
+                                               setInit({
+                                                        ...init,
+                                                        
+                                                        currentData: {
+                                                            ...init.currentData,
+                                                            formStartText: e.target.value,
+                                                           
+                                                        },
+                                                        
+                                                    })
+                                           }}
+                                />
+
+
+                                {
+
+                                   formData.map((fRow,i) => (
+                                   
+                                        <div className="row">
+                                            <div className="col-sm-6">{fRow.label}</div>
+                                            <div className="col-sm-6">{fRow.type}</div>
+                                        </div>
+
+                                   )) 
+                                }
+
+
+                                From End Message
+
+                                <input className="inp" style={{color:'#000'}} value={formEndText}
+                                           placeholder="From Start Message"
+                                           onChange={(e) => {
+                                              
+
+                                               setInit({
+                                                        ...init,
+                                                        
+                                                        currentData: {
+                                                            ...init.currentData,
+                                                            formEndText: e.target.value,
+                                                           
+                                                        },
+                                                        
+                                                    })
+                                           }}
+                                />
+                            </div>
+                            <br/>
+
+                            
+                        </>
+                        )}
                         
                         
                         {openFallBackComposer && (
@@ -1549,15 +1678,7 @@ const apiChange = (api_id) => {
                                         </div>
                                     </div>
                                     <div className="input">
-                                        {/*<input className="inp" value={fallBackResponse} onChange={(e) => {*/}
-                                        {/*    setInit({*/}
-                                        {/*        ...init,*/}
-                                        {/*        currentData: {*/}
-                                        {/*            ...init.currentData,*/}
-                                        {/*            fallBackResponse: e.target.value*/}
-                                        {/*        }*/}
-                                        {/*    })*/}
-                                        {/*}} placeholder="Please Enter Correct Option"/>*/}
+                                        
                                         <TextEditor
                                             type={"fallBackResponse"}
                                             defaultText={fallBackResponse}

@@ -10,6 +10,7 @@ import {
     getAllTriggersTypes,
     getBotTriggersRecursive,
     apiList,
+    formList,
 } from "../../../SharedComponent/AddTriggerComposer/slices/addTrigger.slice";
 import {PublishedBot} from "../../BuilderWorkSpace/slices/workSpace.slice";
 import {Avatar as Av} from "@mui/material";
@@ -73,6 +74,7 @@ const UserBotsCardItem = (props) => {
         dispatch(getBotTriggersRecursive(id));
         dispatch(getAllTriggersTypes());
         dispatch(apiList());
+        dispatch(formList());
         dispatch(addingBreadcrumb({label: data.name, path: `${STRINGS.ROUTES.BWS}/${id}`}));
         // dispatch(getBotTriggersRecursive(18))
 

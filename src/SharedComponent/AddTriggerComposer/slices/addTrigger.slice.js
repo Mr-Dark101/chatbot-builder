@@ -109,6 +109,25 @@ export const apiList = () => async dispatch => {
     })
 }
 
+
+export const formList = () => async dispatch => {
+    
+    API.get(`/bot-form-list`).then((res) => {
+        // console.log("updateTrigger", res);
+        
+        if (res.status === STRINGS.API_STATUS.SUCCESS) {
+            if (res.data.status === 1) {
+               
+                dispatch(getFormListSuccess(res.data.data))
+            } else {
+                dispatch(isError(res.data.message))
+            }
+        }
+    }).catch((ex) => {
+        dispatch(isError(ex))
+    })
+}
+
 export const uploadFile = (file) => dispatch => {
     // console.log("fileName", file)
     const formData = new FormData();
@@ -209,6 +228,13 @@ const trigger = createSlice({
             state.apiList = payload
 
         },
+        getFormListSuccess:(state,{payload}) => {
+
+            state.successList = true;
+            state.formList = payload
+
+        },
+        
         updateTriggersSuccess: (state, {payload}) => {
             state.successList = true;
             state.isUpdatedList = true;
@@ -261,7 +287,7 @@ const trigger = createSlice({
 
 let {
     isError, clearTriggerList, getTriggersSuccess, isZoom, botRequestPending, updateTriggersMenuTextSuccess, onMenuTextSuccessMessage,
-    updateTriggersSuccess, getAllTriggersTypesSuccess, openBotComposer, openUpdateBotComposer, uploadFileSuccess,resetUrls,getApiListSuccess
+    updateTriggersSuccess, getAllTriggersTypesSuccess, openBotComposer, openUpdateBotComposer, uploadFileSuccess,resetUrls,getApiListSuccess,getFormListSuccess
 } = trigger.actions;
 
 export default trigger.reducer

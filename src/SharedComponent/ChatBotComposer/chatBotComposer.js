@@ -12,7 +12,8 @@ import {useDispatch} from "react-redux";
 
 import {
     ApiOrder,
-    
+    ApiForm,
+    saveFormDB,
 } from "./slices/chatBot.slice";
 
 let defaultState = {
@@ -40,6 +41,16 @@ const ChatBotComposer = ({onClose}) => {
     const [simpleValues, setSimpleValues] = useState([]);
 
     const [backMenuId, setBackMenuId] = useState('');
+
+
+    const [formKey, setFormKey] = useState(0);
+    const [formId, setFormId] = useState(0);
+    const [formEndText, setFormEndText] = useState('');
+    const [formData, setFormData] = useState([]);
+    const [formDataSave, setFormDataSave] = useState([]);
+
+    //const formData = [{"label":"Name","type":"text","option":[]},{"label":"Father Name","type":"text","option":[]},{"label":"Gender","option":[{"key":"1","value":"Male"},{"key":"2","value":"Female"}],"type":"option"}];
+
     const setMenus = (item) => {
         if (item.toTrigger !== null) {
             if (item.toTrigger.menus.length > 0) {
@@ -94,12 +105,15 @@ const ChatBotComposer = ({onClose}) => {
 
     useEffect(() => {
         if (triggersList.length > 0) {
+
             if (messages.length === 0) {
+
                 setInit({
                     ...init,
                     data: triggersList
                 });
             } else {
+               
                 setInit({
                     ...init,
                     data: init.data
@@ -109,39 +123,47 @@ const ChatBotComposer = ({onClose}) => {
     }, [triggersList, messages]);
 
 
-    // const getChildren = (item, text) => {
-    //     if (item.toTrigger !== null) {
-    //         if (item.toTrigger.menus.length > 0) {
-    //             if (item.toTrigger.values.map((a) => a.toLowerCase()).includes(text.toLowerCase())) {
-    //                 trigger = item.toTrigger
-    //             }
-    //             if (item.toTrigger.menus.length > 0) {
-    //                 item.toTrigger.menus.map((m) => getChildren(m, text))
-    //             }
-    //         }
-    //     }
-    // }
+    
     const handleSubmit = async (e) => {
         e.preventDefault();
         let text = msgArea.current.value;
+
+
         
         if (data.length > 0) {
             for (let i = 0; i < data.length; i++) {
                 if (data[i].values.map((a) => a.toLowerCase()).includes(text.toLowerCase())) {
                     
                     trigger = data[i];
+
+
                     
                     setApiId(data[i].api_id)
                     setTriggerType(data[i].triggerType);
                     setApiData(data[i].apiData);
+                    setFormEndText(data[i].formEndText)
 
+                    if(data[i].triggerType == 'F'){
+                       
+
+                        const apiResponse = await FormApiData(data[i].form_id).then((rData) => {
+
+                                return JSON.parse(rData.data.data.data.form_data);
+                        });
+                        setFormId(data[i].form_id)
+                        setFormData(apiResponse);
+                    }
                    
 
                     if(data[i].startTrigger){
-                        setBackMenuId(data[i].id)
+                        setBackMenuId(data[i].id);
+                        //setFormEndText(data[i].formEndText)
                     }
                     setConditionType(data[i].conditionType);
                     setSimpleValues(data[i].simpleValues);
+
+
+
                     
                     
 
@@ -229,7 +251,7 @@ const ChatBotComposer = ({onClose}) => {
             if(Object.keys(loopBackTrigger).length > 0){
 
 
-
+               
                 if(triggerType == 'A'){
                         const apiResponse = await ApiData(text,apiId).then((rData) => {
 
@@ -261,6 +283,7 @@ const ChatBotComposer = ({onClose}) => {
                                     // updatedTriggers = [];
                                     msgArea.current.value = "";
                                  }
+               
 
                }else{
 
@@ -331,7 +354,120 @@ const ChatBotComposer = ({onClose}) => {
                }
                 
                 
-                
+                 if(triggerType == 'F'){
+
+                        if(formKey > 0){
+                             let saveText = text;
+                             if(formData[formKey-1].type == 'option'){
+
+                                saveText = formData[formKey-1].option.filter((d) => d.key == text)[0].value;
+                             }
+                             const preData = {
+                                key: formData[formKey-1].label,
+                                value:saveText
+                            }
+                            setFormDataSave([...formDataSave,preData])
+                        }
+                       
+                    
+                        if(formData.length != formKey){
+                            let formMenu = [];
+                            if(formData[formKey].type == 'option'){
+                                formData[formKey].option.map((oo,i) => {
+
+                                      formMenu.push(buildCustomMenu(oo.value,oo.key,oo.key))
+                                }); 
+                            }
+                            trigger = {
+                                    id: createGuid(),
+                                    response: 'Enter ' + formData[formKey].label,
+
+                                    type:"TEXT",
+                                    menus: formMenu,
+                                 }
+
+
+                                 setInit({
+                                    ...init,
+                                        messages: !$.isEmptyObject(trigger) ? [...init.messages, {
+                                            text: text,
+                                            id: "me"
+                                        }, trigger] : [...init.messages, {text: text, id: "me"}],
+                                        data:  []
+                                    });
+                                    //trigger = {};
+                                    // updatedTriggers = [];
+                                    msgArea.current.value = "";
+
+                           
+                                let newKey = Math.abs(formKey) + 1;
+                                setFormKey(newKey)
+                           }else{
+
+
+
+                                 let saveText = text;
+                                 if(formData[formKey-1].type == 'option'){
+                                    saveText = formData[formKey-1].option.filter((d) => d.key == text)[0].value;
+                                 }
+                                 const preDataLast = {
+                                    key: formData[formKey-1].label,
+                                    value:saveText
+                                }
+
+                                //setFormDataSave([...formDataSave,preDataLast])
+
+                                let ff = formDataSave;
+                                ff.push(preDataLast)
+
+
+                                await saveForm(ff,'0321',formId)
+
+                                // Form Completed
+
+                               
+
+                                    const backMenu = [buildCustomMenu('Back','99',backMenuId)]
+                                    trigger = {
+                                    id: createGuid(),
+                                    response: formEndText,
+
+                                    type:"TEXT",
+                                    menus: backMenu,
+                                 }
+
+
+
+
+
+
+                                 setInit({
+                                    ...init,
+                                        messages: !$.isEmptyObject(trigger) ? [...init.messages, {
+                                            text: text,
+                                            id: "me"
+                                        }, trigger] : [...init.messages, {text: text, id: "me"}],
+                                        data:  !$.isEmptyObject(trigger) ? trigger.menus.length > 0 ? trigger.menus.map((d) => {
+                                                if (d.toTrigger !== null) {
+                                                    return d.toTrigger
+                                                }
+                                            }).filter((d) => d !== undefined) : [loopBackTrigger] : []
+                                    });
+                                    trigger = {};
+                                    // updatedTriggers = [];
+                                    msgArea.current.value = "";
+
+                                    setFormKey(0)
+                                    setFormDataSave([]);
+
+
+                           }
+                           
+
+
+                                
+                                
+                }
                            
                     
 
@@ -345,25 +481,24 @@ const ChatBotComposer = ({onClose}) => {
 
     }
 
-    const buildMessage = (apiResponse,xparam) => {
+    const buildCustomMenu = (label,key,trigger_id) => {
 
-        let buildData = [];
 
-        const backMenu = [{
+         return {
                                                 "id": createGuid(),
-                                                "text": '99 - Back',
+                                                "text": key + ' - ' + label,
                                                 "toTriggerId": createGuid(),
                                                 "toTrigger": {
                                                     "id": createGuid(),
                                                     "name": 'Back',
                                                     "values": [
-                                                        '99'
+                                                         key
                                                     ],
                                                     "fallBackResponse": "",
                                                     "loopBackText": [
                                                         ""
                                                     ],
-                                                    "loopBackTriggerId": backMenuId,
+                                                    "loopBackTriggerId": trigger_id,
                                                     "menus": [],
                                                     "startTrigger": false,
                                                     
@@ -373,7 +508,47 @@ const ChatBotComposer = ({onClose}) => {
                                                     "urls": [],
                                                     "caption": ""
                                                 }
-                                            }]
+                                            }
+
+    }
+
+
+    const buildCustomMenuBack = (label,key,trigger_id) => {
+
+
+         return {
+                                                "id": createGuid(),
+                                                "text": key + ' - ' + label,
+                                                "toTriggerId": createGuid(),
+                                                "toTrigger": {
+                                                    "id": createGuid(),
+                                                    "name": 'Back',
+                                                    "values": [
+                                                         '99'
+                                                    ],
+                                                    "fallBackResponse": "",
+                                                    "loopBackText": [
+                                                        ""
+                                                    ],
+                                                    "loopBackTriggerId": trigger_id,
+                                                    "menus": [],
+                                                    "startTrigger": false,
+                                                    
+                                                    "type": "TEXT",
+                                                    "routeToAgent": false,
+                                                    "response": "",
+                                                    "urls": [],
+                                                    "caption": ""
+                                                }
+                                            }
+
+    }
+
+    const buildMessage = (apiResponse,xparam) => {
+
+        let buildData = [];
+
+        const backMenu = [buildCustomMenuBack('Back','99',backMenuId)]
 
          apiData.map((rsData,index) =>{
                 const rs = rsData.dataValue;
@@ -546,6 +721,24 @@ const ChatBotComposer = ({onClose}) => {
     const ApiData =  async (text,apiId) => {
 
         const apiReturn =  await dispatch(ApiOrder(text,apiId))
+        return  apiReturn;
+
+                
+    }
+
+    const saveForm =  async (data,mobile,form_id) => {
+
+        const apiReturn =  await dispatch(saveFormDB(data,mobile,form_id))
+        return  apiReturn;
+
+                
+    }
+
+    
+
+    const FormApiData =  async (form_id) => {
+
+        const apiReturn =  await dispatch(ApiForm(form_id))
         return  apiReturn;
 
                 
@@ -741,22 +934,13 @@ const ChatBotComposer = ({onClose}) => {
                 </div>
                 <div className="foot">
                     <div className="msg-send-composer">
-                        {/*<div className="emo-hld">*/}
-                        {/*    <img alt={"#"} src={emoji_icon}/>*/}
-                        {/*</div>*/}
+                        
                         <div className="txt-area">
                             <form className="" onSubmit={handleSubmit}>
                                 <input className="inp" ref={msgArea} type="text" placeholder={"Type a message"}/>
                             </form>
                         </div>
-                        {/*<div className="attachments">*/}
-                        {/*    <div className="icon">*/}
-                        {/*        <img alt={"#"} src={attach_icon}/>*/}
-                        {/*    </div>*/}
-                        {/*    <div className="icon">*/}
-                        {/*        <img alt={"#"} src={cam_icon}/>*/}
-                        {/*    </div>*/}
-                        {/*</div>*/}
+                        
                     </div>
                 </div>
             </div>

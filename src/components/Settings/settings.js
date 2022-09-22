@@ -16,6 +16,7 @@ import Industry from "./Industry";
 import Platform from "./Platform";
 import Integration from "./Integration";
 import ApiTemplate from "./ApiTemplate";
+import FormBuilder from "./FormBuilder";
 const defaultState = {
     isAlert: false,
     isUpdatedList: false,
@@ -35,7 +36,7 @@ const Settings = () => {
 useEffect(() => {
    
     
-    changeContent('ApiTemplate');
+    changeContent('FormBuilder');
     
 
   }, []);
@@ -70,6 +71,10 @@ useEffect(() => {
         if(param === 'Integration'){
           setContentPage(<Integration  />);
         }
+
+        if(param === 'FormBuilder'){
+          setContentPage(<FormBuilder  />);
+        }
    
     
     };
@@ -83,6 +88,8 @@ useEffect(() => {
         {name:'Integration',controller:'Integration',icon:integration},
         {name:'Api',controller:'Api',icon:api},
         {name:'Api Template',controller:'ApiTemplate',icon:api},
+
+        {name:'Form Builder',controller:'FormBuilder',icon:api},
         {name:'Users',controller:'User',icon:api},
 
     ]
