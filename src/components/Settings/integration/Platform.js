@@ -35,14 +35,14 @@ const retrieveList = () => {
       
       
        
-         <div>
+         <div className="integration_list_section">
             
             <ul>
             {listData.map((rs,index) => (
                  
                 <>
                     
-                    <li onClick={() => subPage(<PlatformHeader subPage={subPage}  loadList={loadList} retrieveList={retrieveList} rs={rs} industry_name={row.name} />)}> <img src={`http://localhost:3050/uploads/platform/${rs.logo}`} / ><br/><b>{rs.name}</b></li>
+                    <li onClick={() => subPage(<PlatformHeader subPage={subPage}  loadList={loadList} retrieveList={retrieveList} rs={rs} industry_name={row.name} />)}> <div className="section_box"><div className="img_box"><img src={`https://d23e-111-119-183-60.ngrok.io/uploads/platform/${rs.logo}`} / ></div></div></li>
 
                     
                  </>

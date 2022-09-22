@@ -93,6 +93,12 @@ Waves
 @import url(assets/vendor_components/animate/animate.css);
 
 @import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+
+@font-face {
+  font-family: "Arial";
+  src: url(assets/fonts/arial/arial.ttf);
+}
+
 html {
   height: 100%;
   font-size: 14px; }
@@ -32440,7 +32446,7 @@ img.away, img.busy, img.offline, img.online {
   margin-right: 20px;
 }
 .api_form_section{
-  margin: 20px 0px;
+  margin: 20px;
 }
 .api_form_section .main_heading{
   font-weight: 700;
@@ -32454,6 +32460,7 @@ img.away, img.busy, img.offline, img.online {
   line-height: 18px;
   color: #000;
   margin-bottom: 10px;
+  font-family: "Arial";
 }
 .primary{
   border: 1px solid #10163A !important;
@@ -32489,6 +32496,153 @@ img.away, img.busy, img.offline, img.online {
 .composer-container .composer-content .trigger-card .card-content .row__ .txt-field .MuiOutlinedInput-notchedOutline{
   border: 1px solid #fff;
 }
-
+.integration_page{
+  padding: 20px;
+}
+.integration_page .page_heading{
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 16px;
+  font-family: 'Arial';
+  color: #000;
+}
+.integration_page .section_main_heading{
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 16px;
+  font-family: 'Arial';
+  color: #000;
+  margin-top: 30px;
+}
+.integration_page .section_box{
+  width: 150px;
+  height: 100px;
+  border: 1px solid #EBE9F1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.integration_page .section_box .img_box{
+  height: 68px;
+  width: 140px;
+  display: flex;
+  justify-content: center;
+}
+.integration_page .integration_list_section ul{
+  margin: 15px 0px;
+  padding: 0px;
+  list-style-type: none;
+}
+.integration_page .integration_list_section ul li{
+  display: inline-block;
+  margin-right: 20px;
+}
+.page_data_setting .btn_custom_api{
+  background-color: #363A77 !important;
+  border-radius: 6px;
+  font-family: "Arial";
+  font-size: 16px;
+  color: #fff !important;
+  line-height: 18px;
+  font-weight: 500;
+  padding: 10px 25px;
+  height: 44px;
+  border: 1px solid #363A77 !important;
+}
+.page_data_setting .btn_custom_api img{
+  margin-right: 20px;
+}
+.page_data_setting .page_heading{
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 16px;
+  font-family: "Arial";
+}
+.page_data_setting .api_list_page{
+  border-right: 1px solid #ccc;
+}
+.page_data_setting .api_list_page .text_section h5{
+  margin-bottom: 0px;
+}
+.page_data_setting .api_list_page .text_section h5 a{
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 16px;
+  color: #10163A;
+  font-family: "Arial";
+}
+.page_data_setting .api_list_page .text_section p{
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 14px;
+  color: #939393;
+  font-family: "Arial";
+  margin-bottom: 0px;
+}
+.page_data_setting .api_list_page .api_edit_button{
+  background-color: #EDEDED;
+  border: 0;
+  padding: 10px;
+  border-radius: 5px;
+}
+.page_data_setting .api_list_page .button_section{
+  float: right;
+}
+.page_data_setting .api_list_page .table{
+  border-top: 1px solid #ccc;
+}
+.page_data_setting .api_list_page .api_box_section{
+  display: flex;
+}
+.page_data_setting .api_list_page .api_box_section .img_box{
+  margin-right: 30px;
+}
+.page_data_setting .available_api_section h5{
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 16px;
+  font-family: "Arial";
+  color: #000;
+  padding: 20px;
+  margin-bottom: 0px;
+}
+.page_data_setting .available_api_section .text_section h5{
+  margin-bottom: 0px;
+  padding: 0px;
+}
+.page_data_setting .available_api_section .text_section h5 a{
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 16px;
+  color: #10163A;
+  font-family: "Arial";
+}
+.page_data_setting .available_api_section .text_section p{
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 14px;
+  color: #939393;
+  font-family: "Arial";
+  margin-bottom: 0px;
+}
+.page_data_setting .available_api_section .table{
+  border-top: 1px solid #ccc;
+}
+.page_data_setting .available_api_section .api_box_section{
+  display: flex;
+}
+.page_data_setting .available_api_section .api_box_section .img_box{
+  margin-right: 20px;
+}
+.page_data_setting .available_api_section .useless_link a{
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 14px;
+  color: #363A77;
+  font-family: "Arial";
+}
+.page_data_setting .available_api_section .table tr{
+  border-bottom: 1px solid #ccc;
+}
 /*new css*/
 

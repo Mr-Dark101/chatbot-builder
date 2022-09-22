@@ -115,8 +115,8 @@ useEffect(() => {
             </div>
             <div className="ws-section">
                 <div className="dashboard-hld setting_page_section">
-                    <div className="row">
-                         <div className="col-sm-3">
+                    <div className="row me-0">
+                         <div className="col-sm-3 p-0">
                             <div className="setting_left_bar_section">
                                 <ul>
                                 {
@@ -137,7 +137,7 @@ useEffect(() => {
                                 </ul>
                             </div>   
                          </div>
-                         <div className="col-sm-9">
+                         <div className="col-sm-9 p-0">
 
                             {contentPage}
 

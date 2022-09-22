@@ -6,6 +6,7 @@ import Create from "./Create";
 import Edit from "./Edit";
 import BlankMsg from '../../common/BlankMsg';
 import {toast } from 'react-toastify';
+import plus_icon from '../../../assets/built_add_icon.svg';
 
 const List = ({rs,subPage,loadList}) => {
 const [listData, setListData] = useState([]);
@@ -112,12 +113,12 @@ const deleteMe  = (id) => {
                   (listData.length > 0) ? (
                     <>
                       <div className="row p-30 media-center">
-                  <div className="col-sm-3">
+                  <div className="col-sm-4">
                     <h3 className="page_heading m-0">API Template</h3>
                   </div>
 
-                  <div className="col-sm-9">
-                    <button type="button" onClick={() => subPage(<Create loadList={loadList} retrieveList={retrieveList} rs={rs} />)} className="btn primary pull-right">Add New Api Template</button>
+                  <div className="col-sm-8">
+                    <button type="button" onClick={() => subPage(<Create loadList={loadList} retrieveList={retrieveList} rs={rs} />)} className="btn primary pull-right"> Add New API Template</button>
                   </div>
                 </div>
 
@@ -158,8 +159,7 @@ const deleteMe  = (id) => {
 
 
                   )
-                }
-            
+                }   
        </div>
    
     </>
