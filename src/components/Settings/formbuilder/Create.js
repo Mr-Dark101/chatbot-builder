@@ -224,7 +224,7 @@ const FormSchema = Yup.object().shape({
                         {headerField && headerField.map((x, i) => {
                   return (
                     <>
-                    <div style={{border:'1px solid #ccc',margin:10,padding:10}}>
+                    <div style={{border:'1px solid #ccc',margin:'10px 0px',padding:10}}>
                             <div className="row" >
                                     <div className="col-sm-4">
                                          <TextField 
@@ -236,10 +236,11 @@ const FormSchema = Yup.object().shape({
                                     </div>
                                      <div className="col-sm-6">
 
-                                           
+                                       <br />    
                                       <Select
                                                         labelId="demo-simple-select-standard-label"
                                                         id="demo-simple-select-standard"
+                                                        className="platform_select_field"
                                                         value={x.type}
                                                         name="type"
                                                         onChange={e => handleInputChange(e, i,'phone')}

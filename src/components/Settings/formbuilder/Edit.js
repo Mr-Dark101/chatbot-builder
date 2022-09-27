@@ -216,9 +216,10 @@ const FormSchema = Yup.object().shape({
             
 
           <Form className="av-tooltip tooltip-label-right">  
-                
+              <div className="api_form_section">  
                 <div className="row">
                     <div className="col-9">
+                      
 
                           <div className="field_section mb-20">
                           <TextField 
@@ -250,7 +251,7 @@ const FormSchema = Yup.object().shape({
                         {headerField && headerField.map((x, i) => {
                   return (
                     <>
-                    <div style={{border:'1px solid #ccc',margin:10,padding:10}}>
+                    <div style={{border:'1px solid #ccc',margin:'10px 0px',padding:10}}>
                             <div className="row" >
                                     <div className="col-sm-4">
                                          <TextField 
@@ -262,11 +263,12 @@ const FormSchema = Yup.object().shape({
                                     </div>
                                      <div className="col-sm-6">
 
-                                           
+                                      <br />     
                                       <Select
                                                         labelId="demo-simple-select-standard-label"
                                                         id="demo-simple-select-standard"
                                                         value={x.type}
+                                                        className="platform_select_field"
                                                         name="type"
                                                         onChange={e => handleInputChange(e, i,'phone')}
                                                         
@@ -339,9 +341,9 @@ const FormSchema = Yup.object().shape({
                   );
                 })}
 
-                        
-                        <Link onClick={() => addField('email')}>Add Fields</Link>
-
+                      <div className="mt-20">  
+                        <Link className="btn primary" onClick={() => addField('email')}>Add Fields</Link>
+                      </div>
 
                       {values.api_type == "post" ? (
 
@@ -358,13 +360,13 @@ const FormSchema = Yup.object().shape({
                       ) : null}
                        
     
-                        
+                   </div>     
                    
                 </div>
 
                 <div className="col-3"></div>    
                     
-                </div>
+                
                     
 
                     
@@ -382,7 +384,7 @@ const FormSchema = Yup.object().shape({
             <button onClick={ () => loadList()} className="btn secondary ms-20">Cancel</button>
           </div>
             
-
+          </div>
             
           </Form>
 )}

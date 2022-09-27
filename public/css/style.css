@@ -32696,7 +32696,11 @@ thead.bg-primary{
   color: #fff;
 }
 .form-control{
-  padding: 0.75rem .75rem !important;
+  padding: 12px .75rem !important;
+}
+.platform_select_field{
+  width: 100% !important;
+
 }
 /*new css*/
 
