@@ -10,7 +10,7 @@ const Navigation = () => {
     const dashboard = useSelector(({Reducers})=> Reducers.dashboard)
    
     useEffect(() => {
-        console.log(window.location.pathname)
+       
         if(dashboard.currentUser !== 0 || localStorage.getItem("userId") !== null){
             if(window.location.pathname === "/"){
                 window.onloadend = () => {

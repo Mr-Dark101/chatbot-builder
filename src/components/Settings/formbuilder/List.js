@@ -114,7 +114,7 @@ const deleteMe  = (id) => {
                     <>
                       <div className="row p-30 media-center">
                   <div className="col-sm-3">
-                    <h3 className="page_heading m-0">My Form</h3>
+                    <h3 className="box-title m-0">My Form</h3>
                   </div>
 
                   <div className="col-sm-9">

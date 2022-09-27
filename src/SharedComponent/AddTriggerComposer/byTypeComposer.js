@@ -841,14 +841,17 @@ const apiChange = (api_id) => {
     
 
     let fApi = apiList.filter((d) => d.id == api_id)
+    
     fApi = fApi[0]
     
     if(fApi.build_type == 'T'){
         const templateData = JSON.parse(fApi.template_data).simpleData;
-
-       if(templateData.conditionType == 'C'){
+        const templateCondition = JSON.parse(fApi.template_data).conditionType
+        console.log(templateCondition)
+        console.log(templateData)
+       if(templateCondition == 'C'){
             setCondition(templateData.apiData);
-            meClickCondition(templateData.conditionType)
+            meClickCondition(templateCondition)
             setInit({
                 ...init,
                 isText: true,

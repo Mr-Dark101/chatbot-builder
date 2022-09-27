@@ -105,7 +105,8 @@ const apiHandleConditionMaster = (conditionType,triggerType,data) => {
         }
         
         
-
+        console.log(newData)
+        console.log(conditionType)
         setApiDataMaster(newData)
    }
 
@@ -136,7 +137,8 @@ const apiHandleConditionMaster = (conditionType,triggerType,data) => {
 
     const onSubmit = (values, { setSubmitting, resetForm, setStatus }) => {
        values.template_data = JSON.stringify(apiDataMaster);
-        CrudService.edit(values,'api_bot',true).then(
+     
+        CrudService.edit(values,'api_template',true).then(
         (response) => {
           //setModalValue('')
           

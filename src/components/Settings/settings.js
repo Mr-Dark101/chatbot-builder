@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState,useContext} from 'react';
 import back_icon from "../../assets/back-icon.svg";
 import myprofile from "../../assets/setting/myprofile.svg";
 import channel from "../../assets/setting/channel.svg";
@@ -17,6 +17,8 @@ import Platform from "./Platform";
 import Integration from "./Integration";
 import ApiTemplate from "./ApiTemplate";
 import FormBuilder from "./FormBuilder";
+import Customer from "./Customer";
+import { UserContext } from "../../context/UserContext";
 const defaultState = {
     isAlert: false,
     isUpdatedList: false,
@@ -27,6 +29,7 @@ const defaultState = {
 
 
 const Settings = () => {
+     const { user, setUser } = useContext(UserContext);
     const [contentPage, setContentPage] = useState('');
     const {dashboard} = useSelector(({Reducers}) => Reducers);
     const dispatch = useDispatch();
@@ -75,24 +78,43 @@ useEffect(() => {
         if(param === 'FormBuilder'){
           setContentPage(<FormBuilder  />);
         }
+       
+
+        if(param === 'Customer'){
+          setContentPage(<Customer  />);
+        }
    
     
     };
 
-    const Menu = [
+    let Menu = [
 
         {name:'My Profile',controller:'Profile',icon:myprofile},
-        {name:'Channels',controller:'Channels',icon:myprofile},
-        {name:'Industry',controller:'Industry',icon:myprofile},
-        {name:'Platform',controller:'Platform',icon:myprofile},
+      
         {name:'Integration',controller:'Integration',icon:integration},
         {name:'Api',controller:'Api',icon:api},
-        {name:'Api Template',controller:'ApiTemplate',icon:api},
-
+       
         {name:'Form Builder',controller:'FormBuilder',icon:api},
-        {name:'Users',controller:'User',icon:api},
+       
 
-    ]
+    ];
+
+    if(localStorage.getItem('tenent_id') == 0 ){
+            Menu = [
+
+            {name:'My Profile',controller:'Profile',icon:myprofile},
+            {name:'Channels',controller:'Channels',icon:myprofile},
+            {name:'Industry',controller:'Industry',icon:myprofile},
+            {name:'Platform',controller:'Platform',icon:myprofile},
+          
+            {name:'Api Template',controller:'ApiTemplate',icon:api},
+
+          
+            {name:'Customer',controller:'Customer',icon:api},
+
+
+        ];
+    }
 
     return (
         <div className="ws-hld">

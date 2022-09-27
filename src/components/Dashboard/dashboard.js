@@ -14,6 +14,10 @@ import {
     OpenBotComposer,
     resetState
 } from "./slices/dashboard.slice";
+
+import AuthService from "../../services/auth.service";
+import EventBus from "../../common/EventBus";
+
 import UserBotsCardItem from "./items/UserBotsCardItem";
 import CreateBotComposer from "./items/CreateBotComposer";
 import ConfirmModal from "../../SharedComponent/ConfirmModal/ConfirmModal";
@@ -51,13 +55,14 @@ const Dashboard = () => {
     let {isAlert, isConfirm, isUpdatedList, confirmationTxt, confirmationInfo, currentObject} = init;
     const dispatch = useDispatch();
     // const location1 = useLocation()
+
     const {dashboard,workSpace: {isPublishSuccess,message_}} = useSelector(({Reducers}) => Reducers);
     const history = useHistory();
     let {success, dataNotFound, isError, data, currentUser, deleteSuccess, message, updateBotData, openBotComposer} = dashboard;
     
     const { user, setUser } = useContext(UserContext);
-    console.log(user.userdata)
-    const location = user.userdata.tenent_id;
+   
+    const location = (user) ? user.userdata.tenent_id : null;
     useEffect(() => {
         if (!success) {
             dispatch(GetUserBots({userId: location}));
@@ -124,6 +129,8 @@ const Dashboard = () => {
             })
             dispatch(resetState())
         }
+
+           
     }, [dispatch, isError, message, deleteSuccess,success,isPublishSuccess]);
     // console.log("dashboard",dashboard)
 
@@ -208,14 +215,25 @@ const Dashboard = () => {
     }
 
 
+ const logOut = () => {
+    AuthService.logout();
+    document.location.href ='/login'
+    
+  };
+
+
+
     return (
         <div className="dashboard-hld ov-des overflow-auto">
 
-            <div className="home_top_section">
-
+            <div className="home_top_section text-end" style={{paddingRight:10}}>
+                <button className="login_dropdown_btn btn btn-danger" href="#" onClick={logOut}> Sign Out</button>
             </div>
+            
+            {(localStorage.getItem('tenent_id') > 0) ? (
+                    <>
 
-            <CreateBotComposer
+                    <CreateBotComposer
                 currentUser={currentUser}
                 data={updateBotData}
                 openModal={openBotComposer}
@@ -243,18 +261,7 @@ const Dashboard = () => {
                         Create a Bot
                     </div>
                 </div>
-                {/*<div className="head-lft">*/}
-                {/*    <div className="btn-hld">*/}
-                {/*        <button className="btn-outlined" onClick={() => {*/}
-                {/*            dispatch(OpenBotComposer())*/}
-                {/*        }}>*/}
-                {/*            Create New Bot*/}
-                {/*            <span>*/}
-                {/*                <img alt={"#"} src={add_btn}/>*/}
-                {/*            </span>*/}
-                {/*        </button>*/}
-                {/*    </div>*/}
-                {/*</div>*/}
+                
             </div>
             <div className="dashboard-section">
                 <div className="cards-hld">
@@ -271,48 +278,7 @@ const Dashboard = () => {
                         })
                     }
 
-                    {/*<NavLink to={STRINGS.ROUTES.BWS} className="card">*/}
-                    {/*    <div className="card-content">*/}
-                    {/*        <div className="card-start">*/}
-                    {/*            <div className="card-circle">*/}
-                    {/*                <img*/}
-                    {/*                    alt={"#"}*/}
-                    {/*                    src={robotic_icon}*/}
-                    {/*                />*/}
-                    {/*            </div>*/}
-                    {/*        </div>*/}
-                    {/*        <div className="card-center">*/}
-                    {/*            <div className="txt">Domino's Pizza</div>*/}
-                    {/*            <div className="sub-txt">+92 300 1234567</div>*/}
-                    {/*        </div>*/}
-                    {/*        <div className="card-ends">*/}
-                    {/*            <div className="icon">*/}
-                    {/*                <img alt={"#"} src={more_opt}/>*/}
-                    {/*            </div>*/}
-                    {/*        </div>*/}
-                    {/*    </div>*/}
-                    {/*</NavLink>*/}
-                    {/*<NavLink to={STRINGS.ROUTES.BWS} className="card">*/}
-                    {/*    <div className="card-content">*/}
-                    {/*        <div className="card-start">*/}
-                    {/*            <div className="card-circle">*/}
-                    {/*                <img*/}
-                    {/*                    alt={"#"}*/}
-                    {/*                    src={robotic_icon}*/}
-                    {/*                />*/}
-                    {/*            </div>*/}
-                    {/*        </div>*/}
-                    {/*        <div className="card-center">*/}
-                    {/*            <div className="txt">Domino's Pizza</div>*/}
-                    {/*            <div className="sub-txt">+92 300 1234567</div>*/}
-                    {/*        </div>*/}
-                    {/*        <div className="card-ends">*/}
-                    {/*            <div className="icon">*/}
-                    {/*                <img alt={"#"} src={more_opt}/>*/}
-                    {/*            </div>*/}
-                    {/*        </div>*/}
-                    {/*    </div>*/}
-                    {/*</NavLink>*/}
+                    
                 </div>
             </div>
             <div className="head" style={{display: 'none'}}>
@@ -321,18 +287,7 @@ const Dashboard = () => {
                         My Bots
                     </div>
                 </div>
-                {/*<div className="head-lft">*/}
-                {/*    <div className="btn-hld">*/}
-                {/*        <button className="btn-outlined" onClick={() => {*/}
-                {/*            dispatch(OpenBotComposer())*/}
-                {/*        }}>*/}
-                {/*            Create New Bot*/}
-                {/*            <span>*/}
-                {/*                <img alt={"#"} src={add_btn}/>*/}
-                {/*            </span>*/}
-                {/*        </button>*/}
-                {/*    </div>*/}
-                {/*</div>*/}
+                
             </div>
             <div className="dashboard-section">
                 <div className="cards-hld">
@@ -361,51 +316,17 @@ const Dashboard = () => {
                             <div className="data-not-found">No Data Found</div>
                     }
 
-                    {/*<NavLink to={STRINGS.ROUTES.BWS} className="card">*/}
-                    {/*    <div className="card-content">*/}
-                    {/*        <div className="card-start">*/}
-                    {/*            <div className="card-circle">*/}
-                    {/*                <img*/}
-                    {/*                    alt={"#"}*/}
-                    {/*                    src={robotic_icon}*/}
-                    {/*                />*/}
-                    {/*            </div>*/}
-                    {/*        </div>*/}
-                    {/*        <div className="card-center">*/}
-                    {/*            <div className="txt">Domino's Pizza</div>*/}
-                    {/*            <div className="sub-txt">+92 300 1234567</div>*/}
-                    {/*        </div>*/}
-                    {/*        <div className="card-ends">*/}
-                    {/*            <div className="icon">*/}
-                    {/*                <img alt={"#"} src={more_opt}/>*/}
-                    {/*            </div>*/}
-                    {/*        </div>*/}
-                    {/*    </div>*/}
-                    {/*</NavLink>*/}
-                    {/*<NavLink to={STRINGS.ROUTES.BWS} className="card">*/}
-                    {/*    <div className="card-content">*/}
-                    {/*        <div className="card-start">*/}
-                    {/*            <div className="card-circle">*/}
-                    {/*                <img*/}
-                    {/*                    alt={"#"}*/}
-                    {/*                    src={robotic_icon}*/}
-                    {/*                />*/}
-                    {/*            </div>*/}
-                    {/*        </div>*/}
-                    {/*        <div className="card-center">*/}
-                    {/*            <div className="txt">Domino's Pizza</div>*/}
-                    {/*            <div className="sub-txt">+92 300 1234567</div>*/}
-                    {/*        </div>*/}
-                    {/*        <div className="card-ends">*/}
-                    {/*            <div className="icon">*/}
-                    {/*                <img alt={"#"} src={more_opt}/>*/}
-                    {/*            </div>*/}
-                    {/*        </div>*/}
-                    {/*    </div>*/}
-                    {/*</NavLink>*/}
+                    
                 </div>
             </div>
-        </div>
+      
+                    </>
+
+
+
+                ) : null}
+              </div>
+            
     );
 };
 

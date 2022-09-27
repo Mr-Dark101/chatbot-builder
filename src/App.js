@@ -82,11 +82,13 @@ axios.interceptors.response.use((response) => { // block to handle success case
     <Provider store={store}>
             <BrowserRouter>
                 <Suspense fallback={<div>Loading...</div>}>
+                <UserContext.Provider value={value}>
                     <Layout>
-                        <UserContext.Provider value={value}>
+                        
                             <Navigation/>
-                        </UserContext.Provider>
+                       
                     </Layout>
+                     </UserContext.Provider>
                 </Suspense>
             </BrowserRouter>
         </Provider>

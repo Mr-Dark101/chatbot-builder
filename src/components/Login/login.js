@@ -5,6 +5,7 @@ import CheckButton from "react-validation/build/button";
 import { UserContext } from "../../context/UserContext";
 import AuthService from "../../services/auth.service";
 import { useHistory} from 'react-router-dom';
+import {useDispatch} from "react-redux";
 
 
 const required = (value) => {
@@ -22,6 +23,8 @@ const Login = (props) => {
   const checkBtn = useRef();
 
 const history = useHistory();
+
+ const dispatch = useDispatch();
 
   const [username, setUsername] = useState("admin");
   const [password, setPassword] = useState("hello123");
@@ -49,11 +52,14 @@ const history = useHistory();
     if (checkBtn.current.context._errors.length === 0) {
       AuthService.login(username, password).then(
         (rData) => {
+
+          //console.log(rData)
           
          // setUser(rData)
           //console.log(this.props)
+          //dispatch(updateToken(rData));
           history.push("/");
-          //window.location.href = '/app/setting';//.reload();
+          //window.location.href = '/?org=0';
         },
         (error) => {
           const resMessage =
@@ -77,22 +83,14 @@ const history = useHistory();
 
     <div className="hold-transition theme-primary login_page" >
       <div className="row">
-        <div className="col-sm-6">
-          <div className="login_bg">
-            <div className="login_bg_color">
-              <img className="img-responsive" src="/app/images/header_logo.png" />
-              <h1>Your healthcare<br /> partner</h1>
-            </div>  
-          </div>
-        </div>
+      
 
-        <div className="col-sm-6">
+        <div className="col-sm-12">
           <div class="login_form_area">
-          
+         
             <div class="login_form">
-              <h1 class="clinic_heading">D’s Clinic</h1>
-              <h3>Practice Management</h3>
-
+              <h1 class="clinic_heading">Chat Bot Builder</h1>
+             
               <div class="form_section">
                 <h2>Log In to Your Account</h2>
                 <p>Enter your email and password below</p> 

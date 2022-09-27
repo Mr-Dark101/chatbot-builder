@@ -236,18 +236,7 @@ const Dashboard = () => {
                         Create a Bot
                     </div>
                 </div>
-                {/*<div className="head-lft">*/}
-                {/*    <div className="btn-hld">*/}
-                {/*        <button className="btn-outlined" onClick={() => {*/}
-                {/*            dispatch(OpenBotComposer())*/}
-                {/*        }}>*/}
-                {/*            Create New Bot*/}
-                {/*            <span>*/}
-                {/*                <img alt={"#"} src={add_btn}/>*/}
-                {/*            </span>*/}
-                {/*        </button>*/}
-                {/*    </div>*/}
-                {/*</div>*/}
+                
             </div>
             <div className="dashboard-section">
                 <div className="cards-hld">
@@ -264,48 +253,7 @@ const Dashboard = () => {
                         })
                     }
 
-                    {/*<NavLink to={STRINGS.ROUTES.BWS} className="card">*/}
-                    {/*    <div className="card-content">*/}
-                    {/*        <div className="card-start">*/}
-                    {/*            <div className="card-circle">*/}
-                    {/*                <img*/}
-                    {/*                    alt={"#"}*/}
-                    {/*                    src={robotic_icon}*/}
-                    {/*                />*/}
-                    {/*            </div>*/}
-                    {/*        </div>*/}
-                    {/*        <div className="card-center">*/}
-                    {/*            <div className="txt">Domino's Pizza</div>*/}
-                    {/*            <div className="sub-txt">+92 300 1234567</div>*/}
-                    {/*        </div>*/}
-                    {/*        <div className="card-ends">*/}
-                    {/*            <div className="icon">*/}
-                    {/*                <img alt={"#"} src={more_opt}/>*/}
-                    {/*            </div>*/}
-                    {/*        </div>*/}
-                    {/*    </div>*/}
-                    {/*</NavLink>*/}
-                    {/*<NavLink to={STRINGS.ROUTES.BWS} className="card">*/}
-                    {/*    <div className="card-content">*/}
-                    {/*        <div className="card-start">*/}
-                    {/*            <div className="card-circle">*/}
-                    {/*                <img*/}
-                    {/*                    alt={"#"}*/}
-                    {/*                    src={robotic_icon}*/}
-                    {/*                />*/}
-                    {/*            </div>*/}
-                    {/*        </div>*/}
-                    {/*        <div className="card-center">*/}
-                    {/*            <div className="txt">Domino's Pizza</div>*/}
-                    {/*            <div className="sub-txt">+92 300 1234567</div>*/}
-                    {/*        </div>*/}
-                    {/*        <div className="card-ends">*/}
-                    {/*            <div className="icon">*/}
-                    {/*                <img alt={"#"} src={more_opt}/>*/}
-                    {/*            </div>*/}
-                    {/*        </div>*/}
-                    {/*    </div>*/}
-                    {/*</NavLink>*/}
+                    
                 </div>
             </div>
             <div className="head">
@@ -314,18 +262,7 @@ const Dashboard = () => {
                         My Bots
                     </div>
                 </div>
-                {/*<div className="head-lft">*/}
-                {/*    <div className="btn-hld">*/}
-                {/*        <button className="btn-outlined" onClick={() => {*/}
-                {/*            dispatch(OpenBotComposer())*/}
-                {/*        }}>*/}
-                {/*            Create New Bot*/}
-                {/*            <span>*/}
-                {/*                <img alt={"#"} src={add_btn}/>*/}
-                {/*            </span>*/}
-                {/*        </button>*/}
-                {/*    </div>*/}
-                {/*</div>*/}
+               
             </div>
             <div className="dashboard-section">
                 <div className="cards-hld">
@@ -354,48 +291,7 @@ const Dashboard = () => {
                             <div className="data-not-found">No Data Found</div>
                     }
 
-                    {/*<NavLink to={STRINGS.ROUTES.BWS} className="card">*/}
-                    {/*    <div className="card-content">*/}
-                    {/*        <div className="card-start">*/}
-                    {/*            <div className="card-circle">*/}
-                    {/*                <img*/}
-                    {/*                    alt={"#"}*/}
-                    {/*                    src={robotic_icon}*/}
-                    {/*                />*/}
-                    {/*            </div>*/}
-                    {/*        </div>*/}
-                    {/*        <div className="card-center">*/}
-                    {/*            <div className="txt">Domino's Pizza</div>*/}
-                    {/*            <div className="sub-txt">+92 300 1234567</div>*/}
-                    {/*        </div>*/}
-                    {/*        <div className="card-ends">*/}
-                    {/*            <div className="icon">*/}
-                    {/*                <img alt={"#"} src={more_opt}/>*/}
-                    {/*            </div>*/}
-                    {/*        </div>*/}
-                    {/*    </div>*/}
-                    {/*</NavLink>*/}
-                    {/*<NavLink to={STRINGS.ROUTES.BWS} className="card">*/}
-                    {/*    <div className="card-content">*/}
-                    {/*        <div className="card-start">*/}
-                    {/*            <div className="card-circle">*/}
-                    {/*                <img*/}
-                    {/*                    alt={"#"}*/}
-                    {/*                    src={robotic_icon}*/}
-                    {/*                />*/}
-                    {/*            </div>*/}
-                    {/*        </div>*/}
-                    {/*        <div className="card-center">*/}
-                    {/*            <div className="txt">Domino's Pizza</div>*/}
-                    {/*            <div className="sub-txt">+92 300 1234567</div>*/}
-                    {/*        </div>*/}
-                    {/*        <div className="card-ends">*/}
-                    {/*            <div className="icon">*/}
-                    {/*                <img alt={"#"} src={more_opt}/>*/}
-                    {/*            </div>*/}
-                    {/*        </div>*/}
-                    {/*    </div>*/}
-                    {/*</NavLink>*/}
+                    
                 </div>
             </div>
         </div>

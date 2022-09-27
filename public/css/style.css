@@ -32309,7 +32309,8 @@ img.away, img.busy, img.offline, img.online {
 }
 .right_bar_top_section li{
   display: inline-block;
-  width: 50%;
+  width: 30%;
+  margin: 5px;
 }
 .right_bar_top_section li .btn:hover, .right_bar_top_section li .btn:focus{
   border-color: transparent;

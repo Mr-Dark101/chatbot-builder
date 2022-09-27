@@ -30,8 +30,9 @@ export const createUserBot = (createObj) => async dispatch => {
     API.post(`/create`, createObj).then((res) => {
         // console.log("usersBot", res);
         if (res.status === STRINGS.API_STATUS.SUCCESS) {
+            
             if (res.data.status === 1) {
-                dispatch(GetUserBots({userId: createObj.userId}))
+                dispatch(GetUserBots({userId: localStorage.getItem('tenent_id')}))
             } else {
                 dispatch(deleteBotResponseError(res.data.message))
             }

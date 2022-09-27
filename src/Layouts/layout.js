@@ -9,16 +9,28 @@ export default function Layout(props) {
 
     let {dashboard} = useSelector(({Reducers})=> Reducers)
 
+ console.log(window.location.pathname)
+
     return (
         <div className="main-container">
-            {/*<div className="header-hld">
-                <Header handleToggle/>
-            </div>*/}
-            
-            {/* <div className="breadcrumbs-holder">
-                <CustomBreadcrumbs breadcrumbs={dashboard.Breadcrumbs}/>
-            </div> */}
-            <div className="section-hld">
+
+           {window.location.pathname == '/login' ? (<>
+
+
+
+             
+                
+                
+                    {props.children}
+               
+           
+
+
+            </>) : (<>
+
+
+
+             <div className="section-hld">
                 <div className="nav-bar-hld">
                     <NavBar/>
                     
@@ -30,6 +42,9 @@ export default function Layout(props) {
             <div className="footer-hld">
                 <Footer/>
             </div>
+
+            </>)}
+           
         </div>
     );
 };

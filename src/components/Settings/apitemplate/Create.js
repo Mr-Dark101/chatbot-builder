@@ -123,7 +123,7 @@ const apiHandleConditionMaster = (conditionType,triggerType,data) => {
         
       
       values.template_data = JSON.stringify(apiDataMaster);
-        CrudService.register(values,'api_bot',true).then(
+        CrudService.register(values,'api_template',true).then(
         (response) => {
           //setModalValue('')
           loadList();

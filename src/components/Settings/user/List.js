@@ -6,7 +6,6 @@ import Create from "./Create";
 import Edit from "./Edit";
 import BlankMsg from '../../common/BlankMsg';
 import {toast } from 'react-toastify';
-import plus_icon from '../../../assets/built_add_icon.svg';
 
 const List = ({rs,subPage,loadList}) => {
 const [listData, setListData] = useState([]);
@@ -25,7 +24,7 @@ useEffect(() => {
   
 
   const retrieveList = () => {
-    CrudService.getAll('api_template&build_type=T',true)
+    CrudService.getAll('user',true)
       .then(response => {
         setListData(response.data);
         console.log(response.data);
@@ -113,12 +112,12 @@ const deleteMe  = (id) => {
                   (listData.length > 0) ? (
                     <>
                       <div className="row p-30 media-center">
-                  <div className="col-sm-4">
-                    <h3 className="page_heading m-0">API Template</h3>
+                  <div className="col-sm-3">
+                    <h3 className="page_heading m-0">User</h3>
                   </div>
 
-                  <div className="col-sm-8">
-                    <button type="button" onClick={() => subPage(<Create loadList={loadList} retrieveList={retrieveList} rs={rs} />)} className="btn primary pull-right"> Add New API Template</button>
+                  <div className="col-sm-9">
+                    <button type="button" onClick={() => subPage(<Create loadList={loadList} retrieveList={retrieveList} rs={rs} />)} className="btn primary pull-right">Add New User</button>
                   </div>
                 </div>
 
@@ -127,7 +126,7 @@ const deleteMe  = (id) => {
                  <thead className="bg-primary">
                     <tr>
                       <th>Name</th>
-                      <th>Type</th>
+                      <th>Email</th>
                       
                       <th></th>
                     </tr>
@@ -138,7 +137,7 @@ const deleteMe  = (id) => {
 
                     <tr>
                       <td><a href="#">{row.name}</a></td>
-                      <td>{row.api_type}</td>
+                      <td>{row.email}</td>
                      
                       <td>
                       <button className="warningsmall" onClick={() => subPage(<Edit  loadList={loadList} retrieveList={retrieveList} rs={row} />)} >Edit</button>
@@ -155,11 +154,12 @@ const deleteMe  = (id) => {
 
                   ) : (
 
-                  <BlankMsg message="There are no api details added" icon="mdi mdi-phone-plus" buttonName="Add API" button={ () => subPage(<Create loadList={loadList} retrieveList={retrieveList} rs={rs} />)} />
+                  <BlankMsg message="There are no user details added" icon="mdi mdi-phone-plus" buttonName="Add User" button={ () => subPage(<Create loadList={loadList} retrieveList={retrieveList} rs={rs} />)} />
 
 
                   )
-                }   
+                }
+            
        </div>
    
     </>

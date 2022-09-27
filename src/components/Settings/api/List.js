@@ -4,15 +4,18 @@ import ModalPopup from "../../common/modal/ModalPopup";
 import SweetAlert from 'react-bootstrap-sweetalert';
 import Create from "./Create";
 import Edit from "./Edit";
+
 import BlankMsg from '../../common/BlankMsg';
 import {toast } from 'react-toastify';
 import plus_icon from '../../../assets/built_add_icon.svg';
-import shopify from '../../../assets/setting/shopify.svg';
+import api from '../../../assets/setting/api.png';
 import edit_icon from '../../../assets/Custom Size - 4/edit.svg';
 import delete_icon from '../../../assets/Custom Size - 4/Icon metro-cancel.svg';
 
 const List = ({rs,subPage,loadList}) => {
 const [listData, setListData] = useState([]);
+
+const [listTemplateData, setListTemplateData] = useState([]);
 
 const [modalValue, setModalValue] = useState('');
     const [show, setShow] = useState(true);
@@ -21,11 +24,26 @@ const [showAlert, setShowAlert] = useState(false);
   const [message, setMessage] = useState();
     const [delId, setDelId] = useState(false);
 
+
+const API_URL = process.env.REACT_APP_BACKEND_URl;
+
 useEffect(() => {
     retrieveList();
+    retrieveListTemplate();
   }, []);
 
   
+
+  const retrieveListTemplate = () => {
+    CrudService.getAll('api_template&build_type=T',true)
+      .then(response => {
+        setListTemplateData(response.data);
+        
+      })
+      .catch(e => {
+        console.log(e);
+      });
+  };
 
   const retrieveList = () => {
     CrudService.getAll('api_bot&build_type=C',true)
@@ -48,6 +66,29 @@ const loadModal = (title,children) => {
         )
     
  }
+
+const registerThisApi = (row) => {
+   const data = row;
+
+   CrudService.register(data,'api_bot',true).then(
+        (response) => {
+          retrieveList()
+          
+          
+        },
+        (error) => {
+          const resMessage =
+            (error.response &&
+              error.response.data &&
+              error.response.data.message) ||
+            error.message ||
+            error.toString();
+
+          setMessage(resMessage);
+          setSuccessful(false);
+        }
+      );
+}
 
 const closeModal = () => {
 
@@ -115,9 +156,7 @@ const deleteMe  = (id) => {
       <div className="row">
       <div className="col-sm-8 p-0">
       <div className="api_list_page">
-      {
-                  (listData.length > 0) ? (
-                    <>
+     
                       <div className="row px-30 py-20 media-center">
                   <div className="col-sm-3">
                     <h3 className="page_heading m-0">My API’s</h3>
@@ -146,7 +185,9 @@ const deleteMe  = (id) => {
                       <td>
                       <div className="api_box_section">
                         <div className="img_box">
-                          <img src={shopify} />
+                          {(row.build_type == 'C') ? (<img src={api} />) : (<img src={`${API_URL}/uploads/platform/${row.Platform.logo}`} width="50" />)}
+                          
+                          
                         </div>
 
                         <div className="text_section">
@@ -158,7 +199,8 @@ const deleteMe  = (id) => {
                      
                       <td>
                       <div className="button_section">
-                        <button className="api_edit_button" onClick={() => subPage(<Edit  loadList={loadList} retrieveList={retrieveList} rs={row} />)} ><img src={edit_icon} /></button>
+                      {row.build_type == 'C' ? ( <button className="api_edit_button" onClick={() => subPage(<Edit  loadList={loadList} retrieveList={retrieveList} rs={row} />)} ><img src={edit_icon} /></button>) : null}
+                       
                         <button style={{marginLeft:5}} className="api_edit_button" onClick={() => deleteMe(row.id)} ><img src={delete_icon} /></button>
                       </div>
                       </td>
@@ -168,16 +210,10 @@ const deleteMe  = (id) => {
                   
                   </table>
                   </div>
-                    </>
+                    
 
 
-                  ) : (
-
-                  <BlankMsg message="There are no api details added" icon="mdi mdi-phone-plus" buttonName="Add API" button={ () => subPage(<Create loadList={loadList} retrieveList={retrieveList} rs={rs} />)} />
-
-
-                  )
-                }
+                  
                 </div>
                 </div>
                 <div className="col-sm-4 ps-0 pe-10">
@@ -185,81 +221,28 @@ const deleteMe  = (id) => {
                     <h5>Available API’s</h5>
 
                     <table className="table">
+                    {listTemplateData &&
+            listTemplateData.map((row, index) => (
                       <tr>
                         <td>
                           <div className="api_box_section">
                             <div className="img_box">
-                              <img src={shopify} />
+                              <img src={`${API_URL}/uploads/platform/${row.Platform.logo}`} width="50" />
                             </div>
 
                             <div className="text_section">
-                              <h5><a href="#">Order Search</a></h5>
-                              <p>A small brief about this API goes here.</p>
+                              <h5><a href="#">{row.name}</a></h5>
+                              <p>{row.description}</p>
                             </div>
                           </div>
                         </td>
 
                         <td>
-                          <p className="useless_link"><a href="#">Use This API</a></p>
+                          <p className="useless_link"><a href="#" onClick={() => registerThisApi(row)}>Use This API</a></p>
                         </td>
                       </tr>
-
-                      <tr>
-                        <td>
-                          <div className="api_box_section">
-                            <div className="img_box">
-                              <img src={shopify} />
-                            </div>
-
-                            <div className="text_section">
-                              <h5><a href="#">Order Search</a></h5>
-                              <p>A small brief about this API goes here.</p>
-                            </div>
-                          </div>
-                        </td>
-
-                        <td>
-                          <p className="useless_link"><a href="#">Use This API</a></p>
-                        </td>
-                      </tr>
-
-                      <tr>
-                        <td>
-                          <div className="api_box_section">
-                            <div className="img_box">
-                              <img src={shopify} />
-                            </div>
-
-                            <div className="text_section">
-                              <h5><a href="#">Order Search</a></h5>
-                              <p>A small brief about this API goes here.</p>
-                            </div>
-                          </div>
-                        </td>
-
-                        <td>
-                          <p className="useless_link"><a href="#">Use This API</a></p>
-                        </td>
-                      </tr>
-
-                      <tr>
-                        <td>
-                          <div className="api_box_section">
-                            <div className="img_box">
-                              <img src={shopify} />
-                            </div>
-
-                            <div className="text_section">
-                              <h5><a href="#">Order Search</a></h5>
-                              <p>A small brief about this API goes here.</p>
-                            </div>
-                          </div>
-                        </td>
-
-                        <td>
-                          <p className="useless_link"><a href="#">Use This API</a></p>
-                        </td>
-                      </tr>
+ ))}
+                      
                     </table>
                   </div>
                 </div>

@@ -93,7 +93,7 @@ const CreateBotComposer = (props) => {
             name: botName,
             phoneNumber: botPhoneNumber,
             description: botDescription,
-            userId: currentUser,
+            userId: localStorage.getItem('tenent_id'),
             imagePath: botImage
         };
         if (data !== null) {

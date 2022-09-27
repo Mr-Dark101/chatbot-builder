@@ -103,7 +103,7 @@ const FormSchema = Yup.object().shape({
 
 
        const formData = new FormData();
-
+       
       formData.append('file', selectedFile);
       formData.append('name', values.name);
       formData.append('industry_id', values.industry_id);

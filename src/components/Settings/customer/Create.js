@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import CustomerDataService from "../../services/customer.service";
-import { Form, TextField, SelectField, SubmitButton } from '../../components/crud/FormElements';
+import CustomerDataService from "../../../services/customer.service";
+import { Form, TextField, SelectField, SubmitButton } from '../../crud/FormElements';
 import * as Yup from 'yup';
-import CrudService from "../../services/crud.service";
+import CrudService from "../../../services/crud.service";
 
 const Create = ({getPage}) => {
 

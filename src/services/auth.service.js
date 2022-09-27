@@ -20,6 +20,7 @@ const login = (username, password) => {
       if (response.data.accessToken) {
        // dispatch(GetUserBots({userId: response.userId}))
         localStorage.setItem("user", JSON.stringify(response.data));
+        localStorage.setItem("tenent_id", JSON.stringify(response.data.tenent_id));
       }
 
       return response.data;
@@ -41,6 +42,7 @@ const loginToken = (username, password) => {
 
 const logout = () => {
   localStorage.removeItem("user");
+  localStorage.removeItem("userId");
 };
 
 const getCurrentUser = () => {
