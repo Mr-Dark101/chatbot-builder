@@ -37,17 +37,19 @@ const history = useHistory();
   return (
     <>
     
+    
+
+    <section className="content">
+
     <div className="content-header">
       <div className="d-flex align-items-center">
         <div className="me-auto">
-          <h3 className="h1">Customer</h3>
+          <h3 className="box-title">Customer</h3>
           
         </div>
         
       </div>
     </div>
-
-    <section className="content">
       <div className="row">       
         <div className="col-12">
           <div className="box">

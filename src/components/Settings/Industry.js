@@ -8,7 +8,7 @@ const formSchema = {
     name: {
         type: "text",
         label: "",
-        required: true
+        required: true,
     },
     
    

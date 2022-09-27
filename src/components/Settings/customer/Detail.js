@@ -36,43 +36,43 @@ function Detail({clinicRs}){
 
 	return(
 		<>
-			
+				<div className="customer_technology_page">
 	  			<div className="container-full">  
-					<div className="content-header">
-						<div className="d-flex align-items-center">
-							<div className="me-auto">
-								<h3 className="h1">{clinicRs.name}</h3>
+						<div className="content-header">
+							<div className="d-flex align-items-center">
+								<div className="me-auto">
+									<h3 className="box-title">{clinicRs.name}</h3>
+								</div>
+					
 							</div>
-				
-						</div>
-					</div>
-
-					<div className="row">
-						<div className="col-sm-3">
-							<div className="patient_tabs_bg mb-30">
-				            <ul className="patient_tabs_section">
-				              <li className={(activeClass === 'basic') ? `active` : null}>
-				                <i className="border_left"></i>
-				                <a href="#" onClick={() => getSubPage('basic')}>Basic Info</a>
-				              </li>
-
-				              
-
-				              <li className={(activeClass === 'user') ? `active` : null}>
-				                <i className="border_left"></i>
-				                <a href="#" onClick={() => getSubPage('user')}>User</a>
-				              </li>
-
-			              	</ul>
-			            </div>
 						</div>
 
-						<div className="col-sm-9">
-							{viewPage}
-						</div>
-					</div>  		  
+						<div className="row">
+							<div className="col-sm-3">
+								<div className="patient_tabs_bg mb-30">
+					            <ul className="patient_tabs_section">
+					              <li className={(activeClass === 'basic') ? `active` : null}>
+					                <i className="border_left"></i>
+					                <a href="#" onClick={() => getSubPage('basic')}>Basic Info</a>
+					              </li>
+
+					              
+
+					              <li className={(activeClass === 'user') ? `active` : null}>
+					                <i className="border_left"></i>
+					                <a href="#" onClick={() => getSubPage('user')}>User</a>
+					              </li>
+
+				              	</ul>
+				            </div>
+							</div>
+
+							<div className="col-sm-9">
+								{viewPage}
+							</div>
+						</div>  		  
 	  			</div>
-		 	
+		 		</div>
 		</>
 	);
 }

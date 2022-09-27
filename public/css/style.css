@@ -32645,5 +32645,58 @@ img.away, img.busy, img.offline, img.online {
 .page_data_setting .available_api_section .table tr{
   border-bottom: 1px solid #ccc;
 }
+.profile_page{
+  padding: 20px;
+}
+.integration_platform_page{
+  padding: 20px;
+}
+.integration_platform_page .main_heading{
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 24px;
+    font-family: "Arial";
+    color: #000;
+    margin-bottom: 0px;
+    margin-top: 20px;
+}
+thead.bg-primary{
+  background-color: #10163A !important;
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+}
+.customer_technology_page{
+  padding: 20px;
+}
+.customer_technology_page .patient_tabs_section{
+  margin: 0px;
+  padding: 0px;
+  list-style-type: none;
+}
+.customer_technology_page .patient_tabs_section li{
+  background-color: transparent;
+  padding: 15px;
+  border-radius: 5px;
+  margin-bottom: 5px;
+}
+.customer_technology_page .patient_tabs_section li a{
+  color: #000;
+}
+.customer_technology_page .patient_tabs_section li.active{
+  background-color: #595B79;
+
+}
+.customer_technology_page .patient_tabs_section li.active a{
+  color: #fff;
+}
+.customer_technology_page .patient_tabs_section li:hover{
+  background-color: #595B79;
+}
+.customer_technology_page .patient_tabs_section li:hover a{
+  color: #fff;
+}
+.form-control{
+  padding: 0.75rem .75rem !important;
+}
 /*new css*/
 

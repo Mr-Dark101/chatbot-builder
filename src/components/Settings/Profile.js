@@ -13,10 +13,10 @@ const [viewPage, setViewPage] = useState(<List rs={rs} subPage={subPage} loadLis
   return (
     <>
       
-      
-       
+        
+        <div className="profile_page">
          Profile
-      
+        </div>
           
        
    

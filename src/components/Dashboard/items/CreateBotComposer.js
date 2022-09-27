@@ -254,13 +254,13 @@ const CreateBotComposer = (props) => {
                         ) :
                         <div className="form-holder">
                             <div className="input-group">
-                                <div className="row__">
+                                <div className="row__" style={{marginRight: '20px'}}>
                                     <div className="txt-field">
                                         <div className="label">
                                             <div className="txt" style={{ color: "#363A77", fontWeight: "bolder" }}>Name
                                                 Your ChatBot
                                             </div>
-                                            <div className="sub-txt" style={{ fontWeight: "normal" }}>
+                                            <div className="sub-txt" style={{ fontWeight: "normal",whiteSpace: 'pre-line',marginTop: '10px' }}>
                                                 This name identifies your chatbot and is only available to you and your
                                                 team in Digital Connect
                                             </div>
@@ -282,7 +282,7 @@ const CreateBotComposer = (props) => {
                                             <div className="txt"
                                                 style={{ color: "#363A77", fontWeight: "bolder" }}>ChatBot Description
                                             </div>
-                                            <div className="sub-txt" style={{ fontWeight: "normal" }}>
+                                            <div className="sub-txt" style={{ fontWeight: "normal",whiteSpace: 'pre-line',marginTop: '10px' }}>
                                                 This is an internal description that is only available to you and your
                                                 team in Digital Connect
                                             </div>

@@ -166,6 +166,7 @@ const FormSchema = Yup.object().shape({
     
       <div class="row">       
         <div class="col-12">
+        <div className="integration_platform_page">
           <div class="page_data_clinic">
           <div>
             
@@ -198,7 +199,7 @@ const FormSchema = Yup.object().shape({
 
                          
 
-                        <h3>Header</h3>
+                        <h3 className="main_heading">Header</h3>
 
 
 
@@ -230,7 +231,7 @@ const FormSchema = Yup.object().shape({
                 })}
 
                         
-                        <Link onClick={() => addField('email')}>Add</Link>
+                        <Link className="btn primary" onClick={() => addField('email')} style={{marginTop: '20px'}}>Add</Link>
     
                         
                    
@@ -277,7 +278,7 @@ const FormSchema = Yup.object().shape({
             </div>
           )}
           </div>
-          
+         </div> 
           </div>
         </div>
       </div>

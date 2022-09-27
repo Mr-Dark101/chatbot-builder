@@ -344,10 +344,10 @@ const loadEdit = (rs) => {
           <div className="box-body">
 
           <div className="row mb-20">
-                <div className="col-8">
+                <div className="col-7">
                   <h4 className="box-title">{title}</h4>
                 </div>
-                <div className="col-4 text-end">
+                <div className="col-5 text-end">
 
                   <button className="primary" onClick={() => createNew()}>Create New {title}</button>
 
