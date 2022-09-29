@@ -62,7 +62,7 @@ const Dashboard = () => {
     
     const { user, setUser } = useContext(UserContext);
    
-    const location = (user) ? user.userdata.tenent_id : null;
+    const location = localStorage.getItem('tenent_id');
     useEffect(() => {
         if (!success) {
             dispatch(GetUserBots({userId: location}));

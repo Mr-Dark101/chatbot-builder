@@ -166,18 +166,14 @@ const CreateBotComposer = (props) => {
                 <div className="header-lft">
                     <div className="txt">
                         {
-                            data !== null ? "Update Bot" : !selectCategory ? "Create New Bot" : "Create your bot"
+                            data !== null ? "Update Bot" : !selectCategory ? "Where would you like to deploy your Bot?" : "Create your bot"
                         }
                     </div>
                 </div>
                 <div className="header-rt" />
             </div>
 
-            <div className="bot_name_section">
-                <h5>Bot Name</h5>
-
-                <input type="text" placeholder="My Bot"  />
-            </div>
+           
             <div className="modal-section">
                 {
                     !selectCategory ?
@@ -350,9 +346,7 @@ const CreateBotComposer = (props) => {
                 }
             </div>
 
-            <div className="bot_description_section">
-                <textarea placeholder="description" rows="5" />
-            </div>
+            
             <div className="modal-footer">
                 <div className="actions">
                     
