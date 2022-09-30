@@ -83,21 +83,22 @@ const FormSchema = Yup.object().shape({
 
   return (
     <>
+    <div className="box-body">
     <div className="content-header">
       <div className="d-flex align-items-center">
         <div className="me-auto">
-          <h3 className="h1">Add New Customer</h3>
+          <h4 className="box-title">Add New Customer</h4>
           
         </div>
         
       </div>
     </div>
 
-    <section className="content">
+    <section className="customer_form_section">
       <div className="row">       
         <div className="col-12">
           <div className="box">
-          <div className="box-body">
+          <div className="box-body" style={{paddingTop: '0px',paddingBottom: '0px'}}>
             {message}
              
             <Form
@@ -159,7 +160,7 @@ const FormSchema = Yup.object().shape({
         </div>
       </div>
     </section>
-
+    </div>
    
     </>
   );

@@ -231,7 +231,7 @@ const apiHandleConditionMaster = (conditionType,triggerType,data) => {
                           />
                         </div>
 
-                        <div className="field_section">
+                        <div className="field_section mb-20">
                           <SelectField 
                             name="platform_id"
                             label="Platform"
@@ -266,15 +266,15 @@ const apiHandleConditionMaster = (conditionType,triggerType,data) => {
                 </div>
                     
 
-                    
-                <h2>Message</h2>
+                <div className="field_section">    
+                <label>Message</label>
             <div className="row">
                 <div className="col-sm-10">
                     <AddTriggerComposer apiHandleConditionMaster={apiHandleConditionMaster} props={props}  />
 
                 </div>
             </div>
-
+            </div>
                     
                 
 

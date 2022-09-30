@@ -96,7 +96,7 @@ Waves
 
 @font-face {
   font-family: "Arial";
-  src: url(assets/fonts/arial/arial.ttf);
+  src: url(../fonts/arial/arial.ttf);
 }
 
 html {
@@ -32243,7 +32243,7 @@ img.away, img.busy, img.offline, img.online {
   border: 1px solid #DCDEDF;
   background-color: #fff;
   border-radius: 5px;
-  padding: 30px 0px;
+  padding: 15px 0px;
 }
 .dashboard-hld .dashboard-section .cards-hld .card{
   margin: 0px 20px 0px 0px !important;
@@ -32434,12 +32434,12 @@ img.away, img.busy, img.offline, img.online {
   padding: 15px 20px;
 }
 .setting_left_bar_section ul li a:hover{
-  background-color: #595B79;
+  background-color: #10163A;
   border-radius: 5px;
   color: #fff;
 }
 .setting_left_bar_section ul li a.active{
-  background-color: #595B79;
+  background-color: #10163A;
   border-radius: 5px;
   color: #fff;
 }
@@ -32539,7 +32539,7 @@ img.away, img.busy, img.offline, img.online {
   margin-right: 20px;
 }
 .page_data_setting .btn_custom_api{
-  background-color: #363A77 !important;
+  background-color: #10163A !important;
   border-radius: 6px;
   font-family: "Arial";
   font-size: 16px;
@@ -32665,9 +32665,9 @@ thead.bg-primary{
   color: #fff;
   font-family: 'Inter', sans-serif;
 }
-.customer_technology_page{
+/*.customer_technology_page{
   padding: 20px;
-}
+}*/
 .customer_technology_page .patient_tabs_section{
   margin: 0px;
   padding: 0px;
@@ -32683,14 +32683,14 @@ thead.bg-primary{
   color: #000;
 }
 .customer_technology_page .patient_tabs_section li.active{
-  background-color: #595B79;
+  background-color: #10163A;
 
 }
 .customer_technology_page .patient_tabs_section li.active a{
   color: #fff;
 }
 .customer_technology_page .patient_tabs_section li:hover{
-  background-color: #595B79;
+  background-color: #10163A;
 }
 .customer_technology_page .patient_tabs_section li:hover a{
   color: #fff;
@@ -32701,6 +32701,52 @@ thead.bg-primary{
 .platform_select_field{
   width: 100% !important;
 
+}
+.customer_form_section label {
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 18px;
+    color: #000;
+    margin-bottom: 10px;
+    font-family: "Arial";
+}
+
+.home_top_section ul{
+  margin: 0px;
+  padding: 0px;
+  list-style-type: none;
+}
+.home_top_section ul li{
+  display: inline-block;
+  margin-right: 15px;
+}
+.home_top_section ul li:last-child{
+  margin-right: 0px;
+}
+.home_top_section ul li a{
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 16px;
+  font-family: "Arial";
+  color: #000;
+}
+.MuiOutlinedInput-notchedOutline .css-hdw1oc{
+  float: left !important;
+}
+.platform_select_field .MuiOutlinedInput-notchedOutline{
+  top: 0px !important;
+}
+.api_composer_container.composer-container .composer-content .trigger-card .card-content .row__ .txt{
+  color: #000 !important;
+}
+.api_composer_container .simple_response_section .field_label{
+  color: #000 !important;
+}
+.api_composer_container .simple_response_section .add_label_section span{
+  color: #000 !important;
+}
+.api_composer_container .simple_response_section{
+  border: 1px solid #ccc;
 }
 /*new css*/
 

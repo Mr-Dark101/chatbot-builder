@@ -8,7 +8,7 @@ import Edit from "./Edit";
 import BlankMsg from '../../common/BlankMsg';
 import {toast } from 'react-toastify';
 import plus_icon from '../../../assets/built_add_icon.svg';
-import api from '../../../assets/setting/api.png';
+import shopify from '../../../assets/setting/shopify.svg';
 import edit_icon from '../../../assets/Custom Size - 4/edit.svg';
 import delete_icon from '../../../assets/Custom Size - 4/Icon metro-cancel.svg';
 
@@ -163,7 +163,7 @@ const deleteMe  = (id) => {
                   </div>
 
                   <div className="col-sm-9">
-                    <button type="button" onClick={() => subPage(<Create loadList={loadList} retrieveList={retrieveList} rs={rs} />)} className="btn btn_custom_api pull-right"><img src={plus_icon} /> Add New Custom Api</button>
+                    <button type="button" onClick={() => subPage(<Create loadList={loadList} retrieveList={retrieveList} rs={rs} />)} className="btn btn_custom_api float-end"><img src={plus_icon} /> Add New Custom API</button>
                   </div>
                 </div>
 
@@ -185,7 +185,7 @@ const deleteMe  = (id) => {
                       <td>
                       <div className="api_box_section">
                         <div className="img_box">
-                          {(row.build_type == 'C') ? (<img src={api} />) : (<img src={`${API_URL}/uploads/platform/${row.Platform.logo}`} width="50" />)}
+                          {(row.build_type == 'C') ? (<img src={shopify} />) : (<img src={`${API_URL}/uploads/platform/${row.Platform.logo}`} width="50" />)}
                           
                           
                         </div>

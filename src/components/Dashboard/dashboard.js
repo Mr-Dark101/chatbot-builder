@@ -4,6 +4,8 @@ import built_add_icon from "../../assets/built_add_icon.svg";
 import built_add_icon_white from "../../assets/built_add_icon.svg";
 import dashboard_customize from "../../assets/dashboard_customize.svg";
 import dashboard_customize_white from "../../assets/dashboard_customize.svg";
+import notification_icon from "../../assets/notification.svg";
+import user_img from "../../assets/user_img.svg";
 import {useDispatch, useSelector} from "react-redux";
 import { UserContext } from "../../context/UserContext";
 import {
@@ -227,7 +229,27 @@ const Dashboard = () => {
         <div className="dashboard-hld ov-des overflow-auto">
 
             <div className="home_top_section text-end" style={{paddingRight:10}}>
-                <button className="login_dropdown_btn btn btn-danger" href="#" onClick={logOut}> Sign Out</button>
+                <div>
+                    <ul>
+                        <li>
+                            <a href="#">
+                                <img src={notification_icon} />
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="#">Eocean</a>
+                        </li>
+
+                        <li className="dropdown">
+                            <a className="dropdown dropdown-toggle" href="#" data-bs-toggle="dropdown"><img src={user_img} /></a>
+                            <ul className="dropdown-menu">
+                                <li className="dropdown-item"><a href="#" onClick={logOut}>Sign Out</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <button className="login_dropdown_btn btn btn-danger" style={{display: 'none'}} href="#" onClick={logOut}> Sign Out</button>
             </div>
             
             {(localStorage.getItem('tenent_id') > 0) ? (

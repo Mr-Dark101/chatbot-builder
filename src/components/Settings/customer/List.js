@@ -39,12 +39,12 @@ const history = useHistory();
     
     
 
-    <section className="content">
+    <section className="content box-body">
 
     <div className="content-header">
       <div className="d-flex align-items-center">
         <div className="me-auto">
-          <h3 className="box-title">Customer</h3>
+          <h4 className="box-title">Customer</h4>
           
         </div>
         

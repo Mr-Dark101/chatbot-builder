@@ -903,7 +903,7 @@ const addSimpleCondition =  () => {
     }
 
     return (
-        <div className="composer-container"  style={{backgroundColor:'rgba(16, 22, 58, 0.75)'}}>
+        <div className="composer-container api_composer_container"  style={{border: '1px solid #CCCCCC',borderRadius: '5px'}}>
             <ConfirmModal
                 visible={isConfirm}
                 handleOk={handleSubmitTrigger}
@@ -924,7 +924,7 @@ const addSimpleCondition =  () => {
                        
                       
                         <div className="row__" style={{marginBottom: '0px'}}>
-                            <div className="txt" style={{marginTop: '10px',marginBottom: '20px'}}>
+                            <div className="txt" style={{marginBottom: '20px'}}>
                                 Response
                             </div>
                             {triggerType == 'A' ? (
@@ -1100,7 +1100,7 @@ const addSimpleCondition =  () => {
                                        }
                                        </div>
 
-                                       <button type="button" className="btn btn-danger" onClick={saveSimpleResponse}>
+                                       <button type="button" className="btn primary" onClick={saveSimpleResponse}>
                                      Save Simple Response
                                 </button>
                                        </>

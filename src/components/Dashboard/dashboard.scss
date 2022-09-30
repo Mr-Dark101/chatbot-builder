@@ -62,7 +62,7 @@
         display: flex;
         border: none;
         text-decoration: none;
-        background-color: #363A77;
+        background-color: #10163A;
         cursor: pointer;
         box-shadow: 1px 1px 2px #00000029, 1px 3px 12px #00000029;
         border-radius: 8px;
@@ -70,7 +70,7 @@
         padding: 12px 15px;
 
         &:hover {
-          background-color: $bg-color;
+          background-color: #10163A;
           color: $text-color;
 
           .card-content {
@@ -199,7 +199,146 @@
       }
 
       .card.on {
-        background-color: $bg-color;
+        background-color: #10163A;
+      }
+      .card_box {
+        display: flex;
+        border: none;
+        text-decoration: none;
+        background-color: #fff;
+        cursor: pointer;
+        box-shadow: 1px 1px 2px #00000029, 1px 3px 12px #00000029;
+        border-radius: 8px;
+        margin: 0rem 1rem 0rem 0px;
+        padding: 12px 15px;
+
+        &:hover {
+          background-color: #fff;
+          color: $text-color;
+
+          .card-content {
+
+            .card-center {
+              .txt {
+                color: $text-color;
+              }
+
+              .sub-txt {
+                color: $text-color;
+              }
+            }
+
+          }
+
+        }
+
+
+        .card-content {
+          display: flex;
+          align-items: center;
+          width: 100%;
+
+          &.bots-box{
+            width: 160px;
+            min-height: 160px;
+          }
+
+          .card-start {
+            display: flex;
+            align-items: center;
+            width: 15%;
+
+            .card-circle {
+              background-color: $text-bg;
+              border: 0.5rem solid #eeebfa;
+              border-radius: 50%;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              width: 50px;
+              height: 50px;
+            }
+
+            .card-circle.on {
+              border: 0.5rem solid $text-color;
+            }
+          }
+
+          .card-center {
+            display: flex;
+            flex-direction: column;
+            margin: 15px 0rem;
+            width: 85%;
+
+            .txt {
+              // white-space: nowrap;
+              color: #000;
+              font-family: 'Arial';
+              font-weight: 400;
+              font-size: 16px;
+              line-height: 18px;
+
+              &.center{
+                text-align: center;
+              }
+            }
+
+            .txt.on {
+              color: white;
+            }
+
+            .sub-txt {
+              // white-space: nowrap;
+              color: $bg-color;
+              font-size: 16px;
+            }
+
+            .sub-txt.temp {
+              color: #443f3f;
+            }
+            .sub-txt.on {
+              color: white;
+            }
+          }
+
+          .card-ends {
+            display: flex;
+            width: 100%;
+            justify-content: flex-end;
+            align-items: center;
+
+            .icon {
+              img {
+                width: 18px;
+              }
+
+              .opts {
+                display: flex;
+                position: absolute;
+                flex-direction: column;
+                top: 2px;
+                right: 15px;
+                border-radius: 4px;
+                background-color: white;
+                box-shadow: 0 0 5px $bdr-color, 0 0 5px $bdr-color;
+                color: $text-bg;
+                font-weight: bolder;
+                font-size: 12px;
+
+                .opt {
+                  display: flex;
+                  white-space: nowrap;
+                  padding: 0.5rem 1rem;
+                  cursor: pointer;
+
+                  &:hover {
+                    background-color: #c6c5c5;
+                  }
+                }
+              }
+            }
+          }
+        }
       }
 
 

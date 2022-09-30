@@ -92,7 +92,7 @@ useEffect(() => {
         {name:'My Profile',controller:'Profile',icon:myprofile},
       
         {name:'Integration',controller:'Integration',icon:integration},
-        {name:'Api',controller:'Api',icon:api},
+        {name:'API',controller:'Api',icon:api},
        
         {name:'Form Builder',controller:'FormBuilder',icon:api},
        
@@ -107,7 +107,7 @@ useEffect(() => {
             {name:'Industry',controller:'Industry',icon:myprofile},
             {name:'Platform',controller:'Platform',icon:myprofile},
           
-            {name:'Api Template',controller:'ApiTemplate',icon:api},
+            {name:'API Template',controller:'ApiTemplate',icon:api},
 
           
             {name:'Customer',controller:'Customer',icon:api},
