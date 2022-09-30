@@ -555,6 +555,8 @@ const ByTypeComposer = ({props,triggerType}) => {
     }
 
     const handleSubmitTrigger = () => {
+        
+
         let obj = {
             title: currentData.name,
             type: currentData.type,
@@ -584,6 +586,7 @@ const ByTypeComposer = ({props,triggerType}) => {
             "loopBackText": [loopBackText[0]],
             "loopBackTriggerId": obj.loopBackId,
             "menus": obj.options.map((v) => {
+                console.log(v.name)
                 return {
                     "text": v.name,
                     "toTriggerId": v.id
@@ -610,6 +613,7 @@ const ByTypeComposer = ({props,triggerType}) => {
         }
 
         if ($.isEmptyObject(currentTriggerData)) {
+            
             updatedTriggers.push(triggersListObj)
             let updateObj = {
                 "botId": id,
@@ -619,12 +623,17 @@ const ByTypeComposer = ({props,triggerType}) => {
             dispatch(UpdateTrigger(updateObj));
             updatedTriggers = [];
         } else {
+
             let updatedBots = updatedTriggers.filter((fl) => fl.id !== triggersListObj.id);
+
+
             let updateObj = {
                 "botId": id,
                 "triggersList": [...updatedBots, triggersListObj],
                 "userId": userId
             }
+
+
             if(published){
                 handlePublishBot({botId: id, isPublished: false, userId})
             }

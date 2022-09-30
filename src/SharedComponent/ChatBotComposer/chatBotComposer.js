@@ -150,8 +150,19 @@ const ChatBotComposer = ({onClose}) => {
 
                                 return JSON.parse(rData.data.data.data.form_data);
                         });
+                        console.log(data[i])
+
+                         //trigger.name = data[i].name + '<br>' + data[i].formStartText;
                         setFormId(data[i].form_id)
                         setFormData(apiResponse);
+
+
+                        trigger = startForm(data[i],apiResponse);
+                        
+
+                        
+                       
+                        
                     }
                    
 
@@ -289,6 +300,7 @@ const ChatBotComposer = ({onClose}) => {
 
 
 
+
                         trigger = {
                     id: createGuid(),
                     response: "End",
@@ -318,7 +330,6 @@ const ChatBotComposer = ({onClose}) => {
 
                  
             }else{
-                
                 
                if(triggerType == 'A'){
                         const apiResponse = await ApiData(text,apiId).then((rData) => {
@@ -480,7 +491,46 @@ const ChatBotComposer = ({onClose}) => {
         }
 
     }
+    const startForm = (data,xformdata) => {
 
+        // const backMenu = [buildCustomMenu('Back','99',backMenuId)]
+            trigger = {
+            id: createGuid(),
+            response: data.name + '<br/>' + data.formStartText + "<br />Enter any key",
+
+            type:"TEXT",
+            menus: [],
+         }
+
+        const preMsg = data.name + '<br/>' + data.formStartText + "<br />";      
+                       
+                    
+                        
+                            let formMenu = [];
+                            if(xformdata[formKey].type == 'option'){
+                                xformdata[formKey].option.map((oo,i) => {
+
+                                      formMenu.push(buildCustomMenu(oo.value,oo.key,oo.key))
+                                }); 
+                            }
+                            trigger = {
+                                    id: createGuid(),
+                                    response: preMsg + 'Enter ' + xformdata[formKey].label,
+
+                                    type:"TEXT",
+                                    menus: formMenu,
+                                 }
+
+
+                                
+
+                           
+                                let newKey = Math.abs(formKey) + 1;
+                                setFormKey(newKey)
+                           
+         return trigger;
+
+    }
     const buildCustomMenu = (label,key,trigger_id) => {
 
 
@@ -518,7 +568,7 @@ const ChatBotComposer = ({onClose}) => {
 
          return {
                                                 "id": createGuid(),
-                                                "text": key + ' - ' + label,
+                                                "text": key + ' - ' + 'Main Menu',
                                                 "toTriggerId": createGuid(),
                                                 "toTrigger": {
                                                     "id": createGuid(),
@@ -545,15 +595,37 @@ const ChatBotComposer = ({onClose}) => {
     }
 
     const buildMessage = (apiResponse,xparam) => {
-
+        
         let buildData = [];
 
         const backMenu = [buildCustomMenuBack('Back','99',backMenuId)]
-
+        
+            
+        
          apiData.map((rsData,index) =>{
+                 
                 const rs = rsData.dataValue;
+              // console.log(apiResponse.data.data.data)
                
-                const cField = apiResponse.data.data.data[rs.conditionLabel];
+               let cField = apiResponse.data.data.data[rs.conditionLabel];
+               let resonseData = apiResponse.data.data.data
+               if(Array.isArray(apiResponse.data.data.data)){
+                     resonseData = apiResponse.data.data.data[0]
+                     cField = resonseData[rs.conditionLabel];
+               }
+
+               let inner = rs.conditionLabel.split(".");
+               if(inner.length == 1){
+                    cField = resonseData[inner[0]];
+                    
+               }else{
+                    if(resonseData[inner[0]]){
+                        cField = resonseData[inner[0]][inner[1]];
+                    }
+                    
+               }
+
+                
                 if(cField == rs.conditionValue && conditionType == 'C'){
 
 
@@ -646,7 +718,7 @@ const ChatBotComposer = ({onClose}) => {
     }
 
     const ApiMenu = (apiResponse,xparam) => {
-            let menu = [];
+            let menu = [buildCustomMenuBack('Back','99',backMenuId)];
 
             const backMenu = [{
                                                 "id": createGuid(),
