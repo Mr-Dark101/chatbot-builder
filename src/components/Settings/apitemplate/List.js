@@ -118,7 +118,7 @@ const deleteMe  = (id) => {
                   </div>
 
                   <div className="col-sm-8">
-                    <button type="button" onClick={() => subPage(<Create loadList={loadList} retrieveList={retrieveList} rs={rs} />)} className="btn primary pull-right"> Add New API Template</button>
+                    <button type="button" onClick={() => subPage(<Create loadList={loadList} retrieveList={retrieveList} rs={rs} />)} className="btn primary float-end"> Add New API Template</button>
                   </div>
                 </div>
 

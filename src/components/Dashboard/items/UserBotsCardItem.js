@@ -104,7 +104,7 @@ const UserBotsCardItem = (props) => {
 
 
     return (
-        <div className={`card ${selected && "on"}`}
+        <div className={`card_box ${selected && "on"}`}
              onMouseOver={() => {
                  setInit({
                      ...init,

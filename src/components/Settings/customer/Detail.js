@@ -37,11 +37,11 @@ function Detail({clinicRs}){
 	return(
 		<>
 				<div className="customer_technology_page">
-	  			<div className="container-full">  
+	  			<div className="container-full box-body">  
 						<div className="content-header">
 							<div className="d-flex align-items-center">
 								<div className="me-auto">
-									<h3 className="box-title">{clinicRs.name}</h3>
+									<h4 className="box-title">{clinicRs.name}</h4>
 								</div>
 					
 							</div>

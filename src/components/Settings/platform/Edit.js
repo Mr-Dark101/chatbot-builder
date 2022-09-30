@@ -149,7 +149,7 @@ const FormSchema = Yup.object().shape({
     
       <div class="row">       
         <div class="col-12">
-          <div class="page_data_clinic">
+          <div class="page_data_clinic api_form_section">
           <div>
             
              {!successful && (
