@@ -216,9 +216,9 @@ const FormSchema = Yup.object().shape({
             
 
           <Form className="av-tooltip tooltip-label-right">  
-              <div className="api_form_section">  
-                <div className="row">
-                    <div className="col-9">
+              <div className="api_form_section" style={{overflowY: 'scroll',height:800}}>  
+                <div className="row" style={{marginLeft: '0px',marginRight: '0px'}}>
+                    <div className="col-9" style={{paddingLeft: '0px',paddingRight: '0px'}}>
                       
 
                           <div className="field_section mb-20">
@@ -331,7 +331,7 @@ const FormSchema = Yup.object().shape({
                                                 
                                                 })}
 
-                                                <button type="button" className="primary btn-danger" onClick={() => addFieldOption(i)}>Add Option</button>
+                                                <button type="button" className="primary btn-danger mt-20" onClick={() => addFieldOption(i)}>Add Option</button>
                                           </>
                                           ) : null}
 
@@ -364,7 +364,7 @@ const FormSchema = Yup.object().shape({
                    
                 </div>
 
-                <div className="col-3"></div>    
+                <div className="col-3" style={{paddingLeft: '0px',paddingRight: '0px'}}></div>    
                     
                 
                     

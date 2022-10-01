@@ -93,6 +93,7 @@ Waves
 @import url(assets/vendor_components/animate/animate.css);
 
 @import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 
 @font-face {
   font-family: "Arial";
@@ -32432,6 +32433,7 @@ img.away, img.busy, img.offline, img.online {
   display: flex;
   align-items: center;
   padding: 15px 20px;
+  font-family: 'Arial','Montserrat' sans-serif;
 }
 .setting_left_bar_section ul li a:hover{
   background-color: #10163A;

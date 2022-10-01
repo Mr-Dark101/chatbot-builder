@@ -8,7 +8,7 @@ import Edit from "./Edit";
 import BlankMsg from '../../common/BlankMsg';
 import {toast } from 'react-toastify';
 import plus_icon from '../../../assets/built_add_icon.svg';
-import shopify from '../../../assets/setting/shopify.svg';
+import api from '../../../assets/setting/api.png';
 import edit_icon from '../../../assets/Custom Size - 4/edit.svg';
 import delete_icon from '../../../assets/Custom Size - 4/Icon metro-cancel.svg';
 
@@ -185,7 +185,7 @@ const deleteMe  = (id) => {
                       <td>
                       <div className="api_box_section">
                         <div className="img_box">
-                          {(row.build_type == 'C') ? (<img src={shopify} />) : (<img src={`${API_URL}/uploads/platform/${row.Platform.logo}`} width="50" />)}
+                          {(row.build_type == 'C') ? (<img src={api} />) : (<img src={`${API_URL}/uploads/platform/${row.Platform.logo}`} width="50" />)}
                           
                           
                         </div>
