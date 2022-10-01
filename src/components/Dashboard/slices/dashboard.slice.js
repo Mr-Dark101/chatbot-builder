@@ -63,7 +63,7 @@ export const DeleteUserBot = ({botId, userId}) => async dispatch => {
 }
 
 export const updateUserBot = (obj) => async dispatch => {
-    API.put(`/updateBot`, {data: obj}).then((res) => {
+    API.put(`/update-bot`, {data: obj}).then((res) => {
         // console.log("updateBot", res);
         if (res.status === STRINGS.API_STATUS.SUCCESS) {
             if (res.data.status === 1) {
