@@ -199,7 +199,7 @@ const FormSchema = Yup.object().shape({
                 <div className="row">
                     <div className="col-9">
 
-                       <div className="field_section">
+                       <div className="field_section mb-20">
                           <TextField 
                             name="name"
                             label="Name"

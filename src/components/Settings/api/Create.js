@@ -138,7 +138,7 @@ const FormSchema = Yup.object().shape({
       <div class="row">       
         <div class="col-12">
           <div>
-          <div className="page_data_clinic api_form_section">
+          <div className="page_data_clinic api_form_section" style={{overflowY: 'scroll',height:800}}>
             
              {!successful && (
             <Form
@@ -150,8 +150,8 @@ const FormSchema = Yup.object().shape({
 
                 <h5 className="main_heading">Add New Custom API</h5>
                 
-                <div className="row">
-                    <div className="col-9">
+                <div className="row" style={{marginLeft: '0px',marginRight: '0px'}}>
+                    <div className="col-9" style={{paddingLeft: '0px',paddingRight: '0px'}}>
 
                        <div className="field_section">
                           <TextField 
@@ -235,7 +235,7 @@ const FormSchema = Yup.object().shape({
                    
                 </div>
 
-                <div className="col-3"></div>    
+                <div className="col-3" style={{paddingLeft: '0px',paddingRight: '0px'}}></div>    
                     
                 </div>
                     

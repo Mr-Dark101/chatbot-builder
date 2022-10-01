@@ -168,10 +168,10 @@ const FormSchema = Yup.object().shape({
 
             
 
-          <Form className="av-tooltip tooltip-label-right">  
+          <Form className="av-tooltip tooltip-label-right" style={{overflowY: 'scroll',height: '800px'}}>  
                 
-                <div className="row">
-                    <div className="col-9">
+                <div className="row" style={{marginLeft: '0px',marginRight: '0px'}}>
+                    <div className="col-9" style={{paddingLeft: '0px',paddingRight: '0px'}}>
 
                           <div className="field_section mb-20">
                           <TextField 
@@ -260,7 +260,7 @@ const FormSchema = Yup.object().shape({
                    
                 </div>
 
-                <div className="col-3"></div>    
+                <div className="col-3" style={{paddingLeft: '0px',paddingRight: '0px'}}></div>    
                     
                 </div>
                     

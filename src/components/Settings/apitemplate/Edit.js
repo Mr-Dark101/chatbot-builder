@@ -172,7 +172,7 @@ const apiHandleConditionMaster = (conditionType,triggerType,data) => {
     
       <div class="row">       
         <div class="col-12">
-          <div className="page_data_clinic api_form_section" style={{overflow:'scroll',height:800}}>
+          <div className="page_data_clinic api_form_section" style={{overflowY: 'scroll',height:800}}>
           <div>
             
              {!successful && (
@@ -195,8 +195,8 @@ const apiHandleConditionMaster = (conditionType,triggerType,data) => {
 
           <Form className="av-tooltip tooltip-label-right">  
                 
-                <div className="row">
-                    <div className="col-9">
+                <div className="row" style={{marginLeft: '0px',marginRight: '0px'}}>
+                    <div className="col-9" style={{paddingLeft: '0px',paddingRight: '0px'}}>
 
                           <div className="field_section mb-20">
                           <TextField 
@@ -261,15 +261,15 @@ const apiHandleConditionMaster = (conditionType,triggerType,data) => {
                    
                 </div>
 
-                <div className="col-3"></div>    
+                <div className="col-3" style={{paddingLeft: '0px',paddingRight: '0px'}}></div>    
                     
                 </div>
                     
 
                 <div className="field_section">    
                 <label>Message</label>
-            <div className="row">
-                <div className="col-sm-10">
+            <div className="row" style={{marginLeft: '0px',marginRight: '0px'}}>
+                <div className="col-sm-10" style={{paddingLeft: '0px',paddingRight: '0px'}}>
                     <AddTriggerComposer apiHandleConditionMaster={apiHandleConditionMaster} props={props}  />
 
                 </div>
