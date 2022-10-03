@@ -250,7 +250,7 @@ const D3Tree = (props) => {
         })
     };
 
-    const nodeSize = {x: 420, y: 250};
+    const nodeSize = {x: 420, y: 350};
     const foreignObjectProps = {width: nodeSize.x, height: nodeSize.y, x: -160, y: -135};
 
     return (

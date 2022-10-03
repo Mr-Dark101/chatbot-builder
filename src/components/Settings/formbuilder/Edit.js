@@ -46,6 +46,16 @@ const addField = (param) => {
   
   
 }
+
+const removeField = (i,label) => {
+  console.log(headerField);
+  console.log(i)
+
+
+
+  setHeaderField(headerField.filter((d) => d.label !== label))
+
+}
 const addFieldOption = (index) => {
     
     const list = [...headerField];
@@ -241,7 +251,7 @@ const FormSchema = Yup.object().shape({
                           />
                         </div>
 
-                        <h3>Header</h3>
+                        
 
 
 
@@ -289,6 +299,10 @@ const FormSchema = Yup.object().shape({
 
 
                                             
+                                     </div>
+                                     <div className="col-sm-1">
+
+                                        <a href="javascript:void(0)" onClick={() => removeField(i,x.label)}>Remove</a>
                                      </div>
                                 
                               

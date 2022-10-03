@@ -86,7 +86,10 @@
         }
 
         .category-box.on-whats-app {
-          background-color: #fff;
+          background-color: #363a77;
+          .txt.on{
+              color: #35F5C6;
+            }
           
           &:hover{
             transition: background-color 0.4s ease-in-out;
@@ -110,9 +113,10 @@
         // }
         
         .category-box.on-facebook {
-          //background-color: #3a559f;
-          // background-color: #93969d;
-          background-color: #fff;
+           background-color: #363a77;
+          .txt.on{
+              color: #35F5C6;
+            }
           &:hover{
             background-color: #363a77;
             transition: background-color 0.4s ease-in-out;

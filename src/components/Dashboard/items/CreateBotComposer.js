@@ -13,7 +13,7 @@ import { useDispatch } from "react-redux";
 import { createUserBot, updateUserBot } from "../slices/dashboard.slice";
 
 const defaultState = {
-    selected: "wa",
+    selected: ["whatsapp"],
     selectCategory: false,
     comingSoon: false,
     botName: "",
@@ -93,6 +93,7 @@ const CreateBotComposer = (props) => {
             name: botName,
             phoneNumber: botPhoneNumber,
             description: botDescription,
+            channels:JSON.stringify(selected),
             userId: localStorage.getItem('tenent_id'),
             imagePath: botImage
         };
@@ -154,10 +155,29 @@ const CreateBotComposer = (props) => {
     }
 
     const handleSelectBot = (category) => {
-        setInit({
-            ...init,
-            selected: category
-        })
+        
+
+         if(init.selected.includes(category)){
+            setInit({
+                ...init,
+                
+                selected: init.selected.filter((d) => d !== category)
+            })
+
+
+       
+         }else{
+
+             setInit({
+                ...init,
+               
+                selected: [...init.selected, category]
+            })
+
+         }
+        
+         
+
     }
 
     const body = (
@@ -179,9 +199,10 @@ const CreateBotComposer = (props) => {
                     !selectCategory ?
                         (
                             <div className="bot-category-holder">
+                           
                                 <div style={{ width: '119px',height: '122px' }}
-                                    className={`category-box ${selected === "wa" && "on-whats-app"}`}
-                                    onClick={() => handleSelectBot("wa")}
+                                    className={`category-box ${init.selected.includes('whatsapp') && "on-whats-app"}`}
+                                    onClick={() => handleSelectBot('whatsapp')}
                                     onMouseOver={() => {
                                         setInit({
                                             ...init,
@@ -196,7 +217,7 @@ const CreateBotComposer = (props) => {
                                     <div className={`icon on-whats-app`}>
                                         <img className="img-responsive" alt="WhatsApp" src={!onHover ? whatsAppIcon : whatsAppIconWhite} style={{width: '52px',height: '52px'}} />
                                     </div>
-                                    <div className={`txt ${selected === "wa" && "on"}`}>
+                                    <div className={`txt ${init.selected.includes('whatsapp') && "on"}`}>
                                         WhatsApp
                                     </div>
                                 </div>
@@ -210,11 +231,14 @@ const CreateBotComposer = (props) => {
                                         ...init,
                                         comingSoon: false
                                     })
-                                }} className={`category-box ${selected === "wa" && "on-facebook"}`}>
+                                }} className={`category-box ${init.selected.includes('messenger') && "on-facebook"}`}
+                                     onClick={() => handleSelectBot('messenger')}
+
+                                >
                                     <div className={`icon on-messenger-app`}>
                                         <img alt="Facebook" src={comingSoon ? comingSoonIcon : MessengerIcon} style={{width: '52px',height: '52px'}} />
                                     </div>
-                                    <div className={`txt ${selected === "wa" && "on"}`}>
+                                    <div className={`txt ${init.selected.includes('messenger') && "on"}`}>
                                         {comingSoon ? "Coming Soon" : "Messenger"}
                                     </div>
                                 </div>
@@ -229,11 +253,14 @@ const CreateBotComposer = (props) => {
                                         ...init,
                                         comingSoon: false
                                     })
-                                }} className={`category-box ${selected === "wa" && "on-facebook"}`}>
+                                }} className={`category-box ${init.selected.includes('instagram') && "on-facebook"}`}
+                                      onClick={() => handleSelectBot('instagram')}
+
+                                >
                                     <div className={`icon on-messenger-app`}>
                                         <img alt="Facebook" src={comingSoon ? comingSoonIcon : InstagramIcon} style={{width: '78px',height: '78px'}} />
                                     </div>
-                                    <div className={`txt ${selected === "wa" && "on"}`}>
+                                    <div className={`txt ${init.selected.includes('instagram') && "on"}`}>
                                         {comingSoon ? "Coming Soon" : "Instagram"}
                                     </div>
                                 </div>
@@ -349,10 +376,10 @@ const CreateBotComposer = (props) => {
             
             <div className="modal-footer">
                 <div className="actions">
-                    
+                    <button className="btn transparent" onClick={handleCloseModal}>Cancel</button>
                     {
                         !selectCategory ?
-                            <button className="btn filled" onClick={handleSelectCategorySubmit}><i className="fa fa-plus-circle"></i>Add New Bot</button> :
+                            <button className="btn filled" onClick={handleSelectCategorySubmit}>Continue</button> :
                             <button className="btn filled"
                                 onClick={handleCreateBotSubmit}>{data !== null ? "Update" : "Create"}</button>
                     }

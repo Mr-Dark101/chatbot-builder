@@ -46,7 +46,7 @@ const createArray = [{
 },
     {
         id: 2,
-        name: "Build New Bot",
+        name: "Build a New Bot from Template",
         icon_1: built_add_icon,
         icon_2: built_add_icon_white,
     }

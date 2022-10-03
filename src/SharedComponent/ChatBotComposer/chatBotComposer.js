@@ -931,30 +931,11 @@ const ChatBotComposer = ({onClose}) => {
     return (
         <div className="chat-bot-container">
             <div className="content-hld">
-                <div className="head">
-                    <div className="lft">
-                        <div className="a-hld">
-                            <div className="av">
-                                <Av size={34}/>
-                            </div>
-                            <div className="a-sec">
-                                <div className="txt">
-                                    {currentBotData !== null && currentBotData.name}
-                                </div>
-                                <div className="sub-txt">
-                                    online
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                    <div className="rt">
-                        <div className="cl">
-                            <IconButton onClick={() => onClose()}>
-                                <CancelIcon style={{color: "white"}}/>
-                            </IconButton>
-                        </div>
-                    </div>
+                
+                <div className="cl">
+                    <IconButton onClick={() => onClose()}>
+                        <CancelIcon fontSize="large" style={{color: "black"}}/>
+                    </IconButton>
                 </div>
                 <div className="section">
                     <div className="chat-body hide-scroll">
