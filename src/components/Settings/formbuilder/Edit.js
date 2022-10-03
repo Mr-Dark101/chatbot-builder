@@ -262,7 +262,7 @@ const FormSchema = Yup.object().shape({
                   return (
                     <>
                     <div style={{border:'1px solid #ccc',margin:'10px 0px',padding:10}}>
-                            <div className="row" >
+                            <div className="row align-items-center" >
                                     <div className="col-sm-4">
                                          <TextField 
                                             name="label"
@@ -302,7 +302,7 @@ const FormSchema = Yup.object().shape({
                                      </div>
                                      <div className="col-sm-1">
 
-                                        <a href="javascript:void(0)" onClick={() => removeField(i,x.label)}>Remove</a>
+                                        <a href="javascript:void(0)" className="link_delete_icon" onClick={() => removeField(i,x.label)}><br /><i className="fa fa-trash"></i></a>
                                      </div>
                                 
                               
@@ -318,7 +318,7 @@ const FormSchema = Yup.object().shape({
                                                         return (<>
 
 
-                                                              <div className="row" >
+                                                              <div className="row align-items-center" >
                                                                 <div className="col-sm-4">
                                                                      <TextField 
                                                                         name="key"
@@ -336,6 +336,11 @@ const FormSchema = Yup.object().shape({
                                                                         value={o.value}
                                                                         onChange={e => handleInputChangeOption(e, io,'phone',i)}
                                                                       />
+                                                                 </div>
+
+                                                                 <div className="col-sm-1">
+
+                                                                    <a className="link_delete_icon" href="javascript:void(0)" onClick={() => removeField(i,x.label)}><br /><i className="fa fa-trash"></i></a>
                                                                  </div>
                                                               </div>
 

@@ -205,7 +205,7 @@ const FormSchema = Yup.object().shape({
 
                          {headerField && headerField.map((x, i) => {
                   return (
-                    <div className="row">
+                    <div className="row align-items-center">
                             <div className="col-sm-4">
                                  <TextField 
                                     name="keyOther"
@@ -223,6 +223,11 @@ const FormSchema = Yup.object().shape({
                                       onChange={e => handleInputChange(e, i,'phone')}
                                       
                                     />
+                             </div>
+
+                             <div className="col-sm-1">
+
+                                <a href="javascript:void(0)" className="link_delete_icon"><br /><i className="fa fa-trash"></i></a>
                              </div>
                         
                       
