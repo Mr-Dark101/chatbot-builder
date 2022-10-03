@@ -374,6 +374,7 @@ const handleResponseSelect = (name) => {
 
 
         apiHandle(init.currentData,dataIndex)
+        alert("Condition has been saved..")
     }
 
     return (
@@ -938,7 +939,7 @@ const handleResponseSelect = (name) => {
 
                                                                                                         }
 
-                                                                                                        console.log(t)
+                                                                                                       // console.log(t)
                                                                                                         return t
                                                                                                     })
                                                                                                 }

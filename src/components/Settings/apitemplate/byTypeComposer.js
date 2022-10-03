@@ -109,7 +109,7 @@ const ByTypeComposer = ({props,triggerType,apiHandleConditionMaster}) => {
     let {triggersList, currentTriggerData, isChild, childBotId, urls, isUpdatedList, menuTextUpdateSuccess,apiList} = trigger;
     // console.log("setBotData",currentBotData)
 
-
+  
     
     
     const [condition, setCondition] = useState([]);

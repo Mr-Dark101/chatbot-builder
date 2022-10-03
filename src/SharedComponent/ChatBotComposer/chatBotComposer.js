@@ -150,7 +150,7 @@ const ChatBotComposer = ({onClose}) => {
 
                                 return JSON.parse(rData.data.data.data.form_data);
                         });
-                        console.log(data[i])
+                       // console.log(data[i])
 
                          //trigger.name = data[i].name + '<br>' + data[i].formStartText;
                         setFormId(data[i].form_id)

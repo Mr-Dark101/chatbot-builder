@@ -9,7 +9,7 @@ export default function Layout(props) {
 
     let {dashboard} = useSelector(({Reducers})=> Reducers)
 
- console.log(window.location.pathname)
+// console.log(window.location.pathname)
 
     return (
         <div className="main-container">

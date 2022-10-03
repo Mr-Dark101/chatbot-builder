@@ -94,7 +94,7 @@ let apiMenu = [];
 const ByTypeComposer = ({props,triggerType}) => {
 
     
-
+    //console.log(props)
     
     
 
@@ -109,6 +109,9 @@ const ByTypeComposer = ({props,triggerType}) => {
 
     let {handleTriggerClose, currentBotData, trigger, getAllTypes} = props;
 
+    
+
+    
     const dispatch = useDispatch();
     const [init, setInit] = useState(defaultState);
     const [isData] = useState(!$.isEmptyObject(trigger.currentTriggerData));
@@ -1443,7 +1446,10 @@ const formChange = (form_id) => {
                                                         })
                                                     }}
                                                 >
-                                                <FormLabel component="legend">Media Type</FormLabel>
+                                                <FormLabel component="legend">Media Type
+
+
+                                                </FormLabel>
                                                     {
                                                         getAllTypes?.map((t) => {
                                                             if (t !== "TEXT" && t !== "TEMPLATE")

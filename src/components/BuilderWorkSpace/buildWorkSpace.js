@@ -32,6 +32,8 @@ const defaultState = {
 
 const BuildWorkSpace = () => {
     const {dashboard, workSpace, trigger} = useSelector(({Reducers}) => Reducers);
+    
+    
     const dispatch = useDispatch();
     const history = useHistory();
     const [init, setInit] = useState(defaultState);

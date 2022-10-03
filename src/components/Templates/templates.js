@@ -119,6 +119,7 @@ const Templates = () => {
             </div>
 
             <div className="ws-section">
+            
                 <div className="cards-hld">
                     {/*{*/}
                     {/*    createArray.map((d, index) => {*/}

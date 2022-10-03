@@ -28,7 +28,7 @@ export const getBotTriggers = (id) => async dispatch => {
         // console.log("updateTrigger", res);
         if (res.status === STRINGS.API_STATUS.SUCCESS) {
             if (res.data.status === 1) {
-                dispatch(getTriggersSuccess(res.data.data))
+                dispatch(getTriggersSuccess({payload:res.data.data,message:res.data.message}))
             } else {
                 dispatch(isError(res.data.message))
             }
@@ -38,11 +38,14 @@ export const getBotTriggers = (id) => async dispatch => {
     })
 }
 
-export const getAllTriggersTypes = () => async dispatch => {
-    API.get(`/trigger-types`).then((res) => {
+export const getAllTriggersTypes = (id) => async dispatch => {
+    
+    //console.log('here')
+    API.get(`/trigger-types?bot_id=${id}`).then((res) => {
         // console.log("getAllTriggersTypes", res);
         if (res.status === STRINGS.API_STATUS.SUCCESS) {
             if (res.data.status === 1) {
+               
                 dispatch(getAllTriggersTypesSuccess(res.data.data))
             } else {
                 dispatch(isError(res.data.message))
@@ -80,7 +83,8 @@ export const getBotTriggersRecursive = (id) => async dispatch => {
         // console.log("updateTrigger", res);
         if (res.status === STRINGS.API_STATUS.SUCCESS) {
             if (res.data.status === 1) {
-                dispatch(getTriggersSuccess(res.data.data))
+                
+                dispatch(getTriggersSuccess({payload:res.data.data,message:res.data.message}))
             } else {
                 dispatch(isError(res.data.message))
             }
@@ -195,6 +199,7 @@ const initialState = {
     menuTextUpdateSuccess: false,
     isUpdatedList: true,
     message: "",
+    channels:[],
     dataNotFound: false,
     openAddBot: false,
     triggersList: [],
@@ -219,8 +224,11 @@ const trigger = createSlice({
             state.triggersList = []
         },
         getTriggersSuccess: (state, {payload}) => {
+            
             state.successList = true;
-            state.triggersList = payload
+            state.triggersList = payload.payload;
+            state.channels = payload.message.channels;
+
         },
         getApiListSuccess:(state,{payload}) => {
 
@@ -255,7 +263,7 @@ const trigger = createSlice({
             state.isZoomAble = payload;
         },
         openUpdateBotComposer: (state, {payload}) => {
-             console.log("triggersList", payload);
+            // console.log("triggersList", payload);
             state.openAddBot = payload.open;
             state.currentTriggerData = payload.object;
             state.isChild = null;

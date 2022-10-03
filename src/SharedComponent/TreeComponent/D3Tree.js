@@ -45,8 +45,8 @@ const D3Tree = (props) => {
     useEffect(() => {
         if (successList) {
             // console.log("triggersListObj___", triggersList)
-            console.log(triggersList)
-            console.log('dd')
+           // console.log(triggersList)
+            //console.log('dd')
             let normal = triggersList?.map((d) => {
                 if (d.startTrigger) {
                     return {

@@ -43,7 +43,7 @@ export const createUserBot = (createObj) => async dispatch => {
 }
 
 export const DeleteUserBot = ({botId, userId}) => async dispatch => {
-    API.delete(`/deleteBot`, {data: {botId, userId}}, {
+    API.delete(`/delete-bot`, {data: {botId, userId}}, {
         headers: {
             "Content-Type": "application/json"
         }

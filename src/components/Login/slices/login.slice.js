@@ -13,8 +13,8 @@ const userData = createSlice({
   initialState,
   reducers: {
     updateData(state,{payload}) {
-      console.log(payload)
-      console.log(state)
+     // console.log(payload)
+     // console.log(state)
       state.userData = payload
     },
     

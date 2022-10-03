@@ -70,9 +70,10 @@ const UserBotsCardItem = (props) => {
     const handleBotOpen = (id) => {
         history.push(`${STRINGS.ROUTES.BWS}/${id}`);
         dispatch(GetCurrentBot(data));
+       // console.log(data)
         // dispatch(getBotTriggers(id))
         dispatch(getBotTriggersRecursive(id));
-        dispatch(getAllTriggersTypes());
+        dispatch(getAllTriggersTypes(id));
         dispatch(apiList());
         dispatch(formList());
         dispatch(addingBreadcrumb({label: data.name, path: `${STRINGS.ROUTES.BWS}/${id}`}));
