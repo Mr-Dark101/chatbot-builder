@@ -67,7 +67,7 @@
         box-shadow: 1px 1px 2px #00000029, 1px 3px 12px #00000029;
         border-radius: 8px;
         margin: 1rem;
-        padding: 12px 15px;
+        padding: 12px 25px;
 
         &:hover {
           background-color: #10163A;
@@ -93,7 +93,7 @@
         .card-content {
           display: flex;
           align-items: center;
-          width: 100%;
+          
 
           &.bots-box{
             width: 160px;
@@ -103,7 +103,7 @@
           .card-start {
             display: flex;
             align-items: center;
-            width: 15%;
+            margin: 0px 15px 0px 0px;
 
             .card-circle {
               background-color: $text-bg;
@@ -125,7 +125,7 @@
             display: flex;
             flex-direction: column;
             margin: 0 0rem;
-            width: 85%;
+            
 
             .txt {
               // white-space: nowrap;

@@ -74,7 +74,7 @@ const CreateBotsCardItem = (props) => {
 
     return (
         <div className={`card ${selected && "on"}`} style={{
-            width: "300px",
+            // width: "170px",
         }} onClick={() => onClick(id)} onMouseOver={()=>{
             setInit({
                 ...init,
