@@ -28,6 +28,10 @@ import CreateBotsCardItem from "./items/CreateBotsItems";
 import {STRINGS} from "../../utils/base";
 import {useHistory} from "react-router-dom";
 import {resetPublish} from "../BuilderWorkSpace/slices/workSpace.slice";
+import {
+  
+  Link
+} from "react-router-dom";
 
 const defaultState = {
     isConfirm: false,
@@ -285,24 +289,34 @@ const Dashboard = () => {
                 </div>
                 
             </div>
-            <div className="dashboard-section">
-                <div className="cards-hld">
-                    {
-                        createArray.map((d, index) => {
-                            return (
-                                <CreateBotsCardItem
-                                    onClick={handleCreateChatBot}
-                                    dashboard={dashboard}
-                                    key={index}
-                                    data={d}
-                                />
-                            )
-                        })
-                    }
 
-                    
+            <div className="row">
+                <div className="col-sm-10">
+                    <div className="dashboard-section">
+                        <div className="cards-hld">
+                            {
+                                createArray.map((d, index) => {
+                                    return (
+                                        <CreateBotsCardItem
+                                            onClick={handleCreateChatBot}
+                                            dashboard={dashboard}
+                                            key={index}
+                                            data={d}
+                                        />
+                                    )
+                                })
+                            }
+
+                            
+                        </div>
+                    </div>
+                </div>
+
+                <div className="col-sm-2">
+                    <Link to="/settings" className="dashboard_setting float-end">Settings</Link>
                 </div>
             </div>
+           
             <div className="head" style={{display: 'none'}}>
                 <div className="head-rt">
                     <div className="txt">
