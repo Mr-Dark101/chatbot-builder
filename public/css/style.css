@@ -32750,5 +32750,8 @@ thead.bg-primary{
 .api_composer_container .simple_response_section{
   border: 1px solid #ccc;
 }
+.link_delete_icon{
+  color: #000;
+}
 /*new css*/
 

@@ -264,6 +264,28 @@ const CreateBotComposer = (props) => {
                                         {comingSoon ? "Coming Soon" : "Instagram"}
                                     </div>
                                 </div>
+
+                                <div style={{ width: '119px',height: '122px' }} onMouseOver={() => {
+                                    setInit({
+                                        ...init,
+                                        comingSoon: false
+                                    })
+                                }} onMouseOut={() => {
+                                    setInit({
+                                        ...init,
+                                        comingSoon: false
+                                    })
+                                }} className={`category-box ${init.selected.includes('instagram') && "on-facebook"}`}
+                                      onClick={() => handleSelectBot('instagram')}
+
+                                >
+                                    <div className={`icon on-messenger-app`}>
+                                        <img alt="Facebook" src={comingSoon ? comingSoonIcon : InstagramIcon} style={{width: '78px',height: '78px'}} />
+                                    </div>
+                                    <div className={`txt ${init.selected.includes('instagram') && "on"}`}>
+                                        {comingSoon ? "Coming Soon" : "Google"}
+                                    </div>
+                                </div>
                                 {/*<div className={`category-box ${selected === "ma" && "on-messenger-app"}`}*/}
                                 {/*     onClick={() => handleSelectBot("ma")}>*/}
                                 {/*    <div className={`icon on-messenger-app`}>*/}
