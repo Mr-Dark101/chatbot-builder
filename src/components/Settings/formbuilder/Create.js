@@ -35,6 +35,25 @@ const addField = (param) => {
   
 }
 
+const removeField = (i,label) => {
+
+
+
+
+  setHeaderField(headerField.filter((d) => d.label !== label))
+
+}
+const removeFieldOption = (i,label,parentIndex) => {
+  
+  const list = [...headerField];
+  const newArray = headerField[parentIndex]['option'].filter((d) => d.key !== label);
+ 
+  list[parentIndex]['option'] = newArray;
+  setHeaderField(list);
+  //setHeaderField(headerField[parentIndex]['option'].filter((d) => d.key !== label))
+  //console.log(headerField)
+}
+
 
 const addFieldOption = (index) => {
     
@@ -42,7 +61,7 @@ const addFieldOption = (index) => {
         
 
         
-              list[index]['option'].push(optionField);
+              list[index]['option'].push({"key":"","value":""});
         
 
         setHeaderField(list);
@@ -263,6 +282,11 @@ const FormSchema = Yup.object().shape({
 
                                             
                                      </div>
+
+                                     <div className="col-sm-1">
+
+                                        <a href="javascript:void(0)" className="link_delete_icon" onClick={() => removeField(i,x.label)}><br /><i className="fa fa-trash"></i></a>
+                                     </div>
                                 
                               
                             </div>
@@ -282,7 +306,7 @@ const FormSchema = Yup.object().shape({
                                                                      <TextField 
                                                                         name="key"
                                                                         placeholder="Key"
-                                                                        value={o.label}
+                                                                        value={o.key}
                                                                         onChange={e => handleInputChangeOption(e, io,'phone',i)}
                                                                       />
                                                                 </div>
@@ -296,6 +320,10 @@ const FormSchema = Yup.object().shape({
                                                                         onChange={e => handleInputChangeOption(e, io,'phone',i)}
                                                                       />
                                                                  </div>
+                                                                 <div className="col-sm-1">
+                                                                  
+                                                                    <a className="link_delete_icon" href="javascript:void(0)" onClick={() => removeFieldOption(io,o.key,i)}><br /><i className="fa fa-trash"></i></a>
+                                                                 </div>
                                                               </div>
 
                                                         </>)
@@ -304,7 +332,7 @@ const FormSchema = Yup.object().shape({
                                                 
                                                 })}
 
-                                                <button type="button" className="primary btn-danger" onClick={() => addFieldOption(i)}>Add Option</button>
+                                                <button type="button" className="primary btn-danger mt-20" onClick={() => addFieldOption(i)}>Add Option</button>
                                           </>
                                           ) : null}
 

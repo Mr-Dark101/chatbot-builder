@@ -762,6 +762,31 @@ const ByTypeComposer = ({props,triggerType}) => {
     const handleTextAreaChange = (text, type) => {
        
         if (text !== "") {
+            if(type == "formStartText"){
+                setInit({
+                    ...init,
+                    
+                    currentData: {
+                        ...init.currentData,
+                        formStartText: text,
+                       
+                    },
+                    
+                })
+            }
+            if(type == "formEndText"){
+                setInit({
+                    ...init,
+                    
+                    currentData: {
+                        ...init.currentData,
+                        formEndText: text,
+                       
+                    },
+                    
+                })
+            }
+            
             if (type === "fallBackResponse") {
                 setInit({
                     ...init,
@@ -1628,23 +1653,14 @@ const formChange = (form_id) => {
                             <div style={{color:'#fff'}}>
                                 From Start Message
 
-                                <input className="inp" style={{color:'#000'}} value={formStartText}
-                                           placeholder="From Start Message"
-                                           onChange={(e) => {
-                                              
 
-                                               setInit({
-                                                        ...init,
-                                                        
-                                                        currentData: {
-                                                            ...init.currentData,
-                                                            formStartText: e.target.value,
-                                                           
-                                                        },
-                                                        
-                                                    })
-                                           }}
-                                />
+                                <TextEditor
+                                            type={"formStartText"}
+                                            defaultText={formStartText}
+                                            onSuccess={handleTextAreaChange}
+                                        />
+
+                                
 
 
                                 {
@@ -1661,24 +1677,12 @@ const formChange = (form_id) => {
 
 
                                 From End Message
-
-                                <input className="inp" style={{color:'#000'}} value={formEndText}
-                                           placeholder="From Start Message"
-                                           onChange={(e) => {
-                                              
-
-                                               setInit({
-                                                        ...init,
-                                                        
-                                                        currentData: {
-                                                            ...init.currentData,
-                                                            formEndText: e.target.value,
-                                                           
-                                                        },
-                                                        
-                                                    })
-                                           }}
-                                />
+                                 <TextEditor
+                                            type={"formEndText"}
+                                            defaultText={formEndText}
+                                            onSuccess={handleTextAreaChange}
+                                        />
+                                
                             </div>
                             <br/>
 

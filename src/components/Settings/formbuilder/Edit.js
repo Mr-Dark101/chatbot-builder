@@ -48,21 +48,32 @@ const addField = (param) => {
 }
 
 const removeField = (i,label) => {
-  console.log(headerField);
-  console.log(i)
+
 
 
 
   setHeaderField(headerField.filter((d) => d.label !== label))
 
 }
+const removeFieldOption = (i,label,parentIndex) => {
+  
+  const list = [...headerField];
+  const newArray = headerField[parentIndex]['option'].filter((d) => d.key !== label);
+ 
+  list[parentIndex]['option'] = newArray;
+  setHeaderField(list);
+  //setHeaderField(headerField[parentIndex]['option'].filter((d) => d.key !== label))
+  //console.log(headerField)
+}
+
+
 const addFieldOption = (index) => {
     
     const list = [...headerField];
         
 
         
-        list[index]['option'].push(optionField);
+        list[index]['option'].push({"key":"","value":""});
         
 
         setHeaderField(list);
@@ -339,8 +350,8 @@ const FormSchema = Yup.object().shape({
                                                                  </div>
 
                                                                  <div className="col-sm-1">
-
-                                                                    <a className="link_delete_icon" href="javascript:void(0)" onClick={() => removeField(i,x.label)}><br /><i className="fa fa-trash"></i></a>
+                                                                  
+                                                                    <a className="link_delete_icon" href="javascript:void(0)" onClick={() => removeFieldOption(io,o.key,i)}><br /><i className="fa fa-trash"></i></a>
                                                                  </div>
                                                               </div>
 

@@ -59,7 +59,14 @@ const addField = (param) => {
   
 }
 
+const removeField = (i,label) => {
 
+
+
+
+  setHeaderField(headerField.filter((d) => d.keyOther !== label))
+
+}
 
 const [formData, setFormData] = useState({
     header: rs.header,
@@ -227,7 +234,7 @@ const FormSchema = Yup.object().shape({
 
                              <div className="col-sm-1">
 
-                                <a href="javascript:void(0)" className="link_delete_icon"><br /><i className="fa fa-trash"></i></a>
+                                <a href="javascript:void(0)" onClick={() => removeField(i,x.keyOther)} className="link_delete_icon"><br /><i className="fa fa-trash"></i></a>
                              </div>
                         
                       
