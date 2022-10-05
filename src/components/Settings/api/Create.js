@@ -32,7 +32,14 @@ const addField = (param) => {
   
   
 }
+const removeField = (i,label) => {
 
+
+
+
+  setHeaderField(headerField.filter((d) => d.keyOther !== label))
+
+}
 const typeList = [{value:'get',label:"GET"},{value:"post",label:'POST'}]
 
   const retrieveMasterList = (url) => {
@@ -210,6 +217,11 @@ const FormSchema = Yup.object().shape({
                                       
                                     />
                              </div>
+
+                              <div className="col-sm-1">
+
+                                        <a href="javascript:void(0)" className="link_delete_icon" onClick={() => removeField(i,x.keyOther)}><br /><i className="fa fa-trash"></i></a>
+                                     </div>
                         
                       
                     </div>
