@@ -5,6 +5,7 @@ import channel from "../../assets/setting/channel.svg";
 import integration from "../../assets/setting/integration.svg";
 import api from "../../assets/setting/api.svg";
 import api_white from "../../assets/setting/api_white.svg";
+import left_circle_arrow_icon from "../../assets/setting/bi_arrow-down-circle-fill.png";
 import users from "../../assets/setting/user.svg";
 import {STRINGS} from "../../utils/base";
 import {useDispatch, useSelector} from "react-redux";
@@ -18,6 +19,7 @@ import Integration from "./Integration";
 import ApiTemplate from "./ApiTemplate";
 import FormBuilder from "./FormBuilder";
 import Customer from "./Customer";
+import { Link } from "react-router-dom";
 import { UserContext } from "../../context/UserContext";
 const defaultState = {
     isAlert: false,
@@ -140,6 +142,10 @@ useEffect(() => {
                     <div className="row me-0">
                          <div className="col-sm-3 p-0">
                             <div className="setting_left_bar_section">
+                                <div className="mb-30">
+                                    <Link to={`${STRINGS.ROUTES.ROOT}?org=${localStorage.getItem("userId")}`} className="btn primary"><img src={left_circle_arrow_icon} style={{marginRight: '20px'}} />Back to Builder</Link>
+                                </div>
+
                                 <ul>
                                 {
                                     Menu.map((m,i) => (

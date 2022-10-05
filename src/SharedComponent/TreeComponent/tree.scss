@@ -893,10 +893,11 @@
   .card {
     display: flex;
     width: 400px;
-    border-radius: 4px;
-    box-shadow: 0 0 1px $shadow-bg, 0 1px 7px $shadow-bg;
+    border-radius: 10px;
+    box-shadow: 0 0 1px rgb(0 0 0 / 16%), 0 1px 7px rgb(0 0 0 / 16%);
     padding: 1rem;
     //margin-top: -5px;
+    border: 1px solid #CCCCCC;
     z-index: 1;
     height:350px;
     overflow:auto;
@@ -961,7 +962,7 @@
       .sub-txt {
         //white-space: nowrap;
         color: $heading-color;
-        font-size: 12px;
+        font-size: 14px;
         height: 100px;
         overflow: auto;
         position: relative;
