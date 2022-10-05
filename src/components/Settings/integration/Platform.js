@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import CrudService from "../../../services/crud.service";
 import PlatformHeader from './PlatformHeader';
+import placeholder from '../../../assets/setting/placeholder.png';
 const Platform = ({industry_id,subPage,loadList,row}) => {
 
 const [listData, setListData] = useState([]);
@@ -52,7 +53,16 @@ const retrieveList = () => {
                     
                  </>
             ))}
+
+            <li> 
+                    <div className="section_box">
+                        <div className="img_box">
+                            <img src={placeholder} / >
+
+                </div></div></li>
             </ul>
+
+            
          </div> 
       
           
