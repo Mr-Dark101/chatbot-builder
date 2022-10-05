@@ -91,7 +91,7 @@ useEffect(() => {
 
     let Menu = [
 
-        {name:'My Profile',controller:'Profile',icon:myprofile},
+       
       
         {name:'Integration',controller:'Integration',icon:integration},
         {name:'API',controller:'Api',icon:api},
@@ -104,7 +104,7 @@ useEffect(() => {
     if(localStorage.getItem('tenent_id') == 0 ){
             Menu = [
 
-            {name:'My Profile',controller:'Profile',icon:myprofile},
+            
             {name:'Channels',controller:'Channels',icon:myprofile},
             {name:'Industry',controller:'Industry',icon:myprofile},
             {name:'Platform',controller:'Platform',icon:myprofile},
