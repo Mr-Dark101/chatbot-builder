@@ -4,7 +4,7 @@ import whatsAppIcon from "../../../assets/Image 1/logos_whatsapp-icon.svg";
 // import TextField from "../../crud/FormElements";
 import whatsAppIconWhite from "../../../assets/whatsapp.png";
 import MessengerIcon from "../../../assets/Image 1/logos_messenger.svg";
-import InstagramIcon from "../../../assets/Image 1/insta_icon.svg";
+import InstagramIcon from "../../../assets/insta.png";
 import GoogleIcon from "../../../assets/google.png";
 // import facebookIcon from "../../../assets/facebook-icon.png";
 import comingSoonIcon from "../../../assets/whatsapp.png";
@@ -232,9 +232,7 @@ const CreateBotComposer = (props) => {
                                     <div className={`icon on-whats-app`}>
                                         <img className="img-responsive" alt="WhatsApp" src={!onHover ? whatsAppIcon : whatsAppIconWhite} style={{width: '52px',height: '52px'}} />
                                     </div>
-                                    <div className={`txt ${init.selected.includes('whatsapp') && "on"}`}>
-                                        WhatsApp
-                                    </div>
+                                    
                                 </div>
                                 <div style={{ width: '119px',height: '122px' }} onMouseOver={() => {
                                     setInit({
@@ -253,9 +251,7 @@ const CreateBotComposer = (props) => {
                                     <div className={`icon on-messenger-app`}>
                                         <img alt="Facebook" src={comingSoon ? comingSoonIcon : MessengerIcon} style={{width: '52px',height: '52px'}} />
                                     </div>
-                                    <div className={`txt ${init.selected.includes('messenger') && "on"}`}>
-                                        {comingSoon ? "Coming Soon" : "Messenger"}
-                                    </div>
+                                   
                                 </div>
 
                                 <div style={{ width: '119px',height: '122px' }} onMouseOver={() => {
@@ -275,9 +271,7 @@ const CreateBotComposer = (props) => {
                                     <div className={`icon on-messenger-app`}>
                                         <img alt="Facebook" src={comingSoon ? comingSoonIcon : InstagramIcon} style={{width: '78px',height: '78px'}} />
                                     </div>
-                                    <div className={`txt ${init.selected.includes('instagram') && "on"}`}>
-                                        {comingSoon ? "Coming Soon" : "Instagram"}
-                                    </div>
+                                   
                                 </div>
 
                                 <div style={{ width: '119px',height: '122px' }} onMouseOver={() => {
@@ -297,9 +291,7 @@ const CreateBotComposer = (props) => {
                                     <div className={`icon on-messenger-app`}>
                                         <img alt="Facebook" src={comingSoon ? comingSoonIcon : GoogleIcon} style={{width: '78px',height: '78px'}} />
                                     </div>
-                                    <div className={`txt ${init.selected.includes('googlemsg') && "on"}`}>
-                                        {comingSoon ? "Coming Soon" : "Google"}
-                                    </div>
+                                    
                                 </div>
                                
                             </div>

@@ -242,11 +242,23 @@ const FormSchema = Yup.object().shape({
                   );
                 })}
 
+                       
                         
-                        <Link className="btn primary" onClick={() => addField('email')} style={{marginTop: '20px'}}>Add</Link>
     
                         
                    
+                  <div className="text-end me-130">
+                       <Link className="btn primary" onClick={() => addField('email')} style={{marginTop: '20px'}}>Add</Link>
+                  </div>
+                    <div className="mt-20 text-end  me-130">
+
+                            <SubmitButton
+                             title="Update"
+                             className="btn primary"
+                              
+                          />
+                        <button onClick={ () => loadList()} className="btn secondary ms-20">Cancel</button>
+                      </div>
                 </div>
 
                 <div className="col-3"></div>    
@@ -260,14 +272,7 @@ const FormSchema = Yup.object().shape({
                     
                 
 
-          <div className="mt-20">
-                <SubmitButton
-                 title="Update"
-                 className="btn primary"
-                  
-              />
-            <button onClick={ () => loadList()} className="btn secondary ms-20">Cancel</button>
-          </div>
+         
             
 
             

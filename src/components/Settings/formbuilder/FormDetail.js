@@ -49,7 +49,7 @@ const { onDownload } = useDownloadExcel({
               <table className="table table-striped table-hover" ref={tableRef}>
                  <thead className="bg-primary">
                  <tr>
-                    <th>Mobile</th>
+                    
                     {
                       JSON.parse(row.Forms[0].form_data).map((rs, index) => (
                         <>
@@ -65,7 +65,7 @@ const { onDownload } = useDownloadExcel({
                       row.Forms.map((rs, index) => (
 
                     <tr>
-                      <td>{rs.mobile_no}</td>
+                      
                       {
                        
                         JSON.parse(rs.form_data).map((ll,i) => (

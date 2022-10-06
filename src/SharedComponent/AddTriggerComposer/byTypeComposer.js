@@ -1338,7 +1338,7 @@ const formChange = (form_id) => {
                                         <div className="actions-btn">
                                 
                             
-                                                <button className="btn btn-primary" style={{
+                                                <button className="btn primary" style={{
                                                                     width: "100%",
                                                                     whiteSpace: "nowrap",
                                                                     textAlign: "center",

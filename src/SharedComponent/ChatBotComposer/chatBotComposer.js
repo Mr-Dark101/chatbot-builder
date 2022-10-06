@@ -438,7 +438,7 @@ const ChatBotComposer = ({onClose}) => {
 
                                
 
-                                    const backMenu = [buildCustomMenu('Back','99',backMenuId)]
+                                    const backMenu = [buildCustomMenu('Main Menu','M',backMenuId)]
                                     trigger = {
                                     id: createGuid(),
                                     response: formEndText,
@@ -536,13 +536,13 @@ const ChatBotComposer = ({onClose}) => {
 
          return {
                                                 "id": createGuid(),
-                                                "text": "M" + ' - ' + + 'Main Menu',
+                                                "text": key + ' - ' +  label,
                                                 "toTriggerId": createGuid(),
                                                 "toTrigger": {
                                                     "id": createGuid(),
                                                     "name": 'Back',
                                                     "values": [
-                                                         'M'
+                                                         key
                                                     ],
                                                     "fallBackResponse": "",
                                                     "loopBackText": [
