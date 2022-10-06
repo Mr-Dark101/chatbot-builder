@@ -4,6 +4,7 @@ import built_add_icon from "../../assets/built_add_icon.svg";
 import built_add_icon_white from "../../assets/built_add_icon.svg";
 import dashboard_customize from "../../assets/dashboard_customize.svg";
 import dashboard_customize_white from "../../assets/dashboard_customize.svg";
+import switch_icon from "../../assets/switch_icon.png";
 import notification_icon from "../../assets/notification.svg";
 import user_img from "../../assets/user_img.svg";
 import {useDispatch, useSelector} from "react-redux";
@@ -248,7 +249,7 @@ const Dashboard = () => {
                         <li className="dropdown">
                             <a className="dropdown dropdown-toggle" href="#" data-bs-toggle="dropdown"><img src={user_img} /></a>
                             <ul className="dropdown-menu">
-                                <li className="dropdown-item"><a href="#" onClick={logOut}>Sign Out</a></li>
+                                <li className="dropdown-item"><a href="#" onClick={logOut}> <img src={switch_icon} /> Logout</a></li>
                             </ul>
                         </li>
                     </ul>
