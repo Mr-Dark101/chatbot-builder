@@ -536,13 +536,13 @@ const ChatBotComposer = ({onClose}) => {
 
          return {
                                                 "id": createGuid(),
-                                                "text": key + ' - ' + label,
+                                                "text": "M" + ' - ' + + 'Main Menu',
                                                 "toTriggerId": createGuid(),
                                                 "toTrigger": {
                                                     "id": createGuid(),
                                                     "name": 'Back',
                                                     "values": [
-                                                         key
+                                                         'M'
                                                     ],
                                                     "fallBackResponse": "",
                                                     "loopBackText": [
@@ -568,13 +568,13 @@ const ChatBotComposer = ({onClose}) => {
 
          return {
                                                 "id": createGuid(),
-                                                "text": key + ' - ' + 'Main Menu',
+                                                "text": "M" + ' - ' + 'Main Menu',
                                                 "toTriggerId": createGuid(),
                                                 "toTrigger": {
                                                     "id": createGuid(),
                                                     "name": 'Back',
                                                     "values": [
-                                                         '99'
+                                                         'M'
                                                     ],
                                                     "fallBackResponse": "",
                                                     "loopBackText": [

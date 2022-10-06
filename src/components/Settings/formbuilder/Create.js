@@ -202,8 +202,8 @@ const FormSchema = Yup.object().shape({
     <> 
       <div class="row">       
         <div class="col-12">
-          <div>
-          <div className="page_data_clinic api_form_section">
+          <div className="page_data_clinic">
+          <div className="page_data_clinic api_form_section" style={{overflowY: 'auto',height:800,overflowX:'hidden'}}>
             
              {!successful && (
             <Form
@@ -342,7 +342,7 @@ const FormSchema = Yup.object().shape({
                   );
                 })}
 
-                        <div className="my-20">
+                        <div className="my-20 text-end">
                          <button type="button" className="primary" onClick={() => addField('email')}>Add Field</button>
                         </div>
                         
@@ -351,7 +351,15 @@ const FormSchema = Yup.object().shape({
 
                        
                         
-                   
+                   <div className="text-end">
+                      <SubmitButton
+                       title="Update"
+                       className="primary"
+                        
+                    />
+
+                    <button onClick={ () => loadList()} type="button" className="secondary ms-20">Cancel</button>
+                  </div>
                 </div>
 
                 <div className="col-3"></div>    
@@ -365,15 +373,7 @@ const FormSchema = Yup.object().shape({
                     
                 
 
-            <div>
-                <SubmitButton
-                 title="Update"
-                 className="primary"
-                  
-              />
-
-              <button onClick={ () => loadList()} type="button" className="secondary ms-20">Cancel</button>
-            </div>
+            
 
             
 

@@ -250,11 +250,11 @@ const D3Tree = (props) => {
         })
     };
 
-    const nodeSize = {x: 420, y: 350};
-    const foreignObjectProps = {width: nodeSize.x, height: nodeSize.y, x: -160, y: -135};
+    const nodeSize = {x: 620, y: 350};
+    const foreignObjectProps = {width: nodeSize.x, height: 700, x: -160, y: -135};
 
     return (
-        <div className="d3tree-container" style={{height:1200}}>
+        <div className="d3tree-container" >
             <ConfirmModal
                 visible={isConfirm}
                 handleOk={handleSubmitTrigger}
@@ -268,7 +268,7 @@ const D3Tree = (props) => {
                 
                 nodeSize={nodeSize}
                 depthFactor={0}
-                zoom={0.3}
+                zoom={0.4}
                 scaleExtent={{max: 1, min: 0}}
                 translate={{x: 700, y: 100}}
                 zoomable={isZoomAble}

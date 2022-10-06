@@ -170,8 +170,8 @@ const BuildWorkSpace = () => {
                     handleCancel={alertClose}
                 />
                 <div className="head-rt">
-                    <div onClick={handleBack} className="icon">
-                        <img alt={"#"} src={back_icon}/>
+                    <div onClick={handleBack} className="icon" style={{width:'24px'}}>
+                        <img alt={"#"}  src={back_icon}/>
                     </div>
                     <div className="txt">
                         Builder Workspace

@@ -46,7 +46,9 @@ const retrieveList = () => {
                     <li onClick={() => subPage(<PlatformHeader subPage={subPage}  loadList={loadList} iRs={rs.Integration} rs={rs} industry_name={row.name} />)}> 
                     <div className="section_box">
                         <div className="img_box">
-                            <img src={`${bUrl}/uploads/platform/${rs.logo}`} / >
+                        {rs.logo ? (<img src={`${bUrl}/uploads/platform/${rs.logo}`} / >) : (<img src={placeholder} / >)}
+                            
+                        
 
                 </div></div></li>
 
@@ -54,12 +56,7 @@ const retrieveList = () => {
                  </>
             ))}
 
-            <li> 
-                    <div className="section_box">
-                        <div className="img_box">
-                            <img src={placeholder} / >
-
-                </div></div></li>
+            
             </ul>
 
             

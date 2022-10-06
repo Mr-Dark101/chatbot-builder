@@ -270,142 +270,117 @@ const FormSchema = Yup.object().shape({
                         
 
                         {headerField && headerField.map((x, i) => {
-                  return (
-                    <>
-                    <div style={{border:'1px solid #ccc',margin:'10px 0px',padding:10}}>
-                            <div className="row align-items-center" >
-                                    <div className="col-sm-4">
-                                         <TextField 
-                                            name="label"
-                                            placeholder="Key"
-                                            value={x.label}
-                                            onChange={e => handleInputChange(e, i,'phone')}
-                                          />
-                                    </div>
-                                     <div className="col-sm-6">
+                        return (
+                          <>
+                          <div style={{border:'1px solid #ccc',margin:'10px 0px',padding:10}}>
+                                  <div className="row align-items-center" >
+                                          <div className="col-sm-4">
+                                               <TextField 
+                                                  name="label"
+                                                  placeholder="Key"
+                                                  value={x.label}
+                                                  onChange={e => handleInputChange(e, i,'phone')}
+                                                />
+                                          </div>
+                                           <div className="col-sm-6">
 
-                                      <br />     
-                                      <Select
-                                                        labelId="demo-simple-select-standard-label"
-                                                        id="demo-simple-select-standard"
-                                                        value={x.type}
-                                                        className="platform_select_field"
-                                                        name="type"
-                                                        onChange={e => handleInputChange(e, i,'phone')}
-                                                        
-                                                    >
+                                            <br />     
+                                            <Select
+                                                              labelId="demo-simple-select-standard-label"
+                                                              id="demo-simple-select-standard"
+                                                              value={x.type}
+                                                              className="platform_select_field"
+                                                              name="type"
+                                                              onChange={e => handleInputChange(e, i,'phone')}
+                                                              
+                                                          >
 
-                                                    {
-                                                            typeList?.map((tr) => {
-                                                                 
-                                                                
-                                                                   return (<MenuItem value={tr.value}>{tr.label}</MenuItem>)
-                                                                  
-                                                                    
-                                                                
-                                                            })
-                                                        }
+                                                          {
+                                                                  typeList?.map((tr) => {
+                                                                       
+                                                                      
+                                                                         return (<MenuItem value={tr.value}>{tr.label}</MenuItem>)
+                                                                        
+                                                                          
+                                                                      
+                                                                  })
+                                                              }
 
-                                        </Select>
+                                              </Select>
 
 
-                                            
-                                     </div>
-                                     <div className="col-sm-1">
+                                                  
+                                           </div>
+                                           <div className="col-sm-1">
 
-                                        <a href="javascript:void(0)" className="link_delete_icon" onClick={() => removeField(i,x.label)}><br /><i className="fa fa-trash"></i></a>
-                                     </div>
-                                
-                              
+                                              <a href="javascript:void(0)" className="link_delete_icon" onClick={() => removeField(i,x.label)}><br /><i className="fa fa-trash"></i></a>
+                                           </div>
+                                      
+                                    
+                                  </div>
+                                              {(x.type == 'option') ? (
+                                                <>
+
+                                                      <div>Option Data</div>
+
+                                                      {
+                                                          headerField[i]['option'].map((o, io) => {
+
+                                                              return (<>
+
+
+                                                                    <div className="row align-items-center" >
+                                                                      <div className="col-sm-4">
+                                                                           <TextField 
+                                                                              name="key"
+                                                                              placeholder="Key"
+                                                                              value={o.key}
+                                                                              onChange={e => handleInputChangeOption(e, io,'phone',i)}
+                                                                            />
+                                                                      </div>
+                                                                       <div className="col-sm-6">
+
+
+                                                                            <TextField 
+                                                                              name="value"
+                                                                              placeholder="Value"
+                                                                              value={o.value}
+                                                                              onChange={e => handleInputChangeOption(e, io,'phone',i)}
+                                                                            />
+                                                                       </div>
+
+                                                                       <div className="col-sm-1">
+                                                                        
+                                                                          <a className="link_delete_icon" href="javascript:void(0)" onClick={() => removeFieldOption(io,o.key,i)}><br /><i className="fa fa-trash"></i></a>
+                                                                       </div>
+                                                                    </div>
+
+                                                              </>)
+
+
+                                                      
+                                                      })}
+
+                                                      <button type="button" className="primary btn-danger mt-20" onClick={() => addFieldOption(i)}>Add Option</button>
+                                                </>
+                                                ) : null}
+
                             </div>
-                                        {(x.type == 'option') ? (
-                                          <>
 
-                                                <div>Option Data</div>
+                          </>
+                        );
+                      })}
 
-                                                {
-                                                    headerField[i]['option'].map((o, io) => {
-
-                                                        return (<>
-
-
-                                                              <div className="row align-items-center" >
-                                                                <div className="col-sm-4">
-                                                                     <TextField 
-                                                                        name="key"
-                                                                        placeholder="Key"
-                                                                        value={o.key}
-                                                                        onChange={e => handleInputChangeOption(e, io,'phone',i)}
-                                                                      />
-                                                                </div>
-                                                                 <div className="col-sm-6">
-
-
-                                                                      <TextField 
-                                                                        name="value"
-                                                                        placeholder="Value"
-                                                                        value={o.value}
-                                                                        onChange={e => handleInputChangeOption(e, io,'phone',i)}
-                                                                      />
-                                                                 </div>
-
-                                                                 <div className="col-sm-1">
-                                                                  
-                                                                    <a className="link_delete_icon" href="javascript:void(0)" onClick={() => removeFieldOption(io,o.key,i)}><br /><i className="fa fa-trash"></i></a>
-                                                                 </div>
-                                                              </div>
-
-                                                        </>)
-
-
-                                                
-                                                })}
-
-                                                <button type="button" className="primary btn-danger mt-20" onClick={() => addFieldOption(i)}>Add Option</button>
-                                          </>
-                                          ) : null}
-
-                      </div>
-
-                    </>
-                  );
-                })}
-
-                      <div className="mt-20">  
+                      <div className="mt-20 text-end">  
                         <Link className="btn primary" onClick={() => addField('email')}>Add Fields</Link>
                       </div>
 
-                      {values.api_type == "post" ? (
-
-
-                         <div className="field_section mb-20">
-                          <TextAreaField 
-                            name="payload"
-                            label="Payload"
-                            placeholder="Payload"
-                            rows="3"
-                          />
-                        </div>
-
-                      ) : null}
+                      
                        
-    
-                   </div>     
-                   
-                </div>
+      
 
-                <div className="col-3" style={{paddingLeft: '0px',paddingRight: '0px'}}></div>    
-                    
-                
-                    
 
-                    
-                
-
-                    
-                
-
-          <div className="mt-20">
+                       <div className="mt-20 text-end">
                 <SubmitButton
                  title="Update"
                  className="btn primary"
@@ -413,6 +388,24 @@ const FormSchema = Yup.object().shape({
               />
             <button onClick={ () => loadList()} className="btn secondary ms-20">Cancel</button>
           </div>
+
+
+                   </div>     
+                   
+                
+
+                <div className="col-3" style={{paddingLeft: '0px',paddingRight: '0px'}}></div>    
+                    
+                
+                    
+
+                    
+                </div>
+
+                    
+                
+
+         
             
           </div>
             

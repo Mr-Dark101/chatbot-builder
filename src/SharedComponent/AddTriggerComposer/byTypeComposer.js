@@ -1328,7 +1328,7 @@ const formChange = (form_id) => {
 
                                                 return (
                                                            
-                                                        <ConditionList dataIndex={i} apiData={tr.dataValue} props={props} updatedTriggersVal={updatedTriggers} apiHandle={apiHandle} /> 
+                                                        <ConditionList key={i} dataIndex={i} apiData={tr.dataValue} props={props} updatedTriggersVal={updatedTriggers} apiHandle={apiHandle} /> 
                                                  )
 
                                             })
@@ -1607,9 +1607,14 @@ const formChange = (form_id) => {
 
 
                                     <div className="check-box">
+                                        
+                                       
+                                      
+                                       
                                         <Checkbox
                                             checked={routToAgent}
                                             onChange={(e) => {
+                                               
                                                 setInit({
                                                     ...init,
                                                     currentData: {
@@ -1667,7 +1672,7 @@ const formChange = (form_id) => {
 
                                    formData.map((fRow,i) => (
                                    
-                                        <div className="row">
+                                        <div className="row" key={i}>
                                             <div className="col-sm-6">{fRow.label}</div>
                                             <div className="col-sm-6">{fRow.type}</div>
                                         </div>
@@ -1714,9 +1719,7 @@ const formChange = (form_id) => {
                         {triggerType == 'M' ? (
                              <>
                         <div className="row__">
-                            <div>
-                                <button className="btn_response" type="button"><i className="fa fa-plus-circle"></i>Add Response</button>
-                            </div>
+                            
                             
                             <div className="txt-field">
                                 <div className="label">

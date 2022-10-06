@@ -11,7 +11,7 @@ import {createGuid, getGeneratedId, STRINGS} from "../../utils/base";
 import {useDispatch} from "react-redux";
 import {Checkbox, FormControl, FormControlLabel, FormLabel, MenuItem, Radio, RadioGroup, Select} from '@mui/material';
 import upload_icon from "../../assets/Icon metro-cloud-upload.svg";
-
+import AlertModal from "../ConfirmModal/AlertModal";
 import {
     onSuccessUpdateMenuText,
     resetTheUrls,
@@ -76,6 +76,14 @@ let {triggersList, currentTriggerData, isChild, childBotId, urls, isUpdatedList,
 let {id, userId,published} = currentBotData;
 
 
+    const alertClose = () => {
+        setInit({
+            ...init,
+            isAlert: false,
+            isUpdatedList: true,
+            confirmationTxt: ""
+        })
+    }
 
 const getContentByType = (data) => {
         if (data.loopBackTriggerId !== "") {
@@ -374,11 +382,26 @@ const handleResponseSelect = (name) => {
 
 
         apiHandle(init.currentData,dataIndex)
-        alert("Condition has been saved..")
+
+
+
+
+        setInit({
+                ...init,
+                isAlert: true,
+                confirmationTxt: "Condition has been saved.."
+            })
     }
 
     return (
         <>
+        <AlertModal
+                visible={isAlert}
+                handleOk={alertClose}
+                confirmLoading={!isUpdatedList}
+                modalText={confirmationTxt}
+                handleCancel={alertClose}
+            />
         <div className="add_api_section" style={{border:'1px solid #ccc',borderColor:'#fff',width:'100%',borderWidth:1,padding:10,marginTop:10}}>
         <div className="row">
             <div className="col-sm-6"><span className="field_label">Label</span>

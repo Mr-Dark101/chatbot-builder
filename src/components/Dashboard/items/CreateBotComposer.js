@@ -5,6 +5,7 @@ import whatsAppIcon from "../../../assets/Image 1/logos_whatsapp-icon.svg";
 import whatsAppIconWhite from "../../../assets/whatsapp.png";
 import MessengerIcon from "../../../assets/Image 1/logos_messenger.svg";
 import InstagramIcon from "../../../assets/Image 1/insta_icon.svg";
+import GoogleIcon from "../../../assets/google.png";
 // import facebookIcon from "../../../assets/facebook-icon.png";
 import comingSoonIcon from "../../../assets/whatsapp.png";
 // import messengerIcon from "../../../assets/Icon awesome-facebook-messenger.svg";
@@ -186,7 +187,7 @@ const CreateBotComposer = (props) => {
                 <div className="header-lft">
                     <div className="txt">
                         {
-                            data !== null ? "Update Bot" : !selectCategory ? "Where would you like to deploy your Bot?" : "Create your bot"
+                            data !== null ? "Update Bot" : !selectCategory ? "Create your bot" : "Create your bot"
                         }
                     </div>
                 </div>
@@ -195,9 +196,23 @@ const CreateBotComposer = (props) => {
 
            
             <div className="modal-section">
-                {
-                    !selectCategory ?
-                        (
+              
+              <div className="row">
+                 <div className="col-sm-12">
+                    <label>Bot Name</label>
+                    <input className="inp" placeholder={"Enter ChatBot Name"} value={botName}
+                                                onChange={(e) => {
+                                                    setInit({
+                                                        ...init,
+                                                        botName: e.target.value
+                                                    })
+                                                }} />
+                 </div>
+              </div>
+              <br />
+              <div className="row">
+                <div className="col-sm-12">
+                   
                             <div className="bot-category-holder">
                            
                                 <div style={{ width: '119px',height: '122px' }}
@@ -275,136 +290,46 @@ const CreateBotComposer = (props) => {
                                         ...init,
                                         comingSoon: false
                                     })
-                                }} className={`category-box ${init.selected.includes('instagram') && "on-facebook"}`}
-                                      onClick={() => handleSelectBot('instagram')}
+                                }} className={`category-box ${init.selected.includes('googlemsg') && "on-facebook"}`}
+                                      onClick={() => handleSelectBot('googlemsg')}
 
                                 >
                                     <div className={`icon on-messenger-app`}>
-                                        <img alt="Facebook" src={comingSoon ? comingSoonIcon : InstagramIcon} style={{width: '78px',height: '78px'}} />
+                                        <img alt="Facebook" src={comingSoon ? comingSoonIcon : GoogleIcon} style={{width: '78px',height: '78px'}} />
                                     </div>
-                                    <div className={`txt ${init.selected.includes('instagram') && "on"}`}>
+                                    <div className={`txt ${init.selected.includes('googlemsg') && "on"}`}>
                                         {comingSoon ? "Coming Soon" : "Google"}
                                     </div>
                                 </div>
-                                {/*<div className={`category-box ${selected === "ma" && "on-messenger-app"}`}*/}
-                                {/*     onClick={() => handleSelectBot("ma")}>*/}
-                                {/*    <div className={`icon on-messenger-app`}>*/}
-                                {/*        <img alt="Messenger" src={messengerIcon}/>*/}
-                                {/*    </div>*/}
-                                {/*    <div className={`txt ${selected === "ma" && "on"}`}>*/}
-                                {/*        Messenger Bot*/}
-                                {/*    </div>*/}
-                                {/*</div>*/}
+                               
                             </div>
-                        ) :
-                        <div className="form-holder">
-                            <div className="input-group">
-                                <div className="row__" style={{marginRight: '20px'}}>
-                                    <div className="txt-field">
-                                        <div className="label">
-                                            <div className="txt" style={{ color: "#363A77", fontWeight: "bolder" }}>Name
-                                                Your ChatBot
-                                            </div>
-                                            <div className="sub-txt" style={{ fontWeight: "normal",whiteSpace: 'pre-line',marginTop: '10px' }}>
-                                                This name identifies your chatbot and is only available to you and your
-                                                team in Digital Connect
-                                            </div>
-                                        </div>
-                                        <div className="input">
-                                            <input className="inp" placeholder={"Enter ChatBot Name"} value={botName}
-                                                onChange={(e) => {
-                                                    setInit({
-                                                        ...init,
-                                                        botName: e.target.value
-                                                    })
-                                                }} />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="row__">
-                                    <div className="txt-field">
-                                        <div className="label">
-                                            <div className="txt"
-                                                style={{ color: "#363A77", fontWeight: "bolder" }}>ChatBot Description
-                                            </div>
-                                            <div className="sub-txt" style={{ fontWeight: "normal",whiteSpace: 'pre-line',marginTop: '10px' }}>
-                                                This is an internal description that is only available to you and your
-                                                team in Digital Connect
-                                            </div>
-                                        </div>
-                                        <div className="input">
-                                            <input className="inp" placeholder={"Enter ChatBot Description"}
-                                                value={botDescription} onChange={(e) => {
+
+                            <br />
+                             <textarea placeholder={"Enter ChatBot Description"}
+                                    onChange={(e) => {
                                                     setInit({
                                                         ...init,
                                                         botDescription: e.target.value
                                                     })
-                                                }} />
-                                        </div>
-                                    </div>
-                                </div>
-                                {/*<div className="row__">*/}
-                                {/*    <div className="txt-field">*/}
-                                {/*        <div className="label">*/}
-                                {/*            <div className="sub-txt">*/}
-                                {/*                Phone Number to access for WhatsApp*/}
-                                {/*            </div>*/}
-                                {/*        </div>*/}
-                                {/*        <div className="input">*/}
-                                {/*            <input className="inp" type={"number"} value={botPhoneNumber}*/}
-                                {/*                   onChange={(e) => {*/}
-                                {/*                       setInit({*/}
-                                {/*                           ...init,*/}
-                                {/*                           botPhoneNumber: e.target.value*/}
-                                {/*                       })*/}
-                                {/*                   }}/>*/}
-                                {/*        </div>*/}
-                                {/*    </div>*/}
-                                {/*</div>*/}
-                                {/*<div className="row__">*/}
-                                {/*    <div className="heading">*/}
-                                {/*        <div className="label">*/}
-                                {/*            <div className="sub-txt">*/}
-                                {/*                Bot Image*/}
-                                {/*            </div>*/}
-                                {/*        </div>*/}
-                                {/*    </div>*/}
-                                {/*    <div id="drop-area" className="upload-media" style={{height: "150px"}}>*/}
-                                {/*        /!*    <div className="up-txt">*!/*/}
-                                {/*        /!*<span>*!/*/}
-                                {/*        /!*    <img alt={"#"} src={upload_icon}/>*!/*/}
-                                {/*        /!*</span>*!/*/}
-                                {/*        /!*        <div className="txt">*!/*/}
-                                {/*        /!*            Drag here OR*!/*/}
-                                {/*        /!*        </div>*!/*/}
-                                {/*        /!*    </div>*!/*/}
-                                {/*        <div className="actions" style={{zIndex: "3"}}>*/}
-                                {/*            <label htmlFor="upload-input">*/}
-                                {/*                <div className="btn-upload">Upload File</div>*/}
-                                {/*            </label>*/}
-                                {/*            <input id="upload-input" className="upload-input" type="file"*/}
-                                {/*                   accept=".jpg, .jpeg, .gif, .bmp, .png"*/}
-                                {/*                   onChange={e => handleFileUpload(e, 2)}/>*/}
+                                                }}
 
-                                {/*        </div>*/}
-                                {/*    </div>*/}
-                                {/*</div>*/}
-                            </div>
-                        </div>
+                             >{botDescription}</textarea>
+                             
+                 </div>
+                 </div>      
+                        
 
-                }
+               
             </div>
 
             
             <div className="modal-footer">
                 <div className="actions">
-                    <button className="btn transparent" onClick={handleCloseModal}>Cancel</button>
-                    {
-                        !selectCategory ?
-                            <button className="btn filled" onClick={handleSelectCategorySubmit}>Continue</button> :
+                    
+                   
                             <button className="btn filled"
                                 onClick={handleCreateBotSubmit}>{data !== null ? "Update" : "Create"}</button>
-                    }
+                    
                 </div>
             </div>
         </div>

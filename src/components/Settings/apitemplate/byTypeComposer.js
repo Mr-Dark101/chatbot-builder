@@ -181,6 +181,9 @@ const ByTypeComposer = ({props,triggerType,apiHandleConditionMaster}) => {
         const saveData = handleSubmitTrigger();
        
          apiHandleConditionMaster(conditionType,triggerType,saveData);
+         
+
+         
         
    }
 
