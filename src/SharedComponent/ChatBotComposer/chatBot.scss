@@ -295,3 +295,38 @@
   }
 }
 
+@media only screen and (max-width: 1680px){
+  .chat-bot-container{
+    background: url("../../assets/bg_chat_img_1680.png") no-repeat center ;
+    padding-top: 50px;
+    top: 120px;
+  }
+}
+
+@media only screen and (max-width: 1440px){
+  .chat-bot-container{
+    background: url("../../assets/bg_chat_img_1440.png") no-repeat center ;
+    padding-top: 50px;
+    top: 120px;
+  }
+}
+
+@media only screen and (max-width: 1366px){
+  .chat-bot-container{
+    background: url("../../assets/bg_chat_img_1366.png") no-repeat center ;
+    min-width: 400px;
+    padding-top: 30px;
+    top: 80px;
+  }
+  .chat-bot-container .content-hld .cl{
+   top: -40px;
+   right: -45px;
+  }
+}
+
+@media only screen and (max-width: 1280px){
+  .chat-bot-container{
+    background: url("../../assets/bg_chat_img_1280.png") no-repeat center ;
+    min-width: 350px;
+  }
+}

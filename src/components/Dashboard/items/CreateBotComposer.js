@@ -297,7 +297,7 @@ const CreateBotComposer = (props) => {
                             </div>
 
                             <br />
-                             <textarea placeholder={"Enter ChatBot Description"}
+                             <textarea rows="5" placeholder={"Enter ChatBot Description"}
                                     onChange={(e) => {
                                                     setInit({
                                                         ...init,

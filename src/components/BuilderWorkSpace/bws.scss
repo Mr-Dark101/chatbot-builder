@@ -30,9 +30,10 @@
 
       .txt {
         font-size: 26px;
-        color: $heading-bg;
+        color: #10163a;
         font-weight: bolder;
         white-space: nowrap;
+        font-family: 'Segoe';
       }
     }
 
@@ -46,6 +47,7 @@
         font-weight: bolder;
         font-size: 18px;
         white-space: nowrap;
+        font-family: 'Segoe';
 
         span {
           font-size: 18px;
@@ -77,6 +79,7 @@
           padding: 0.3rem 0.7rem;
           color: $text-bg;
           margin: 0 0.5rem;
+          font-family: 'Segoe';
         }
 
         .btn-filled {
@@ -87,6 +90,7 @@
           padding: 0.3rem 0.7rem;
           color: white;
           margin: 0 0.5rem;
+          font-family: 'Segoe';
         }
       }
     }
