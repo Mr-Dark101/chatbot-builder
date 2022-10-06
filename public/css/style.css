@@ -96,8 +96,8 @@ Waves
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 
 @font-face {
-  font-family: "Arial";
-  src: url(../fonts/arial/arial.ttf);
+  font-family: "Segoe";
+  src: url(../fonts/segoe-ui.ttf);
 }
 
 html {
@@ -126,7 +126,7 @@ body {
   font-size: 1rem;
   font-style: normal;
   font-weight: 400;
-  font-family: "Arial", sans-serif;
+  font-family: "Segoe";
   line-height: 1.5;
   background-color: #ffffff; }
 
@@ -139,7 +139,7 @@ a:hover, a:active, a:focus {
   text-decoration: none; }
 
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
-  font-family: "Arial", sans-serif;
+  font-family: "Segoe", sans-serif;
   font-weight: 400;
   line-height: 1.2; }
 
@@ -181,10 +181,10 @@ img {
   vertical-align: sub; }
 
 .base-font {
-  font-family: "Arial", sans-serif !important; }
+  font-family: "Segoe", sans-serif !important; }
 
 .heading-font {
-  font-family: "Arial", sans-serif !important; }
+  font-family: "Segoe", sans-serif !important; }
 
 .fs-0 {
   font-size: 0rem!important; }
@@ -20486,7 +20486,7 @@ Height property
   height: 115px;
   width: 115px;
   line-height: 115px;
-  font-family: "Arial", sans-serif !important; }
+  font-family: "Segoe", sans-serif !important; }
 
 .icon i {
   width: 60px;
@@ -23566,7 +23566,7 @@ ul.panel-actions > li {
       position: absolute;
       top: 15px;
       right: 30px;
-      font-family: "Arial";
+      font-family: "Segoe";
       transition: all 300ms linear 0s; }
     .panel-group .panel-title:before {
       content: "\F415"; }
@@ -24004,7 +24004,7 @@ ul.panel-actions > li {
   margin-left: 0; }
 
 .avatar-add {
-  font-family: Arial;
+  font-family: Segoe;
   background-color: transparent;
   border: 1px dashed #172b4c;
   color: #172b4c;
@@ -25338,7 +25338,7 @@ time {
 .grid-stack-item-content {
   background: #ffffff;
   color: #172b4c;
-  font-family: "Arial", sans-serif;
+  font-family: "Segoe", sans-serif;
   text-align: center;
   font-size: 1.429rem; }
   .grid-stack-item-content .fa {
@@ -26929,7 +26929,7 @@ textarea.form-control {
   -webkit-box-direction: reverse;
   flex-direction: row-reverse; }
   .box-controls li > a {
-    font-family: Arial;
+    font-family: Segoe;
     font-size: 0.8571rem;
     display: inline-block;
     padding: 0 4px;
@@ -26939,7 +26939,7 @@ textarea.form-control {
     -webkit-transition: 0.3s linear;
     transition: 0.3s linear; }
     .box-controls li > a i {
-      font-family: Arial;
+      font-family: Segoe;
       font-size: 0.8571rem;
       display: inline-block;
       padding: 0 4px;
@@ -26958,7 +26958,7 @@ textarea.form-control {
     -webkit-transition: 0.3s linear;
     transition: 0.3s linear; }
     .box-controls li > button > i {
-      font-family: Arial; }
+      font-family: Segoe; }
   .box-controls li:first-child > a {
     margin-right: 0; }
 
@@ -27014,7 +27014,8 @@ textarea.form-control {
     line-height: 24px; }
 
 .box-title {
-  z-index: auto; }
+  z-index: auto;
+  color: #10163a; }
   .box-title.box-title-bold {
     font-weight: 900; }
   .box-title code {
@@ -28054,7 +28055,7 @@ ul.flexbox {
 
 .collapse-arrow::before {
   content: "\e64b";
-  font-family: Arial;
+  font-family: Segoe;
   display: inline-block;
   -webkit-transition: .4s;
   transition: .4s; }
@@ -32081,7 +32082,7 @@ img.away, img.busy, img.offline, img.online {
   margin-top: 30px;
 }
 .home_bot_modal .bot_name_section h5{
-  font-family: 'Arial' !important;
+  font-family: 'Segoe' !important;
   font-size: 16px;
   line-height: 18px;
 }
@@ -32092,7 +32093,7 @@ img.away, img.busy, img.offline, img.online {
   margin-top: 30px;
 }
 .home_bot_modal .modal-header .txt{
-  font-family: 'Arial' !important;
+  font-family: 'Segoe' !important;
   font-size: 16px !important;
   line-height: 18px;
 }
@@ -32107,7 +32108,7 @@ img.away, img.busy, img.offline, img.online {
 .home_bot_modal.modal-content .modal-footer .actions .btn.filled{
   font-size: 16px !important;
   font-weight: 400;
-  font-family: 'Arial' !important;
+  font-family: 'Segoe' !important;
 }
 .home_bot_modal.modal-content .modal-footer .actions .btn.filled i{
   margin-right: 15px;
@@ -32241,14 +32242,14 @@ img.away, img.busy, img.offline, img.online {
   margin-bottom: 10px;
 }
 .setting_left_bar_section ul li a{
-  color: #000;
+  color: #10163a;
   font-weight: 400;
   font-size: 14px;
   line-height: 16px;
   display: flex;
   align-items: center;
   padding: 15px 20px;
-  font-family: 'Arial','Montserrat' sans-serif;
+  font-family: "Segoe";
 }
 .setting_left_bar_section ul li a:hover{
   background-color: #10163A;
@@ -32270,15 +32271,15 @@ img.away, img.busy, img.offline, img.online {
   font-weight: 700;
   font-size: 16px;
   line-height: 18px;
-  color: #000;
+  color: #10163a;
 }
 .api_form_section label{
   font-weight: 700;
   font-size: 16px;
   line-height: 18px;
-  color: #000;
+  color: #10163a;
   margin-bottom: 10px;
-  font-family: "Arial";
+  font-family: "Segoe";
 }
 .primary{
   border: 1px solid #10163A !important;
@@ -32321,15 +32322,15 @@ img.away, img.busy, img.offline, img.online {
   font-weight: 700;
   font-size: 14px;
   line-height: 16px;
-  font-family: 'Arial';
-  color: #000;
+  font-family: 'Segoe';
+  color: #10163a;
 }
 .integration_page .section_main_heading{
   font-weight: 700;
   font-size: 14px;
   line-height: 16px;
-  font-family: 'Arial';
-  color: #000;
+  font-family: 'Segoe';
+  color: #10163a;
   margin-top: 30px;
 }
 .integration_page .section_box{
@@ -32358,7 +32359,7 @@ img.away, img.busy, img.offline, img.online {
 .page_data_setting .btn_custom_api{
   background-color: #10163A !important;
   border-radius: 6px;
-  font-family: "Arial";
+  font-family: "Segoe";
   font-size: 16px;
   color: #fff !important;
   line-height: 18px;
@@ -32374,7 +32375,8 @@ img.away, img.busy, img.offline, img.online {
   font-weight: 700;
   font-size: 14px;
   line-height: 16px;
-  font-family: "Arial";
+  font-family: "Segoe";
+  color: #10163a;
 }
 .page_data_setting .api_list_page{
   border-right: 1px solid #ccc;
@@ -32387,14 +32389,14 @@ img.away, img.busy, img.offline, img.online {
   font-size: 14px;
   line-height: 16px;
   color: #10163A;
-  font-family: "Arial";
+  font-family: "Segoe";
 }
 .page_data_setting .api_list_page .text_section p{
   font-weight: 400;
   font-size: 12px;
   line-height: 14px;
   color: #939393;
-  font-family: "Arial";
+  font-family: "Segoe";
   margin-bottom: 0px;
 }
 .page_data_setting .api_list_page .api_edit_button{
@@ -32419,8 +32421,8 @@ img.away, img.busy, img.offline, img.online {
   font-weight: 700;
   font-size: 14px;
   line-height: 16px;
-  font-family: "Arial";
-  color: #000;
+  font-family: "Segoe";
+  color: #10163a;
   padding: 20px;
   margin-bottom: 0px;
 }
@@ -32433,14 +32435,14 @@ img.away, img.busy, img.offline, img.online {
   font-size: 14px;
   line-height: 16px;
   color: #10163A;
-  font-family: "Arial";
+  font-family: "Segoe";
 }
 .page_data_setting .available_api_section .text_section p{
   font-weight: 400;
   font-size: 12px;
   line-height: 14px;
   color: #939393;
-  font-family: "Arial";
+  font-family: "Segoe";
   margin-bottom: 0px;
 }
 .page_data_setting .available_api_section .table{
@@ -32457,7 +32459,7 @@ img.away, img.busy, img.offline, img.online {
   font-size: 12px;
   line-height: 14px;
   color: #363A77;
-  font-family: "Arial";
+  font-family: "Segoe";
 }
 .page_data_setting .available_api_section .table tr{
   border-bottom: 1px solid #ccc;
@@ -32467,13 +32469,14 @@ img.away, img.busy, img.offline, img.online {
 }
 .integration_platform_page{
   padding: 20px;
+  color: #10163a;
 }
 .integration_platform_page .main_heading{
     font-weight: 700;
     font-size: 20px;
     line-height: 24px;
-    font-family: "Arial";
-    color: #000;
+    font-family: "Segoe";
+    color: #10163a;
     margin-bottom: 0px;
     margin-top: 20px;
 }
@@ -32525,7 +32528,7 @@ thead.bg-primary{
     line-height: 18px;
     color: #000;
     margin-bottom: 10px;
-    font-family: "Arial";
+    font-family: "Segoe";
 }
 
 .home_top_section ul{
@@ -32544,8 +32547,8 @@ thead.bg-primary{
   font-weight: 700;
   font-size: 14px;
   line-height: 16px;
-  font-family: "Arial";
-  color: #000;
+  font-family: "Segoe";
+  color: #10163a;
 }
 .MuiOutlinedInput-notchedOutline .css-hdw1oc{
   float: left !important;
@@ -32554,13 +32557,13 @@ thead.bg-primary{
   top: 0px !important;
 }
 .api_composer_container.composer-container .composer-content .trigger-card .card-content .row__ .txt{
-  color: #000 !important;
+  color: #10163a !important;
 }
 .api_composer_container .simple_response_section .field_label{
-  color: #000 !important;
+  color: #10163a !important;
 }
 .api_composer_container .simple_response_section .add_label_section span{
-  color: #000 !important;
+  color: #10163a !important;
 }
 .api_composer_container .simple_response_section{
   border: 1px solid #ccc;
@@ -32571,7 +32574,7 @@ thead.bg-primary{
 .dashboard_setting{
   background-color: #10163A !important;
   border-radius: 6px;
-  font-family: "Arial";
+  font-family: "Segoe";
   font-size: 14px;
   color: #fff !important;
   line-height: 18px;
@@ -32588,5 +32591,8 @@ thead.bg-primary{
 }
 
 .ql-editor p{color: #000;}
+.home_bot_modal .modal-section label{
+  color: #10163a;
+}
 /*new css*/
 

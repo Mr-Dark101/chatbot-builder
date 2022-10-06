@@ -214,7 +214,7 @@ const FormSchema = Yup.object().shape({
                           />
                         </div>
 
-                        <h3>Header</h3>
+                        <h3 className="main_heading">Header</h3>
 
 
 
