@@ -32583,6 +32583,9 @@ thead.bg-primary{
 .link_delete_icon{
   color: #000;
 }
+.link_delete_icon i{
+  font-size: 20px;
+}
 .dashboard_setting{
   background-color: #10163A !important;
   border-radius: 6px;
@@ -32604,6 +32607,26 @@ thead.bg-primary{
 
 .ql-editor p{color: #000;}
 .home_bot_modal .modal-section label{
+  color: #10163a;
+}
+.login_dropdown_menu .user_detail_section h3{
+  margin: 0px;
+  color: #10163a;
+  font-size: 18px;
+  line-height: 22px;
+  font-family: "Segoe";
+}
+.login_dropdown_menu .user_detail_section p{
+  margin: 0px;
+  color: #10163a;
+  font-size: 14px;
+  line-height: 18px;
+  font-family: "Segoe";
+}
+.login_dropdown_menu li{
+  padding: 15px;
+}
+.login_dropdown_menu li a{
   color: #10163a;
 }
 /*new css*/

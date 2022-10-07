@@ -26,14 +26,14 @@ const { onDownload } = useDownloadExcel({
       <div className="page_data_setting">
 
           <div className="row p-30 media-center">
-                  <div className="col-sm-3">
+                  <div className="col-sm-6">
                     <h3 className="box-title m-0">Form {row.name} - Entries</h3>
                   </div>
-                  <div className="col-sm-9 text-end">
+                  <div className="col-sm-6 text-end">
 
 
                    
-
+                  <button type="button" className="btn btn-secondary me-10">Back</button>
                    <button type="button" className="btn btn-danger" onClick={onDownload}> Export excel </button>
 
                

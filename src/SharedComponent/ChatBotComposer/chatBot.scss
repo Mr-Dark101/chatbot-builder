@@ -219,11 +219,12 @@
                 outline: none;
                 font-weight: 800;
                 margin: 0.3rem 0;
+                font-family: 'Montserrat', sans-serif;
               }
 
               .btn.light-filled {
                 background-color: #5841CE1F;
-                color: #5841CE;
+                color: #000;
               }
             }
           }
@@ -301,6 +302,18 @@
     padding-top: 50px;
     top: 120px;
   }
+  .chat-bot-container .content-hld .section{
+    justify-content: center;
+  }
+  .chat-bot-container .content-hld .section .chat-body{
+    width: 90%;
+  }
+  .chat-bot-container .content-hld .foot{
+    justify-content: center;
+  }
+  .chat-bot-container .content-hld .foot .msg-send-composer{
+    width: 90%;
+  }
 }
 
 @media only screen and (max-width: 1440px){
@@ -308,6 +321,18 @@
     background: url("../../assets/bg_chat_img_1440.png") no-repeat center ;
     padding-top: 50px;
     top: 120px;
+  }
+  .chat-bot-container .content-hld .section{
+    justify-content: center;
+  }
+  .chat-bot-container .content-hld .section .chat-body{
+    width: 85%;
+  }
+  .chat-bot-container .content-hld .foot{
+    justify-content: center;
+  }
+  .chat-bot-container .content-hld .foot .msg-send-composer{
+    width: 85%;
   }
 }
 
@@ -322,11 +347,35 @@
    top: -40px;
    right: -45px;
   }
+  .chat-bot-container .content-hld .section{
+    justify-content: center;
+  }
+  .chat-bot-container .content-hld .section .chat-body{
+    width: 80%;
+  }
+  .chat-bot-container .content-hld .foot{
+    justify-content: center;
+  }
+  .chat-bot-container .content-hld .foot .msg-send-composer{
+    width: 80%;
+  }
 }
 
 @media only screen and (max-width: 1280px){
   .chat-bot-container{
     background: url("../../assets/bg_chat_img_1280.png") no-repeat center ;
     min-width: 350px;
+  }
+  .chat-bot-container .content-hld .section{
+    justify-content: center;
+  }
+  .chat-bot-container .content-hld .section .chat-body{
+    width: 77%;
+  }
+  .chat-bot-container .content-hld .foot{
+    justify-content: center;
+  }
+  .chat-bot-container .content-hld .foot .msg-send-composer{
+    width: 77%;
   }
 }

@@ -47,7 +47,7 @@ const defaultState = {
 }
 
 const createArray = [{
-    id: 1, name: "Add New Bot", icon_1: built_add_icon, icon_2: built_add_icon_white,
+    id: 1, name: "Create New Bot", icon_1: built_add_icon, icon_2: built_add_icon_white,
 },
     {
         id: 2,
@@ -246,9 +246,15 @@ const Dashboard = () => {
                             <a href="#">Eocean</a>
                         </li>
 
-                        <li className="dropdown">
+                        <li className="dropdown login_dropdown_menu">
                             <a className="dropdown dropdown-toggle" href="#" data-bs-toggle="dropdown"><img src={user_img} /></a>
                             <ul className="dropdown-menu">
+                                <li>
+                                    <div className="user_detail_section">
+                                        <h3>Hassan Nasir</h3>
+                                        <p>hassan.nasir@eocean.com.pk</p>
+                                    </div>
+                                </li>
                                 <li className="dropdown-item"><a href="#" onClick={logOut}> <img src={switch_icon} /> Logout</a></li>
                             </ul>
                         </li>
