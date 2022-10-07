@@ -5,10 +5,13 @@ import * as Yup from 'yup';
 import CrudService from "../../../services/crud.service";
 import { Link } from "react-router-dom";
 import { useDownloadExcel } from 'react-export-table-to-excel';
+import List from './List.js'
 
 
 
 const FormDetail = ({row,loadList}) => {
+
+  const [contentPage, setContentPage] = useState('');
 
   const tableRef = useRef(null);
   
@@ -17,6 +20,7 @@ const { onDownload } = useDownloadExcel({
         filename: `${row.name}`,
         sheet: 'Users'
     })
+
 
   return (
     <>

@@ -306,13 +306,13 @@
     justify-content: center;
   }
   .chat-bot-container .content-hld .section .chat-body{
-    width: 90%;
+    width: 85%;
   }
   .chat-bot-container .content-hld .foot{
     justify-content: center;
   }
   .chat-bot-container .content-hld .foot .msg-send-composer{
-    width: 90%;
+    margin: 0.2rem 2.5rem 0.5rem 2.5rem;
   }
 }
 
@@ -326,13 +326,13 @@
     justify-content: center;
   }
   .chat-bot-container .content-hld .section .chat-body{
-    width: 85%;
+    width: 80%;
   }
   .chat-bot-container .content-hld .foot{
     justify-content: center;
   }
   .chat-bot-container .content-hld .foot .msg-send-composer{
-    width: 85%;
+    margin: 0.2rem 3.5rem 0.5rem 3.5rem;
   }
 }
 
@@ -340,7 +340,8 @@
   .chat-bot-container{
     background: url("../../assets/bg_chat_img_1366.png") no-repeat center ;
     min-width: 400px;
-    padding-top: 30px;
+    padding-top: 20px;
+    padding-bottom: 30px;
     top: 80px;
   }
   .chat-bot-container .content-hld .cl{
@@ -351,13 +352,13 @@
     justify-content: center;
   }
   .chat-bot-container .content-hld .section .chat-body{
-    width: 80%;
+    width: 77%;
   }
   .chat-bot-container .content-hld .foot{
     justify-content: center;
   }
   .chat-bot-container .content-hld .foot .msg-send-composer{
-    width: 80%;
+    margin: 0.2rem 3.9rem 0.5rem 3.9rem;
   }
 }
 
@@ -365,17 +366,19 @@
   .chat-bot-container{
     background: url("../../assets/bg_chat_img_1280.png") no-repeat center ;
     min-width: 350px;
+    padding-top: 30px;
+    top: 80px;
   }
   .chat-bot-container .content-hld .section{
     justify-content: center;
   }
   .chat-bot-container .content-hld .section .chat-body{
-    width: 77%;
+    width: 72%;
   }
   .chat-bot-container .content-hld .foot{
     justify-content: center;
   }
   .chat-bot-container .content-hld .foot .msg-send-composer{
-    width: 77%;
+    margin: 0.2rem 4.2rem 0.5rem 4.2rem;
   }
 }
