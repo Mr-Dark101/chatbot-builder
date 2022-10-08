@@ -93,7 +93,7 @@ useEffect(() => {
 
        
       
-        {name:'Integration',controller:'Integration',icon:integration},
+        /*{name:'Integration',controller:'Integration',icon:integration},*/
         {name:'API',controller:'Api',icon:api},
        
         {name:'Form Builder',controller:'FormBuilder',icon:api},

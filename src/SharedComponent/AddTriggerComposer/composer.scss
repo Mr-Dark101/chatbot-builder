@@ -30,7 +30,7 @@
             line-height: 17px;
             font-weight: 500;
             color: #fff;
-            font-family: 'Segoe';
+            font-family: 'Segoe UI Regular';
             
           }
 
@@ -48,7 +48,7 @@
                 color: #fff;
                 text-align: left;
                 margin-bottom: 10px;
-                font-family: 'Segoe';
+                font-family: 'Segoe UI Regular';
               }
             }
 
@@ -61,11 +61,11 @@
                 outline: none;
                 text-decoration: none;
                 border: none;
-                font-family: 'Segoe';
+                font-family: 'Segoe UI Regular';
 
                 &::placeholder {
                   font-size: 14px;
-                  font-family: 'Segoe';
+                  font-family: 'Segoe UI Regular';
                 }
               }
             }
@@ -93,7 +93,7 @@
                 line-height: 17px;
                 font-weight: 500;
                 margin-right: 20px;
-                font-family: 'Segoe';
+                font-family: 'Segoe UI Regular';
               }
 
               .icon {
@@ -137,7 +137,7 @@
               outline: none;
               font-size: 14px;
               line-height: 17px;
-              font-family: 'Segoe';
+              font-family: 'Segoe UI Regular';
             }
             .btn-danger {
               display: flex;
@@ -151,7 +151,7 @@
               outline: none;
               font-size: 14px;
               line-height: 17px;
-              font-family: 'Segoe';
+              font-family: 'Segoe UI Regular';
             }
           }
 
@@ -176,7 +176,7 @@
               font-weight: 700;
               font-size: 14px;
               line-height: 17px;
-              font-family: 'Segoe';
+              font-family: 'Segoe UI Regular';
             }
 
             .btn-tcb.on {
@@ -295,7 +295,7 @@
                   line-height: 17px;
                   outline: none;
                   cursor: pointer;
-                  font-family: 'Segoe';
+                  font-family: 'Segoe UI Regular';
 
                   span{
                     margin-right: 15px;
@@ -333,7 +333,7 @@
                   font-size: 14px;
                   line-height: 17px;
                   color: #000;
-                  font-family: 'Segoe';
+                  font-family: 'Segoe UI Regular';
                   text-align: left;
                 }
               }
@@ -688,7 +688,7 @@
               line-height: 17px;
               
               cursor: pointer;
-              font-family: 'Segoe';
+              font-family: 'Segoe UI Regular';
             }
           }
 
@@ -866,7 +866,7 @@
   font-size: 14px !important;
   line-height: 16px !important;
   color: #000 !important;
-  font-family: 'Segoe';
+  font-family: 'Segoe UI Regular';
 }
 .fallback_button i{
   margin-right: 12px;

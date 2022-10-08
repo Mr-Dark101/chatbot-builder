@@ -230,7 +230,7 @@ const CreateBotComposer = (props) => {
                                         })
                                     }}>
                                     <div className={`icon on-whats-app`}>
-                                        <img className="img-responsive" alt="WhatsApp" src={!onHover ? whatsAppIcon : whatsAppIconWhite} style={{width: '52px',height: '52px'}} />
+                                        <img className="img-responsive" alt="WhatsApp" src={!onHover ? whatsAppIcon : whatsAppIconWhite} style={{width: '42px',height: '42px'}} />
                                     </div>
                                     
                                 </div>
@@ -249,7 +249,7 @@ const CreateBotComposer = (props) => {
 
                                 >
                                     <div className={`icon on-messenger-app`}>
-                                        <img alt="Facebook" src={comingSoon ? comingSoonIcon : MessengerIcon} style={{width: '52px',height: '52px'}} />
+                                        <img alt="Facebook" src={comingSoon ? comingSoonIcon : MessengerIcon} style={{width: '42px',height: '42px'}} />
                                     </div>
                                    
                                 </div>
@@ -269,7 +269,7 @@ const CreateBotComposer = (props) => {
 
                                 >
                                     <div className={`icon on-messenger-app`}>
-                                        <img alt="Facebook" src={comingSoon ? comingSoonIcon : InstagramIcon} style={{width: '78px',height: '78px'}} />
+                                        <img alt="Facebook" src={comingSoon ? comingSoonIcon : InstagramIcon} style={{width: '62px',height: '62px'}} />
                                     </div>
                                    
                                 </div>
@@ -289,7 +289,7 @@ const CreateBotComposer = (props) => {
 
                                 >
                                     <div className={`icon on-messenger-app`}>
-                                        <img alt="Facebook" src={comingSoon ? comingSoonIcon : GoogleIcon} style={{width: '78px',height: '78px'}} />
+                                        <img alt="Facebook" src={comingSoon ? comingSoonIcon : GoogleIcon} style={{width: '56px',height: '56px'}} />
                                     </div>
                                     
                                 </div>
@@ -297,7 +297,7 @@ const CreateBotComposer = (props) => {
                             </div>
 
                             <br />
-                             <textarea rows="6" placeholder={"Enter ChatBot Description"}
+                             <textarea rows="8" placeholder={"Enter ChatBot Description"}
                                     onChange={(e) => {
                                                     setInit({
                                                         ...init,
