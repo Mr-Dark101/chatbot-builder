@@ -1843,15 +1843,7 @@ const formChange = (form_id) => {
                                                             />
                                                         }
 
-                                                        <img alt={"#"} src={edit_icon} onClick={() => {
-                                                            setInit({
-                                                                ...init,
-                                                                currentData: {
-                                                                    ...init.currentData,
-                                                                    triggerMenus: init.currentData.triggerMenus.filter((d) => d.id !== m.id)
-                                                                }
-                                                            })
-                                                        }}/>
+                                                        
 
                                                         <img alt={"#"} src={trash_icon} onClick={() => {
                                                             setInit({

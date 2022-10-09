@@ -60,7 +60,7 @@ const deleteMe  = (id) => {
 
     const deleteRow = (id) => {
        
-            CrudService.deleteRow(id,'patient_insurance',true).then(
+            CrudService.deleteRow(id,'form_builder',true).then(
             (response) => {
               toast("Record has been deleted!",{type: toast.TYPE.SUCCESS})
               setMessage(response.data.message);
@@ -140,14 +140,15 @@ const deleteMe  = (id) => {
                     <tr>
                       <td>{row.name}</td>
                       <td>{
-                          (row.Forms.length > 0 ? <a href="#" onClick={() => subPage(<FormDetail loadList={loadList} row={row} />)}>{row.Forms.length}</a> : 0)
+                          (row.Forms.length > 0 ? <a href="#" onClick={() => subPage(<FormDetail loadList={loadList} subPage={subPage} row={row} />)}>{row.Forms.length}</a> : 0)
 
                         }</td>
                     
                      
                       <td>
                       <button className="warningsmall" onClick={() => subPage(<Edit  loadList={loadList} retrieveList={retrieveList} rs={row} />)} >Edit</button>
-                      <button style={{marginLeft:5}} className="warningsmall" onClick={() => deleteMe(row.id)} >Delete</button>
+                      {(row.Forms.length == 0) ? (<button style={{marginLeft:5}} className="warningsmall" onClick={() => deleteMe(row.id)} >Delete</button>) : null}
+                      
                       </td>
                     </tr>
                     ))}

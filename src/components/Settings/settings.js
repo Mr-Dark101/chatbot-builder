@@ -94,9 +94,9 @@ useEffect(() => {
        
       
         /*{name:'Integration',controller:'Integration',icon:integration},*/
-        {name:'API',controller:'Api',icon:api},
+        {name:'API',controller:'Api',icon:api,white:api_white},
        
-        {name:'Form Builder',controller:'FormBuilder',icon:api},
+        {name:'Form Builder',controller:'FormBuilder',icon:api,white:api_white},
        
 
     ];
@@ -105,14 +105,14 @@ useEffect(() => {
             Menu = [
 
             
-            {name:'Channels',controller:'Channels',icon:myprofile},
-            {name:'Industry',controller:'Industry',icon:myprofile},
-            {name:'Platform',controller:'Platform',icon:myprofile},
+            {name:'Channels',controller:'Channels',icon:myprofile,white:api_white},
+            {name:'Industry',controller:'Industry',icon:myprofile,white:api_white},
+            {name:'Platform',controller:'Platform',icon:myprofile,white:api_white},
           
-            {name:'API Template',controller:'ApiTemplate',icon:api},
+            {name:'API Template',controller:'ApiTemplate',icon:api,white:api_white},
 
           
-            {name:'Customer',controller:'Customer',icon:api},
+            {name:'Customer',controller:'Customer',icon:api,white:api_white},
 
 
         ];
@@ -151,7 +151,7 @@ useEffect(() => {
                                     Menu.map((m,i) => (
                                     <>
                                     {m.controller == activeClass ? 
-                                        (<li ><a href="#" className="active"  onClick={() => changeContent(m.controller)}><img alt={"#"} src={m.icon}/>{m.name}</a></li>
+                                        (<li ><a href="#" className="active"  onClick={() => changeContent(m.controller)}><img alt={"#"} src={m.white}/>{m.name}</a></li>
                                     ) : 
 
                                     (<li><a href="#"  onClick={() => changeContent(m.controller)}><img alt={"#"} src={m.icon}/>{m.name}</a></li>

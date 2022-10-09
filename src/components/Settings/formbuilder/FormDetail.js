@@ -9,7 +9,7 @@ import List from './List.js'
 
 
 
-const FormDetail = ({row,loadList}) => {
+const FormDetail = ({row,loadList,subPage}) => {
 
   const [contentPage, setContentPage] = useState('');
 
@@ -37,7 +37,7 @@ const { onDownload } = useDownloadExcel({
 
 
                    
-                  <button type="button" className="btn btn-secondary me-10">Back</button>
+                  <button type="button" onClick={() => subPage(<List rs={loadList} subPage={subPage}  />)} className="btn btn-secondary me-10">Back</button>
                    <button type="button" className="btn btn-danger" onClick={onDownload}> Export excel </button>
 
                

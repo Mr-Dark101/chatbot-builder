@@ -158,18 +158,19 @@ export const uploadFile = (file) => dispatch => {
 
 export const UpdateTriggerMenusText = ({id, text}) => dispatch => {
     // console.log("updateTriggersMenuTextSuccess", {id, text});
-    API.put(`/updateTriggerMenuText`, {id, text}).then((res) => {
-        // console.log("updateTriggersMenuTextSuccess", res);
-        if (res.status === STRINGS.API_STATUS.SUCCESS) {
-            if (res.data.status === 1) {
-                dispatch(updateTriggersMenuTextSuccess(res.data.message));
-            } else {
-                dispatch(isError(res.data.message))
-            }
-        }
-    }).catch((ex) => {
-        dispatch(isError(ex))
-    })
+    dispatch(updateTriggersMenuTextSuccess("changed"));
+    // API.put(`/updateTriggerMenuText`, {id, text}).then((res) => {
+    //     // console.log("updateTriggersMenuTextSuccess", res);
+    //     if (res.status === STRINGS.API_STATUS.SUCCESS) {
+    //         if (res.data.status === 1) {
+    //             dispatch(updateTriggersMenuTextSuccess(res.data.message));
+    //         } else {
+    //             dispatch(isError(res.data.message))
+    //         }
+    //     }
+    // }).catch((ex) => {
+    //     dispatch(isError(ex))
+    // })
 }
 
 export const openTriggerCard = (obj) => dispatch => {
