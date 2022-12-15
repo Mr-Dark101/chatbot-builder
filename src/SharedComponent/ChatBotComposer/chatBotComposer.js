@@ -173,11 +173,6 @@ const ChatBotComposer = ({onClose}) => {
                     setConditionType(data[i].conditionType);
                     setSimpleValues(data[i].simpleValues);
 
-
-
-                    
-                    
-
                     if(trigger.xapi > 0){
 
                         const apiResponse = await ApiData(trigger.xparam,trigger.xapi).then((rData) => {

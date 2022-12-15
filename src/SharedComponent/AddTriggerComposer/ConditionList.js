@@ -402,7 +402,7 @@ const handleResponseSelect = (name) => {
                 modalText={confirmationTxt}
                 handleCancel={alertClose}
             />
-        <div className="add_api_section" style={{border:'1px solid #ccc',borderColor:'#fff',width:'100%',borderWidth:1,padding:10,marginTop:10}}>
+        <div className="add_api_section" style={{border:'1px solid #000',borderColor:'#000',width:'100%',borderWidth:1,padding:10,marginTop:10}}>
         <div className="row">
             <div className="col-sm-6"><span className="field_label">Label</span>
                 

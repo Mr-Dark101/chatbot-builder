@@ -7,7 +7,18 @@ export const ApiOrder = (obj,apiId) => async dispatch => {
     // dispatch(updateTriggersSuccess(obj))
     // dispatch(openTriggerCard(false))
    
-    return API.get(`/bot-api?tenent_id=${localStorage.getItem("tenent_id")}&id=${apiId}&param=${obj}`).then((res) => {
+    /*return API.get(`/bot-api?tenent_id=${localStorage.getItem("tenent_id")}&id=${apiId}&param=${obj}`).then((res) => {
+        // console.log("updateTrigger", res);
+
+        return {message:'Found',data:res}
+    }).catch((ex) => {
+        return {message:'Not Found',data:false};
+    })*/
+    let orgId = localStorage.getItem("org_unit_id");
+    orgId = orgId.replace('\"','');
+    orgId = orgId.replace('%22','');
+    console.log("Org_UNIT_ID" + orgId);
+     return API.get(`/bot-api?org=${orgId}&id=${apiId}&param=${obj}`).then((res) => {
         // console.log("updateTrigger", res);
 
         return {message:'Found',data:res}

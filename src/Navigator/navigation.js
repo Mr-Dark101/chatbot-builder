@@ -10,18 +10,19 @@ const Navigation = () => {
     const dashboard = useSelector(({Reducers})=> Reducers.dashboard)
    
     useEffect(() => {
-       
-        if(dashboard.currentUser !== 0 || localStorage.getItem("userId") !== null){
-            if(window.location.pathname === "/"){
-                window.onloadend = () => {
-                    history.push(`${STRINGS.ROUTES.ROOT}?org=${localStorage.getItem("userId")}`);
-                }
-            }else{
-                window.onload = () => {
-                    history.push(`${STRINGS.ROUTES.ROOT}?org=${localStorage.getItem("userId")}`);
-                    //history.push(`/settings?org=${localStorage.getItem("userId")}`);
-                }
-            }
+        //alert(dashboard.currentUser + " " + localStorage.getItem("userId"))
+        if(localStorage.getItem("userId") !== null){
+             history.push(`${STRINGS.ROUTES.ROOT}?org=${localStorage.getItem("userId")}`);
+            // if(window.location.pathname === "/"){
+            //     window.onloadend = () => {
+            //         history.push(`${STRINGS.ROUTES.ROOT}?org=${localStorage.getItem("userId")}`);
+            //     }
+            // }else{
+            //     window.onload = () => {
+            //         history.push(`${STRINGS.ROUTES.ROOT}?org=${localStorage.getItem("userId")}`);
+            //         //history.push(`/settings?org=${localStorage.getItem("userId")}`);
+            //     }
+            // }
         }
         else{
             window.onload = () => {

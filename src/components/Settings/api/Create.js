@@ -155,7 +155,7 @@ const FormSchema = Yup.object().shape({
             onSubmit={onSubmit}
           >
 
-                <h5 className="main_heading">Add New Custom API</h5>
+                <h5 className="main_heading">Create custom API</h5>
                 
                 <div className="row" style={{marginLeft: '0px',marginRight: '0px'}}>
                     <div className="col-9" style={{paddingLeft: '0px',paddingRight: '0px'}}>
@@ -163,7 +163,7 @@ const FormSchema = Yup.object().shape({
                        <div className="field_section">
                           <TextField 
                             name="name"
-                            label="Api Name"
+                            label="API Name"
                           />
                         </div>
 
@@ -171,7 +171,7 @@ const FormSchema = Yup.object().shape({
                          <div className="field_section">
                           <SelectField 
                             name="api_type"
-                            label="Type"
+                            label="API Type"
                             options={typeList}
                           />
                         </div>
@@ -180,7 +180,7 @@ const FormSchema = Yup.object().shape({
                         <div className="field_section mb-20">
                           <TextField 
                             name="url"
-                            label="Url"
+                            label="API End point URL"
                           />
                         </div>
 
@@ -188,13 +188,13 @@ const FormSchema = Yup.object().shape({
                         <div className="field_section mb-20">
                           <TextAreaField 
                             name="description"
-                            label="Description"
+                            label="API Description"
                             placeholder="Description"
                             rows="3"
                           />
                         </div>
 
-                        <label style={{marginBottom: '0px'}}>Header</label>
+                        <label style={{marginBottom: '0px'}}>API Header</label>
                         
 
                         {headerField && headerField.map((x, i) => {
@@ -260,7 +260,7 @@ const FormSchema = Yup.object().shape({
 
             <div>
                 <SubmitButton
-                 title="Create"
+                 title="Update"
                  className="primary"
                   
               />

@@ -104,7 +104,7 @@ const deleteMe  = (id) => {
 
     const deleteRow = (id) => {
        
-            CrudService.deleteRow(id,'api_bot',true).then(
+            CrudService.deleteRow(id,'patient_insurance',true).then(
             (response) => {
               toast("Record has been deleted!",{type: toast.TYPE.SUCCESS})
               setMessage(response.data.message);
@@ -163,7 +163,7 @@ const deleteMe  = (id) => {
                   </div>
 
                   <div className="col-sm-9">
-                    <button type="button" onClick={() => subPage(<Create loadList={loadList} retrieveList={retrieveList} rs={rs} />)} className="btn btn_custom_api float-end"><img src={plus_icon} /> Add New Custom API</button>
+                    <button type="button" onClick={() => subPage(<Create loadList={loadList} retrieveList={retrieveList} rs={rs} />)} className="btn btn_custom_api float-end"><img src={plus_icon} /> Create custom API</button>
                   </div>
                 </div>
 
@@ -201,7 +201,7 @@ const deleteMe  = (id) => {
                       <div className="button_section">
                       {row.build_type == 'C' ? ( <button className="api_edit_button" onClick={() => subPage(<Edit  loadList={loadList} retrieveList={retrieveList} rs={row} />)} ><img src={edit_icon} /></button>) : null}
                        
-                        <button style={{marginLeft:5,display:'none'}} className="api_edit_button" onClick={() => deleteMe(row.id)} ><img src={delete_icon} /></button>
+                        <button style={{marginLeft:5}} className="api_edit_button" onClick={() => deleteMe(row.id)} ><img src={delete_icon} /></button>
                       </div>
                       </td>
                     </tr>

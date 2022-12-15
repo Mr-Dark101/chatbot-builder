@@ -26999,7 +26999,7 @@ textarea.form-control {
 
 .box-title {
   z-index: auto;
-  color: #10163a; }
+  color: #363a77; }
   .box-title.box-title-bold {
     font-weight: 900; }
   .box-title code {
@@ -32009,7 +32009,7 @@ img.away, img.busy, img.offline, img.online {
 /*new css*/
 
 .left_navbar{
-  background-color: #10163A;
+  background-color: #363a77;
   padding: 0px 10px;
   position: relative;
   height: 1000px;
@@ -32048,7 +32048,7 @@ img.away, img.busy, img.offline, img.online {
 ._modal .home_bot_modal.modal-content{
   padding: 30px 40px;
   width: 716px !important;
-  height: 639px !important;
+  height: 670px !important;
 }
 ._modal .home_bot_modal.modal-content .modal-section .bot-category-holder .category-box{
   margin: 0px 20px 0px 0px;
@@ -32093,7 +32093,7 @@ img.away, img.busy, img.offline, img.online {
 }
 .MuiDrawer-root .MuiPaper-root{
   /*width: 636px !important;*/
-  background-color: #234f5cbf !important;
+  background-color: #f0f8fe !important;
   padding: 20px 0px;
 }
 .right_bar_top_section{
@@ -32125,10 +32125,10 @@ img.away, img.busy, img.offline, img.online {
   background-color: #fff;
 }
 .composer-container .composer-content .trigger-card .card-content .row__ .acts .ab-txt .check-box .MuiCheckbox-root{
-  color: #fff !important;
+  color: #000 !important;
 }
 .btn_response{
-  background-color: #10163A;
+  background-color: #363a77;
   border-radius: 5px;
   border: 0;
   font-weight: 400;
@@ -32194,7 +32194,7 @@ img.away, img.busy, img.offline, img.online {
   border-bottom: 0px !important;
 }
 .add_api_section .field_label{
-  color: #fff;
+  color: #000;
   font-weight: 400;
   font-size: 14px;
   line-height: 17px;
@@ -32219,7 +32219,7 @@ img.away, img.busy, img.offline, img.online {
   margin-bottom: 10px;
 }
 .setting_left_bar_section ul li a{
-  color: #10163a;
+  color: #363a77;
   font-weight: 400;
   font-size: 14px;
   line-height: 16px;
@@ -32229,12 +32229,12 @@ img.away, img.busy, img.offline, img.online {
   font-family: "Segoe UI Regular";
 }
 .setting_left_bar_section ul li a:hover{
-  background-color: #10163A;
+  background-color: #363a77;
   border-radius: 5px;
   color: #fff;
 }
 .setting_left_bar_section ul li a.active{
-  background-color: #10163A;
+  background-color: #363a77;
   border-radius: 5px;
   color: #fff;
 }
@@ -32248,26 +32248,26 @@ img.away, img.busy, img.offline, img.online {
   font-weight: 700;
   font-size: 16px;
   line-height: 18px;
-  color: #10163a;
+  color: #363a77;
 }
 .api_form_section label{
   font-weight: 700;
   font-size: 16px;
   line-height: 18px;
-  color: #10163a;
+  color: #363a77;
   margin-bottom: 10px;
   font-family: "Segoe UI Regular";
 }
 .primary{
-  border: 1px solid #10163A !important;
+  border: 1px solid #363a77 !important;
 }
 .simple_response_section{
-  border: 1px solid #fff;
+  border: 1px solid #000;
   padding: 10px;
   margin: 10px 0px;
 }
 .simple_response_section .field_label{
-  color: #fff;
+  color: #000;
   font-weight: 400;
   font-size: 14px;
   line-height: 17px;
@@ -32277,20 +32277,20 @@ img.away, img.busy, img.offline, img.online {
   margin: 10px 0px;
 }
 .simple_response_section .add_label_section span{
-  color: #fff;
+  color: #000;
   font-weight: 400;
   font-size: 14px;
   line-height: 17px;
   font-family: 'Inter', sans-serif;
 }
 .composer-container .composer-content .trigger-card .card-content .row__ .txt-field .MuiInputBase-root{
-  color: #fff;
+  color: #000;
 }
 .composer-container .composer-content .trigger-card .card-content .row__ .txt-field .MuiSvgIcon-root{
   color: #fff;
 }
 .composer-container .composer-content .trigger-card .card-content .row__ .txt-field .MuiOutlinedInput-notchedOutline{
-  border: 1px solid #fff;
+  border: 1px solid #000;
 }
 .integration_page{
   padding: 20px;
@@ -32300,14 +32300,14 @@ img.away, img.busy, img.offline, img.online {
   font-size: 14px;
   line-height: 16px;
   font-family: 'Segoe UI Regular';
-  color: #10163a;
+  color: #363a77;
 }
 .integration_page .section_main_heading{
   font-weight: 700;
   font-size: 14px;
   line-height: 16px;
   font-family: 'Segoe UI Regular';
-  color: #10163a;
+  color: #363a77;
   margin-top: 30px;
 }
 .integration_page .section_box{
@@ -32334,7 +32334,7 @@ img.away, img.busy, img.offline, img.online {
   margin-right: 20px;
 }
 .page_data_setting .btn_custom_api{
-  background-color: #10163A !important;
+  background-color: #363a77 !important;
   border-radius: 6px;
   font-family: "Segoe UI Regular";
   font-size: 16px;
@@ -32353,7 +32353,7 @@ img.away, img.busy, img.offline, img.online {
   font-size: 14px;
   line-height: 16px;
   font-family: "Segoe UI Regular";
-  color: #10163a;
+  color: #363a77;
 }
 .page_data_setting .api_list_page{
   border-right: 1px solid #ccc;
@@ -32365,7 +32365,7 @@ img.away, img.busy, img.offline, img.online {
   font-weight: 700;
   font-size: 14px;
   line-height: 16px;
-  color: #10163A;
+  color: #363a77;
   font-family: "Segoe UI Regular";
 }
 .page_data_setting .api_list_page .text_section p{
@@ -32399,7 +32399,7 @@ img.away, img.busy, img.offline, img.online {
   font-size: 14px;
   line-height: 16px;
   font-family: "Segoe UI Regular";
-  color: #10163a;
+  color: #363a77;
   padding: 20px;
   margin-bottom: 0px;
 }
@@ -32411,7 +32411,7 @@ img.away, img.busy, img.offline, img.online {
   font-weight: 700;
   font-size: 14px;
   line-height: 16px;
-  color: #10163A;
+  color: #363a77;
   font-family: "Segoe UI Regular";
 }
 .page_data_setting .available_api_section .text_section p{
@@ -32446,19 +32446,19 @@ img.away, img.busy, img.offline, img.online {
 }
 .integration_platform_page{
   padding: 20px;
-  color: #10163a;
+  color: #363a77;
 }
 .integration_platform_page .main_heading{
     font-weight: 700;
     font-size: 20px;
     line-height: 24px;
     font-family: "Segoe UI Regular";
-    color: #10163a;
+    color: #363a77;
     margin-bottom: 0px;
     margin-top: 20px;
 }
 thead.bg-primary{
-  background-color: #10163A !important;
+  background-color: #363a77 !important;
   color: #fff;
   font-family: 'Inter', sans-serif;
 }
@@ -32480,14 +32480,14 @@ thead.bg-primary{
   color: #000;
 }
 .customer_technology_page .patient_tabs_section li.active{
-  background-color: #10163A;
+  background-color: #363a77;
 
 }
 .customer_technology_page .patient_tabs_section li.active a{
   color: #fff;
 }
 .customer_technology_page .patient_tabs_section li:hover{
-  background-color: #10163A;
+  background-color: #363a77;
 }
 .customer_technology_page .patient_tabs_section li:hover a{
   color: #fff;
@@ -32525,14 +32525,14 @@ thead.bg-primary{
   font-size: 14px;
   line-height: 16px;
   font-family: "Segoe UI Regular";
-  color: #10163a;
+  color: #363a77;
 }
 .home_top_section ul li.dropdown-item a{
   font-weight: 700;
   font-size: 14px;
   line-height: 16px;
   font-family: "Segoe UI Regular";
-  color: #10163a;
+  color: #363a77;
   display: flex;
   align-items: center;
 }
@@ -32546,13 +32546,13 @@ thead.bg-primary{
   top: 0px !important;
 }
 .api_composer_container.composer-container .composer-content .trigger-card .card-content .row__ .txt{
-  color: #10163a !important;
+  color: #363a77 !important;
 }
 .api_composer_container .simple_response_section .field_label{
-  color: #10163a !important;
+  color: #363a77 !important;
 }
 .api_composer_container .simple_response_section .add_label_section span{
-  color: #10163a !important;
+  color: #363a77 !important;
 }
 .api_composer_container .simple_response_section{
   border: 1px solid #ccc;
@@ -32564,7 +32564,7 @@ thead.bg-primary{
   font-size: 20px;
 }
 .dashboard_setting{
-  background-color: #10163A !important;
+  background-color: #363a77 !important;
   border-radius: 6px;
   font-family: "Segoe UI Regular";
   font-size: 14px;
@@ -32572,30 +32572,30 @@ thead.bg-primary{
   line-height: 18px;
   font-weight: 400;
   padding: 10px 25px;
-  border: 1px solid #10163A !important;
+  border: 1px solid #363a77 !important;
   margin-top: 40px;
 }
 .dashboard_setting:hover{
-  background-color: #10163A !important;
-  border: 1px solid #10163A !important;
+  background-color: #363a77 !important;
+  border: 1px solid #363a77 !important;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
   color: #fff !important;
 }
 
 .ql-editor p{color: #000;}
 .home_bot_modal .modal-section label{
-  color: #10163a;
+  color: #000;
 }
 .login_dropdown_menu .user_detail_section h3{
   margin: 0px;
-  color: #10163a;
+  color: #363a77;
   font-size: 18px;
   line-height: 22px;
   font-family: "Segoe UI Regular";
 }
 .login_dropdown_menu .user_detail_section p{
   margin: 0px;
-  color: #10163a;
+  color: #363a77;
   font-size: 14px;
   line-height: 18px;
   font-family: "Segoe UI Regular";
@@ -32604,7 +32604,7 @@ thead.bg-primary{
   padding: 15px;
 }
 .login_dropdown_menu li a{
-  color: #10163a;
+  color: #363a77;
 }
 /*new css*/
 /*Adding New Style.css (M Hassaan Nasir)*/
@@ -32625,7 +32625,7 @@ thead.bg-primary{
 
 .main-menu.menu-dark {
   color: black !important;
-  background: #10163a !important;
+  background: #363a77 !important;
 }
 
 .main-menu .navbar-header {
@@ -32746,7 +32746,7 @@ a.nav-link.modern-nav-toggle.pr-0 {
 .main-menu .main-menu-content {
   /* height: calc(100% - -10.55rem) !important; */
   position: relative;
-  background: #10163a !important;
+  background: #363a77 !important;
 }
 
 ul#main-menu-navigation {
