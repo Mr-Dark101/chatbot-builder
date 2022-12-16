@@ -235,7 +235,7 @@ const FormSchema = Yup.object().shape({
                          <div className="field_section mb-20">
                           <TextAreaField 
                             name="payload"
-                            label="Payload"
+                            label="API Payload"
                             placeholder="Payload"
                             rows="3"
                           />

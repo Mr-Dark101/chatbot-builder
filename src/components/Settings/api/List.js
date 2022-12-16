@@ -159,7 +159,7 @@ const deleteMe  = (id) => {
      
                       <div className="row px-30 py-20 media-center">
                   <div className="col-sm-3">
-                    <h3 className="page_heading m-0">My API’s</h3>
+                  <h4 style={{fontWeight:800}}  className="box-title m-0">My Custom APIs</h4>
                   </div>
 
                   <div className="col-sm-9">
