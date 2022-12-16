@@ -66,6 +66,14 @@ const removeFieldOption = (i,label,parentIndex) => {
   //console.log(headerField)
 }
 
+const removeFieldRegular = (i,label,parentIndex) => {
+  
+  const list = [...headerField];
+  const newArray = headerField[parentIndex]['regularexpression'].filter((d) => d.label !== label);
+ 
+  list[parentIndex]['regularexpression'] = newArray;
+  setHeaderField(list);
+}
 
 const addFieldOption = (index) => {
     
@@ -82,7 +90,7 @@ const addFieldOption = (index) => {
 }
 
 
-const typeList = [{value:'text',label:"Text"},{value:"option",label:'Option'}]
+const typeList = [{value:'text',label:"Text"},{value:"number",label:'Number'},{value:"option",label:'Option'},{value:"email",label:'Email'},{value:"cnic",label:'CNIC'},{value:"image",label:'Image'},{value:"video",label:'Video'},{value:"document",label:'Document'},{value:"regularexpression",label:'Regular Expression'}]
 
   const retrieveMasterList = (url) => {
     CrudService.ListValue('master/list-value?type=' + url)
@@ -138,7 +146,7 @@ const FormSchema = Yup.object().shape({
 
     const onSubmit = (values, { setSubmitting, resetForm, setStatus }) => {
 
-     
+      console.log(JSON.stringify(headerField));
        values.form_data = JSON.stringify(headerField);
 
         CrudService.edit(values,'form_builder',true).then(
@@ -197,6 +205,27 @@ const FormSchema = Yup.object().shape({
   
       const list = [...headerField];
         list[indexParent]['option'][index][name] = value;
+
+
+        
+
+        setHeaderField(list);
+ 
+    
+    
+    
+ };
+
+
+ const handleInputChangeRegular = (e, index,param,indexParent) => {
+   
+  const { name, value } = e.target;
+
+
+
+  
+      const list = [...headerField];
+        list[indexParent]['regularexpression'][index][name] = value;
 
 
         
@@ -364,6 +393,43 @@ const FormSchema = Yup.object().shape({
                                                       <button type="button" className="primary btn-danger mt-20" onClick={() => addFieldOption(i)}>Add Option</button>
                                                 </>
                                                 ) : null}
+
+                                                
+                                        {/* Adding Regular Expression */}
+                                        {(x.type == 'regularexpression') ? (
+                                          <>
+
+                                              <div style={{marginTop: '20px'}}>Regular Expression</div>
+
+                                                {
+                                                    headerField[i]['regularexpression'].map((o, io) => {
+
+                                                        return (<>
+
+
+                                                              <div className="row align-items-center" >
+                                                               
+                                                                 <div className="col-sm-10">
+
+
+                                                                      <TextField 
+                                                                        name="value"
+                                                                        placeholder="Reg([/hello/])"
+                                                                        value={o.value}
+                                                                        onChange={e => handleInputChangeRegular(e, io,'phone',i)}
+                                                                        style={{marginTop: '-10px'}}
+                                                                      />
+                                                                 </div>
+                                                                 <div className="col-sm-1">
+                                                                    <br />
+                                                                    <a className="link_delete_icon" href="javascript:void(0)" onClick={() => removeFieldRegular(io,o.key,i)}><i className="fa fa-trash"></i></a>
+                                                                 </div>
+                                                              </div>
+
+                                                        </>)                                              
+                                                })}
+                                          </>
+                                          ) : null} 
 
                             </div>
 

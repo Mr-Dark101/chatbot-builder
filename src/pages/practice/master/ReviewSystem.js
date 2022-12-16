@@ -164,8 +164,8 @@ const deleteMe  = (id) => {
   cancelBtnText="No"
   confirmBtnBsStyle="primary"
   cancelBtnBsStyle="light"
-  customIcon="https://raw.githubusercontent.com/djorg83/react-bootstrap-sweetalert/master/demo/assets/thumbs-up.jpg"
-  title="Are you sure delete this record.?"
+  customIcon=""
+  title="Are you sure?"
 
   
   onConfirm={() => {

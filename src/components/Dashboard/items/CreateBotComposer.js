@@ -13,6 +13,7 @@ import $ from 'jquery';
 import { useDispatch } from 'react-redux';
 import { createUserBot, updateUserBot,getChannelVerify } from '../slices/dashboard.slice';
 import AlertModal from '../../../SharedComponent/ConfirmModal/ChannelModal';
+import { fontWeight, width } from '@mui/system';
 const defaultState = {
    isAlert: false,
       openComposer: false,
@@ -133,6 +134,17 @@ const CreateBotComposer = (props) => {
       });
    };
 
+
+   const alertCloseLink = () => {
+       window.open('https://eoceanwabaqa.com/eoceanwab/channels/index', '_blank', 'noopener,noreferrer');
+      setInit({
+         ...init,
+         isAlert: false,
+         isUpdatedList: true,
+         confirmationTxt: '',
+      });
+   };
+
    const handleFileUpload = (files, type) => {
       if (type === 1) {
          let all = [...files];
@@ -172,62 +184,63 @@ const CreateBotComposer = (props) => {
    };
 
    const handleSelectBot = async (category,categoryText) => {
-     const apiReturn =  await dispatch(getChannelVerify(category))
-     if(apiReturn.error){
-
-         
-
-
-
-         if (init.selected.includes(category)) {
-            setInit({
-               ...init,
-               isAlert: false,
-               buttonText: categoryText,
-               confirmationTxt: `Before you can add chatbot to ${categoryText}, you need to connect a ${categoryText} page.`,
-               selected: init.selected.filter((d) => d !== category),
-               });
-         } else {
-            setInit({
-               ...init,
-               isAlert: true,
-               buttonText: categoryText,
-               confirmationTxt: `Before you can add chatbot to ${categoryText}, you need to connect a ${categoryText} page.`,
-               selected: [...init.selected, category],
-            });
-         }
-
-
-
-     }else{
-
-
-         if (init.selected.includes(category)) {
-         setInit({
-            ...init,
-
-            selected: init.selected.filter((d) => d !== category),
-            });
-         } else {
-            setInit({
-               ...init,
-
-               selected: [...init.selected, category],
-            });
-         }
-
-     }
-
-
-     
+      let channel = document.getElementById(category);
+      if (init.selected.includes(category)) {
+         channel.style.color = "#000";
+      } else {
+         channel.style.color = "#ffffff";
+      }
+      let apiReturn =  await dispatch(getChannelVerify(category))
+      if(category == 'whatsapp'){
+            apiReturn.error = false;
+      }
       
+      if(apiReturn.error){
+      
+          if (init.selected.includes(category)) {
+          
+             setInit({
+                ...init,
+                isAlert: false,
+                buttonText: categoryText,
+                confirmationTxt: `Before you can add chatbot to ${categoryText}, you need to connect a ${categoryText} page.`,
+                selected: init.selected.filter((d) => d !== category),
+                });
+          } else {
+          
+             setInit({
+                ...init,
+                isAlert: true,
+                buttonText: categoryText,
+                confirmationTxt: `Before you can add chatbot to ${categoryText}, you need to connect a ${categoryText} page.`,
+                selected: [...init.selected, category],
+             });
+          }
+      } else{
+       
+          if (init.selected.includes(category)) {
+          setInit({
+             ...init,
+ 
+             selected: init.selected.filter((d) => d !== category),
+             });
+          } else {
+             setInit({
+                ...init,
+ 
+                selected: [...init.selected, category],
+             });
+          }
+      } 
    };
 
    const body = (
       <div className="modal-content home_bot_modal">
          <div className="modal-header">
             <div className="header-lft">
-               <div className="txt">{data !== null ? 'Update Bot' : !selectCategory ? 'Create a bot' : 'Create a bot'}</div>
+         
+            <h4 style={{ fontWeight: '800', color: '#000' }}
+                class="box-title m-0">{data !== null ? 'Update Bot' : !selectCategory ? 'Create a bot' : 'Create a bot'}</h4>
             </div>
             <div className="header-rt" />
          </div>
@@ -235,7 +248,7 @@ const CreateBotComposer = (props) => {
          <div className="modal-section">
             <div className="row">
                <div className="col-sm-12">
-                  <label>Name your bot</label>
+                  <label class="mb-2">Name your bot</label>
                   <input
                      className="inp"
                      placeholder={'Provide your chatbot name'}
@@ -252,9 +265,9 @@ const CreateBotComposer = (props) => {
             <br />
 
             
-                  <label>Describe your bot</label>
+                  <label class="mb-2">Describe your bot</label>
                   <textarea
-                     rows="8"
+                     rows="6"
                      placeholder={'Provide your chatBot description'}
                      onChange={(e) => {
                         setInit({
@@ -266,14 +279,14 @@ const CreateBotComposer = (props) => {
                      {botDescription}
                   </textarea>
                   <br /><br />
-            <label>Where would you like to deploy your bot? Select all that apply.</label>
+            <label class="mb-10">Where would you like to deploy your bot? Select all that apply.</label>
             <br />
             <div className="row">
                <div className="col-sm-12">
                   <div className="bot-category-holder">
 
                      <div
-                        style={{ width: '119px', height: '122px' }}
+                        style={{ width: '139px', height: '142px' }}
                         className={`category-box ${init.selected.includes('whatsapp') && 'on-whats-app'}`}
                         onClick={() => handleSelectBot('whatsapp','WhatsApp')}
                         onMouseOver={() => {
@@ -290,12 +303,13 @@ const CreateBotComposer = (props) => {
                         }}
                      >
                         <div className={`icon on-whats-app`}>
-                           <img className="img-responsive" alt="WhatsApp" src={!onHover ? whatsAppIcon : whatsAppIconWhite} style={{ width: '42px', height: '42px' }} />
+                           <img className="img-responsive mb-20" alt="WhatsApp" src={!onHover ? whatsAppIcon : whatsAppIconWhite} style={{ width: '42px', height: '42px' }} />
+                          
                         </div>
-                        
+                        <label id="whatsapp" class="mb-10" style={{ color: '#fff'}}>WhatsApp</label>
                      </div>
                      <div
-                        style={{ width: '119px', height: '122px' }}
+                        style={{ width: '139px', height: '142px' }}
                         onMouseOver={() => {
                            setInit({
                               ...init,
@@ -311,13 +325,15 @@ const CreateBotComposer = (props) => {
                         className={`category-box ${init.selected.includes('messenger') && 'on-facebook'}`}
                         onClick={() => handleSelectBot('messenger','Facebook Messenger')}
                      >
-                        <div className={`icon on-messenger-app`}>
+                        <div className={`icon on-messenger-app mt-10`}>
                            <img alt="Facebook" src={comingSoon ? comingSoonIcon : MessengerIcon} style={{ width: '42px', height: '42px' }} />
+                          
                         </div>
+                        <label id="messenger" class="mt-20 text-center">Facebook Messenger</label>
                      </div>
 
                      <div
-                        style={{ width: '119px', height: '122px' }}
+                        style={{ width: '139px', height: '142px' }}
                         onMouseOver={() => {
                            setInit({
                               ...init,
@@ -333,13 +349,15 @@ const CreateBotComposer = (props) => {
                         className={`category-box ${init.selected.includes('instagram') && 'on-facebook'}`}
                         onClick={() => handleSelectBot('instagram','Instagram')}
                      >
-                        <div className={`icon on-messenger-app`}>
+                        <div className={`icon on-messenger-app mb-10`}>
                            <img alt="Facebook" src={comingSoon ? comingSoonIcon : InstagramIcon} style={{ width: '62px', height: '62px' }} />
+                         
                         </div>
+                        <label id="instagram" class="mb-20">Instagram</label>
                      </div>
 
                      <div
-                        style={{ width: '119px', height: '122px' }}
+                        style={{ width: '139px', height: '142px' }}
                         onMouseOver={() => {
                            setInit({
                               ...init,
@@ -355,9 +373,11 @@ const CreateBotComposer = (props) => {
                         className={`category-box ${init.selected.includes('googlemsg') && 'on-facebook'}`}
                         onClick={() => handleSelectBot('googlemsg','Google')}
                      >
-                        <div className={`icon on-messenger-app`}>
-                           <img alt="Facebook" src={comingSoon ? comingSoonIcon : GoogleIcon} style={{ width: '56px', height: '56px' }} />
+                        <div className={`icon on-messenger-app mt-10`}>
+                           <img alt="Facebook" src={comingSoon ? comingSoonIcon : GoogleIcon} style={{ width: '56px', height: '56px' }} />                  
+                          
                         </div>
+                        <label id="googlemsg" class="mt-10 text-center">Google Business Message</label>
                      </div>
                   </div>
 
@@ -368,7 +388,8 @@ const CreateBotComposer = (props) => {
 
          <div className="modal-footer">
             <div className="actions">
-               <button className="btn filled" onClick={handleCreateBotSubmit}>
+               <button style={{ textTransform:'none', width: '100px' }}
+                       className="btn filled" onClick={handleCreateBotSubmit}>
                   {data !== null ? 'Update' : 'Next'}
                </button>
             </div>
@@ -396,7 +417,7 @@ const CreateBotComposer = (props) => {
 
    return (
       <>
-     <AlertModal visible={isAlert} handleOk={alertClose} confirmLoading={true} modalText={confirmationTxt} modalInfo={confirmationInfo} buttonText={buttonText} handleCancel={alertClose} />
+     <AlertModal visible={isAlert} handleOk={alertCloseLink} confirmLoading={true} modalText={confirmationTxt} modalInfo={confirmationInfo} buttonText={buttonText} handleCancel={alertClose} />
       <Modal open={openModal} onClose={handleCloseModal} aria-labelledby="create-bot" aria-describedby="create-the-new-bot" className={'_modal'}>
          {body}
       </Modal>

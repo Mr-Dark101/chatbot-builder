@@ -28,7 +28,7 @@
           .txt {
             font-size: 14px;
             line-height: 17px;
-            font-weight: 500;
+            font-weight: 800;
             color: #000;
             font-family: 'Segoe UI Regular';
             
@@ -44,7 +44,7 @@
               padding: 0px;
               .sub-txt {
                 font-size: 14px;
-                font-weight: 500;
+                font-weight: 900;
                 color: #000;
                 text-align: left;
                 margin-bottom: 10px;
@@ -311,7 +311,7 @@
           }
 
           .upload-media.highlight {
-            border-color: #5841ce;
+            border-color: #363a77;
           }
 
           .loop-back {
@@ -788,11 +788,11 @@
 
                 .btn-outlined {
                   display: flex;
-                  border: 2px solid #5841CE;
+                  border: 2px solid #363a77;
                   padding: 0.2rem 1rem;
                   margin: 0 0.3rem;
                   color: white;
-                  background-color: #5841CE;
+                  background-color: #363a77;
                   border-radius: 4px;
                   font-weight: bolder;
                   

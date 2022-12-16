@@ -232,9 +232,7 @@ const Dashboard = () => {
             />
             <div className="head">
                 <div className="head-rt">
-                    <div className="txt">
-                        Create a Bot
-                    </div>
+                <h4 class="box-title m-0">Create a bot</h4>
                 </div>
                 
             </div>

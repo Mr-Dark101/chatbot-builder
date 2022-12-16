@@ -146,7 +146,7 @@ useEffect(() => {
                                     <Link to={`${STRINGS.ROUTES.ROOT}?org=${localStorage.getItem("userId")}`} className="btn primary"><img src={left_circle_arrow_icon} style={{marginRight: '20px'}} />Back to Builder</Link>
                                 </div>
 
-                                <ul>
+                                <ul style={{width:"215px"}}>
                                 {
                                     Menu.map((m,i) => (
                                     <>

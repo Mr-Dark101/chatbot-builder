@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import defaultIcon from '../../../assets/default-icon.svg';
+import defaultIcon from '../../../assets/boticon.svg';
 import { addingBreadcrumb, GetCurrentBot, SetUpdateBotData } from '../slices/dashboard.slice';
 import $ from 'jquery';
 import { STRINGS } from '../../../utils/base';

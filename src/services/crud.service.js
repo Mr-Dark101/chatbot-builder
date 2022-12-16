@@ -26,9 +26,11 @@ const getAll = (listUrl,master,params=false) => {
 
 
 const register = (data, postUrl,master) => {
-  let url =  API_URL + "/" + postUrl + "/register"
+  let orgUnitId = localStorage.getItem('org_unit_id');
+  console.log("Org: " + orgUnitId);
+  let url =  API_URL + "/" + postUrl + "/register?org="+orgUnitId
   if(master === true){
-     url =  API_URL + "/master/register?type=" + postUrl
+     url =  API_URL + "/master/register?type=" + postUrl + "&org=" + orgUnitId
   }
   
 

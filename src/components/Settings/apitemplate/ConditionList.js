@@ -538,9 +538,9 @@ const handleResponseSelect = (name) => {
                                                                                       control={<Radio
                                                                                           size="small"
                                                                                           sx={{
-                                                                                              color: "#5841ce",
+                                                                                              color: "#363a77",
                                                                                               '&.Mui-checked': {
-                                                                                                  color: "#5841ce",
+                                                                                                  color: "#363a77",
                                                                                               },
                                                                                           }}/>}
                                                                                       label={t}/>
@@ -970,7 +970,7 @@ const handleResponseSelect = (name) => {
                                                                     </React.Fragment>
                                                                 )
                                                                 : isData && <EditOutlined style={{
-                                                                color: "#5841CE",
+                                                                color: "#363a77",
                                                                 margin: "0 0.5rem",
                                                             }}
                                                                                           onClick={() => {

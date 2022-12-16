@@ -32851,6 +32851,7 @@ ul#main-menu-navigation {
 
 body, btn, p, div, a, button {
   font-family: 'Montserrat' !important;
+  font-weight: 800;
 }
 
 .main-menu.menu-dark .navigation > li.active > a {

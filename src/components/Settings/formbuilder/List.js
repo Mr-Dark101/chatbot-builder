@@ -60,7 +60,7 @@ const deleteMe  = (id) => {
 
     const deleteRow = (id) => {
        
-            CrudService.deleteRow(id,'patient_insurance',true).then(
+            CrudService.deleteRow(id,'form_builder',true).then(
             (response) => {
               toast("Record has been deleted!",{type: toast.TYPE.SUCCESS})
               setMessage(response.data.message);
@@ -94,8 +94,8 @@ const deleteMe  = (id) => {
   cancelBtnText="No"
   confirmBtnBsStyle="primary"
   cancelBtnBsStyle="light"
-  customIcon="https://raw.githubusercontent.com/djorg83/react-bootstrap-sweetalert/master/demo/assets/thumbs-up.jpg"
-  title="Are you sure delete this record.?"
+  customIcon=""
+  title="Are you sure?"
 
   
   onConfirm={() => {

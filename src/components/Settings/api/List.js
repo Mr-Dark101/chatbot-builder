@@ -138,8 +138,8 @@ const deleteMe  = (id) => {
   cancelBtnText="No"
   confirmBtnBsStyle="primary"
   cancelBtnBsStyle="light"
-  customIcon="https://raw.githubusercontent.com/djorg83/react-bootstrap-sweetalert/master/demo/assets/thumbs-up.jpg"
-  title="Are you sure delete this record.?"
+  customIcon=""
+  title="Are you sure?"
 
   
   onConfirm={() => {
@@ -185,7 +185,7 @@ const deleteMe  = (id) => {
                       <td>
                       <div className="api_box_section">
                         <div className="img_box">
-                          {(row.build_type == 'C') ? (<img src={api} />) : (<img src={`${API_URL}/uploads/platform/${row.Platform.logo}`} width="50" />)}
+                          {(row.build_type == 'C') ? (<img src={'https://icons.veryicon.com/png/o/internet--web/internet-simple-icon/api-management.png'} width="40" />) : (<img src={`${API_URL}/uploads/platform/${row.Platform.logo}`} width="50" />)}
                           
                           
                         </div>

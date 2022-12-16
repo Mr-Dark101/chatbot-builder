@@ -1302,9 +1302,9 @@ const ByTypeComposer = ({ props, triggerType }) => {
                                                          <Radio
                                                             size="small"
                                                             sx={{
-                                                               color: '#5841ce',
+                                                               color: '#363a77',
                                                                '&.Mui-checked': {
-                                                                  color: '#5841ce',
+                                                                  color: '#363a77',
                                                                },
                                                             }}
                                                          />
@@ -1417,9 +1417,9 @@ const ByTypeComposer = ({ props, triggerType }) => {
                                              }}
                                              size="small"
                                              sx={{
-                                                color: '#5841ce',
+                                                color: '#363a77',
                                                 '&.Mui-checked': {
-                                                   color: '#5841ce',
+                                                   color: '#363a77',
                                                 },
                                              }}
                                           />
@@ -1445,19 +1445,19 @@ const ByTypeComposer = ({ props, triggerType }) => {
                      </>
                   ) : (
                      <>
-                        <div style={{ color: '#000' }}>
+                        <div style={{ color: '#000', marginTop: '15px',marginBottom: '10px' }}>
                            From Start Message
                            <TextEditor type={'formStartText'} defaultText={formStartText} onSuccess={handleTextAreaChange} />
-                           
+                           <div style={{ color: '#000', marginBottom: '20px' }}></div>
                            {formData.map((fRow, i) => (
-                              <div className="row" key={i}>
+                              <div style={{ marginLeft: '10px !important' }} className="row" key={i}>
                                  <div className="col-sm-6">{fRow.label}</div>
                                  <div className="col-sm-6">{fRow.type}</div>
                               </div>
                            ))}
                            <br />
                            From End Message
-                           <TextEditor type={'formEndText'} defaultText={formEndText} onSuccess={handleTextAreaChange} />
+                           <TextEditor style={{ marginTop: '15px'}} type={'formEndText'} defaultText={formEndText} onSuccess={handleTextAreaChange} />
                         </div>
                         <br />
                      </>
@@ -1514,8 +1514,8 @@ const ByTypeComposer = ({ props, triggerType }) => {
                                                 style={{
                                                    width: '220px',
                                                    whiteSpace: 'nowrap',
-                                                   textAlign: 'center',
-                                                   overflowX: 'auto',
+                                                   textAlign: 'center'
+                               
                                                 }}
                                              >
                                                 {init.updateMenus.selectedMenuId === m.main_id ? (
@@ -1581,7 +1581,7 @@ const ByTypeComposer = ({ props, triggerType }) => {
                                                 isData && (
                                                    <EditOutlined
                                                       style={{
-                                                         color: '#5841CE',
+                                                         color: '#363a77',
                                                          margin: '0 0.5rem',
                                                       }}
                                                       onClick={() => {

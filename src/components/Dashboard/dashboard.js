@@ -226,7 +226,7 @@ const Dashboard = () => {
 
    return (
       <div className="dashboard-hld ov-des overflow-auto">
-         <div className="home_top_section text-end" style={{ paddingRight: 10 }}>
+         <div className="home_top_section text-end d-none" style={{ paddingRight: 10 }}>
             <div>
                <ul>
                   <li>
@@ -273,7 +273,7 @@ const Dashboard = () => {
                <AlertModal visible={isAlert} handleOk={alertClose} confirmLoading={!isUpdatedList} modalText={confirmationTxt} modalInfo={confirmationInfo} handleCancel={alertClose} />
                <div className="head" style={{ display: 'none' }}>
                   <div className="head-rt">
-                     <div className="txt">Create a Bot</div>
+                  <h4 class="box-title m-0">Create a bot</h4>
                   </div>
                </div>
 
