@@ -184,7 +184,7 @@ const FormSchema = Yup.object().shape({
                           <div className="field_section mb-20">
                           <TextField 
                             name="name"
-                            label="Name"
+                            label="API Name"
                           />
                         </div>
 
@@ -192,14 +192,14 @@ const FormSchema = Yup.object().shape({
                          <div className="field_section mb-20">
                           <SelectField 
                             name="api_type"
-                            label="Type"
+                            label="API Type"
                             options={typeList}
                           />
                         </div>
                         <div className="field_section mb-20">
                           <TextField 
                             name="url"
-                            label="Url"
+                            label="API End point URL"
                           />
                         </div>
 
@@ -207,14 +207,14 @@ const FormSchema = Yup.object().shape({
                         <div className="field_section mb-20">
                           <TextAreaField 
                             name="description"
-                            label="Description"
+                            label="API Description"
 
                             placeholder="Description"
                             rows="3"
                           />
                         </div>
 
-                        <h3 className="main_heading">Header</h3>
+                        <h3 className="main_heading">API Header</h3>
 
 
 
@@ -261,7 +261,7 @@ const FormSchema = Yup.object().shape({
                          <div className="field_section mb-20">
                           <TextAreaField 
                             name="payload"
-                            label="Payload"
+                            label="API Payload"
                             placeholder="Payload"
                             rows="3"
                           />
