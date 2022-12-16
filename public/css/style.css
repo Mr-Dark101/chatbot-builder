@@ -26979,7 +26979,7 @@ textarea.form-control {
     display: inline-block;
     margin: 0;
     margin-bottom: 1rem;
-    color: #172b4c; }
+    color: #000000; }
   .box-body > .table {
     margin-bottom: 0; }
   .box-body .fc {
@@ -26999,7 +26999,7 @@ textarea.form-control {
 
 .box-title {
   z-index: auto;
-  color: #363a77; }
+  color: #000; }
   .box-title.box-title-bold {
     font-weight: 900; }
   .box-title code {
@@ -32851,6 +32851,7 @@ ul#main-menu-navigation {
 
 body, btn, p, div, a, button {
   font-family: 'Montserrat' !important;
+  font-weight: 800;
 }
 
 .main-menu.menu-dark .navigation > li.active > a {
