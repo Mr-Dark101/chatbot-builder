@@ -8,6 +8,8 @@ import {createGuid, currentTime} from "../../utils/base";
 import AudioPlayerDefault from "../AudioPlayer/audioPlayer";
 import documentIcon from "../../assets/file.png";
 import defaultImage from "../../assets/default_image.png";
+import halfLogo from "../../assets/eocean-logo-half.png";
+
 import {useDispatch} from "react-redux";
 
 import {
@@ -924,74 +926,165 @@ const ChatBotComposer = ({onClose}) => {
     }
 
     return (
-        <div className="chat-bot-container">
-            <div className="content-hld">
-                
-                <div className="cl">
-                    <IconButton onClick={() => onClose()}>
-                        <CancelIcon fontSize="large" style={{color: "black"}}/>
-                    </IconButton>
-                </div>
-                <div className="section">
-                    <div className="chat-body hide-scroll">
-                        {
-                            messages.length > 0 ? (
-                                messages.map((m, index) => {
-                                    return (
-                                        m.id === "me" ?
-                                            <div className="msg-row me">
-                                                <div className="msg-box me">
-                                                    <div className="msg">{m.text}</div>
-                                                    <div className="sub-text">
-                                                        {currentTime(new Date())}
-                                                    </div>
+    <div class="bg-front">
+
+        <div style={{position:'absolute'}}>
+                                                                <IconButton onClick={() => onClose()}>
+                                                                    <CancelIcon fontSize="large" style={{color: "black"}}/>
+                                                                </IconButton>
+                                                            </div>
+
+         <div class="mobWraper">
+            <div id="mockChat" class="mockchat">
+              <div class="device">
+                <div class="screen">
+                    <div class="whatsapp-preview">
+                      <div class="app1" style={{height:'100%'}} >
+                        <div class="page">
+                          <div class="marvel-device nexus5">
+                            <div class="screen" style={{width:'100%',height:'100%'}} >
+
+                            
+
+                              <div class="screen-container">
+                                <div class="chat-window" >
+                                  <div class="chat-container">
+                                    <div class="user-bar">
+                                      <div class="user_topTxt">
+                                            <div>
+                                                <span class="time" >12:00</span>
+                                            </div>
+                                            <div>
+                                            <span style={{fontSize:10}} ><i class="fas fa-signal"></i></span>
+                                                <span style={{fontSize:10}}><i class="fas fa-wifi"></i></span>
+                                            <span style={{fontSize:10}}><i class="fas fa-battery-full"></i></span>
+                                            </div>
+                                        </div>
+                                      <div class="user_midBar">
+                                          <div class="mob_topBar">
+                                          <div class="avatar">
+                                         
+                                            <img alt={"#"} src={halfLogo} class="img-fluid" alt="Avatar" />
+                                          </div>
+                                          <div class="name">
+                                            <span>Eocean</span>
+                                            <span class="status">online</span>
+                                          </div>
+                                          
+                                        </div>
+                                        <div class="mob_topIcon">
+                                            <span style={{margin:'0px 5px 0px 0px'}}><i class="fas fa-video"></i></span>
+                                            <span><i class="fas fa-phone" style={{transform:'rotate(104deg)'}} ></i></span>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="conversation">
+                                      <div class="conversation-container">
+                                        <div class="messages sent" style={{wordBreak:'word-break',flexDirection:'column'}} >
+                                          <div >
+                                            
+                                                <div className="chat-bot-container">
+                                                            <div className="content-hld">
+
+                                                            
+
+                                                                <div className="section">
+                                                                    <div className="chat-body hide-scroll">
+                                                                        {
+                                                                            messages.length > 0 ? (
+                                                                                messages.map((m, index) => {
+                                                                                    return (
+                                                                                        m.id === "me" ?
+                                                                                            <div className="msg-row me">
+                                                                                                <div className="msg-box me">
+                                                                                                    <div className="msg">{m.text}</div>
+                                                                                                    <div className="sub-text">
+                                                                                                        {currentTime(new Date())}
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div> :
+                                                                                            (
+                                                                                                <div className="msg-row">
+                                                                                                    <div className="msg-box frm">
+                                                                                                        <div className="msg">
+                                                                                                            {m.isFallBack === undefined && m.name}
+                                                                                                            {getContentByType(m, index)}
+                                                                                                        </div>
+                                                                                                        <div className="opt-hld">
+                                                                                                            {m.isFallBack === undefined &&
+                                                                                                            m.menus?.map((menu) => {
+                                                                                                                return (
+                                                                                                                    <Fragment>
+                                                                                                                        <button
+                                                                                                                            key={menu.toTriggerId}
+                                                                                                                            className="btn light-filled">{menu.text}
+                                                                                                                        </button>
+                                                                                                                    </Fragment>
+                                                                                                                )
+                                                                                                            })
+                                                                                                            }
+                                                                                                        </div>
+                                                                                                        <div className="sub-text">
+                                                                                                            {currentTime(new Date())}
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            )
+                                                                                    )
+                                                                                })
+                                                                            ) : <div className="no-data-found">No Data Found</div>
+                                                                        }
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
                                                 </div>
-                                            </div> :
-                                            (
-                                                <div className="msg-row">
-                                                    <div className="msg-box frm">
-                                                        <div className="msg">
-                                                            {m.isFallBack === undefined && m.name}
-                                                            {getContentByType(m, index)}
-                                                        </div>
-                                                        <div className="opt-hld">
-                                                            {m.isFallBack === undefined &&
-                                                            m.menus?.map((menu) => {
-                                                                return (
-                                                                    <Fragment>
-                                                                        <button
-                                                                            key={menu.toTriggerId}
-                                                                            className="btn light-filled">{menu.text}
-                                                                        </button>
-                                                                    </Fragment>
-                                                                )
-                                                            })
-                                                            }
-                                                        </div>
-                                                        <div className="sub-text">
-                                                            {currentTime(new Date())}
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            )
-                                    )
-                                })
-                            ) : <div className="no-data-found">No Data Found</div>
-                        }
-                    </div>
-                </div>
-                <div className="foot">
-                    <div className="msg-send-composer">
+
+                                        </div>
+                                      </div>
+                                      <div class="mobBottom_sec">
+                                        <div class="conversation-compose">
+                                          <div class="emoji">
+                                            <i class="far fa-smile"></i>
+                                          </div>
+
+                                            <div className="msg-send-composer">
                         
-                        <div className="txt-area">
-                            <form className="" onSubmit={handleSubmit}>
-                                <input className="inp" ref={msgArea} type="text" placeholder={"Type a message"}/>
-                            </form>
+                                                <div className="txt-area">
+                                                    <form className="" onSubmit={handleSubmit}>
+                                                        <input className="input-msg" ref={msgArea} type="text" placeholder={"Type a message"}/>
+                                                    </form>
+                                                </div>
+                        
+                                            </div>
+
+                                         
+                                          <div class="photo">
+                                            <i class="fas fa-camera"></i>
+                                          </div>
+                                          <button class="send">
+                                            <div class="circle">
+                                              <i class="fas fa-paper-plane"></i>
+                                            </div>
+                                          </button>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
                         </div>
-                        
+                      </div>
                     </div>
                 </div>
+              </div>
             </div>
+          </div>
+
+       
         </div>
     );
 };
