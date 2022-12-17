@@ -927,6 +927,13 @@ const ChatBotComposer = ({onClose}) => {
 
     return (
     <div class="bg-front">
+
+        <div style={{position:'absolute'}}>
+                                                                <IconButton onClick={() => onClose()}>
+                                                                    <CancelIcon fontSize="large" style={{color: "black"}}/>
+                                                                </IconButton>
+                                                            </div>
+
          <div class="mobWraper">
             <div id="mockChat" class="mockchat">
               <div class="device">
@@ -936,6 +943,9 @@ const ChatBotComposer = ({onClose}) => {
                         <div class="page">
                           <div class="marvel-device nexus5">
                             <div class="screen" style={{width:'100%',height:'100%'}} >
+
+                            
+
                               <div class="screen-container">
                                 <div class="chat-window" >
                                   <div class="chat-container">
@@ -975,6 +985,9 @@ const ChatBotComposer = ({onClose}) => {
                                             
                                                 <div className="chat-bot-container">
                                                             <div className="content-hld">
+
+                                                            
+
                                                                 <div className="section">
                                                                     <div className="chat-body hide-scroll">
                                                                         {
