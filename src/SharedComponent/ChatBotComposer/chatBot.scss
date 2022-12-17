@@ -1,17 +1,5 @@
 .chat-bot-container {
-  display: flex;
-  position: fixed;
-  top:30px;
-  bottom: 15px;
-  right: 15px;
-  z-index: 4;
-  //min-width: 300px;
-  min-width: 480px;
-  background-color: white;
-  border-radius: 8px;
-  padding:75px;
-  padding-top:130px;
-  background: url("../../assets/bg_chat_img.png") no-repeat center ;
+
   
   .content-hld {
     display: flex;
@@ -298,9 +286,7 @@
 
 @media only screen and (max-width: 1680px){
   .chat-bot-container{
-    background: url("../../assets/bg_chat_img_1680.png") no-repeat center ;
-    padding-top: 50px;
-    top: 120px;
+   
   }
   .chat-bot-container .content-hld .section{
     justify-content: center;
@@ -318,9 +304,7 @@
 
 @media only screen and (max-width: 1440px){
   .chat-bot-container{
-    background: url("../../assets/bg_chat_img_1440.png") no-repeat center ;
-    padding-top: 50px;
-    top: 120px;
+   
   }
   .chat-bot-container .content-hld .section{
     justify-content: center;
@@ -338,11 +322,7 @@
 
 @media only screen and (max-width: 1366px){
   .chat-bot-container{
-    background: url("../../assets/bg_chat_img_1366.png") no-repeat center ;
-    min-width: 400px;
-    padding-top: 20px;
-    padding-bottom: 30px;
-    top: 80px;
+   
   }
   .chat-bot-container .content-hld .cl{
    top: -40px;
@@ -364,10 +344,7 @@
 
 @media only screen and (max-width: 1280px){
   .chat-bot-container{
-    background: url("../../assets/bg_chat_img_1280.png") no-repeat center ;
-    min-width: 350px;
-    padding-top: 30px;
-    top: 80px;
+   
   }
   .chat-bot-container .content-hld .section{
     justify-content: center;
