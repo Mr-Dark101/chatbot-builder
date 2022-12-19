@@ -928,7 +928,7 @@ const ChatBotComposer = ({onClose}) => {
     return (
     <div class="bg-front">
 
-        <div style={{position:'absolute'}}>
+        <div class="customabs_sec">
                                                                 <IconButton onClick={() => onClose()}>
                                                                     <CancelIcon fontSize="large" style={{color: "black"}}/>
                                                                 </IconButton>
@@ -967,7 +967,7 @@ const ChatBotComposer = ({onClose}) => {
                                             <img src={halfLogo} class="img-fluid" alt="Avatar" />
                                           </div>
                                           <div class="name">
-                                            <span>Eocean</span>
+                                            <span>Chatbot</span>
                                             <span class="status">online</span>
                                           </div>
                                           

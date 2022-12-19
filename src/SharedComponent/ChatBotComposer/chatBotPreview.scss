@@ -1,8 +1,13 @@
 .bg-front{background: #f0f8fe;
     border-left: 5px solid #363a77;
     padding: 10px;
-    min-width: 480px;
-    height: 100%;}
+    min-width: 410px;
+    height: 100%;
+    .customabs_sec {
+        position: absolute;
+        right: 0;
+    }
+}
 .app-height{height: 100% !important;}
 
 .time{font-weight: 800;font-size: 11px;}
@@ -102,7 +107,32 @@
     overflow: hidden;
     background-size: cover;
 }
-
+.app1 {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-content: flex-end;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    flex-direction: column;
+    padding: 1em;
+    overflow-y: auto;
+    transition: all 0.3s;
+}
+.page {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.chat-container {
+    height: 100%;
+}
 
 .container-panel {
     /* border: 0.5px solid #76767637; */
@@ -112,7 +142,7 @@
 
 .mobBottom_sec {
     background: #f6f6f6;
-    padding: 7px 0 10px;
+    padding: 10px 0 40px;
 }
 .mockchat .replyBtn {
     background: transparent;
@@ -138,6 +168,14 @@
     overflow-x: hidden !important;
     padding: 0 1px;
     margin-bottom: 15px;
+}
+.conversation-container::-webkit-scrollbar-thumb {
+    background-color: #c9c6c6;
+    border: 1px solid #c9c6c6;
+    border-radius:10px
+}
+.conversation-container::-webkit-scrollbar {
+    width: 5px;
 }
 .screen-container {
     height: 100%;
@@ -170,11 +208,13 @@ background: url("../../assets/whatsapp-bg.png") !important ;
     margin: unset;
     outline: unset;
     border-radius: 10px;
-    padding: 5px;
+    padding: 0 3px 5px;
+
+
 }
 
 .mobBottom_sec .conversation-compose .input-msg::placeholder {
-    padding: 0 10px 10px;
+    padding: 0 2px;
     font-size: 0.75rem;
 }
 .conversation-compose .photo i {
@@ -188,6 +228,7 @@ background: url("../../assets/whatsapp-bg.png") !important ;
     /*background: #ffffff;*/
     background: transparent;
     border-radius: unset;
+    padding: 10px 5px;
 }
 .right {
  border-left: 0 !important;
@@ -209,8 +250,8 @@ button.send:focus {
      margin-left: -2px; 
 }
 .conversation-compose .send .circle {
-    width: 27px;
-    height: 26px;
+    width: 23px;
+    height: 23px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -277,19 +318,13 @@ span.headerMedia {
     letter-spacing: 0;
 }
 /*Media Query*/
+/*Media Query*/
 @media only screen and (max-width: 7560px){
     .mobWraper {
         max-width: 20rem;
         right: 24rem;
     }
-    .conversation {
-      max-height: 30rem;
-      min-height: 30rem;
-     }  
-  .conversation .conversation-container {
-    min-height: 29rem;
-    max-height: 29rem;
- }
+
  .avatar img {
     width: 32px;
     height: 27px;
@@ -299,20 +334,22 @@ span.headerMedia {
 @media only screen and (max-width: 2560px){
     .mobWraper {
         max-width: 19rem;
-        right: 14rem;
+        right: 4rem;
+        top: 12rem;
     } 
-  .conversation .conversation-container {
-    min-height: 27rem;
-    max-height: 27rem;
- }
+
 
 }
 @media only screen and (max-width: 1920px) {
   .mobWraper {
-    max-width: 19rem;
+    max-width: 19.5rem;
     margin: 0 auto;
-    right: 7rem;
+    right: 5rem;
+    top: 9rem;
    }
+   .bg-front {
+        height: 100%;
+    }
 
     .mobBottom_sec .emoji i, .mobBottom_sec .photo i {
        font-size: 1.3rem;
@@ -331,10 +368,10 @@ span.headerMedia {
     
 }
 @media only screen and (max-width: 1599px) {
-    .mobWraper {
-        max-width: 21.5rem;
-        right: 7rem;
-    }
+    // .mobWraper {
+    //     max-width: 17.5rem;
+    //     right: 4rem;
+    // }
     .scrollSec {
         max-height: 32rem;
     }
@@ -344,21 +381,16 @@ span.headerMedia {
     .chat-area-main {
         max-height: 26rem;
     }
-   .conversation .conversation-container {
-        min-height: 30.0rem;
-        max-height: 24rem;
-    }
+ 
     .avatar img {
       width: 25px;
       height: 25px;
     }
+    .conversation .conversation-container {
+        height: calc(100% - 60px);
+      }
 }
-@media only screen and (max-width: 1377px){
-.conversation .conversation-container {
-    min-height: 22rem;
-    max-height: 22rem;
-}
-}
+
 @media only screen and (max-width: 1367px) {
   
    .user-bar .avatar {
@@ -369,7 +401,7 @@ span.headerMedia {
         font-size: 14px;
     }
     .user-bar .status {
-        font-size: 10px;
+        font-size: 11px;
     }
     .mob_topIcon span > i {
         font-size: 12px;
