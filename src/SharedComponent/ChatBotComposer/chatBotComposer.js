@@ -813,7 +813,7 @@ const ChatBotComposer = ({onClose}) => {
                 
     }
     const scrollOnMessage = () => {
-        let container = $(".chat-body")
+        let container = $(".conversation-container")
         container.animate({
             scrollTop: container.offset().top + (container.scrollTop() + 300)
         }, 300)
@@ -845,7 +845,7 @@ const ChatBotComposer = ({onClose}) => {
                     let audCaption = $.parseHTML(data.caption)
                     $(`#${data.id}---audCaption-${index}`).html(audCaption);
                     return (
-                        <div className="sub-img-tag" style={{marginTop:'10px'}}>
+                        <div className="sub-img-tag" style={{marginTop:'10px', padding:'10px'}}>
                             {
                                 data.urls.length > 0 && (
                                     data.urls.map((url) => {
@@ -862,7 +862,7 @@ const ChatBotComposer = ({onClose}) => {
                     let vidCaption = $.parseHTML(data.caption)
                     $(`#${data.id}---vidCaption-${index}`).html(vidCaption);
                     return (
-                        <div className="sub-img-tag" style={{marginTop:'10px'}}>
+                        <div className="sub-img-tag" style={{marginTop:'10px', padding:'10px'}}>
                             {
                                 data.urls.length > 0 && (
                                     data.urls.map((url) => {
@@ -883,7 +883,7 @@ const ChatBotComposer = ({onClose}) => {
                     let docCaption = $.parseHTML(data.caption)
                     $(`#${data.id}---docCaption-${index}`).html(docCaption);
                     return (
-                        <div className="sub-img-tag" style={{marginTop:'10px'}}>
+                        <div className="sub-img-tag" style={{marginTop:'10px', padding:'10px'}}>
                             {/*data.url !== "" ? data.url : */}
                             <div className="icon">
                                 {
@@ -906,7 +906,7 @@ const ChatBotComposer = ({onClose}) => {
                     let cap = $.parseHTML(data.caption)
                     $(`#${data.id}--In${index}`).html(cap);
                     return (
-                        <div className="sub-img-tag" style={{marginTop:'10px'}}>
+                        <div className="sub-img-tag" style={{marginTop:'10px', padding:'10px'}}>
                             {/*data.url !== "" ? data.url : */}
                             {
                                 data.urls.length > 0 && (
