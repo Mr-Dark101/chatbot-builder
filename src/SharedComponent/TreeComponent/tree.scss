@@ -948,6 +948,7 @@
     }
 
     .card-center {
+      
       display: flex;
       flex-direction: column;
       text-align: start;
@@ -960,11 +961,13 @@
 
       .sub-txt {
         //white-space: nowrap;
+        font-weight: 400 !important;
         color: $heading-color;
         font-size: 14px;
         height: 100px;
         overflow: auto;
         position: relative;
+      
       }
 
       .scroll-btn{

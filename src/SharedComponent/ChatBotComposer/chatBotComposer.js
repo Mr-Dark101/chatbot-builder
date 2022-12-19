@@ -845,12 +845,12 @@ const ChatBotComposer = ({onClose}) => {
                     let audCaption = $.parseHTML(data.caption)
                     $(`#${data.id}---audCaption-${index}`).html(audCaption);
                     return (
-                        <div className="sub-img-tag">
+                        <div className="sub-img-tag" style={{marginTop:'10px'}}>
                             {
                                 data.urls.length > 0 && (
                                     data.urls.map((url) => {
                                         return (
-                                            <AudioPlayerDefault src={url}/>
+                                            <AudioPlayerDefault src={url} style={{marginBottom:'10px'}}/>
                                         )
                                     })
                                 )
@@ -862,14 +862,14 @@ const ChatBotComposer = ({onClose}) => {
                     let vidCaption = $.parseHTML(data.caption)
                     $(`#${data.id}---vidCaption-${index}`).html(vidCaption);
                     return (
-                        <div className="sub-img-tag">
+                        <div className="sub-img-tag" style={{marginTop:'10px'}}>
                             {
                                 data.urls.length > 0 && (
                                     data.urls.map((url) => {
                                         return (
 
                                             <section>
-                                                <video src={url} controls/>
+                                                <video src={url} controls style={{marginBottom:'10px'}}/>
                                             </section>
                                         )
                                     })
@@ -883,7 +883,7 @@ const ChatBotComposer = ({onClose}) => {
                     let docCaption = $.parseHTML(data.caption)
                     $(`#${data.id}---docCaption-${index}`).html(docCaption);
                     return (
-                        <div className="sub-img-tag">
+                        <div className="sub-img-tag" style={{marginTop:'10px'}}>
                             {/*data.url !== "" ? data.url : */}
                             <div className="icon">
                                 {
@@ -891,7 +891,7 @@ const ChatBotComposer = ({onClose}) => {
                                         data.urls.map((url) => {
                                             return (
                                                 <a download href={url}>
-                                                    <img alt={"#"} src={documentIcon}/>
+                                                    <img alt={"#"} src={documentIcon} style={{marginBottom:'10px'}}/>
                                                 </a>
                                             )
                                         })
@@ -906,13 +906,13 @@ const ChatBotComposer = ({onClose}) => {
                     let cap = $.parseHTML(data.caption)
                     $(`#${data.id}--In${index}`).html(cap);
                     return (
-                        <div className="sub-img-tag">
+                        <div className="sub-img-tag" style={{marginTop:'10px'}}>
                             {/*data.url !== "" ? data.url : */}
                             {
                                 data.urls.length > 0 && (
                                     data.urls.map((url) => {
                                         return (
-                                            <img alt={"#"} src={url !== "" ? url : defaultImage}/>
+                                            <img alt={"#"} src={url !== "" ? url : defaultImage} style={{marginBottom:'10px'}}/>
                                         )
                                     })
                                 )
@@ -955,16 +955,16 @@ const ChatBotComposer = ({onClose}) => {
                                                 <span class="time" >12:00</span>
                                             </div>
                                             <div>
-                                            <span style={{fontSize:10}} ><i class="fas fa-signal"></i></span>
-                                                <span style={{fontSize:10}}><i class="fas fa-wifi"></i></span>
-                                            <span style={{fontSize:10}}><i class="fas fa-battery-full"></i></span>
+                                            <span style={{fontSize:10,margin:'3px'}} ><i class="fas fa-signal"></i></span>
+                                                <span style={{fontSize:10,margin:'3px'}}><i class="fas fa-wifi"></i></span>
+                                            <span style={{fontSize:10,margin:'3px'}}><i class="fas fa-battery-full"></i></span>
                                             </div>
                                         </div>
                                       <div class="user_midBar">
                                           <div class="mob_topBar">
                                           <div class="avatar">
                                          
-                                            <img alt={"#"} src={halfLogo} class="img-fluid" alt="Avatar" />
+                                            <img src={halfLogo} class="img-fluid" alt="Avatar" />
                                           </div>
                                           <div class="name">
                                             <span>Eocean</span>
@@ -973,7 +973,7 @@ const ChatBotComposer = ({onClose}) => {
                                           
                                         </div>
                                         <div class="mob_topIcon">
-                                            <span style={{margin:'0px 5px 0px 0px'}}><i class="fas fa-video"></i></span>
+                                            <span style={{margin:'0px 10px 0px 0px'}}><i class="fas fa-video"></i></span>
                                             <span><i class="fas fa-phone" style={{transform:'rotate(104deg)'}} ></i></span>
                                         </div>
                                       </div>

@@ -44,7 +44,7 @@
     width:100%;
     position: fixed;
     right: 4rem;
-    top: 9.5rem;
+    top: 5.5rem;
 }
 .mockchat {
     position: relative;
@@ -52,7 +52,7 @@
     max-width: 100%;
     margin: 0 auto;
     height: auto;
-    line-height: 1.25;
+    line-height: 1.45;
     perspective: 900px;
 }
 .mockchat .device {
@@ -112,7 +112,7 @@
 
 .mobBottom_sec {
     background: #f6f6f6;
-    padding: 7px 0 40px;
+    padding: 7px 0 10px;
 }
 .mockchat .replyBtn {
     background: transparent;
@@ -135,8 +135,8 @@
 }
 .conversation .conversation-container {
     height: calc(100% - 68px);
-    overflow-x: hidden;
-    padding: 0 16px;
+    overflow-x: hidden !important;
+    padding: 0 1px;
     margin-bottom: 15px;
 }
 .screen-container {
@@ -166,11 +166,11 @@ background: url("../../assets/whatsapp-bg.png") !important ;
 .conversation-compose .input-msg {
     border: 0;
     flex: unset;
-    font-size: 0.78rem;
+    font-size: 1.0rem;
     margin: unset;
     outline: unset;
     border-radius: 10px;
-    padding: 3px;
+    padding: 5px;
 }
 
 .mobBottom_sec .conversation-compose .input-msg::placeholder {
@@ -261,7 +261,7 @@ span.headerMedia {
     font-size: 0.78rem;
 }
 .user-bar .name {
-    font-size: 17px;
+    font-size: 14px;
     font-weight: 600;
     text-overflow: ellipsis;
     letter-spacing: 0.3px;
@@ -272,7 +272,7 @@ span.headerMedia {
 }
 .user-bar .status {
     display: block;
-    font-size: 13px;
+    font-size: 10px;
     font-weight: 400;
     letter-spacing: 0;
 }
@@ -332,8 +332,8 @@ span.headerMedia {
 }
 @media only screen and (max-width: 1599px) {
     .mobWraper {
-        max-width: 17.5rem;
-        right: 4rem;
+        max-width: 21.5rem;
+        right: 7rem;
     }
     .scrollSec {
         max-height: 32rem;
@@ -345,7 +345,7 @@ span.headerMedia {
         max-height: 26rem;
     }
    .conversation .conversation-container {
-        min-height: 24rem;
+        min-height: 30.0rem;
         max-height: 24rem;
     }
     .avatar img {
@@ -369,7 +369,7 @@ span.headerMedia {
         font-size: 14px;
     }
     .user-bar .status {
-        font-size: 11px;
+        font-size: 10px;
     }
     .mob_topIcon span > i {
         font-size: 12px;

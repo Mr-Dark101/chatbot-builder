@@ -32582,7 +32582,7 @@ thead.bg-primary{
   color: #fff !important;
 }
 
-.ql-editor p{color: #000;}
+.ql-editor p{color: #000;   font-weight: 400 !important;}
 .home_bot_modal .modal-section label{
   color: #000;
 }
@@ -32874,6 +32874,7 @@ body, btn, p, div, a, button {
 
 .ws-hld .head .head-rt .txt {
   font-size: 20px !important;
+  background-color: #ffffff !important;
 }
 
 /*Ended New Style.css (M Hassaan Nasir)*/
