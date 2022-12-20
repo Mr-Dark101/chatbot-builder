@@ -53,7 +53,22 @@
   background-color: $text-bg !important;
   border-color: $text-bg !important;
 }
+.btn-custom {
+  background: #35f5c6;
+  border: #35f5c6;
+  width: 33px;
+}
+.btn-custom i {
+  color: #fff;
+}
+.button_section button {
+  width: 33px;
+  height: 32px;
+}
 
+.button_section i {
+  font-size: 12px;
+}
 
 @import url('https://fonts.googleapis.com/css2?family=Lato&family=Mulish:wght@400;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
@@ -274,12 +289,12 @@ body{
   background-color: #363a77 !important;
   border-radius: 6px;
   font-family: "Segoe UI Regular";
-  font-size: 16px;
+  font-size: 13px;
   color: #fff !important;
   line-height: 18px;
   font-weight: 500;
-  padding: 10px 25px;
-  height: 44px;
+  padding: 10px 15px;
+  height: 40px;
   border: 1px solid #363a77 !important;
 }
 .primary:hover{
@@ -288,15 +303,15 @@ body{
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
   color: #fff !important;
 }
-.secondary{
+.secondary {
   border: 1px solid #363a77 !important;
   border-radius: 6px;
-  padding: 10px 25px;
+  padding: 10px 15px;
   font-family: "Segoe UI Regular";
-  font-size: 16px;
-  line-height: 144%;
+  font-size: 13px;
+  line-height: 100%;
   font-weight: 600;
-  height: 44px;
+  height: 40px;
   color: #363a77 !important;
   background-color: #fff;
 }

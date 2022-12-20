@@ -6,15 +6,11 @@ import { userBotsError } from '../../../components/Dashboard/slices/dashboard.sl
 export const UpdateTrigger = (obj) => async (dispatch) => {
    // dispatch(updateTriggersSuccess(obj))
    // dispatch(openTriggerCard(false))
-
-   console.log('updateTrigger Console', JSON.stringify(obj));
    dispatch(botRequestPending());
    API.post(`/update-trigger`, obj)
-      .then((res) => {
-         console.log('updateTrigger', res);
+      .then((res) => {      
          if (res.status === STRINGS.API_STATUS.SUCCESS) {
             if (res.data.status === 1) {
-               console.log('updateTrigger Success', res.data.data);
                dispatch(updateTriggersSuccess(res.data.data));
                dispatch(getBotTriggersRecursive(obj.botId));
                dispatch(openTriggerCard({ open: false, isChild: null, childBotId: null }));
@@ -31,7 +27,6 @@ export const UpdateTrigger = (obj) => async (dispatch) => {
 export const getBotTriggers = (id) => async (dispatch) => {
    API.get(`/getBotTriggers/${id}`)
       .then((res) => {
-         console.log('getBotTriggers', res);
          if (res.status === STRINGS.API_STATUS.SUCCESS) {
             if (res.data.status === 1) {
                dispatch(getTriggersSuccess({ payload: res.data.data, message: res.data.message }));
@@ -109,14 +104,12 @@ export const getBotTriggersRecursive = (id) => async (dispatch) => {
 };
 
 export const apiList = (userId) => async (dispatch) => {
-   console.log('API LIST ID: ' + userId);
    API.get(`/bot-api-list?org=${userId}`)
       .then((res) => {
          // console.log("updateTrigger", res);
 
          if (res.status === STRINGS.API_STATUS.SUCCESS) {
             if (res.data.status === 1) {
-               console.log('BOT API LIST: ' + JSON.stringify(res.data.data));
                dispatch(getApiListSuccess(res.data.data));
             } else {
                dispatch(isError(res.data.message));
@@ -135,7 +128,7 @@ export const formList = () => async (dispatch) => {
 
          if (res.status === STRINGS.API_STATUS.SUCCESS) {
             if (res.data.status === 1) {
-               console.log('BOT FORM LIST: ' + JSON.stringify(res.data.data));
+             
                dispatch(getFormListSuccess(res.data.data));
             } else {
                dispatch(isError(res.data.message));

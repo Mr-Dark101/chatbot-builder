@@ -241,8 +241,8 @@ const FormSchema = Yup.object().shape({
                              </div>
 
                              <div className="col-sm-1">
-                                        <br />
-                                        <a href="javascript:void(0)" className="link_delete_icon" onClick={() => removeField(i,x.keyOther)}><i className="fa fa-trash"></i></a>
+                                     
+                                        <a href="javascript:void(0)" className="link_delete_icon btn btn-icon btn-icon rounded-circle btn-danger mt-1" onClick={() => removeField(i,x.keyOther)}><i className="fa fa-trash"></i></a>
                                      </div>
                         
                       

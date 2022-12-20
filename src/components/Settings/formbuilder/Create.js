@@ -240,8 +240,17 @@ const FormSchema = Yup.object().shape({
             onSubmit={onSubmit}
           >
 
-                <h5 className="main_heading">Create form</h5>
-                
+          
+            <div className="row media-center">
+                  <div className="col-sm-6">
+                    <h4 class="box-heading" style={{fontWeight: 800}}>Create form</h4>
+                  </div>
+                  <div className="col-sm-6 text-end">
+                  <button type="button" className="btn btn-secondary me-10">Back</button>
+                  </div>
+
+            </div>
+
                 <div className="row">
                     <div className="col-9">
 
@@ -282,7 +291,7 @@ const FormSchema = Yup.object().shape({
                                     </div>
                                      <div className="col-sm-6">
 
-                                       <br />    
+  
                                       <Select
                                                         labelId="demo-simple-select-standard-label"
                                                         id="demo-simple-select-standard"
@@ -311,8 +320,8 @@ const FormSchema = Yup.object().shape({
                                      </div>
 
                                      <div className="col-sm-1">
-                                        <br />
-                                        <a href="javascript:void(0)" className="link_delete_icon" onClick={() => removeField(i,x.label)}><i className="fa fa-trash"></i></a>
+                                    
+                                        <a href="javascript:void(0)" className="link_delete_icon btn btn-icon btn-icon rounded-circle btn-danger" onClick={() => removeField(i,x.label)}><i className="fa fa-trash"></i></a>
                                      </div>
                                 
                               
@@ -348,7 +357,7 @@ const FormSchema = Yup.object().shape({
                                                                       />
                                                                  </div>
                                                                  <div className="col-sm-1">
-                                                                    <br />
+                                                                  
                                                                     <a className="link_delete_icon" href="javascript:void(0)" onClick={() => removeFieldOption(io,o.key,i)}><i className="fa fa-trash"></i></a>
                                                                  </div>
                                                               </div>
@@ -388,7 +397,7 @@ const FormSchema = Yup.object().shape({
                                                                       />
                                                                  </div>
                                                                  <div className="col-sm-1">
-                                                                    <br />
+                                                                
                                                                     <a className="link_delete_icon" href="javascript:void(0)" onClick={() => removeFieldRegular(io,o.key,i)}><i className="fa fa-trash"></i></a>
                                                                  </div>
                                                               </div>
@@ -420,7 +429,7 @@ const FormSchema = Yup.object().shape({
                         
                     />
 
-                    <button onClick={ () => loadList()} type="button" className="secondary ms-20">Cancel</button>
+                    <button onClick={ () => loadList()} type="button" className="secondary ms-10">Cancel</button>
                   </div>
                 </div>
 

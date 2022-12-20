@@ -32110,8 +32110,9 @@ img.away, img.busy, img.offline, img.online {
   border-color: transparent;
 }
 .btn_add_option{
-  padding: 13.5px 40px !important;
-  font-size: 14px !important;
+  padding: 13.5px 30px !important;
+  font-size: 13px !important;
+  font-weight: 800 !important;
   font-family: 'Segoe UI Regular';
   line-height: 17px !important;
   background-color: #E7E7E7 !important;
@@ -32221,11 +32222,11 @@ img.away, img.busy, img.offline, img.online {
 .setting_left_bar_section ul li a{
   color: #363a77;
   font-weight: 400;
-  font-size: 14px;
+  font-size: 13px;
   line-height: 16px;
   display: flex;
   align-items: center;
-  padding: 15px 20px;
+  padding: 15px 15px;
   font-family: "Segoe UI Regular";
 }
 .setting_left_bar_section ul li a:hover{
@@ -32458,9 +32459,9 @@ img.away, img.busy, img.offline, img.online {
     margin-top: 20px;
 }
 thead.bg-primary{
-  background-color: #363a77 !important;
-  color: #fff;
-  font-family: 'Inter', sans-serif;
+  background-color: #71728300 !important;
+  color: #000;
+  font-family: 'Segoe UI Regular';
 }
 /*.customer_technology_page{
   padding: 20px;
@@ -32492,8 +32493,9 @@ thead.bg-primary{
 .customer_technology_page .patient_tabs_section li:hover a{
   color: #fff;
 }
-.form-control{
-  padding: 12px .75rem !important;
+.form-control {
+  padding: 9px 0.75rem !important;
+  margin-bottom: 16px !important;
 }
 .platform_select_field{
   width: 100% !important;
@@ -32560,9 +32562,9 @@ thead.bg-primary{
 .link_delete_icon{
   color: #000;
 }
-.link_delete_icon i{
+/*.link_delete_icon i{
   font-size: 20px;
-}
+}*/
 .dashboard_setting{
   background-color: #363a77 !important;
   border-radius: 6px;
@@ -32876,5 +32878,9 @@ body, btn, p, div, a, button {
   font-size: 20px !important;
   background-color: #ffffff !important;
 }
-
+.btn-custom {
+  background: #35f5c6;
+  border: #35f5c6;
+  width: 35px;
+}
 /*Ended New Style.css (M Hassaan Nasir)*/

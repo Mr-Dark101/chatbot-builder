@@ -112,13 +112,13 @@ const deleteMe  = (id) => {
       {
                   (listData.length > 0) ? (
                     <>
-                      <div className="row p-30 media-center">
-                  <div className="col-sm-3">
-                    <h4 className="box-title m-0" style={{fontWeight:800}}>My Forms</h4>
+                      <div className="row px-30 py-15 media-center">
+                  <div className="col-sm-9">
+                    <h5 className="box-title m-0" style={{fontWeight:800}}>My Forms</h5>
                   </div>
 
-                  <div className="col-sm-9">
-                    <button type="button" onClick={() => subPage(<Create loadList={loadList} retrieveList={retrieveList} rs={rs} />)} className="btn primary float-end">Create form</button>
+                  <div className="col-sm-3">
+                  <a class="dashboard_setting float-end" onClick={() => subPage(<Create loadList={loadList} retrieveList={retrieveList} rs={rs} />)}>Create Form</a>
                   </div>
                 </div>
 
@@ -146,8 +146,9 @@ const deleteMe  = (id) => {
                     
                      
                       <td>
-                      <button className="warningsmall" onClick={() => subPage(<Edit  loadList={loadList} retrieveList={retrieveList} rs={row} />)} >Edit</button>
-                      <button style={{marginLeft:5}} className="warningsmall" onClick={() => deleteMe(row.id)} >Delete</button>
+
+                      <button className="btn btn-icon btn-icon rounded-circle btn-custom" onClick={() => subPage(<Edit  loadList={loadList} retrieveList={retrieveList} rs={row} />)}><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                      <button style={{marginLeft:5}} className="btn btn-icon btn-icon rounded-circle btn-danger" onClick={() => deleteMe(row.id)} ><i class="fa fa-trash" aria-hidden="true"></i></button>
                       </td>
                     </tr>
                     ))}

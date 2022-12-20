@@ -302,7 +302,7 @@ const FormSchema = Yup.object().shape({
                         return (
                           <>
                           <div style={{border:'1px solid #ccc',margin:'10px 0px',padding:10}}>
-                                  <div className="row align-items-center" >
+                                  <div className="row align-items-center">
                                           <div className="col-sm-4">
                                                <TextField 
                                                   name="label"
@@ -311,9 +311,7 @@ const FormSchema = Yup.object().shape({
                                                   onChange={e => handleInputChange(e, i,'phone')}
                                                 />
                                           </div>
-                                           <div className="col-sm-6">
-
-                                            <br />     
+                                           <div className="col-sm-6"> 
                                             <Select
                                                               labelId="demo-simple-select-standard-label"
                                                               id="demo-simple-select-standard"
@@ -335,14 +333,11 @@ const FormSchema = Yup.object().shape({
                                                                   })
                                                               }
 
-                                              </Select>
-
-
-                                                  
+                                            </Select>
                                            </div>
                                            <div className="col-sm-1">
 
-                                              <a href="javascript:void(0)" className="link_delete_icon" onClick={() => removeField(i,x.label)}><br /><i className="fa fa-trash"></i></a>
+                                            <a href="javascript:void(0)" className="link_delete_icon btn btn-icon btn-icon rounded-circle btn-danger" onClick={() => removeField(i,x.label)}><i className="fa fa-trash"></i></a>
                                            </div>
                                       
                                     
@@ -380,7 +375,7 @@ const FormSchema = Yup.object().shape({
 
                                                                        <div className="col-sm-1">
                                                                         
-                                                                          <a className="link_delete_icon" href="javascript:void(0)" onClick={() => removeFieldOption(io,o.key,i)}><br /><i className="fa fa-trash"></i></a>
+                                                                          <a className="link_delete_icon btn btn-icon btn-icon rounded-circle btn-danger" href="javascript:void(0)" onClick={() => removeFieldOption(io,o.key,i)}><i className="fa fa-trash"></i></a>
                                                                        </div>
                                                                     </div>
 
@@ -421,8 +416,8 @@ const FormSchema = Yup.object().shape({
                                                                       />
                                                                  </div>
                                                                  <div className="col-sm-1">
-                                                                    <br />
-                                                                    <a className="link_delete_icon" href="javascript:void(0)" onClick={() => removeFieldRegular(io,o.key,i)}><i className="fa fa-trash"></i></a>
+                                                               
+                                                                    <a className="link_delete_icon btn btn-icon btn-icon rounded-circle btn-danger" href="javascript:void(0)" onClick={() => removeFieldRegular(io,o.key,i)}><i className="fa fa-trash"></i></a>
                                                                  </div>
                                                               </div>
 

@@ -541,7 +541,7 @@ const ByTypeComposer = ({ props, triggerType }) => {
          loopBackText: [loopBackText[0]],
          loopBackTriggerId: obj.loopBackId,
          menus: obj.options.map((v) => {
-            console.log(v.name);
+        
             return {
                text: v.name,
                toTriggerId: v.id,

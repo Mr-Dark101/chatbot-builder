@@ -154,20 +154,20 @@ const deleteMe  = (id) => {
           
       <div className="page_data_setting">
       <div className="row">
-      <div className="col-sm-8 p-0">
+      <div className="col-sm-9 p-0">
       <div className="api_list_page">
      
                       <div className="row px-30 py-20 media-center">
                   <div className="col-sm-3">
-                  <h4 style={{fontWeight:800}}  className="box-title m-0">My Custom APIs</h4>
+                  <h5 style={{fontWeight:800}}  className="box-title m-0">My Custom APIs</h5>
                   </div>
 
                   <div className="col-sm-9">
-                    <button type="button" onClick={() => subPage(<Create loadList={loadList} retrieveList={retrieveList} rs={rs} />)} className="btn btn_custom_api float-end"><img src={plus_icon} /> Create custom API</button>
+                    <button type="button" onClick={() => subPage(<Create loadList={loadList} retrieveList={retrieveList} rs={rs} />)} className="btn primary float-end"><img src={plus_icon} /> Create custom API</button>         
                   </div>
                 </div>
 
-<div className="table-responsive ms-10">
+                  <div className="table-responsive ms-10">
                 <table className="table">
                  <thead>
                     <tr>
@@ -199,9 +199,9 @@ const deleteMe  = (id) => {
                      
                       <td>
                       <div className="button_section">
-                      {row.build_type == 'C' ? ( <button className="api_edit_button" onClick={() => subPage(<Edit  loadList={loadList} retrieveList={retrieveList} rs={row} />)} ><img src={edit_icon} /></button>) : null}
+                      {row.build_type == 'C' ? ( <button className="btn btn-icon btn-icon rounded-circle btn-custom" onClick={() => subPage(<Edit  loadList={loadList} retrieveList={retrieveList} rs={row} />)}  style={{backgroundColor:"#35f5c6 !important",borderColor: '#35f5c6 !important'}}><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>) : null}
                        
-                        <button style={{marginLeft:5}} className="api_edit_button" onClick={() => deleteMe(row.id)} ><img src={delete_icon} /></button>
+                        <button style={{marginLeft:5}} className="btn btn-icon btn-icon rounded-circle btn-danger" onClick={() => deleteMe(row.id)} ><i class="fa fa-trash" aria-hidden="true"></i></button>
                       </div>
                       </td>
                     </tr>
@@ -216,7 +216,7 @@ const deleteMe  = (id) => {
                   
                 </div>
                 </div>
-                <div className="col-sm-4 ps-0 pe-10">
+                <div className="col-sm-3 ps-0 pe-10">
                   <div className="available_api_section">
                     <h5>Available API’s</h5>
 

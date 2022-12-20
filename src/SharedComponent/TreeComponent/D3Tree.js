@@ -250,6 +250,14 @@ const D3Tree = (props) => {
         })
     };
 
+    const zoomIn = () => {
+        console.log('Zoom In');
+    };
+
+    const zoomOut = () => {
+        console.log('Zoom Out');
+    };
+
     const nodeSize = {x: 620, y: 350};
     const foreignObjectProps = {width: nodeSize.x, height: 700, x: -160, y: -135};
 
@@ -279,6 +287,17 @@ const D3Tree = (props) => {
                 branchNodeClassName={"node-root"}
             />
             }
+            <a href="javascript:void(0)" class="btn position-absolute bottom-0 start-0" style= {{height: '30px',marginBottom:'130px',marginLeft:'20px',backgroundColor: '#E7E7E7'}}  onClick={() => { zoomIn() }}><i class="fa fa-plus" aria-hidden="true"></i></a>
+            <div class="s-tags">
+                <div class="tag-box">
+                <a href="javascript:void(0)" class="btn position-absolute bottom-0 start-0" style= {{height: '30px',marginBottom:'90px',marginLeft:'20px',backgroundColor: '#E7E7E7'}}  onClick={() => { zoomOut() }}><i class="fa fa-minus" aria-hidden="true"></i></a>
+                </div>
+                    
+                <div class="tag-box">
+                <a href="https://help.eocean.net/knowledge/automating-interactions-with-whatsapp-chatbots" class="btn position-absolute bottom-0 start-0" style= {{height: '30px',marginBottom:'90px',marginLeft:'70px',backgroundColor: '#E7E7E7',fontWeight: 800}}>Watch Tutorials</a>
+                </div>
+            </div>
+           
         </div>
     );
 };

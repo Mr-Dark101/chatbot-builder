@@ -140,13 +140,13 @@ useEffect(() => {
             <div className="ws-section">
                 <div className="dashboard-hld setting_page_section">
                     <div className="row me-0">
-                         <div className="col-sm-3 p-0">
+                         <div className="col-sm-2 p-0">
                             <div className="setting_left_bar_section">
                                 <div className="mb-30">
                                     <Link to={`${STRINGS.ROUTES.ROOT}?org=${localStorage.getItem("userId")}`} className="btn primary"><img src={left_circle_arrow_icon} style={{marginRight: '20px'}} />Back to Builder</Link>
                                 </div>
 
-                                <ul style={{width:"215px"}}>
+                                <ul style={{width:"175px"}}>
                                 {
                                     Menu.map((m,i) => (
                                     <>
@@ -165,7 +165,7 @@ useEffect(() => {
                                 </ul>
                             </div>   
                          </div>
-                         <div className="col-sm-9 p-0">
+                         <div className="col-sm-10 p-0">
 
                             {contentPage}
 

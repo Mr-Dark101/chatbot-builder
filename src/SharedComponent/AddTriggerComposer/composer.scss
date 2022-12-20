@@ -128,17 +128,16 @@
             .btn-outlined {
               display: flex;
               border: 1px solid #ccc;
-              padding: 15px 40px;
+              padding: 15px 35px;
               color: #000;
               background-color: #E7E7E7;
               border-radius: 4px;
-              font-weight: 500;
-              
+              font-weight: 800;
               outline: none;
-              font-size: 14px;
-              line-height: 17px;
-              font-family: 'Segoe UI Regular';
-            }
+              font-size: 13px;
+              line-height: 14px;
+              font-family: "Segoe UI Regular";
+          }
             .btn-danger {
               display: flex;
               border: 1px solid #dc3545;
@@ -832,27 +831,25 @@
               color: #000;
               background-color: #E7E7E7;
               border-radius: 5px;
-              
               outline: none;
-              font-weight: 500;
-              font-size: 14px;
+              font-weight: 800;
+              font-size: 13px;
               line-height: 17px;
               margin-left: 15px;
-            }
+          }
 
             .btn-filled {
               display: flex;
               border: 2px solid #363a77;
-              padding: 15px 40px;
+              padding: 15px 20px;
               color: #fff;
               background-color: #363a77;
               border-radius: 4px;
-             
               outline: none;
               font-weight: 700;
-              font-size: 14px;
-              line-height: 17px;
-            }
+              font-size: 12px;
+              line-height: 14px;
+          }
           }
         }
       }
@@ -862,11 +859,12 @@
 .fallback_button{
   background-color: #E7E7E7;
   padding: 7px 15px 7px 10px;
-  border-radius: 5px;
-  font-size: 14px !important;
+  border-radius: 4px;
+  font-size: 13px !important;
   line-height: 16px !important;
   color: #000 !important;
   font-family: 'Segoe UI Regular';
+  font-weight: 800 !important;
 }
 .fallback_button i{
   margin-right: 12px;

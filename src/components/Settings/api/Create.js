@@ -155,7 +155,7 @@ const FormSchema = Yup.object().shape({
             onSubmit={onSubmit}
           >
 
-                <h5 className="main_heading">Create custom API</h5>
+                <h4 class="box-title m-0" style={{fontWeight: 800}}>Create custom API</h4>
                 
                 <div className="row" style={{marginLeft: '0px',marginRight: '0px'}}>
                     <div className="col-9" style={{paddingLeft: '0px',paddingRight: '0px'}}>
@@ -219,8 +219,8 @@ const FormSchema = Yup.object().shape({
                              </div>
 
                               <div className="col-sm-1">
-                                        <br />
-                                        <a href="javascript:void(0)" className="link_delete_icon" onClick={() => removeField(i,x.keyOther)}><i className="fa fa-trash"></i></a>
+                                        
+                                        <a href="javascript:void(0)" className="link_delete_icon btn btn-icon btn-icon rounded-circle btn-danger mt-1" onClick={() => removeField(i,x.keyOther)}><i className="fa fa-trash"></i></a>
                                      </div>
                         
                       
@@ -265,7 +265,7 @@ const FormSchema = Yup.object().shape({
                   
               />
 
-              <button onClick={ () => loadList()} type="button" className="secondary ms-20">Cancel</button>
+              <button onClick={ () => loadList()} type="button" className="secondary ms-10">Cancel</button>
             </div>
 
             

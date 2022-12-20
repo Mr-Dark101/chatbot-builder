@@ -169,7 +169,7 @@ const Create = ({ rs, retrieveList, loadList }) => {
                            <div>
                               <SubmitButton title="Update" className="primary" />
 
-                              <button onClick={() => loadList()} type="button" className="secondary ms-20">
+                              <button onClick={() => loadList()} type="button" className="secondary ms-10">
                                  Cancel
                               </button>
                            </div>

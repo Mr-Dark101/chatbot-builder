@@ -31,7 +31,7 @@ const { onDownload } = useDownloadExcel({
 
           <div className="row p-30 media-center">
                   <div className="col-sm-6">
-                    <h3 className="box-title m-0">Form {row.name} - Entries</h3>
+                    <h4 className="box-title m-0" style={{fontWeight:800}}>{row.name} - Entries</h4>
                   </div>
                   <div className="col-sm-6 text-end">
 
