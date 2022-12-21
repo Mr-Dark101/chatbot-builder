@@ -63,10 +63,12 @@
 
     .head-lft {
       display: flex;
+      width: 27.55%;
+      align-items: center;
 
       .btn-hld {
         display: flex;
-        justify-content: space-between;
+        justify-content: end;
         width: 100%;
         font-size: 14px;
         font-weight: bold;

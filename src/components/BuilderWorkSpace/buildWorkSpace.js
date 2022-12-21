@@ -181,12 +181,11 @@ const BuildWorkSpace = () => {
                <h5 class="box-title m-0" style={{fontWeight: 800}}>Builder Workspace</h5>
             </div>
             <div className="head-center">
-               <h5 class="box-title m-0" style={{fontWeight: 800}}>  {name} -<span> {phoneNumber} </span></h5>          
-               <div className="icon">
-                  <img alt={'#'} src={draft_icon} height={24} width={48} />
-               </div>
+               <h5 class="box-title m-0" style={{fontWeight: 800}}>  {name} <span> {phoneNumber} </span></h5>          
+
             </div>
             <div className="head-lft">
+            <p  className="lastSeen"> Last saved <span>00:59 <span style={{textTransform: 'uppercase'}}>am</span></span></p>
                <div className="btn-hld">
                   <button
                      className="btn-outlined"
