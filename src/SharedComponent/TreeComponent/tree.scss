@@ -26,11 +26,18 @@
       }
 
       .add-btn-hld {
+        // display: flex;
+        // flex-direction: column;
+        // align-items: center;
+        // //position: relative;
+        // height: 80px;
         display: flex;
-        flex-direction: column;
+        flex-flow: wrap row;
         align-items: center;
-        //position: relative;
-        height: 80px;
+        border: 1px solid #000;
+        background: #fff;
+        margin: 19px 0 15px;
+        border-radius: 5px;
 
         &::before, &::after {
           content: "";
@@ -693,9 +700,12 @@
 
       .add-btn-hld {
         display: flex;
-        flex-direction: column;
+        flex-flow: wrap row;
         align-items: center;
-        height: 80px;
+        border: 1px solid #000;
+        background: #fff;
+        margin: 19px 0 15px;
+        border-radius: 5px;
 
         &::after {
           content: "";
@@ -817,11 +827,18 @@
     }
 
     .add-btn-hld {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      //position: relative;
-      height: 80px;
+      // display: flex;
+      // flex-direction: column;
+      // align-items: center;
+      // //position: relative;
+      // height: 80px;
+        display: flex;
+        flex-flow: wrap row;
+        align-items: center;
+        border: 1px solid #000;
+        background: #fff;
+        margin: 19px 0 15px;
+        border-radius: 5px;
 
       &::before, &::after {
         content: "";
@@ -1220,10 +1237,13 @@
     width: 100%;
 
     .add-btn-hld {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      height: 80px;
+        display: flex;
+        flex-flow: wrap row;
+        align-items: center;
+        border: 1px solid #000;
+        background: #fff;
+        margin: 19px 0 15px;
+        border-radius: 5px;
 
       &::after {
         content: "";

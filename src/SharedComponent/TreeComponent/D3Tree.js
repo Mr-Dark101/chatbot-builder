@@ -29,7 +29,7 @@ const D3Tree = (props) => {
     let dispatch = useDispatch();
     let {successList, triggersList, isUpdatedList, isZoomAble} = trigger;
     let [orgChart, setChart] = useState(orgChart2);
-    const [zoomValue,setZoomValue] = useState(0.4);
+    const [zoomValue,setZoomValue] = useState(0.8);
     const getMenus = (item) => {
         if (item.toTrigger !== null && item.toTrigger.menus.length > 0) {
             return {
@@ -299,14 +299,14 @@ const D3Tree = (props) => {
                 branchNodeClassName={"node-root"}
             />
             }
-            <a href="javascript:void(0)" class="btn position-absolute bottom-0 start-0" style= {{height: '30px',marginBottom:'130px',marginLeft:'20px',backgroundColor: '#E7E7E7'}}  onClick={() => { zoomIn() }}><i class="fa fa-plus" aria-hidden="true"></i></a>
+            <a href="javascript:void(0)" class="btn position-absolute bottom-0 start-0" style= {{height: '30px',marginBottom:'130px',marginLeft:'20px',backgroundColor: '#ffffff', border: '1px solid #000'}}  onClick={() => { zoomIn() }}><i class="fa fa-plus" aria-hidden="true"></i></a>
             <div class="s-tags">
                 <div class="tag-box">
-                <a href="javascript:void(0)" class="btn position-absolute bottom-0 start-0" style= {{height: '30px',marginBottom:'90px',marginLeft:'20px',backgroundColor: '#E7E7E7'}}  onClick={() => { zoomOut() }}><i class="fa fa-minus" aria-hidden="true"></i></a>
+                <a href="javascript:void(0)" class="btn position-absolute bottom-0 start-0" style= {{height: '30px',marginBottom:'90px',marginLeft:'20px',backgroundColor: '#ffffff',border: '1px solid #000'}}  onClick={() => { zoomOut() }}><i class="fa fa-minus" aria-hidden="true"></i></a>
                 </div>
                     
                 <div class="tag-box">
-                <a href="https://help.eocean.net/knowledge/automating-interactions-with-whatsapp-chatbots" class="btn position-absolute bottom-0 start-0" style= {{height: '30px',marginBottom:'90px',marginLeft:'70px',backgroundColor: '#E7E7E7',fontWeight: 800}}>Watch Tutorials</a>
+                <a href="https://help.eocean.net/knowledge/automating-interactions-with-whatsapp-chatbots" class="btn position-absolute bottom-0 start-0" style= {{height: '30px',marginBottom:'90px',marginLeft:'70px',backgroundColor: '#ffffff',fontWeight: 800,border: '1px solid #000'}}>Watch tutorial</a>
                 </div>
             </div>
            

@@ -178,12 +178,10 @@ const BuildWorkSpace = () => {
                <div onClick={handleBack} className="icon" style={{ width: '24px' }}>
                   <img alt={'#'} src={back_icon} />
                </div>
-               <div className="txt">Builder Workspace</div>
+               <h5 class="box-title m-0" style={{fontWeight: 800}}>Builder Workspace</h5>
             </div>
             <div className="head-center">
-               <div className="txt">
-                  {name} -<span> {phoneNumber} </span>
-               </div>
+               <h5 class="box-title m-0" style={{fontWeight: 800}}>  {name} -<span> {phoneNumber} </span></h5>          
                <div className="icon">
                   <img alt={'#'} src={draft_icon} height={24} width={48} />
                </div>
@@ -199,7 +197,7 @@ const BuildWorkSpace = () => {
                         })
                      }
                   >
-                     TEST YOUR BOT
+                      <h6 class="box-title m-0" style={{fontWeight: 800}}>Test your bot</h6>
                   </button>
 
                   <button
@@ -210,7 +208,7 @@ const BuildWorkSpace = () => {
                         }
                      }}
                   >
-                     {!published ? 'PUBLISH' : 'PUBLISHED'}
+                     {!published ? 'Publish' : 'Published'}
                   </button>
                </div>
             </div>

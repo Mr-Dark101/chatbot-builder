@@ -70,6 +70,17 @@
   font-size: 12px;
 }
 
+.btn-trigger {
+  background: transparent;
+  outline: none;
+  border: none;
+  border-radius: 4px;
+  color: #363a77;
+  font-weight: 800 !important;
+  font-size: 13px;
+  padding: 10px;
+}
+
 @import url('https://fonts.googleapis.com/css2?family=Lato&family=Mulish:wght@400;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@500&display=swap');

@@ -146,7 +146,7 @@ const UserBotsCardItem = (props) => {
                      height: '60px',
                   }}
                >
-                  <Av sx={{ width: 60, height: 60 }} src={defaultIcon} />
+                  <Av sx={{ width: 50, height: 50 }} src={defaultIcon} />
                </div>
             </div>
             <div
