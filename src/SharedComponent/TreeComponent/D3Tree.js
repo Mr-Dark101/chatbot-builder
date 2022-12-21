@@ -29,7 +29,7 @@ const D3Tree = (props) => {
     let dispatch = useDispatch();
     let {successList, triggersList, isUpdatedList, isZoomAble} = trigger;
     let [orgChart, setChart] = useState(orgChart2);
-
+    const [zoomValue,setZoomValue] = useState(0.4);
     const getMenus = (item) => {
         if (item.toTrigger !== null && item.toTrigger.menus.length > 0) {
             return {
@@ -41,6 +41,9 @@ const D3Tree = (props) => {
         }
 
     }
+
+
+
 
     useEffect(() => {
         if (successList) {
@@ -78,6 +81,15 @@ const D3Tree = (props) => {
 
     const renderForeignObjectNode = (props) => {
         let {nodeDatum, toggleNode, foreignObjectProps} = props;
+       
+        if(nodeDatum.isGrandParent){
+            foreignObjectProps.x = -368;
+            foreignObjectProps.y = -95;
+        }else{
+            foreignObjectProps.x = -250;
+            foreignObjectProps.y = -105;
+        }
+        //console.log(foreignObjectProps)
         return (
             <g>
 
@@ -251,15 +263,15 @@ const D3Tree = (props) => {
     };
 
     const zoomIn = () => {
-        console.log('Zoom In');
+        setZoomValue(zoomValue + 0.1);
     };
 
     const zoomOut = () => {
-        console.log('Zoom Out');
+         setZoomValue(zoomValue - 0.1);
     };
 
     const nodeSize = {x: 620, y: 350};
-    const foreignObjectProps = {width: nodeSize.x, height: 700, x: -160, y: -135};
+    const foreignObjectProps = {width: nodeSize.x, height: 700, x: -250, y: -105};
 
     return (
         <div className="d3tree-container" >
@@ -276,7 +288,7 @@ const D3Tree = (props) => {
                 
                 nodeSize={nodeSize}
                 depthFactor={0}
-                zoom={0.4}
+                zoom={zoomValue}
                 scaleExtent={{max: 1, min: 0}}
                 translate={{x: 700, y: 100}}
                 zoomable={isZoomAble}
