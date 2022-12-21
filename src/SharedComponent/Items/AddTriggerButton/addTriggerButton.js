@@ -1,7 +1,6 @@
 import React from 'react';
 import add_icon from "../../../assets/add-icon.svg";
 import end_icon from "../../../assets/flow-end.svg";
-
 // const defaultState = {
 //     isFocus: false
 // }
@@ -23,7 +22,7 @@ const AddTriggerButton = (props) => {
                             <span>
                                 <img alt={"#"} src={add_icon}/>
                             </span>
-                Add Trigger
+                Bot is triggered if...
             </button>
             {isEnd && (<div className="end-icon">
                 <img alt={"#"} src={end_icon}/>
