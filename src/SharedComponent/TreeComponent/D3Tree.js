@@ -133,7 +133,9 @@ const D3Tree = (props) => {
                         (<div className="tree-head">
                             <React.Fragment>
                                 <div className="start-icon">
-                                    <img alt={"#"} src={chat_icon}/>
+                                    {/* <img alt={"#"} src={chat_icon}/> */}
+                                    <i class="fa fa-whatsapp" style={{fontSize: '32px'}} aria-hidden="true"></i>
+                                    
                                 </div>
                                 <AddTriggerButton addTrigger={() => {
                                     dispatch(openTriggerCard({open: true, isChild: null, childBotId: null}))
@@ -201,7 +203,8 @@ const D3Tree = (props) => {
                         (<div className="tree-footer">
                             <React.Fragment>
                                 <div className="start-icon">
-                                    <img alt={"#"} src={chat_icon}/>
+                                    {/* <img alt={"#"} src={chat_icon}/> */}
+                                    <i class="fa fa-whatsapp" style={{fontSize: '32px', marginBottom: '45px'}} aria-hidden="true"></i>
                                 </div>
                                 <AddTriggerButton addTrigger={() => {
                                     // dispatch(openUpdateTriggerCard({
@@ -299,14 +302,14 @@ const D3Tree = (props) => {
                 branchNodeClassName={"node-root"}
             />
             }
-            <a href="javascript:void(0)" class="btn position-absolute bottom-0 start-0" style= {{height: '30px',marginBottom:'130px',marginLeft:'20px',backgroundColor: '#ffffff', border: '1px solid #000'}}  onClick={() => { zoomIn() }}><i class="fa fa-plus" aria-hidden="true"></i></a>
+            <a href="javascript:void(0)" class="btn position-absolute bottom-0 start-0" style= {{height: '30px',marginBottom:'130px',marginLeft:'20px',backgroundColor: '#ffffff', border: '1px solid #ffffff'}}  onClick={() => { zoomIn() }}><i class="fa fa-plus" aria-hidden="true"></i></a>
             <div class="s-tags">
                 <div class="tag-box">
-                <a href="javascript:void(0)" class="btn position-absolute bottom-0 start-0" style= {{height: '30px',marginBottom:'90px',marginLeft:'20px',backgroundColor: '#ffffff',border: '1px solid #000'}}  onClick={() => { zoomOut() }}><i class="fa fa-minus" aria-hidden="true"></i></a>
+                <a href="javascript:void(0)" class="btn position-absolute bottom-0 start-0" style= {{height: '30px',marginBottom:'90px',marginLeft:'20px',backgroundColor: '#ffffff',border: '1px solid #ffffff'}}  onClick={() => { zoomOut() }}><i class="fa fa-minus" aria-hidden="true"></i></a>
                 </div>
                     
                 <div class="tag-box">
-                <a href="https://help.eocean.net/knowledge/automating-interactions-with-whatsapp-chatbots" class="btn position-absolute bottom-0 start-0" style= {{height: '30px',marginBottom:'90px',marginLeft:'70px',backgroundColor: '#ffffff',fontWeight: 800,border: '1px solid #000'}}>Watch tutorial</a>
+                <a href="https://help.eocean.net/knowledge/automating-interactions-with-whatsapp-chatbots" class="btn position-absolute bottom-0 start-0" style= {{height: '30px',marginBottom:'90px',marginLeft:'70px',backgroundColor: '#ffffff',fontWeight: 800,border: '1px solid #ffffff'}}>Watch tutorial</a>
                 </div>
             </div>
            

@@ -23,26 +23,30 @@ const defaultState = {
     confirmationTxt: "",
 }
 
-// const createArray = [
-//     {
-//         id: 1,
-//         name: "Live Chat",
-//         icon_1: customer_care,
-//         icon_2: customer_care_white,
-//     },
-//     {
-//         id: 2,
-//         name: "Support Chatbot",
-//         icon_1: lead_generation,
-//         icon_2: lead_generation_white,
-//     },
-//     {
-//         id: 3,
-//         name: "Quality Lead Bot",
-//         icon_1: filter_icon,
-//         icon_2: filter_icon_white,
-//     }
-// ]
+const createArray = [
+    {
+        id: 1,
+        name: "Live Chat",
+        icon_1: customer_care,
+        icon_2: customer_care_white,
+    },
+    {
+        id: 2,
+        name: "Support Chatbot",
+        icon_1: lead_generation,
+        icon_2: lead_generation_white,
+    },
+    {
+        id: 3,
+        name: "Quality Lead Bot",
+        icon_1: filter_icon,
+        icon_2: filter_icon_white,
+    }
+]
+
+const handleCreateChatBot = (type) => {
+
+ };
 
 
 const Templates = () => {
@@ -121,18 +125,13 @@ const Templates = () => {
             <div className="ws-section">
             
                 <div className="cards-hld">
-                    {/*{*/}
-                    {/*    createArray.map((d, index) => {*/}
-                    {/*        return (*/}
-                    {/*            <CreateBotsCardItem*/}
-                    {/*                onClick={handleCreateChatBot}*/}
-                    {/*                dashboard={dashboard}*/}
-                    {/*                key={index}*/}
-                    {/*                data={d}*/}
-                    {/*            />*/}
-                    {/*        )*/}
-                    {/*    })*/}
-                    {/*}*/}
+                    {createArray.map((d, index) => {
+                            return  <CreateBotsCardItem onClick={handleCreateChatBot}
+                                    dashboard={dashboard}
+                                    key={index}
+                                   data={d}
+                               />
+                            })}                    
                     {
                         !success ? "loading..." : !dataNotFound ?
                             data.map((d, index) => {

@@ -1,7 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { API } from '../../../utils/services';
 import { STRINGS } from '../../../utils/base';
-
 export const GetUserBots =
    ({ userId }) =>
    async (dispatch) => {
@@ -219,6 +218,17 @@ const dashboardSlice = createSlice({
       updateBotData: (state, { payload }) => {
          state.openBotComposer = true;
          state.updateBotData = payload;
+         if(payload.channels.toString().includes('whatsapp')) {
+            console.log("WhatsApp Added");                 
+         }
+         if(payload.channels.toString().includes('messenger')) {
+            console.log("Messenger Added");                 
+         } if(payload.channels.toString().includes('instagram')) {
+            console.log("Instagram Added");
+         } if(payload.channels.toString().includes('google')) {
+            console.log("Google Business Message Added");
+         }
+        
       },
       openBot: (state) => {
          state.openBotComposer = true;

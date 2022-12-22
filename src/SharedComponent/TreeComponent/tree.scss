@@ -22,7 +22,7 @@
 
       .start-icon {
         display: flex;
-        margin-bottom: -9px;
+        margin-bottom: 39px;
       }
 
       .add-btn-hld {
@@ -34,9 +34,9 @@
         display: flex;
         flex-flow: wrap row;
         align-items: center;
-        border: 1px solid #000;
+        border: 2px solid #35f5c6;
         background: #fff;
-        margin: 19px 0 15px;
+        margin: 0px 0 15px;
         border-radius: 5px;
 
         &::before, &::after {
@@ -702,9 +702,9 @@
         display: flex;
         flex-flow: wrap row;
         align-items: center;
-        border: 1px solid #000;
+        border: 2px solid #35f5c6;
         background: #fff;
-        margin: 19px 0 15px;
+        margin: 0px 0 15px;
         border-radius: 5px;
 
         &::after {
@@ -823,7 +823,7 @@
 
     .start-icon {
       display: flex;
-      margin-bottom: -9px;
+      margin-bottom: 39px;
     }
 
     .add-btn-hld {
@@ -832,13 +832,13 @@
       // align-items: center;
       // //position: relative;
       // height: 80px;
-        display: flex;
-        flex-flow: wrap row;
-        align-items: center;
-        border: 1px solid #000;
-        background: #fff;
-        margin: 19px 0 15px;
-        border-radius: 5px;
+      display: flex;
+      flex-flow: wrap row;
+      align-items: center;
+      border: 2px solid #35f5c6;
+      background: #fff;
+      margin: 0px 0 15px;
+      border-radius: 5px;
 
       &::before, &::after {
         content: "";
@@ -1237,13 +1237,13 @@
     width: 100%;
 
     .add-btn-hld {
-        display: flex;
-        flex-flow: wrap row;
-        align-items: center;
-        border: 1px solid #000;
-        background: #fff;
-        margin: 19px 0 15px;
-        border-radius: 5px;
+      display: flex;
+      flex-flow: wrap row;
+      align-items: center;
+      border: 2px solid #35f5c6;
+      background: #fff;
+      margin: 0px 0 15px;
+      border-radius: 5px;
 
       &::after {
         content: "";

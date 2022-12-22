@@ -155,7 +155,7 @@ const UserBotsCardItem = (props) => {
                   maxWidth: temp !== undefined && '230px',
                }}
             >
-               <div className="txt center">{name}</div>
+               <div className="txt center" style = {{fontWeight: 800}}>{name}</div>
                <div
                   className={`sub-txt ${selected && 'on'} ${temp !== undefined && 'temp'}`}
                   style={{
