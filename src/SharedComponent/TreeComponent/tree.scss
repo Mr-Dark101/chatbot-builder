@@ -22,9 +22,20 @@
 
       .start-icon {
         display: flex;
-        margin-bottom: 39px;
-      }
-
+        position: relative;
+    }
+    .start-icon::after {
+      content: '';
+      width: 0.1rem;
+      height: calc(100% + 53%);
+      background: #bebaba;
+      position: absolute;
+      top: 30px;
+      left: 0;
+      right: 0;
+      margin: 0 auto;
+      z-index: -1;
+  }
       .add-btn-hld {
         // display: flex;
         // flex-direction: column;
@@ -697,6 +708,23 @@
       flex-direction: column;
       align-items: center;
       width: 100%;
+      
+      .start-icon {
+        display: flex;
+        position: relative;
+      }
+      .start-icon::after {
+        content: '';
+        width: 0.1rem;
+        height: calc(100% + 0%);
+        background: #bebaba;
+        position: absolute;
+        top: 30px;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+        z-index: -1;
+    }
 
       .add-btn-hld {
         display: flex;
@@ -824,8 +852,20 @@
     .start-icon {
       display: flex;
       margin-bottom: 39px;
+      position: relative;
     }
-
+    .start-icon::after {
+      content: '';
+      width: 0.1rem;
+      height: calc(100% + 53%);
+      background: #bebaba;
+      position: absolute;
+      top: 30px;
+      left: 0;
+      right: 0;
+      margin: 0 auto;
+      z-index: -1;
+  }
     .add-btn-hld {
       // display: flex;
       // flex-direction: column;
@@ -1235,6 +1275,8 @@
     flex-direction: column;
     align-items: center;
     width: 100%;
+
+    
 
     .add-btn-hld {
       display: flex;
