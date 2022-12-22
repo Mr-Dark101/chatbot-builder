@@ -218,16 +218,16 @@ const dashboardSlice = createSlice({
       updateBotData: (state, { payload }) => {
          state.openBotComposer = true;
          state.updateBotData = payload;
-         if(payload.channels.toString().includes('whatsapp')) {
-            console.log("WhatsApp Added");                 
-         }
-         if(payload.channels.toString().includes('messenger')) {
-            console.log("Messenger Added");                 
-         } if(payload.channels.toString().includes('instagram')) {
-            console.log("Instagram Added");
-         } if(payload.channels.toString().includes('google')) {
-            console.log("Google Business Message Added");
-         }
+         // if(payload.channels.toString().includes('whatsapp')) {
+         //    console.log("WhatsApp Added");                 
+         // }
+         // if(payload.channels.toString().includes('messenger')) {
+         //    console.log("Messenger Added");                 
+         // } if(payload.channels.toString().includes('instagram')) {
+         //    console.log("Instagram Added");
+         // } if(payload.channels.toString().includes('google')) {
+         //    console.log("Google Business Message Added");
+         // }
         
       },
       openBot: (state) => {

@@ -104,7 +104,7 @@ const deleteMe  = (id) => {
 
     const deleteRow = (id) => {
        
-            CrudService.deleteRow(id,'patient_insurance',true).then(
+            CrudService.deleteRow(id,'api_bot',true).then(
             (response) => {
               toast("Record has been deleted!",{type: toast.TYPE.SUCCESS})
               setMessage(response.data.message);
@@ -146,7 +146,15 @@ const deleteMe  = (id) => {
         setShowAlert(false)
         deleteRow(delId)
     }
+
+    
+    
 }
+onCancel={() => {
+        setShowAlert(false)
+        
+    }
+    }
 />
 
 )}
@@ -192,7 +200,7 @@ const deleteMe  = (id) => {
 
                         <div className="text_section">
                           <h5><a href="#">{row.name}</a></h5>
-                          <p>A small brief about this API goes here.</p>
+                          <p>{row.description}</p>
                         </div>
                       </div></td>
                       <td>{row.api_type}</td>

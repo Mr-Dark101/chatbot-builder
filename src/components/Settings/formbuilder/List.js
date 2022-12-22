@@ -103,6 +103,13 @@ const deleteMe  = (id) => {
         deleteRow(delId)
     }
 }
+
+onCancel={() => {
+        setShowAlert(false)
+        
+    }
+    }
+    
 />
 
 )}

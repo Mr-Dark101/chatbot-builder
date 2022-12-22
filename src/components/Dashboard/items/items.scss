@@ -115,7 +115,7 @@
         .category-box.on-facebook {
            background-color: #363a77;
           .txt.on{
-              color: #35F5C6;
+              color: #fff;
             }
           &:hover{
             background-color: #363a77;
@@ -126,7 +126,44 @@
             }
           }
         }
+
+
+        .category-box.on-instagram {
+           background-color: #363a77;
+          .txt.on{
+              color: #fff;
+            }
+          &:hover{
+            background-color: #363a77;
+            transition: background-color 0.4s ease-in-out;
+
+            .txt.on{
+              color: #35F5C6;
+            }
+          }
+        }
+      
+
+
+      .category-box.on-google {
+           background-color: #363a77;
+          .txt.on{
+              color: #fff;
+            }
+          &:hover{
+            background-color: #363a77;
+            transition: background-color 0.4s ease-in-out;
+
+            .txt.on{
+              color: #35F5C6;
+            }
+          }
+        }
+      
+        
       }
+
+      
 
       .form-holder {
         display: flex;

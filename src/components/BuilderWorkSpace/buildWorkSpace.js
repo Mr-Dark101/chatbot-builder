@@ -12,6 +12,7 @@ import D3Tree from '../../SharedComponent/TreeComponent/D3Tree';
 import { getBotTriggersRecursive, openTriggerCard, resetTheUrls } from '../../SharedComponent/AddTriggerComposer/slices/addTrigger.slice';
 import { Drawer } from '@mui/material';
 import AlertModal from '../../SharedComponent/ConfirmModal/AlertModal';
+import moment from "moment";
 // import TreeComponent from "../../SharedComponent/TreeComponent/treeComponent";
 import axios from 'axios';
 import { API } from '../../utils/services';
@@ -37,7 +38,7 @@ const BuildWorkSpace = () => {
    let { currentTriggerData, openChatBot, getAllTypes, isAlert, isUpdatedList, confirmationTxt, confirmationInfo } = init;
    let { currentBotData } = dashboard;
    let { success, isPublishSuccess, message_, dataNotFound } = workSpace;
-   let { name, phoneNumber, id, userId, published } = currentBotData !== null && currentBotData;
+   let { name, phoneNumber, id, userId, published,updated_at } = currentBotData !== null && currentBotData;
 
    useEffect(() => {
       if (dataNotFound) {
@@ -96,6 +97,20 @@ const BuildWorkSpace = () => {
    }, [isPublishSuccess, published]);
 
    const handlePublishBot = (obj) => {
+
+
+
+      // setInit({
+      //    ...init,
+         
+      //    isAlert: true,
+      //    confirmationTxt: `Are you sured, you want to publish this bot`,
+      //    currentObject: {
+      //       userId: 0,
+      //       id: 0,
+      //    },
+      // });
+
       //Publish Bot in server
       const body = {
          userId: obj.userId,
@@ -185,7 +200,7 @@ const BuildWorkSpace = () => {
 
             </div>
             <div className="head-lft">
-            <p  className="lastSeen"> Last saved <span>00:59 <span style={{textTransform: 'uppercase'}}>am</span></span></p>
+            <p  className="lastSeen"> Last saved <span>{moment(updated_at).format("hh:mm:ss A")}</span></p>
                <div className="btn-hld">
                   <button
                      className="btn-outlined"

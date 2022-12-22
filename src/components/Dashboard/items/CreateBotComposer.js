@@ -34,6 +34,8 @@ const defaultState = {
 
 const CreateBotComposer = (props) => {
    let { openModal, onClose, currentUser, data } = props;
+
+   
    const [init, setInit] = useState(defaultState);
    let { selected, selectCategory, botName, botDescription, botPhoneNumber, botImage, botId, comingSoon, onHover,isAlert, isUpdatedList, confirmationTxt, confirmationInfo,buttonText } = init;
    const dispatch = useDispatch();
@@ -71,6 +73,7 @@ const CreateBotComposer = (props) => {
       });
 
       if (data !== null) {
+       
          setInit({
             ...init,
             botName: data.name,
@@ -78,7 +81,20 @@ const CreateBotComposer = (props) => {
             botPhoneNumber: data.phoneNumber,
             selectCategory: true,
             botId: data.id,
+            selected: data.channels !== null ? JSON.parse(data.channels) : ['whatsapp']
          });
+
+
+
+
+      }else{
+
+         setInit({
+            ...init,
+           
+            selected: ['whatsapp']
+         });
+
       }
 
    }, [data]);
@@ -97,7 +113,7 @@ const CreateBotComposer = (props) => {
       });
    };
    const handleCreateBotSubmit = () => {
-      console.log('HandleCreateBotSubmit: ' + localStorage.getItem('org_unit_id'));
+     // console.log('HandleCreateBotSubmit: ' + localStorage.getItem('org_unit_id'));
       let createObj = {
          name: botName,
          phoneNumber: botPhoneNumber,
@@ -114,6 +130,7 @@ const CreateBotComposer = (props) => {
             name: botName,
             phoneNumber: botPhoneNumber,
             description: botDescription,
+            channels: JSON.stringify(selected),
             userId: currentUser,
             imagePath: botImage,
          };
@@ -184,15 +201,17 @@ const CreateBotComposer = (props) => {
    };
 
    const handleSelectBot = async (category,categoryText) => {
-      let channel = document.getElementById(category);
-      if (init.selected.includes(category)) {
-         channel.style.color = "#000";
-      } else {
-         channel.style.color = "#ffffff";
-      }
-      let apiReturn =  await dispatch(getChannelVerify(category))
-      if(category == 'whatsapp'){
-            apiReturn.error = false;
+      // let channel = document.getElementById(category);
+      // if (init.selected.includes(category)) {
+      //    channel.style.color = "#000";
+      // } else {
+      //    channel.style.color = "#ffffff";
+      // }
+      
+      let apiReturn =   false;
+      if(category != 'whatsapp'){
+            
+            await dispatch(getChannelVerify(category))
       }
       
       if(apiReturn.error){
@@ -232,6 +251,9 @@ const CreateBotComposer = (props) => {
              });
           }
       } 
+
+      
+      
    };
 
    const body = (
@@ -329,7 +351,7 @@ const CreateBotComposer = (props) => {
                            <img alt="Facebook" src={comingSoon ? comingSoonIcon : MessengerIcon} style={{ width: '42px', height: '42px' }} />
                           
                         </div>
-                        <label id="messenger" class="mt-20 text-center">Facebook Messenger</label>
+                        <label id="messenger" className={`mt-20 text-center txt ${init.selected.includes('messenger') && 'on'}`}>Facebook Messenger</label>
                      </div>
 
                      <div
@@ -346,14 +368,14 @@ const CreateBotComposer = (props) => {
                               comingSoon: false,
                            });
                         }}
-                        className={`category-box ${init.selected.includes('instagram') && 'on-facebook'}`}
+                        className={`category-box ${init.selected.includes('instagram') && 'on-instagram'}`}
                         onClick={() => handleSelectBot('instagram','Instagram')}
                      >
                         <div className={`icon on-messenger-app mb-10`}>
                            <img alt="Facebook" src={comingSoon ? comingSoonIcon : InstagramIcon} style={{ width: '62px', height: '62px' }} />
                          
                         </div>
-                        <label id="instagram" class="mb-20">Instagram</label>
+                        <label id="instagram" className={`mb-20  txt ${init.selected.includes('instagram') && 'on'}`}>Instagram</label>
                      </div>
 
                      <div
@@ -370,14 +392,14 @@ const CreateBotComposer = (props) => {
                               comingSoon: false,
                            });
                         }}
-                        className={`category-box ${init.selected.includes('googlemsg') && 'on-facebook'}`}
+                        className={`category-box ${init.selected.includes('googlemsg') && 'on-google'}`}
                         onClick={() => handleSelectBot('googlemsg','Google')}
                      >
                         <div className={`icon on-messenger-app mt-10`}>
                            <img alt="Facebook" src={comingSoon ? comingSoonIcon : GoogleIcon} style={{ width: '56px', height: '56px' }} />                  
                           
                         </div>
-                        <label id="googlemsg" class="mt-10 text-center">Google Business Message</label>
+                        <label id="googlemsg" className={`mt-10 text-center txt ${init.selected.includes('googlemsg') && 'on'}`}>Google Business Message</label>
                      </div>
                   </div>
 
