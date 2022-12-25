@@ -12,7 +12,7 @@ import D3Tree from '../../SharedComponent/TreeComponent/D3Tree';
 import { getBotTriggersRecursive, openTriggerCard, resetTheUrls } from '../../SharedComponent/AddTriggerComposer/slices/addTrigger.slice';
 import { Drawer } from '@mui/material';
 import AlertModal from '../../SharedComponent/ConfirmModal/AlertModal';
-import moment from "moment";
+import moment from 'moment';
 // import TreeComponent from "../../SharedComponent/TreeComponent/treeComponent";
 import axios from 'axios';
 import { API } from '../../utils/services';
@@ -38,7 +38,7 @@ const BuildWorkSpace = () => {
    let { currentTriggerData, openChatBot, getAllTypes, isAlert, isUpdatedList, confirmationTxt, confirmationInfo } = init;
    let { currentBotData } = dashboard;
    let { success, isPublishSuccess, message_, dataNotFound } = workSpace;
-   let { name, phoneNumber, id, userId, published,updated_at } = currentBotData !== null && currentBotData;
+   let { name, phoneNumber, id, userId, published, updated_at } = currentBotData !== null && currentBotData;
 
    useEffect(() => {
       if (dataNotFound) {
@@ -97,12 +97,9 @@ const BuildWorkSpace = () => {
    }, [isPublishSuccess, published]);
 
    const handlePublishBot = (obj) => {
-
-
-
       // setInit({
       //    ...init,
-         
+
       //    isAlert: true,
       //    confirmationTxt: `Are you sured, you want to publish this bot`,
       //    currentObject: {
@@ -193,14 +190,21 @@ const BuildWorkSpace = () => {
                <div onClick={handleBack} className="icon" style={{ width: '24px' }}>
                   <img alt={'#'} src={back_icon} />
                </div>
-               <h5 class="box-title m-0" style={{fontWeight: 800}}>Builder Workspace</h5>
+               <h5 class="box-title m-0" style={{ fontWeight: 800 }}>
+                  Builder Workspace
+               </h5>
             </div>
             <div className="head-center">
-               <h5 class="box-title m-0" style={{fontWeight: 800}}>  {name} <span> {phoneNumber} </span></h5>          
-
+               <h5 class="box-title m-0" style={{ fontWeight: 800 }}>
+                  {' '}
+                  {name} <span> {phoneNumber} </span>
+               </h5>
             </div>
             <div className="head-lft">
-            <p  className="lastSeen"> Last saved <span>{moment(updated_at).format("hh:mm:ss A")}</span></p>
+               <p className="lastSeen">
+                  {' '}
+                  Last saved <span>{moment(updated_at).format('hh:mm A')}</span>
+               </p>
                <div className="btn-hld">
                   <button
                      className="btn-outlined"
@@ -211,7 +215,9 @@ const BuildWorkSpace = () => {
                         })
                      }
                   >
-                      <h6 class="box-title m-0" style={{fontWeight: 800}}>Test your bot</h6>
+                     <h6 class="box-title m-0" style={{ fontWeight: 800 }}>
+                        Test your bot
+                     </h6>
                   </button>
 
                   <button

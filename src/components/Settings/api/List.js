@@ -1,265 +1,245 @@
-import React, { useState, useEffect } from "react";
-import CrudService from "../../../services/crud.service";
-import ModalPopup from "../../common/modal/ModalPopup";
+import React, { useState, useEffect } from 'react';
+import CrudService from '../../../services/crud.service';
+import ModalPopup from '../../common/modal/ModalPopup';
 import SweetAlert from 'react-bootstrap-sweetalert';
-import Create from "./Create";
-import Edit from "./Edit";
+import Create from './Create';
+import Edit from './Edit';
 
 import BlankMsg from '../../common/BlankMsg';
-import {toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import plus_icon from '../../../assets/built_add_icon.svg';
 import api from '../../../assets/setting/api.png';
 import edit_icon from '../../../assets/Custom Size - 4/edit.svg';
 import delete_icon from '../../../assets/Custom Size - 4/Icon metro-cancel.svg';
 
-const List = ({rs,subPage,loadList}) => {
-const [listData, setListData] = useState([]);
+const List = ({ rs, subPage, loadList }) => {
+   const [listData, setListData] = useState([]);
 
-const [listTemplateData, setListTemplateData] = useState([]);
+   const [listTemplateData, setListTemplateData] = useState([]);
 
-const [modalValue, setModalValue] = useState('');
-    const [show, setShow] = useState(true);
-const [showAlert, setShowAlert] = useState(false);
-  const [successful, setSuccessful] = useState(false);
-  const [message, setMessage] = useState();
-    const [delId, setDelId] = useState(false);
+   const [modalValue, setModalValue] = useState('');
+   const [show, setShow] = useState(true);
+   const [showAlert, setShowAlert] = useState(false);
+   const [successful, setSuccessful] = useState(false);
+   const [message, setMessage] = useState();
+   const [delId, setDelId] = useState(false);
 
+   const API_URL = process.env.REACT_APP_BACKEND_URl;
 
-const API_URL = process.env.REACT_APP_BACKEND_URl;
+   useEffect(() => {
+      retrieveList();
+      retrieveListTemplate();
+   }, []);
 
-useEffect(() => {
-    retrieveList();
-    retrieveListTemplate();
-  }, []);
+   const retrieveListTemplate = () => {
+      CrudService.getAll('api_template&build_type=T', true)
+         .then((response) => {
+            setListTemplateData(response.data);
+         })
+         .catch((e) => {
+            console.log(e);
+         });
+   };
 
-  
-
-  const retrieveListTemplate = () => {
-    CrudService.getAll('api_template&build_type=T',true)
-      .then(response => {
-        setListTemplateData(response.data);
-        
-      })
-      .catch(e => {
-        console.log(e);
-      });
-  };
-
-  const retrieveList = () => {
-    CrudService.getAll('api_bot&build_type=C',true)
-      .then(response => {
-        setListData(response.data);
-        console.log(response.data);
-      })
-      .catch(e => {
-        console.log(e);
-      });
-  };
-const loadModal = (title,children) => {
-      
-        setModalValue(
-         
-        <ModalPopup show={'true'} close={closeModal} title={title} >
+   const retrieveList = () => {
+      CrudService.getAll('api_bot&build_type=C', true)
+         .then((response) => {
+            setListData(response.data);
+            console.log(response.data);
+         })
+         .catch((e) => {
+            console.log(e);
+         });
+   };
+   const loadModal = (title, children) => {
+      setModalValue(
+         <ModalPopup show={'true'} close={closeModal} title={title}>
             {children}
-        </ModalPopup>
-        
-        )
-    
- }
-
-const registerThisApi = (row) => {
-   const data = row;
-
-   CrudService.register(data,'api_bot',true).then(
-        (response) => {
-          retrieveList()
-          
-          
-        },
-        (error) => {
-          const resMessage =
-            (error.response &&
-              error.response.data &&
-              error.response.data.message) ||
-            error.message ||
-            error.toString();
-
-          setMessage(resMessage);
-          setSuccessful(false);
-        }
+         </ModalPopup>
       );
-}
+   };
 
-const closeModal = () => {
+   const registerThisApi = (row) => {
+      const data = row;
 
-      
-      setModalValue('')
-  }
+      CrudService.register(data, 'api_bot', true).then(
+         (response) => {
+            retrieveList();
+         },
+         (error) => {
+            const resMessage = (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
 
-const deleteMe  = (id) => {
-           
-            setDelId(id)
-            setShowAlert(true)
-    }
+            setMessage(resMessage);
+            setSuccessful(false);
+         }
+      );
+   };
 
-    const deleteRow = (id) => {
-       
-            CrudService.deleteRow(id,'api_bot',true).then(
-            (response) => {
-              toast("Record has been deleted!",{type: toast.TYPE.SUCCESS})
-              setMessage(response.data.message);
-              setSuccessful(true);
-              retrieveList();
-            },
-            (error) => {
-              const resMessage =
-                (error.response &&
-                  error.response.data &&
-                  error.response.data.message) ||
-                error.message ||
-                error.toString();
+   const closeModal = () => {
+      setModalValue('');
+   };
 
-              //setMessage(resMessage);
-              //setSuccessful(false);
-            }
-          );
-    }
+   const deleteMe = (id) => {
+      setDelId(id);
+      setShowAlert(true);
+   };
 
+   const deleteRow = (id) => {
+      CrudService.deleteRow(id, 'api_bot', true).then(
+         (response) => {
+            toast('Record has been deleted!', { type: toast.TYPE.SUCCESS });
+            setMessage(response.data.message);
+            setSuccessful(true);
+            retrieveList();
+         },
+         (error) => {
+            const resMessage = (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
 
-  return (
-    <>
-      
-      {showAlert && (
-    <SweetAlert
-  custom
-  showCancel
-  showCloseButton
-  confirmBtnText="Yes"
-  cancelBtnText="No"
-  confirmBtnBsStyle="primary"
-  cancelBtnBsStyle="light"
-  customIcon=""
-  title="Are you sure?"
+            //setMessage(resMessage);
+            //setSuccessful(false);
+         }
+      );
+   };
 
-  
-  onConfirm={() => {
-        setShowAlert(false)
-        deleteRow(delId)
-    }
+   return (
+      <>
+         {showAlert && (
+            <SweetAlert
+               custom
+               showCancel
+               showCloseButton
+               confirmBtnText="Yes"
+               cancelBtnText="No"
+               confirmBtnBsStyle="primary"
+               cancelBtnBsStyle="light"
+               customIcon=""
+               title="Are you sure?"
+               onConfirm={() => {
+                  setShowAlert(false);
+                  deleteRow(delId);
+               }}
+               onCancel={() => {
+                  setShowAlert(false);
+               }}
+            />
+         )}
 
-    
-    
-}
-onCancel={() => {
-        setShowAlert(false)
-        
-    }
-    }
-/>
-
-)}
-       
-          
-      <div className="page_data_setting">
-      <div className="row">
-      <div className="col-sm-9 p-0">
-      <div className="api_list_page">
-     
-                      <div className="row px-30 py-20 media-center">
-                  <div className="col-sm-3">
-                  <h5 style={{fontWeight:800}}  className="box-title m-0">My Custom APIs</h5>
-                  </div>
-
-                  <div className="col-sm-9">
-                    <button type="button" onClick={() => subPage(<Create loadList={loadList} retrieveList={retrieveList} rs={rs} />)} className="btn primary float-end"><img src={plus_icon} /> Create custom API</button>         
-                  </div>
-                </div>
-
-                  <div className="table-responsive ms-10">
-                <table className="table">
-                 <thead>
-                    <tr>
-                      <th>Name</th>
-                      <th>Type</th>
-                      
-                      <th></th>
-                    </tr>
-                    </thead>
- <tbody>
-                    {listData &&
-            listData.map((row, index) => (
-
-                    <tr>
-                      <td>
-                      <div className="api_box_section">
-                        <div className="img_box">
-                          {(row.build_type == 'C') ? (<img src={'https://icons.veryicon.com/png/o/internet--web/internet-simple-icon/api-management.png'} width="40" />) : (<img src={`${API_URL}/uploads/platform/${row.Platform.logo}`} width="50" />)}
-                          
-                          
+         <div className="page_data_setting">
+            <div className="row">
+               <div className="col-sm-9 p-0">
+                  <div className="api_list_page">
+                     <div className="row px-30 py-20 media-center">
+                        <div className="col-sm-3">
+                           <h5 style={{ fontWeight: 800 }} className="box-title m-0">
+                              My Custom APIs
+                           </h5>
                         </div>
 
-                        <div className="text_section">
-                          <h5><a href="#">{row.name}</a></h5>
-                          <p>{row.description}</p>
+                        <div className="col-sm-9">
+                           <button type="button" onClick={() => subPage(<Create loadList={loadList} retrieveList={retrieveList} rs={rs} />)} className="btn primary float-end">
+                              <img src={plus_icon} /> Create custom API
+                           </button>
                         </div>
-                      </div></td>
-                      <td>{row.api_type}</td>
-                     
-                      <td>
-                      <div className="button_section">
-                      {row.build_type == 'C' ? ( <button className="btn btn-icon btn-icon rounded-circle btn-custom" onClick={() => subPage(<Edit  loadList={loadList} retrieveList={retrieveList} rs={row} />)}  style={{backgroundColor:"#35f5c6 !important",borderColor: '#35f5c6 !important'}}><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>) : null}
-                       
-                        <button style={{marginLeft:5}} className="btn btn-icon btn-icon rounded-circle btn-danger" onClick={() => deleteMe(row.id)} ><i class="fa fa-trash" aria-hidden="true"></i></button>
-                      </div>
-                      </td>
-                    </tr>
-                    ))}
-</tbody>
-                  
-                  </table>
+                     </div>
+
+                     <div className="table-responsive ms-10">
+                        <table className="table">
+                           <thead>
+                              <tr>
+                                 <th>API Name</th>
+                                 <th>API Type</th>
+
+                                 <th></th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              {listData &&
+                                 listData.map((row, index) => (
+                                    <tr>
+                                       <td>
+                                          <div className="api_box_section">
+                                             <div className="img_box">
+                                                {row.build_type == 'C' ? (
+                                                   <img src={'https://icons.veryicon.com/png/o/internet--web/internet-simple-icon/api-management.png'} width="40" />
+                                                ) : (
+                                                   <img src={`${API_URL}/uploads/platform/${row.Platform.logo}`} width="50" />
+                                                )}
+                                             </div>
+
+                                             <div className="text_section">
+                                                <h5>
+                                                   <a href="#">{row.name}</a>
+                                                </h5>
+                                                <p>{row.description}</p>
+                                             </div>
+                                          </div>
+                                       </td>
+                                       <td>{row.api_type}</td>
+
+                                       <td>
+                                          <div className="button_section">
+                                             {row.build_type == 'C' ? (
+                                                <button
+                                                   className="btn btn-icon btn-icon rounded-circle btn-custom"
+                                                   onClick={() => subPage(<Edit loadList={loadList} retrieveList={retrieveList} rs={row} />)}
+                                                   style={{ backgroundColor: '#35f5c6 !important', borderColor: '#35f5c6 !important' }}
+                                                >
+                                                   <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                                </button>
+                                             ) : null}
+
+                                             <button style={{ marginLeft: 5 }} className="btn btn-icon btn-icon rounded-circle btn-danger" onClick={() => deleteMe(row.id)}>
+                                                <i class="fa fa-trash" aria-hidden="true"></i>
+                                             </button>
+                                          </div>
+                                       </td>
+                                    </tr>
+                                 ))}
+                           </tbody>
+                        </table>
+                     </div>
                   </div>
-                    
-
-
-                  
-                </div>
-                </div>
-                <div className="col-sm-3 ps-0 pe-10">
+               </div>
+               <div className="col-sm-3 ps-0 pe-10">
                   <div className="available_api_section">
-                    <h5>Available API’s</h5>
+                     <h5>Open API’s</h5>
 
-                    <table className="table">
-                    {listTemplateData &&
-            listTemplateData.map((row, index) => (
-                      <tr>
-                        <td>
-                          <div className="api_box_section">
-                            <div className="img_box">
-                              <img src={`${API_URL}/uploads/platform/${row.Platform.logo}`} width="50" />
-                            </div>
+                     <table className="table" style={{ height: '400px', backgroundColor: '#f5f5f5' }}>
+                        <img alt="" src="https://i.pinimg.com/736x/a6/a2/55/a6a25503c1fe53273752d125a2928b10.jpg" style={{ display: 'block', marginRight: 'auto', marginLeft: 'auto', padding: '200px' }} />
+                        {listTemplateData &&
+                           listTemplateData.map((row, index) => (
+                              <tr>
+                                 <td>
+                                    <div className="api_box_section">
+                                       <div className="img_box">
+                                          <img src={`${API_URL}/uploads/platform/${row.Platform.logo}`} width="50" />
+                                       </div>
 
-                            <div className="text_section">
-                              <h5><a href="#">{row.name}</a></h5>
-                              <p>{row.description}</p>
-                            </div>
-                          </div>
-                        </td>
+                                       <div className="text_section">
+                                          <h5>
+                                             <a href="#">{row.name}</a>
+                                          </h5>
+                                          <p>{row.description}</p>
+                                       </div>
+                                    </div>
+                                 </td>
 
-                        <td>
-                          <p className="useless_link"><a href="#" onClick={() => registerThisApi(row)}>Use This API</a></p>
-                        </td>
-                      </tr>
- ))}
-                      
-                    </table>
+                                 <td>
+                                    <p className="useless_link">
+                                       <a href="#" onClick={() => registerThisApi(row)}>
+                                          Use This API
+                                       </a>
+                                    </p>
+                                 </td>
+                              </tr>
+                           ))}
+                     </table>
                   </div>
-                </div>
-        </div>
-            
-       </div>
-   
-    </>
-  );
+               </div>
+            </div>
+         </div>
+      </>
+   );
 };
 
 export default List;

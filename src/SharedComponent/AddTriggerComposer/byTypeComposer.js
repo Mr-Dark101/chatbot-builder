@@ -541,7 +541,6 @@ const ByTypeComposer = ({ props, triggerType }) => {
          loopBackText: [loopBackText[0]],
          loopBackTriggerId: obj.loopBackId,
          menus: obj.options.map((v) => {
-        
             return {
                text: v.name,
                toTriggerId: v.id,
@@ -1140,7 +1139,7 @@ const ByTypeComposer = ({ props, triggerType }) => {
                                     e.stopPropagation();
                                  }}
                               >
-                                 Loop back
+                                 Loopback
                               </button>
                               <button
                                  className={`btn-tcb ${template && 'on'}`}
@@ -1445,7 +1444,7 @@ const ByTypeComposer = ({ props, triggerType }) => {
                      </>
                   ) : (
                      <>
-                        <div style={{ color: '#000', marginTop: '15px',marginBottom: '10px' }}>
+                        <div style={{ color: '#000', marginTop: '15px', marginBottom: '10px' }}>
                            From Start Message
                            <TextEditor type={'formStartText'} defaultText={formStartText} onSuccess={handleTextAreaChange} />
                            <div style={{ color: '#000', marginBottom: '20px' }}></div>
@@ -1457,7 +1456,7 @@ const ByTypeComposer = ({ props, triggerType }) => {
                            ))}
                            <br />
                            From End Message
-                           <TextEditor style={{ marginTop: '15px'}} type={'formEndText'} defaultText={formEndText} onSuccess={handleTextAreaChange} />
+                           <TextEditor style={{ marginTop: '15px' }} type={'formEndText'} defaultText={formEndText} onSuccess={handleTextAreaChange} />
                         </div>
                         <br />
                      </>
@@ -1514,8 +1513,7 @@ const ByTypeComposer = ({ props, triggerType }) => {
                                                 style={{
                                                    width: '220px',
                                                    whiteSpace: 'nowrap',
-                                                   textAlign: 'center'
-                               
+                                                   textAlign: 'center',
                                                 }}
                                              >
                                                 {init.updateMenus.selectedMenuId === m.main_id ? (
@@ -1575,7 +1573,6 @@ const ByTypeComposer = ({ props, triggerType }) => {
                                                          Update
                                                       </button>
                                                    )}
-                                                   
                                                 </React.Fragment>
                                              ) : (
                                                 isData && (
@@ -1596,8 +1593,6 @@ const ByTypeComposer = ({ props, triggerType }) => {
                                                    />
                                                 )
                                              )}
-
-                                             
 
                                              <img
                                                 alt={'#'}
