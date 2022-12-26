@@ -200,60 +200,71 @@ const CreateBotComposer = (props) => {
       }
    };
 
-   const handleSelectBot = async (category,categoryText) => {
-      // let channel = document.getElementById(category);
-      // if (init.selected.includes(category)) {
-      //    channel.style.color = "#000";
-      // } else {
-      //    channel.style.color = "#ffffff";
-      // }
-      
+   const handleSelectBot = async (category,categoryText) => {   
       let apiReturn =   false;
       if(category != 'whatsapp'){
             
-            await dispatch(getChannelVerify(category))
-      }
+            let apiResponse = await dispatch(getChannelVerify(category));
+            apiResponse = JSON.stringify(apiResponse);
+            apiReturn = JSON.parse(apiResponse);
+            if(apiReturn.error){
       
-      if(apiReturn.error){
+               if (init.selected.includes(category)) {
+                  if(category === 'googlemsg'){
+                     setInit({
+                        ...init,
+                        isAlert: false,
+                        buttonText: categoryText,
+                        confirmationTxt: `Before you can add chatbot to Google's Business Messages, you need to add a Google's Business Messages account.`,
+                        selected: init.selected.filter((d) => d !== category),
+                        });
+                  } else {
+                     setInit({
+                        ...init,
+                        isAlert: false,
+                        buttonText: categoryText,
+                        confirmationTxt: `Before you can add chatbot to ${categoryText}, you need to connect a ${categoryText} page.`,
+                        selected: init.selected.filter((d) => d !== category),
+                        });
+                  }
+                 
+               } else {
+                  if(category === 'googlemsg'){
+                     setInit({
+                        ...init,
+                        isAlert: true,
+                        buttonText: categoryText,
+                        confirmationTxt: `Before you can add chatbot to Google's Business Messages, you need to add a Google's Business Messages account.`,
+                        selected: [...init.selected, category],
+                     });
+                  } else {
+                     setInit({
+                        ...init,
+                        isAlert: true,
+                        buttonText: categoryText,
+                        confirmationTxt: `Before you can add chatbot to ${categoryText}, you need to connect a ${categoryText} page.`,
+                        selected: [...init.selected, category],
+                     });
+                  }
+               
+               }
+           } else{
+            
+               if (init.selected.includes(category)) {
+               setInit({
+                  ...init,
       
-          if (init.selected.includes(category)) {
-          
-             setInit({
-                ...init,
-                isAlert: false,
-                buttonText: categoryText,
-                confirmationTxt: `Before you can add chatbot to ${categoryText}, you need to connect a ${categoryText} page.`,
-                selected: init.selected.filter((d) => d !== category),
-                });
-          } else {
-          
-             setInit({
-                ...init,
-                isAlert: true,
-                buttonText: categoryText,
-                confirmationTxt: `Before you can add chatbot to ${categoryText}, you need to connect a ${categoryText} page.`,
-                selected: [...init.selected, category],
-             });
-          }
-      } else{
-       
-          if (init.selected.includes(category)) {
-          setInit({
-             ...init,
- 
-             selected: init.selected.filter((d) => d !== category),
-             });
-          } else {
-             setInit({
-                ...init,
- 
-                selected: [...init.selected, category],
-             });
-          }
-      } 
-
+                  selected: init.selected.filter((d) => d !== category),
+                  });
+               } else {
+                  setInit({
+                     ...init,
       
-      
+                     selected: [...init.selected, category],
+                  });
+               }
+           }
+      }      
    };
 
    const body = (
@@ -399,7 +410,7 @@ const CreateBotComposer = (props) => {
                            <img alt="Facebook" src={comingSoon ? comingSoonIcon : GoogleIcon} style={{ width: '56px', height: '56px' }} />                  
                           
                         </div>
-                        <label id="googlemsg" className={`mt-10 text-center txt ${init.selected.includes('googlemsg') && 'on'}`}>Google Business Message</label>
+                        <label id="googlemsg" className={`mt-10 text-center txt ${init.selected.includes('googlemsg') && 'on'}`}>Google's Business Messages</label>
                      </div>
                   </div>
 
