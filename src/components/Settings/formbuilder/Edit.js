@@ -268,7 +268,7 @@ const Edit = ({ rs, retrieveList, loadList }) => {
                                              </div>
                                              <label style={{ marginBottom: '10px' }}>On Form Submit</label>
                                              <p style={{ marginBottom: '20px' }}>
-                                                Automatically allow form details to be sent to one or more email addresses when a customer completes the form. For your security, consider only using this feature with trusted email addresses.
+                                             You can automatically allow form data to be sent to one or more email addresses when a customer completes the form. For your security, consider using this feature with only trusted email addresses.
                                              </p>
 
                                              <label style={{ marginBottom: '0px' }}>Enter Email Addresses (Optional)</label>

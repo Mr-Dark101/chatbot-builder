@@ -202,7 +202,7 @@ const List = ({ rs, subPage, loadList }) => {
                </div>
                <div className="col-sm-3 ps-0 pe-10">
                   <div className="available_api_section">
-                     <h5>Open API’s</h5>
+                     <h5 class="box-title m-0" style= {{fontWeight: 800, fontSize: '16px !important'}}>Open API's</h5>
 
                      <table className="table" style={{ height: '400px', backgroundColor: '#f5f5f5' }}>
                         <img alt="" src="https://i.pinimg.com/736x/a6/a2/55/a6a25503c1fe53273752d125a2928b10.jpg" style={{ display: 'block', marginRight: 'auto', marginLeft: 'auto', padding: '50px' }} />
