@@ -74,7 +74,7 @@ const UserBotsCardItem = (props) => {
       dispatch(getBotTriggersRecursive(id));
       dispatch(getAllTriggersTypes(id));
       dispatch(apiList(data.ORG_UNIT_ID));
-      dispatch(formList());
+      dispatch(formList(data.ORG_UNIT_ID));
       dispatch(addingBreadcrumb({ label: data.name, path: `${STRINGS.ROUTES.BWS}/${id}` }));
       // dispatch(getBotTriggersRecursive(18))
    };

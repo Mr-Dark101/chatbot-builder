@@ -121,8 +121,8 @@ export const apiList = (userId) => async (dispatch) => {
       });
 };
 
-export const formList = () => async (dispatch) => {
-   API.get(`/bot-form-list`)
+export const formList = (userId) => async (dispatch) => {
+   API.get(`/bot-form-list?org=${userId}`)
       .then((res) => {
          // console.log("updateTrigger", res);
 

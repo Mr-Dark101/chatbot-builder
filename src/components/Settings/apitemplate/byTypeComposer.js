@@ -1176,7 +1176,7 @@ const ByTypeComposer = ({ props, triggerType, apiHandleConditionMaster }) => {
                                        }}
                                     />
                                  </div>
-                                 Route to agent
+                                 Bot to human Handover
                               </div>
 
                               <div
