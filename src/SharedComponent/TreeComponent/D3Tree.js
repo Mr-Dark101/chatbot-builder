@@ -132,7 +132,7 @@ const D3Tree = (props) => {
                         nodeDatum.isGrandParent !== undefined &&
                         (<div className="tree-head">
                             <React.Fragment>
-                                <div className="start-icon">
+                                <div className="start-icon d-none">
                                     {/* <img alt={"#"} src={chat_icon}/> */}
                                     <i class="fa fa-whatsapp" style={{fontSize: '32px'}} aria-hidden="true"></i>
                                     
@@ -202,7 +202,7 @@ const D3Tree = (props) => {
                         nodeDatum.toTrigger === undefined || nodeDatum.toTrigger === null &&
                         (<div className="tree-footer">
                             <React.Fragment>
-                                <div className="start-icon">
+                                <div className="start-icon d-none">
                                     {/* <img alt={"#"} src={chat_icon}/> */}
                                     <i class="fa fa-whatsapp" style={{fontSize: '32px', marginBottom: '45px'}} aria-hidden="true"></i>
                                 </div>

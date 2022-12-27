@@ -1,6 +1,7 @@
 .composer-container {
   display: flex;
-  width: 900px;
+  // width: 900px;
+  width: 100%;
   padding: 1rem;
   //position: absolute;
 
@@ -43,8 +44,10 @@
             .label {
               padding: 0px;
               .sub-txt {
-                font-size: 14px;
-                font-weight: 900;
+                // font-size: 14px;
+                // font-weight: 900;
+                font-size: 12px;
+                font-weight: 800;
                 color: #000;
                 text-align: left;
                 margin-bottom: 10px;
@@ -56,18 +59,25 @@
               display: flex;
               width: 100%;
 
-              .inp {
+              .inputWrap {
+                max-width: 74%;
                 width: 100%;
-                outline: none;
-                text-decoration: none;
-                border: none;
-                font-family: 'Segoe UI Regular';
-
-                &::placeholder {
-                  font-size: 14px;
+             
+                .inp {
+                  width: 100%;
+                  outline: none;
+                  text-decoration: none;
+                  border: none;
                   font-family: 'Segoe UI Regular';
+  
+                  &::placeholder {
+                    font-size: 14px;
+                    font-family: 'Segoe UI Regular';
+                  }
                 }
-              }
+            }
+
+              
             }
           }
 
@@ -161,7 +171,7 @@
             .btn-tcb {
               //display: flex;
               width: 100%;
-              margin: 0;
+              margin: 0 10px 10px 0;
               border: 2px solid #fff;
               padding: 0.6rem;
               white-space: nowrap;
@@ -176,6 +186,9 @@
               font-size: 14px;
               line-height: 17px;
               font-family: 'Segoe UI Regular';
+            }
+            .btn-tcb:last-child {
+              margin: 0 0 10px 0;
             }
 
             .btn-tcb.on {
@@ -324,7 +337,9 @@
               margin: 0.5rem 0;
               flex-direction: column;
               width: 100%;
-              border-bottom: 2px solid $bg-color;
+              // border-bottom: 2px solid $bg-color;
+              border: 2px dashed #cdcdcd;
+              padding: 1rem;
 
               .label {
                 .sub-txt {
@@ -609,6 +624,9 @@
                           background-color: $text-bg;
                           color: white;
                         }
+                        .end-icon {
+                          display: none;
+                        }
 
                         .end-icon {
                           display: flex;
@@ -617,10 +635,6 @@
                           right: 250px;
                           top: -21px;
 
-                          img {
-                            //position: absolute;
-                            //margin-top: -15px;
-                          }
 
                           &::after {
                             content: "";
@@ -812,7 +826,7 @@
 
         .c-footer {
           display: flex;
-          justify-content: space-between;
+          justify-content: end;
           align-items: center;
           width: 100%;
 

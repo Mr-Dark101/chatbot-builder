@@ -193,6 +193,10 @@ const BuildWorkSpace = () => {
                <h5 class="box-title m-0" style={{ fontWeight: 800 }}>
                   Builder Workspace
                </h5>
+               <p className="lastSeen">
+                  {' '}
+                  Last saved <span>{moment(updated_at).format('hh:mm A')}</span>
+               </p>
             </div>
             <div className="head-center">
                <h5 class="box-title m-0" style={{ fontWeight: 800 }}>
@@ -201,10 +205,7 @@ const BuildWorkSpace = () => {
                </h5>
             </div>
             <div className="head-lft">
-               <p className="lastSeen">
-                  {' '}
-                  Last saved <span>{moment(updated_at).format('hh:mm A')}</span>
-               </p>
+              
                <div className="btn-hld">
                   <button
                      className="btn-outlined"
@@ -215,13 +216,14 @@ const BuildWorkSpace = () => {
                         })
                      }
                   >
-                     <h6 class="box-title m-0" style={{ fontWeight: 800 }}>
-                        Test your bot
-                     </h6>
+                     {/* <h6 class="box-title m-0" style={{ fontWeight: 800 }}>
+                        
+                     </h6> */}
+                     Test your bot
                   </button>
 
                   <button
-                     className="btn-filled"
+                     className="btn-filled btn btn-primary"
                      onClick={() => {
                         if (!published) {
                            handlePublishBot({ botId: id, isPublished: !published, userId: localStorage.getItem('userId') });

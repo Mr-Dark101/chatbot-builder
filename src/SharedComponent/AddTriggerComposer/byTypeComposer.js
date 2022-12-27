@@ -989,7 +989,7 @@ const ByTypeComposer = ({ props, triggerType }) => {
                               <div className="sub-txt">Initiate Conversation with</div>
                            </div>
                            <div className="input" style={{ justifyContent: 'space-between' }}>
-                              <div style={{ width: '80%' }}>
+                              <div class="inputWrap">
                                  <input
                                     className="inp"
                                     value={triggerValueName}
@@ -1185,8 +1185,8 @@ const ByTypeComposer = ({ props, triggerType }) => {
                                  {triggerType == 'A' && conditionType == 'S' ? (
                                     <>
                                        <div className="simple_response_section">
-                                          <div className="row">
-                                             <div className="col-sm-6">
+                                          <div className="row align-items-end">
+                                             <div className="col-sm-4">
                                                 <span className="field_label">Label</span>
 
                                                 <input
@@ -1201,7 +1201,7 @@ const ByTypeComposer = ({ props, triggerType }) => {
                                                    placeholder="Please Enter Label"
                                                 />
                                              </div>
-                                             <div className="col-sm-6">
+                                             <div className="col-sm-4">
                                                 <span className="field_label">Value</span>
 
                                                 <input
@@ -1216,14 +1216,17 @@ const ByTypeComposer = ({ props, triggerType }) => {
                                                    placeholder="Please Enter Value"
                                                 />
                                              </div>
+                                             <div className="col-sm-4">
+                                                <div className="actions-btn">
+                                                   <button className="btn primary" onClick={() => addSimpleCondition()}>
+                                                      Add Label
+                                                   </button>
+                                                </div>
+                                             </div>
                                           </div>
 
-                                          <br />
-                                          <div className="actions-btn">
-                                             <button className="btn primary" onClick={() => addSimpleCondition()}>
-                                                Add Label
-                                             </button>
-                                          </div>
+                               
+                                          
 
                                           {simpleValues.map((s, i) => {
                                              return (
@@ -1483,7 +1486,7 @@ const ByTypeComposer = ({ props, triggerType }) => {
                               </div>
                               <div className="input">
                                  <input
-                                    className="inp"
+                                    className="inp inputWrap"
                                     value={triggerOpt}
                                     placeholder="Write Trigger Option (if any)"
                                     onChange={(e) => {
