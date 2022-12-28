@@ -32237,14 +32237,40 @@ img.away, img.busy, img.offline, img.online {
   border-radius: 5px;
   color: #fff;
 }
+
 .setting_left_bar_section ul li a.active{
   background-color: #363a77;
   border-radius: 5px;
   color: #fff;
 }
+
+.setting_left_bar_section ul li a:hover img ,.setting_left_bar_section ul li a.active img {
+  filter: invert(1);
+}
 .setting_left_bar_section ul li a img{
   margin-right: 20px;
 }
+/* Api Img Sec */
+.imgBg {
+  background: #fff;
+  width: 25%;
+  height: 19%;
+  display: flex;
+  justify-content: center;
+  padding: 16px;
+  border-radius: 50%;
+}
+.peraWrap {
+  border: none !important;
+  width: 100%;
+  text-align: center;
+  margin: 20px 0 0;
+}
+.peraWrap h4 {
+  font-weight: 800;
+  font-size: 20px;
+}
+/* API */
 .api_form_section{
   margin: 20px;
 }
