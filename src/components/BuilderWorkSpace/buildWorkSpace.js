@@ -27,6 +27,7 @@ const defaultState = {
    isUpdatedList: false,
    confirmationTxt: '',
    confirmationInfo: [],
+   updated_time:'',
 };
 
 const BuildWorkSpace = () => {
@@ -52,17 +53,21 @@ const BuildWorkSpace = () => {
       }
 
       if (trigger.success) {
-         // alert(trigger.message)
+          
          setInit({
             ...init,
             isAlert: true,
             isUpdatedList: true,
+           
             confirmationTxt: trigger.message,
          });
+
       }
       if (trigger.successTypes) {
+
          setInit({
             ...init,
+            
             getAllTypes: trigger.getAllTypes,
          });
       }
@@ -75,6 +80,7 @@ const BuildWorkSpace = () => {
             confirmationTxt: trigger.message,
          });
       }
+
    }, [dataNotFound, message_, success, trigger.success, trigger.message, trigger.dataNotFound, trigger.currentTriggerData, trigger.triggersList]);
 
    useEffect(() => {
@@ -95,6 +101,13 @@ const BuildWorkSpace = () => {
          dispatch(resetPublish());
       }
    }, [isPublishSuccess, published]);
+
+   useEffect(() => {
+      setInit({
+            ...init,
+            updated_time:updated_at,
+         });
+   }, []);
 
    const handlePublishBot = (obj) => {
       // setInit({
@@ -155,6 +168,7 @@ const BuildWorkSpace = () => {
    };
    const handleSubmitTrigger = (obj) => {
       // console.log("handleSubmitTrigger", obj)
+
       setInit({
          ...init,
          data: [...init.data, ...obj.triggersList],
@@ -163,6 +177,7 @@ const BuildWorkSpace = () => {
    };
 
    const handleCurrentTriggerData = (data) => {
+
       setInit({
          ...init,
          openComposer: true,
@@ -175,6 +190,17 @@ const BuildWorkSpace = () => {
       });
    };
 
+   const updateFun = () => {
+
+
+      setInit({
+            ...init,
+             updated_time: new Date(),
+            
+      });
+
+
+   }
    const handleBack = () => {
       console.log('UserId: ' + localStorage.getItem('userId'));
       history.push(`${STRINGS.ROUTES.ROOT}?org=${localStorage.getItem('userId')}`);
@@ -195,7 +221,7 @@ const BuildWorkSpace = () => {
                </h5>
                <p className="lastSeen">
                   {' '}
-                  Last saved <span>{moment(updated_at).format('hh:mm A')}</span>
+                  Last saved <span>{moment(init.updated_time).format('hh:mm A')}</span>
                </p>
             </div>
             <div className="head-center">
@@ -252,7 +278,7 @@ const BuildWorkSpace = () => {
             {trigger.openAddBot && (
                <Drawer anchor={'right'} open={trigger.openAddBot} onClose={handleCloseAddTrigger}>
                   <div className="composer-hld">
-                     <AddTriggerComposer trigger={trigger} getAllTypes={getAllTypes} currentBotData={currentBotData} data={currentTriggerData} handleTriggerClose={handleCloseAddTrigger} submitTrigger={handleSubmitTrigger} />
+                     <AddTriggerComposer trigger={trigger} updateFun={updateFun} getAllTypes={getAllTypes} currentBotData={currentBotData} data={currentTriggerData} handleTriggerClose={handleCloseAddTrigger} submitTrigger={handleSubmitTrigger} />
                   </div>
                </Drawer>
             )}

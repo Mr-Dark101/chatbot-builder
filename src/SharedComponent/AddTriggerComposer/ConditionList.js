@@ -441,7 +441,10 @@ const ConditionList = ({ props, apiHandle, dataIndex, apiData, updatedTriggersVa
                {isText && <TextEditor type={'response'} defaultText={description} onSuccess={handleTextAreaChange} />}
                {isMedia && (
                   <div id="drop-area" className="upload-media">
+                   
                      <div className="upload-prv" id="upload-prv">
+
+
                         {init.uploadFileResponse ? (
                            !$.isEmptyObject(init.uploadedFile) ? (
                               getContentByType(init.uploadedFile)

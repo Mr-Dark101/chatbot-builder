@@ -11,6 +11,7 @@ const ConfirmModal = ({visible, modalText, modalInfo, handleCancel, handleOk, co
                 title="Confirmation"
                 visible={visible}
                 onOk={handleOk}
+                okText= {`Yes`}
                 confirmLoading={confirmLoading}
                 onCancel={handleCancel}
             >

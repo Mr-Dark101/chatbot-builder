@@ -190,6 +190,16 @@ export const openTriggerCard = (obj) => (dispatch) => {
 export const resetTheUrls = () => (dispatch) => {
    dispatch(resetUrls());
 };
+
+export const deleteTheUrls = (url) => (dispatch) => {
+   dispatch(deleteUrls(url));
+   
+};
+
+export const deleteTheUrlsDone = (url) => (dispatch) => {
+   dispatch(deleteUrlsDone(url));
+   
+};
 export const isZoomD3 = (zoom) => (dispatch) => {
    dispatch(isZoom(zoom));
 };
@@ -230,6 +240,16 @@ const trigger = createSlice({
    reducers: {
       resetUrls: (state) => {
          state.urls = [];
+         
+      },
+      deleteUrls: (state, { payload }) => {
+        
+         state.urls = [...state.urls, payload];
+         state.urlUpdateSuccess = true;
+      },
+      deleteUrlsDone: (state) => {
+        
+         state.urlUpdateSuccess = false;
       },
       clearTriggerList: (state) => {
          state.successList = false;
@@ -277,6 +297,7 @@ const trigger = createSlice({
       },
       openBotComposer: (state, { payload }) => {
          // console.log("childBotId", payload)
+        
          state.openAddBot = payload.open;
          state.isChild = payload.isChild;
          state.childBotId = payload.childBotId;
@@ -284,6 +305,7 @@ const trigger = createSlice({
          state.url = '';
       },
       uploadFileSuccess: (state, { payload }) => {
+
          state.urls = [...state.urls, payload.url];
       },
       getAllTriggersTypesSuccess: (state, { payload }) => {
@@ -313,6 +335,8 @@ let {
    openUpdateBotComposer,
    uploadFileSuccess,
    resetUrls,
+   deleteUrls,
+   deleteUrlsDone,
    getApiListSuccess,
    getFormListSuccess,
 } = trigger.actions;
