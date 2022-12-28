@@ -83,10 +83,6 @@ const CreateBotComposer = (props) => {
             botId: data.id,
             selected: data.channels !== null ? JSON.parse(data.channels) : ['whatsapp']
          });
-
-
-
-
       }else{
 
          setInit({
@@ -382,7 +378,7 @@ const CreateBotComposer = (props) => {
                         className={`category-box ${init.selected.includes('instagram') && 'on-instagram'}`}
                         onClick={() => handleSelectBot('instagram','Instagram')}
                      >
-                        <div className={`icon on-messenger-app mb-10`}>
+                        <div className={`icon on-messenger-app`}>
                            <img alt="Facebook" src={comingSoon ? comingSoonIcon : InstagramIcon} style={{ width: '62px', height: '62px' }} />
                          
                         </div>

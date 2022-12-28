@@ -972,16 +972,13 @@ const ByTypeComposer = ({ props, triggerType }) => {
                               <>
                               <AudioPlayerDefault src={url} />
 
-                              <div className="media-remove">
-
-                              <img
-                                             alt={'#'}
-                                             src={trash_icon}
-
-
-                                             onClick={() => removeMedia(url)}
-                                             
-                                          />
+                              <div>
+                              <button className="btn btn-danger btn-icon rounded-circle media-remove" 
+                              style= {{marginLeft:'5px'}}  onClick={() => removeMedia(url)}>
+                              <i className="fa fa-trash">                                
+                              </i>
+                              </button>
+                            
 
                            </div>
                               </>
@@ -1002,16 +999,13 @@ const ByTypeComposer = ({ props, triggerType }) => {
                                  <video src={url} autoPlay controls />
                               </section>
 
-                              <div className="media-remove">
-
-                              <img
-                                             alt={'#'}
-                                             src={trash_icon}
-
-
-                                             onClick={() => removeMedia(url)}
-                                             
-                                          />
+                              <div>
+                              <button className="btn btn-danger btn-icon rounded-circle media-remove" 
+                              style= {{marginLeft:'5px'}}  onClick={() => removeMedia(url)}>
+                              <i className="fa fa-trash">                                
+                              </i>
+                              </button>
+                            
 
                            </div>
                            </> 
@@ -1035,16 +1029,13 @@ const ByTypeComposer = ({ props, triggerType }) => {
                                  </a>
                               </div>
 
-                              <div className="media-remove">
-
-                              <img
-                                             alt={'#'}
-                                             src={trash_icon}
-
-
-                                             onClick={() => removeMedia(url)}
-                                             
-                                          />
+                              <div>
+                              <button className="btn btn-danger btn-icon rounded-circle media-remove" 
+                              style= {{marginLeft:'5px'}}  onClick={() => removeMedia(url)}>
+                              <i className="fa fa-trash">                                
+                              </i>
+                              </button>
+                            
 
                            </div>
                              </> 
@@ -1062,16 +1053,13 @@ const ByTypeComposer = ({ props, triggerType }) => {
                            return (
                            <>
                            
-                           <div className="media-remove">
-
-                              <img
-                                             alt={'#'}
-                                             src={trash_icon}
-
-
-                                             onClick={() => removeMedia(url)}
-                                             
-                                          />
+                           <div>
+                              <button className="btn btn-danger btn-icon rounded-circle media-remove" 
+                              style= {{marginLeft:'5px'}}  onClick={() => removeMedia(url)}>
+                              <i className="fa fa-trash">                                
+                              </i>
+                              </button>
+                            
 
                            </div>
                            <div className="sub-img-tag">
