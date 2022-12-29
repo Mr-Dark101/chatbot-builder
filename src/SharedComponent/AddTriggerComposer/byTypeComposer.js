@@ -1189,7 +1189,9 @@ const ByTypeComposer = ({ props, triggerType }) => {
                      ) : null}
 
                      {triggerType == 'F' ? (
+                       
                         <div className="txt-field">
+                           <div style={{color: '#000',fontWeight: 800,marginTop: '10px'}}>Select Form</div>
                            <Select
                               labelId="demo-simple-select-standard-label"
                               id="demo-simple-select-standard"
@@ -1212,7 +1214,7 @@ const ByTypeComposer = ({ props, triggerType }) => {
                      <>
                         <div className="row__" style={{ marginBottom: '0px' }}>
                            <div className="txt" style={{ marginTop: '10px', marginBottom: '20px' }}>
-                              Response
+                              Bot Response
                            </div>
                            {triggerType == 'A' ? (
                               <>
@@ -1576,7 +1578,7 @@ const ByTypeComposer = ({ props, triggerType }) => {
                   ) : (
                      <>
                         <div style={{ color: '#000', marginTop: '15px', marginBottom: '10px' }}>
-                           From Start Message
+                           Form Start Message
                            <TextEditor type={'formStartText'} defaultText={formStartText} onSuccess={handleTextAreaChange} />
                            <div style={{ color: '#000', marginBottom: '20px' }}></div>
                            {formData.map((fRow, i) => (
@@ -1586,7 +1588,7 @@ const ByTypeComposer = ({ props, triggerType }) => {
                               </div>
                            ))}
                            <br />
-                           From End Message
+                           Form End Message
                            <TextEditor style={{ marginTop: '15px' }} type={'formEndText'} defaultText={formEndText} onSuccess={handleTextAreaChange} />
                         </div>
                         <br />
@@ -1666,7 +1668,7 @@ const ByTypeComposer = ({ props, triggerType }) => {
                                                 )}
                                              </button>
                                           </React.Fragment>
-                                          <div className="icon">
+                                          <div className="">
                                              {init.updateMenus.selectedMenuId === m.main_id ? (
                                                 <React.Fragment>
                                                    {init.updatePending ? (
@@ -1678,7 +1680,8 @@ const ByTypeComposer = ({ props, triggerType }) => {
                                                       />
                                                    ) : (
                                                       <button
-                                                         className="btn-outlined"
+                                                         className="btn-primary btn"
+                                                         style= {{marginRight:'10px'}} 
                                                          onClick={() => {
                                                             setInit({
                                                                ...init,
@@ -1707,11 +1710,9 @@ const ByTypeComposer = ({ props, triggerType }) => {
                                                 </React.Fragment>
                                              ) : (
                                                 isData && (
-                                                   <EditOutlined
-                                                      style={{
-                                                         color: '#363a77',
-                                                         margin: '0 0.5rem',
-                                                      }}
+                                                   <button
+                                                   className='btn btn-custom btn-icon rounded-circle'
+                                                   style= {{marginRight:'10px'}}
                                                       onClick={() => {
                                                          setInit({
                                                             ...init,
@@ -1721,14 +1722,17 @@ const ByTypeComposer = ({ props, triggerType }) => {
                                                             },
                                                          });
                                                       }}
-                                                   />
+                                                   >
+                                                      <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                                      </button>
                                                 )
                                              )}
 
-                                             <img
-                                                alt={'#'}
-                                                src={trash_icon}
-                                                onClick={() => {
+                                             
+                                             <button
+                                                      className='btn btn-danger btn-icon rounded-circle'
+                                                      
+                                                      onClick={() => {
                                                    setInit({
                                                       ...init,
                                                       currentData: {
@@ -1736,8 +1740,9 @@ const ByTypeComposer = ({ props, triggerType }) => {
                                                          triggerMenus: init.currentData.triggerMenus.filter((d) => d.id !== m.id),
                                                       },
                                                    });
-                                                }}
-                                             />
+                                                }}>
+                                                   <i className="fa fa-trash"></i>
+                                                   </button>
                                           </div>
                                        </div>
                                     );

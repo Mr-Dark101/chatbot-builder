@@ -1283,7 +1283,7 @@ const ByTypeComposer = ({ props, triggerType, apiHandleConditionMaster }) => {
                                                 )}
                                              </button>
                                           </React.Fragment>
-                                          <div className="icon">
+                                          <div className="">
                                              {init.updateMenus.selectedMenuId === m.main_id ? (
                                                 <React.Fragment>
                                                    {init.updatePending ? (
@@ -1295,7 +1295,8 @@ const ByTypeComposer = ({ props, triggerType, apiHandleConditionMaster }) => {
                                                       />
                                                    ) : (
                                                       <button
-                                                         className="btn-outlined"
+                                                         className="btn-primary btn"
+                                                         style= {{marginRight:'10px'}}
                                                          onClick={() => {
                                                             setInit({
                                                                ...init,
@@ -1322,28 +1323,27 @@ const ByTypeComposer = ({ props, triggerType, apiHandleConditionMaster }) => {
                                                       </button>
                                                    )}
                                                    {init.updateMenus.selectedMenuId === m.main_id && (
-                                                      <img
-                                                         alt={'#'}
-                                                         src={trash_icon}
-                                                         onClick={() => {
-                                                            setInit({
-                                                               ...init,
-                                                               updateMenus: {
-                                                                  selectedMenuId: null,
-                                                                  text: '',
-                                                               },
-                                                            });
-                                                         }}
-                                                      />
+                                                      <button
+                                                      className='btn btn-icon btn-danger rounded-circle'
+                                                      
+                                                      onClick={() => {
+                                                         setInit({
+                                                            ...init,
+                                                            currentData: {
+                                                               ...init.currentData,
+                                                               triggerMenus: init.currentData.triggerMenus.filter((d) => d.id !== m.id),
+                                                            },
+                                                         });
+                                                      }}>
+                                                   <i className="fa fa-trash"></i>
+                                                   </button>
                                                    )}
                                                 </React.Fragment>
                                              ) : (
                                                 isData && (
-                                                   <EditOutlined
-                                                      style={{
-                                                         color: '#363a77',
-                                                         margin: '0 0.5rem',
-                                                      }}
+                                                   <button
+                                                   className='btn btn-custom btn-icon rounded-circle'
+                                                   style= {{marginRight:'10px'}}
                                                       onClick={() => {
                                                          setInit({
                                                             ...init,
@@ -1353,7 +1353,9 @@ const ByTypeComposer = ({ props, triggerType, apiHandleConditionMaster }) => {
                                                             },
                                                          });
                                                       }}
-                                                   />
+                                                   >
+                                                      <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                                      </button>
                                                 )
                                              )}
 
@@ -1371,9 +1373,9 @@ const ByTypeComposer = ({ props, triggerType, apiHandleConditionMaster }) => {
                                                 }}
                                              />
 
-                                             <img
-                                                alt={'#'}
-                                                src={trash_icon}
+                                             <button
+                                                className='btn btn-icon btn-danger rounded-circle'
+                                                
                                                 onClick={() => {
                                                    setInit({
                                                       ...init,
@@ -1382,8 +1384,9 @@ const ByTypeComposer = ({ props, triggerType, apiHandleConditionMaster }) => {
                                                          triggerMenus: init.currentData.triggerMenus.filter((d) => d.id !== m.id),
                                                       },
                                                    });
-                                                }}
-                                             />
+                                                }}>
+                                             <i className="fa fa-trash"></i>
+                                             </button>
                                           </div>
                                        </div>
                                     );

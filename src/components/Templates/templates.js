@@ -139,7 +139,7 @@ const Templates = () => {
                                     return (
                                         <UserBotsCardItem
                                             temp
-                                            onDelete={(obj) => {
+                                            /*onDelete={(obj) => {
                                                 setInit({
                                                     ...init,
                                                     isConfirm: true,
@@ -148,7 +148,7 @@ const Templates = () => {
                                                     confirmationInfo: ["The bot can not be retrieved once deleted.", "However, you can still access your chat history with the bot."],
                                                     currentObject: obj
                                                 })
-                                            }}
+                                            }}*/
                                             dashboard={dashboard}
                                             key={index}
                                             data={d}
