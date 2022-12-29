@@ -1,4 +1,4 @@
-import React, { useState, useRef, useContext,useEffect } from 'react';
+import React, { useState, useRef, useContext, useEffect } from 'react';
 import Form from 'react-validation/build/form';
 import Input from 'react-validation/build/input';
 import CheckButton from 'react-validation/build/button';
@@ -18,12 +18,6 @@ const required = (value) => {
 };
 
 const Login = (props) => {
-   
-
-   
-
-
-
    const form = useRef();
    const checkBtn = useRef();
 
@@ -37,20 +31,16 @@ const Login = (props) => {
    const [message, setMessage] = useState('');
    const { user, setUser } = useContext(UserContext);
 
+   useEffect(() => {
+      const query = new URLSearchParams(props.location.search);
 
-
-    useEffect(() => {
-             const query = new URLSearchParams(props.location.search);
-
-            let _userName = JSON.stringify(props.location.search);
-            //console.log(_userName)
-            _userName = query.get('username') //_userName.replace('?username=', '');
-            if(_userName){
-               handleLoginbyuser(_userName)
-            }
-            
-
-    }, []);
+      let _userName = JSON.stringify(props.location.search);
+      //console.log(_userName)
+      _userName = query.get('username'); //_userName.replace('?username=', '');
+      if (_userName) {
+         handleLoginbyuser(_userName);
+      }
+   }, []);
    const onChangeUsername = (e) => {
       const username = e.target.value;
       setUsername(username);
@@ -61,24 +51,20 @@ const Login = (props) => {
       setPassword(password);
    };
 
-
    const handleLoginbyuser = (username) => {
-     
-         AuthService.loginbyuser(username).then(
-            (rData) => {
-              
-               //history.push('/');
-               window.location.href = '/?org=' + rData.org_unit_id;
-               //window.location.href = '/?org=0';
-            },
-            (error) => {
-               const resMessage = (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
+      AuthService.loginbyuser(username).then(
+         (rData) => {
+            //history.push('/');
+            window.location.href = '/?org=' + rData.org_unit_id;
+            //window.location.href = '/?org=0';
+         },
+         (error) => {
+            const resMessage = (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
 
-               setLoading(false);
-               setMessage(resMessage);
-            }
-         );
-      
+            setLoading(false);
+            setMessage(resMessage);
+         }
+      );
    };
 
    const handleLogin = (e) => {
@@ -115,7 +101,7 @@ const Login = (props) => {
 
    return (
       <>
-         <div className="hold-transition theme-primary login_page">
+         <div className="hold-transition theme-primary login_page d-none">
             <div className="row">
                <div className="col-sm-12">
                   <div class="login_form_area">

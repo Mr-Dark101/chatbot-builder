@@ -71,7 +71,7 @@ const Login = (props) => {
 
    return (
       <>
-         <div className="hold-transition theme-primary login_page">
+         <div className="hold-transition theme-primary login_page d-none">
             <div className="row">
                <div className="col-sm-6">
                   <div className="login_bg">
