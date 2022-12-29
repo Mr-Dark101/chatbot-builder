@@ -204,7 +204,8 @@ const Dashboard = () => {
                setInit({
                   ...init,
                   isAlert: true,
-                  confirmationTxt: 'Your limit has been reached',
+                  isConfirm: false,
+                  confirmationTxt: 'Your bot limit has been reached. Please delete one of your existing bots.',
                });
                // alert("Your limit has been reached")
             }
@@ -273,7 +274,7 @@ const Dashboard = () => {
                <AlertModal visible={isAlert} handleOk={alertClose} confirmLoading={!isUpdatedList} modalText={confirmationTxt} modalInfo={confirmationInfo} handleCancel={alertClose} />
                <div className="head" style={{ display: 'none' }}>
                   <div className="head-rt">
-                  <h4 class="box-title m-0">Create a bot</h4>
+                     <h4 class="box-title m-0">Create a bot</h4>
                   </div>
                </div>
 

@@ -12,6 +12,7 @@ import D3Tree from '../../SharedComponent/TreeComponent/D3Tree';
 import { getBotTriggersRecursive, openTriggerCard, resetTheUrls } from '../../SharedComponent/AddTriggerComposer/slices/addTrigger.slice';
 import { Drawer } from '@mui/material';
 import AlertModal from '../../SharedComponent/ConfirmModal/AlertModal';
+import ConfirmModal from '../../SharedComponent/ConfirmModal/ConfirmModal';
 import moment from 'moment';
 // import TreeComponent from "../../SharedComponent/TreeComponent/treeComponent";
 import axios from 'axios';
@@ -19,6 +20,7 @@ import { API } from '../../utils/services';
 
 const defaultState = {
    isAlert: false,
+   isConfirm: false,
    openComposer: false,
    openChatBot: false,
    data: [],
@@ -27,7 +29,7 @@ const defaultState = {
    isUpdatedList: false,
    confirmationTxt: '',
    confirmationInfo: [],
-   updated_time:'',
+   updated_time: '',
 };
 
 const BuildWorkSpace = () => {
@@ -36,7 +38,7 @@ const BuildWorkSpace = () => {
    const dispatch = useDispatch();
    const history = useHistory();
    const [init, setInit] = useState(defaultState);
-   let { currentTriggerData, openChatBot, getAllTypes, isAlert, isUpdatedList, confirmationTxt, confirmationInfo } = init;
+   let { currentTriggerData, openChatBot, getAllTypes, isAlert, isConfirm, isUpdatedList, confirmationTxt, confirmationInfo } = init;
    let { currentBotData } = dashboard;
    let { success, isPublishSuccess, message_, dataNotFound } = workSpace;
    let { name, phoneNumber, id, userId, published, updated_at } = currentBotData !== null && currentBotData;
@@ -48,26 +50,24 @@ const BuildWorkSpace = () => {
             ...init,
             isAlert: true,
             isUpdatedList: true,
-            confirmationTxt: 'Your limit has been reached',
+            isConfirm: false,
+            confirmationTxt: 'Your bot limit has been reached. Please delete one of your existing bots.',
          });
       }
 
       if (trigger.success) {
-          
          setInit({
             ...init,
             isAlert: true,
             isUpdatedList: true,
-           
+
             confirmationTxt: trigger.message,
          });
-
       }
       if (trigger.successTypes) {
-
          setInit({
             ...init,
-            
+
             getAllTypes: trigger.getAllTypes,
          });
       }
@@ -80,7 +80,6 @@ const BuildWorkSpace = () => {
             confirmationTxt: trigger.message,
          });
       }
-
    }, [dataNotFound, message_, success, trigger.success, trigger.message, trigger.dataNotFound, trigger.currentTriggerData, trigger.triggersList]);
 
    useEffect(() => {
@@ -104,43 +103,45 @@ const BuildWorkSpace = () => {
 
    useEffect(() => {
       setInit({
-            ...init,
-            updated_time:updated_at,
-         });
+         ...init,
+         updated_time: updated_at,
+      });
    }, []);
 
    const handlePublishBot = (obj) => {
-      // setInit({
-      //    ...init,
+      setInit({
+         ...init,
+         isAlert: false,
+         isConfirm: true,
+         isUpdatedList: true,
+         confirmationTxt: 'Are you sure you want to publish this bot?',
+      });
 
-      //    isAlert: true,
-      //    confirmationTxt: `Are you sured, you want to publish this bot`,
-      //    currentObject: {
-      //       userId: 0,
-      //       id: 0,
-      //    },
-      // });
+      //dispatch(PublishedBot(obj));
+   };
 
+   const publishBot = (obj) => {
+      confirmClose();
       //Publish Bot in server
       const body = {
-         userId: obj.userId,
-         botId: obj.botId,
+         userId: localStorage.getItem('userId'),
+         botId: id,
       };
+      console.log('publish Bot: ' + JSON.stringify(body));
       API.post(`/publish-bot`, body)
          .then((res) => {
             // console.log("updateTrigger", res);
             setInit({
                ...init,
                isAlert: true,
+               isConfirm: false,
                isUpdatedList: true,
-               confirmationTxt: 'Your bot has been published succesfully',
+               confirmationTxt: 'Your bot has been published successfully',
             });
          })
          .catch((ex) => {
             console.error(ex.message);
          });
-
-      //dispatch(PublishedBot(obj));
    };
 
    const alertClose = () => {
@@ -177,7 +178,6 @@ const BuildWorkSpace = () => {
    };
 
    const handleCurrentTriggerData = (data) => {
-
       setInit({
          ...init,
          openComposer: true,
@@ -191,16 +191,11 @@ const BuildWorkSpace = () => {
    };
 
    const updateFun = () => {
-
-
       setInit({
-            ...init,
-             updated_time: new Date(),
-            
+         ...init,
+         updated_time: new Date(),
       });
-
-
-   }
+   };
    const handleBack = () => {
       console.log('UserId: ' + localStorage.getItem('userId'));
       history.push(`${STRINGS.ROUTES.ROOT}?org=${localStorage.getItem('userId')}`);
@@ -208,10 +203,20 @@ const BuildWorkSpace = () => {
       dispatch(removingBreadcrumb());
    };
 
+   const confirmClose = () => {
+      setInit({
+         ...init,
+         isConfirm: false,
+         isUpdatedList: true,
+         confirmationTxt: '',
+      });
+   };
+
    return (
       <div className="ws-hld">
          <div className="head">
             <AlertModal visible={isAlert} handleOk={alertClose} confirmLoading={!isUpdatedList} modalText={confirmationTxt} modalInfo={confirmationInfo} handleCancel={alertClose} />
+            <ConfirmModal visible={isConfirm} handleOk={publishBot} confirmLoading={!isUpdatedList} modalText={confirmationTxt} modalInfo={confirmationInfo} handleCancel={confirmClose} />
             <div className="head-rt">
                <div onClick={handleBack} className="icon" style={{ width: '24px' }}>
                   <img alt={'#'} src={back_icon} />
@@ -231,7 +236,6 @@ const BuildWorkSpace = () => {
                </h5>
             </div>
             <div className="head-lft">
-              
                <div className="btn-hld">
                   <button
                      className="btn-outlined"
