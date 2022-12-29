@@ -7,7 +7,7 @@ import upload_icon from '../../assets/Icon metro-cloud-upload.svg';
 import $ from 'jquery';
 import { useDispatch } from 'react-redux';
 import { createGuid, getGeneratedId, STRINGS } from '../../utils/base';
-import { onSuccessUpdateMenuText, resetTheUrls, UpdateTrigger, UpdateTriggerMenusText, uploadFile,deleteTheUrls,deleteTheUrlsDone} from './slices/addTrigger.slice';
+import { onSuccessUpdateMenuText, resetTheUrls, UpdateTrigger, UpdateTriggerMenusText, uploadFile, deleteTheUrls, deleteTheUrlsDone } from './slices/addTrigger.slice';
 import { Checkbox, FormControl, FormControlLabel, FormLabel, MenuItem, Radio, RadioGroup, Select, ListSubheader } from '@mui/material';
 import TextEditor from '../Items/ReactTextEditor/TextEditor';
 import { EditOutlined, SyncOutlined } from '@ant-design/icons';
@@ -91,16 +91,16 @@ const ByTypeComposer = ({ props, triggerType }) => {
    //     }
    // }
 
-   let { handleTriggerClose, currentBotData, trigger, getAllTypes,updateFun} = props;
+   let { handleTriggerClose, currentBotData, trigger, getAllTypes, updateFun } = props;
 
    const dispatch = useDispatch();
    const [init, setInit] = useState(defaultState);
    const [isData] = useState(!$.isEmptyObject(trigger.currentTriggerData));
    let { isText, isMedia, isLoopBack, template, currentData, openFallBackComposer, triggerOpt, triggerValueName, values, descriptionType, isConfirm, confirmationTxt, isAlert, simpleLabel, simpleValue, simpleValues } = init;
    let { name, triggerMenus, description, fallBackResponse, caption, loopBackId, loopBackText, routToAgent, type, apiId, apiText, form_id, formStartText, formEndText } = currentData;
-   let { id, userId, published,updated_at  } = currentBotData;
+   let { id, userId, published, updated_at } = currentBotData;
 
-   let { triggersList, currentTriggerData, isChild, childBotId, urls, isUpdatedList, menuTextUpdateSuccess, apiList, formList,urlUpdateSuccess } = trigger;
+   let { triggersList, currentTriggerData, isChild, childBotId, urls, isUpdatedList, menuTextUpdateSuccess, apiList, formList, urlUpdateSuccess } = trigger;
    // console.log("setBotData",currentBotData)
 
    const [condition, setCondition] = useState([]);
@@ -452,66 +452,51 @@ const ByTypeComposer = ({ props, triggerType }) => {
       }
    }, [menuTextUpdateSuccess]);
 
-
-   
-
-
-
    const removeMedia = (url) => {
-         if(!$.isEmptyObject(init.uploadedFile)){
-            setInit({
-                                          ...init,
-                                          uploadedFile: {
-                                             ...init.uploadedFile,
-                                             urls: init.uploadedFile.urls.filter((d) => d !== url),
-                                          },
-                                          currentData: {
-                                             ...init.currentData,
-                                             urls: init.uploadedFile.urls.filter((d) => d !== url),
-                                          },
-                                       });
+      if (!$.isEmptyObject(init.uploadedFile)) {
+         setInit({
+            ...init,
+            uploadedFile: {
+               ...init.uploadedFile,
+               urls: init.uploadedFile.urls.filter((d) => d !== url),
+            },
+            currentData: {
+               ...init.currentData,
+               urls: init.uploadedFile.urls.filter((d) => d !== url),
+            },
+         });
+      } else {
+         const cxurl =
+            currentTriggerData.toTrigger !== undefined
+               ? currentTriggerData.toTrigger.urls !== undefined && currentTriggerData.toTrigger.urls.length > 0 && currentTriggerData.toTrigger.urls
+               : currentTriggerData.urls !== undefined && currentTriggerData.urls.length > 0 && currentTriggerData.urls;
 
+         setInit({
+            ...init,
+            uploadedFile: {
+               ...init.uploadedFile,
+               urls: cxurl.filter((d) => d !== url),
+               loopBackTriggerId: '',
+               type: init.currentData.type,
+            },
+            currentData: {
+               ...init.currentData,
+               urls: cxurl.filter((d) => d !== url),
+            },
+         });
 
-            
-         }else{
-            
-            const cxurl = currentTriggerData.toTrigger !== undefined
-                     ? currentTriggerData.toTrigger.urls !== undefined && currentTriggerData.toTrigger.urls.length > 0 && currentTriggerData.toTrigger.urls
-                     : currentTriggerData.urls !== undefined && currentTriggerData.urls.length > 0 && currentTriggerData.urls
-            
-            
-                                       setInit({
-                                          ...init,
-                                          uploadedFile: {
-                                             ...init.uploadedFile,
-                                             urls: cxurl.filter((d) => d !== url),
-                                             loopBackTriggerId: '',
-                                             type: init.currentData.type,
-                                          },
-                                          currentData: {
-                                             ...init.currentData,
-                                             urls: cxurl.filter((d) => d !== url),
-                                          },
-                                       });
+         // setInit({
+         //                               ...init,
+         //                               currentData: {
+         //                                  ...init.currentData,
+         //                                  urls: cxurl.filter((d) => d !== url),
 
+         //                               },
+         //                            });
+      }
 
-                                       
-
-            // setInit({
-            //                               ...init,
-            //                               currentData: {
-            //                                  ...init.currentData,
-            //                                  urls: cxurl.filter((d) => d !== url),
-                                             
-            //                               },
-            //                            });
-
-         }
-         
-         //dispatch(deleteTheUrls(url));
-
-     
-   }
+      //dispatch(deleteTheUrls(url));
+   };
    const handleFileUpload = (files, type) => {
       // console.log("dropArea", files)
       if (type === 1) {
@@ -625,7 +610,7 @@ const ByTypeComposer = ({ props, triggerType }) => {
          type: obj.type === '' ? 'TEXT' : obj.type,
          urls: obj.urls === undefined ? [] : !obj.urls ? [] : obj.urls,
       };
-      
+
       if ($.isEmptyObject(currentTriggerData)) {
          updatedTriggers.push(triggersListObj);
          let updateObj = {
@@ -659,8 +644,7 @@ const ByTypeComposer = ({ props, triggerType }) => {
       });
       dispatch(resetTheUrls());
 
-
-      updateFun()
+      updateFun();
    };
 
    const handleResponseSelect = (name) => {
@@ -970,49 +954,39 @@ const ByTypeComposer = ({ props, triggerType }) => {
                         data.urls.map((url) => {
                            return (
                               <>
-                              <AudioPlayerDefault src={url} />
+                                 <AudioPlayerDefault src={url} />
 
-                              <div>
-                              <button className="btn btn-danger btn-icon rounded-circle media-remove" 
-                              style= {{marginLeft:'5px'}}  onClick={() => removeMedia(url)}>
-                              <i className="fa fa-trash">                                
-                              </i>
-                              </button>
-                            
-
-                           </div>
+                                 <div>
+                                    <button className="btn btn-danger btn-icon rounded-circle media-remove" style={{ marginLeft: '5px' }} onClick={() => removeMedia(url)}>
+                                       <i className="fa fa-trash"></i>
+                                    </button>
+                                 </div>
                               </>
-                              )
-                              ;
+                           );
                         })}
                   </div>
                );
             case 'VIDEO':
                return (
                   <>
-                  <div className="sub-img-tag">
-                     {data.urls.length > 0 &&
-                        data.urls.map((url) => {
-                           return (
-                           <>
-                              <section>
-                                 <video src={url} autoPlay controls />
-                              </section>
+                     <div className="sub-img-tag">
+                        {data.urls.length > 0 &&
+                           data.urls.map((url) => {
+                              return (
+                                 <>
+                                    <section>
+                                       <video src={url} autoPlay controls />
+                                    </section>
 
-                              <div>
-                              <button className="btn btn-danger btn-icon rounded-circle media-remove" 
-                              style= {{marginLeft:'5px'}}  onClick={() => removeMedia(url)}>
-                              <i className="fa fa-trash">                                
-                              </i>
-                              </button>
-                            
-
-                           </div>
-                           </> 
-                           );
-                        })}
-                  </div>
-
+                                    <div>
+                                       <button className="btn btn-danger btn-icon rounded-circle media-remove" style={{ marginLeft: '5px' }} onClick={() => removeMedia(url)}>
+                                          <i className="fa fa-trash"></i>
+                                       </button>
+                                    </div>
+                                 </>
+                              );
+                           })}
+                     </div>
                   </>
                );
             case 'DOCUMENT':
@@ -1022,52 +996,41 @@ const ByTypeComposer = ({ props, triggerType }) => {
                      {data.urls.length > 0 &&
                         data.urls.map((url) => {
                            return (
-                            <>
-                              <div className="icon">
-                                 <a download href={url}>
-                                    <img alt={'#'} src={documentIcon} />
-                                 </a>
-                              </div>
+                              <>
+                                 <div className="icon">
+                                    <a download href={url}>
+                                       <img alt={'#'} src={documentIcon} />
+                                    </a>
+                                 </div>
 
-                              <div>
-                              <button className="btn btn-danger btn-icon rounded-circle media-remove" 
-                              style= {{marginLeft:'5px'}}  onClick={() => removeMedia(url)}>
-                              <i className="fa fa-trash">                                
-                              </i>
-                              </button>
-                            
-
-                           </div>
-                             </> 
+                                 <div>
+                                    <button className="btn btn-danger btn-icon rounded-circle media-remove" style={{ marginLeft: '5px' }} onClick={() => removeMedia(url)}>
+                                       <i className="fa fa-trash"></i>
+                                    </button>
+                                 </div>
+                              </>
                            );
                         })}
                   </div>
                );
             case 'IMAGE':
                return (
-                  <div >
-
+                  <div>
                      {/*data.url !== "" ? data.url : */}
                      {data.urls.length > 0 &&
                         data.urls.map((url) => {
                            return (
-                           <>
-                           
-                           <div>
-                              <button className="btn btn-danger btn-icon rounded-circle media-remove" 
-                              style= {{marginLeft:'5px'}}  onClick={() => removeMedia(url)}>
-                              <i className="fa fa-trash">                                
-                              </i>
-                              </button>
-                            
-
-                           </div>
-                           <div className="sub-img-tag">
-                           <img alt={'#'} src={url !== '' ? url : defaultImage} />
-                           </div>
-                           </>
-                           )
-                           ;
+                              <>
+                                 <div>
+                                    <button className="btn btn-danger btn-icon rounded-circle media-remove" style={{ marginLeft: '5px' }} onClick={() => removeMedia(url)}>
+                                       <i className="fa fa-trash"></i>
+                                    </button>
+                                 </div>
+                                 <div className="sub-img-tag">
+                                    <img alt={'#'} src={url !== '' ? url : defaultImage} />
+                                 </div>
+                              </>
+                           );
                         })}
                   </div>
                );
@@ -1189,9 +1152,8 @@ const ByTypeComposer = ({ props, triggerType }) => {
                      ) : null}
 
                      {triggerType == 'F' ? (
-                       
                         <div className="txt-field">
-                           <div style={{color: '#000',fontWeight: 800,marginTop: '10px'}}>Select Form</div>
+                           <div style={{ color: '#000', fontWeight: 800, marginTop: '10px' }}>Select Form</div>
                            <Select
                               labelId="demo-simple-select-standard-label"
                               id="demo-simple-select-standard"
@@ -1213,7 +1175,7 @@ const ByTypeComposer = ({ props, triggerType }) => {
                   {triggerType == 'A' || triggerType == 'M' ? (
                      <>
                         <div className="row__" style={{ marginBottom: '0px' }}>
-                           <div className="txt" style={{ marginTop: '10px', marginBottom: '20px' }}>
+                           <div className="sub-txt" style={{ marginTop: '10px', marginBottom: '10px', fontSize: '12px', color: '#000', fontFamily: 'Segoe UI Regular !important' }}>
                               Bot Response
                            </div>
                            {triggerType == 'A' ? (
@@ -1351,9 +1313,6 @@ const ByTypeComposer = ({ props, triggerType }) => {
                                              </div>
                                           </div>
 
-                               
-                                          
-
                                           {simpleValues.map((s, i) => {
                                              return (
                                                 <div className="row add_label_section">
@@ -1373,11 +1332,7 @@ const ByTypeComposer = ({ props, triggerType }) => {
                            )}
                            {isMedia && (
                               <div id="drop-area" className="upload-media">
-                              
-                              
-                              
                                  <div className="upload-prv" id="upload-prv">
-
                                     {init.uploadFileResponse ? (
                                        !$.isEmptyObject(init.uploadedFile) ? (
                                           getContentByType(init.uploadedFile)
@@ -1681,7 +1636,7 @@ const ByTypeComposer = ({ props, triggerType }) => {
                                                    ) : (
                                                       <button
                                                          className="btn-primary btn"
-                                                         style= {{marginRight:'10px'}} 
+                                                         style={{ marginRight: '10px' }}
                                                          onClick={() => {
                                                             setInit({
                                                                ...init,
@@ -1711,8 +1666,8 @@ const ByTypeComposer = ({ props, triggerType }) => {
                                              ) : (
                                                 isData && (
                                                    <button
-                                                   className='btn btn-custom btn-icon rounded-circle'
-                                                   style= {{marginRight:'10px'}}
+                                                      className="btn btn-custom btn-icon rounded-circle"
+                                                      style={{ marginRight: '10px' }}
                                                       onClick={() => {
                                                          setInit({
                                                             ...init,
@@ -1724,15 +1679,13 @@ const ByTypeComposer = ({ props, triggerType }) => {
                                                       }}
                                                    >
                                                       <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                                                      </button>
+                                                   </button>
                                                 )
                                              )}
 
-                                             
                                              <button
-                                                      className='btn btn-danger btn-icon rounded-circle'
-                                                      
-                                                      onClick={() => {
+                                                className="btn btn-danger btn-icon rounded-circle"
+                                                onClick={() => {
                                                    setInit({
                                                       ...init,
                                                       currentData: {
@@ -1740,9 +1693,10 @@ const ByTypeComposer = ({ props, triggerType }) => {
                                                          triggerMenus: init.currentData.triggerMenus.filter((d) => d.id !== m.id),
                                                       },
                                                    });
-                                                }}>
-                                                   <i className="fa fa-trash"></i>
-                                                   </button>
+                                                }}
+                                             >
+                                                <i className="fa fa-trash"></i>
+                                             </button>
                                           </div>
                                        </div>
                                     );

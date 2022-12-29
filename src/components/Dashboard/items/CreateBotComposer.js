@@ -11,14 +11,14 @@ import comingSoonIcon from '../../../assets/whatsapp.png';
 // import messengerIcon from "../../../assets/Icon awesome-facebook-messenger.svg";
 import $ from 'jquery';
 import { useDispatch } from 'react-redux';
-import { createUserBot, updateUserBot,getChannelVerify } from '../slices/dashboard.slice';
+import { createUserBot, updateUserBot, getChannelVerify } from '../slices/dashboard.slice';
 import AlertModal from '../../../SharedComponent/ConfirmModal/ChannelModal';
 import { fontWeight, width } from '@mui/system';
 const defaultState = {
    isAlert: false,
-      openComposer: false,
-      openChatBot: false,
-      buttonText:'',
+   openComposer: false,
+   openChatBot: false,
+   buttonText: '',
    selected: ['whatsapp'],
    selectCategory: false,
    comingSoon: false,
@@ -28,18 +28,17 @@ const defaultState = {
    botPhoneNumber: '',
    botId: null,
    onHover: false,
-    confirmationTxt: '',
-      confirmationInfo: [],
+   confirmationTxt: '',
+   confirmationInfo: [],
 };
 
 const CreateBotComposer = (props) => {
    let { openModal, onClose, currentUser, data } = props;
 
-   
    const [init, setInit] = useState(defaultState);
-   let { selected, selectCategory, botName, botDescription, botPhoneNumber, botImage, botId, comingSoon, onHover,isAlert, isUpdatedList, confirmationTxt, confirmationInfo,buttonText } = init;
+   let { selected, selectCategory, botName, botDescription, botPhoneNumber, botImage, botId, comingSoon, onHover, isAlert, isUpdatedList, confirmationTxt, confirmationInfo, buttonText } = init;
    const dispatch = useDispatch();
-   
+
    useEffect(() => {
       let dropArea = document.getElementById('drop-area');
       $(document).ready(() => {
@@ -73,7 +72,6 @@ const CreateBotComposer = (props) => {
       });
 
       if (data !== null) {
-       
          setInit({
             ...init,
             botName: data.name,
@@ -81,18 +79,15 @@ const CreateBotComposer = (props) => {
             botPhoneNumber: data.phoneNumber,
             selectCategory: true,
             botId: data.id,
-            selected: data.channels !== null ? JSON.parse(data.channels) : ['whatsapp']
+            selected: data.channels !== null ? JSON.parse(data.channels) : ['whatsapp'],
          });
-      }else{
-
+      } else {
          setInit({
             ...init,
-           
-            selected: ['whatsapp']
+
+            selected: ['whatsapp'],
          });
-
       }
-
    }, [data]);
 
    const handleCloseModal = () => {
@@ -109,7 +104,7 @@ const CreateBotComposer = (props) => {
       });
    };
    const handleCreateBotSubmit = () => {
-     // console.log('HandleCreateBotSubmit: ' + localStorage.getItem('org_unit_id'));
+      // console.log('HandleCreateBotSubmit: ' + localStorage.getItem('org_unit_id'));
       let createObj = {
          name: botName,
          phoneNumber: botPhoneNumber,
@@ -147,9 +142,8 @@ const CreateBotComposer = (props) => {
       });
    };
 
-
    const alertCloseLink = () => {
-       window.open('https://eoceanwabaqa.com/eoceanwab/channels/index', '_blank', 'noopener,noreferrer');
+      window.open('https://eoceanwabaqa.com/eoceanwab/channels/index', '_blank', 'noopener,noreferrer');
       setInit({
          ...init,
          isAlert: false,
@@ -196,80 +190,75 @@ const CreateBotComposer = (props) => {
       }
    };
 
-   const handleSelectBot = async (category,categoryText) => {   
-      let apiReturn =   false;
-      if(category != 'whatsapp'){
-            
-            let apiResponse = await dispatch(getChannelVerify(category));
-            apiResponse = JSON.stringify(apiResponse);
-            apiReturn = JSON.parse(apiResponse);
-            if(apiReturn.error){
-      
-               if (init.selected.includes(category)) {
-                  if(category === 'googlemsg'){
-                     setInit({
-                        ...init,
-                        isAlert: false,
-                        buttonText: categoryText,
-                        confirmationTxt: `Before you can add chatbot to Google's Business Messages, you need to add a Google's Business Messages account.`,
-                        selected: init.selected.filter((d) => d !== category),
-                        });
-                  } else {
-                     setInit({
-                        ...init,
-                        isAlert: false,
-                        buttonText: categoryText,
-                        confirmationTxt: `Before you can add chatbot to ${categoryText}, you need to connect a ${categoryText} page.`,
-                        selected: init.selected.filter((d) => d !== category),
-                        });
-                  }
-                 
-               } else {
-                  if(category === 'googlemsg'){
-                     setInit({
-                        ...init,
-                        isAlert: true,
-                        buttonText: categoryText,
-                        confirmationTxt: `Before you can add chatbot to Google's Business Messages, you need to add a Google's Business Messages account.`,
-                        selected: [...init.selected, category],
-                     });
-                  } else {
-                     setInit({
-                        ...init,
-                        isAlert: true,
-                        buttonText: categoryText,
-                        confirmationTxt: `Before you can add chatbot to ${categoryText}, you need to connect a ${categoryText} page.`,
-                        selected: [...init.selected, category],
-                     });
-                  }
-               
-               }
-           } else{
-            
-               if (init.selected.includes(category)) {
-               setInit({
-                  ...init,
-      
-                  selected: init.selected.filter((d) => d !== category),
+   const handleSelectBot = async (category, categoryText) => {
+      let apiReturn = false;
+      if (category != 'whatsapp') {
+         let apiResponse = await dispatch(getChannelVerify(category));
+         apiResponse = JSON.stringify(apiResponse);
+         apiReturn = JSON.parse(apiResponse);
+         if (apiReturn.error) {
+            if (init.selected.includes(category)) {
+               if (category === 'googlemsg') {
+                  setInit({
+                     ...init,
+                     isAlert: false,
+                     buttonText: categoryText,
+                     confirmationTxt: `Before you can add chatbot to Google's Business Messages, you need to add a Google's Business Messages account.`,
+                     selected: init.selected.filter((d) => d !== category),
                   });
                } else {
                   setInit({
                      ...init,
-      
+                     isAlert: false,
+                     buttonText: categoryText,
+                     confirmationTxt: `Before you can add chatbot to ${categoryText}, you need to connect a ${categoryText} page.`,
+                     selected: init.selected.filter((d) => d !== category),
+                  });
+               }
+            } else {
+               if (category === 'googlemsg') {
+                  setInit({
+                     ...init,
+                     isAlert: true,
+                     buttonText: categoryText,
+                     confirmationTxt: `Before you can add chatbot to Google's Business Messages, you need to add a Google's Business Messages account.`,
+                     selected: [...init.selected, category],
+                  });
+               } else {
+                  setInit({
+                     ...init,
+                     isAlert: true,
+                     buttonText: categoryText,
+                     confirmationTxt: `Before you can add chatbot to ${categoryText}, you need to connect a ${categoryText} page.`,
                      selected: [...init.selected, category],
                   });
                }
-           }
-      }      
+            }
+         } else {
+            if (init.selected.includes(category)) {
+               setInit({
+                  ...init,
+
+                  selected: init.selected.filter((d) => d !== category),
+               });
+            } else {
+               setInit({
+                  ...init,
+
+                  selected: [...init.selected, category],
+               });
+            }
+         }
+      }
    };
 
    const body = (
       <div className="modal-content home_bot_modal">
          <div className="modal-header">
             <div className="header-lft">
-         
-            <h4 style={{ fontWeight: '800', color: '#000' }}
-                class="box-title m-0">{data !== null ? 'Update Bot' : !selectCategory ? 'Create a bot' : 'Create a bot'}</h4>
+               <h4 style={{ fontWeight: '800', color: '#000' }} class="box-title m-0">
+                  {data !== null ? 'Update Bot' : !selectCategory ? 'Create a bot' : 'Create a bot'}
+               </h4>
             </div>
             <div className="header-rt" />
          </div>
@@ -293,31 +282,30 @@ const CreateBotComposer = (props) => {
             </div>
             <br />
 
-            
-                  <label class="mb-2">Describe your bot</label>
-                  <textarea
-                     rows="6"
-                     placeholder={'Provide your chatBot description'}
-                     onChange={(e) => {
-                        setInit({
-                           ...init,
-                           botDescription: e.target.value,
-                        });
-                     }}
-                  >
-                     {botDescription}
-                  </textarea>
-                  <br /><br />
+            <label class="mb-2">Describe your bot</label>
+            <textarea
+               rows="6"
+               placeholder={'Provide your chatBot description'}
+               onChange={(e) => {
+                  setInit({
+                     ...init,
+                     botDescription: e.target.value,
+                  });
+               }}
+            >
+               {botDescription}
+            </textarea>
+            <br />
+            <br />
             <label class="mb-10">Where would you like to deploy your bot? Select all that apply.</label>
             <br />
             <div className="row">
                <div className="col-sm-12">
                   <div className="bot-category-holder">
-
                      <div
                         style={{ width: '139px', height: '142px' }}
                         className={`category-box ${init.selected.includes('whatsapp') && 'on-whats-app'}`}
-                        onClick={() => handleSelectBot('whatsapp','WhatsApp')}
+                        onClick={() => handleSelectBot('whatsapp', 'WhatsApp')}
                         onMouseOver={() => {
                            setInit({
                               ...init,
@@ -333,9 +321,10 @@ const CreateBotComposer = (props) => {
                      >
                         <div className={`icon on-whats-app`}>
                            <img className="img-responsive mb-20" alt="WhatsApp" src={!onHover ? whatsAppIcon : whatsAppIconWhite} style={{ width: '42px', height: '42px' }} />
-                          
                         </div>
-                        <label id="whatsapp" class="mb-10" style={{ color: '#fff'}}>WhatsApp</label>
+                        <label id="whatsapp" class="mb-10" style={{ color: '#fff' }}>
+                           WhatsApp
+                        </label>
                      </div>
                      <div
                         style={{ width: '139px', height: '142px' }}
@@ -352,13 +341,14 @@ const CreateBotComposer = (props) => {
                            });
                         }}
                         className={`category-box ${init.selected.includes('messenger') && 'on-facebook'}`}
-                        onClick={() => handleSelectBot('messenger','Facebook Messenger')}
+                        onClick={() => handleSelectBot('messenger', 'Facebook Messenger')}
                      >
                         <div className={`icon on-messenger-app mt-10`}>
                            <img alt="Facebook" src={comingSoon ? comingSoonIcon : MessengerIcon} style={{ width: '42px', height: '42px' }} />
-                          
                         </div>
-                        <label id="messenger" className={`mt-20 text-center txt ${init.selected.includes('messenger') && 'on'}`}>Facebook Messenger</label>
+                        <label id="messenger" className={`mt-20 text-center txt ${init.selected.includes('messenger') && 'on'}`}>
+                           Facebook Messenger
+                        </label>
                      </div>
 
                      <div
@@ -376,13 +366,14 @@ const CreateBotComposer = (props) => {
                            });
                         }}
                         className={`category-box ${init.selected.includes('instagram') && 'on-instagram'}`}
-                        onClick={() => handleSelectBot('instagram','Instagram')}
+                        onClick={() => handleSelectBot('instagram', 'Instagram')}
                      >
                         <div className={`icon on-messenger-app`}>
-                           <img alt="Facebook" src={comingSoon ? comingSoonIcon : InstagramIcon} style={{ width: '62px', height: '62px' }} />
-                         
+                           <img alt="Facebook" src={comingSoon ? comingSoonIcon : InstagramIcon} style={{ width: '58px', height: '58px' }} />
                         </div>
-                        <label id="instagram" className={`mb-20  txt ${init.selected.includes('instagram') && 'on'}`}>Instagram</label>
+                        <label id="instagram" className={`mb-20  txt ${init.selected.includes('instagram') && 'on'}`}>
+                           Instagram
+                        </label>
                      </div>
 
                      <div
@@ -400,25 +391,23 @@ const CreateBotComposer = (props) => {
                            });
                         }}
                         className={`category-box ${init.selected.includes('googlemsg') && 'on-google'}`}
-                        onClick={() => handleSelectBot('googlemsg','Google')}
+                        onClick={() => handleSelectBot('googlemsg', 'Google')}
                      >
                         <div className={`icon on-messenger-app mt-10`}>
-                           <img alt="Facebook" src={comingSoon ? comingSoonIcon : GoogleIcon} style={{ width: '56px', height: '56px' }} />                  
-                          
+                           <img alt="Facebook" src={comingSoon ? comingSoonIcon : GoogleIcon} style={{ width: '56px', height: '56px' }} />
                         </div>
-                        <label id="googlemsg" className={`mt-10 text-center txt ${init.selected.includes('googlemsg') && 'on'}`}>Google's Business Messages</label>
+                        <label id="googlemsg" className={`mt-10 text-center txt ${init.selected.includes('googlemsg') && 'on'}`}>
+                           Google's Business Messages
+                        </label>
                      </div>
                   </div>
-
-                  
                </div>
             </div>
          </div>
 
          <div className="modal-footer">
             <div className="actions">
-               <button style={{ textTransform:'none', width: '100px' }}
-                       className="btn filled" onClick={handleCreateBotSubmit}>
+               <button style={{ textTransform: 'none', width: '100px' }} className="btn filled" onClick={handleCreateBotSubmit}>
                   {data !== null ? 'Update' : 'Next'}
                </button>
             </div>
@@ -426,31 +415,22 @@ const CreateBotComposer = (props) => {
       </div>
    );
 
-
    const errorChannel = (
       <div className="modal-content home_bot_modal">
-        
-
          <div className="modal-section">
             <div className="row">
-               <div className="col-sm-12">
-                 Error
-               </div>
+               <div className="col-sm-12">Error</div>
             </div>
-            
          </div>
-
-        
       </div>
    );
 
    return (
       <>
-     <AlertModal visible={isAlert} handleOk={alertCloseLink} confirmLoading={true} modalText={confirmationTxt} modalInfo={confirmationInfo} buttonText={buttonText} handleCancel={alertClose} />
-      <Modal open={openModal} onClose={handleCloseModal} aria-labelledby="create-bot" aria-describedby="create-the-new-bot" className={'_modal'}>
-         {body}
-      </Modal>
-     
+         <AlertModal visible={isAlert} handleOk={alertCloseLink} confirmLoading={true} modalText={confirmationTxt} modalInfo={confirmationInfo} buttonText={buttonText} handleCancel={alertClose} />
+         <Modal open={openModal} onClose={handleCloseModal} aria-labelledby="create-bot" aria-describedby="create-the-new-bot" className={'_modal'}>
+            {body}
+         </Modal>
       </>
    );
 };
