@@ -1419,7 +1419,7 @@ const ByTypeComposer = ({ props, triggerType }) => {
                                        </div>
 
                                        <div className="up-txt">
-                                          <div className="txt">.mp4, .avi of max 10MB are allowed</div>
+                                          <div className="txt">Png, Jpeg, Mp4, Mp3, Pdf of maximum 25MB are allowed</div>
                                        </div>
                                     </React.Fragment>
                                  </div>
@@ -1458,7 +1458,9 @@ const ByTypeComposer = ({ props, triggerType }) => {
                               <div className="loop-back">
                                  <div className="txt-field">
                                     <div className="label">
-                                       <div className="sub-txt">Write a template</div>
+                                       <div className="sub-txt" style={{ fontFamily: 'Segoe UI Regular !important', fontWeight: 800, fontSize: '12px' }}>
+                                          Template Name
+                                       </div>
                                     </div>
                                     <div className="input">
                                        <input
@@ -1636,7 +1638,7 @@ const ByTypeComposer = ({ props, triggerType }) => {
                                                    ) : (
                                                       <button
                                                          className="btn-primary btn"
-                                                         style={{ marginRight: '10px' }}
+                                                         style={{ marginRight: '10px', fontFamily: 'Segoe UI Regular !important' }}
                                                          onClick={() => {
                                                             setInit({
                                                                ...init,

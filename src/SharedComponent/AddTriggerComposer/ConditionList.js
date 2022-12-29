@@ -441,10 +441,7 @@ const ConditionList = ({ props, apiHandle, dataIndex, apiData, updatedTriggersVa
                {isText && <TextEditor type={'response'} defaultText={description} onSuccess={handleTextAreaChange} />}
                {isMedia && (
                   <div id="drop-area" className="upload-media">
-                   
                      <div className="upload-prv" id="upload-prv">
-
-
                         {init.uploadFileResponse ? (
                            !$.isEmptyObject(init.uploadedFile) ? (
                               getContentByType(init.uploadedFile)
@@ -541,7 +538,7 @@ const ConditionList = ({ props, apiHandle, dataIndex, apiData, updatedTriggersVa
                            </div>
 
                            <div className="up-txt">
-                              <div className="txt">.mp4, .avi of max 10MB are allowed</div>
+                              <div className="txt">Png, Jpeg, Mp4, Mp3, Pdf of maximum 25MB are allowed</div>
                            </div>
                         </React.Fragment>
                      </div>
@@ -665,7 +662,9 @@ const ConditionList = ({ props, apiHandle, dataIndex, apiData, updatedTriggersVa
                   <div className="loop-back">
                      <div className="txt-field">
                         <div className="label">
-                           <div className="sub-txt">Write a template</div>
+                           <div className="sub-txt" style={{ fontFamily: 'Segoe UI Regular !important', fontWeight: 800, fontSize: '12px' }}>
+                              Template Name
+                           </div>
                         </div>
                         <div className="input">
                            <input

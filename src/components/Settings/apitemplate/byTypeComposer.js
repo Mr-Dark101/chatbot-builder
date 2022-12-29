@@ -86,12 +86,12 @@ const ByTypeComposer = ({ props, triggerType, apiHandleConditionMaster }) => {
    let { isText, isMedia, isLoopBack, template, currentData, openFallBackComposer, triggerOpt, triggerValueName, values, descriptionType, isConfirm, confirmationTxt, isAlert, simpleLabel, simpleValue, simpleValues } = init;
    let { name, triggerMenus, description, fallBackResponse, caption, loopBackId, loopBackText, routToAgent, type, apiId, apiText } = currentData;
 
-   let { triggersList, currentTriggerData, isChild, childBotId, urls, isUpdatedList, menuTextUpdateSuccess, apiList } = trigger;
+   let { triggersList, currentTriggerData, isChild, childBotId, urls, isUpdatedList, menuTextUpdateSuccess, apiList, formList } = trigger;
    // console.log("setBotData",currentBotData)
 
    const [condition, setCondition] = useState([]);
    const [simpleCondition, setSimpleCondition] = useState([]);
-
+   const [formData, setFormData] = useState([]);
    let conditionArray = [];
    const [apiData, setApiData] = useState([]);
    const setMenus = (item) => {
@@ -238,6 +238,7 @@ const ByTypeComposer = ({ props, triggerType, apiHandleConditionMaster }) => {
       }
 
       setApiMenu();
+
       console.log(currentTriggerData.toTrigger);
       if (currentTriggerData.toTrigger) {
          conditionArray = currentTriggerData.toTrigger.apiData;
@@ -827,6 +828,21 @@ const ByTypeComposer = ({ props, triggerType, apiHandleConditionMaster }) => {
          }
       }
    };
+   const formChange = (form_id) => {
+      console.log('Form ID: ' + form_id);
+      let fApi = formList.filter((d) => d.id === form_id);
+      fApi = fApi[0];
+
+      setFormData(JSON.parse(fApi.form_data));
+
+      setInit({
+         ...init,
+         currentData: {
+            ...init.currentData,
+            form_id: form_id,
+         },
+      });
+   };
 
    return (
       <div className="composer-container api_composer_container" style={{ border: '1px solid #CCCCCC', borderRadius: '5px' }}>
@@ -1084,7 +1100,7 @@ const ByTypeComposer = ({ props, triggerType, apiHandleConditionMaster }) => {
                                  </div>
 
                                  <div className="up-txt">
-                                    <div className="txt">.mp4, .avi of max 10MB are allowed</div>
+                                    <div className="txt">png,jpeg,.mp4,mp3,pdf of max 25MB are allowed</div>
                                  </div>
                               </React.Fragment>
                            </div>
@@ -1123,7 +1139,9 @@ const ByTypeComposer = ({ props, triggerType, apiHandleConditionMaster }) => {
                         <div className="loop-back">
                            <div className="txt-field">
                               <div className="label">
-                                 <div className="sub-txt">Write a template</div>
+                                 <div className="sub-txt" style={{ fontFamily: 'Segoe UI Regular !important', fontWeight: 800, fontSize: '12px' }}>
+                                    Template Name
+                                 </div>
                               </div>
                               <div className="input">
                                  <input
@@ -1296,7 +1314,7 @@ const ByTypeComposer = ({ props, triggerType, apiHandleConditionMaster }) => {
                                                    ) : (
                                                       <button
                                                          className="btn-primary btn"
-                                                         style= {{marginRight:'10px'}}
+                                                         style={{ marginRight: '10px', fontFamily: 'Segoe UI Regular !important' }}
                                                          onClick={() => {
                                                             setInit({
                                                                ...init,
@@ -1324,26 +1342,26 @@ const ByTypeComposer = ({ props, triggerType, apiHandleConditionMaster }) => {
                                                    )}
                                                    {init.updateMenus.selectedMenuId === m.main_id && (
                                                       <button
-                                                      className='btn btn-icon btn-danger rounded-circle'
-                                                      
-                                                      onClick={() => {
-                                                         setInit({
-                                                            ...init,
-                                                            currentData: {
-                                                               ...init.currentData,
-                                                               triggerMenus: init.currentData.triggerMenus.filter((d) => d.id !== m.id),
-                                                            },
-                                                         });
-                                                      }}>
-                                                   <i className="fa fa-trash"></i>
-                                                   </button>
+                                                         className="btn btn-icon btn-danger rounded-circle"
+                                                         onClick={() => {
+                                                            setInit({
+                                                               ...init,
+                                                               currentData: {
+                                                                  ...init.currentData,
+                                                                  triggerMenus: init.currentData.triggerMenus.filter((d) => d.id !== m.id),
+                                                               },
+                                                            });
+                                                         }}
+                                                      >
+                                                         <i className="fa fa-trash"></i>
+                                                      </button>
                                                    )}
                                                 </React.Fragment>
                                              ) : (
                                                 isData && (
                                                    <button
-                                                   className='btn btn-custom btn-icon rounded-circle'
-                                                   style= {{marginRight:'10px'}}
+                                                      className="btn btn-custom btn-icon rounded-circle"
+                                                      style={{ marginRight: '10px' }}
                                                       onClick={() => {
                                                          setInit({
                                                             ...init,
@@ -1355,7 +1373,7 @@ const ByTypeComposer = ({ props, triggerType, apiHandleConditionMaster }) => {
                                                       }}
                                                    >
                                                       <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                                                      </button>
+                                                   </button>
                                                 )
                                              )}
 
@@ -1374,8 +1392,7 @@ const ByTypeComposer = ({ props, triggerType, apiHandleConditionMaster }) => {
                                              />
 
                                              <button
-                                                className='btn btn-icon btn-danger rounded-circle'
-                                                
+                                                className="btn btn-icon btn-danger rounded-circle"
                                                 onClick={() => {
                                                    setInit({
                                                       ...init,
@@ -1384,8 +1401,9 @@ const ByTypeComposer = ({ props, triggerType, apiHandleConditionMaster }) => {
                                                          triggerMenus: init.currentData.triggerMenus.filter((d) => d.id !== m.id),
                                                       },
                                                    });
-                                                }}>
-                                             <i className="fa fa-trash"></i>
+                                                }}
+                                             >
+                                                <i className="fa fa-trash"></i>
                                              </button>
                                           </div>
                                        </div>

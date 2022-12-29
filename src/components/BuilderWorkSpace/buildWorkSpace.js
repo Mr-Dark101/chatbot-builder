@@ -168,8 +168,6 @@ const BuildWorkSpace = () => {
       // });
    };
    const handleSubmitTrigger = (obj) => {
-      // console.log("handleSubmitTrigger", obj)
-
       setInit({
          ...init,
          data: [...init.data, ...obj.triggersList],
@@ -191,6 +189,24 @@ const BuildWorkSpace = () => {
    };
 
    const updateFun = () => {
+      let lastSeen = document.getElementById('lastSeen');
+      lastSeen.classList.add('d-none');
+      let saved = document.getElementById('saved');
+      let checkMark = document.getElementById('checkMark');
+
+      saved.classList.remove('d-none');
+      saved.innerHTML = 'Saving...';
+
+      setTimeout(() => {
+         saved.innerHTML = 'Saved';
+         checkMark.classList.remove('d-none');
+         setTimeout(() => {
+            lastSeen.classList.remove('d-none');
+            saved.classList.add('d-none');
+            checkMark.classList.add('d-none');
+         }, 1500);
+      }, 1500);
+
       setInit({
          ...init,
          updated_time: new Date(),
@@ -212,21 +228,57 @@ const BuildWorkSpace = () => {
       });
    };
 
+   const calculateLastDate = () => {
+      let timeStamp = '';
+      try {
+         const currentDate = moment(Date.now()).format('YYYY-MM-DD HH:mm a');
+         const updateTime = moment(init.updated_time).format('YYYY-MM-DD HH:mm a');
+         const date1 = new Date(currentDate);
+         const date2 = new Date(updateTime);
+         const differenceInMilli = Math.abs(date1 - date2);
+         let differenceInMins = Math.floor(differenceInMilli / 60000);
+         let differenceInDays = differenceInMins / (60 * 24);
+         const currentDay = date1.getDay();
+         const updateDay = date2.getDay();
+         if (parseInt(differenceInDays) < 1 && currentDay === updateDay) {
+            timeStamp = moment(init.updated_time).format('HH:mm a');
+         } else if (parseInt(differenceInDays) >= 1 && parseInt(differenceInDays) < 2 && currentDay === updateDay + 1) {
+            timeStamp = 'Yesterday' + moment(init.updated_time).format('HH:mm a');
+         } else {
+            timeStamp = updateTime;
+         }
+         document.getElementById('lastupdate').innerHTML = timeStamp;
+      } catch (ex) {
+         console.error(ex.message);
+      }
+      console.log('Timestamp: ' + timeStamp);
+
+      return timeStamp;
+   };
+   let { lastsaved } = calculateLastDate();
+
    return (
       <div className="ws-hld">
          <div className="head">
             <AlertModal visible={isAlert} handleOk={alertClose} confirmLoading={!isUpdatedList} modalText={confirmationTxt} modalInfo={confirmationInfo} handleCancel={alertClose} />
             <ConfirmModal visible={isConfirm} handleOk={publishBot} confirmLoading={!isUpdatedList} modalText={confirmationTxt} modalInfo={confirmationInfo} handleCancel={confirmClose} />
-            <div className="head-rt">
+            <div className="head-rt" style={{ position: 'absolute' }}>
                <div onClick={handleBack} className="icon" style={{ width: '24px' }}>
                   <img alt={'#'} src={back_icon} />
                </div>
                <h5 class="box-title m-0" style={{ fontWeight: 800 }}>
                   Builder Workspace
                </h5>
-               <p className="lastSeen">
+               <div id="saveDiv">
+                  <p id="saved" className="lastSeen d-none" style={{ merginRight: '30px', merginLeft: '30px' }}>
+                     {' '}
+                     Saving...
+                  </p>{' '}
+                  <i id="checkMark" className="fa fa-check d-none" style={{ color: '#07bc0c', merginLeft: '15px' }}></i>
+               </div>
+               <p id="lastSeen" className="lastSeen">
                   {' '}
-                  Last saved <span>{moment(init.updated_time).format('hh:mm A')}</span>
+                  Last saved <span id="lastupdate">{lastsaved}</span>
                </p>
             </div>
             <div className="head-center">
