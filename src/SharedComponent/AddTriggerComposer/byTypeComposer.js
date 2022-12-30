@@ -1513,7 +1513,7 @@ const ByTypeComposer = ({ props, triggerType }) => {
                                              }}
                                           />
                                        </div>
-                                       Bot to human Handover
+                                       Bot to Human Handover
                                     </div>
 
                                     <div
@@ -1535,7 +1535,7 @@ const ByTypeComposer = ({ props, triggerType }) => {
                   ) : (
                      <>
                         <div style={{ color: '#000', marginTop: '15px', marginBottom: '10px' }}>
-                           Form Start Message
+                           Welcome Message
                            <TextEditor type={'formStartText'} defaultText={formStartText} onSuccess={handleTextAreaChange} />
                            <div style={{ color: '#000', marginBottom: '20px' }}></div>
                            {formData.map((fRow, i) => (
@@ -1545,7 +1545,7 @@ const ByTypeComposer = ({ props, triggerType }) => {
                               </div>
                            ))}
                            <br />
-                           Form End Message
+                           Confirmation Message
                            <TextEditor style={{ marginTop: '15px' }} type={'formEndText'} defaultText={formEndText} onSuccess={handleTextAreaChange} />
                         </div>
                         <br />

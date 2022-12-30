@@ -238,7 +238,7 @@ const TriggerCard = (props) => {
                             {/*        color: "#5841ce",*/}
                             {/*    }}*/}
                             {/*/>*/}
-                            <span>Bot to human Handover</span>
+                            <span>Bot to Human Handover</span>
                         </div>
 
                     </div>)

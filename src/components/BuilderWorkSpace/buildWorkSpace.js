@@ -231,8 +231,8 @@ const BuildWorkSpace = () => {
    const calculateLastDate = () => {
       let timeStamp = '';
       try {
-         const currentDate = moment(Date.now()).format('YYYY-MM-DD HH:mm a');
-         const updateTime = moment(init.updated_time).format('YYYY-MM-DD HH:mm a');
+         const currentDate = moment(Date.now()).format('YYYY-MM-DD hh:mm a');
+         const updateTime = moment(init.updated_time).format('YYYY-MM-DD hh:mm a');
          const date1 = new Date(currentDate);
          const date2 = new Date(updateTime);
          const differenceInMilli = Math.abs(date1 - date2);
@@ -241,9 +241,9 @@ const BuildWorkSpace = () => {
          const currentDay = date1.getDay();
          const updateDay = date2.getDay();
          if (parseInt(differenceInDays) < 1 && currentDay === updateDay) {
-            timeStamp = moment(init.updated_time).format('HH:mm a');
+            timeStamp = moment(init.updated_time).format('hh:mm a');
          } else if (parseInt(differenceInDays) >= 1 && parseInt(differenceInDays) < 2 && currentDay === updateDay + 1) {
-            timeStamp = 'Yesterday' + moment(init.updated_time).format('HH:mm a');
+            timeStamp = 'Yesterday' + moment(init.updated_time).format('hh:mm a');
          } else {
             timeStamp = updateTime;
          }

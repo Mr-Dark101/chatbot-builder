@@ -1194,7 +1194,7 @@ const ByTypeComposer = ({ props, triggerType, apiHandleConditionMaster }) => {
                                        }}
                                     />
                                  </div>
-                                 Bot to human Handover
+                                 Bot to Human Handover
                               </div>
 
                               <div
