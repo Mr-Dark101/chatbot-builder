@@ -307,6 +307,7 @@ const Dashboard = () => {
                         'loading...'
                      ) : !dataNotFound ? (
                         data.map((d, index) => {
+                           if(!d.sampleBot){
                            return (
                               <UserBotsCardItem
                                  onDelete={(obj) => {
@@ -324,7 +325,9 @@ const Dashboard = () => {
                                  data={d}
                               />
                            );
+                           }
                         })
+
                      ) : (
                         <div className="data-not-found">No Data Found</div>
                      )}

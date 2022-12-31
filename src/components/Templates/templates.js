@@ -2,7 +2,8 @@ import React, {useEffect, useState} from 'react';
 import back_icon from "../../assets/back-icon.svg";
 import {STRINGS} from "../../utils/base";
 import {useDispatch, useSelector} from "react-redux";
-import {CloseBotComposer, removingBreadcrumb, resetState} from "../Dashboard/slices/dashboard.slice";
+import {CloseBotComposer, removingBreadcrumb, resetState,GetUserBots} from "../Dashboard/slices/dashboard.slice";
+import { PublishedBot,addTemplateBotSlice } from '../BuilderWorkSpace/slices/workSpace.slice';
 import {useHistory} from "react-router-dom";
 import CreateBotsCardItem from "../Dashboard/items/CreateBotsItems";
 import bank_template from "../../assets/bank_template.svg";
@@ -16,11 +17,17 @@ import filter_icon_white from "../../assets/filter_alt_black_24dp_white.svg";
 import UserBotsCardItem from "../Dashboard/items/UserBotsCardItem";
 import CreateBotComposer from "../Dashboard/items/CreateBotComposer";
 import AlertModal from "../../SharedComponent/ConfirmModal/AlertModal";
-
+import ConfirmModal from '../../SharedComponent/ConfirmModal/ConfirmModal';
 const defaultState = {
     isAlert: false,
+    isConfirm:false,
     isUpdatedList: false,
     confirmationTxt: "",
+    confirmationInfo:'',
+    currentObject: {
+      userId: 0,
+      id: 0,
+   },
 }
 
 const createArray = [
@@ -50,25 +57,47 @@ const handleCreateChatBot = (type) => {
 
 
 const Templates = () => {
-    const {dashboard} = useSelector(({Reducers}) => Reducers);
+    const {dashboard,
+    workSpace: { isAddSuccess, message_ },
+    } = useSelector(({Reducers}) => Reducers);
     const dispatch = useDispatch();
     const history = useHistory();
     const [init, setInit] = useState(defaultState);
-    let {isUpdatedList,isAlert,confirmationTxt} = init;
+    let {isUpdatedList,isAlert,confirmationTxt,confirmationInfo,currentObject,isConfirm} = init;
     let {currentBotData,data,success,dataNotFound,currentUser,updateBotData,openBotComposer,isError,message} = dashboard;
     let {name, phoneNumber, id, userId, published} = currentBotData !== null && currentBotData;
-
+    const location = localStorage.getItem('org_unit_id');
     useEffect(()=>{
         if (isError) {
             setInit({
                 ...init,
                 isAlert: true,
                 isUpdatedList: true,
-                confirmationTxt: message,
+                confirmationTxt: message_,
             });
             dispatch(resetState())
         }
-    },[isError, message])
+        
+        if (isAddSuccess !== null && isAddSuccess) {
+
+         dispatch(GetUserBots({ userId: location }));
+         setInit({
+            ...init,
+            isAlert: false,
+            isConfirm: false,
+            isUpdatedList: true,
+            confirmationTxt: "Bot has been added successfully",
+            confirmationInfo: [],
+            currentObject: {
+               userId: 0,
+               id: 0,
+            },
+         });
+         dispatch(resetState())
+         
+      }
+
+    },[isError,isAddSuccess])
 
     const handleBack = () => {
         history.push(`${STRINGS.ROUTES.ROOT}?org=${localStorage.getItem("userId")}`);
@@ -80,23 +109,54 @@ const Templates = () => {
         dispatch(CloseBotComposer())
     }
 
+     const confirmClose = () => {
+      setInit({
+         ...init,
+          isAlert: false,
+         isConfirm: false,
+         isUpdatedList: true,
+         confirmationTxt: '',
+         currentObject: {
+            userId: 0,
+            id: 0,
+         },
+      });
+   };
+
     const alertClose = () => {
+
         setInit({
             ...init,
             isAlert: false,
+            isConfirm:false,
             isUpdatedList: true,
             confirmationTxt: "",
         })
+        dispatch(resetState());
+    }
+    const addbotSave = () => {
+
+        
+         // console.log('coming handle');
+         //alert(currentObject.id)
+
+         dispatch(addTemplateBotSlice({ botId: currentObject.id, isPublished: false }));
+
+         
+     
+
     }
 
     return (
-        <div className="ws-hld">
+        <div className="ws-hld dashboard-hld ov-des overflow-auto">
+           
             <CreateBotComposer
                 currentUser={currentUser}
                 data={updateBotData}
                 openModal={openBotComposer}
                 onClose={closeModal}
             />
+            <ConfirmModal visible={isConfirm} handleOk={addbotSave} confirmLoading={!isUpdatedList} modalText={confirmationTxt} modalInfo={confirmationInfo} handleCancel={confirmClose} />
             <AlertModal
                 visible={isAlert}
                 handleOk={alertClose}
@@ -122,16 +182,11 @@ const Templates = () => {
                 </div>
             </div>
 
-            <div className="ws-section">
+            <div className="dashboard-section">
             
                 <div className="cards-hld">
-                    {createArray.map((d, index) => {
-                            return  <CreateBotsCardItem onClick={handleCreateChatBot}
-                                    dashboard={dashboard}
-                                    key={index}
-                                   data={d}
-                               />
-                            })}                    
+
+                                    
                     {
                         !success ? "loading..." : !dataNotFound ?
                             data.map((d, index) => {
@@ -149,6 +204,20 @@ const Templates = () => {
                                                     currentObject: obj
                                                 })
                                             }}*/
+
+
+                                             onAddBot={(obj) => {
+                                                setInit({
+                                                   ...init,
+                                                   isConfirm:true,
+                                                   isAlert: false,
+                                                   isUpdatedList: true,
+                                                   confirmationTxt: `You're about to add ${d.name} bot.`,
+                                                  
+                                                   currentObject: obj,
+                                                });
+                                             }}
+                                          
                                             dashboard={dashboard}
                                             key={index}
                                             data={d}

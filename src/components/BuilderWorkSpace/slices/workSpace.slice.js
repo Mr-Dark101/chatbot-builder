@@ -17,6 +17,25 @@ export const PublishedBot = (publishObj) => async dispatch => {
     })
 };
 
+export const addTemplateBotSlice = (publishObj) => async dispatch => {
+    publishObj.org_unit_id = localStorage.getItem('org_unit_id');
+    API.post(`/add-bot-template`, publishObj).then((res) => {
+        // console.log("PublishedBot", res)
+        if (res.status === STRINGS.API_STATUS.SUCCESS) {
+
+            if (res.data.status === 1) {
+                dispatch(isAddSuccess(res.data.message));
+            } else {
+                dispatch(isError(res.data.message))
+            }
+        }
+    }).catch((ex) => {
+        dispatch(isError(ex))
+    })
+};
+
+
+
 export const resetPublish = () => async (dispatch) => {
     dispatch(resetPublishStatus())
 }
@@ -24,8 +43,10 @@ export const resetPublish = () => async (dispatch) => {
 const initialState = {
     success: false,
     isPublishSuccess: false,
+    isAddSuccess:false,
     dataNotFound: false,
-    message_: ""
+    message_: "",
+    message:""
 }
 
 const workSpace = createSlice({
@@ -35,6 +56,11 @@ const workSpace = createSlice({
         isPublishedSuccess: (state, {payload}) => {
             state.isPublishSuccess = true;
             state.message_ = payload
+        },
+        isAddSuccess: (state, {payload}) => {
+            state.isAddSuccess = true;
+          
+            state.message_ = "added";
         },
         resetPublishStatus: (state) => {
             state.isPublishSuccess = false;
@@ -48,7 +74,7 @@ const workSpace = createSlice({
     extraReducers: {}
 });
 
-const {isError, isPublishedSuccess,resetPublishStatus} = workSpace.actions;
+const {isError, isPublishedSuccess,resetPublishStatus,isAddSuccess} = workSpace.actions;
 
 
 export default workSpace.reducer;

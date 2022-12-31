@@ -7,7 +7,7 @@ import $ from 'jquery';
 import { STRINGS } from '../../../utils/base';
 import MenusComponent from '../../../SharedComponent/Menus';
 import { getAllTriggersTypes, getBotTriggersRecursive, apiList, formList } from '../../../SharedComponent/AddTriggerComposer/slices/addTrigger.slice';
-import { PublishedBot } from '../../BuilderWorkSpace/slices/workSpace.slice';
+import { PublishedBot,addTemplateBotSlice } from '../../BuilderWorkSpace/slices/workSpace.slice';
 import { Avatar as Av } from '@mui/material';
 
 const defaultState = {
@@ -18,19 +18,29 @@ const defaultState = {
 };
 
 const menusOptions = [
-   { text: 'Edit', value: 1 },
-   { text: 'Deploy', value: 3 },
-   { text: 'Delete', value: 2 },
-];
+         { text: 'Edit', value: 1 },
+         { text: 'Deploy', value: 3 },
+         { text: 'Delete', value: 2 },
+   ];
+
+
+const menusOptionsTemp = [
+         { text: 'Add', value: 7 },
+        
+   ];
 
 const UserBotsCardItem = (props) => {
    //console.log('Props: ' + JSON.stringify(props));
-   let { data, onDelete, temp } = props;
+   let { data, onDelete, temp,onAddBot } = props;
    let { id, name, userId, description, phoneNumber, published } = data;
    const [init, setInit] = useState(defaultState);
    let { selected } = init;
    const dispatch = useDispatch();
    const history = useHistory();
+
+
+ 
+   
 
    useEffect(() => {
       $(document).ready(() => {
@@ -41,6 +51,9 @@ const UserBotsCardItem = (props) => {
             });
          });
       });
+
+      
+
       if (published) {
          menusOptions[1].text = 'Deployed';
          menusOptions[1].value = 4;
@@ -48,6 +61,10 @@ const UserBotsCardItem = (props) => {
          menusOptions[1].text = 'Deploy';
          menusOptions[1].value = 3;
       }
+
+
+        
+
    }, [init, published]);
 
    const handleMoreOpt = (e) => {
@@ -63,6 +80,12 @@ const UserBotsCardItem = (props) => {
       dispatch(PublishedBot(obj));
       // dispatch(DeleteUserBot(obj));
    };
+
+   const addTemplateBot = (obj) => {
+      dispatch(addTemplateBotSlice(obj));
+      // dispatch(DeleteUserBot(obj));
+   };
+   
    const handleUpdate = (obj) => {
       dispatch(SetUpdateBotData(obj));
    };
@@ -97,10 +120,19 @@ const UserBotsCardItem = (props) => {
             //in-activate-bot
             handleActivateBot({ botId: id, isPublished: false, userId });
             break;
+
+         case 7:
+            //in-activate-bot
+            onAddBot({ id: id, isPublished: false, userId })
+           // addTemplateBot({ botId: id, isPublished: false, userId });
+            break;
          default:
             return;
       }
    };
+
+
+
 
    return (
       <div
@@ -131,7 +163,9 @@ const UserBotsCardItem = (props) => {
             {
                <div className="card-ends">
                   <div className="icon" onClick={handleMoreOpt}>
-                     <MenusComponent options={menusOptions} onSelect={handleMenuSelect} />
+                     {(temp ? (<MenusComponent options={menusOptionsTemp} onSelect={handleMenuSelect} />) : (<MenusComponent options={menusOptions} onSelect={handleMenuSelect} />) )}
+                     
+                     
                   </div>
                </div>
             }
