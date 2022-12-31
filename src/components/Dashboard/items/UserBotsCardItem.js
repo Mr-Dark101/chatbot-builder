@@ -23,7 +23,10 @@ const menusOptions = [
    { text: 'Delete', value: 2 },
 ];
 
-const menusOptionsTemp = [{ text: 'Add to my workspace', value: 7 }];
+const menusOptionsTemp = [
+   { text: 'Use this Template', value: 7 },
+   { text: 'Preview', value: 8 },
+];
 
 const UserBotsCardItem = (props) => {
    //console.log('Props: ' + JSON.stringify(props));
@@ -110,6 +113,11 @@ const UserBotsCardItem = (props) => {
          case 7:
             //in-activate-bot
             onAddBot({ id: id, isPublished: false, userId });
+            // addTemplateBot({ botId: id, isPublished: false, userId });
+            break;
+         case 8:
+            //in-activate-bot
+            handleBotOpen(id);
             // addTemplateBot({ botId: id, isPublished: false, userId });
             break;
          default:
