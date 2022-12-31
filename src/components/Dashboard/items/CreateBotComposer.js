@@ -125,12 +125,19 @@ const CreateBotComposer = (props) => {
             userId: currentUser,
             imagePath: botImage,
          };
+         if (botName !== '') {
+            dispatch(updateUserBot(updateObj));
+            onClose();
+         } else {
+         }
          // console.log('updateObj_', updateObj)
-         dispatch(updateUserBot(updateObj));
       } else {
-         dispatch(createUserBot(createObj));
+         if (botName !== '') {
+            dispatch(createUserBot(createObj));
+            onClose();
+         } else {
+         }
       }
-      onClose();
    };
 
    const alertClose = () => {
