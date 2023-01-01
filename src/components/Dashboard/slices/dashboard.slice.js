@@ -26,7 +26,7 @@ export const GetUserBots =
                   //console.log('Res Status 1: ');
                   dispatch(userBotsSuccess({ data: res.data.data, userId: userId }));
                } else {
-                 // console.log('Res Status 0:');
+                  // console.log('Res Status 0:');
                   dispatch(userBotsSuccessDataNotFound(true));
                }
             }
@@ -44,24 +44,31 @@ export const SetCurrentBotUpdateData = (data) => async (dispatch) => {
    dispatch(setUpdateBotData(data));
 };
 
-
 export const getChannelVerify = (id) => async (dispatch) => {
-   let orgId = localStorage.getItem("org_unit_id");
-    orgId = orgId.replace('\"','');
-    orgId = orgId.replace('%22','');
+   let orgId = localStorage.getItem('org_unit_id');
+   orgId = orgId.replace('"', '');
+   orgId = orgId.replace('%22', '');
    return API.get(`/user-channel?org=${orgId}&channel=${id}`)
       .then((res) => {
-         
-         if (res.status === STRINGS.API_STATUS.SUCCESS) {
-            
-                return {message:'Found',error:false}
-               //dispatch(getChannelVerifySuccess({ payload: res.data.data, message: res.data.message }));
-            
+         console.log('Response:' + JSON.stringify(res.data));
+         try {
+            if (res.status === STRINGS.API_STATUS.SUCCESS) {
+               if (res.data.data != undefined && res.data.data != null) {
+                  if (res.data.data.length > 0) {
+                     return { message: 'Found', error: false };
+                  } else {
+                     return { message: 'not Found', error: true };
+                  }
+               } else {
+                  return { message: 'not Found', error: true };
+               }
+            }
+         } catch (exc) {
+            return { message: 'not Found', error: true };
          }
       })
       .catch((ex) => {
-          return {message:'not Found',error:true}
-         
+         return { message: 'not Found', error: true };
       });
 };
 
@@ -174,12 +181,12 @@ const dashboardSlice = createSlice({
          state.channels = payload.message.channels;
       },
       userBotsSuccess: (state, action) => {
-        // console.log("userBotSuccess UserID: " + action.payload.userId);
+         // console.log("userBotSuccess UserID: " + action.payload.userId);
          state.success = true;
          state.data = action.payload.data;
          state.currentUser = action.payload.userId;
-        // localStorage.setItem('org_unit_id', action.payload.userId);
-         if(action.payload.userId){
+         // localStorage.setItem('org_unit_id', action.payload.userId);
+         if (action.payload.userId) {
             localStorage.setItem('userId', action.payload.userId);
          }
       },
@@ -219,16 +226,15 @@ const dashboardSlice = createSlice({
          state.openBotComposer = true;
          state.updateBotData = payload;
          // if(payload.channels.toString().includes('whatsapp')) {
-         //    console.log("WhatsApp Added");                 
+         //    console.log("WhatsApp Added");
          // }
          // if(payload.channels.toString().includes('messenger')) {
-         //    console.log("Messenger Added");                 
+         //    console.log("Messenger Added");
          // } if(payload.channels.toString().includes('instagram')) {
          //    console.log("Instagram Added");
          // } if(payload.channels.toString().includes('google')) {
          //    console.log("Google Business Message Added");
          // }
-        
       },
       openBot: (state) => {
          state.openBotComposer = true;
