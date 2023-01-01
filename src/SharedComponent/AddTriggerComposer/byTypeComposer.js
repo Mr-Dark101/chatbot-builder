@@ -1153,7 +1153,7 @@ const ByTypeComposer = ({ props, triggerType }) => {
 
                      {triggerType == 'F' ? (
                         <div className="txt-field">
-                           <div style={{ color: '#000', fontWeight: 800, marginTop: '10px' }}>Select Form</div>
+                           <div style={{ color: '#000', fontWeight: 800, marginTop: '10px', fontSize: '12px', marginBottom: '5px' }}>Select Form</div>
                            <Select
                               labelId="demo-simple-select-standard-label"
                               id="demo-simple-select-standard"
@@ -1534,19 +1534,23 @@ const ByTypeComposer = ({ props, triggerType }) => {
                      </>
                   ) : (
                      <>
-                        <div style={{ color: '#000', marginTop: '15px', marginBottom: '10px' }}>
-                           Welcome Message
+                        <div style={{ color: '#000', fontWeight: 800, marginTop: '10px', fontSize: '12px' }}>
+                           <div className="sub-txt" style={{ marginBottom: '5px' }}>
+                              Welcome Message
+                           </div>
                            <TextEditor type={'formStartText'} defaultText={formStartText} onSuccess={handleTextAreaChange} />
-                           <div style={{ color: '#000', marginBottom: '20px' }}></div>
+                           <div style={{ color: '#000', marginBottom: '20px', marginTop: '5px' }}></div>
                            {formData.map((fRow, i) => (
-                              <div style={{ marginLeft: '10px !important' }} className="row" key={i}>
+                              <div style={{ marginLeft: '12px !important' }} className="row" key={i}>
                                  <div className="col-sm-6">{fRow.label}</div>
                                  <div className="col-sm-6">{fRow.type}</div>
                               </div>
                            ))}
                            <br />
-                           Confirmation Message
-                           <TextEditor style={{ marginTop: '15px' }} type={'formEndText'} defaultText={formEndText} onSuccess={handleTextAreaChange} />
+                           <div className="sub-txt" style={{ marginBottom: '5px' }}>
+                              Confirmation Message
+                           </div>
+                           <TextEditor type={'formEndText'} defaultText={formEndText} onSuccess={handleTextAreaChange} />
                         </div>
                         <br />
                      </>
