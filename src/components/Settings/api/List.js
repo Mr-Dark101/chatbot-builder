@@ -202,16 +202,18 @@ const List = ({ rs, subPage, loadList }) => {
                </div>
                <div className="col-sm-3 ps-0 pe-10">
                   <div className="available_api_section">
-                     <h5 class="box-title m-0" style= {{fontWeight: 800, fontSize: '17px !important',color:'#000'}}>Open API's</h5>
+                     <h5 class="box-title m-0" style={{ fontWeight: 800, height: '80px !important', fontSize: '19px !important', color: '#000', display: 'table-cell', verticalAlign: 'middle', overflow: 'hidden' }}>
+                        Open API's
+                     </h5>
 
-                     <table className="table" style={{ height: '400px', backgroundColor: '#f5f5f5',display: 'flex',justifyContent: 'center',alignItems: 'center',flexDirection: 'column' }}>
-                        <div class="imgBg">                        
-                         <img alt="" src="/static/media/api.0e97429d.svg"/> 
-                        </div>  
-                        <div className='peraWrap'>
-                           <h5 style ={{fontSize: '15px', fontWeight:800, color:'#000'}}>Open APIs feature coming soon!</h5>
-                           <h6 style ={{fontSize: '12px',marginTop: '-10px'}}>We will notify you once this feature is available</h6>
-                        </div>                      
+                     <table className="table" style={{ height: '400px', backgroundColor: '#f5f5f5', display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
+                        <div class="imgBg">
+                           <img alt="" src="/static/media/api.0e97429d.svg" />
+                        </div>
+                        <div className="peraWrap">
+                           <h5 style={{ fontSize: '15px', fontWeight: 800, color: '#000' }}>Open APIs feature coming soon!</h5>
+                           <h6 style={{ fontSize: '12px', marginTop: '-10px' }}>We will notify you once this feature is available</h6>
+                        </div>
                         {listTemplateData &&
                            listTemplateData.map((row, index) => (
                               <tr>

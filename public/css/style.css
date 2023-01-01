@@ -32100,14 +32100,14 @@ img.away, img.busy, img.offline, img.online {
   
 }
 .right_bar_top_section{
-  margin: 0px;
+  margin-left: 5px;
   padding: 0px 10px;
   list-style-type: none;
 }
 .right_bar_top_section li{
   display: inline-block;
-  width: 30%;
-  margin: 5px;
+  width: 31%;
+  margin: 7px;
 }
 .right_bar_top_section li .btn:hover, .right_bar_top_section li .btn:focus{
   border-color: transparent;
@@ -32253,8 +32253,8 @@ img.away, img.busy, img.offline, img.online {
 /* Api Img Sec */
 .imgBg {
   background: #fff;
-  width: 25%;
-  height: 19%;
+  width: 15%;
+  height: 20%;
   display: flex;
   justify-content: center;
   padding: 16px;
@@ -32425,11 +32425,11 @@ img.away, img.busy, img.offline, img.online {
   margin-right: 30px;
 }
 .page_data_setting .available_api_section h5{
-  font-weight: 700;
-  font-size: 14px;
-  line-height: 16px;
+  font-weight: 800;
+  font-size: 19px;
+  line-height: 40px;
   font-family: "Segoe UI Regular";
-  color: #363a77;
+  color: #000;
   padding: 20px;
   margin-bottom: 0px;
 }

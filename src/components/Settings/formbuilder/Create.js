@@ -199,7 +199,7 @@ const Create = ({ rs, retrieveList, loadList }) => {
                                                       </Select>
                                                    </div>
 
-                                                   <div className="col-sm-1">
+                                                   <div className="col-sm-1 text-center">
                                                       <a href="javascript:void(0)" className="link_delete_icon btn btn-icon btn-icon rounded-circle btn-danger" onClick={() => removeField(i, x.label)}>
                                                          <i className="fa fa-trash"></i>
                                                       </a>
@@ -216,10 +216,10 @@ const Create = ({ rs, retrieveList, loadList }) => {
                                                                   <div className="col-sm-4">
                                                                      <TextField name="key" placeholder="Key" value={o.key} onChange={(e) => handleInputChangeOption(e, io, 'phone', i)} />
                                                                   </div>
-                                                                  <div className="col-sm-6">
+                                                                  <div className="col-sm-7">
                                                                      <TextField name="value" placeholder="Value" value={o.value} onChange={(e) => handleInputChangeOption(e, io, 'phone', i)} />
                                                                   </div>
-                                                                  <div className="col-sm-1">
+                                                                  <div className="col-sm-1 text-center">
                                                                      <a className="link_delete_icon" href="javascript:void(0)" onClick={() => removeFieldOption(io, o.key, i)}>
                                                                         <i className="fa fa-trash"></i>
                                                                      </a>
@@ -243,10 +243,10 @@ const Create = ({ rs, retrieveList, loadList }) => {
                                                          return (
                                                             <>
                                                                <div className="row align-items-center">
-                                                                  <div className="col-sm-10">
+                                                                  <div className="col-sm-11">
                                                                      <TextField name="value" placeholder="Reg([/hello/])" value={o.value} onChange={(e) => handleInputChangeRegular(e, io, 'phone', i)} style={{ marginTop: '-10px' }} />
                                                                   </div>
-                                                                  <div className="col-sm-1">
+                                                                  <div className="col-sm-1 text-center">
                                                                      <a className="link_delete_icon" href="javascript:void(0)" onClick={() => removeFieldRegular(io, o.key, i)}>
                                                                         <i className="fa fa-trash"></i>
                                                                      </a>
@@ -268,7 +268,7 @@ const Create = ({ rs, retrieveList, loadList }) => {
                                  </div>
                                  <label style={{ marginBottom: '10px' }}>On Form Submit</label>
                                  <p style={{ marginBottom: '20px' }}>
-                                 You can automatically allow form data to be sent to one or more email addresses when a customer completes the form. For your security, consider using this feature with only trusted email addresses.
+                                    You can automatically allow form data to be sent to one or more email addresses when a customer completes the form. For your security, consider using this feature with only trusted email addresses.
                                  </p>
 
                                  <label style={{ marginBottom: '0px' }}>Enter Email Addresses (Optional)</label>

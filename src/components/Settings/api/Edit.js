@@ -130,7 +130,7 @@ const Edit = ({ rs, retrieveList, loadList }) => {
                                                          <TextField name="valueOther" placeholder="Value" value={x.valueOther} onChange={(e) => handleInputChange(e, i, 'phone')} />
                                                       </div>
 
-                                                      <div className="col-sm-1">
+                                                      <div className="col-sm-1 text-center">
                                                          <a href="javascript:void(0)" className="link_delete_icon btn btn-icon btn-icon rounded-circle btn-danger mt-1" onClick={() => removeField(i, x.keyOther)}>
                                                             <i className="fa fa-trash"></i>
                                                          </a>
