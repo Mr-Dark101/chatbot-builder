@@ -29,6 +29,7 @@ const defaultState = {
    botId: null,
    onHover: false,
    confirmationTxt: '',
+   icon:'',
    confirmationInfo: [],
 };
 
@@ -36,7 +37,7 @@ const CreateBotComposer = (props) => {
    let { openModal, onClose, currentUser, data } = props;
 
    const [init, setInit] = useState(defaultState);
-   let { selected, selectCategory, botName, botDescription, botPhoneNumber, botImage, botId, comingSoon, onHover, isAlert, isUpdatedList, confirmationTxt, confirmationInfo, buttonText } = init;
+   let { selected, selectCategory, botName, botDescription, botPhoneNumber, botImage, botId, comingSoon, onHover, isAlert, isUpdatedList, confirmationTxt,icon, confirmationInfo, buttonText } = init;
    const dispatch = useDispatch();
 
    useEffect(() => {
@@ -146,6 +147,7 @@ const CreateBotComposer = (props) => {
          isAlert: false,
          isUpdatedList: true,
          confirmationTxt: '',
+         icon:'',
       });
    };
 
@@ -156,6 +158,7 @@ const CreateBotComposer = (props) => {
          isAlert: false,
          isUpdatedList: true,
          confirmationTxt: '',
+         icon:'',
       });
    };
 
@@ -197,7 +200,7 @@ const CreateBotComposer = (props) => {
       }
    };
 
-   const handleSelectBot = async (category, categoryText) => {
+   const handleSelectBot = async (category, categoryText,icon) => {
       let apiReturn = false;
       if (category != 'whatsapp') {
          let apiResponse = await dispatch(getChannelVerify(category));
@@ -210,6 +213,7 @@ const CreateBotComposer = (props) => {
                      ...init,
                      isAlert: false,
                      buttonText: categoryText,
+                     icon:icon,
                      confirmationTxt: `Before you can add chatbot to Google's Business Messages, you need to add a Google's Business Messages account.`,
                      selected: init.selected.filter((d) => d !== category),
                   });
@@ -218,6 +222,7 @@ const CreateBotComposer = (props) => {
                      ...init,
                      isAlert: false,
                      buttonText: categoryText,
+                     icon:icon,
                      confirmationTxt: `Before you can add chatbot to ${categoryText}, you need to connect a ${categoryText} page.`,
                      selected: init.selected.filter((d) => d !== category),
                   });
@@ -228,6 +233,7 @@ const CreateBotComposer = (props) => {
                      ...init,
                      isAlert: true,
                      buttonText: categoryText,
+                     icon:icon,
                      confirmationTxt: `Before you can add chatbot to Google's Business Messages, you need to add a Google's Business Messages account.`,
                      selected: [...init.selected, category],
                   });
@@ -236,6 +242,7 @@ const CreateBotComposer = (props) => {
                      ...init,
                      isAlert: true,
                      buttonText: categoryText,
+                     icon:icon,
                      confirmationTxt: `Before you can add chatbot to ${categoryText}, you need to connect a ${categoryText} page.`,
                      selected: [...init.selected, category],
                   });
@@ -312,7 +319,7 @@ const CreateBotComposer = (props) => {
                      <div
                         style={{ width: '139px', height: '142px' }}
                         className={`category-box ${init.selected.includes('whatsapp') && 'on-whats-app'}`}
-                        onClick={() => handleSelectBot('whatsapp', 'WhatsApp')}
+                        onClick={() => handleSelectBot('whatsapp', 'WhatsApp',whatsAppIcon)}
                         onMouseOver={() => {
                            setInit({
                               ...init,
@@ -348,7 +355,7 @@ const CreateBotComposer = (props) => {
                            });
                         }}
                         className={`category-box ${init.selected.includes('messenger') && 'on-facebook'}`}
-                        onClick={() => handleSelectBot('messenger', 'Facebook Messenger')}
+                        onClick={() => handleSelectBot('messenger', 'Facebook Messenger',MessengerIcon)}
                      >
                         <div className={`icon on-messenger-app mt-10`}>
                            <img alt="Facebook" src={comingSoon ? comingSoonIcon : MessengerIcon} style={{ width: '42px', height: '42px' }} />
@@ -373,7 +380,7 @@ const CreateBotComposer = (props) => {
                            });
                         }}
                         className={`category-box ${init.selected.includes('instagram') && 'on-instagram'}`}
-                        onClick={() => handleSelectBot('instagram', 'Instagram')}
+                        onClick={() => handleSelectBot('instagram', 'Instagram',InstagramIcon)}
                      >
                         <div className={`icon on-messenger-app`}>
                            <img alt="Facebook" src={comingSoon ? comingSoonIcon : InstagramIcon} style={{ width: '58px', height: '58px' }} />
@@ -398,7 +405,7 @@ const CreateBotComposer = (props) => {
                            });
                         }}
                         className={`category-box ${init.selected.includes('googlemsg') && 'on-google'}`}
-                        onClick={() => handleSelectBot('googlemsg', 'Google')}
+                        onClick={() => handleSelectBot('googlemsg', 'Google',GoogleIcon)}
                      >
                         <div className={`icon on-messenger-app mt-10`}>
                            <img alt="Facebook" src={comingSoon ? comingSoonIcon : GoogleIcon} style={{ width: '56px', height: '56px' }} />
@@ -434,7 +441,7 @@ const CreateBotComposer = (props) => {
 
    return (
       <>
-         <AlertModal visible={isAlert} handleOk={alertCloseLink} confirmLoading={true} modalText={confirmationTxt} modalInfo={confirmationInfo} buttonText={buttonText} handleCancel={alertClose} />
+         <AlertModal visible={isAlert} handleOk={alertCloseLink} confirmLoading={true} modalText={confirmationTxt} modalIcon={icon} modalInfo={confirmationInfo} buttonText={buttonText} handleCancel={alertClose} />
          <Modal open={openModal} onClose={handleCloseModal} aria-labelledby="create-bot" aria-describedby="create-the-new-bot" className={'_modal'}>
             {body}
          </Modal>

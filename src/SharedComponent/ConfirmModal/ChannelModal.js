@@ -1,7 +1,7 @@
 import React, {useRef} from 'react';
 import {Modal} from 'antd';
 
-const ChannelModal = ({visible, modalText, modalInfo, handleCancel, handleOk, confirmLoading,buttonText}) => {
+const ChannelModal = ({visible, modalText, modalInfo, handleCancel, handleOk, confirmLoading,buttonText,modalIcon}) => {
     const modalRef = useRef(null);
     return (
             <Modal
@@ -14,6 +14,7 @@ const ChannelModal = ({visible, modalText, modalInfo, handleCancel, handleOk, co
                 okText= {`Connect ${buttonText}`}
                 cancelText="Maybe later"
             >
+                <p style={{textAlign:'center'}}><img src={modalIcon} /></p>
                 <p>{modalText}</p>
                 
             </Modal>
