@@ -89,7 +89,7 @@
 
             .tag-box {
               display: flex;
-              padding: 10px;
+              padding: 5px;
               margin-right: 12px;
               border: 1px solid #ccc;
               justify-content: space-between;
@@ -99,8 +99,8 @@
 
               .txt {
                 color: #000;
-                font-size: 14px;
-                line-height: 17px;
+                font-size: 12px;
+                line-height: 1.2px;
                 font-weight: 500;
                 margin-right: 20px;
                 font-family: 'Segoe UI Regular';
@@ -109,6 +109,11 @@
               .icon {
                 margin-left: 0.3rem;
                 cursor: pointer;
+                img{
+                  width: 15px;
+                  height: 15px;
+                }
+
               }
             }
           }
@@ -868,6 +873,22 @@
         }
       }
     }
+
+     input{
+      border: none !important;
+      outline: none !important;
+
+      &:focus {
+        border: none !important;
+        outline: none !important;
+      }
+      &:focus-visible {
+        border: none !important;
+        outline: none !important;
+      }
+
+    }
+
   }
 }
 .fallback_button{

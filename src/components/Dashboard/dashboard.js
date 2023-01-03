@@ -157,7 +157,7 @@ const Dashboard = () => {
    };
 
    const handleSubmitTrigger = () => {
-      console.log('Current Object: ' + JSON.stringify(currentObject));
+
       if (currentObject.userId !== 0 && currentObject.id !== 0) {
          setInit({
             ...init,

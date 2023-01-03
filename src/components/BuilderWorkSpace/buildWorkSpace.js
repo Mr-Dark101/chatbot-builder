@@ -13,6 +13,7 @@ import { getBotTriggersRecursive, openTriggerCard, resetTheUrls } from '../../Sh
 import { Drawer } from '@mui/material';
 import AlertModal from '../../SharedComponent/ConfirmModal/AlertModal';
 import ConfirmModal from '../../SharedComponent/ConfirmModal/ConfirmModal';
+import {TextField} from '../crud/FormElements';
 import moment from 'moment';
 // import TreeComponent from "../../SharedComponent/TreeComponent/treeComponent";
 import axios from 'axios';
@@ -282,9 +283,9 @@ const BuildWorkSpace = () => {
                </p>
             </div>
             <div className="head-center">
-               <h5 class="box-title m-0" style={{ fontWeight: 800 }}>
+               <h5 class="box-title m-0" style={{ fontWeight: '800', display: 'flex', alignItems: 'end'  }}>
                   {' '}
-                  {name} <span> {<img alt={'#'} src={draft_icon} style={{width:'45px', marginLeft: '10px'}}/>} </span>
+                  <input type="text" name="name" className='botName' style={{ border: 'none', borderRadius: '0px'  }}/> <span> {<span class="currentPlan">Draft</span>} </span>
                </h5>
             </div>
             <div className="head-lft">

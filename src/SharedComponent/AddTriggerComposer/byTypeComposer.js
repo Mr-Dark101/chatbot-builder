@@ -1054,7 +1054,7 @@ const ByTypeComposer = ({ props, triggerType }) => {
                         <div className="input">
                            <input
                               className="inp"
-                              placeholder="Welcome Message"
+                              placeholder="Please provide a name for your trigger"
                               value={name}
                               onChange={(e) => {
                                  setInit({
@@ -1086,13 +1086,13 @@ const ByTypeComposer = ({ props, triggerType }) => {
                                           triggerValueName: e.target.value,
                                        });
                                     }}
-                                    placeholder="Please Enter Value"
+                                    placeholder="Please enter keyword/keywords to tigger a bot response"
                                  />
                               </div>
 
                               <div>
                                  <button type="button" onClick={() => handleAddTriggerValue()} className="btn btn_add_option">
-                                    Add Options
+                                    Add Option
                                  </button>
                               </div>
                            </div>
@@ -1176,7 +1176,7 @@ const ByTypeComposer = ({ props, triggerType }) => {
                   {triggerType == 'A' || triggerType == 'M' ? (
                      <>
                         <div className="row__" style={{ marginBottom: '0px' }}>
-                           <div className="sub-txt" style={{ marginTop: '10px', marginBottom: '10px', fontSize: '12px', color: '#000', fontFamily: 'Segoe UI Regular !important' }}>
+                           <div className="sub-txt" style={{ marginTop: '10px', marginBottom: '5px', fontSize: '12px', color: '#000', fontFamily: 'Segoe UI Regular !important' }}>
                               Bot Response
                            </div>
                            {triggerType == 'A' ? (
@@ -1526,7 +1526,7 @@ const ByTypeComposer = ({ props, triggerType }) => {
                                           });
                                        }}
                                     >
-                                       <i className="fa fa-plus-circle"></i> Add Fall-Back Response
+                                       <i className="fa fa-plus-circle"></i> Add Fallback Response
                                     </div>
                                  </>
                               ) : null}
@@ -1574,13 +1574,13 @@ const ByTypeComposer = ({ props, triggerType }) => {
                         <div className="row__">
                            <div className="txt-field">
                               <div className="label">
-                                 <div className="sub-txt">Menu Options</div>
+                                 <div className="sub-txt">Bot Menu</div>
                               </div>
                               <div className="input">
                                  <input
                                     className="inp inputWrap"
                                     value={triggerOpt}
-                                    placeholder="Write Trigger Option (if any)"
+                                    placeholder="Add menu for your bot flow"
                                     onChange={(e) => {
                                        setInit({
                                           ...init,
@@ -1591,7 +1591,7 @@ const ByTypeComposer = ({ props, triggerType }) => {
 
                                  <div className="add-btn">
                                     <button className="btn-outlined" onClick={handleAddOptions}>
-                                       Add Option
+                                       Add Menu
                                     </button>
                                  </div>
                               </div>

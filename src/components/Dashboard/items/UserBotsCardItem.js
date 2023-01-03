@@ -184,7 +184,8 @@ const UserBotsCardItem = (props) => {
             {
               
                <div className="card-ends">
-                   {temp == undefined ? <span class="currentPlan">{(data.published == 1) ? 'Published' : 'Draft'}</span> : <span class="currentPlan" style={{opacity: 0}}>Draft</span>}
+                   {temp == undefined && (data.published == 1) ? <span class="currentPlan currentPlan_bg">Published</span> :<span class="currentPlan">Draft</span>}
+           
                   <div className="icon" onClick={handleMoreOpt}>
                      {temp ? <MenusComponent options={menusOptionsTemp} onSelect={handleMenuSelect} /> : <MenusComponent options={menusOptions} onSelect={handleMenuSelect} />}
                   </div>

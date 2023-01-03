@@ -88,7 +88,7 @@
   text-align: end;
   font-size: 11px;
   color: #979797;
-  letter-spacing: 1.3px;
+  letter-spacing: 1.0px;
 }
 @import url('https://fonts.googleapis.com/css2?family=Lato&family=Mulish:wght@400;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
@@ -690,4 +690,29 @@ textarea{
   color: #fff;
   background-color: #363a77 !important;
   border-color: #363a77 !important;
+}
+.currentPlan {
+  background: #666363;
+  font-size: 11px;
+  text-transform: capitalize;
+  padding: 2px 12px;
+  display: inline-block;
+  color: #fff;
+  font-weight: 600;
+  border-radius: 18px;
+  letter-spacing: 1.2px;
+
+}
+.btn-check:focus+.btn, .btn:focus {
+  outline: 0;
+  box-shadow: none !important;
+}
+.botName {
+   font-weight: 800;
+    font-size: 17.5px;
+  
+  &:focus-visible {
+    outline: none!important;
+    border-bottom: 1px solid #000 !important;
+}
 }
