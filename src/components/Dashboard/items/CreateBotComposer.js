@@ -421,6 +421,13 @@ const CreateBotComposer = (props) => {
 
          <div className="modal-footer">
             <div className="actions">
+
+
+            <button style={{ textTransform: 'none', width: '100px',marginRight:10 }} className="btn filled" onClick={handleCloseModal}>
+                  Cancel
+               </button> 
+
+
                <button style={{ textTransform: 'none', width: '100px' }} className="btn filled" onClick={handleCreateBotSubmit}>
                   {data !== null ? 'Update' : 'Next'}
                </button>

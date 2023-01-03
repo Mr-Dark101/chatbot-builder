@@ -10,6 +10,11 @@ import { getAllTriggersTypes, getBotTriggersRecursive, apiList, formList } from 
 import { PublishedBot, addTemplateBotSlice } from '../../BuilderWorkSpace/slices/workSpace.slice';
 import { Avatar as Av } from '@mui/material';
 
+import whatsAppIcon from '../../../assets/Image 1/logos_whatsapp-icon.svg';
+import MessengerIcon from '../../../assets/Image 1/logos_messenger.svg';
+import InstagramIcon from '../../../assets/insta.png';
+import GoogleIcon from '../../../assets/google.png';
+
 const defaultState = {
    openOpt: false,
    openComposer: false,
@@ -125,6 +130,26 @@ const UserBotsCardItem = (props) => {
       }
    };
 
+   const loadIcon = (channels) => {
+      const channelsData = JSON.parse(channels);
+      return channelsData.map((item,index) => {
+          let iconName  = whatsAppIcon;
+          if(item == 'whatsapp'){
+             iconName  = whatsAppIcon;
+          }
+          if(item == 'messenger'){
+             iconName  = MessengerIcon;
+          }
+          if(item == 'google'){
+             iconName  = GoogleIcon;
+          }
+          if(item == 'instagram'){
+             iconName  = InstagramIcon;
+          }
+          return (<img className="img-responsive" alt={item} src={iconName} />)
+      })
+   }
+
    return (
       <div
          className={`card_box ${selected && 'on'}`}
@@ -142,6 +167,7 @@ const UserBotsCardItem = (props) => {
          }}
          onClick={() => handleBotOpen(id)}
       >
+
          <div className="card-content bots-box flex-column">
             {/*<div className="card-start">*/}
             {/*    <div className="card-circle on">*/}
@@ -154,7 +180,7 @@ const UserBotsCardItem = (props) => {
             {
               
                <div className="card-ends">
-                   {temp == undefined ? <span class="currentPlan">Draft</span> : <span class="currentPlan" style={{opacity: 0}}>Draft</span>}
+                   {temp == undefined ? <span class="currentPlan">{(data.published == 1) ? 'Published' : 'Draft'}</span> : <span class="currentPlan" style={{opacity: 0}}>Draft</span>}
                   <div className="icon" onClick={handleMoreOpt}>
                      {temp ? <MenusComponent options={menusOptionsTemp} onSelect={handleMenuSelect} /> : <MenusComponent options={menusOptions} onSelect={handleMenuSelect} />}
                   </div>
@@ -202,7 +228,7 @@ const UserBotsCardItem = (props) => {
                   {temp == undefined ? description : phoneNumber}
                </div>
                <div className="channel_iconBox">
-                  {temp == undefined ? <img className="img-responsive" alt="WhatsApp" src="/static/media/logos_whatsapp-icon.75d10606.svg"></img> : ''}
+                  {temp == undefined ? loadIcon(data.channels) : ''}
                </div>
                <div
                   className={`sub-txt ${temp !== undefined && 'temp'}`}
