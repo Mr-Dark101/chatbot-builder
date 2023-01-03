@@ -14,6 +14,8 @@ import whatsAppIcon from '../../../assets/Image 1/logos_whatsapp-icon.svg';
 import MessengerIcon from '../../../assets/Image 1/logos_messenger.svg';
 import InstagramIcon from '../../../assets/insta.png';
 import GoogleIcon from '../../../assets/google.png';
+import { Tooltip } from '@mui/material';
+
 
 const defaultState = {
    openOpt: false,
@@ -151,6 +153,7 @@ const UserBotsCardItem = (props) => {
    }
 
    return (
+      <Tooltip title={description}>
       <div
          className={`card_box ${selected && 'on'}`}
          onMouseOver={() => {
@@ -166,6 +169,7 @@ const UserBotsCardItem = (props) => {
             });
          }}
          onClick={() => handleBotOpen(id)}
+
       >
 
          <div className="card-content bots-box flex-column">
@@ -253,6 +257,7 @@ const UserBotsCardItem = (props) => {
             </div>
          </div>
       </div>
+      </Tooltip>
    );
 };
 
