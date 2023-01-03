@@ -231,8 +231,8 @@ const BuildWorkSpace = () => {
    const calculateLastDate = () => {
       let timeStamp = '';
       try {
-         const currentDate = moment(Date.now()).format('YYYY-MM-DD hh:mm a');
-         const updateTime = moment(init.updated_time).format('YYYY-MM-DD hh:mm a');
+         const currentDate = moment(Date.now()).format('MMM DD, YYYY hh:mm a');
+         const updateTime = moment(init.updated_time).format('MMM DD, YYYY hh:mm a');
          const date1 = new Date(currentDate);
          const date2 = new Date(updateTime);
          const differenceInMilli = Math.abs(date1 - date2);
@@ -259,10 +259,10 @@ const BuildWorkSpace = () => {
 
    return (
       <div className="ws-hld">
-         <div className="head">
+         <div className="head first_divNone">
             <AlertModal visible={isAlert} handleOk={alertClose} confirmLoading={!isUpdatedList} modalText={confirmationTxt} modalInfo={confirmationInfo} handleCancel={alertClose} />
             <ConfirmModal visible={isConfirm} handleOk={publishBot} confirmLoading={!isUpdatedList} modalText={confirmationTxt} modalInfo={confirmationInfo} handleCancel={confirmClose} />
-            <div className="head-rt" style={{ position: 'absolute' }}>
+            <div className="head-rt">
                <div onClick={handleBack} className="icon" style={{ width: '24px' }}>
                   <img alt={'#'} src={back_icon} />
                </div>
@@ -276,7 +276,7 @@ const BuildWorkSpace = () => {
                   </p>{' '}
                   <i id="checkMark" className="fa fa-check d-none" style={{ color: '#07bc0c', merginLeft: '15px' }}></i>
                </div>
-               <p id="lastSeen" className="lastSeen">
+               <p id="lastSeen" className="lastSeen" style = {{fontWeight: 800}}>
                   {' '}
                   Last saved <span id="lastupdate">{lastsaved}</span>
                </p>
@@ -284,7 +284,7 @@ const BuildWorkSpace = () => {
             <div className="head-center">
                <h5 class="box-title m-0" style={{ fontWeight: 800 }}>
                   {' '}
-                  {name} <span> {phoneNumber} </span>
+                  {name} <span> {<img alt={'#'} src={draft_icon} style={{width:'45px', marginLeft: '10px'}}/>} </span>
                </h5>
             </div>
             <div className="head-lft">

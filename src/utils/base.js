@@ -14,8 +14,8 @@ export const STRINGS = {
 
     },
     DEFAULTS: {
-        COPY_RIGHTS: `COPYRIGHT \u00A9 ${new Date().getFullYear()} E Ocean Private Limited, All Rights Reserved`,
-        VERSION: "Version 2.1",
+        COPY_RIGHTS: ``,
+        VERSION: "",
         BOT_LIMIT: 8,
     },
     COLOR: {

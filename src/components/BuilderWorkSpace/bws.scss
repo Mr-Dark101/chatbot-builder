@@ -96,6 +96,12 @@
         }
       }
     }
+   
+  }
+  .first_divNone {
+    & div:first-child {
+      display: none;
+    }
   }
 
   .ws-section {

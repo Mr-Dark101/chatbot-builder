@@ -1156,6 +1156,7 @@ const ByTypeComposer = ({ props, triggerType }) => {
                            <div style={{ color: '#000', fontWeight: 800, marginTop: '10px', fontSize: '12px', marginBottom: '5px' }}>Select Form</div>
                            <Select
                               labelId="demo-simple-select-standard-label"
+                              className="customSelect"
                               id="demo-simple-select-standard"
                               value={form_id}
                               onChange={(e) => {

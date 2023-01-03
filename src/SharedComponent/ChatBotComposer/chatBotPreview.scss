@@ -142,7 +142,7 @@
 
 .mobBottom_sec {
     background: #f6f6f6;
-    padding: 10px 0 40px;
+    padding: 10px 0;
 }
 .mockchat .replyBtn {
     background: transparent;
@@ -164,8 +164,8 @@
     z-index: 0;
 }
 .conversation .conversation-container {
-    height: calc(100% - 68px);
-    overflow-x: hidden !important;
+    height: calc(100% - 48px);
+    overflow-x: hidden!important;
     padding: 0 1px;
     margin-bottom: 15px;
 }
@@ -389,7 +389,7 @@ span.headerMedia {
       height: 25px;
     }
     .conversation .conversation-container {
-        height: calc(100% - 60px);
+        height: calc(100% - 50px);
       }
 }
 

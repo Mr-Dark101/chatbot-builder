@@ -152,7 +152,9 @@ const UserBotsCardItem = (props) => {
             {/*    </div>*/}
             {/*</div>*/}
             {
+              
                <div className="card-ends">
+                   {temp == undefined ? <span class="currentPlan">Draft</span> : <span class="currentPlan" style={{opacity: 0}}>Draft</span>}
                   <div className="icon" onClick={handleMoreOpt}>
                      {temp ? <MenusComponent options={menusOptionsTemp} onSelect={handleMenuSelect} /> : <MenusComponent options={menusOptions} onSelect={handleMenuSelect} />}
                   </div>
@@ -180,6 +182,27 @@ const UserBotsCardItem = (props) => {
             >
                <div className="txt center" style={{ fontWeight: 800 }}>
                   {name}
+               </div>
+               <div
+                  className={`sub-txt`}
+                  style={{
+                     whiteSpace: 'pre-wrap',
+                     fontSize: '11px',
+                     margin: '5px 0 20px',
+                     textAlign: 'left',
+                     color: '#000',
+                     padding: '0 10px 0',
+                     textAlign: 'left',
+                     display: 'block',
+                     width: '100%',
+                     minHeight: '40px',
+                     maxHeight: '40px'
+                  }}
+               >
+                  {temp == undefined ? description : phoneNumber}
+               </div>
+               <div className="channel_iconBox">
+                  {temp == undefined ? <img className="img-responsive" alt="WhatsApp" src="/static/media/logos_whatsapp-icon.75d10606.svg"></img> : ''}
                </div>
                <div
                   className={`sub-txt ${temp !== undefined && 'temp'}`}

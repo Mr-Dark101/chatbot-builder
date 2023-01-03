@@ -38,7 +38,7 @@ const { onDownload } = useDownloadExcel({
 
                    
                   <button type="button" onClick={() => subPage(<List rs={loadList} subPage={subPage}  />)} className="btn btn-secondary me-10">Back</button>
-                   <button type="button" className="btn btn-danger" onClick={onDownload}> Export excel </button>
+                   <button type="button" className="btn btn-danger" onClick={onDownload}> Export to excel </button>
 
                
                   </div>
@@ -50,7 +50,7 @@ const { onDownload } = useDownloadExcel({
               
 
 
-              <table className="table table-striped table-hover" ref={tableRef}>
+              <table className="table table-hover" ref={tableRef}>
                  <thead className="bg-primary">
                  <tr>
                     
