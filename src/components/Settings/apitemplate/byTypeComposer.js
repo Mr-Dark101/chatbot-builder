@@ -1100,7 +1100,7 @@ const ByTypeComposer = ({ props, triggerType, apiHandleConditionMaster }) => {
                                  </div>
 
                                  <div className="up-txt">
-                                    <div className="txt">png,jpeg,.mp4,mp3,pdf of max 25MB are allowed</div>
+                                    <div className="txt">Png,Jpeg (upto 5 MB),mp3,mp4 (16 MB),pdf (upto 25 MB) are allowed</div>
                                  </div>
                               </React.Fragment>
                            </div>

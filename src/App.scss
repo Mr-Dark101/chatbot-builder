@@ -703,6 +703,9 @@ textarea{
   letter-spacing: 1.2px;
 
 }
+.currentPlan_bg {
+  background: #45c655 !important;
+}
 .btn-check:focus+.btn, .btn:focus {
   outline: 0;
   box-shadow: none !important;
@@ -715,4 +718,13 @@ textarea{
     outline: none!important;
     border-bottom: 1px solid #000 !important;
 }
+}
+.botDescription {
+  display: block;/* or inline-block */
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  overflow: hidden;
+  max-height: 5.0em;
+  min-height: 5.0em;
+  line-height: 1.8em;
 }

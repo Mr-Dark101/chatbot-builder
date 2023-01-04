@@ -16,7 +16,6 @@ import InstagramIcon from '../../../assets/insta.png';
 import GoogleIcon from '../../../assets/google.png';
 import { Tooltip } from '@mui/material';
 
-
 const defaultState = {
    openOpt: false,
    openComposer: false,
@@ -55,10 +54,10 @@ const UserBotsCardItem = (props) => {
       });
 
       if (published) {
-         menusOptions[1].text = 'Deployed';
+         menusOptions[1].text = 'Unpublished';
          menusOptions[1].value = 4;
       } else {
-         menusOptions[1].text = 'Deploy';
+         menusOptions[1].text = 'Publish';
          menusOptions[1].value = 3;
       }
    }, [init, published]);
@@ -134,130 +133,126 @@ const UserBotsCardItem = (props) => {
 
    const loadIcon = (channels) => {
       const channelsData = JSON.parse(channels);
-      return channelsData.map((item,index) => {
-          let iconName  = whatsAppIcon;
-          if(item == 'whatsapp'){
-             iconName  = whatsAppIcon;
-          }
-          if(item == 'messenger'){
-             iconName  = MessengerIcon;
-          }
-          if(item == 'google'){
-             iconName  = GoogleIcon;
-          }
-          if(item == 'instagram'){
-             iconName  = InstagramIcon;
-          }
-          return (<img className="img-responsive" alt={item} src={iconName} />)
-      })
-   }
+      return channelsData.map((item, index) => {
+         let iconName = whatsAppIcon;
+         if (item == 'whatsapp') {
+            iconName = whatsAppIcon;
+            return <img className="img-responsive" alt={item} src={iconName} />;
+         }
+         if (item == 'messenger') {
+            iconName = MessengerIcon;
+            return <img className="img-responsive" alt={item} src={iconName} style={{ maxWidth: '20px', marginLeft: '5px' }} />;
+         }
+         if (item == 'googlemsg') {
+            iconName = GoogleIcon;
+            return <img className="img-responsive" alt={item} src={iconName} style={{ marginLeft: '5px' }} />;
+         }
+         if (item == 'instagram') {
+            iconName = InstagramIcon;
+            return <img className="img-responsive" alt={item} src={iconName} style={{ marginLeft: '5px' }} />;
+         }
+      });
+   };
 
    return (
       <Tooltip title={description}>
-      <div
-         className={`card_box ${selected && 'on'}`}
-         onMouseOver={() => {
-            setInit({
-               ...init,
-               selected: true,
-            });
-         }}
-         onMouseOut={() => {
-            setInit({
-               ...init,
-               selected: false,
-            });
-         }}
-         onClick={() => handleBotOpen(id)}
+         <div
+            className={`card_box ${selected && 'on'}`}
+            onMouseOver={() => {
+               setInit({
+                  ...init,
+                  selected: true,
+               });
+            }}
+            onMouseOut={() => {
+               setInit({
+                  ...init,
+                  selected: false,
+               });
+            }}
+            onClick={() => handleBotOpen(id)}
+         >
+            <div className="card-content bots-box flex-column">
+               {/*<div className="card-start">*/}
+               {/*    <div className="card-circle on">*/}
+               {/*        <Av*/}
+               {/*            size={34}*/}
+               {/*            src={robotic_icon}*/}
+               {/*        />*/}
+               {/*    </div>*/}
+               {/*</div>*/}
+               {
+                  <div className="card-ends">
+                     {temp != undefined ? <span class="currentPlan" style={{ opacity: '0' }}></span> : data.published == 1 ? <span class="currentPlan currentPlan_bg">Published</span> : <span class="currentPlan">Draft</span>}
 
-      >
+                     <div className="icon" onClick={handleMoreOpt}>
+                        {temp ? <MenusComponent options={menusOptionsTemp} onSelect={handleMenuSelect} /> : <MenusComponent options={menusOptions} onSelect={handleMenuSelect} />}
+                     </div>
+                  </div>
+               }
 
-         <div className="card-content bots-box flex-column">
-            {/*<div className="card-start">*/}
-            {/*    <div className="card-circle on">*/}
-            {/*        <Av*/}
-            {/*            size={34}*/}
-            {/*            src={robotic_icon}*/}
-            {/*        />*/}
-            {/*    </div>*/}
-            {/*</div>*/}
-            {
-              
-               <div className="card-ends">
-                   {temp == undefined && (data.published == 1) ? <span class="currentPlan currentPlan_bg">Published</span> :<span class="currentPlan">Draft</span>}
-           
-                  <div className="icon" onClick={handleMoreOpt}>
-                     {temp ? <MenusComponent options={menusOptionsTemp} onSelect={handleMenuSelect} /> : <MenusComponent options={menusOptions} onSelect={handleMenuSelect} />}
+               <div className="card-start justify-content-center">
+                  <div
+                     className="card-circle on"
+                     style={{
+                        backgroundColor: 'initial',
+                        border: 'none',
+                        width: '60px',
+                        height: '60px',
+                     }}
+                  >
+                     <Av sx={{ width: 50, height: 50 }} src={defaultIcon} />
                   </div>
                </div>
-            }
-
-            <div className="card-start justify-content-center">
                <div
-                  className="card-circle on"
+                  className="card-center align-items-center"
                   style={{
-                     backgroundColor: 'initial',
-                     border: 'none',
-                     width: '60px',
-                     height: '60px',
+                     maxWidth: temp !== undefined && '230px',
                   }}
                >
-                  <Av sx={{ width: 50, height: 50 }} src={defaultIcon} />
+                  <div className="txt center" style={{ fontWeight: 800 }}>
+                     {name}
+                  </div>
+                  <div
+                     className={`sub-txt botDescription`}
+                     style={{
+                        whiteSpace: 'pre-wrap',
+                        fontSize: '11px',
+                        margin: '5px 0 20px',
+                        textAlign: 'left',
+                        color: '#000',
+                        padding: '0 10px 0',
+                        textAlign: 'left',
+                        display: 'block',
+                        width: '100%',
+                     }}
+                  >
+                     {temp == undefined ? description : phoneNumber}
+                  </div>
+                  <div className="channel_iconBox">{temp == undefined ? loadIcon(data.channels) : ''}</div>
+                  <div
+                     className={`sub-txt ${temp !== undefined && 'temp'}`}
+                     style={{
+                        whiteSpace: temp !== undefined && 'pre-wrap',
+                        fontSize: '11px',
+                        marginTop: '5px',
+                     }}
+                  >
+                     {temp !== undefined ? description : phoneNumber}
+                  </div>
+                  {/*<div className={`sub-txt ${selected && "on"} ${temp !== undefined && "temp"}`}*/}
+                  {/*     style={{*/}
+                  {/*         whiteSpace: temp !== undefined && "pre-wrap",*/}
+                  {/*     }}*/}
+                  {/*>{temp !== undefined ?*/}
+                  {/*    data.id === 1465 ?*/}
+                  {/*        "Welcome visitors and send them directly to your live stream."*/}
+                  {/*        : data.id === 1467 ? "Send promotion and your company profile details or chat with your live agent." :*/}
+                  {/*        data.id === 1472 && "Give visitors the choice to search your knowledge base or chat with your live agent."*/}
+                  {/*    : phoneNumber}</div>*/}
                </div>
-            </div>
-            <div
-               className="card-center align-items-center"
-               style={{
-                  maxWidth: temp !== undefined && '230px',
-               }}
-            >
-               <div className="txt center" style={{ fontWeight: 800 }}>
-                  {name}
-               </div>
-               <div
-                  className={`sub-txt`}
-                  style={{
-                     whiteSpace: 'pre-wrap',
-                     fontSize: '11px',
-                     margin: '5px 0 20px',
-                     textAlign: 'left',
-                     color: '#000',
-                     padding: '0 10px 0',
-                     textAlign: 'left',
-                     display: 'block',
-                     width: '100%',
-                     minHeight: '40px',
-                     maxHeight: '40px'
-                  }}
-               >
-                  {temp == undefined ? description : phoneNumber}
-               </div>
-               <div className="channel_iconBox">
-                  {temp == undefined ? loadIcon(data.channels) : ''}
-               </div>
-               <div
-                  className={`sub-txt ${temp !== undefined && 'temp'}`}
-                  style={{
-                     whiteSpace: temp !== undefined && 'pre-wrap',
-                     fontSize: '11px',
-                     marginTop: '5px',
-                  }}
-               >
-                  {temp !== undefined ? description : phoneNumber}
-               </div>
-               {/*<div className={`sub-txt ${selected && "on"} ${temp !== undefined && "temp"}`}*/}
-               {/*     style={{*/}
-               {/*         whiteSpace: temp !== undefined && "pre-wrap",*/}
-               {/*     }}*/}
-               {/*>{temp !== undefined ?*/}
-               {/*    data.id === 1465 ?*/}
-               {/*        "Welcome visitors and send them directly to your live stream."*/}
-               {/*        : data.id === 1467 ? "Send promotion and your company profile details or chat with your live agent." :*/}
-               {/*        data.id === 1472 && "Give visitors the choice to search your knowledge base or chat with your live agent."*/}
-               {/*    : phoneNumber}</div>*/}
             </div>
          </div>
-      </div>
       </Tooltip>
    );
 };

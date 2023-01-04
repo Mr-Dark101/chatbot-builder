@@ -157,7 +157,6 @@ const Dashboard = () => {
    };
 
    const handleSubmitTrigger = () => {
-
       if (currentObject.userId !== 0 && currentObject.id !== 0) {
          setInit({
             ...init,
@@ -307,27 +306,26 @@ const Dashboard = () => {
                         'loading...'
                      ) : !dataNotFound ? (
                         data.map((d, index) => {
-                           if(!d.sampleBot){
-                           return (
-                              <UserBotsCardItem
-                                 onDelete={(obj) => {
-                                    setInit({
-                                       ...init,
-                                       isConfirm: true,
-                                       isUpdatedList: true,
-                                       confirmationTxt: `You're about to delete ${d.name} bot.`,
-                                       confirmationInfo: ['The bot can not be retrieved once deleted.', 'However, you can still access your chat history with the bot.'],
-                                       currentObject: obj,
-                                    });
-                                 }}
-                                 dashboard={dashboard}
-                                 key={index}
-                                 data={d}
-                              />
-                           );
+                           if (!d.sampleBot) {
+                              return (
+                                 <UserBotsCardItem
+                                    onDelete={(obj) => {
+                                       setInit({
+                                          ...init,
+                                          isConfirm: true,
+                                          isUpdatedList: true,
+                                          confirmationTxt: `You're about to delete ${d.name} bot.`,
+                                          confirmationInfo: ['The bot can not be retrieved once deleted.', 'However, you can still access your chat history with the bot.'],
+                                          currentObject: obj,
+                                       });
+                                    }}
+                                    dashboard={dashboard}
+                                    key={index}
+                                    data={d}
+                                 />
+                              );
                            }
                         })
-
                      ) : (
                         <div className="data-not-found">No Data Found</div>
                      )}

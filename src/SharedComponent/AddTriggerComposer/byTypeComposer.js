@@ -1086,7 +1086,7 @@ const ByTypeComposer = ({ props, triggerType }) => {
                                           triggerValueName: e.target.value,
                                        });
                                     }}
-                                    placeholder="Please enter keyword/keywords to tigger a bot response"
+                                    placeholder="Please enter keyword/keywords to trigger a bot response"
                                  />
                               </div>
 
@@ -1420,7 +1420,7 @@ const ByTypeComposer = ({ props, triggerType }) => {
                                        </div>
 
                                        <div className="up-txt">
-                                          <div className="txt">Png, Jpeg, Mp4, Mp3, Pdf of maximum 25MB are allowed</div>
+                                          <div className="txt">Png,Jpeg (upto 5 MB),mp3,mp4 (16 MB),pdf (upto 25 MB) are allowed</div>
                                        </div>
                                     </React.Fragment>
                                  </div>

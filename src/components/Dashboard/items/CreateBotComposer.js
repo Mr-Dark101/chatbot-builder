@@ -29,7 +29,7 @@ const defaultState = {
    botId: null,
    onHover: false,
    confirmationTxt: '',
-   icon:'',
+   icon: '',
    confirmationInfo: [],
 };
 
@@ -37,7 +37,7 @@ const CreateBotComposer = (props) => {
    let { openModal, onClose, currentUser, data } = props;
 
    const [init, setInit] = useState(defaultState);
-   let { selected, selectCategory, botName, botDescription, botPhoneNumber, botImage, botId, comingSoon, onHover, isAlert, isUpdatedList, confirmationTxt,icon, confirmationInfo, buttonText } = init;
+   let { selected, selectCategory, botName, botDescription, botPhoneNumber, botImage, botId, comingSoon, onHover, isAlert, isUpdatedList, confirmationTxt, icon, confirmationInfo, buttonText } = init;
    const dispatch = useDispatch();
 
    useEffect(() => {
@@ -147,7 +147,7 @@ const CreateBotComposer = (props) => {
          isAlert: false,
          isUpdatedList: true,
          confirmationTxt: '',
-         icon:'',
+         icon: '',
       });
    };
 
@@ -158,7 +158,7 @@ const CreateBotComposer = (props) => {
          isAlert: false,
          isUpdatedList: true,
          confirmationTxt: '',
-         icon:'',
+         icon: '',
       });
    };
 
@@ -200,7 +200,7 @@ const CreateBotComposer = (props) => {
       }
    };
 
-   const handleSelectBot = async (category, categoryText,icon) => {
+   const handleSelectBot = async (category, categoryText, icon) => {
       let apiReturn = false;
       if (category != 'whatsapp') {
          let apiResponse = await dispatch(getChannelVerify(category));
@@ -213,7 +213,7 @@ const CreateBotComposer = (props) => {
                      ...init,
                      isAlert: false,
                      buttonText: categoryText,
-                     icon:icon,
+                     icon: icon,
                      confirmationTxt: `Before you can add chatbot to Google's Business Messages, you need to add a Google's Business Messages account.`,
                      selected: init.selected.filter((d) => d !== category),
                   });
@@ -222,7 +222,7 @@ const CreateBotComposer = (props) => {
                      ...init,
                      isAlert: false,
                      buttonText: categoryText,
-                     icon:icon,
+                     icon: icon,
                      confirmationTxt: `Before you can add chatbot to ${categoryText}, you need to connect a ${categoryText} page.`,
                      selected: init.selected.filter((d) => d !== category),
                   });
@@ -233,7 +233,7 @@ const CreateBotComposer = (props) => {
                      ...init,
                      isAlert: true,
                      buttonText: categoryText,
-                     icon:icon,
+                     icon: icon,
                      confirmationTxt: `Before you can add chatbot to Google's Business Messages, you need to add a Google's Business Messages account.`,
                      selected: [...init.selected, category],
                   });
@@ -242,7 +242,7 @@ const CreateBotComposer = (props) => {
                      ...init,
                      isAlert: true,
                      buttonText: categoryText,
-                     icon:icon,
+                     icon: icon,
                      confirmationTxt: `Before you can add chatbot to ${categoryText}, you need to connect a ${categoryText} page.`,
                      selected: [...init.selected, category],
                   });
@@ -319,7 +319,7 @@ const CreateBotComposer = (props) => {
                      <div
                         style={{ width: '139px', height: '142px' }}
                         className={`category-box ${init.selected.includes('whatsapp') && 'on-whats-app'}`}
-                        onClick={() => handleSelectBot('whatsapp', 'WhatsApp',whatsAppIcon)}
+                        onClick={() => handleSelectBot('whatsapp', 'WhatsApp', whatsAppIcon)}
                         onMouseOver={() => {
                            setInit({
                               ...init,
@@ -355,7 +355,7 @@ const CreateBotComposer = (props) => {
                            });
                         }}
                         className={`category-box ${init.selected.includes('messenger') && 'on-facebook'}`}
-                        onClick={() => handleSelectBot('messenger', 'Facebook Messenger',MessengerIcon)}
+                        onClick={() => handleSelectBot('messenger', 'Facebook Messenger', MessengerIcon)}
                      >
                         <div className={`icon on-messenger-app mt-10`}>
                            <img alt="Facebook" src={comingSoon ? comingSoonIcon : MessengerIcon} style={{ width: '42px', height: '42px' }} />
@@ -380,7 +380,7 @@ const CreateBotComposer = (props) => {
                            });
                         }}
                         className={`category-box ${init.selected.includes('instagram') && 'on-instagram'}`}
-                        onClick={() => handleSelectBot('instagram', 'Instagram',InstagramIcon)}
+                        onClick={() => handleSelectBot('instagram', 'Instagram', InstagramIcon)}
                      >
                         <div className={`icon on-messenger-app`}>
                            <img alt="Facebook" src={comingSoon ? comingSoonIcon : InstagramIcon} style={{ width: '58px', height: '58px' }} />
@@ -405,7 +405,7 @@ const CreateBotComposer = (props) => {
                            });
                         }}
                         className={`category-box ${init.selected.includes('googlemsg') && 'on-google'}`}
-                        onClick={() => handleSelectBot('googlemsg', 'Google',GoogleIcon)}
+                        onClick={() => handleSelectBot('googlemsg', 'Google', GoogleIcon)}
                      >
                         <div className={`icon on-messenger-app mt-10`}>
                            <img alt="Facebook" src={comingSoon ? comingSoonIcon : GoogleIcon} style={{ width: '56px', height: '56px' }} />
@@ -421,12 +421,9 @@ const CreateBotComposer = (props) => {
 
          <div className="modal-footer">
             <div className="actions">
-
-
-            <button style={{ textTransform: 'none', width: '100px',marginRight:10 }} className="btn filled" onClick={handleCloseModal}>
+               <button style={{ textTransform: 'none', width: '100px', marginRight: 10 }} className="btn secondary" onClick={handleCloseModal}>
                   Cancel
-               </button> 
-
+               </button>
 
                <button style={{ textTransform: 'none', width: '100px' }} className="btn filled" onClick={handleCreateBotSubmit}>
                   {data !== null ? 'Update' : 'Next'}

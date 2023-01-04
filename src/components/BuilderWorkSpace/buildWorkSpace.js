@@ -13,7 +13,7 @@ import { getBotTriggersRecursive, openTriggerCard, resetTheUrls } from '../../Sh
 import { Drawer } from '@mui/material';
 import AlertModal from '../../SharedComponent/ConfirmModal/AlertModal';
 import ConfirmModal from '../../SharedComponent/ConfirmModal/ConfirmModal';
-import {TextField} from '../crud/FormElements';
+import { TextField } from '../crud/FormElements';
 import moment from 'moment';
 // import TreeComponent from "../../SharedComponent/TreeComponent/treeComponent";
 import axios from 'axios';
@@ -22,6 +22,7 @@ import { API } from '../../utils/services';
 const defaultState = {
    isAlert: false,
    isConfirm: false,
+   isPublish: false,
    openComposer: false,
    openChatBot: false,
    data: [],
@@ -39,7 +40,7 @@ const BuildWorkSpace = () => {
    const dispatch = useDispatch();
    const history = useHistory();
    const [init, setInit] = useState(defaultState);
-   let { currentTriggerData, openChatBot, getAllTypes, isAlert, isConfirm, isUpdatedList, confirmationTxt, confirmationInfo } = init;
+   let { currentTriggerData, openChatBot, getAllTypes, isAlert, isConfirm, isPublish, isUpdatedList, confirmationTxt, confirmationInfo } = init;
    let { currentBotData } = dashboard;
    let { success, isPublishSuccess, message_, dataNotFound } = workSpace;
    let { name, phoneNumber, id, userId, published, updated_at } = currentBotData !== null && currentBotData;
@@ -99,6 +100,12 @@ const BuildWorkSpace = () => {
             })
          );
          dispatch(resetPublish());
+      } else {
+         SetCurrentBotUpdateData({
+            ...currentBotData,
+            published: false,
+         });
+         dispatch(resetPublish());
       }
    }, [isPublishSuccess, published]);
 
@@ -110,24 +117,70 @@ const BuildWorkSpace = () => {
    }, []);
 
    const handlePublishBot = (obj) => {
-      setInit({
-         ...init,
-         isAlert: false,
-         isConfirm: true,
-         isUpdatedList: true,
-         confirmationTxt: 'Are you sure you want to publish this bot?',
-      });
+      console.log(JSON.stringify(obj));
+      if (obj.isPublished) {
+         setInit({
+            ...init,
+            isAlert: false,
+            isConfirm: false,
+            isPublish: true,
+            isUpdatedList: true,
+            confirmationTxt: 'Are you sure you want to Unpublish this bot?',
+         });
+      } else {
+         setInit({
+            ...init,
+            isAlert: false,
+            isConfirm: true,
+            isPublish: false,
+            isUpdatedList: true,
+            confirmationTxt: 'Are you sure you want to publish this bot?',
+         });
+      }
 
       //dispatch(PublishedBot(obj));
    };
 
-   const publishBot = (obj) => {
+   const publishBot = () => {
+      let body = {};
+      let confirmationText = '';
       confirmClose();
       //Publish Bot in server
-      const body = {
+
+      body = {
          userId: localStorage.getItem('userId'),
          botId: id,
+         publish: true,
       };
+      confirmationText = 'Your bot has been published successfully';
+
+      API.post(`/publish-bot`, body)
+         .then((res) => {
+            // console.log("updateTrigger", res);
+            setInit({
+               ...init,
+               isAlert: true,
+               isConfirm: false,
+               isUpdatedList: true,
+               confirmationTxt: confirmationText,
+            });
+         })
+         .catch((ex) => {});
+   };
+
+   const unpublishBot = () => {
+      let body = {};
+      let confirmationText = '';
+      confirmClose();
+      publishClose();
+      //Publish Bot in server
+      body = {
+         userId: localStorage.getItem('userId'),
+         botId: id,
+         publish: false,
+      };
+      confirmationText = 'Your bot has been unpublished successfully';
+
       console.log('publish Bot: ' + JSON.stringify(body));
       API.post(`/publish-bot`, body)
          .then((res) => {
@@ -137,8 +190,14 @@ const BuildWorkSpace = () => {
                isAlert: true,
                isConfirm: false,
                isUpdatedList: true,
-               confirmationTxt: 'Your bot has been published successfully',
+               confirmationTxt: confirmationText,
             });
+            dispatch(
+               SetCurrentBotUpdateData({
+                  ...currentBotData,
+                  published: false,
+               })
+            );
          })
          .catch((ex) => {
             console.error(ex.message);
@@ -152,6 +211,7 @@ const BuildWorkSpace = () => {
          isUpdatedList: true,
          confirmationTxt: '',
       });
+      window.location.reload();
    };
    // const handleOpenAddTrigger = () => {
    //     setInit({
@@ -214,16 +274,26 @@ const BuildWorkSpace = () => {
       });
    };
    const handleBack = () => {
-      console.log('UserId: ' + localStorage.getItem('userId'));
       history.push(`${STRINGS.ROUTES.ROOT}?org=${localStorage.getItem('userId')}`);
+
       dispatch(resetState());
       dispatch(removingBreadcrumb());
+      window.location.reload();
    };
 
    const confirmClose = () => {
       setInit({
          ...init,
          isConfirm: false,
+         isUpdatedList: true,
+         confirmationTxt: '',
+      });
+   };
+
+   const publishClose = () => {
+      setInit({
+         ...init,
+         isPublish: false,
          isUpdatedList: true,
          confirmationTxt: '',
       });
@@ -258,11 +328,30 @@ const BuildWorkSpace = () => {
    };
    let { lastsaved } = calculateLastDate();
 
+   const updateBotName = () => {
+      let botId = currentBotData.id;
+      let botName = document.getElementById('botNameText').value;
+      let obj = {
+         botId: botId,
+         name: botName,
+      };
+      API.put(`/update-botname`, { data: obj })
+         .then((res) => {
+            // console.log("updateBot", res);
+            if (res.status === STRINGS.API_STATUS.SUCCESS) {
+               if (res.data.status === 1) {
+               } else {
+               }
+            }
+         })
+         .catch((ex) => {});
+   };
    return (
       <div className="ws-hld">
          <div className="head first_divNone">
             <AlertModal visible={isAlert} handleOk={alertClose} confirmLoading={!isUpdatedList} modalText={confirmationTxt} modalInfo={confirmationInfo} handleCancel={alertClose} />
             <ConfirmModal visible={isConfirm} handleOk={publishBot} confirmLoading={!isUpdatedList} modalText={confirmationTxt} modalInfo={confirmationInfo} handleCancel={confirmClose} />
+
             <div className="head-rt">
                <div onClick={handleBack} className="icon" style={{ width: '24px' }}>
                   <img alt={'#'} src={back_icon} />
@@ -272,20 +361,28 @@ const BuildWorkSpace = () => {
                </h5>
                <div id="saveDiv">
                   <p id="saved" className="lastSeen d-none" style={{ merginRight: '30px', merginLeft: '30px' }}>
-                     {' '}
                      Saving...
-                  </p>{' '}
+                  </p>
                   <i id="checkMark" className="fa fa-check d-none" style={{ color: '#07bc0c', merginLeft: '15px' }}></i>
                </div>
-               <p id="lastSeen" className="lastSeen" style = {{fontWeight: 800}}>
-                  {' '}
+               <p id="lastSeen" className="lastSeen" style={{ fontWeight: 800 }}>
                   Last saved <span id="lastupdate">{lastsaved}</span>
                </p>
             </div>
             <div className="head-center">
-               <h5 class="box-title m-0" style={{ fontWeight: '800', display: 'flex', alignItems: 'end'  }}>
-                  {' '}
-                  <input type="text" name="name" className='botName' style={{ border: 'none', borderRadius: '0px'  }}/> <span> {<span class="currentPlan">Draft</span>} </span>
+               <h5 class="box-title m-0" style={{ fontWeight: '800', display: 'flex', alignItems: 'end' }}>
+                  <input id="botNameText" type="text" name="name" className="botName" maxlength="25" style={{ border: 'none', borderRadius: '0px', minWidth: '200px' }} defaultValue={name} onChange={updateBotName} />
+                  <span>
+                     {published ? (
+                        <span class="currentPlan currentPlan_bg" style={{ marginLeft: '10px', marginBottom: '15px' }}>
+                           Published
+                        </span>
+                     ) : (
+                        <span class="currentPlan" style={{ marginLeft: '10px', marginBottom: '15px' }}>
+                           Draft
+                        </span>
+                     )}
+                  </span>
                </h5>
             </div>
             <div className="head-lft">
@@ -309,11 +406,13 @@ const BuildWorkSpace = () => {
                      className="btn-filled btn btn-primary"
                      onClick={() => {
                         if (!published) {
-                           handlePublishBot({ botId: id, isPublished: !published, userId: localStorage.getItem('userId') });
+                           handlePublishBot({ botId: id, isPublished: false, userId: localStorage.getItem('userId') });
+                        } else {
+                           handlePublishBot({ botId: id, isPublished: true, userId: localStorage.getItem('userId') });
                         }
                      }}
                   >
-                     {!published ? 'Publish' : 'Published'}
+                     {!published ? 'Publish' : 'Unpublish'}
                   </button>
                </div>
             </div>
@@ -353,6 +452,7 @@ const BuildWorkSpace = () => {
          </div>
          {/*    </TransformComponent>*/}
          {/*</TransformWrapper>*/}
+         <ConfirmModal visible={isPublish} handleOk={unpublishBot} confirmLoading={!isUpdatedList} modalText={confirmationTxt} modalInfo={confirmationInfo} handleCancel={publishClose} />
       </div>
    );
 };
