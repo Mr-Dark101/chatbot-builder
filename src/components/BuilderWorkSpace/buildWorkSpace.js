@@ -123,6 +123,8 @@ const BuildWorkSpace = () => {
             ...init,
             isAlert: false,
             isConfirm: false,
+            modalTitle:"Unpublish Bot",
+            okText:'Unpublish',
             isPublish: true,
             isUpdatedList: true,
             confirmationTxt: 'Are you sure you want to Unpublish this bot?',
@@ -274,7 +276,7 @@ const BuildWorkSpace = () => {
       });
    };
    const handleBack = () => {
-      history.push(`${STRINGS.ROUTES.ROOT}?org=${localStorage.getItem('userId')}`);
+      //history.push(`${STRINGS.ROUTES.ROOT}?org=${localStorage.getItem('userId')}`);
 
       dispatch(resetState());
       dispatch(removingBreadcrumb());
@@ -370,8 +372,9 @@ const BuildWorkSpace = () => {
                </p>
             </div>
             <div className="head-center">
-               <h5 class="box-title m-0" style={{ fontWeight: '800', display: 'flex', alignItems: 'end' }}>
-                  <input id="botNameText" type="text" name="name" className="botName" maxlength="25" style={{ border: 'none', borderRadius: '0px', minWidth: '200px' }} defaultValue={name} onChange={updateBotName} />
+               <h5 class="box-title m-0" style={{ fontWeight: '800', display: 'flex', alignItems: 'baseline' }}>
+                  <input id="botNameText" type="text" name="name" className="botName" maxlength="25" style={{ border: 'none', borderRadius: '0px', minWidth: '200px',paddingRight: '0' }} defaultValue={name} onChange={updateBotName} />
+                  <span class="editIcon"><button><i class="fa fa-pencil" aria-hidden="true"></i></button></span>
                   <span>
                      {published ? (
                         <span class="currentPlan currentPlan_bg" style={{ marginLeft: '10px', marginBottom: '15px' }}>
@@ -452,7 +455,7 @@ const BuildWorkSpace = () => {
          </div>
          {/*    </TransformComponent>*/}
          {/*</TransformWrapper>*/}
-         <ConfirmModal visible={isPublish} handleOk={unpublishBot} confirmLoading={!isUpdatedList} modalText={confirmationTxt} modalInfo={confirmationInfo} handleCancel={publishClose} />
+         <ConfirmModal visible={isPublish} handleOk={unpublishBot} okText="Unpublish" confirmLoading={!isUpdatedList} modalText={confirmationTxt} modalTitle="Unpublish bot" modalInfo={confirmationInfo} handleCancel={publishClose} />
       </div>
    );
 };

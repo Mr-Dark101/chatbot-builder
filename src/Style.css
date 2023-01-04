@@ -24150,7 +24150,7 @@ ul.panel-actions > li {
   padding: 1rem;
   vertical-align: middle; }
 .table > thead > tr > td, .table > thead > tr > th {
-  padding: 1rem;
+  padding: 1rem 0;
   vertical-align: middle; }
 
 .table tr td .progress {

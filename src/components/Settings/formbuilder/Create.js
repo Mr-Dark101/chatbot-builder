@@ -169,10 +169,10 @@ const Create = ({ rs, retrieveList, loadList }) => {
                            <div className="row">
                               <div className="col-9">
                                  <div className="field_section mb-20">
-                                    <TextField name="name" label="Name" />
+                                    <TextField name="name" label="Form Name" style={{color: '#000'}}/>
                                  </div>
                                  <div className="field_section mb-20">
-                                    <TextAreaField name="description" label="Description" placeholder="Description" rows="3" />
+                                    <TextAreaField name="description" label="Form Description" style={{color: '#000'}} placeholder="Description" rows="3" />
                                  </div>
                                  <label style={{ marginBottom: '0px' }}>Fields</label>
                                  {headerField &&
@@ -207,7 +207,7 @@ const Create = ({ rs, retrieveList, loadList }) => {
                                                 </div>
                                                 {x.type == 'option' ? (
                                                    <>
-                                                      <div>Option Data</div>
+                                                      <div style={{color: '#000'}}>Option Data</div>
 
                                                       {headerField[i]['option'].map((o, io) => {
                                                          return (
@@ -238,7 +238,7 @@ const Create = ({ rs, retrieveList, loadList }) => {
                                                 {/* Adding Regular Expression */}
                                                 {x.type == 'regularexpression' ? (
                                                    <>
-                                                      <div style={{ marginTop: '20px' }}>Regular Expression</div>
+                                                      <div style={{ marginTop: '20px',color:'#000' }}>Regular Expression</div>
                                                       {headerField[i]['regularexpression'].map((o, io) => {
                                                          return (
                                                             <>

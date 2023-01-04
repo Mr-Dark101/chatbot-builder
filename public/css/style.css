@@ -24157,7 +24157,7 @@ ul.panel-actions > li {
   padding: 1rem;
   vertical-align: middle; }
 .table > thead > tr > td, .table > thead > tr > th {
-  padding: 1rem;
+  padding: 1rem 0;
   vertical-align: middle; }
 
 .table tr td .progress {
@@ -32233,8 +32233,10 @@ img.away, img.busy, img.offline, img.online {
   line-height: 16px;
   display: flex;
   align-items: center;
-  padding: 15px 15px;
+  padding: 10px;
   font-family: "Segoe UI Regular";
+  background: #f6f5f5;
+  border-radius: 7px;
 }
 .setting_left_bar_section ul li a:hover{
   background-color: #363a77;
@@ -32292,7 +32294,7 @@ img.away, img.busy, img.offline, img.online {
   font-weight: 700;
   font-size: 16px;
   line-height: 18px;
-  color: #363a77;
+  color: #000;
   margin-bottom: 10px;
   font-family: "Segoe UI Regular";
 }
@@ -32395,6 +32397,8 @@ img.away, img.busy, img.offline, img.online {
 }
 .page_data_setting .api_list_page{
   border-right: 1px solid #ccc;
+  height: 100%;
+
 }
 .page_data_setting .api_list_page .text_section h5{
   margin-bottom: 0px;
@@ -32927,6 +32931,9 @@ body, btn, p, div, a, button {
   color: #ffffff;
 }
 .ant-modal-title{
+  color:#fff !important;
+}
+.ant-modal-close-x {
   color:#fff !important;
 }
 .ant-modal-footer{text-align: left !important}

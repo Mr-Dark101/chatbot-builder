@@ -296,7 +296,7 @@ const D3Tree = (props) => {
          <a
             href="javascript:void(0)"
             class="btn position-absolute bottom-0 start-0"
-            style={{ height: '30px', marginBottom: '130px', marginLeft: '20px', backgroundColor: '#ffffff', border: '1px solid #ffffff' }}
+            style={{ height: '30px', marginBottom: '60px', marginLeft: '20px', backgroundColor: '#ffffff', border: '1px solid #ffffff' }}
             onClick={() => {
                zoomIn();
             }}
@@ -308,7 +308,7 @@ const D3Tree = (props) => {
                <a
                   href="javascript:void(0)"
                   class="btn position-absolute bottom-0 start-0"
-                  style={{ height: '30px', marginBottom: '90px', marginLeft: '20px', backgroundColor: '#ffffff', border: '1px solid #ffffff' }}
+                  style={{ height: '30px', marginBottom: '20px', marginLeft: '20px', backgroundColor: '#ffffff', border: '1px solid #ffffff' }}
                   onClick={() => {
                      zoomOut();
                   }}
@@ -321,7 +321,7 @@ const D3Tree = (props) => {
                <a
                   href="https://help.eocean.net/knowledge/automating-interactions-with-whatsapp-chatbots"
                   class="btn position-absolute bottom-0 start-0"
-                  style={{ height: '30px', marginBottom: '90px', marginLeft: '70px', backgroundColor: '#ffffff', fontWeight: 800, border: '1px solid #ffffff' }}
+                  style={{ height: '30px', marginBottom: '20px', marginLeft: '70px', backgroundColor: '#ffffff', fontWeight: 800, border: '1px solid #ffffff' }}
                >
                   Watch tutorial
                </a>

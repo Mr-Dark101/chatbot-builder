@@ -929,12 +929,11 @@ const ByTypeComposer = ({ props, triggerType, apiHandleConditionMaster }) => {
                                     return <ConditionList dataIndex={i} apiData={tr.dataValue} props={props} updatedTriggersVal={updatedTriggers} apiHandle={apiHandle} />;
                                  })}
                                  <br />
-                                 <div className="actions-btn">
+                                 <div className="actions-btn" style={{textAlign:"end"}}>
                                     <button
                                        type="button"
-                                       className="btn btn-primary"
+                                       className="apiBtn"
                                        style={{
-                                          width: '100%',
                                           whiteSpace: 'nowrap',
                                           textAlign: 'center',
                                           overflowX: 'auto',
@@ -1206,7 +1205,7 @@ const ByTypeComposer = ({ props, triggerType, apiHandleConditionMaster }) => {
                                     });
                                  }}
                               >
-                                 <i className="fa fa-plus-circle"></i> Add Fall-Back Response
+                                 <i className="fa fa-plus-circle"></i> Add Fallback Response
                               </div>
                            </>
                         ) : null}
@@ -1214,7 +1213,7 @@ const ByTypeComposer = ({ props, triggerType, apiHandleConditionMaster }) => {
                   </div>
 
                   {openFallBackComposer && (
-                     <div className="row__">
+                     <div className="row__ mb-4">
                         <div className="txt-field">
                            <div className="label">
                               <div className="sub-txt">Fall-Back Message</div>
@@ -1272,7 +1271,7 @@ const ByTypeComposer = ({ props, triggerType, apiHandleConditionMaster }) => {
                               {triggerMenus.length > 0 &&
                                  triggerMenus.map((m, index) => {
                                     return (
-                                       <div key={index} className="sm-box">
+                                       <div key={index} className="sm-box boxPadding">
                                           <React.Fragment>
                                              <button
                                                 className="btn-outline"

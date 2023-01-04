@@ -1041,7 +1041,7 @@ const ByTypeComposer = ({ props, triggerType }) => {
 
    return (
       <div className="composer-container">
-         <ConfirmModal visible={isConfirm} handleOk={handleSubmitTrigger} confirmLoading={!isUpdatedList} modalText={confirmationTxt} handleCancel={confirmClose} />
+         <ConfirmModal visible={isConfirm} handleOk={handleSubmitTrigger} confirmLoading={!isUpdatedList} modalText={confirmationTxt} modalTitle="Update Trigger" okText={"Update"} handleCancel={confirmClose} />
          <AlertModal visible={isAlert} handleOk={alertClose} confirmLoading={!isUpdatedList} modalText={confirmationTxt} handleCancel={alertClose} />
          <div className="composer-content">
             <div className="trigger-card">
@@ -1053,7 +1053,7 @@ const ByTypeComposer = ({ props, triggerType }) => {
                         </div>
                         <div className="input">
                            <input
-                              className="inp"
+                              className="inp inputPadding"
                               placeholder="Please provide a name for your trigger"
                               value={name}
                               onChange={(e) => {
@@ -1078,7 +1078,7 @@ const ByTypeComposer = ({ props, triggerType }) => {
                            <div className="input" style={{ justifyContent: 'space-between' }}>
                               <div class="inputWrap">
                                  <input
-                                    className="inp"
+                                    className="inp inputPadding "
                                     value={triggerValueName}
                                     onChange={(e) => {
                                        setInit({
@@ -1091,7 +1091,7 @@ const ByTypeComposer = ({ props, triggerType }) => {
                               </div>
 
                               <div>
-                                 <button type="button" onClick={() => handleAddTriggerValue()} className="btn btn_add_option">
+                                 <button type="button" onClick={() => handleAddTriggerValue()} className="btn btn_add_option btnPadding ">
                                     Add Option
                                  </button>
                               </div>
@@ -1181,8 +1181,8 @@ const ByTypeComposer = ({ props, triggerType }) => {
                            </div>
                            {triggerType == 'A' ? (
                               <>
-                                 <ul className="right_bar_top_section" style={{ paddingLeft: '0px', paddingRight: '0px' }}>
-                                    <li>
+                                 <ul className="right_bar_top_section" style={{ paddingLeft: '0px', paddingRight: '0px', margin:'0' }}>
+                                    <li style={{ margin:'0' }}>
                                        <button onClick={() => meClickCondition('C')} className="btn btn-block {btn-primary}" style={btnConditionStyle}>
                                           Condition Response
                                        </button>
@@ -1254,11 +1254,10 @@ const ByTypeComposer = ({ props, triggerType }) => {
                                           return <ConditionList key={i} dataIndex={i} apiData={tr.dataValue} props={props} updatedTriggersVal={updatedTriggers} apiHandle={apiHandle} />;
                                        })}
                                        <br />
-                                       <div className="actions-btn">
+                                       <div className="actions-btn" style={{textAlign:"end"}}>
                                           <button
-                                             className="btn primary"
+                                             className="apiBtn"
                                              style={{
-                                                width: '100%',
                                                 whiteSpace: 'nowrap',
                                                 textAlign: 'center',
                                                 overflowX: 'auto',
@@ -1495,6 +1494,7 @@ const ByTypeComposer = ({ props, triggerType }) => {
                                     >
                                        <div className="check-box">
                                           <Checkbox
+                                          
                                              checked={routToAgent}
                                              onChange={(e) => {
                                                 setInit({
@@ -1558,10 +1558,10 @@ const ByTypeComposer = ({ props, triggerType }) => {
                   )}
 
                   {openFallBackComposer && (
-                     <div className="row__">
+                     <div className="row__ mb-4">
                         <div className="txt-field">
                            <div className="label">
-                              <div className="sub-txt">Fall-Back Message</div>
+                              <div className="sub-txt">Fallback Message</div>
                            </div>
                            <div className="input">
                               <TextEditor type={'fallBackResponse'} defaultText={fallBackResponse} onSuccess={handleTextAreaChange} />
@@ -1578,9 +1578,9 @@ const ByTypeComposer = ({ props, triggerType }) => {
                               </div>
                               <div className="input">
                                  <input
-                                    className="inp inputWrap"
+                                    className="inp inputWrap inputPadding form-control"
                                     value={triggerOpt}
-                                    placeholder="Add menu for your bot flow"
+                                    placeholder="Add menu option for your bot flow"
                                     onChange={(e) => {
                                        setInit({
                                           ...init,
@@ -1590,7 +1590,7 @@ const ByTypeComposer = ({ props, triggerType }) => {
                                  />
 
                                  <div className="add-btn">
-                                    <button className="btn-outlined" onClick={handleAddOptions}>
+                                    <button className="btn-outlined btnPadding" onClick={handleAddOptions}>
                                        Add Menu
                                     </button>
                                  </div>
@@ -1601,7 +1601,7 @@ const ByTypeComposer = ({ props, triggerType }) => {
                               {triggerMenus.length > 0 &&
                                  triggerMenus.map((m, index) => {
                                     return (
-                                       <div key={index} className="sm-box">
+                                       <div key={index} className="sm-box boxPadding">
                                           <React.Fragment>
                                              <button
                                                 className="btn-outline"
@@ -1630,7 +1630,7 @@ const ByTypeComposer = ({ props, triggerType }) => {
                                                 )}
                                              </button>
                                           </React.Fragment>
-                                          <div className="">
+                                          <div className="d-flex">
                                              {init.updateMenus.selectedMenuId === m.main_id ? (
                                                 <React.Fragment>
                                                    {init.updatePending ? (
@@ -1674,7 +1674,7 @@ const ByTypeComposer = ({ props, triggerType }) => {
                                                 isData && (
                                                    <button
                                                       className="btn btn-custom btn-icon rounded-circle"
-                                                      style={{ marginRight: '10px' }}
+                                                      style={{ marginRight: '10px',width: '25px', height: '25px', display:'flex',alignItems: 'center', justifyContent: 'center'  }}
                                                       onClick={() => {
                                                          setInit({
                                                             ...init,
@@ -1685,13 +1685,14 @@ const ByTypeComposer = ({ props, triggerType }) => {
                                                          });
                                                       }}
                                                    >
-                                                      <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                                      <i class="fa fa-pencil-square-o" aria-hidden="true" style={{ fontSize: '12px'}}></i>
                                                    </button>
                                                 )
                                              )}
 
                                              <button
                                                 className="btn btn-danger btn-icon rounded-circle"
+                                                style={{ width: '25px', height: '25px', display:'flex',alignItems: 'center', justifyContent: 'center'}}
                                                 onClick={() => {
                                                    setInit({
                                                       ...init,
@@ -1702,7 +1703,7 @@ const ByTypeComposer = ({ props, triggerType }) => {
                                                    });
                                                 }}
                                              >
-                                                <i className="fa fa-trash"></i>
+                                                <i className="fa fa-trash" style={{ fontSize: '12px'}}></i>
                                              </button>
                                           </div>
                                        </div>

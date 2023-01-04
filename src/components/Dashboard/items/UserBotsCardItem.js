@@ -54,7 +54,7 @@ const UserBotsCardItem = (props) => {
       });
 
       if (published) {
-         menusOptions[1].text = 'Unpublished';
+         menusOptions[1].text = 'Unpublish';
          menusOptions[1].value = 4;
       } else {
          menusOptions[1].text = 'Publish';
@@ -221,7 +221,7 @@ const UserBotsCardItem = (props) => {
                         margin: '5px 0 20px',
                         textAlign: 'left',
                         color: '#000',
-                        padding: '0 10px 0',
+                        padding: '0',
                         textAlign: 'left',
                         display: 'block',
                         width: '100%',
