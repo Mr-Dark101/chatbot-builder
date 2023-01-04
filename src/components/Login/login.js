@@ -37,7 +37,9 @@ const Login = (props) => {
       let _userName = JSON.stringify(props.location.search);
       //console.log(_userName)
       _userName = query.get('username'); //_userName.replace('?username=', '');
+
       if (_userName) {
+        
          handleLoginbyuser(_userName);
       }
    }, []);
@@ -52,6 +54,7 @@ const Login = (props) => {
    };
 
    const handleLoginbyuser = (username) => {
+      
       AuthService.loginbyuser(username).then(
          (rData) => {
             //history.push('/');
