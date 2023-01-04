@@ -1,19 +1,21 @@
 import React from 'react';
 import {Modal} from 'antd';
 
-const ConfirmModal = ({visible, modalText, modalInfo, handleCancel, handleOk, confirmLoading}) => {
+const ConfirmModal = ({visible, modalText, modalInfo, handleCancel, handleOk, confirmLoading,modalTitle}) => {
     return (
         <div>
             {/*<Button type="primary" onClick={showModal}>*/}
             {/*    Open Modal with async logic*/}
             {/*</Button>*/}
             <Modal
-                title="Confirmation"
+                title= {(modalTitle) ? modalTitle : "Confirmation"}
                 visible={visible}
                 onOk={handleOk}
                 okText= {`Yes`}
                 confirmLoading={confirmLoading}
                 onCancel={handleCancel}
+                headerStyle={{ backgroundColor: '#000' }}
+                centered={`true`}
             >
                 <p>{modalText}</p>
                 {

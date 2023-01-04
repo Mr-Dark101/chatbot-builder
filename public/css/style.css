@@ -32921,3 +32921,13 @@ body, btn, p, div, a, button {
   width: 35px;
 }
 /*Ended New Style.css (M Hassaan Nasir)*/
+
+.ant-modal-header{
+  background: #363a77 !important;
+  color: #ffffff;
+}
+.ant-modal-title{
+  color:#fff !important;
+}
+.ant-modal-footer{text-align: left !important}
+

@@ -350,7 +350,7 @@ const BuildWorkSpace = () => {
       <div className="ws-hld">
          <div className="head first_divNone">
             <AlertModal visible={isAlert} handleOk={alertClose} confirmLoading={!isUpdatedList} modalText={confirmationTxt} modalInfo={confirmationInfo} handleCancel={alertClose} />
-            <ConfirmModal visible={isConfirm} handleOk={publishBot} confirmLoading={!isUpdatedList} modalText={confirmationTxt} modalInfo={confirmationInfo} handleCancel={confirmClose} />
+            <ConfirmModal visible={isConfirm} handleOk={publishBot} confirmLoading={!isUpdatedList} modalText={confirmationTxt} modalTitle="Publish bot" modalInfo={confirmationInfo} handleCancel={confirmClose} />
 
             <div className="head-rt">
                <div onClick={handleBack} className="icon" style={{ width: '24px' }}>
