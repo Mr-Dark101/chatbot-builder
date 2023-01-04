@@ -1,7 +1,7 @@
 import React from 'react';
 import {Modal} from 'antd';
 
-const ConfirmModal = ({visible, modalText, modalInfo, handleCancel, handleOk, confirmLoading,modalTitle}) => {
+const ConfirmModal = ({visible, modalText, modalInfo, handleCancel, handleOk, confirmLoading,modalTitle,okText}) => {
     return (
         <div>
             {/*<Button type="primary" onClick={showModal}>*/}
@@ -11,7 +11,7 @@ const ConfirmModal = ({visible, modalText, modalInfo, handleCancel, handleOk, co
                 title= {(modalTitle) ? modalTitle : "Confirmation"}
                 visible={visible}
                 onOk={handleOk}
-                okText= {`Yes`}
+                okText= {(modalTitle) ? okText : "Yes"}
                 confirmLoading={confirmLoading}
                 onCancel={handleCancel}
                 headerStyle={{ backgroundColor: '#000' }}
