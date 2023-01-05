@@ -4,6 +4,7 @@ import { Form, TextField, SelectField, SubmitButton, CheckBoxField, TextGroupFie
 import * as Yup from 'yup';
 import CrudService from '../../../services/crud.service';
 import { Link } from 'react-router-dom';
+import { Tooltip } from '@mui/material';
 const Create = ({ rs, retrieveList, loadList }) => {
    const [validationSchema, setValidationSchema] = useState({});
    const [insuranceList, setInsuranceList] = useState([]);
@@ -169,12 +170,16 @@ const Create = ({ rs, retrieveList, loadList }) => {
                            <div className="row">
                               <div className="col-9">
                                  <div className="field_section mb-20">
-                                    <TextField name="name" label="Name" />
+                                    <TextField name="name" label="Form Name" placeholder="Provide a suitable name for your form." style={{ color: '#000' }} />
                                  </div>
+
                                  <div className="field_section mb-20">
-                                    <TextAreaField name="description" label="Description" placeholder="Description" rows="3" />
+                                    <TextAreaField name="description" label="Form Description" style={{ color: '#000' }} placeholder="Provide a description about the intended purpose of the form." rows="3" />
                                  </div>
-                                 <label style={{ marginBottom: '0px' }}>Fields</label>
+
+                                 <Tooltip title={'Add customer form and provide name and type for each field. For certain field types you can also add multiple options for your users to choose from.'}>
+                                    <label style={{ marginBottom: '0px' }}>Form Fields</label>
+                                 </Tooltip>
                                  {headerField &&
                                     headerField.map((x, i) => {
                                        return (
@@ -207,7 +212,7 @@ const Create = ({ rs, retrieveList, loadList }) => {
                                                 </div>
                                                 {x.type == 'option' ? (
                                                    <>
-                                                      <div>Option Data</div>
+                                                      <div style={{ color: '#000' }}>Option Data</div>
 
                                                       {headerField[i]['option'].map((o, io) => {
                                                          return (
@@ -238,7 +243,7 @@ const Create = ({ rs, retrieveList, loadList }) => {
                                                 {/* Adding Regular Expression */}
                                                 {x.type == 'regularexpression' ? (
                                                    <>
-                                                      <div style={{ marginTop: '20px' }}>Regular Expression</div>
+                                                      <div style={{ marginTop: '20px', color: '#000' }}>Regular Expression</div>
                                                       {headerField[i]['regularexpression'].map((o, io) => {
                                                          return (
                                                             <>
@@ -273,7 +278,7 @@ const Create = ({ rs, retrieveList, loadList }) => {
 
                                  <label style={{ marginBottom: '0px' }}>Enter Email Addresses (Optional)</label>
                                  <div className="row align-items-center">
-                                    <div className="col-sm-12">
+                                    <div className="col-sm-12 mt-3">
                                        <TextAreaField name="receivers_emails" placeholder="john@companyname, peter@companyname.." rows="3" />
                                     </div>
                                  </div>

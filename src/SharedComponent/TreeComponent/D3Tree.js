@@ -158,7 +158,7 @@ const D3Tree = (props) => {
                         setInit({
                            ...init,
                            isConfirm: true,
-                           confirmationTxt: 'Are You Sure? You want to delete this trigger',
+                           confirmationTxt: 'Are you sure you want to delete this trigger?',
                            currentObject: {
                               botId: obj.botId,
                               trigger: obj.currentObject,
@@ -178,7 +178,7 @@ const D3Tree = (props) => {
                            setInit({
                               ...init,
                               isConfirm: true,
-                              confirmationTxt: 'Are You Sure? You want to delete this trigger',
+                              confirmationTxt: 'Are you sure you want to delete this trigger?',
                               currentObject: {
                                  botId: obj.botId,
                                  trigger: obj.currentObject,
@@ -278,7 +278,7 @@ const D3Tree = (props) => {
 
    return (
       <div className="d3tree-container">
-         <ConfirmModal visible={isConfirm} handleOk={handleSubmitTrigger} confirmLoading={false} modalText={confirmationTxt} handleCancel={confirmClose} />
+         <ConfirmModal visible={isConfirm} handleOk={handleSubmitTrigger} modalTitle="Delete trigger" okText={'Delete'} confirmLoading={false} modalText={confirmationTxt} handleCancel={confirmClose} />
          {isUpdatedList && (
             <Tree
                data={orgChart}
@@ -296,7 +296,7 @@ const D3Tree = (props) => {
          <a
             href="javascript:void(0)"
             class="btn position-absolute bottom-0 start-0"
-            style={{ height: '30px', marginBottom: '130px', marginLeft: '20px', backgroundColor: '#ffffff', border: '1px solid #ffffff' }}
+            style={{ height: '30px', marginBottom: '60px', marginLeft: '20px', backgroundColor: '#ffffff', border: '1px solid #ffffff' }}
             onClick={() => {
                zoomIn();
             }}
@@ -308,7 +308,7 @@ const D3Tree = (props) => {
                <a
                   href="javascript:void(0)"
                   class="btn position-absolute bottom-0 start-0"
-                  style={{ height: '30px', marginBottom: '90px', marginLeft: '20px', backgroundColor: '#ffffff', border: '1px solid #ffffff' }}
+                  style={{ height: '30px', marginBottom: '20px', marginLeft: '20px', backgroundColor: '#ffffff', border: '1px solid #ffffff' }}
                   onClick={() => {
                      zoomOut();
                   }}
@@ -321,7 +321,7 @@ const D3Tree = (props) => {
                <a
                   href="https://help.eocean.net/knowledge/automating-interactions-with-whatsapp-chatbots"
                   class="btn position-absolute bottom-0 start-0"
-                  style={{ height: '30px', marginBottom: '90px', marginLeft: '70px', backgroundColor: '#ffffff', fontWeight: 800, border: '1px solid #ffffff' }}
+                  style={{ height: '30px', marginBottom: '20px', marginLeft: '70px', backgroundColor: '#ffffff', fontWeight: 800, border: '1px solid #ffffff' }}
                >
                   Watch tutorial
                </a>

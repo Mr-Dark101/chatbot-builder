@@ -421,7 +421,7 @@ const CreateBotComposer = (props) => {
 
          <div className="modal-footer">
             <div className="actions">
-               <button style={{ textTransform: 'none', width: '100px', marginRight: 10 }} className="btn secondary" onClick={handleCloseModal}>
+               <button style={{ textTransform: 'none', width: '100px',height: '34px', marginRight: 10 }} className="btn secondary" onClick={handleCloseModal}>
                   Cancel
                </button>
 

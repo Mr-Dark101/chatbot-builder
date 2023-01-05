@@ -23,6 +23,7 @@ const defaultState = {
    isAlert: false,
    isConfirm: false,
    isPublish: false,
+   isUnpublish: false,
    openComposer: false,
    openChatBot: false,
    data: [],
@@ -40,7 +41,7 @@ const BuildWorkSpace = () => {
    const dispatch = useDispatch();
    const history = useHistory();
    const [init, setInit] = useState(defaultState);
-   let { currentTriggerData, openChatBot, getAllTypes, isAlert, isConfirm, isPublish, isUpdatedList, confirmationTxt, confirmationInfo } = init;
+   let { currentTriggerData, openChatBot, getAllTypes, isAlert, isConfirm, isPublish, isUnpublish, isUpdatedList, confirmationTxt, confirmationInfo } = init;
    let { currentBotData } = dashboard;
    let { success, isPublishSuccess, message_, dataNotFound } = workSpace;
    let { name, phoneNumber, id, userId, published, updated_at } = currentBotData !== null && currentBotData;
@@ -123,6 +124,8 @@ const BuildWorkSpace = () => {
             ...init,
             isAlert: false,
             isConfirm: false,
+            modalTitle: 'Unpublish Bot',
+            okText: 'Unpublish',
             isPublish: true,
             isUpdatedList: true,
             confirmationTxt: 'Are you sure you want to Unpublish this bot?',
@@ -160,6 +163,7 @@ const BuildWorkSpace = () => {
             setInit({
                ...init,
                isAlert: true,
+               modalTitle: 'Bot published',
                isConfirm: false,
                isUpdatedList: true,
                confirmationTxt: confirmationText,
@@ -187,8 +191,11 @@ const BuildWorkSpace = () => {
             // console.log("updateTrigger", res);
             setInit({
                ...init,
-               isAlert: true,
+               isAlert: false,
+               isUnpublish: true,
+               modalTitle: 'Bot Unpublished',
                isConfirm: false,
+               isPublish: false,
                isUpdatedList: true,
                confirmationTxt: confirmationText,
             });
@@ -208,6 +215,9 @@ const BuildWorkSpace = () => {
       setInit({
          ...init,
          isAlert: false,
+         isUnpublish: false,
+         isPublish: false,
+         isConfirm: false,
          isUpdatedList: true,
          confirmationTxt: '',
       });
@@ -274,10 +284,10 @@ const BuildWorkSpace = () => {
       });
    };
    const handleBack = () => {
-      history.push(`${STRINGS.ROUTES.ROOT}?org=${localStorage.getItem('userId')}`);
-
-      dispatch(resetState());
-      dispatch(removingBreadcrumb());
+      //history.push(`${STRINGS.ROUTES.ROOT}?org=${localStorage.getItem('userId')}`);
+      //window.location.reload();
+      //dispatch(resetState());
+      // dispatch(removingBreadcrumb());
       window.location.reload();
    };
 
@@ -298,7 +308,13 @@ const BuildWorkSpace = () => {
          confirmationTxt: '',
       });
    };
-
+   const editBotName = () => {
+      document.getElementById('botNameText').focus();
+      document.getElementById('editButton').style.display = 'none';
+   };
+   const hideEditButton = () => {
+      document.getElementById('editButton').style.display = 'unset';
+   };
    const calculateLastDate = () => {
       let timeStamp = '';
       try {
@@ -349,7 +365,9 @@ const BuildWorkSpace = () => {
    return (
       <div className="ws-hld">
          <div className="head first_divNone">
-            <AlertModal visible={isAlert} handleOk={alertClose} confirmLoading={!isUpdatedList} modalText={confirmationTxt} modalInfo={confirmationInfo} handleCancel={alertClose} />
+            <AlertModal visible={isAlert} handleOk={alertClose} confirmLoading={!isUpdatedList} modalText={confirmationTxt} modalTitle="Publish bot" modalInfo={confirmationInfo} handleCancel={alertClose} />
+            <AlertModal visible={isUnpublish} handleOk={alertClose} confirmLoading={!isUpdatedList} modalText={confirmationTxt} modalTitle="Unpublish bot" modalInfo={confirmationInfo} handleCancel={alertClose} />
+
             <ConfirmModal visible={isConfirm} handleOk={publishBot} okText="Publish" confirmLoading={!isUpdatedList} modalText={confirmationTxt} modalTitle="Publish bot" modalInfo={confirmationInfo} handleCancel={confirmClose} />
 
             <div className="head-rt">
@@ -370,8 +388,23 @@ const BuildWorkSpace = () => {
                </p>
             </div>
             <div className="head-center">
-               <h5 class="box-title m-0" style={{ fontWeight: '800', display: 'flex', alignItems: 'end' }}>
-                  <input id="botNameText" type="text" name="name" className="botName" maxlength="25" style={{ border: 'none', borderRadius: '0px', minWidth: '200px' }} defaultValue={name} onChange={updateBotName} />
+               <h5 class="box-title m-0" style={{ fontWeight: '800', display: 'flex', alignItems: 'baseline' }}>
+                  <input
+                     id="botNameText"
+                     type="text"
+                     name="name"
+                     className="botName"
+                     maxlength="25"
+                     style={{ border: 'none', borderRadius: '0px', minWidth: '200px', paddingRight: '0' }}
+                     defaultValue={name}
+                     onChange={updateBotName}
+                     onBlur={hideEditButton}
+                  />
+                  <span id="editButton" class="editIcon">
+                     <button onClick={editBotName}>
+                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                     </button>
+                  </span>
                   <span>
                      {published ? (
                         <span class="currentPlan currentPlan_bg" style={{ marginLeft: '10px', marginBottom: '15px' }}>
@@ -452,7 +485,7 @@ const BuildWorkSpace = () => {
          </div>
          {/*    </TransformComponent>*/}
          {/*</TransformWrapper>*/}
-         <ConfirmModal visible={isPublish} handleOk={unpublishBot} confirmLoading={!isUpdatedList} modalText={confirmationTxt} modalInfo={confirmationInfo} handleCancel={publishClose} />
+         <ConfirmModal visible={isPublish} handleOk={unpublishBot} okText="Unpublish" confirmLoading={!isUpdatedList} modalText={confirmationTxt} modalTitle="Unpublish bot" modalInfo={confirmationInfo} handleCancel={publishClose} />
       </div>
    );
 };

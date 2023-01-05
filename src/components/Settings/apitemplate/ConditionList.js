@@ -680,7 +680,7 @@ const ConditionList = ({ props, apiHandle, dataIndex, apiData, updatedTriggersVa
                   {triggerMenus.length > 0 &&
                      triggerMenus.map((m, index) => {
                         return (
-                           <div key={index} className="sm-box">
+                           <div key={index} className="sm-box boxPadding">
                               <React.Fragment>
                                  <button
                                     className="btn-outline"
@@ -941,7 +941,7 @@ const ConditionList = ({ props, apiHandle, dataIndex, apiData, updatedTriggersVa
                </div>
 
                <div className="row">
-                  <div className="col-sm-3">
+                  <div className="col-sm-6 mb-3">
                      <div className="txt-field">
                         <div className="label">
                            <div className="sub-txt">Option Key</div>
@@ -961,7 +961,7 @@ const ConditionList = ({ props, apiHandle, dataIndex, apiData, updatedTriggersVa
                         </div>
                      </div>
                   </div>
-                  <div className="col-sm-3">
+                  <div className="col-sm-6 mb-3">
                      <div className="txt-field">
                         <div className="label">
                            <div className="sub-txt">Option Label</div>
@@ -981,7 +981,7 @@ const ConditionList = ({ props, apiHandle, dataIndex, apiData, updatedTriggersVa
                         </div>
                      </div>
                   </div>
-                  <div className="col-sm-3">
+                  <div className="col-sm-6">
                      <div className="txt-field">
                         <div className="label">
                            <div className="sub-txt">Api</div>
@@ -990,6 +990,7 @@ const ConditionList = ({ props, apiHandle, dataIndex, apiData, updatedTriggersVa
                            <Select
                               labelId="demo-simple-select-standard-label"
                               id="demo-simple-select-standard"
+                              className="borderField"
                               value={triggerOptApi}
                               onChange={(e) => {
                                  setInit({
@@ -1006,7 +1007,7 @@ const ConditionList = ({ props, apiHandle, dataIndex, apiData, updatedTriggersVa
                         </div>
                      </div>
                   </div>
-                  <div className="col-sm-3">
+                  <div className="col-sm-6">
                      <div className="txt-field">
                         <div className="label">
                            <div className="sub-txt">Response</div>
@@ -1016,6 +1017,7 @@ const ConditionList = ({ props, apiHandle, dataIndex, apiData, updatedTriggersVa
                               <Select
                                  labelId="demo-simple-select-standard-label"
                                  id="demo-simple-select-standard"
+                                 className="borderField"
                                  value={optLoopBack}
                                  onChange={(e) => {
                                     setInit({
@@ -1048,11 +1050,11 @@ const ConditionList = ({ props, apiHandle, dataIndex, apiData, updatedTriggersVa
                </div>
 
                <div className="add-btn api_button_section">
-                  <button className="btn-outlined" type="button" onClick={handleAddOptions}>
+                  <button className="btn-outlined btnPadding" type="button" onClick={handleAddOptions}>
                      Add Option
                   </button>
 
-                  <button type="button" className="btn btn-danger" onClick={saveCondition}>
+                  <button type="button btnPadding" className="btn btn-danger" onClick={saveCondition}>
                      Save Condition
                   </button>
                </div>

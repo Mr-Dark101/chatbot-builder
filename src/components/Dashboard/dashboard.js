@@ -148,7 +148,9 @@ const Dashboard = () => {
          ...init,
          isConfirm: false,
          isUpdatedList: false,
-         confirmationTxt: `Are You Sure? You want to Delete this Bot`,
+         modalTitle: 'Delete bot',
+         okText: 'Delete',
+         confirmationTxt: `Are you sure want to delete this bot?`,
          currentObject: {
             userId: 0,
             id: 0,
@@ -269,7 +271,7 @@ const Dashboard = () => {
          {localStorage.getItem('org_unit_id') != '' ? (
             <>
                <CreateBotComposer currentUser={currentUser} data={updateBotData} openModal={openBotComposer} onClose={closeModal} />
-               <ConfirmModal visible={isConfirm} handleOk={handleSubmitTrigger} confirmLoading={!isUpdatedList} modalText={confirmationTxt} modalInfo={confirmationInfo} handleCancel={confirmClose} />
+               <ConfirmModal visible={isConfirm} handleOk={handleSubmitTrigger} okText="Delete" modalTitle="Delete bot" confirmLoading={!isUpdatedList} modalText={confirmationTxt} modalInfo={confirmationInfo} handleCancel={confirmClose} />
                <AlertModal visible={isAlert} handleOk={alertClose} confirmLoading={!isUpdatedList} modalText={confirmationTxt} modalInfo={confirmationInfo} handleCancel={alertClose} />
                <div className="head" style={{ display: 'none' }}>
                   <div className="head-rt">
@@ -314,7 +316,7 @@ const Dashboard = () => {
                                           ...init,
                                           isConfirm: true,
                                           isUpdatedList: true,
-                                          confirmationTxt: `You're about to delete ${d.name} bot.`,
+                                          confirmationTxt: `You're about to delete this bot.`,
                                           confirmationInfo: ['The bot can not be retrieved once deleted.', 'However, you can still access your chat history with the bot.'],
                                           currentObject: obj,
                                        });

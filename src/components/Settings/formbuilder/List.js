@@ -7,6 +7,7 @@ import Edit from './Edit';
 import FormDetail from './FormDetail';
 import BlankMsg from '../../common/BlankMsg';
 import { toast } from 'react-toastify';
+import { Tooltip } from '@mui/material';
 
 const List = ({ rs, subPage, loadList }) => {
    const [listData, setListData] = useState([]);
@@ -92,7 +93,7 @@ const List = ({ rs, subPage, loadList }) => {
          <div className="page_data_setting">
             {listData.length > 0 ? (
                <>
-                  <div className="row px-30 py-15 media-center">
+                  <div className="row px-30 py-0 media-center">
                      <div className="col-sm-9">
                         <h5 className="box-title m-0" style={{ fontWeight: 800 }}>
                            My Forms
@@ -100,20 +101,20 @@ const List = ({ rs, subPage, loadList }) => {
                      </div>
 
                      <div className="col-sm-3">
-                        <a class="dashboard_setting float-end" onClick={() => subPage(<Create loadList={loadList} retrieveList={retrieveList} rs={rs} />)}>
+                        <a class="dashboard_setting float-end p-2" onClick={() => subPage(<Create loadList={loadList} retrieveList={retrieveList} rs={rs} />)}>
                            Create Form
                         </a>
                      </div>
                   </div>
 
                   <div className="table-responsive mx-30">
-                     <table className="table table-striped table-hover">
+                     <table className="table table-hover">
                         <thead className="bg-primary">
                            <tr>
                               <th>Form Name</th>
                               <th>Form Description</th>
                               <th>Form Entries</th>
-                              <th></th>
+                              <th style={{ textAlign: 'end', paddingRight: '40px' }}>Actions</th>
                            </tr>
                         </thead>
                         <tbody>
@@ -121,7 +122,7 @@ const List = ({ rs, subPage, loadList }) => {
                               listData.map((row, index) => (
                                  <tr>
                                     <td>{row.name}</td>
-                                    <td>{row.description}</td>
+                                    <td style={{ maxWidth: '110px', minWidth: '110px' }}>{row.description}</td>
                                     <td>
                                        {row.Forms.length > 0 ? (
                                           <a href="#" onClick={() => subPage(<FormDetail subPage={subPage} loadList={loadList} row={row} />)}>
@@ -132,8 +133,13 @@ const List = ({ rs, subPage, loadList }) => {
                                        )}
                                     </td>
 
-                                    <td>
-                                       <button className="btn btn-icon btn-icon rounded-circle btn-custom" onClick={() => subPage(<Edit loadList={loadList} retrieveList={retrieveList} rs={row} />)}>
+                                    <td style={{ textAlign: 'end' }}>
+                                       <Tooltip title={'View Form Data'}>
+                                          <button className="btn btn-icon btn-icon rounded-circle btn-secondary" onClick={() => subPage(<FormDetail subPage={subPage} loadList={loadList} row={row} />)}>
+                                             <i class="fa fa-external-link" aria-hidden="true" style={{ color: '#fff', fontSize: '13px' }}></i>
+                                          </button>
+                                       </Tooltip>
+                                       <button style={{ marginLeft: 5 }} className="btn btn-icon btn-icon rounded-circle btn-custom" onClick={() => subPage(<Edit loadList={loadList} retrieveList={retrieveList} rs={row} />)}>
                                           <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                                        </button>
                                        <button style={{ marginLeft: 5 }} className="btn btn-icon btn-icon rounded-circle btn-danger" onClick={() => deleteMe(row.id)}>

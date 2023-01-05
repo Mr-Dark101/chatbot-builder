@@ -131,18 +131,18 @@ const List = ({ rs, subPage, loadList }) => {
                      <div className="row px-30 py-20 media-center">
                         <div className="col-sm-3">
                            <h5 style={{ fontWeight: 800 }} className="box-title m-0">
-                              My Custom APIs
+                              My APIs
                            </h5>
                         </div>
 
                         <div className="col-sm-9">
                            <button type="button" onClick={() => subPage(<Create loadList={loadList} retrieveList={retrieveList} rs={rs} />)} className="btn primary float-end">
-                              <img src={plus_icon} /> Create custom API
+                              <img src={plus_icon} /> Create API
                            </button>
                         </div>
                      </div>
 
-                     <div className="table-responsive ms-10">
+                     <div className="table-responsive mx-30">
                         <table className="table">
                            <thead>
                               <tr>
@@ -203,10 +203,10 @@ const List = ({ rs, subPage, loadList }) => {
                <div className="col-sm-3 ps-0 pe-10">
                   <div className="available_api_section">
                      <h5 class="box-title m-0" style={{ fontWeight: 800, height: '80px !important', fontSize: '19px !important', color: '#000', display: 'table-cell', verticalAlign: 'middle', overflow: 'hidden' }}>
-                        Open API's
+                        Open APIs
                      </h5>
 
-                     <table className="table" style={{ height: '400px', backgroundColor: '#f5f5f5', display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
+                     <table className="table" style={{ height: '400px',margin:'0', backgroundColor: '#f5f5f5', display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
                         <div class="imgBg">
                            <img alt="" src="/static/media/api.0e97429d.svg" />
                         </div>
