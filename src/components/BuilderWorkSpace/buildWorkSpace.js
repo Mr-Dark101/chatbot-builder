@@ -277,9 +277,9 @@ const BuildWorkSpace = () => {
    };
    const handleBack = () => {
       //history.push(`${STRINGS.ROUTES.ROOT}?org=${localStorage.getItem('userId')}`);
-
-      dispatch(resetState());
-      dispatch(removingBreadcrumb());
+      //window.location.reload();
+      //dispatch(resetState());
+      // dispatch(removingBreadcrumb());
       window.location.reload();
    };
 

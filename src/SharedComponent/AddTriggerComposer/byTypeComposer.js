@@ -22,6 +22,7 @@ import ConditionList from './ConditionList';
 
 const defaultState = {
    isConfirm: false,
+   isAdd: false,
    isAlert: false,
    confirmationTxt: '',
    isText: false,
@@ -96,7 +97,7 @@ const ByTypeComposer = ({ props, triggerType }) => {
    const dispatch = useDispatch();
    const [init, setInit] = useState(defaultState);
    const [isData] = useState(!$.isEmptyObject(trigger.currentTriggerData));
-   let { isText, isMedia, isLoopBack, template, currentData, openFallBackComposer, triggerOpt, triggerValueName, values, descriptionType, isConfirm, confirmationTxt, isAlert, simpleLabel, simpleValue, simpleValues } = init;
+   let { isText, isMedia, isLoopBack, template, currentData, openFallBackComposer, triggerOpt, triggerValueName, values, descriptionType, isConfirm, isAdd, confirmationTxt, isAlert, simpleLabel, simpleValue, simpleValues } = init;
    let { name, triggerMenus, description, fallBackResponse, caption, loopBackId, loopBackText, routToAgent, type, apiId, apiText, form_id, formStartText, formEndText } = currentData;
    let { id, userId, published, updated_at } = currentBotData;
 
@@ -540,6 +541,17 @@ const ByTypeComposer = ({ props, triggerType }) => {
       setInit({
          ...init,
          isConfirm: false,
+         isAdd: false,
+         isUpdatedList: true,
+         confirmationTxt: '',
+      });
+   };
+
+   const confirmAddClose = () => {
+      setInit({
+         ...init,
+         isConfirm: false,
+         isAdd: false,
          isUpdatedList: true,
          confirmationTxt: '',
       });
@@ -1041,7 +1053,8 @@ const ByTypeComposer = ({ props, triggerType }) => {
 
    return (
       <div className="composer-container">
-         <ConfirmModal visible={isConfirm} handleOk={handleSubmitTrigger} confirmLoading={!isUpdatedList} modalText={confirmationTxt} modalTitle="Update Trigger" okText={"Update"} handleCancel={confirmClose} />
+         <ConfirmModal visible={isConfirm} handleOk={handleSubmitTrigger} confirmLoading={!isUpdatedList} modalText={confirmationTxt} modalTitle="Update Trigger" okText={'Update'} handleCancel={confirmClose} />
+         <ConfirmModal visible={isAdd} handleOk={handleSubmitTrigger} confirmLoading={!isUpdatedList} modalText={confirmationTxt} modalTitle="Add Trigger" okText={'Add'} handleCancel={confirmAddClose} />
          <AlertModal visible={isAlert} handleOk={alertClose} confirmLoading={!isUpdatedList} modalText={confirmationTxt} handleCancel={alertClose} />
          <div className="composer-content">
             <div className="trigger-card">
@@ -1181,8 +1194,8 @@ const ByTypeComposer = ({ props, triggerType }) => {
                            </div>
                            {triggerType == 'A' ? (
                               <>
-                                 <ul className="right_bar_top_section" style={{ paddingLeft: '0px', paddingRight: '0px', margin:'0' }}>
-                                    <li style={{ margin:'0' }}>
+                                 <ul className="right_bar_top_section" style={{ paddingLeft: '0px', paddingRight: '0px', margin: '0' }}>
+                                    <li style={{ margin: '0' }}>
                                        <button onClick={() => meClickCondition('C')} className="btn btn-block {btn-primary}" style={btnConditionStyle}>
                                           Condition Response
                                        </button>
@@ -1254,7 +1267,7 @@ const ByTypeComposer = ({ props, triggerType }) => {
                                           return <ConditionList key={i} dataIndex={i} apiData={tr.dataValue} props={props} updatedTriggersVal={updatedTriggers} apiHandle={apiHandle} />;
                                        })}
                                        <br />
-                                       <div className="actions-btn" style={{textAlign:"end"}}>
+                                       <div className="actions-btn" style={{ textAlign: 'end' }}>
                                           <button
                                              className="apiBtn"
                                              style={{
@@ -1419,7 +1432,7 @@ const ByTypeComposer = ({ props, triggerType }) => {
                                        </div>
 
                                        <div className="up-txt">
-                                          <div className="txt">Png,Jpeg (upto 5 MB),mp3,mp4 (16 MB),pdf (upto 25 MB) are allowed</div>
+                                          <div className="txt">Png,Jpeg (upto 5 MB), mp3,mp4 (16 MB), pdf (upto 25 MB) are allowed</div>
                                        </div>
                                     </React.Fragment>
                                  </div>
@@ -1494,7 +1507,6 @@ const ByTypeComposer = ({ props, triggerType }) => {
                                     >
                                        <div className="check-box">
                                           <Checkbox
-                                          
                                              checked={routToAgent}
                                              onChange={(e) => {
                                                 setInit({
@@ -1674,7 +1686,7 @@ const ByTypeComposer = ({ props, triggerType }) => {
                                                 isData && (
                                                    <button
                                                       className="btn btn-custom btn-icon rounded-circle"
-                                                      style={{ marginRight: '10px',width: '25px', height: '25px', display:'flex',alignItems: 'center', justifyContent: 'center'  }}
+                                                      style={{ marginRight: '10px', width: '25px', height: '25px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
                                                       onClick={() => {
                                                          setInit({
                                                             ...init,
@@ -1685,14 +1697,14 @@ const ByTypeComposer = ({ props, triggerType }) => {
                                                          });
                                                       }}
                                                    >
-                                                      <i class="fa fa-pencil-square-o" aria-hidden="true" style={{ fontSize: '12px'}}></i>
+                                                      <i class="fa fa-pencil-square-o" aria-hidden="true" style={{ fontSize: '12px' }}></i>
                                                    </button>
                                                 )
                                              )}
 
                                              <button
                                                 className="btn btn-danger btn-icon rounded-circle"
-                                                style={{ width: '25px', height: '25px', display:'flex',alignItems: 'center', justifyContent: 'center'}}
+                                                style={{ width: '25px', height: '25px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
                                                 onClick={() => {
                                                    setInit({
                                                       ...init,
@@ -1703,7 +1715,7 @@ const ByTypeComposer = ({ props, triggerType }) => {
                                                    });
                                                 }}
                                              >
-                                                <i className="fa fa-trash" style={{ fontSize: '12px'}}></i>
+                                                <i className="fa fa-trash" style={{ fontSize: '12px' }}></i>
                                              </button>
                                           </div>
                                        </div>
@@ -1721,14 +1733,24 @@ const ByTypeComposer = ({ props, triggerType }) => {
                            <button
                               className="btn-filled"
                               onClick={() => {
-                                 setInit({
-                                    ...init,
-                                    isConfirm: true,
-                                    modalTitle: `${isData ? 'Update ' : 'Add '} Trigger`,
-                                    okText: `${isData ? 'Update ' : 'Add '}`,
-                                    isUpdatedList: false,
-                                    confirmationTxt: `Are You Sure? You Want to ${isData ? 'Update ' : 'Add '} Trigger`,
-                                 });
+                                 isData
+                                    ? setInit({
+                                         ...init,
+                                         isConfirm: true,
+                                         modalTitle: `Update Trigger`,
+                                         okText: `Update`,
+                                         isUpdatedList: false,
+                                         confirmationTxt: `Are You Sure? You Want to Update Trigger`,
+                                      })
+                                    : setInit({
+                                         ...init,
+                                         isConfirm: false,
+                                         isAdd: true,
+                                         modalTitle: `Add Trigger`,
+                                         okText: `Add`,
+                                         isUpdatedList: false,
+                                         confirmationTxt: `Are You Sure? You Want to Add Trigger`,
+                                      });
                               }}
                            >
                               {' '}
