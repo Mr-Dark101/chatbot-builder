@@ -114,7 +114,7 @@ const List = ({ rs, subPage, loadList }) => {
                               <th>Form Name</th>
                               <th>Form Description</th>
                               <th>Form Entries</th>
-                              <th></th>
+                              <th style={{ textAlign: 'end', paddingRight: '40px' }}>Actions</th>
                            </tr>
                         </thead>
                         <tbody>
@@ -122,7 +122,7 @@ const List = ({ rs, subPage, loadList }) => {
                               listData.map((row, index) => (
                                  <tr>
                                     <td>{row.name}</td>
-                                    <td>{row.description}</td>
+                                    <td style={{ maxWidth: '110px', minWidth: '110px' }}>{row.description}</td>
                                     <td>
                                        {row.Forms.length > 0 ? (
                                           <a href="#" onClick={() => subPage(<FormDetail subPage={subPage} loadList={loadList} row={row} />)}>
@@ -133,11 +133,11 @@ const List = ({ rs, subPage, loadList }) => {
                                        )}
                                     </td>
 
-                                    <td>
+                                    <td style={{ textAlign: 'end' }}>
                                        <Tooltip title={'View Form Data'}>
-                                       <button className="btn btn-icon btn-icon rounded-circle btn-secondary" onClick={() => subPage(<FormDetail subPage={subPage} loadList={loadList} row={row} />)}>
-                                            <i class="fa fa-external-link" aria-hidden="true" style={{ color: '#fff',fontSize: '13px' }}></i>
-                                       </button>
+                                          <button className="btn btn-icon btn-icon rounded-circle btn-secondary" onClick={() => subPage(<FormDetail subPage={subPage} loadList={loadList} row={row} />)}>
+                                             <i class="fa fa-external-link" aria-hidden="true" style={{ color: '#fff', fontSize: '13px' }}></i>
+                                          </button>
                                        </Tooltip>
                                        <button style={{ marginLeft: 5 }} className="btn btn-icon btn-icon rounded-circle btn-custom" onClick={() => subPage(<Edit loadList={loadList} retrieveList={retrieveList} rs={row} />)}>
                                           <i class="fa fa-pencil-square-o" aria-hidden="true"></i>

@@ -169,16 +169,14 @@ const Create = ({ rs, retrieveList, loadList }) => {
 
                            <div className="row">
                               <div className="col-9">
-                                 <Tooltip title={'Provide a suitable name for your form.'}>
-                                    <div className="field_section mb-20">
-                                       <TextField name="name" label="Form Name" style={{ color: '#000' }} />
-                                    </div>
-                                 </Tooltip>
-                                 <Tooltip title={'Provide a description about the intended purpose of the form.'}>
-                                    <div className="field_section mb-20">
-                                       <TextAreaField name="description" label="Form Description" style={{ color: '#000' }} placeholder="Description" rows="3" />
-                                    </div>
-                                 </Tooltip>
+                                 <div className="field_section mb-20">
+                                    <TextField name="name" label="Form Name" placeholder="Provide a suitable name for your form." style={{ color: '#000' }} />
+                                 </div>
+
+                                 <div className="field_section mb-20">
+                                    <TextAreaField name="description" label="Form Description" style={{ color: '#000' }} placeholder="Provide a description about the intended purpose of the form." rows="3" />
+                                 </div>
+
                                  <Tooltip title={'Add customer form and provide name and type for each field. For certain field types you can also add multiple options for your users to choose from.'}>
                                     <label style={{ marginBottom: '0px' }}>Form Fields</label>
                                  </Tooltip>
@@ -280,7 +278,7 @@ const Create = ({ rs, retrieveList, loadList }) => {
 
                                  <label style={{ marginBottom: '0px' }}>Enter Email Addresses (Optional)</label>
                                  <div className="row align-items-center">
-                                    <div className="col-sm-12">
+                                    <div className="col-sm-12 mt-3">
                                        <TextAreaField name="receivers_emails" placeholder="john@companyname, peter@companyname.." rows="3" />
                                     </div>
                                  </div>

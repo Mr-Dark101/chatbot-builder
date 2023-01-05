@@ -158,7 +158,7 @@ const D3Tree = (props) => {
                         setInit({
                            ...init,
                            isConfirm: true,
-                           confirmationTxt: 'Are You Sure? You want to delete this trigger',
+                           confirmationTxt: 'Are you sure you want to delete this trigger?',
                            currentObject: {
                               botId: obj.botId,
                               trigger: obj.currentObject,
@@ -178,7 +178,7 @@ const D3Tree = (props) => {
                            setInit({
                               ...init,
                               isConfirm: true,
-                              confirmationTxt: 'Are You Sure? You want to delete this trigger',
+                              confirmationTxt: 'Are you sure you want to delete this trigger?',
                               currentObject: {
                                  botId: obj.botId,
                                  trigger: obj.currentObject,
@@ -278,7 +278,7 @@ const D3Tree = (props) => {
 
    return (
       <div className="d3tree-container">
-         <ConfirmModal visible={isConfirm} handleOk={handleSubmitTrigger} confirmLoading={false} modalText={confirmationTxt} handleCancel={confirmClose} />
+         <ConfirmModal visible={isConfirm} handleOk={handleSubmitTrigger} modalTitle="Delete trigger" okText={'Delete'} confirmLoading={false} modalText={confirmationTxt} handleCancel={confirmClose} />
          {isUpdatedList && (
             <Tree
                data={orgChart}

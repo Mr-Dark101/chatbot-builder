@@ -1054,7 +1054,7 @@ const ByTypeComposer = ({ props, triggerType }) => {
    return (
       <div className="composer-container">
          <ConfirmModal visible={isConfirm} handleOk={handleSubmitTrigger} confirmLoading={!isUpdatedList} modalText={confirmationTxt} modalTitle="Update Trigger" okText={'Update'} handleCancel={confirmClose} />
-         <ConfirmModal visible={isAdd} handleOk={handleSubmitTrigger} confirmLoading={!isUpdatedList} modalText={confirmationTxt} modalTitle="Add Trigger" okText={'Add'} handleCancel={confirmAddClose} />
+
          <AlertModal visible={isAlert} handleOk={alertClose} confirmLoading={!isUpdatedList} modalText={confirmationTxt} handleCancel={alertClose} />
          <div className="composer-content">
             <div className="trigger-card">
@@ -1740,7 +1740,7 @@ const ByTypeComposer = ({ props, triggerType }) => {
                                          modalTitle: `Update Trigger`,
                                          okText: `Update`,
                                          isUpdatedList: false,
-                                         confirmationTxt: `Are You Sure? You Want to Update Trigger`,
+                                         confirmationTxt: `Are you sure You want to update this trigger?`,
                                       })
                                     : setInit({
                                          ...init,
@@ -1749,7 +1749,7 @@ const ByTypeComposer = ({ props, triggerType }) => {
                                          modalTitle: `Add Trigger`,
                                          okText: `Add`,
                                          isUpdatedList: false,
-                                         confirmationTxt: `Are You Sure? You Want to Add Trigger`,
+                                         confirmationTxt: `Are you sure you want to add this trigger?`,
                                       });
                               }}
                            >
@@ -1775,6 +1775,7 @@ const ByTypeComposer = ({ props, triggerType }) => {
                </div>
             </div>
          </div>
+         <ConfirmModal visible={isAdd} handleOk={handleSubmitTrigger} confirmLoading={!isUpdatedList} modalText={confirmationTxt} modalTitle="Add Trigger" okText={'Add'} handleCancel={confirmAddClose} />
       </div>
    );
 };

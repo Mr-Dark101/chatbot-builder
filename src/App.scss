@@ -724,6 +724,8 @@ textarea{
   text-overflow: ellipsis;
   word-wrap: break-word;
   overflow: hidden;
+  text-align: 'left';
+  padding: '0px 16px 0 0px';
   max-height: 5.0em;
   min-height: 5.0em;
   line-height: 1.8em;
@@ -761,11 +763,14 @@ textarea{
   .boxPadding {
     padding: 5px !important;
   }
-  .txt-field {
+  .borderField {
+    border-top: 1px solid transparent !important;
+  }
+  /*.txt-field {
     #demo-simple-select-standard {
       border-top: none !important;
     }
-  }
+  }*/
 }
 .editIcon {
   button {
@@ -808,3 +813,11 @@ textarea{
 .cursor-pointer {
   cursor: pointer;
 }
+/*.requiredDiv {
+  color: #f00;
+  font-size: 12px;
+}*/
+
+/*.page_data_clinic input, .page_data_clinic textarea {
+  margin-bottom: 0 !important;
+}*/

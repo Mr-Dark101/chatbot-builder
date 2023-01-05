@@ -1002,6 +1002,7 @@ const ConditionList = ({ props, apiHandle, dataIndex, apiData, updatedTriggersVa
                            <Select
                               labelId="demo-simple-select-standard-label"
                               id="demo-simple-select-standard"
+                              className="borderField"
                               value={triggerOptApi}
                               onChange={(e) => {
                                  setInit({
@@ -1029,6 +1030,7 @@ const ConditionList = ({ props, apiHandle, dataIndex, apiData, updatedTriggersVa
                               <Select
                                  labelId="demo-simple-select-standard-label"
                                  id="demo-simple-select-standard"
+                                 className="borderField"
                                  value={optLoopBack}
                                  onChange={(e) => {
                                     setInit({

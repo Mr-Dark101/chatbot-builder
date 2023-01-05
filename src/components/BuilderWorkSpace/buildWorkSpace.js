@@ -23,6 +23,7 @@ const defaultState = {
    isAlert: false,
    isConfirm: false,
    isPublish: false,
+   isUnpublish: false,
    openComposer: false,
    openChatBot: false,
    data: [],
@@ -40,7 +41,7 @@ const BuildWorkSpace = () => {
    const dispatch = useDispatch();
    const history = useHistory();
    const [init, setInit] = useState(defaultState);
-   let { currentTriggerData, openChatBot, getAllTypes, isAlert, isConfirm, isPublish, isUpdatedList, confirmationTxt, confirmationInfo } = init;
+   let { currentTriggerData, openChatBot, getAllTypes, isAlert, isConfirm, isPublish, isUnpublish, isUpdatedList, confirmationTxt, confirmationInfo } = init;
    let { currentBotData } = dashboard;
    let { success, isPublishSuccess, message_, dataNotFound } = workSpace;
    let { name, phoneNumber, id, userId, published, updated_at } = currentBotData !== null && currentBotData;
@@ -162,6 +163,7 @@ const BuildWorkSpace = () => {
             setInit({
                ...init,
                isAlert: true,
+               modalTitle: 'Bot published',
                isConfirm: false,
                isUpdatedList: true,
                confirmationTxt: confirmationText,
@@ -189,8 +191,11 @@ const BuildWorkSpace = () => {
             // console.log("updateTrigger", res);
             setInit({
                ...init,
-               isAlert: true,
+               isAlert: false,
+               isUnpublish: true,
+               modalTitle: 'Bot Unpublished',
                isConfirm: false,
+               isPublish: false,
                isUpdatedList: true,
                confirmationTxt: confirmationText,
             });
@@ -210,6 +215,9 @@ const BuildWorkSpace = () => {
       setInit({
          ...init,
          isAlert: false,
+         isUnpublish: false,
+         isPublish: false,
+         isConfirm: false,
          isUpdatedList: true,
          confirmationTxt: '',
       });
@@ -357,7 +365,9 @@ const BuildWorkSpace = () => {
    return (
       <div className="ws-hld">
          <div className="head first_divNone">
-            <AlertModal visible={isAlert} handleOk={alertClose} confirmLoading={!isUpdatedList} modalText={confirmationTxt} modalInfo={confirmationInfo} handleCancel={alertClose} />
+            <AlertModal visible={isAlert} handleOk={alertClose} confirmLoading={!isUpdatedList} modalText={confirmationTxt} modalTitle="Publish bot" modalInfo={confirmationInfo} handleCancel={alertClose} />
+            <AlertModal visible={isUnpublish} handleOk={alertClose} confirmLoading={!isUpdatedList} modalText={confirmationTxt} modalTitle="Unpublish bot" modalInfo={confirmationInfo} handleCancel={alertClose} />
+
             <ConfirmModal visible={isConfirm} handleOk={publishBot} okText="Publish" confirmLoading={!isUpdatedList} modalText={confirmationTxt} modalTitle="Publish bot" modalInfo={confirmationInfo} handleCancel={confirmClose} />
 
             <div className="head-rt">
