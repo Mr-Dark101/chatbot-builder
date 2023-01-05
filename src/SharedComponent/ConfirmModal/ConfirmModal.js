@@ -1,5 +1,5 @@
 import React from 'react';
-import {Modal} from 'antd';
+import {Modal,Button} from 'antd';
 
 const ConfirmModal = ({visible, modalText, modalInfo, handleCancel, handleOk, confirmLoading,modalTitle,okText}) => {
     return (
@@ -16,6 +16,17 @@ const ConfirmModal = ({visible, modalText, modalInfo, handleCancel, handleOk, co
                 onCancel={handleCancel}
                 headerStyle={{ backgroundColor: '#000' }}
                 centered={`true`}
+
+                footer={[
+                     
+                      <Button key="button" type="primary"  onClick={handleOk}>
+                       {(modalTitle) ? okText : "Yes"}
+                      </Button>,
+                       <Button key="back" onClick={handleCancel}>
+                        Cancel
+                      </Button>,
+                     
+        ]}
             >
                 <p>{modalText}</p>
                 {
