@@ -316,7 +316,7 @@ const Dashboard = () => {
                                           ...init,
                                           isConfirm: true,
                                           isUpdatedList: true,
-                                          confirmationTxt: `You're about to delete this bot.`,
+                                          confirmationTxt: `You're about to delete ${d.name} bot.`,
                                           confirmationInfo: ['The bot can not be retrieved once deleted.', 'However, you can still access your chat history with the bot.'],
                                           currentObject: obj,
                                        });

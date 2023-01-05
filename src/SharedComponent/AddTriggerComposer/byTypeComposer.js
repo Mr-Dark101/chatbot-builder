@@ -1724,6 +1724,8 @@ const ByTypeComposer = ({ props, triggerType }) => {
                                  setInit({
                                     ...init,
                                     isConfirm: true,
+                                    modalTitle: `${isData ? 'Update ' : 'Add '} Trigger`,
+                                    okText: `${isData ? 'Update ' : 'Add '}`,
                                     isUpdatedList: false,
                                     confirmationTxt: `Are You Sure? You Want to ${isData ? 'Update ' : 'Add '} Trigger`,
                                  });

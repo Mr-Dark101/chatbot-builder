@@ -4,6 +4,7 @@ import { Form, TextField, SelectField, SubmitButton, CheckBoxField, TextGroupFie
 import * as Yup from 'yup';
 import CrudService from '../../../services/crud.service';
 import { Link } from 'react-router-dom';
+import { Tooltip } from '@mui/material';
 const Create = ({ rs, retrieveList, loadList }) => {
    const [validationSchema, setValidationSchema] = useState({});
    const [insuranceList, setInsuranceList] = useState([]);
@@ -168,13 +169,17 @@ const Create = ({ rs, retrieveList, loadList }) => {
 
                            <div className="row">
                               <div className="col-9">
+                              <Tooltip title={'Provide a suitable name for your form.'}>
                                  <div className="field_section mb-20">
                                     <TextField name="name" label="Form Name" style={{color: '#000'}}/>
-                                 </div>
+                                 </div></Tooltip>
+                                 <Tooltip title={'Provide a description about the intended purpose of the form.'}>
                                  <div className="field_section mb-20">
                                     <TextAreaField name="description" label="Form Description" style={{color: '#000'}} placeholder="Description" rows="3" />
-                                 </div>
+                                 </div></Tooltip>
+                                 <Tooltip title={'Add customer form and provide name and type for each field. For certain field types you can also add multiple options for your users to choose from.'}>
                                  <label style={{ marginBottom: '0px' }}>Fields</label>
+                                 </Tooltip>
                                  {headerField &&
                                     headerField.map((x, i) => {
                                        return (
