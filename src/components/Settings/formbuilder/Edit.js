@@ -4,7 +4,7 @@ import { TextField, SelectField, SubmitButton, CheckBoxField, TextGroupField, Te
 import * as Yup from 'yup';
 import CrudService from '../../../services/crud.service';
 import { Link } from 'react-router-dom';
-
+import { Tooltip } from '@mui/material';
 import { Formik, Form, Field, ErrorMessage, useFormikContext, useField, useFormik } from 'formik';
 
 const Edit = ({ rs, retrieveList, loadList }) => {
@@ -164,16 +164,19 @@ const Edit = ({ rs, retrieveList, loadList }) => {
                                     <div className="api_form_section" style={{ overflowY: 'scroll', height: 800 }}>
                                        <div className="row" style={{ marginLeft: '0px', marginRight: '0px' }}>
                                           <div className="col-9" style={{ paddingLeft: '0px', paddingRight: '0px' }}>
-                                             <div className="field_section mb-20">
-                                                <TextField name="name" label="Name" />
-                                             </div>
-
-                                             <div className="field_section mb-20">
-                                                <TextAreaField name="description" label="Description" placeholder="Description" rows="3" />
-                                             </div>
-
-                                             <label style={{ marginBottom: '0px' }}>Fields</label>
-
+                                             <Tooltip title={'Provide a suitable name for your form.'}>
+                                                <div className="field_section mb-20">
+                                                   <TextField name="name" label="Form Name" />
+                                                </div>
+                                             </Tooltip>
+                                             <Tooltip title={'Provide a description about the intended purpose of the form.'}>
+                                                <div className="field_section mb-20">
+                                                   <TextAreaField name="description" label="Form Description" placeholder="Form Description" rows="3" />
+                                                </div>
+                                             </Tooltip>
+                                             <Tooltip title={'Add customer form and provide name and type for each field. For certain field types you can also add multiple options for your users to choose from.'}>
+                                                <label style={{ marginBottom: '0px' }}>Form Fields</label>
+                                             </Tooltip>
                                              {headerField &&
                                                 headerField.map((x, i) => {
                                                    return (

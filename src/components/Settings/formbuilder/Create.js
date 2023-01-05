@@ -169,16 +169,18 @@ const Create = ({ rs, retrieveList, loadList }) => {
 
                            <div className="row">
                               <div className="col-9">
-                              <Tooltip title={'Provide a suitable name for your form.'}>
-                                 <div className="field_section mb-20">
-                                    <TextField name="name" label="Form Name" style={{color: '#000'}}/>
-                                 </div></Tooltip>
+                                 <Tooltip title={'Provide a suitable name for your form.'}>
+                                    <div className="field_section mb-20">
+                                       <TextField name="name" label="Form Name" style={{ color: '#000' }} />
+                                    </div>
+                                 </Tooltip>
                                  <Tooltip title={'Provide a description about the intended purpose of the form.'}>
-                                 <div className="field_section mb-20">
-                                    <TextAreaField name="description" label="Form Description" style={{color: '#000'}} placeholder="Description" rows="3" />
-                                 </div></Tooltip>
+                                    <div className="field_section mb-20">
+                                       <TextAreaField name="description" label="Form Description" style={{ color: '#000' }} placeholder="Description" rows="3" />
+                                    </div>
+                                 </Tooltip>
                                  <Tooltip title={'Add customer form and provide name and type for each field. For certain field types you can also add multiple options for your users to choose from.'}>
-                                 <label style={{ marginBottom: '0px' }}>Fields</label>
+                                    <label style={{ marginBottom: '0px' }}>Form Fields</label>
                                  </Tooltip>
                                  {headerField &&
                                     headerField.map((x, i) => {
@@ -212,7 +214,7 @@ const Create = ({ rs, retrieveList, loadList }) => {
                                                 </div>
                                                 {x.type == 'option' ? (
                                                    <>
-                                                      <div style={{color: '#000'}}>Option Data</div>
+                                                      <div style={{ color: '#000' }}>Option Data</div>
 
                                                       {headerField[i]['option'].map((o, io) => {
                                                          return (
@@ -243,7 +245,7 @@ const Create = ({ rs, retrieveList, loadList }) => {
                                                 {/* Adding Regular Expression */}
                                                 {x.type == 'regularexpression' ? (
                                                    <>
-                                                      <div style={{ marginTop: '20px',color:'#000' }}>Regular Expression</div>
+                                                      <div style={{ marginTop: '20px', color: '#000' }}>Regular Expression</div>
                                                       {headerField[i]['regularexpression'].map((o, io) => {
                                                          return (
                                                             <>
