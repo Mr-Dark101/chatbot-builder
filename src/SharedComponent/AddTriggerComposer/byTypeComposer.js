@@ -1104,8 +1104,8 @@ const ByTypeComposer = ({ props, triggerType }) => {
                               </div>
 
                               <div>
-                                 <button type="button" onClick={() => handleAddTriggerValue()} className="btn btn_add_option btnPadding ">
-                                    Add Option
+                                 <button type="button" onClick={() => handleAddTriggerValue()} className="btn btn_add_option btnPaddingOther">
+                                    Add Keyword
                                  </button>
                               </div>
                            </div>
@@ -1603,7 +1603,7 @@ const ByTypeComposer = ({ props, triggerType }) => {
 
                                  <div className="add-btn">
                                     <button className="btn-outlined btnPadding" onClick={handleAddOptions}>
-                                       Add Menu
+                                       Add Menu Option
                                     </button>
                                  </div>
                               </div>

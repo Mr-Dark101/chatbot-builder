@@ -63,7 +63,7 @@
 }
 .button_section button {
   width: 33px;
-  height: 32px;
+  /* height: 32px; */
 }
 
 .button_section i {
@@ -736,8 +736,13 @@ textarea{
     margin: 0 !important;
  }
   .btnPadding{
-    padding: 10px 15px 10px 10px !important;
+    padding: 10px 10px 10px 10px !important;
+    width: '130px !important';
   } 
+  .btnPaddingOther{
+    padding: 10px 20px 10px 20px !important;
+    width: '130px !important';
+  }
   .check-box span:nth-of-type(1) {
     padding: 0 10px 0 0;
   }

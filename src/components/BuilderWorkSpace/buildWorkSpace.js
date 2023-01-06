@@ -164,6 +164,7 @@ const BuildWorkSpace = () => {
                ...init,
                isAlert: true,
                modalTitle: 'Bot published',
+               okText: 'Ok',
                isConfirm: false,
                isUpdatedList: true,
                confirmationTxt: confirmationText,
@@ -194,6 +195,7 @@ const BuildWorkSpace = () => {
                isAlert: false,
                isUnpublish: true,
                modalTitle: 'Bot Unpublished',
+               okText: 'Ok',
                isConfirm: false,
                isPublish: false,
                isUpdatedList: true,
@@ -365,8 +367,8 @@ const BuildWorkSpace = () => {
    return (
       <div className="ws-hld">
          <div className="head first_divNone">
-            <AlertModal visible={isAlert} handleOk={alertClose} confirmLoading={!isUpdatedList} modalText={confirmationTxt} modalTitle="Publish bot" modalInfo={confirmationInfo} handleCancel={alertClose} />
-            <AlertModal visible={isUnpublish} handleOk={alertClose} confirmLoading={!isUpdatedList} modalText={confirmationTxt} modalTitle="Unpublish bot" modalInfo={confirmationInfo} handleCancel={alertClose} />
+            <AlertModal visible={isAlert} handleOk={alertClose} confirmLoading={!isUpdatedList} modalText={confirmationTxt} okText={'Ok'} modalTitle="Publish bot" modalInfo={confirmationInfo} handleCancel={alertClose} />
+            <AlertModal visible={isUnpublish} handleOk={alertClose} confirmLoading={!isUpdatedList} modalText={confirmationTxt} okText={'Ok'} modalTitle="Unpublish bot" modalInfo={confirmationInfo} handleCancel={alertClose} />
 
             <ConfirmModal visible={isConfirm} handleOk={publishBot} okText="Publish" confirmLoading={!isUpdatedList} modalText={confirmationTxt} modalTitle="Publish bot" modalInfo={confirmationInfo} handleCancel={confirmClose} />
 

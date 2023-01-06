@@ -996,7 +996,7 @@ const ConditionList = ({ props, apiHandle, dataIndex, apiData, updatedTriggersVa
                   <div className="col-sm-6">
                      <div className="txt-field">
                         <div className="label">
-                           <div className="sub-txt">Api</div>
+                           <div className="sub-txt">API</div>
                         </div>
                         <div className="input" style={{ display: 'block' }}>
                            <Select
@@ -1010,7 +1010,7 @@ const ConditionList = ({ props, apiHandle, dataIndex, apiData, updatedTriggersVa
                                     triggerOptApi: e.target.value,
                                  });
                               }}
-                              label="Api"
+                              label="API"
                            >
                               {apiList?.map((tr) => {
                                  return <MenuItem value={tr.id}>{tr.name}</MenuItem>;

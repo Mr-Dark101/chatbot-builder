@@ -929,7 +929,7 @@ const ByTypeComposer = ({ props, triggerType, apiHandleConditionMaster }) => {
                                     return <ConditionList dataIndex={i} apiData={tr.dataValue} props={props} updatedTriggersVal={updatedTriggers} apiHandle={apiHandle} />;
                                  })}
                                  <br />
-                                 <div className="actions-btn" style={{textAlign:"end"}}>
+                                 <div className="actions-btn" style={{ textAlign: 'end' }}>
                                     <button
                                        type="button"
                                        className="apiBtn"
@@ -1261,7 +1261,7 @@ const ByTypeComposer = ({ props, triggerType, apiHandleConditionMaster }) => {
 
                                  <div className="add-btn">
                                     <button type="button" className="btn-outlined" onClick={handleAddOptions}>
-                                       Add Option
+                                       Add Menu Option
                                     </button>
                                  </div>
                               </div>

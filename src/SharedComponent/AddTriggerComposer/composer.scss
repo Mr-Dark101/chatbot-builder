@@ -55,16 +55,18 @@
               }
             }
 
+   
             .input {
               display: flex;
               width: 100%;
+              justify-content: space-between;
 
               .inputWrap {
-                max-width: 74%;
+                max-width: 76%;
                 width: 100%;
              
                 .inp {
-                  width: 100%;
+                  width: 102%;
                   outline: none;
                   text-decoration: none;
                   border: none;
@@ -134,11 +136,11 @@
           }
 
           .add-btn {
-            display: flex;
-            width: 27%;
-            align-items: center;
-            margin: 0rem 0;
-            justify-content: flex-end;
+               /* display: flex; */
+    /* width: 27%; */
+    /* align-items: center; */
+    /* margin: 0; */
+    /* justify-content: flex-end; */
 
             .btn-outlined {
               display: flex;
