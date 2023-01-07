@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 
 import ByTypeComposer from './byTypeComposer';
 import AlertModal from '../../SharedComponent/ConfirmModal/AlertModal';
+import {Tooltip} from '@mui/material';
 
 const AddTriggerComposer = (props) => {
    const [triggerType, setTriggerType] = useState('M');
@@ -26,6 +27,12 @@ const AddTriggerComposer = (props) => {
    let { currentTriggerData, openChatBot, getAllTypes, isAlert, isUpdatedList, confirmationTxt, confirmationInfo } = init;
 
    useEffect(() => {
+      let plan = localStorage.getItem('chatbot_plan');
+      if (plan.includes('ADVANCED')) {
+         document.getElementById('lockimage').style.display = 'none';
+      } else {
+         document.getElementById('lockimage').style.display = 'unset';
+      }
       let tVal = 'M';
       setBtnMessageStyle({ backgroundColor: '#363a77', width: '100%', color: '#fff', borderRadius: '5px 5px 0px 0px' });
       setBtnApiStyle({ backgroundColor: '#fff', width: '100%', color: '#000', borderRadius: '5px 5px 0px 0px' });
@@ -49,6 +56,7 @@ const AddTriggerComposer = (props) => {
          setTriggerType(param);
       } else if (param == 'A') {
          let plan = localStorage.getItem('chatbot_plan');
+       
          if (plan.includes('ADVANCED')) {
             console.log('Advanced Version');
             setBtnMessageStyle({ backgroundColor: '#fff', width: '100%', color: '#000', borderRadius: '5px 5px 0px 0px' });
@@ -56,12 +64,7 @@ const AddTriggerComposer = (props) => {
             setBtnFormStyle({ backgroundColor: '#fff', width: '100%', color: '#000', borderRadius: '5px 5px 0px 0px' });
             setTriggerType(param);
          } else {
-            setInit({
-               ...init,
-               isAlert: true,
-               isUpdatedList: true,
-               confirmationTxt: 'API Integrations is available on Advanced Chatbot Plan Only',
-            });
+
          }
       } else if (param == 'F') {
          setBtnMessageStyle({ backgroundColor: '#fff', width: '100%', color: '#000', borderRadius: '5px 5px 0px 0px' });
@@ -70,6 +73,9 @@ const AddTriggerComposer = (props) => {
          setTriggerType(param);
       }
    };
+
+
+ 
 
    const alertClose = () => {
       setInit({
@@ -82,7 +88,7 @@ const AddTriggerComposer = (props) => {
 
    return (
       <>
-         <ul className="right_bar_top_section">
+         <ul className="right_bar_top_section activeUl">
             <AlertModal visible={isAlert} handleOk={alertClose} confirmLoading={!isUpdatedList} modalText={confirmationTxt} modalInfo={confirmationInfo} handleCancel={alertClose} />
             <li>
                <button onClick={() => meClick('M')} className="btn btn-block {btn-primary}" style={btnMessageStyle}>
@@ -90,8 +96,9 @@ const AddTriggerComposer = (props) => {
                </button>
             </li>
             <li>
-               <button onClick={() => meClick('A')} className="btn btn-block btn-secondry" style={btnApiStyle}>
-                  API
+               
+               <button  onClick={() => meClick('A')} className="btn btn-block btn-secondry" style={btnApiStyle}>
+                  API <Tooltip title= {"You don\'t have access to this feature. Please contact sales to upgrade your plan."}><span id ="lockimage" className="lockIcon"><i class="fa fa-lock"></i></span></Tooltip>
                </button>
             </li>
 
