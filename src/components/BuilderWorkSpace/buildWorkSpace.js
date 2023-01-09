@@ -332,7 +332,7 @@ const BuildWorkSpace = () => {
          if (parseInt(differenceInDays) < 1 && currentDay === updateDay) {
             timeStamp = moment(init.updated_time).format('hh:mm a');
          } else if (parseInt(differenceInDays) >= 1 && parseInt(differenceInDays) < 2 && currentDay === updateDay + 1) {
-            timeStamp = 'Yesterday' + moment(init.updated_time).format('hh:mm a');
+            timeStamp = 'Yesterday ' + moment(init.updated_time).format('hh:mm a');
          } else {
             timeStamp = updateTime;
          }
