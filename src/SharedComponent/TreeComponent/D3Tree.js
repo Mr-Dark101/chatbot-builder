@@ -320,6 +320,7 @@ const D3Tree = (props) => {
             <div class="tag-box">
                <a
                   href="https://help.eocean.net/knowledge/how-to-build-a-lead-generation-chatbot-for-video-tutorial"
+                  target="_blank"
                   class="btn position-absolute bottom-0 start-0"
                   style={{ height: '30px', marginBottom: '20px', marginLeft: '70px', backgroundColor: '#ffffff', fontWeight: 800, border: '1px solid #ffffff' }}
                >

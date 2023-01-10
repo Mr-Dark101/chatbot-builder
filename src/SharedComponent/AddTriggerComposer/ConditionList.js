@@ -998,7 +998,7 @@ const ConditionList = ({ props, apiHandle, dataIndex, apiData, updatedTriggersVa
                         <div className="label">
                            <div className="sub-txt">API</div>
                         </div>
-                        <div className="input" style={{ display: 'block' }}>
+                        <div className="input custom_borderTop" style={{ display: 'block' }}>
                            <Select
                               labelId="demo-simple-select-standard-label"
                               id="demo-simple-select-standard"
@@ -1025,7 +1025,7 @@ const ConditionList = ({ props, apiHandle, dataIndex, apiData, updatedTriggersVa
                         <div className="label">
                            <div className="sub-txt">Response</div>
                         </div>
-                        <div className="input" style={{ display: 'block' }}>
+                        <div className="input custom_borderTop" style={{ display: 'block' }}>
                            {triggerOptApi == 0 ? (
                               <Select
                                  labelId="demo-simple-select-standard-label"
@@ -1062,7 +1062,7 @@ const ConditionList = ({ props, apiHandle, dataIndex, apiData, updatedTriggersVa
                   </div>
                </div>
 
-               <div className="add-btn api_button_section">
+               <div className="add-btn api_button_section d-flex align-items-end justify-content-end">
                   <button className="btn-outlined btnPadding" onClick={handleAddOptions}>
                      Add Option
                   </button>
