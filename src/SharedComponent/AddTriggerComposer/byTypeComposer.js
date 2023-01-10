@@ -641,9 +641,9 @@ const ByTypeComposer = ({ props, triggerType }) => {
             userId: userId,
          };
 
-         if (published) {
+         /* if (published) {
             handlePublishBot({ botId: id, isPublished: false, userId: userId });
-         }
+         }*/
          dispatch(UpdateTrigger(updateObj));
          updatedTriggers = [];
       }

@@ -284,7 +284,15 @@ const BuildWorkSpace = () => {
          ...init,
          updated_time: new Date(),
       });
+
+      dispatch(
+         SetCurrentBotUpdateData({
+            ...currentBotData,
+            published: !published,
+         })
+      );
    };
+
    const handleBack = () => {
       //history.push(`${STRINGS.ROUTES.ROOT}?org=${localStorage.getItem('userId')}`);
       //window.location.reload();
