@@ -818,6 +818,7 @@ textarea{
 .cursor-pointer {
   cursor: pointer;
 }
+
 /*.requiredDiv {
   color: #f00;
   font-size: 12px;
@@ -826,3 +827,9 @@ textarea{
 /*.page_data_clinic input, .page_data_clinic textarea {
   margin-bottom: 0 !important;
 }*/
+.input.custom_borderTop {
+  #demo-simple-select-standard {
+    border-top: 1px solid transparent !important;
+    width: 95%; 
+  }
+}

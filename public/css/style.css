@@ -32113,8 +32113,9 @@ img.away, img.busy, img.offline, img.online {
   border-color: transparent;
 }
 .lockIcon i {
-  font-size: 12px;
+  font-size: 11px;
   margin: 0 0 0 5px;
+  color: #e7e7e7;
 }
 .btn_add_option{
   padding: 13.5px 30px !important;
