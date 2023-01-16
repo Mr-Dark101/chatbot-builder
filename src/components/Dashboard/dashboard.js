@@ -17,19 +17,24 @@ import EventBus from '../../common/EventBus';
 import UserBotsCardItem from './items/UserBotsCardItem';
 import CreateBotComposer from './items/CreateBotComposer';
 import ConfirmModal from '../../SharedComponent/ConfirmModal/ConfirmModal';
+import ConfirmModalPublish from '../../SharedComponent/ConfirmModal/ConfirmModalPublish';
 import AlertModal from '../../SharedComponent/ConfirmModal/AlertModal';
 import CreateBotsCardItem from './items/CreateBotsItems';
 import { STRINGS } from '../../utils/base';
 import { useHistory } from 'react-router-dom';
-import { resetPublish } from '../BuilderWorkSpace/slices/workSpace.slice';
+import { resetPublish,PublishedBot } from '../BuilderWorkSpace/slices/workSpace.slice';
 import { Link } from 'react-router-dom';
 
 const defaultState = {
    isConfirm: false,
+   isConfirmPublish: false,
    isAlert: false,
    isUpdatedList: false,
    confirmationTxt: '',
    confirmationInfo: [],
+   okText:'',
+   publishStatus:'',
+   modalTitle:'',
    currentObject: {
       userId: 0,
       id: 0,
@@ -53,7 +58,7 @@ const createArray = [
 
 const Dashboard = () => {
    const [init, setInit] = useState(defaultState);
-   let { isAlert, isConfirm, isUpdatedList, confirmationTxt, confirmationInfo, currentObject } = init;
+   let { isAlert, isConfirm, isUpdatedList, confirmationTxt, confirmationInfo, currentObject,isConfirmPublish,okText,modalTitle,publishStatus } = init;
    const dispatch = useDispatch();
    // const location1 = useLocation()
 
@@ -73,11 +78,15 @@ const Dashboard = () => {
          dispatch(GetUserBots({ userId: location }));
       }
       if (isPublishSuccess) {
+
          setInit({
             ...init,
             isAlert: true,
             isConfirm: false,
+            isConfirmPublish:false,
             isUpdatedList: true,
+            okText: 'OK',
+
             confirmationTxt: message_,
             confirmationInfo: [],
             currentObject: {
@@ -111,6 +120,7 @@ const Dashboard = () => {
             isUpdatedList: true,
             confirmationTxt: message,
             confirmationInfo: [],
+             okText: 'OK',
             currentObject: {
                userId: 0,
                id: 0,
@@ -126,6 +136,7 @@ const Dashboard = () => {
             isConfirm: false,
             isUpdatedList: true,
             confirmationTxt: message,
+             okText: 'OK',
             confirmationInfo: [],
             currentObject: {
                userId: 0,
@@ -169,6 +180,36 @@ const Dashboard = () => {
       }
    };
 
+
+   const handleSubmitTriggerPublish = () => {
+         //console.log(currentObject)
+         const obj = { botId: currentObject.id, isPublished: publishStatus }
+         dispatch(PublishedBot(obj));
+
+      //    setInit({
+      //    ...init,
+      //    isConfirmPublish: false,
+      //    isAlert:true,
+      //    isUpdatedList: true,
+      //    modalTitle: 'Publish bot',
+      //    okText: 'Publish',
+      //    confirmationTxt: `Are you sure want to delete this bot?`,
+      //    currentObject: {
+      //       userId: 0,
+      //       id: 0,
+      //    },
+      // });
+
+
+
+         // console.log('coming handle');
+         //handleDelete({ botId: currentObject.id, userId: currentObject.userId });
+      //}
+   };
+
+
+   
+
    const confirmClose = () => {
       setInit({
          ...init,
@@ -179,6 +220,16 @@ const Dashboard = () => {
             userId: 0,
             id: 0,
          },
+      });
+   };
+
+   const confirmClosePublish = () => {
+      setInit({
+         ...init,
+         isConfirmPublish: false,
+         isUpdatedList: true,
+         confirmationTxt: '',
+         
       });
    };
 
@@ -193,6 +244,7 @@ const Dashboard = () => {
             id: 0,
          },
       });
+      window.location.reload();
    };
 
    const handleCreateChatBot = (type) => {
@@ -272,7 +324,8 @@ const Dashboard = () => {
             <>
                <CreateBotComposer currentUser={currentUser} data={updateBotData} openModal={openBotComposer} onClose={closeModal} />
                <ConfirmModal visible={isConfirm} handleOk={handleSubmitTrigger} okText="Delete" modalTitle="Delete bot" confirmLoading={!isUpdatedList} modalText={confirmationTxt} modalInfo={confirmationInfo} handleCancel={confirmClose} />
-               <AlertModal visible={isAlert} handleOk={alertClose} confirmLoading={!isUpdatedList} modalText={confirmationTxt} modalInfo={confirmationInfo} handleCancel={alertClose} />
+              <ConfirmModalPublish visible={isConfirmPublish} publishStatus={publishStatus} handleOk={handleSubmitTriggerPublish} okText={okText} modalTitle={modalTitle} confirmLoading={!isUpdatedList} modalText={confirmationTxt} modalInfo={confirmationInfo} handleCancel={confirmClosePublish} />
+              <AlertModal visible={isAlert} handleOk={alertClose} confirmLoading={!isUpdatedList} modalText={confirmationTxt} okText={okText} modalTitle={modalTitle} modalInfo={confirmationInfo} handleCancel={alertClose} />
                <div className="head" style={{ display: 'none' }}>
                   <div className="head-rt">
                      <h4 class="box-title m-0">Create a bot</h4>
@@ -321,6 +374,22 @@ const Dashboard = () => {
                                           currentObject: obj,
                                        });
                                     }}
+
+                                    onPublishCustom={(obj) => {
+                                       setInit({
+                                          ...init,
+                                          isConfirmPublish: true,
+                                          isUpdatedList: true,
+                                          confirmationTxt: `You're about to publish this bot.`,
+                                          confirmationInfo: [],
+                                          currentObject: obj,
+                                          okText: (!d.published) ? 'Publish' : 'Unpublish',
+                                          modalTitle: (!d.published) ? 'Publish Bot' : 'Unpublish Bot',
+                                          publishStatus: (!d.published) ? true : false,
+                                          currentObject: obj,
+                                       });
+                                    }}
+
                                     dashboard={dashboard}
                                     key={index}
                                     data={d}

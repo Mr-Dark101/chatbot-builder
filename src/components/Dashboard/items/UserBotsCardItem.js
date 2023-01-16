@@ -16,11 +16,13 @@ import InstagramIcon from '../../../assets/insta.png';
 import GoogleIcon from '../../../assets/google.png';
 import { Tooltip } from '@mui/material';
 
+
 const defaultState = {
    openOpt: false,
    openComposer: false,
    currentUser: 0,
    selected: false,
+  
 };
 
 const menusOptions = [
@@ -36,7 +38,7 @@ const menusOptionsTemp = [
 
 const UserBotsCardItem = (props) => {
    //console.log('Props: ' + JSON.stringify(props));
-   let { data, onDelete, temp, onAddBot } = props;
+   let { data, onDelete, temp, onAddBot,onPublishCustom } = props;
    let { id, name, userId, description, phoneNumber, published } = data;
    const [init, setInit] = useState(defaultState);
    let { selected } = init;
@@ -71,8 +73,23 @@ const UserBotsCardItem = (props) => {
       });
    };
 
+    const alertClose = () => {
+      setInit({
+         ...init,
+         isAlert: false,
+         isUnpublish: false,
+         isPublish: false,
+         isConfirm: false,
+         isUpdatedList: true,
+         confirmationTxt: '',
+      });
+      //window.location.reload();
+   };
+
    const handleActivateBot = (obj) => {
-      dispatch(PublishedBot(obj));
+      
+      
+      //dispatch(PublishedBot(obj));
       // dispatch(DeleteUserBot(obj));
    };
 
@@ -109,11 +126,19 @@ const UserBotsCardItem = (props) => {
             });
             break;
          case 3:
-            handleActivateBot({ botId: id, isPublished: true, userId });
+            onPublishCustom({
+               id: id,
+               userId,
+            })
+           // handleActivateBot({ botId: id, isPublished: true, userId });
             break;
          case 4:
             //in-activate-bot
-            handleActivateBot({ botId: id, isPublished: false, userId });
+            onPublishCustom({
+               id: id,
+               userId,
+            })
+            //handleActivateBot({ botId: id, isPublished: false, userId });
             break;
 
          case 7:
@@ -155,6 +180,8 @@ const UserBotsCardItem = (props) => {
    };
 
    return (
+      <>
+      
       <Tooltip title={description}>
          <div
             className={`card_box ${selected && 'on'}`}
@@ -253,6 +280,7 @@ const UserBotsCardItem = (props) => {
             </div>
          </div>
       </Tooltip>
+      </>
    );
 };
 

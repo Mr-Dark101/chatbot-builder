@@ -7,16 +7,16 @@ export const PublishedBot = (publishObj) => async (dispatch) => {
    let body = {
       userId: localStorage.getItem('userId'),
       botId: publishObj.botId,
-      publish: true,
+      publish: publishObj.isPublished,
    };
    API.post(`/publish-bot`, body)
       .then((res) => {
          if (res.data.status === 1) {
             dispatch(isPublishedSuccess(res.data.message));
-            window.location.reload();
+            //window.location.reload();
          } else {
             dispatch(isError(res.data.message));
-            window.location.reload();
+           // window.location.reload();
          }
       })
       .catch((ex) => {
