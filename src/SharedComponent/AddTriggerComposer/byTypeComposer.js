@@ -62,6 +62,7 @@ const defaultState = {
       routToAgent: false,
       type: 'TEXT',
       triggerMenus: [],
+      deleteids:[],
    },
    updateTriggerObject: {
       botId: 0,
@@ -98,7 +99,7 @@ const ByTypeComposer = ({ props, triggerType }) => {
    const [init, setInit] = useState(defaultState);
    const [isData] = useState(!$.isEmptyObject(trigger.currentTriggerData));
    let { isText, isMedia, isLoopBack, template, currentData, openFallBackComposer, triggerOpt, triggerValueName, values, descriptionType, isConfirm, isAdd, confirmationTxt, isAlert, simpleLabel, simpleValue, simpleValues } = init;
-   let { name, triggerMenus, description, fallBackResponse, caption, loopBackId, loopBackText, routToAgent, type, apiId, apiText, form_id, formStartText, formEndText } = currentData;
+   let { name, triggerMenus, description, fallBackResponse, caption, loopBackId, loopBackText, routToAgent, type, apiId, apiText, form_id, formStartText, formEndText,deleteids } = currentData;
    let { id, userId, published, updated_at } = currentBotData;
 
    let { triggersList, currentTriggerData, isChild, childBotId, urls, isUpdatedList, menuTextUpdateSuccess, apiList, formList, urlUpdateSuccess } = trigger;
@@ -195,7 +196,7 @@ const ByTypeComposer = ({ props, triggerType }) => {
             routToAgent: false,
             type: 'TEXT',
             triggerMenus: [],
-
+            deleteids:[],
             conditionLabel: '',
             conditionValue: '',
          },
@@ -398,6 +399,7 @@ const ByTypeComposer = ({ props, triggerType }) => {
                routToAgent: false,
                type: '',
                triggerMenus: [],
+               deleteids:[],
             },
             updateTriggerObject: {
                botId: 0,
@@ -570,6 +572,8 @@ const ByTypeComposer = ({ props, triggerType }) => {
    };
 
    const handleSubmitTrigger = () => {
+
+
       let obj = {
          title: currentData.name,
          type: currentData.type,
@@ -590,7 +594,10 @@ const ByTypeComposer = ({ props, triggerType }) => {
          routToAgent: currentData.routToAgent,
          caption: currentData.caption,
          simpleValues: init.simpleValues,
+         deleteids:currentData.deleteids,
       };
+
+
       let triggersListObj = {
          // "fallBackResponse": obj.fallBackResponse,
          fallBackResponse: fallBackResponse,
@@ -604,6 +611,7 @@ const ByTypeComposer = ({ props, triggerType }) => {
             };
          }),
          name: obj.title,
+         
          response: description,
          templatename: obj.template,
          api_id: currentData.apiId,
@@ -628,6 +636,7 @@ const ByTypeComposer = ({ props, triggerType }) => {
          let updateObj = {
             botId: id,
             triggersList: updatedTriggers,
+            deleteids: obj.deleteids,
             userId: userId,
          };
          dispatch(UpdateTrigger(updateObj));
@@ -639,6 +648,7 @@ const ByTypeComposer = ({ props, triggerType }) => {
             botId: id,
             triggersList: [...updatedBots, triggersListObj],
             userId: userId,
+            deleteids: obj.deleteids,
          };
 
          /* if (published) {
@@ -1710,7 +1720,9 @@ const ByTypeComposer = ({ props, triggerType }) => {
                                                       ...init,
                                                       currentData: {
                                                          ...init.currentData,
+                                                         deleteids: [...init.currentData.deleteids,m.main_id],
                                                          triggerMenus: init.currentData.triggerMenus.filter((d) => d.id !== m.id),
+
                                                       },
                                                    });
                                                 }}
