@@ -50,7 +50,7 @@ export const getChannelVerify = (id) => async (dispatch) => {
    orgId = orgId.replace('%22', '');
    return API.get(`/user-channel?org=${orgId}&channel=${id}`)
       .then((res) => {
-         console.log('Response:' + JSON.stringify(res.data));
+         //console.log('Response:' + JSON.stringify(res.data));
          try {
             if (res.status === STRINGS.API_STATUS.SUCCESS) {
                if (res.data.data != undefined && res.data.data != null) {
@@ -93,6 +93,7 @@ export const createUserBot = (createObj) => async (dispatch) => {
 export const DeleteUserBot =
    ({ botId, userId }) =>
    async (dispatch) => {
+      userId = localStorage.getItem('org_unit_id');
       API.delete(
          `/delete-bot`,
          { data: { botId, userId } },

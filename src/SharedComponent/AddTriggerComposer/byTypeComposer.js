@@ -24,9 +24,11 @@ const defaultState = {
    isConfirm: false,
    isAdd: false,
    isAlert: false,
+   isDelete: false,
+   isEmpty: false,
    confirmationTxt: '',
    isText: false,
-
+   modalTitle: '',
    isMedia: false,
    isLoopBack: false,
    updatePending: false,
@@ -98,7 +100,7 @@ const ByTypeComposer = ({ props, triggerType }) => {
    const dispatch = useDispatch();
    const [init, setInit] = useState(defaultState);
    const [isData] = useState(!$.isEmptyObject(trigger.currentTriggerData));
-   let { isText, isMedia, isLoopBack, template, currentData, openFallBackComposer, triggerOpt, triggerValueName, values, descriptionType, isConfirm, isAdd, confirmationTxt, isAlert, simpleLabel, simpleValue, simpleValues } = init;
+   let { isText, isMedia, isLoopBack, template, currentData, openFallBackComposer, triggerOpt, triggerValueName, values, descriptionType, isConfirm, isAdd, confirmationTxt, isAlert,isDelete,isEmpty, simpleLabel, simpleValue, simpleValues,modalTitle } = init;
    let { name, triggerMenus, description, fallBackResponse, caption, loopBackId, loopBackText, routToAgent, type, apiId, apiText, form_id, formStartText, formEndText,deleteids } = currentData;
    let { id, userId, published, updated_at } = currentBotData;
 
@@ -443,7 +445,11 @@ const ByTypeComposer = ({ props, triggerType }) => {
          setInit({
             ...init,
             isAlert: true,
-            confirmationTxt: 'Updated Successfully',
+            isDelete: false,
+            isEmpty: false,
+            confirmationTxt: 'Bot menu updated successfully',
+            modalTitle: 'Bot Menu Update',
+            okText: 'Ok',            
             updatePending: false,
             updateMenus: {
                selectedMenuId: null,
@@ -566,7 +572,26 @@ const ByTypeComposer = ({ props, triggerType }) => {
          confirmationTxt: '',
       });
    };
-
+	const alertDeleteClose = () => {
+      setInit({
+         ...init,
+         isAlert: false,
+         isDelete: false,
+         isEmpty:false,
+         isUpdatedList: true,
+         confirmationTxt: '',
+      });
+   };
+   const alertEmptyClose = () => {
+      setInit({
+         ...init,
+         isAlert: false,
+         isDelete: false,
+         isEmpty: false,
+         isUpdatedList: true,
+         confirmationTxt: '',
+      });
+   };
    const handlePublishBot = (obj) => {
       dispatch(PublishedBot(obj));
    };
@@ -771,7 +796,9 @@ const ByTypeComposer = ({ props, triggerType }) => {
       } else {
          setInit({
             ...init,
-            isAlert: true,
+			isAlert: false,
+            isDelete:false,
+            isEmpty: true,
             confirmationTxt: 'Please fill up the field',
          });
          // alert("Please fill up the field");
@@ -861,7 +888,10 @@ const ByTypeComposer = ({ props, triggerType }) => {
       } else {
          setInit({
             ...init,
-            isAlert: true,
+            isAlert: false,
+            isDelete:false,
+            isEmpty: true,
+            modalTitle:'Empty Field',
             isUpdatedList: true,
             confirmationTxt: 'Please add label first.',
          });
@@ -879,9 +909,12 @@ const ByTypeComposer = ({ props, triggerType }) => {
       } else {
          setInit({
             ...init,
-            isAlert: true,
+			isAlert: false,
+            isDelete:false,
+            isEmpty: true,
+            modalTitle:'Empty Field',
             isUpdatedList: true,
-            confirmationTxt: 'Please add value first.',
+            confirmationTxt: 'Please add keyword first.',
          });
          // alert("Please add value first.")
       }
@@ -951,6 +984,26 @@ const ByTypeComposer = ({ props, triggerType }) => {
       }
    };
 
+	const handleMenuDelete = (m) => {
+      setInit({
+         ...init,
+         isAlert: false,
+         isDelete: true,
+         confirmationTxt: 'Bot menu deleted successfully',
+         modalTitle: 'Bot Menu Delete',
+         okText: 'Ok',
+         updatePending: false,
+         updateMenus: {
+            selectedMenuId: null,
+            text: '',
+         },
+         currentData: {
+            ...init.currentData,
+            deleteids: [...init.currentData.deleteids,m.main_id],
+            triggerMenus: init.currentData.triggerMenus.filter((d) => d.id !== m.id),
+         },
+      });
+   };
    const formChange = (form_id) => {
       let fApi = formList.filter((d) => d.id == form_id);
       fApi = fApi[0];
@@ -1066,6 +1119,9 @@ const ByTypeComposer = ({ props, triggerType }) => {
          <ConfirmModal visible={isConfirm} handleOk={handleSubmitTrigger} confirmLoading={!isUpdatedList} modalText={confirmationTxt} modalTitle="Update Trigger" okText={'Update'} handleCancel={confirmClose} />
 
          <AlertModal visible={isAlert} handleOk={alertClose} confirmLoading={!isUpdatedList} modalText={confirmationTxt} handleCancel={alertClose} />
+		 <AlertModal visible={isDelete} handleOk={alertDeleteClose} confirmLoading={!isUpdatedList} modalText={confirmationTxt} modalTitle = {'Bot Menu Delete'} okText={'Ok'} handleCancel={alertDeleteClose} />
+         <AlertModal visible={isEmpty} handleOk={alertEmptyClose} confirmLoading={!isUpdatedList} modalText={confirmationTxt} modalTitle = {'Empty Field'} okText={'Ok'} handleCancel={alertEmptyClose} />
+        
          <div className="composer-content">
             <div className="trigger-card">
                <div className="card-content">
@@ -1715,18 +1771,7 @@ const ByTypeComposer = ({ props, triggerType }) => {
                                              <button
                                                 className="btn btn-danger btn-icon rounded-circle"
                                                 style={{ width: '25px', height: '25px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
-                                                onClick={() => {
-                                                   setInit({
-                                                      ...init,
-                                                      currentData: {
-                                                         ...init.currentData,
-                                                         deleteids: [...init.currentData.deleteids,m.main_id],
-                                                         triggerMenus: init.currentData.triggerMenus.filter((d) => d.id !== m.id),
-
-                                                      },
-                                                   });
-                                                }}
-                                             >
+     											onClick={() => handleMenuDelete(m)}>
                                                 <i className="fa fa-trash" style={{ fontSize: '12px' }}></i>
                                              </button>
                                           </div>

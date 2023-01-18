@@ -159,7 +159,7 @@ const Dashboard = () => {
          ...init,
          isConfirm: false,
          isUpdatedList: false,
-         modalTitle: 'Delete bot',
+         modalTitle: 'Delete Bot',
          okText: 'Delete',
          confirmationTxt: `Are you sure want to delete this bot?`,
          currentObject: {
@@ -323,7 +323,7 @@ const Dashboard = () => {
          {localStorage.getItem('org_unit_id') != '' ? (
             <>
                <CreateBotComposer currentUser={currentUser} data={updateBotData} openModal={openBotComposer} onClose={closeModal} />
-               <ConfirmModal visible={isConfirm} handleOk={handleSubmitTrigger} okText="Delete" modalTitle="Delete bot" confirmLoading={!isUpdatedList} modalText={confirmationTxt} modalInfo={confirmationInfo} handleCancel={confirmClose} />
+               <ConfirmModal visible={isConfirm} handleOk={handleSubmitTrigger} okText="Delete" modalTitle="Delete Bot" confirmLoading={!isUpdatedList} modalText={confirmationTxt} modalInfo={confirmationInfo} handleCancel={confirmClose} />
               <ConfirmModalPublish visible={isConfirmPublish} publishStatus={publishStatus} handleOk={handleSubmitTriggerPublish} okText={okText} modalTitle={modalTitle} confirmLoading={!isUpdatedList} modalText={confirmationTxt} modalInfo={confirmationInfo} handleCancel={confirmClosePublish} />
               <AlertModal visible={isAlert} handleOk={alertClose} confirmLoading={!isUpdatedList} modalText={confirmationTxt} okText={okText} modalTitle={modalTitle} modalInfo={confirmationInfo} handleCancel={alertClose} />
                <div className="head" style={{ display: 'none' }}>
@@ -376,18 +376,35 @@ const Dashboard = () => {
                                     }}
 
                                     onPublishCustom={(obj) => {
-                                       setInit({
-                                          ...init,
-                                          isConfirmPublish: true,
-                                          isUpdatedList: true,
-                                          confirmationTxt: `You're about to publish this bot.`,
-                                          confirmationInfo: [],
-                                          currentObject: obj,
-                                          okText: (!d.published) ? 'Publish' : 'Unpublish',
-                                          modalTitle: (!d.published) ? 'Publish Bot' : 'Unpublish Bot',
-                                          publishStatus: (!d.published) ? true : false,
-                                          currentObject: obj,
-                                       });
+                                       let confirm = (!d.published) ? `publish` : `unpublish`;
+                                       if(confirm === 'publish') {
+                                          setInit({
+                                             ...init,
+                                             isConfirmPublish: true,
+                                             isUpdatedList: true,
+                                             confirmationTxt: `Are you sure you want to ` + confirm +` this bot?`,
+                                             confirmationInfo: [],
+                                             currentObject: obj,
+                                             okText: (!d.published) ? 'Publish' : 'Unpublish',
+                                             modalTitle: (!d.published) ? 'Publish Bot' : 'Unpublish Bot',
+                                             publishStatus: (!d.published) ? true : false,
+                                             currentObject: obj,
+                                          });
+                                       } else {
+                                          setInit({
+                                             ...init,
+                                             isConfirmPublish: true,
+                                             isUpdatedList: true,
+                                             confirmationTxt: `Are you sure you want to ` + confirm +` this bot?`,
+                                             confirmationInfo: ['Unpublishing means your chatbot will remove it from user view and chatbot will not respond to user requests. However, your chatbot will not be deleted.'],
+                                             currentObject: obj,
+                                             okText: (!d.published) ? 'Publish' : 'Unpublish',
+                                             modalTitle: (!d.published) ? 'Publish Bot' : 'Unpublish Bot',
+                                             publishStatus: (!d.published) ? true : false,
+                                             currentObject: obj,
+                                          });
+                                       }
+                                       
                                     }}
 
                                     dashboard={dashboard}

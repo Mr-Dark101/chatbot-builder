@@ -13,8 +13,10 @@ import $ from 'jquery';
 import { useDispatch } from 'react-redux';
 import { createUserBot, updateUserBot, getChannelVerify } from '../slices/dashboard.slice';
 import AlertModal from '../../../SharedComponent/ConfirmModal/ChannelModal';
+import ConfirmModal from '../../../SharedComponent/ConfirmModal/ConfirmModal';
 import { fontWeight, width } from '@mui/system';
 const defaultState = {
+   isConfirm: false,
    isAlert: false,
    openComposer: false,
    openChatBot: false,
@@ -37,7 +39,7 @@ const CreateBotComposer = (props) => {
    let { openModal, onClose, currentUser, data } = props;
 
    const [init, setInit] = useState(defaultState);
-   let { selected, selectCategory, botName, botDescription, botPhoneNumber, botImage, botId, comingSoon, onHover, isAlert, isUpdatedList, confirmationTxt, icon, confirmationInfo, buttonText } = init;
+   let { selected, selectCategory, botName, botDescription, botPhoneNumber, botImage, botId, comingSoon, onHover, isAlert,isConfirm, isUpdatedList, confirmationTxt, icon, confirmationInfo, buttonText } = init;
    const dispatch = useDispatch();
 
    useEffect(() => {
@@ -105,6 +107,7 @@ const CreateBotComposer = (props) => {
       });
    };
    const handleCreateBotSubmit = () => {
+      alertConfirmClose();
       // console.log('HandleCreateBotSubmit: ' + localStorage.getItem('org_unit_id'));
       let createObj = {
          name: botName,
@@ -145,6 +148,18 @@ const CreateBotComposer = (props) => {
       setInit({
          ...init,
          isAlert: false,
+         isConfirm: false,
+         isUpdatedList: true,
+         confirmationTxt: '',
+         icon: '',
+      });
+   };
+
+   const alertConfirmClose = () => {
+      setInit({
+         ...init,
+         isAlert: false,
+         isConfirm: false,
          isUpdatedList: true,
          confirmationTxt: '',
          icon: '',
@@ -156,6 +171,7 @@ const CreateBotComposer = (props) => {
       setInit({
          ...init,
          isAlert: false,
+         isConfirm: false,
          isUpdatedList: true,
          confirmationTxt: '',
          icon: '',
@@ -212,6 +228,7 @@ const CreateBotComposer = (props) => {
                   setInit({
                      ...init,
                      isAlert: false,
+                     isConfirm: false,
                      buttonText: categoryText,
                      icon: icon,
                      confirmationTxt: `Before you can add chatbot to Google's Business Messages, you need to add a Google's Business Messages account.`,
@@ -221,6 +238,7 @@ const CreateBotComposer = (props) => {
                   setInit({
                      ...init,
                      isAlert: false,
+                     isConfirm: false,
                      buttonText: categoryText,
                      icon: icon,
                      confirmationTxt: `Before you can add chatbot to ${categoryText}, you need to connect a ${categoryText} page.`,
@@ -232,6 +250,7 @@ const CreateBotComposer = (props) => {
                   setInit({
                      ...init,
                      isAlert: true,
+                     isConfirm: false,
                      buttonText: categoryText,
                      icon: icon,
                      confirmationTxt: `Before you can add chatbot to Google's Business Messages, you need to add a Google's Business Messages account.`,
@@ -241,6 +260,7 @@ const CreateBotComposer = (props) => {
                   setInit({
                      ...init,
                      isAlert: true,
+                     isConfirm: false,
                      buttonText: categoryText,
                      icon: icon,
                      confirmationTxt: `Before you can add chatbot to ${categoryText}, you need to connect a ${categoryText} page.`,
@@ -265,6 +285,23 @@ const CreateBotComposer = (props) => {
          }
       }
    };
+
+
+   const handleUpdate = () => {
+      if (data !== null) {
+         setInit({
+            ...init,
+            isAlert: false,
+            isConfirm: true,
+            modalTitle: 'Update Bot',
+            okText: 'Yes',
+            confirmationTxt: `Are you sure you want to update this bot?`
+         });
+      } else {
+         handleCreateBotSubmit();        
+      }
+   
+   }
 
    const body = (
       <div className="modal-content home_bot_modal">
@@ -425,7 +462,7 @@ const CreateBotComposer = (props) => {
                   Cancel
                </button>
 
-               <button style={{ textTransform: 'none', width: '100px' }} className="btn filled" onClick={handleCreateBotSubmit}>
+               <button style={{ textTransform: 'none', width: '100px' }} className="btn filled" onClick={handleUpdate}>
                   {data !== null ? 'Update' : 'Next'}
                </button>
             </div>
@@ -446,6 +483,8 @@ const CreateBotComposer = (props) => {
    return (
       <>
          <AlertModal visible={isAlert} handleOk={alertCloseLink} confirmLoading={true} modalText={confirmationTxt} modalIcon={icon} modalInfo={confirmationInfo} buttonText={buttonText} handleCancel={alertClose} />
+         <ConfirmModal visible={isConfirm} okText= {"Yes"} modalTitle= {(data != null) ? 'Update Bot' : 'Create Bot'} handleOk={handleCreateBotSubmit} modalText={confirmationTxt} handleCancel={alertConfirmClose} />
+         
          <Modal open={openModal} onClose={handleCloseModal} aria-labelledby="create-bot" aria-describedby="create-the-new-bot" className={'_modal'}>
             {body}
          </Modal>

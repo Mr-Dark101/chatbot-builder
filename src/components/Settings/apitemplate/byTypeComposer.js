@@ -435,7 +435,8 @@ const ByTypeComposer = ({ props, triggerType, apiHandleConditionMaster }) => {
          setInit({
             ...init,
             isAlert: true,
-            confirmationTxt: 'Updated Successfully',
+            okText: 'Ok',
+            confirmationTxt: 'Trigger updated successfully',
             updatePending: false,
             updateMenus: {
                selectedMenuId: null,
