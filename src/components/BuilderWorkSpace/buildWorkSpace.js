@@ -290,7 +290,7 @@ const BuildWorkSpace = () => {
       dispatch(
          SetCurrentBotUpdateData({
             ...currentBotData,
-            published: !published,
+            published: false,
          })
       );
    };
