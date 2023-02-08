@@ -396,7 +396,7 @@ const Dashboard = () => {
                                              isConfirmPublish: true,
                                              isUpdatedList: true,
                                              confirmationTxt: `Are you sure you want to ` + confirm +` this bot?`,
-                                             confirmationInfo: ['Unpublishing means your chatbot will remove it from user view and chatbot will not respond to user requests. However, your chatbot will not be deleted.'],
+                                             confirmationInfo: ['Unpublishing your chatbot will remove it from user view and chatbot will not respond to user requests. However, your chatbot will not be deleted.'],
                                              currentObject: obj,
                                              okText: (!d.published) ? 'Publish' : 'Unpublish',
                                              modalTitle: (!d.published) ? 'Publish Bot' : 'Unpublish Bot',
