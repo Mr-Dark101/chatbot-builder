@@ -18,7 +18,7 @@ export const ApiOrder = (obj,apiId) => async dispatch => {
     orgId = orgId.replace('\"','');
     orgId = orgId.replace('%22','');
     console.log("Org_UNIT_ID" + orgId);
-     return API.get(`/bot-api?org=${orgId}&id=${apiId}&param=${obj}`).then((res) => {
+     return API.get(`/bot-api?org=${orgId}&id=${apiId}&param=${obj}&org_unit_id=${orgId}`).then((res) => {
         // console.log("updateTrigger", res);
 
         return {message:'Found',data:res}
