@@ -655,7 +655,7 @@ const ByTypeComposer = ({ props, triggerType }) => {
          type: obj.type === '' ? 'TEXT' : obj.type,
          urls: obj.urls === undefined ? [] : !obj.urls ? [] : obj.urls,
       };
-
+     
       if ($.isEmptyObject(currentTriggerData)) {
          updatedTriggers.push(triggersListObj);
          let updateObj = {
@@ -664,6 +664,8 @@ const ByTypeComposer = ({ props, triggerType }) => {
             deleteids: obj.deleteids,
             userId: userId,
          };
+
+        
          dispatch(UpdateTrigger(updateObj));
          updatedTriggers = [];
       } else {
@@ -679,6 +681,9 @@ const ByTypeComposer = ({ props, triggerType }) => {
          /* if (published) {
             handlePublishBot({ botId: id, isPublished: false, userId: userId });
          }*/
+
+         
+
          dispatch(UpdateTrigger(updateObj));
          updatedTriggers = [];
       }

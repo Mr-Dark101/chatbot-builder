@@ -103,6 +103,47 @@ export const getBotTriggersRecursive = (id) => async (dispatch) => {
       });
 };
 
+
+export const getBotTriggersHistoryDown = (id,last_id=0) => async (dispatch) => {
+   dispatch(clearTriggerList());
+   API.get(`/bot-history-down?id=${id}&last_id=${last_id}`)
+      .then((res) => {
+         // console.log("updateTrigger", res);
+         if (res.status === STRINGS.API_STATUS.SUCCESS) {
+            if (res.data.status === 1) {
+               dispatch(getTriggersSuccessHistory({ payload: res.data.data, message: res.data.message,last_id:res.data.last_id}));
+            } else {
+               dispatch(isError(res.data.message));
+            }
+         }
+      })
+      .catch((ex) => {
+         dispatch(isError(ex));
+      });
+};
+
+
+
+export const getBotTriggersHistoryUp = (id,last_id=0) => async (dispatch) => {
+   dispatch(clearTriggerList());
+   API.get(`/bot-history-up?id=${id}&last_id=${last_id}`)
+      .then((res) => {
+         // console.log("updateTrigger", res);
+         if (res.status === STRINGS.API_STATUS.SUCCESS) {
+            if (res.data.status === 1) {
+               dispatch(getTriggersSuccessHistory({ payload: res.data.data, message: res.data.message,last_id:res.data.last_id}));
+            } else {
+               dispatch(isError(res.data.message));
+            }
+         }
+      })
+      .catch((ex) => {
+         dispatch(isError(ex));
+      });
+};
+
+
+
 export const apiList = (userId) => async (dispatch) => {
    API.get(`/bot-api-list?org=${userId}`)
       .then((res) => {
@@ -259,7 +300,16 @@ const trigger = createSlice({
          state.successList = true;
          state.triggersList = payload.payload;
          state.channels = payload.message.channels;
+
       },
+      getTriggersSuccessHistory: (state, { payload }) => {
+         state.successList = true;
+         state.triggersList = payload.payload;
+         state.channels = payload.message.channels;
+         state.last_id = payload.last_id;
+
+      },
+      
       getApiListSuccess: (state, { payload }) => {
          state.successList = true;
          state.apiList = payload;
@@ -325,6 +375,7 @@ let {
    isError,
    clearTriggerList,
    getTriggersSuccess,
+   getTriggersSuccessHistory,
    isZoom,
    botRequestPending,
    updateTriggersMenuTextSuccess,

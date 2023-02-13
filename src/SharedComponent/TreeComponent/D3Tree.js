@@ -7,6 +7,8 @@ import end_icon from '../../assets/flow-end.svg';
 import { DeleteBotTrigger, openTriggerCard } from '../AddTriggerComposer/slices/addTrigger.slice';
 import TriggerCard from './items/TriggerCard';
 import ConfirmModal from '../ConfirmModal/ConfirmModal';
+
+import { getAllTriggersTypes, getBotTriggersHistoryDown,getBotTriggersHistoryUp, apiList, formList } from '../../SharedComponent/AddTriggerComposer/slices/addTrigger.slice';
 import $ from 'jquery';
 
 let orgChart2 = {};
@@ -29,7 +31,7 @@ const D3Tree = (props) => {
    const [init, setInit] = useState(defaultState);
    let { isConfirm, confirmationTxt, currentObject } = init;
    let dispatch = useDispatch();
-   let { successList, triggersList, isUpdatedList, isZoomAble } = trigger;
+   let { successList, triggersList, isUpdatedList, isZoomAble,last_id } = trigger;
    let [orgChart, setChart] = useState(orgChart2);
    const [zoomValue, setZoomValue] = useState(0.8);
    const getMenus = (item) => {
@@ -45,6 +47,8 @@ const D3Tree = (props) => {
 
    useEffect(() => {
       if (successList) {
+
+        
          // console.log("triggersListObj___", triggersList)
          // console.log(triggersList)
          //console.log('dd')
@@ -273,6 +277,17 @@ const D3Tree = (props) => {
       setZoomValue(zoomValue - 0.1);
    };
 
+
+   const redo = (bot_id) => {
+      dispatch(getBotTriggersHistoryUp(bot_id,last_id));
+   };
+
+
+   const undo = (bot_id) => {
+      
+      dispatch(getBotTriggersHistoryDown(bot_id,last_id));
+   };
+
    const nodeSize = { x: 620, y: 350 };
    const foreignObjectProps = { width: nodeSize.x, height: 700, x: -250, y: -105 };
 
@@ -304,6 +319,39 @@ const D3Tree = (props) => {
             <i class="fa fa-plus" aria-hidden="true"></i>
          </a>
          <div class="s-tags">
+
+            
+            {(last_id > 0) ? (
+
+
+                <div class="tag-box" >
+               <a
+                  href="javascript:void(0)"
+                  class="btn position-absolute bottom-0 start-0"
+                  style={{ height: '30px', marginBottom: '140px', marginLeft: '20px', backgroundColor: '#ffffff', border: '1px solid #ffffff' }}
+                  onClick={() => {
+                     redo(botId);
+                  }}
+               >
+                  <i class="fa fa-repeat" aria-hidden="true"></i>
+               </a>
+            </div>
+
+            ) : null}}
+           
+
+            <div class="tag-box">
+               <a
+                  href="javascript:void(0)"
+                  class="btn position-absolute bottom-0 start-0"
+                  style={{ height: '30px', marginBottom: '100px', marginLeft: '20px', backgroundColor: '#ffffff', border: '1px solid #ffffff' }}
+                  onClick={() => {
+                     undo(botId);
+                  }}
+               >
+                  <i class="fa fa-undo" aria-hidden="true"></i>
+               </a>
+            </div>
             <div class="tag-box">
                <a
                   href="javascript:void(0)"
