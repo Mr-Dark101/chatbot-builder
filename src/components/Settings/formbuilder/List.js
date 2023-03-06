@@ -107,13 +107,13 @@ const List = ({ rs, subPage, loadList }) => {
                      </div>
                   </div>
 
-                  <div className="table-responsive mx-30">
-                     <table className="table table-hover">
+                  <div className="table-responsive px-30">
+                     <table className="table table-hover" id="settingTbl">
                         <thead className="bg-primary">
                            <tr>
                               <th>Form Name</th>
                               <th>Form Description</th>
-                              <th>Form Entries</th>
+                              <th style={{textAlign:'center'}}>Form Entries</th>
                               <th style={{ textAlign: 'end', paddingRight: '40px' }}>Actions</th>
                            </tr>
                         </thead>
@@ -123,7 +123,7 @@ const List = ({ rs, subPage, loadList }) => {
                                  <tr>
                                     <td>{row.name}</td>
                                     <td style={{ maxWidth: '110px', minWidth: '110px' }}>{row.description}</td>
-                                    <td>
+                                    <td style={{textAlign:'center'}}>
                                        {row.Forms.length > 0 ? (
                                           <a href="#" onClick={() => subPage(<FormDetail subPage={subPage} loadList={loadList} row={row} />)}>
                                              {row.Forms.length}
