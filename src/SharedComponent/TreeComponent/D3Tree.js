@@ -22,7 +22,7 @@ const defaultState = {
       userId: 0,
    },
 };
-
+let updatedTriggers = [];
 const D3Tree = (props) => {
    let {
       data: { botId, userId }, saveHistory,
@@ -53,7 +53,39 @@ const D3Tree = (props) => {
          // console.log(triggersList)
          //console.log('dd')
          if(historyUpdate){
-            saveHistory(triggersList);
+
+
+            
+            if (triggersList.length > 0) {
+                  
+
+                  triggersList.map((tl) => {
+                     updatedTriggers.push({
+                        ...tl,
+                        menus:
+                           tl.menus.length > 0 &&
+                           tl.menus.map((mn) => {
+                              return {
+                                 id: mn.id,
+                                 text: mn.text,
+                                 toTrigger: mn.toTrigger,
+                                 toTriggerId: mn.toTriggerId,
+                              };
+                           }),
+                     });
+
+                     tl.menus.map((m) => {
+                        setMenus(m);
+                     });
+                     return tl;
+                  });
+
+                  
+
+                  
+            }
+            console.log(updatedTriggers)
+            saveHistory(updatedTriggers);
          }
          
          let normal = triggersList?.map((d) => {
@@ -64,6 +96,7 @@ const D3Tree = (props) => {
                };
             }
          });
+           //console.log(normal)
          // console.log("triggersListObj>>___", normal[0])
          // console.log("triggersListObj>>___", {
          //     name: "Welcome",
@@ -83,7 +116,31 @@ const D3Tree = (props) => {
                  }
          );
       }
-   }, [successList, triggersList]);
+   }, [successList, triggersList,historyUpdate]);
+
+
+   const setMenus = (item) => {
+      if (item.toTrigger !== null) {
+         if (item.toTrigger.menus.length > 0) {
+            updatedTriggers.push({
+               ...item.toTrigger,
+               menus:
+                  item.toTrigger.menus.length > 0 &&
+                  item.toTrigger.menus.map((mn) => {
+                     return {
+                        id: mn.id,
+                        text: mn.text,
+                        toTrigger: mn.toTrigger,
+                        toTriggerId: mn.toTriggerId,
+                     };
+                  }),
+            });
+            item.toTrigger.menus.filter((m) => setMenus(m));
+         } else {
+            updatedTriggers.push(item.toTrigger);
+         }
+      }
+   };
 
    const renderForeignObjectNode = (props) => {
       let { nodeDatum, toggleNode, foreignObjectProps } = props;
@@ -100,39 +157,7 @@ const D3Tree = (props) => {
          <g>
             {/* `foreignObject` requires width & height to be explicitly set. */}
             <foreignObject height="100%" {...foreignObjectProps}>
-               {/*<div className="tree-head">*/}
-               {/*    {nodeDatum.startTrigger && (*/}
-               {/*        <React.Fragment>*/}
-               {/*            <div className="start-icon">*/}
-               {/*                <img alt={"#"} src={chat_icon}/>*/}
-               {/*            </div>*/}
-               {/*            <AddTriggerButton addTrigger={() => {*/}
-               {/*                dispatch(openTriggerCard(true))*/}
-               {/*            }}/>*/}
-               {/*        </React.Fragment>*/}
-               {/*    )*/}
-               {/*    }*/}
-               {/*    {*/}
-               {/*        nodeDatum.startTrigger === undefined && triggersList.length === 0 && (*/}
-               {/*            <React.Fragment>*/}
-               {/*                <div className="start-icon">*/}
-               {/*                    <img alt={"#"} src={chat_icon}/>*/}
-               {/*                </div>*/}
-               {/*                <AddTriggerButton addTrigger={() => {*/}
-               {/*                    dispatch(openTriggerCard(true))*/}
-               {/*                }}/>*/}
-               {/*            </React.Fragment>*/}
-               {/*        )*/}
-               {/*    }*/}
-               {/*    {*/}
-               {/*        triggersList.length === 0 && (*/}
-               {/*            <div className="end-icon">*/}
-               {/*                <img alt={"#"} src={end_icon}/>*/}
-               {/*            </div>*/}
-               {/*        )*/}
-               {/*    }*/}
-               {/*    */}
-               {/*</div>*/}
+               
                {nodeDatum.isGrandParent !== undefined && (
                   <div className="tree-head">
                      <React.Fragment>
@@ -151,13 +176,7 @@ const D3Tree = (props) => {
                            <img alt={'#'} src={end_icon} />
                         </div>
                      )}
-                     {/*{*/}
-                     {/*    triggersList.length === 0 && (*/}
-                     {/*        <div className="end-icon">*/}
-                     {/*            <img alt={"#"} src={end_icon}/>*/}
-                     {/*        </div>*/}
-                     {/*    )*/}
-                     {/*}*/}
+                    
                   </div>
                )}
                {nodeDatum.startTrigger !== undefined && nodeDatum.startTrigger ? (

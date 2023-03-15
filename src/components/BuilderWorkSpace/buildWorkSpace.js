@@ -307,7 +307,7 @@ const BuildWorkSpace = () => {
    // }
    const handleCloseAddTrigger = () => {
       dispatch(openTriggerCard({ open: false, isChild: null, childBotId: null }));
-      dispatch(getBotTriggersRecursive(id));
+      //dispatch(getBotTriggersRecursive(id));
       dispatch(resetTheUrls());
       // setInit({
       //     ...init,
