@@ -24,6 +24,8 @@ const defaultState = {
    isConfirm: false,
    isPublish: false,
    isUnpublish: false,
+   isSave:false,
+   isSaveConfirm:false,
    openComposer: false,
    openChatBot: false,
    data: [],
@@ -37,11 +39,11 @@ const defaultState = {
 
 const BuildWorkSpace = () => {
    const { dashboard, workSpace, trigger } = useSelector(({ Reducers }) => Reducers);
-
+   const [historyData, setHistoryData] = useState(false);
    const dispatch = useDispatch();
    const history = useHistory();
    const [init, setInit] = useState(defaultState);
-   let { currentTriggerData, openChatBot, getAllTypes, isAlert, isConfirm, isPublish, isUnpublish, isUpdatedList, confirmationTxt, confirmationInfo } = init;
+   let { currentTriggerData, openChatBot, getAllTypes, isAlert, isConfirm, isPublish, isUnpublish, isUpdatedList, confirmationTxt, confirmationInfo,isSave,isSaveConfirm } = init;
    let { currentBotData } = dashboard;
    let { success, isPublishSuccess, message_, dataNotFound } = workSpace;
    let { name, phoneNumber, id, userId, published, updated_at } = currentBotData !== null && currentBotData;
@@ -116,6 +118,74 @@ const BuildWorkSpace = () => {
          updated_time: updated_at,
       });
    }, []);
+
+   const saveUndo = () => {
+      //console.log(historyData)
+     
+
+
+         setInit({
+            ...init,
+            isAlert: false,
+            isConfirm: false,
+            isPublish:false,
+            isSave:true,
+            isSaveConfirm:false,
+            modalTitle: 'Save History',
+            okText: 'Save',
+            isPublish: false,
+            isUpdatedList: false,
+            confirmationTxt: `Are you sure you want to save?`,
+            
+                                             
+         });
+
+      
+      
+     
+      //alert('Save');
+   }
+
+
+   const saveUndoComplete = () => {
+      //console.log(historyData)
+         console.log(historyData);
+         publishClose()
+          var body = {
+            triggersList: historyData,
+            botId: currentBotData.id,
+            
+         };
+         let confirmationText = '';
+         confirmationText = 'Your bot has been saved successfully';
+         
+         API.post(`/save-from-history`, body)
+            .then((res) => {
+               // console.log("updateTrigger", res);
+
+              setInit({
+               ...init,
+               isAlert: false,
+               isSaveConfirm:true,
+               modalTitle: 'Save',
+               okText: 'Ok',
+               isConfirm: false,
+               isUpdatedList: false,
+               confirmationTxt: confirmationText,
+            });
+               
+            })
+            .catch((ex) => {});
+     
+      
+     
+      //alert('Save');
+   }
+
+   const saveHistory = (data) => {
+         console.log("test ed")
+         setHistoryData(data)
+   }
 
    const handlePublishBot = (obj) => {
       console.log(JSON.stringify(obj));
@@ -220,6 +290,8 @@ const BuildWorkSpace = () => {
          ...init,
          isAlert: false,
          isUnpublish: false,
+         isSave:false,
+         isSaveConfirm:false,
          isPublish: false,
          isConfirm: false,
          isUpdatedList: true,
@@ -317,6 +389,8 @@ const BuildWorkSpace = () => {
          ...init,
          isPublish: false,
          isUpdatedList: true,
+         isSave:false,
+         isSaveConfirm:false,
          confirmationTxt: '',
       });
    };
@@ -380,6 +454,10 @@ const BuildWorkSpace = () => {
             <AlertModal visible={isAlert} handleOk={alertClose} confirmLoading={!isUpdatedList} modalText={confirmationTxt} okText={'Ok'} modalTitle="Publish bot" modalInfo={confirmationInfo} handleCancel={alertClose} />
             <AlertModal visible={isUnpublish} handleOk={alertClose} confirmLoading={!isUpdatedList} modalText={confirmationTxt} okText={'Ok'} modalTitle="Unpublish bot" modalInfo={confirmationInfo} handleCancel={alertClose} />
 
+            <AlertModal visible={isSave} handleOk={saveUndoComplete} confirmLoading={!isUpdatedList} modalText={confirmationTxt} okText={'Ok'} modalTitle="Save" modalInfo={confirmationInfo} handleCancel={publishClose} />
+
+            <AlertModal visible={isSaveConfirm} handleOk={publishClose} confirmLoading={!isUpdatedList} modalText={confirmationTxt} okText={'Ok'} modalTitle="Save" modalInfo={confirmationInfo} handleCancel={publishClose} />
+
             <ConfirmModal visible={isConfirm} handleOk={publishBot} okText="Publish" confirmLoading={!isUpdatedList} modalText={confirmationTxt} modalTitle="Publish bot" modalInfo={confirmationInfo} handleCancel={confirmClose} />
 
             <div className="head-rt">
@@ -432,6 +510,22 @@ const BuildWorkSpace = () => {
             </div>
             <div className="head-lft">
                <div className="btn-hld">
+                  {(historyData ? (
+
+                     <button
+                     className="btn-outlined"
+                     onClick={() =>
+                        saveUndo()
+                     }
+                  >
+                     
+                     Save
+                  </button>
+
+
+                     ) : null)}
+                  
+
                   <button
                      className="btn-outlined"
                      onClick={() =>
@@ -474,7 +568,7 @@ const BuildWorkSpace = () => {
             {/*    handleCloseAddTrigger={handleCloseAddTrigger}*/}
             {/*/>*/}
 
-            <D3Tree getAllTypes={getAllTypes} data={{ botId: id, userId: userId }} />
+            <D3Tree getAllTypes={getAllTypes} saveHistory={saveHistory} data={{ botId: id, userId: userId }} />
 
             {trigger.openAddBot && (
                <Drawer anchor={'right'} open={trigger.openAddBot} onClose={handleCloseAddTrigger}>

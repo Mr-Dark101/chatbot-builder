@@ -683,7 +683,7 @@ const ByTypeComposer = ({ props, triggerType }) => {
          }*/
 
          
-
+         //console.log(updateObj)
          dispatch(UpdateTrigger(updateObj));
          updatedTriggers = [];
       }

@@ -257,6 +257,7 @@ export const onSuccessUpdateMenuText = () => (dispatch) => {
 const initialState = {
    success: false,
    successList: false,
+   historyUpdate:false,
    successTypes: false,
    isUpdateData: false,
    menuTextUpdateSuccess: false,
@@ -307,6 +308,7 @@ const trigger = createSlice({
          state.triggersList = payload.payload;
          state.channels = payload.message.channels;
          state.last_id = payload.last_id;
+         state.historyUpdate = true;
 
       },
       

@@ -25,13 +25,13 @@ const defaultState = {
 
 const D3Tree = (props) => {
    let {
-      data: { botId, userId },
+      data: { botId, userId }, saveHistory,
    } = props;
    let { trigger } = useSelector(({ Reducers }) => Reducers);
    const [init, setInit] = useState(defaultState);
    let { isConfirm, confirmationTxt, currentObject } = init;
    let dispatch = useDispatch();
-   let { successList, triggersList, isUpdatedList, isZoomAble,last_id } = trigger;
+   let { successList, triggersList, isUpdatedList, isZoomAble,last_id,historyUpdate } = trigger;
    let [orgChart, setChart] = useState(orgChart2);
    const [zoomValue, setZoomValue] = useState(0.8);
    const getMenus = (item) => {
@@ -52,6 +52,10 @@ const D3Tree = (props) => {
          // console.log("triggersListObj___", triggersList)
          // console.log(triggersList)
          //console.log('dd')
+         if(historyUpdate){
+            saveHistory(triggersList);
+         }
+         
          let normal = triggersList?.map((d) => {
             if (d.startTrigger) {
                return {
