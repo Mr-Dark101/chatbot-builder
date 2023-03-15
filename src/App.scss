@@ -815,6 +815,10 @@ textarea{
   padding: 0.5rem 0 !important;
 
 }
+#settingTbl > tbody > tr > td, #settingTbl > tbody > tr > th ,#settingTbl > thead > tr > th{
+  padding: 1rem 8px !important;
+}
+
 .cursor-pointer {
   cursor: pointer;
 }
