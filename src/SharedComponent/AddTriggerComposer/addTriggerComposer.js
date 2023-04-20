@@ -12,6 +12,10 @@ const AddTriggerComposer = (props) => {
    const [btnMessageStyle, setBtnMessageStyle] = useState({ width: '100%' });
    const [btnApiStyle, setBtnApiStyle] = useState({ width: '100%' });
    const [btnFormStyle, setBtnFormStyle] = useState({ width: '100%' });
+
+   const [btnChatGPTStyle, setBtnChatGPTStyle] = useState({ width: '100%' });
+
+   
    const defaultState = {
       isAlert: false,
       openComposer: false,
@@ -37,6 +41,9 @@ const AddTriggerComposer = (props) => {
       setBtnMessageStyle({ backgroundColor: '#363a77', width: '100%', color: '#fff', borderRadius: '5px 5px 0px 0px' });
       setBtnApiStyle({ backgroundColor: '#fff', width: '100%', color: '#000', borderRadius: '5px 5px 0px 0px' });
       setBtnFormStyle({ backgroundColor: '#fff', width: '100%', color: '#000', borderRadius: '5px 5px 0px 0px' });
+
+      setBtnChatGPTStyle({ backgroundColor: '#fff', width: '100%', color: '#000', borderRadius: '5px 5px 0px 0px' });
+      
       if (props.trigger.currentTriggerData.toTrigger) {
          tVal = props.trigger.currentTriggerData.toTrigger.triggerType;
 
@@ -53,6 +60,8 @@ const AddTriggerComposer = (props) => {
          setBtnMessageStyle({ backgroundColor: '#363a77', width: '100%', color: '#fff', borderRadius: '5px 5px 0px 0px' });
          setBtnApiStyle({ backgroundColor: '#fff', width: '100%', color: '#000', borderRadius: '5px 5px 0px 0px' });
          setBtnFormStyle({ backgroundColor: '#fff', width: '100%', color: '#000', borderRadius: '5px 5px 0px 0px' });
+         setBtnChatGPTStyle({ backgroundColor: '#fff', width: '100%', color: '#000', borderRadius: '5px 5px 0px 0px' });
+         
          setTriggerType(param);
       } else if (param == 'A') {
          let plan = localStorage.getItem('chatbot_plan');
@@ -62,6 +71,7 @@ const AddTriggerComposer = (props) => {
             setBtnMessageStyle({ backgroundColor: '#fff', width: '100%', color: '#000', borderRadius: '5px 5px 0px 0px' });
             setBtnApiStyle({ backgroundColor: '#363a77', width: '100%', color: '#fff', borderRadius: '5px 5px 0px 0px' });
             setBtnFormStyle({ backgroundColor: '#fff', width: '100%', color: '#000', borderRadius: '5px 5px 0px 0px' });
+            setBtnChatGPTStyle({ backgroundColor: '#fff', width: '100%', color: '#000', borderRadius: '5px 5px 0px 0px' });
             setTriggerType(param);
          } else {
 
@@ -70,6 +80,13 @@ const AddTriggerComposer = (props) => {
          setBtnMessageStyle({ backgroundColor: '#fff', width: '100%', color: '#000', borderRadius: '5px 5px 0px 0px' });
          setBtnApiStyle({ backgroundColor: '#fff', width: '100%', color: '#000', borderRadius: '5px 5px 0px 0px' });
          setBtnFormStyle({ backgroundColor: '#363a77', width: '100%', color: '#fff', borderRadius: '5px 5px 0px 0px' });
+         setBtnChatGPTStyle({ backgroundColor: '#fff', width: '100%', color: '#000', borderRadius: '5px 5px 0px 0px' });
+         setTriggerType(param);
+      } else if (param == 'ChatGPT') {
+         setBtnMessageStyle({ backgroundColor: '#fff', width: '100%', color: '#000', borderRadius: '5px 5px 0px 0px' });
+         setBtnApiStyle({ backgroundColor: '#fff', width: '100%', color: '#000', borderRadius: '5px 5px 0px 0px' });
+         setBtnFormStyle({ backgroundColor: '#fff', width: '100%', color: '#000', borderRadius: '5px 5px 0px 0px' });
+         setBtnChatGPTStyle({ backgroundColor: '#363a77', width: '100%', color: '#fff', borderRadius: '5px 5px 0px 0px' });
          setTriggerType(param);
       }
    };
@@ -105,6 +122,13 @@ const AddTriggerComposer = (props) => {
             <li>
                <button onClick={() => meClick('F')} className="btn btn-block btn-secondry" style={btnFormStyle}>
                   Form
+               </button>
+            </li>
+
+
+             <li>
+               <button onClick={() => meClick('ChatGPT')} className="btn btn-block btn-secondry" style={btnChatGPTStyle}>
+                  ChatGPT
                </button>
             </li>
          </ul>

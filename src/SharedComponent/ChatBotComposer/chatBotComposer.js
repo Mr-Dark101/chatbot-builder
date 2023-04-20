@@ -16,6 +16,7 @@ import {
     ApiOrder,
     ApiForm,
     saveFormDB,
+    ApiChatGpt,
 } from "./slices/chatBot.slice";
 
 let defaultState = {
@@ -50,6 +51,8 @@ const ChatBotComposer = ({onClose}) => {
     const [formEndText, setFormEndText] = useState('');
     const [formData, setFormData] = useState([]);
     const [formDataSave, setFormDataSave] = useState([]);
+
+    console.log(currentBotData)
 
     //const formData = [{"label":"Name","type":"text","option":[]},{"label":"Father Name","type":"text","option":[]},{"label":"Gender","option":[{"key":"1","value":"Male"},{"key":"2","value":"Female"}],"type":"option"}];
 
@@ -130,7 +133,7 @@ const ChatBotComposer = ({onClose}) => {
         e.preventDefault();
         let text = msgArea.current.value;
 
-
+        console.log(data);
         
         if (data.length > 0) {
             for (let i = 0; i < data.length; i++) {
@@ -163,6 +166,25 @@ const ChatBotComposer = ({onClose}) => {
                         
 
                         
+                       
+                        
+                    }
+
+
+                    if(data[i].triggerType == 'ChatGPT'){
+                       
+
+                       
+                            trigger = {
+                                id: createGuid(),
+                                response: data[i].formStartText,
+
+                                type:"TEXT",
+                                menus: [],
+                             }
+
+                           
+                            
                        
                         
                     }
@@ -231,8 +253,65 @@ const ChatBotComposer = ({onClose}) => {
 
                     // console.log("loopBackTrigger", data[i])
                    
-                    
-                    
+                    if(triggerType == "ChatGPT"){
+
+
+            
+                            const backMenu = (currentBotData.type_id == 4) ? [buildCustomMenu('Main Menu','M',backMenuId)] : [];
+                           
+                            const apiResponse = await ChatGPTApiData(text).then((rData) => {
+                                            //console.log((rData.data.data.choices))
+                                           if(rData.data){
+                                                return rData.data.data.message;
+                                            }
+                                            return false;
+                             });
+                        
+                                 trigger = {
+                                            id: createGuid(),
+                                            response: apiResponse,
+                                            type:"TEXT",
+                                            menus: backMenu,
+                                         }
+
+
+
+                                  const dv = !$.isEmptyObject(trigger) ? trigger.menus.length > 0 ? trigger.menus.map((d) => {
+                                                            if (d.toTrigger !== null) {
+                                                                return d.toTrigger
+                                                            }
+                                                        }).filter((d) => d !== undefined) : [loopBackTrigger] : []
+                                setInit({
+                                            ...init,
+                                            messages: !$.isEmptyObject(trigger) ? [...init.messages, {
+                                                text: text,
+                                                id: "me"
+                                            }, trigger] : [...init.messages, {text: text, id: "me"}],
+                                            data:dv
+                                        });
+
+                              
+                                
+
+                                // setInit({
+                                //                 ...init,
+                                //                     messages: !$.isEmptyObject(trigger) ? [...init.messages, {
+                                //                         text: text,
+                                //                         id: "me"
+                                //                     }, trigger] : [...init.messages, {text: text, id: "me"}],
+                                //                     data:  !$.isEmptyObject(trigger) ? trigger.menus.length > 0 ? trigger.menus.map((d) => {
+                                //                             if (d.toTrigger !== null) {
+                                //                                 return d.toTrigger
+                                //                             }
+                                //                         }).filter((d) => d !== undefined) : [loopBackTrigger] : []
+                                //                 });
+                                trigger = {};
+                                // updatedTriggers = [];
+                                msgArea.current.value = "";
+
+                    }else{
+                        
+                            
                             trigger = {
                                 ...data[i],
                                 isFallBack: true,
@@ -248,6 +327,7 @@ const ChatBotComposer = ({onClose}) => {
                             trigger = {};
                             // updatedTriggers = [];
                             msgArea.current.value = "";
+                    }
                     
                             
                     
@@ -256,6 +336,68 @@ const ChatBotComposer = ({onClose}) => {
                 
             }
         } else {
+
+            if(triggerType == 'ChatGPT'){
+
+                
+                //const backMenu = [buildCustomMenuBack('Back','99',backMenuId)]
+                const backMenu = (currentBotData.type_id == 4) ? [buildCustomMenu('Main Menu','M',backMenuId)] : [];
+               
+                const apiResponse = await ChatGPTApiData(text).then((rData) => {
+                                //console.log((rData.data.data.choices))
+                                if(rData.data){
+                                    return rData.data.data.message;
+                                }
+                                return false;
+                                
+                 });
+            
+                     trigger = {
+                                id: createGuid(),
+                                response: apiResponse,
+                                type:"TEXT",
+                                menus: backMenu,
+                             }
+
+
+
+                      const dv = !$.isEmptyObject(trigger) ? trigger.menus.length > 0 ? trigger.menus.map((d) => {
+                                                if (d.toTrigger !== null) {
+                                                    return d.toTrigger
+                                                }
+                                            }).filter((d) => d !== undefined) : [loopBackTrigger] : []
+                    setInit({
+                                ...init,
+                                messages: !$.isEmptyObject(trigger) ? [...init.messages, {
+                                    text: text,
+                                    id: "me"
+                                }, trigger] : [...init.messages, {text: text, id: "me"}],
+                                data:dv
+                            });
+
+                  
+                    
+
+                    // setInit({
+                    //                 ...init,
+                    //                     messages: !$.isEmptyObject(trigger) ? [...init.messages, {
+                    //                         text: text,
+                    //                         id: "me"
+                    //                     }, trigger] : [...init.messages, {text: text, id: "me"}],
+                    //                     data:  !$.isEmptyObject(trigger) ? trigger.menus.length > 0 ? trigger.menus.map((d) => {
+                    //                             if (d.toTrigger !== null) {
+                    //                                 return d.toTrigger
+                    //                             }
+                    //                         }).filter((d) => d !== undefined) : [loopBackTrigger] : []
+                    //                 });
+                    trigger = {};
+                    // updatedTriggers = [];
+                    msgArea.current.value = "";
+                                    
+
+                   
+            }
+
             if(Object.keys(loopBackTrigger).length > 0){
 
 
@@ -327,6 +469,10 @@ const ChatBotComposer = ({onClose}) => {
 
                  
             }else{
+
+
+               
+
                 
                if(triggerType == 'A'){
                         const apiResponse = await ApiData(text,apiId).then((rData) => {
@@ -812,6 +958,15 @@ const ChatBotComposer = ({onClose}) => {
 
                 
     }
+
+    const ChatGPTApiData =  async (text) => {
+
+        const apiReturn =  await dispatch(ApiChatGpt(text))
+        return  apiReturn;
+
+                
+    }
+
     const scrollOnMessage = () => {
         let container = $(".conversation-container")
         container.animate({

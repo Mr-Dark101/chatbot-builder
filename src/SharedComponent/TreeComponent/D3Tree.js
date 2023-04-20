@@ -25,7 +25,7 @@ const defaultState = {
 let updatedTriggers = [];
 const D3Tree = (props) => {
    let {
-      data: { botId, userId }, saveHistory,
+      data: { botId, userId,type_id }, saveHistory,
    } = props;
    let { trigger } = useSelector(({ Reducers }) => Reducers);
    const [init, setInit] = useState(defaultState);
@@ -196,6 +196,7 @@ const D3Tree = (props) => {
                      botId={botId}
                      userId={userId}
                      data={nodeDatum}
+                     type_id={type_id}
                   />
                ) : (
                   nodeDatum.toTrigger !== null &&
@@ -214,6 +215,7 @@ const D3Tree = (props) => {
                            });
                         }}
                         botId={botId}
+                        type_id={type_id}
                         userId={userId}
                         data={nodeDatum}
                      />

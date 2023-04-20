@@ -19,6 +19,8 @@ import Platform from './Platform';
 import Integration from './Integration';
 import ApiTemplate from './ApiTemplate';
 import FormBuilder from './FormBuilder';
+import ChatGpt from './ChatGpt';
+import TrainBot from './TrainBot';
 import Customer from './Customer';
 import { Link } from 'react-router-dom';
 import { UserContext } from '../../context/UserContext';
@@ -37,7 +39,8 @@ const Settings = () => {
    const [activeClass, setActiveClass] = useState('');
 
    useEffect(() => {
-      changeContent('FormBuilder');
+      //changeContent('FormBuilder');
+      changeContent('TrainBot');
    }, []);
    const handleBack = () => {
       history.push(`${STRINGS.ROUTES.ROOT}?org=${localStorage.getItem('userId')}`);
@@ -49,6 +52,10 @@ const Settings = () => {
       setActiveClass(param);
       if (param === 'Api') {
          setContentPage(<Api />);
+      }
+
+      if (param === 'ChatGpt') {
+         setContentPage(<ChatGpt />);
       }
 
       if (param === 'ApiTemplate') {
@@ -78,6 +85,9 @@ const Settings = () => {
       if (param === 'Customer') {
          setContentPage(<Customer />);
       }
+      if (param === 'TrainBot') {
+         setContentPage(<TrainBot />);
+      }
    };
 
    let Menu = [
@@ -85,6 +95,9 @@ const Settings = () => {
       { name: 'API', controller: 'Api', icon: api },
 
       { name: 'Form Builder', controller: 'FormBuilder', icon: form },
+
+      { name: 'ChatGPT', controller: 'ChatGpt', icon: form },
+      { name: 'TrainBot', controller: 'TrainBot', icon: form },
    ];
 
    if (localStorage.getItem('org_unit_id') == '') {

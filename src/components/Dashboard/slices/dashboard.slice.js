@@ -136,8 +136,8 @@ export const updateUserBot = (obj) => async (dispatch) => {
       });
 };
 
-export const OpenBotComposer = () => async (dispatch) => {
-   dispatch(openBot());
+export const OpenBotComposer = (botType) => async (dispatch) => {
+   dispatch(openBot(botType));
 };
 
 export const SetUpdateBotData = (data) => async (dispatch) => {
@@ -170,6 +170,7 @@ const initialState = {
    message: '',
    currentBotData: null,
    updateBotData: null,
+   botType:1,
 };
 
 const dashboardSlice = createSlice({
@@ -237,8 +238,9 @@ const dashboardSlice = createSlice({
          //    console.log("Google Business Message Added");
          // }
       },
-      openBot: (state) => {
+      openBot: (state,{payload}) => {
          state.openBotComposer = true;
+         state.botType = payload;
       },
       closeBot: (state) => {
          state.openBotComposer = false;

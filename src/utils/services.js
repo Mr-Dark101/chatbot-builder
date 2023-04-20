@@ -18,3 +18,14 @@ export const APIORDER = axios.create({
       'x-org-unit-id': 'eocean',
    },
 });
+
+
+
+export const APICHATGPT = axios.create({
+   baseURL: 'https://api.openai.com/v1/',
+   timeout: 60000,
+   headers: {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer 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',
+   },
+});

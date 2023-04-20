@@ -54,6 +54,19 @@ const createArray = [
       icon_1: built_add_icon,
       icon_2: built_add_icon_white,
    },
+   {
+      id: 3,
+      name: 'Built ChatGPT Bot',
+      icon_1: built_add_icon,
+      icon_2: built_add_icon_white,
+   },
+
+   {
+      id: 4,
+      name: 'Built Hybrid Bot',
+      icon_1: built_add_icon,
+      icon_2: built_add_icon_white,
+   },
 ];
 
 const Dashboard = () => {
@@ -67,7 +80,7 @@ const Dashboard = () => {
       workSpace: { isPublishSuccess, message_ },
    } = useSelector(({ Reducers }) => Reducers);
    const history = useHistory();
-   let { success, dataNotFound, isError, data, currentUser, deleteSuccess, message, updateBotData, openBotComposer } = dashboard;
+   let { success, dataNotFound, isError, data, currentUser, deleteSuccess, message, updateBotData, openBotComposer,botType } = dashboard;
 
    const { user, setUser } = useContext(UserContext);
 
@@ -252,7 +265,7 @@ const Dashboard = () => {
       switch (type) {
          case 1:
             if (currentData?.length <= STRINGS.DEFAULTS.BOT_LIMIT) {
-               dispatch(OpenBotComposer());
+               dispatch(OpenBotComposer(1));
             } else {
                setInit({
                   ...init,
@@ -266,6 +279,34 @@ const Dashboard = () => {
          case 2:
             history.push(`${STRINGS.ROUTES.TEMPLATES}`);
             dispatch(addingBreadcrumb({ label: 'Template', path: `${STRINGS.ROUTES.TEMPLATES}` }));
+            break;
+
+         case 3:
+            if (currentData?.length <= STRINGS.DEFAULTS.BOT_LIMIT) {
+               dispatch(OpenBotComposer(3));
+            } else {
+               setInit({
+                  ...init,
+                  isAlert: true,
+                  isConfirm: false,
+                  confirmationTxt: 'Your bot limit has been reached. Please delete one of your existing bots.',
+               });
+               // alert("Your limit has been reached")
+            }
+            break;
+
+         case 4:
+            if (currentData?.length <= STRINGS.DEFAULTS.BOT_LIMIT) {
+               dispatch(OpenBotComposer(4));
+            } else {
+               setInit({
+                  ...init,
+                  isAlert: true,
+                  isConfirm: false,
+                  confirmationTxt: 'Your bot limit has been reached. Please delete one of your existing bots.',
+               });
+               // alert("Your limit has been reached")
+            }
             break;
          default:
             return '';
@@ -322,7 +363,7 @@ const Dashboard = () => {
 
          {localStorage.getItem('org_unit_id') != '' ? (
             <>
-               <CreateBotComposer currentUser={currentUser} data={updateBotData} openModal={openBotComposer} onClose={closeModal} />
+               <CreateBotComposer botType={botType} currentUser={currentUser} data={updateBotData} openModal={openBotComposer} onClose={closeModal} />
                <ConfirmModal visible={isConfirm} handleOk={handleSubmitTrigger} okText="Delete" modalTitle="Delete Bot" confirmLoading={!isUpdatedList} modalText={confirmationTxt} modalInfo={confirmationInfo} handleCancel={confirmClose} />
               <ConfirmModalPublish visible={isConfirmPublish} publishStatus={publishStatus} handleOk={handleSubmitTriggerPublish} okText={okText} modalTitle={modalTitle} confirmLoading={!isUpdatedList} modalText={confirmationTxt} modalInfo={confirmationInfo} handleCancel={confirmClosePublish} />
               <AlertModal visible={isAlert} handleOk={alertClose} confirmLoading={!isUpdatedList} modalText={confirmationTxt} okText={okText} modalTitle={modalTitle} modalInfo={confirmationInfo} handleCancel={alertClose} />

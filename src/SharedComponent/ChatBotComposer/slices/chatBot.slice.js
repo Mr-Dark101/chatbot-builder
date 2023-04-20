@@ -1,8 +1,9 @@
 import {createSlice} from "@reduxjs/toolkit";
-import {API,APIORDER} from "../../../utils/services";
+import {API,APIORDER,APICHATGPT} from "../../../utils/services";
 import {STRINGS} from "../../../utils/base";
 import {userBotsError} from "../../../components/Dashboard/slices/dashboard.slice";
-
+import axios from "axios";
+const API_URL = process.env.REACT_APP_BACKEND_URl;
 export const ApiOrder = (obj,apiId) => async dispatch => {
     // dispatch(updateTriggersSuccess(obj))
     // dispatch(openTriggerCard(false))
@@ -28,13 +29,35 @@ export const ApiOrder = (obj,apiId) => async dispatch => {
 }
 
 
+
+export const ApiChatGpt = (text) => async dispatch => {
+   
+   
+
+    var data = JSON.stringify({
+                     
+                      "question": text,
+                      
+                    });
+    let url =  API_URL + "/chat-gpt/final-reply"
+    return axios.post(url, data).then((res) => {
+
+        return {message:'Found',data:res}
+    }).catch((ex) => {
+        return {message:'Not Found',data:false};
+    });
+     
+}
+
+
+
 export const ApiForm = (form_id) => async dispatch => {
     // dispatch(updateTriggersSuccess(obj))
     // dispatch(openTriggerCard(false))
    
     return API.get(`/form-api?id=${form_id}`).then((res) => {
         // console.log("updateTrigger", res);
-
+        
         return {message:'Found',data:res}
     }).catch((ex) => {
         return {message:'Not Found',data:false};

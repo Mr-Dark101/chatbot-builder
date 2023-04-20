@@ -36,11 +36,17 @@ const defaultState = {
 };
 
 const CreateBotComposer = (props) => {
-   let { openModal, onClose, currentUser, data } = props;
+   let { openModal, onClose, currentUser, data,botType } = props;
 
    const [init, setInit] = useState(defaultState);
    let { selected, selectCategory, botName, botDescription, botPhoneNumber, botImage, botId, comingSoon, onHover, isAlert,isConfirm, isUpdatedList, confirmationTxt, icon, confirmationInfo, buttonText } = init;
    const dispatch = useDispatch();
+
+
+   let titleName = 'Create a bot';
+   if(botType == 3 || botType == 4){
+      titleName = 'Create a ChatGPT bot'
+   }
 
    useEffect(() => {
       let dropArea = document.getElementById('drop-area');
@@ -118,6 +124,7 @@ const CreateBotComposer = (props) => {
          userId: localStorage.getItem('org_unit_id'),
          tenent_id: localStorage.getItem('tenent_id'),
          imagePath: botImage,
+         type_id: botType,
       };
       if (data !== null) {
          let updateObj = {
@@ -308,13 +315,34 @@ const CreateBotComposer = (props) => {
          <div className="modal-header">
             <div className="header-lft">
                <h4 style={{ fontWeight: '800', color: '#000' }} class="box-title m-0">
-                  {data !== null ? 'Update Bot' : !selectCategory ? 'Create a bot' : 'Create a bot'}
+                  {data !== null ? 'Update Bot' : !selectCategory ? titleName : titleName}
+                   
                </h4>
             </div>
             <div className="header-rt" />
          </div>
 
          <div className="modal-section">
+
+            {(botType == 3 || botType == 4) ? (
+               <div className="row">
+                  <div className="col-sm-12">
+                        <p>
+
+                           This ChatGPT bot is an autonomous bot which does not require a flow to be built. 
+                           <br />
+                           This bot uses your Training Data to reply to customer queries.
+                           <br />
+                           <br />
+                           Currently this a conversational bot only and does not reply with dynamic data from third party portals.
+
+                        </p>
+                  </div>
+
+                  
+               </div>
+
+            ) : null}
             <div className="row">
                <div className="col-sm-12">
                   <label class="mb-2">Name your bot</label>

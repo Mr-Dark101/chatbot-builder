@@ -206,7 +206,7 @@ const Dashboard = () => {
 
    return (
       <div className="dashboard-hld ov-des overflow-auto">
-         <CreateBotComposer currentUser={currentUser} data={updateBotData} openModal={openBotComposer} onClose={closeModal} />
+         <CreateBotComposer  currentUser={currentUser} data={updateBotData} openModal={openBotComposer} onClose={closeModal} />
          <ConfirmModal visible={isConfirm} handleOk={handleSubmitTrigger} confirmLoading={!isUpdatedList} modalText={confirmationTxt} modalInfo={confirmationInfo} handleCancel={confirmClose} />
          <AlertModal visible={isAlert} handleOk={alertClose} confirmLoading={!isUpdatedList} modalText={confirmationTxt} modalInfo={confirmationInfo} handleCancel={alertClose} />
          <div className="head">

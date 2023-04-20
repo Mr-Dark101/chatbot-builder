@@ -46,7 +46,7 @@ const BuildWorkSpace = () => {
    let { currentTriggerData, openChatBot, getAllTypes, isAlert, isConfirm, isPublish, isUnpublish, isUpdatedList, confirmationTxt, confirmationInfo,isSave,isSaveConfirm } = init;
    let { currentBotData } = dashboard;
    let { success, isPublishSuccess, message_, dataNotFound } = workSpace;
-   let { name, phoneNumber, id, userId, published, updated_at } = currentBotData !== null && currentBotData;
+   let { name, phoneNumber, id, userId, published, updated_at,type_id } = currentBotData !== null && currentBotData;
 
    useEffect(() => {
       if (dataNotFound) {
@@ -568,7 +568,7 @@ const BuildWorkSpace = () => {
             {/*    handleCloseAddTrigger={handleCloseAddTrigger}*/}
             {/*/>*/}
 
-            <D3Tree getAllTypes={getAllTypes} saveHistory={saveHistory} data={{ botId: id, userId: userId }} />
+            <D3Tree getAllTypes={getAllTypes} saveHistory={saveHistory} data={{ botId: id, userId: userId,type_id:type_id }} />
 
             {trigger.openAddBot && (
                <Drawer anchor={'right'} open={trigger.openAddBot} onClose={handleCloseAddTrigger}>
