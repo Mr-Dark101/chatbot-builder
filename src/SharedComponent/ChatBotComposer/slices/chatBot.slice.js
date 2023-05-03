@@ -33,14 +33,14 @@ export const ApiOrder = (obj,apiId) => async dispatch => {
 export const ApiChatGpt = (text) => async dispatch => {
    
    
-
+    let orgUnitId = localStorage.getItem('org_unit_id');
     var data = JSON.stringify({
                      
                       "question": text,
                       
                     });
-    let url =  API_URL + "/chat-gpt/final-reply"
-    return axios.post(url, data).then((res) => {
+    let url =  API_URL + "/chat-gpt/final-reply?org=" + orgUnitId
+    return axios.post(url, data,{}).then((res) => {
 
         return {message:'Found',data:res}
     }).catch((ex) => {
