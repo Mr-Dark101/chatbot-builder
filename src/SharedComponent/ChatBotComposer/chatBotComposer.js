@@ -133,10 +133,11 @@ const ChatBotComposer = ({onClose}) => {
         e.preventDefault();
         let text = msgArea.current.value;
 
-        console.log(data);
+        
         
         if (data.length > 0) {
             for (let i = 0; i < data.length; i++) {
+                console.log(data[i]);
                 if (data[i].values.map((a) => a.toLowerCase()).includes(text.toLowerCase())) {
                     
                     trigger = data[i];
@@ -274,13 +275,20 @@ const ChatBotComposer = ({onClose}) => {
                                             menus: backMenu,
                                          }
 
-
-
-                                  const dv = !$.isEmptyObject(trigger) ? trigger.menus.length > 0 ? trigger.menus.map((d) => {
+                            var dv = '';
+                            if(currentBotData.type_id == 4){
+                                 dv = !$.isEmptyObject(trigger) ? trigger.menus.length > 0 ? trigger.menus.map((d) => {
                                                             if (d.toTrigger !== null) {
                                                                 return d.toTrigger
                                                             }
                                                         }).filter((d) => d !== undefined) : [loopBackTrigger] : []
+                            }else{
+                                dv = data[0];
+                            }
+                                  
+
+                                  //const dv = [];
+                                  console.log(JSON.stringify(dv) + "here new")
                                 setInit({
                                             ...init,
                                             messages: !$.isEmptyObject(trigger) ? [...init.messages, {
@@ -359,13 +367,23 @@ const ChatBotComposer = ({onClose}) => {
                                 menus: backMenu,
                              }
 
+                    
+                 var dv = ''
+                 if(currentBotData.type_id == 4){
 
+                        const dv = !$.isEmptyObject(trigger) ? trigger.menus.length > 0 ? trigger.menus.map((d) => {
+                        if (d.toTrigger !== null) {
+                            return d.toTrigger
+                        }
+                        }).filter((d) => d !== undefined) : [loopBackTrigger] : []
+                 }else{
+                        const dv = [];
+                 }
+                       
+                
+                    
 
-                      const dv = !$.isEmptyObject(trigger) ? trigger.menus.length > 0 ? trigger.menus.map((d) => {
-                                                if (d.toTrigger !== null) {
-                                                    return d.toTrigger
-                                                }
-                                            }).filter((d) => d !== undefined) : [loopBackTrigger] : []
+                             
                     setInit({
                                 ...init,
                                 messages: !$.isEmptyObject(trigger) ? [...init.messages, {
