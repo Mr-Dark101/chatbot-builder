@@ -29,15 +29,13 @@ const Edit = ({rs}) => {
    };
 
    const [formData, setFormData] = useState({
-                  version_id: rs.version_id,
-                  
+                  version_id: rs.version_id,              
                   api_secret:rs.api_secret,
                   model_id:rs.model_id,
-                  model_desc: '',
+                  default_prompt: rs.default_prompt,
                   tokens_number: rs.tokens_number,
                   prediction_risk: rs.prediction_risk,
-                  chatgpt_org_id: rs.chatgpt_org_id,
-                  
+                  chatgpt_org_id: rs.chatgpt_org_id
                });
 
    const FormSchema = Yup.object().shape({
@@ -130,7 +128,7 @@ const Edit = ({rs}) => {
                                     <a href="https://platform.openai.com/docs/models/overview"  target="_blank">Documentation</a>
                                     <br />
                                     <br />
-                                    <TextAreaField name="model_desc" label="Bot Instructions (Prompt)" value="Answer as truthfully as possible using the provided context and in less than three sentences. If answer is not known or is not contained in the provided context, reply with 'Sorry, I think I am not trained to answer that question'. Dont make up any facts from your own."  placeholder="Marv is a chatbot that reluctantly answers questions with sarcastic responses." rows="3" />
+                                    <TextAreaField name="default_prompt" label="Bot Instructions (Prompt)" value="Answer as truthfully as possible using the provided context and in less than three sentences. If answer is not known or is not contained in the provided context, reply with 'Sorry, I think I am not trained to answer that question'. Dont make up any facts from your own."  placeholder="Marv is a chatbot that reluctantly answers questions with sarcastic responses." rows="3" />
                                  </div>
 
 
@@ -142,7 +140,7 @@ const Edit = ({rs}) => {
 
 
                                   <div className="field_section">
-                                    <SelectField name="prediction_risk" label="Prediction Risk" options={predictionList} />
+                                    <SelectField name="prediction_risk" label="Temperature" options={predictionList} />
                                  </div>
 
                                  

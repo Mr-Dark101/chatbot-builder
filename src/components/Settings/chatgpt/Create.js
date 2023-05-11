@@ -17,7 +17,7 @@ const Create = ({rs}) => {
                   
                   api_secret:'',
                   model_id:"",
-                  model_desc: '',
+                  default_prompt: '',
                   tokens_number: '',
                   prediction_risk: '',
                   chatgpt_org_id: '',
@@ -79,7 +79,7 @@ const Create = ({rs}) => {
                      {!successful && (
                         <Form enableReinitialize validationSchema={FormSchema} initialValues={formData} onSubmit={onSubmit}>
                            <h4 class="box-title m-0" style={{ fontWeight: 800 }}>
-                              ChatGPT Integration
+                              GPT Integration
                            </h4>
 
                            <div className="row" style={{ marginLeft: '0px', marginRight: '0px' }}>
@@ -110,7 +110,7 @@ const Create = ({rs}) => {
                                      <br />
                                     <a href="https://platform.openai.com/docs/models/overview"  target="_blank">Documentation</a>
                                     <br />
-                                    <TextAreaField name="model_desc" label="Bot Instructions (Prompt)" value="Answer as truthfully as possible using the provided context and in less than three sentences. If answer is not known or is not contained in the provided context, reply with 'Sorry, I think I am not trained to answer that question'. Dont make up any facts from your own."  placeholder="Marv is a chatbot that reluctantly answers questions with sarcastic responses." rows="3" />
+                                    <TextAreaField name="default_prompt" label="Bot Instructions (Prompt)" value="Answer as truthfully as possible using the provided context and in less than three sentences. If answer is not known or is not contained in the provided context, reply with 'Sorry, I think I am not trained to answer that question'. Dont make up any facts from your own."  placeholder="Marv is a chatbot that reluctantly answers questions with sarcastic responses." rows="3" />
                                  </div>
 
 
@@ -122,7 +122,7 @@ const Create = ({rs}) => {
 
 
                                   <div className="field_section">
-                                    <SelectField name="prediction_risk" label="Prediction Risk" options={predictionList} />
+                                    <SelectField name="prediction_risk" label="Temperature" options={predictionList} />
                                  </div>
 
                                  

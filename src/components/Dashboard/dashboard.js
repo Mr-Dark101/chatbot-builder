@@ -56,7 +56,7 @@ const createArray = [
    },
    {
       id: 3,
-      name: 'Built ChatGPT Bot',
+      name: 'Built GPT Bot',
       icon_1: built_add_icon,
       icon_2: built_add_icon_white,
    },

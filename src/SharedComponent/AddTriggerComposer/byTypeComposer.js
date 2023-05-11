@@ -1625,7 +1625,7 @@ const ByTypeComposer = ({ props, triggerType }) => {
                               <>
                               <div style={{ color: '#000', fontWeight: 800, marginTop: '10px', fontSize: '12px' }}>
                               <div className="sub-txt" style={{ marginBottom: '5px' }}>
-                                 ChatGPT Greeting Message
+                                 GPT Greeting Message
                                </div>
                               <TextEditor type={'formStartText'} defaultText={formStartText} onSuccess={handleTextAreaChange} />
                               </div>

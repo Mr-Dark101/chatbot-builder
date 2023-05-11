@@ -45,7 +45,7 @@ const CreateBotComposer = (props) => {
 
    let titleName = 'Create a bot';
    if(botType == 3 || botType == 4){
-      titleName = 'Create a ChatGPT bot'
+      titleName = 'Create a GPT bot'
    }
 
    useEffect(() => {
