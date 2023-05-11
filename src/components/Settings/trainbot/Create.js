@@ -95,7 +95,7 @@ const Create = ({ rs, retrieveList, loadList }) => {
                   <div className="page_data_clinic api_form_section" style={{ overflowY: 'scroll', height: 800 }}>
                      {!successful && (
                         <Form enableReinitialize validationSchema={FormSchema} initialValues={formData} onSubmit={onSubmit}>
-                           <h4 class="box-title m-0" style={{ fontWeight: 800 }}>
+                           <h4 class="box-title m-0" style={{ fontWeight: 800}}>
                               Add Training Data
                            </h4>
 

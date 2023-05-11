@@ -114,8 +114,8 @@ const List = ({ rs, subPage, loadList }) => {
 
                      <div className="col-sm-3">
 
-                        <a class="dashboard_setting float-end p-2" onClick={() => createJson()}>
-                           Make Content Bot Ready
+                        <a class="dashboard_setting float-end p-2" onClick={() => createJson()} style={{ marginLeft: '15px' }}>
+                           Update Content
                         </a>
 
                         <a class="dashboard_setting float-end p-2" onClick={() => subPage(<Create loadList={loadList} retrieveList={retrieveList} rs={rs} />)}>
