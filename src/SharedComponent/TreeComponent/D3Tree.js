@@ -362,7 +362,7 @@ const D3Tree = (props) => {
                </a>
             </div>
 
-            ) : null}}
+            ) : null}
            
 
             <div class="tag-box">

@@ -85,13 +85,13 @@ const Create = ({rs}) => {
                            <div className="row" style={{ marginLeft: '0px', marginRight: '0px' }}>
                               <div className="col-9" style={{ paddingLeft: '0px', paddingRight: '0px' }}>
                                  <div className="field_section">
-                                    <SelectField name="version_id" label="ChatGPT Version" options={versionList} />
+                                    <SelectField name="version_id" label="GPT Version" options={versionList} />
                                  </div>
 
                                  <div className="field_section">
                                   <TextField name="api_secret" label="API Secrets Key" placeholder="Please enter your ChatGPT API Key here" />
                                  
-                                    <a href="#">Signup for ChatGPT API Key</a>
+                                    <a href="https://platform.openai.com/account/api-keys"  target="_blank">Signup for ChatGPT API Key</a>
                                  </div>
 
 
@@ -107,7 +107,8 @@ const Create = ({rs}) => {
                                  </Tooltip>
 
                                  <div className="field_section">
-                                    <a href="#">Documentation</a>
+                                     <br />
+                                    <a href="https://platform.openai.com/docs/models/overview"  target="_blank">Documentation</a>
                                     <br />
                                     <TextAreaField name="model_desc" label="Bot Instructions (Prompt)" placeholder="Marv is a chatbot that reluctantly answers questions with sarcastic responses." rows="3" />
                                  </div>

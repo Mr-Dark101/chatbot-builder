@@ -80,8 +80,9 @@ const Edit = ({rs}) => {
    ];
 
    const predictionList = [
+      { value: 0, label: '0' },
       { value: 0.5, label: '0.5' },
-      
+      { value: 0.5, label: '1.0' }
    ];
 
    
@@ -95,7 +96,7 @@ const Edit = ({rs}) => {
                      {!successful && (
                         <Form enableReinitialize validationSchema={FormSchema} initialValues={formData} onSubmit={onSubmit}>
                            <h4 class="box-title m-0" style={{ fontWeight: 800 }}>
-                              ChatGPT Integration
+                              GPT Integration
                            </h4>
 
                            <div className="row" style={{ marginLeft: '0px', marginRight: '0px' }}>
@@ -103,18 +104,18 @@ const Edit = ({rs}) => {
                                  <div className="field_section">
                                     
 
-                                    <SelectField name="version_id" label="ChatGPT Version" options={versionList} />
+                                    <SelectField name="version_id" label="GPT Version" options={versionList} />
                                  </div>
 
                                  <div className="field_section">
-                                  <TextField name="api_secret" label="API Secrets Key" placeholder="Please enter your ChatGPT API Key here" />
+                                  <TextField name="api_secret" label="API Secrets Key" placeholder="Please enter your GPT API Key here" />
                                  
-                                    <a href="#">Signup for ChatGPT API Key</a>
+                                    <a href="https://platform.openai.com/account/api-keys"  target="_blank">Signup for GPT API Key</a>
                                  </div>
 
 
                                  <div className="field_section">
-                                  <TextField name="chatgpt_org_id" label="Organization ID" placeholder="Please enter your ChatGPT Organization ID here" />
+                                  <TextField name="chatgpt_org_id" label="Organization ID" placeholder="Please enter your GPT Organization ID here" />
                                     
                                  </div>
                                  
@@ -125,7 +126,9 @@ const Edit = ({rs}) => {
                                  </Tooltip>
 
                                  <div className="field_section">
-                                    <a href="#">Documentation</a>
+                                    <br />
+                                    <a href="https://platform.openai.com/docs/models/overview"  target="_blank">Documentation</a>
+                                    <br />
                                     <br />
                                     <TextAreaField name="model_desc" label="Bot Instructions (Prompt)" placeholder="Marv is a chatbot that reluctantly answers questions with sarcastic responses." rows="3" />
                                  </div>
