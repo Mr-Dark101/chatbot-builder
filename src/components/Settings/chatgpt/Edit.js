@@ -130,7 +130,7 @@ const Edit = ({rs}) => {
                                     <a href="https://platform.openai.com/docs/models/overview"  target="_blank">Documentation</a>
                                     <br />
                                     <br />
-                                    <TextAreaField name="model_desc" label="Bot Instructions (Prompt)" placeholder="Marv is a chatbot that reluctantly answers questions with sarcastic responses." rows="3" />
+                                    <TextAreaField name="model_desc" label="Bot Instructions (Prompt)" value="Answer as truthfully as possible using the provided context and in less than three sentences. If answer is not known or is not contained in the provided context, reply with 'Sorry, I think I am not trained to answer that question'. Dont make up any facts from your own."  placeholder="Marv is a chatbot that reluctantly answers questions with sarcastic responses." rows="3" />
                                  </div>
 
 
