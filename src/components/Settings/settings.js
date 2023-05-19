@@ -96,7 +96,7 @@ const Settings = () => {
 
       { name: 'Form Builder', controller: 'FormBuilder', icon: form },
 
-      { name: 'ChatGPT', controller: 'ChatGpt', icon: form },
+      { name: 'GPT', controller: 'ChatGpt', icon: form },
       { name: 'TrainBot', controller: 'TrainBot', icon: form },
    ];
 

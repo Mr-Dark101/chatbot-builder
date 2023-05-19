@@ -106,19 +106,19 @@ const List = ({ rs, subPage, loadList }) => {
             {listData.length > 0 ? (
                <>
                   <div className="row px-30 py-0 media-center">
-                     <div className="col-sm-9">
+                     <div className="col-sm-8">
                         <h5 className="box-title m-0" style={{ fontWeight: 800 }}>
                            Train Bot
                         </h5>
                      </div>
 
-                     <div className="col-sm-3">
+                     <div className="col-sm-4">
 
-                        <a class="dashboard_setting float-end p-2" onClick={() => createJson()} style={{ marginLeft: '15px' }}>
+                        <a class="dashboard_setting float-end p-2" onClick={() => createJson()} style={{ width: '150px',marginLeft: '15px', textAlign: 'center' }}>
                            Update Content
                         </a>
 
-                        <a class="dashboard_setting float-end p-2" onClick={() => subPage(<Create loadList={loadList} retrieveList={retrieveList} rs={rs} />)}>
+                        <a class="dashboard_setting float-end p-2" style={{ width: '170px', marginLeft: '15px', textAlign: 'center' }} onClick={() => subPage(<Create loadList={loadList} retrieveList={retrieveList} rs={rs} />)}>
                            Add Training Data
                         </a>
                      </div>

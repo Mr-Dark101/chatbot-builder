@@ -329,7 +329,7 @@ const CreateBotComposer = (props) => {
                   <div className="col-sm-12">
                         <p>
 
-                           This ChatGPT bot is an autonomous bot which does not require a flow to be built. 
+                           This GPT bot is an autonomous bot which does not require a flow to be built. 
                            <br />
                            This bot uses your Training Data to reply to customer queries.
                            <br />
