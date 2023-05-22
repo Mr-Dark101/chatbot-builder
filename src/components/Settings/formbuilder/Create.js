@@ -12,7 +12,7 @@ const Create = ({ rs, retrieveList, loadList }) => {
 
    const [successful, setSuccessful] = useState(false);
    const [message, setMessage] = useState();
-   const [headerField, setHeaderField] = useState([{ label: '', type: '', option: [], regularexpression: '' }]);
+   const [headerField, setHeaderField] = useState([{ label: '', type: '', option: [], regularexpression: '', interactivebutton: [], interactivelist: [] }]);
 
    const [optionField, setOptionField] = useState({ key: '', value: '' });
    useEffect(() => {
@@ -43,6 +43,31 @@ const Create = ({ rs, retrieveList, loadList }) => {
 
       list[parentIndex]['regularexpression'] = newArray;
       setHeaderField(list);
+    
+   };
+
+   const removeFieldInteractiveButton = (i, label, parentIndex) => {
+      const list = [...headerField];
+      const newArray = headerField[parentIndex]['interactivebutton'].filter((d) => d.label !== label);
+
+      list[parentIndex]['interactivebutton'] = newArray;
+      setHeaderField(list);
+   };
+
+   const removeFieldInteractiveList = (i, label, parentIndex) => {
+      const list = [...headerField];
+      const newArray = headerField[parentIndex]['interactivelist'].filter((d) => d.label !== label);
+
+      list[parentIndex]['interactivelist'] = newArray;
+      setHeaderField(list);
+   };
+
+   const removeFieldInteractiveCatalog = (i, label, parentIndex) => {
+      const list = [...headerField];
+      const newArray = headerField[parentIndex]['productcatalog'].filter((d) => d.label !== label);
+
+      list[parentIndex]['productcatalog'] = newArray;
+      setHeaderField(list);
    };
 
    const addFieldOption = (index) => {
@@ -51,6 +76,27 @@ const Create = ({ rs, retrieveList, loadList }) => {
       list[index]['option'].push({ key: '', value: '' });
 
       setHeaderField(list);
+   };
+
+   const addFieldButton = (index) => {
+      if(index < 3) {
+         const list = [...headerField];
+
+         list[index]['interactivebutton'].push({ heading: '',key: '', value: '' });
+   
+         setHeaderField(list);
+      }
+      
+   };
+
+   const addFieldList = (index) => {
+      if(index < 10) {
+         const list = [...headerField];
+
+         list[index]['interactivelist'].push({heading: '', key: '', value: '', description: '',buttonText: '' });
+   
+         setHeaderField(list);
+      }  
    };
 
    const retrieveMasterList = (url) => {
@@ -80,6 +126,9 @@ const Create = ({ rs, retrieveList, loadList }) => {
       { value: 'location', label: 'Location' },
       { value: 'date', label: 'Date' },
       { value: 'regularexpression', label: 'Regular Expression' },
+      { value: 'interactivebutton', label: 'Interactive Buttons' },
+      { value: 'interactivelist', label: 'Interactive List' },
+      { value: 'catalog', label: 'Product Catalog' },
    ];
 
    const [formData, setFormData] = useState({
@@ -125,6 +174,15 @@ const Create = ({ rs, retrieveList, loadList }) => {
       if (value == 'regularexpression') {
          list[index]['regularexpression'] = [{ value: '' }];
       }
+      if (value == 'interactivebutton') {
+         list[index]['interactivebutton'] = [{ key: '', value: '' }];
+      }
+      if (value == 'interactivelist') {
+         list[index]['interactivelist'] = [{ key: '', value: '' }];
+      }
+      if (value == 'productcatalog') {
+         list[index]['productcatalog'] = [{ value: '' }];
+      }
       setHeaderField(list);
    };
 
@@ -142,6 +200,33 @@ const Create = ({ rs, retrieveList, loadList }) => {
 
       const list = [...headerField];
       list[indexParent]['regularexpression'][index][name] = value;
+
+      setHeaderField(list);
+   };
+
+   const handleInputChangeButton = (e, index, param, indexParent) => {
+      const { name, value } = e.target;
+
+      const list = [...headerField];
+      list[indexParent]['interactivebutton'][index][name] = value;
+
+      setHeaderField(list);
+   };
+
+   const handleInputChangeList = (e, index, param, indexParent) => {
+      const { name, value } = e.target;
+
+      const list = [...headerField];
+      list[indexParent]['interactivelist'][index][name] = value;
+
+      setHeaderField(list);
+   };
+
+   const handleInputChangeCatalog = (e, index, param, indexParent) => {
+      const { name, value } = e.target;
+
+      const list = [...headerField];
+      list[indexParent]['productcatalog'][index][name] = value;
 
       setHeaderField(list);
    };
@@ -185,9 +270,10 @@ const Create = ({ rs, retrieveList, loadList }) => {
                                        return (
                                           <>
                                              <div style={{ border: '1px solid #ccc', margin: '10px 0px', padding: 10 }}>
-                                                <div className="row align-items-center">
+                                                <div className="row">
                                                    <div className="col-sm-4">
-                                                      <TextField name="label" placeholder="Key" value={x.label} onChange={(e) => handleInputChange(e, i, 'phone')} />
+                                                      <TextAreaField name="label" placeholder="Provide a question you want to ask." value={x.label} onChange={(e) => handleInputChange(e, i, 'phone')} rows="4"
+                                                      style={{ margin: '5px 0px'}} />
                                                    </div>
                                                    <div className="col-sm-7">
                                                       <Select
@@ -225,7 +311,7 @@ const Create = ({ rs, retrieveList, loadList }) => {
                                                                      <TextField name="value" placeholder="Value" value={o.value} onChange={(e) => handleInputChangeOption(e, io, 'phone', i)} />
                                                                   </div>
                                                                   <div className="col-sm-1 text-center">
-                                                                     <a className="link_delete_icon" href="javascript:void(0)" onClick={() => removeFieldOption(io, o.key, i)}>
+                                                                     <a className="link_delete_icon btn btn-icon btn-icon rounded-circle btn-danger" href="javascript:void(0)" onClick={() => removeFieldOption(io, o.key, i)}>
                                                                         <i className="fa fa-trash"></i>
                                                                      </a>
                                                                   </div>
@@ -252,7 +338,7 @@ const Create = ({ rs, retrieveList, loadList }) => {
                                                                      <TextField name="value" placeholder="Reg([/hello/])" value={o.value} onChange={(e) => handleInputChangeRegular(e, io, 'phone', i)} style={{ marginTop: '-10px' }} />
                                                                   </div>
                                                                   <div className="col-sm-1 text-center">
-                                                                     <a className="link_delete_icon" href="javascript:void(0)" onClick={() => removeFieldRegular(io, o.key, i)}>
+                                                                     <a className="link_delete_icon btn btn-icon btn-icon rounded-circle btn-danger" href="javascript:void(0)" onClick={() => removeFieldRegular(io, o.key, i)}>
                                                                         <i className="fa fa-trash"></i>
                                                                      </a>
                                                                   </div>
@@ -260,6 +346,80 @@ const Create = ({ rs, retrieveList, loadList }) => {
                                                             </>
                                                          );
                                                       })}
+                                                   </>
+                                                ) : null}
+                                                 {/* Adding Interactive Buttons */}
+                                                 {x.type == 'interactivebutton' ? (
+                                                   <>
+                                                      <div style={{ marginTop: '20px', color: '#000' }}>Interactive Buttons</div>
+                                                      <div className="col-sm-11">
+                                                                     <TextField name="heading" placeholder="Heading" value={headerField[i]['interactivebutton'].heading} onChange={(e) => handleInputChangeButton(e, 0, 'phone', 0)} />
+                                                      </div>   
+                                                      {headerField[i]['interactivebutton'].map((o, io) => {
+                                                         return (
+                                                            <>
+                                                               <div className="row align-items-center">    
+                                                                                                                         
+                                                                  <div className="col-sm-3">
+                                                                     <TextField name="key" placeholder="ID" value={o.key} onChange={(e) => handleInputChangeButton(e, io, 'phone', i)} />
+                                                                  </div>
+                                                                
+                                                                  <div className="col-sm-7">
+                                                                     <TextField name="value" placeholder="Button Text (Max 20 Characters)" value={o.value} onChange={(e) => handleInputChangeButton(e, io, 'phone', i)} />
+                                                                  </div>
+                                                                  <div className="col-sm-1 text-center">
+                                                                     <a className="link_delete_icon btn btn-icon btn-icon rounded-circle btn-danger" href="javascript:void(0)" onClick={() => removeFieldInteractiveButton(io, o.key, i)}>
+                                                                        <i className="fa fa-trash"></i>
+                                                                     </a>
+                                                                  </div>
+                                                               </div>
+                                                            </>
+                                                         );
+                                                      })}
+
+                                                      <button type="button" className="primary btn-danger mt-20" onClick={() => addFieldButton(i)}>
+                                                         Add Button
+                                                      </button>
+                                                   </>
+                                                ) : null}
+
+                                                {/* Adding Interactive List */}
+                                                {x.type == 'interactivelist' ? (
+                                                   <>
+                                                      <div style={{ marginTop: '20px', color: '#000' }}>Interactive List</div>
+                                                      <div className="col-sm-6">
+                                                         <TextField name="heading" placeholder="Heading" value={headerField[i]['interactivelist'].heading} onChange={(e) => handleInputChangeButton(e, 0, 'phone', 0)} />
+                                                      </div>
+                                                      <div className="col-sm-6">
+                                                         <TextField name="buttonText" placeholder="Button Text" value={headerField[i]['interactivelist'].buttonText} onChange={(e) => handleInputChangeButton(e, 0, 'phone', 0)} />
+                                                      </div>
+                                                      {headerField[i]['interactivelist'].map((o, io) => {
+                                                         return (
+                                                            <>
+                                                               <div className="row align-items-center">
+                                                                 
+                                                                  <div className="col-sm-2">
+                                                                     <TextField name="key" placeholder="ID" value={o.key} onChange={(e) => handleInputChangeList(e, io, 'phone', i)} />
+                                                                  </div>
+                                                                  <div className="col-sm-4">
+                                                                     <TextField name="value" placeholder="List Item Text (Max 24 Characters)" value={o.value} onChange={(e) => handleInputChangeList(e, io, 'phone', i)} />
+                                                                  </div>
+                                                                  <div className="col-sm-5">
+                                                                     <TextField name="description" placeholder="Provide Item Description" value={o.description} onChange={(e) => handleInputChangeList(e, io, 'phone', i)} />
+                                                                  </div>
+                                                                  <div className="col-sm-1 text-center">
+                                                                     <a className="link_delete_icon btn btn-icon btn-icon rounded-circle btn-danger" href="javascript:void(0)" onClick={() => removeFieldInteractiveList(io, o.key, i)}>
+                                                                        <i className="fa fa-trash"></i>
+                                                                     </a>
+                                                                  </div>
+                                                               </div>
+                                                            </>
+                                                         );
+                                                      })}
+
+                                                      <button type="button" className="primary btn-danger mt-20" onClick={() => addFieldList(i)}>
+                                                         Add Item List
+                                                      </button>
                                                    </>
                                                 ) : null}
                                              </div>
