@@ -329,12 +329,14 @@ const CreateBotComposer = (props) => {
                   <div className="col-sm-12">
                         <p>
 
-                           This GPT bot is an autonomous bot which does not require a flow to be built. 
-                           <br />
-                           This bot uses your Training Data to reply to customer queries.
-                           <br />
-                           <br />
-                           Currently this a conversational bot only and does not reply with dynamic data from third party portals.
+                        This bot is powered by Open AI GPT technology. 
+                        <br /><br />
+                        This bot does not require a
+predetermined flow and uses your proprietary training data to provide human like responses to user queries in a conversational manner.
+<br /><br />
+This bot does not reply to the user input with dynamic data from third party systems.
+
+                          
 
                         </p>
                   </div>
