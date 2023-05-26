@@ -24,6 +24,19 @@ const getAll = (listUrl,master,params=false) => {
   return axios.get(url, { headers: authHeader() });
 };
 
+
+const exportData = () => {
+
+  let url =  API_URL + "/master/export-data"
+
+  
+
+  return axios.get(url, { headers: authHeader() });
+};
+
+
+
+
 const getById = (listUrl,master) => {
 
   let url =  API_URL + "/" + listUrl
@@ -104,5 +117,6 @@ export default {
   deleteRow,
   ListValue,
   createJsonData,
+  exportData
   
 };

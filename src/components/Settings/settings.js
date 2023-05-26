@@ -94,10 +94,14 @@ const Settings = () => {
       /*{name:'Integration',controller:'Integration',icon:integration},*/
       { name: 'API', controller: 'Api', icon: api },
 
+
+
       { name: 'Form Builder', controller: 'FormBuilder', icon: form },
 
       { name: 'GPT', controller: 'ChatGpt', icon: form },
       { name: 'TrainBot', controller: 'TrainBot', icon: form },
+
+      
    ];
 
    if (localStorage.getItem('org_unit_id') == '') {

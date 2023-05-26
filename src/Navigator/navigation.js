@@ -19,9 +19,10 @@ const Navigation = () => {
              const query = new URLSearchParams(history.location.search);
              let _userName = query.get('username');;
              if(_userName){
-                
+               
                 history.push(`${STRINGS.ROUTES.AUTH.LOGIN}?username=${_userName}`);
              }else{
+                
                 history.push(`${STRINGS.ROUTES.ROOT}?org=${localStorage.getItem("userId")}`);
              }
             

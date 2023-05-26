@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect,useRef } from 'react';
 
 import { Form, TextField, SelectField, SubmitButton, CheckBoxField, TextGroupField, TextAreaField } from '../../crud/FormElements';
 import * as Yup from 'yup';
@@ -6,65 +6,62 @@ import CrudService from '../../../services/crud.service';
 import { Link } from 'react-router-dom';
 import { Tooltip } from '@mui/material';
 
-const Create = ({ rs, retrieveList, loadList }) => {
+const CreateImport = ({ rs, retrieveList, loadList }) => {
    const [validationSchema, setValidationSchema] = useState({});
 
-   const [gptCatList, setGptCatList] = useState([]);
+   const [insuranceList, setInsuranceList] = useState([]);
    const [insuranceTypeList, setInsuranceTypeList] = useState([]);
 
    const [successful, setSuccessful] = useState(false);
    const [message, setMessage] = useState();
    const [headerField, setHeaderField] = useState([{ keyOther: '', valueOther: '' }]);
+
+
+    const fileInputRef = useRef();
+
+
+ const [selectedFile, setSelectedFile] = useState();
+  const [isFilePicked, setIsFilePicked] = useState(false);
+const [isSelected, setIsSelected] = useState(false)
+
+
    useEffect(() => {
       //retrieveMasterList('insurance');
-      retrieveMasterList('gptcat');
+      //retrieveMasterList('insurance_type');
    }, []);
 
-   const addField = (param) => {
-      setHeaderField([...headerField, {}]);
-   };
-   const removeField = (i, label) => {
-      setHeaderField(headerField.filter((d) => d.keyOther !== label));
-   };
-   const typeList = [
-      { value: 'get', label: 'GET' },
-      { value: 'post', label: 'POST' },
-      { value: 'put', label: 'PUT' },
-   ];
+  
+  
 
-   const retrieveMasterList = (url) => {
-      CrudService.ListValue('master/list-value?type=' + url)
-         .then((response) => {
-            if (url == 'gptcat') {
-               setGptCatList(response.data);
-            }
-
-           
-         })
-         .catch((e) => {
-            console.log(e);
-         });
-   };
+   
 
    const [formData, setFormData] = useState({
-      question: '',
-      answer: '',
-      category_id:'',
-      
-      file_type: 'C',
+     
    });
 
    const FormSchema = Yup.object().shape({
-      question: Yup.string().required('Required'),
-      answer: Yup.string().required('Required'),
+     
+      
    });
+   const changeHandler = (event) => {
+    setSelectedFile(event.target.files[0]);
+    setIsSelected(true);
+  };
+
+  const fileInputClicked = () => {
+        fileInputRef.current.click();
+    }
 
    const onSubmit = (values, { setSubmitting, resetForm, setStatus }) => {
-      values.header = JSON.stringify(headerField);
-      CrudService.register(values, 'trainbot', true).then(
+
+      const formData = new FormData();
+       formData.append('file', selectedFile);
+
+      
+      CrudService.register(formData, 'import', true).then(
          (response) => {
             //setModalValue('')
-            loadList();
+            //loadList();
             setMessage(response.data.message);
             setSuccessful(true);
             //retrieveList();
@@ -95,27 +92,37 @@ const Create = ({ rs, retrieveList, loadList }) => {
                      {!successful && (
                         <Form enableReinitialize validationSchema={FormSchema} initialValues={formData} onSubmit={onSubmit}>
                            <h4 class="box-title m-0" style={{ fontWeight: 800}}>
-                              Add Training Data
+                              Add Category
                            </h4>
 
                            <div className="row" style={{ marginLeft: '0px', marginRight: '0px' }}>
                               <div className="col-9" style={{ paddingLeft: '0px', paddingRight: '0px' }}>
+                                 <div className="field_section">
+                                    
 
-                                 <div className="field_section">
-                                   <SelectField 
-                                     name="category_id"
-                                     label="Category"
-                                     options={gptCatList}
-                                   />
-                                 </div>
-                                 
-                                 <div className="field_section">
-                                    <TextField name="question" label="Question" icon="check-square" placeholder="Please enter your question" />
+
+                                    <div className="drop-container"
+                   onClick={fileInputClicked}
+                   
+                >
+                    <div className="drop-message">
+                        Drop a File here to upload.<br />
+                        or<br />
+                        <a href="#">Browse File</a>
+                    </div>
+                    <input type="file" 
+                    ref={fileInputRef}
+                    className="file-input" name="file" onChange={changeHandler} />
+                   
+                </div>
+                <div className="file-display-container">
+                    
+                </div>
+
+
                                  </div>
 
-                                 <div className="field_section">
-                                    <TextAreaField name="answer" label="Answer" placeholder="Please enter the response" rows="3" />
-                                 </div>
+                               
 
                                  
 
@@ -133,7 +140,7 @@ const Create = ({ rs, retrieveList, loadList }) => {
                            </div>
 
                            <div>
-                              <SubmitButton title="Create" className="primary" />
+                              <SubmitButton title="Upload" className="primary" />
 
                               <button onClick={() => loadList()} type="button" className="secondary ms-10">
                                  Cancel
@@ -156,4 +163,4 @@ const Create = ({ rs, retrieveList, loadList }) => {
    );
 };
 
-export default Create;
+export default CreateImport;

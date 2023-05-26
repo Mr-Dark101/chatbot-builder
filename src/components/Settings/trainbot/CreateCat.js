@@ -6,10 +6,10 @@ import CrudService from '../../../services/crud.service';
 import { Link } from 'react-router-dom';
 import { Tooltip } from '@mui/material';
 
-const Create = ({ rs, retrieveList, loadList }) => {
+const CreateCat = ({ rs, retrieveList, loadList }) => {
    const [validationSchema, setValidationSchema] = useState({});
 
-   const [gptCatList, setGptCatList] = useState([]);
+   const [insuranceList, setInsuranceList] = useState([]);
    const [insuranceTypeList, setInsuranceTypeList] = useState([]);
 
    const [successful, setSuccessful] = useState(false);
@@ -17,51 +17,27 @@ const Create = ({ rs, retrieveList, loadList }) => {
    const [headerField, setHeaderField] = useState([{ keyOther: '', valueOther: '' }]);
    useEffect(() => {
       //retrieveMasterList('insurance');
-      retrieveMasterList('gptcat');
+      //retrieveMasterList('insurance_type');
    }, []);
 
-   const addField = (param) => {
-      setHeaderField([...headerField, {}]);
-   };
-   const removeField = (i, label) => {
-      setHeaderField(headerField.filter((d) => d.keyOther !== label));
-   };
-   const typeList = [
-      { value: 'get', label: 'GET' },
-      { value: 'post', label: 'POST' },
-      { value: 'put', label: 'PUT' },
-   ];
+  
+  
 
-   const retrieveMasterList = (url) => {
-      CrudService.ListValue('master/list-value?type=' + url)
-         .then((response) => {
-            if (url == 'gptcat') {
-               setGptCatList(response.data);
-            }
-
-           
-         })
-         .catch((e) => {
-            console.log(e);
-         });
-   };
+   
 
    const [formData, setFormData] = useState({
-      question: '',
-      answer: '',
-      category_id:'',
+      name: '',
       
-      file_type: 'C',
    });
 
    const FormSchema = Yup.object().shape({
-      question: Yup.string().required('Required'),
-      answer: Yup.string().required('Required'),
+      name: Yup.string().required('Required'),
+      
    });
 
    const onSubmit = (values, { setSubmitting, resetForm, setStatus }) => {
       values.header = JSON.stringify(headerField);
-      CrudService.register(values, 'trainbot', true).then(
+      CrudService.register(values, 'gptcat', true).then(
          (response) => {
             //setModalValue('')
             loadList();
@@ -95,27 +71,16 @@ const Create = ({ rs, retrieveList, loadList }) => {
                      {!successful && (
                         <Form enableReinitialize validationSchema={FormSchema} initialValues={formData} onSubmit={onSubmit}>
                            <h4 class="box-title m-0" style={{ fontWeight: 800}}>
-                              Add Training Data
+                              Add Category
                            </h4>
 
                            <div className="row" style={{ marginLeft: '0px', marginRight: '0px' }}>
                               <div className="col-9" style={{ paddingLeft: '0px', paddingRight: '0px' }}>
-
                                  <div className="field_section">
-                                   <SelectField 
-                                     name="category_id"
-                                     label="Category"
-                                     options={gptCatList}
-                                   />
-                                 </div>
-                                 
-                                 <div className="field_section">
-                                    <TextField name="question" label="Question" icon="check-square" placeholder="Please enter your question" />
+                                    <TextField name="name" label="Name" icon="check-square" placeholder="Name" />
                                  </div>
 
-                                 <div className="field_section">
-                                    <TextAreaField name="answer" label="Answer" placeholder="Please enter the response" rows="3" />
-                                 </div>
+                               
 
                                  
 
@@ -156,4 +121,4 @@ const Create = ({ rs, retrieveList, loadList }) => {
    );
 };
 
-export default Create;
+export default CreateCat;

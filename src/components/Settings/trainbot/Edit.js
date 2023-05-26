@@ -10,7 +10,7 @@ import { Formik, Form, Field, ErrorMessage, useFormikContext, useField, useFormi
 const Edit = ({ rs, retrieveList, loadList }) => {
    const [validationSchema, setValidationSchema] = useState({});
 
-   const [insuranceList, setInsuranceList] = useState([]);
+   const [gptCatList, setGptCatList] = useState([]);
    const [insuranceTypeList, setInsuranceTypeList] = useState([]);
 
    const [successful, setSuccessful] = useState(false);
@@ -18,17 +18,29 @@ const Edit = ({ rs, retrieveList, loadList }) => {
 
    useEffect(() => {
       // retrieveMasterList('insurance');
-      // retrieveMasterList('insurance_type');
+       retrieveMasterList('gptcat');
    }, []);
 
    
 
-   
+   const retrieveMasterList = (url) => {
+      CrudService.ListValue('master/list-value?type=' + url)
+         .then((response) => {
+            if (url == 'gptcat') {
+               setGptCatList(response.data);
+            }
+
+           
+         })
+         .catch((e) => {
+            console.log(e);
+         });
+   };
 
    const [formData, setFormData] = useState({
       question: rs.question,
       answer: rs.answer,
-     
+      category_id:rs.category_id,
       id: rs.id,
    });
 
@@ -74,6 +86,15 @@ const Edit = ({ rs, retrieveList, loadList }) => {
                                        <div className="col-9" style={{ paddingLeft: '0px', paddingRight: '0px' }}>
                                           
 
+
+                                          <div className="field_section">
+                                            <SelectField 
+                                              name="category_id"
+                                              label="Category"
+                                              options={gptCatList}
+                                            />
+                                          </div>
+                                          
                                           <div className="field_section">
                                              <TextField name="question" label="Question" icon="check-square" placeholder="Please enter your question" />
                                           </div>
@@ -85,7 +106,7 @@ const Edit = ({ rs, retrieveList, loadList }) => {
                                           </div>
 
                                           
-
+                                           
 
                                         
                                        </div>

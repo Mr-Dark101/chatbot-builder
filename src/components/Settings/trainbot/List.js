@@ -1,15 +1,23 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect,useRef } from 'react';
 import CrudService from '../../../services/crud.service';
 import ModalPopup from '../../common/modal/ModalPopup';
 import SweetAlert from 'react-bootstrap-sweetalert';
 import Create from './Create';
+import CreateCat from './CreateCat';
+import CreateImport from './CreateImport';
+
+import CatList from './CatList';
+
 import Edit from './Edit';
 
 import BlankMsg from '../../common/BlankMsg';
 import { toast } from 'react-toastify';
 import { Tooltip } from '@mui/material';
-
+const BASE_URL = process.env.REACT_APP_BACKEND_URl;
 const List = ({ rs, subPage, loadList }) => {
+
+   const ref = useRef([]);
+
    const [listData, setListData] = useState([]);
 
    const [modalValue, setModalValue] = useState('');
@@ -19,12 +27,16 @@ const List = ({ rs, subPage, loadList }) => {
    const [message, setMessage] = useState();
    const [delId, setDelId] = useState(false);
 
+   const [checkedAll, setCheckedAll] = useState(false);
+  const [checked, setChecked] = useState(false);
+
    useEffect(() => {
       retrieveList();
    }, []);
 
    const retrieveList = () => {
-      CrudService.getAll('trainbot', true)
+
+      CrudService.getAll('gptcat', true)
          .then((response) => {
             setListData(response.data);
             console.log(response.data);
@@ -67,6 +79,12 @@ const List = ({ rs, subPage, loadList }) => {
       );
    };
 
+   const deleteRowAll = async (id) => {
+      await CrudService.deleteRow(id, 'trainbot', true)
+
+      
+   };
+
    const createJson = () => {
       CrudService.createJsonData().then(
          (response) => {
@@ -78,6 +96,47 @@ const List = ({ rs, subPage, loadList }) => {
          }
       );
    }
+
+   const deleteAll = () => {
+
+      for (const inputName in checked) {
+
+          if(checked[inputName]){
+               deleteRowAll(inputName)
+          }
+          
+
+
+      }
+
+      
+      retrieveList();
+   }
+
+   const toggleCheck = (inputName) => {
+    setChecked((prevState) => {
+      const newState = { ...prevState };
+      newState[inputName] = !prevState[inputName];
+      return newState;
+    });
+  };
+
+  const downLoadTemplate = () => {
+      document.location.href= BASE_URL + '/template.csv';
+  }
+
+  const downLoadCsv = () => {
+      CrudService.exportData()
+         .then((response) => {
+               let orgUnitId = localStorage.getItem('org_unit_id');
+               document.location.href= BASE_URL + '/export_' + orgUnitId + '.csv';
+         })
+         .catch((e) => {
+            console.log(e);
+         });
+  }
+
+  
 
    return (
       <>
@@ -106,13 +165,13 @@ const List = ({ rs, subPage, loadList }) => {
             {listData.length > 0 ? (
                <>
                   <div className="row px-30 py-0 media-center">
-                     <div className="col-sm-7">
+                     <div className="col-sm-6">
                         <h5 className="box-title m-0" style={{ fontWeight: 800 }}>
                            Train Bot
                         </h5>
                      </div>
 
-                     <div className="col-sm-5">
+                     <div className="col-sm-6 text-end">
 
 
                         
@@ -124,62 +183,59 @@ const List = ({ rs, subPage, loadList }) => {
                            Update Content
                         </a>
 
-                        <a class="dashboard_setting float-end p-2" style={{ width: '170px', marginLeft: '15px', textAlign: 'center' }} onClick={() => subPage(<Create loadList={loadList} retrieveList={retrieveList} rs={rs} />)}>
+                        <a class="dashboard_setting float-end p-2" style={{ width: '170px', marginLeft: '15px', textAlign: 'center' }} 
+
+                        onClick={() => subPage(<Create loadList={loadList} retrieveList={retrieveList} rs={rs} />)}>
                            Add Training Data
                         </a>
 
+                        <a class="dashboard_setting float-end p-2" style={{ width: '170px', marginLeft: '15px', textAlign: 'center' }} 
 
+                           onClick={() => deleteAll()}>
+                           Delete
+                        </a>
                         
+                        <div class="dropdown" >
+                          <button class="btn btn-danger dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                            Action
+                          </button>
+                          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                           <li><a class="dropdown-item" onClick={() => subPage(<CreateCat loadList={loadList} retrieveList={retrieveList} rs={rs} />)} href="#">Add Category</a></li>
+                            <li><a class="dropdown-item" href="#"
 
+                              onClick={() => downLoadCsv()}
 
-                        <div class="dropdown">
-                                
-                                
-                                <a data-toggle="dropdown" class="dashboard_setting float-end p-2"  style={{ width: '150px',marginLeft: '15px', textAlign: 'center' }}>
-                                 Action <i class="fa fa-chevron-down"></i>
-                              </a>
+                            >Download Training Data</a></li>
+                            <li><a class="dropdown-item" href="#"
 
-                                <ul class="dropdown-menu top_20 left_unset right_0">
-                                    
-                                    <li>
-                                        <a href="">Download CSV</a>
-                                    </li>
-                                    <li><hr /></li>
-                                   
-                                </ul>
-                            </div>
+                            onClick={() => subPage(<CreateImport loadList={loadList} retrieveList={retrieveList} rs={rs} />)}
+                            >Import Training Data</a></li>
+                            <li><a class="dropdown-item" href="#"
+                              onClick={() => downLoadTemplate()}
 
+                            >Download CSV Template</a></li>
+                          </ul>
+                        </div>
+
+                       
                      </div>
                   </div>
-
+                  <br />
                   <div className="table-responsive px-30">
                      <table className="table table-hover" id="settingTbl">
-                        <thead className="bg-primary">
-                           <tr>
-                              <th>Question</th>
-                              <th>Answer</th>
-                              
-                              <th style={{ textAlign: 'end', paddingRight: '40px' }}>Actions</th>
-                           </tr>
-                        </thead>
+                        
                         <tbody>
                            {listData &&
                               listData.map((row, index) => (
-                                 <tr>
-                                    <td>{row.question}</td>
-                                    <td>{row.answer}</td>
-                                   
+                              <>
+                                 <tr style={{backgroundColor:'#363A77',color:'#fff'}}>
+                                    <td>{row.name}</td>
                                     
-                                    <td style={{ textAlign: 'end' }}>
-                                      
-                                       <button style={{ marginLeft: 5 }} className="btn btn-icon btn-icon rounded-circle btn-custom" onClick={() => subPage(<Edit loadList={loadList} retrieveList={retrieveList} rs={row} />)}>
-                                          <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                                       </button>
-                                       <button style={{ marginLeft: 5 }} className="btn btn-icon btn-icon rounded-circle btn-danger" onClick={() => deleteMe(row.id)}>
-                                          <i class="fa fa-trash" aria-hidden="true"></i>
-                                       </button>
-                                    </td>
                                  </tr>
+                                 <tr>
+                                    <CatList id={row.id} checked={checked} toggleCheck={toggleCheck} rs={rs} subPage={subPage} loadList={loadList} />
+                                 </tr> 
+                                 </>
                               ))}
                         </tbody>
                      </table>
