@@ -239,7 +239,7 @@ const FormSchema = Yup.object().shape({
                  className="btn primary"
                   
               />
-            <button onClick={ () => loadList()} className="btn secondary ms-20">Cancel</button>
+            <button onClick={ () => loadList()} className="btn secondary ms-10">Cancel</button>
           </div>
             
 

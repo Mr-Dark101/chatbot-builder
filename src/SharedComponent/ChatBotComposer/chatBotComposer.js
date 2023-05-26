@@ -8,12 +8,15 @@ import {createGuid, currentTime} from "../../utils/base";
 import AudioPlayerDefault from "../AudioPlayer/audioPlayer";
 import documentIcon from "../../assets/file.png";
 import defaultImage from "../../assets/default_image.png";
+import halfLogo from "../../assets/eocean-logo-half.png";
+
 import {useDispatch} from "react-redux";
 
 import {
     ApiOrder,
     ApiForm,
     saveFormDB,
+    ApiChatGpt,
 } from "./slices/chatBot.slice";
 
 let defaultState = {
@@ -48,6 +51,8 @@ const ChatBotComposer = ({onClose}) => {
     const [formEndText, setFormEndText] = useState('');
     const [formData, setFormData] = useState([]);
     const [formDataSave, setFormDataSave] = useState([]);
+
+    console.log(currentBotData)
 
     //const formData = [{"label":"Name","type":"text","option":[]},{"label":"Father Name","type":"text","option":[]},{"label":"Gender","option":[{"key":"1","value":"Male"},{"key":"2","value":"Female"}],"type":"option"}];
 
@@ -128,10 +133,11 @@ const ChatBotComposer = ({onClose}) => {
         e.preventDefault();
         let text = msgArea.current.value;
 
-
+        
         
         if (data.length > 0) {
             for (let i = 0; i < data.length; i++) {
+                console.log(data[i]);
                 if (data[i].values.map((a) => a.toLowerCase()).includes(text.toLowerCase())) {
                     
                     trigger = data[i];
@@ -164,6 +170,25 @@ const ChatBotComposer = ({onClose}) => {
                        
                         
                     }
+
+
+                    if(data[i].triggerType == 'ChatGPT'){
+                       
+
+                       
+                            trigger = {
+                                id: createGuid(),
+                                response: data[i].formStartText,
+
+                                type:"TEXT",
+                                menus: [],
+                             }
+
+                           
+                            
+                       
+                        
+                    }
                    
 
                     if(data[i].startTrigger){
@@ -172,11 +197,6 @@ const ChatBotComposer = ({onClose}) => {
                     }
                     setConditionType(data[i].conditionType);
                     setSimpleValues(data[i].simpleValues);
-
-
-
-                    
-                    
 
                     if(trigger.xapi > 0){
 
@@ -234,8 +254,72 @@ const ChatBotComposer = ({onClose}) => {
 
                     // console.log("loopBackTrigger", data[i])
                    
-                    
-                    
+                    if(triggerType == "ChatGPT"){
+
+
+            
+                            const backMenu = (currentBotData.type_id == 4) ? [buildCustomMenu('Main Menu','M',backMenuId)] : [];
+                           
+                            const apiResponse = await ChatGPTApiData(text).then((rData) => {
+                                            //console.log((rData.data.data.choices))
+                                           if(rData.data){
+                                                return rData.data.data.message;
+                                            }
+                                            return false;
+                             });
+                        
+                                 trigger = {
+                                            id: createGuid(),
+                                            response: apiResponse,
+                                            type:"TEXT",
+                                            menus: backMenu,
+                                         }
+
+                            var dv = '';
+                            if(currentBotData.type_id == 4){
+                                 dv = !$.isEmptyObject(trigger) ? trigger.menus.length > 0 ? trigger.menus.map((d) => {
+                                                            if (d.toTrigger !== null) {
+                                                                return d.toTrigger
+                                                            }
+                                                        }).filter((d) => d !== undefined) : [loopBackTrigger] : []
+                            }else{
+                                dv = data[0];
+                            }
+                                  
+
+                                  //const dv = [];
+                                  console.log(JSON.stringify(dv) + "here new")
+                                setInit({
+                                            ...init,
+                                            messages: !$.isEmptyObject(trigger) ? [...init.messages, {
+                                                text: text,
+                                                id: "me"
+                                            }, trigger] : [...init.messages, {text: text, id: "me"}],
+                                            data:dv
+                                        });
+
+                              
+                                
+
+                                // setInit({
+                                //                 ...init,
+                                //                     messages: !$.isEmptyObject(trigger) ? [...init.messages, {
+                                //                         text: text,
+                                //                         id: "me"
+                                //                     }, trigger] : [...init.messages, {text: text, id: "me"}],
+                                //                     data:  !$.isEmptyObject(trigger) ? trigger.menus.length > 0 ? trigger.menus.map((d) => {
+                                //                             if (d.toTrigger !== null) {
+                                //                                 return d.toTrigger
+                                //                             }
+                                //                         }).filter((d) => d !== undefined) : [loopBackTrigger] : []
+                                //                 });
+                                trigger = {};
+                                // updatedTriggers = [];
+                                msgArea.current.value = "";
+
+                    }else{
+                        
+                            
                             trigger = {
                                 ...data[i],
                                 isFallBack: true,
@@ -251,6 +335,7 @@ const ChatBotComposer = ({onClose}) => {
                             trigger = {};
                             // updatedTriggers = [];
                             msgArea.current.value = "";
+                    }
                     
                             
                     
@@ -259,6 +344,78 @@ const ChatBotComposer = ({onClose}) => {
                 
             }
         } else {
+
+            if(triggerType == 'ChatGPT'){
+
+                
+                //const backMenu = [buildCustomMenuBack('Back','99',backMenuId)]
+                const backMenu = (currentBotData.type_id == 4) ? [buildCustomMenu('Main Menu','M',backMenuId)] : [];
+               
+                const apiResponse = await ChatGPTApiData(text).then((rData) => {
+                                //console.log((rData.data.data.choices))
+                                if(rData.data){
+                                    return rData.data.data.message;
+                                }
+                                return false;
+                                
+                 });
+            
+                     trigger = {
+                                id: createGuid(),
+                                response: apiResponse,
+                                type:"TEXT",
+                                menus: backMenu,
+                             }
+
+                    
+                 var dv = ''
+                 if(currentBotData.type_id == 4){
+
+                        const dv = !$.isEmptyObject(trigger) ? trigger.menus.length > 0 ? trigger.menus.map((d) => {
+                        if (d.toTrigger !== null) {
+                            return d.toTrigger
+                        }
+                        }).filter((d) => d !== undefined) : [loopBackTrigger] : []
+                 }else{
+                        const dv = [];
+                 }
+                       
+                
+                    
+
+                             
+                    setInit({
+                                ...init,
+                                messages: !$.isEmptyObject(trigger) ? [...init.messages, {
+                                    text: text,
+                                    id: "me"
+                                }, trigger] : [...init.messages, {text: text, id: "me"}],
+                                data:dv
+                            });
+
+                  
+                    
+
+                    // setInit({
+                    //                 ...init,
+                    //                     messages: !$.isEmptyObject(trigger) ? [...init.messages, {
+                    //                         text: text,
+                    //                         id: "me"
+                    //                     }, trigger] : [...init.messages, {text: text, id: "me"}],
+                    //                     data:  !$.isEmptyObject(trigger) ? trigger.menus.length > 0 ? trigger.menus.map((d) => {
+                    //                             if (d.toTrigger !== null) {
+                    //                                 return d.toTrigger
+                    //                             }
+                    //                         }).filter((d) => d !== undefined) : [loopBackTrigger] : []
+                    //                 });
+                    trigger = {};
+                    // updatedTriggers = [];
+                    msgArea.current.value = "";
+                                    
+
+                   
+            }
+
             if(Object.keys(loopBackTrigger).length > 0){
 
 
@@ -330,6 +487,10 @@ const ChatBotComposer = ({onClose}) => {
 
                  
             }else{
+
+
+               
+
                 
                if(triggerType == 'A'){
                         const apiResponse = await ApiData(text,apiId).then((rData) => {
@@ -815,8 +976,17 @@ const ChatBotComposer = ({onClose}) => {
 
                 
     }
+
+    const ChatGPTApiData =  async (text) => {
+
+        const apiReturn =  await dispatch(ApiChatGpt(text))
+        return  apiReturn;
+
+                
+    }
+
     const scrollOnMessage = () => {
-        let container = $(".chat-body")
+        let container = $(".conversation-container")
         container.animate({
             scrollTop: container.offset().top + (container.scrollTop() + 300)
         }, 300)
@@ -848,12 +1018,12 @@ const ChatBotComposer = ({onClose}) => {
                     let audCaption = $.parseHTML(data.caption)
                     $(`#${data.id}---audCaption-${index}`).html(audCaption);
                     return (
-                        <div className="sub-img-tag">
+                        <div className="sub-img-tag" style={{marginTop:'10px', padding:'10px'}}>
                             {
                                 data.urls.length > 0 && (
                                     data.urls.map((url) => {
                                         return (
-                                            <AudioPlayerDefault src={url}/>
+                                            <AudioPlayerDefault src={url} style={{marginBottom:'10px'}}/>
                                         )
                                     })
                                 )
@@ -865,14 +1035,14 @@ const ChatBotComposer = ({onClose}) => {
                     let vidCaption = $.parseHTML(data.caption)
                     $(`#${data.id}---vidCaption-${index}`).html(vidCaption);
                     return (
-                        <div className="sub-img-tag">
+                        <div className="sub-img-tag" style={{marginTop:'10px', padding:'10px'}}>
                             {
                                 data.urls.length > 0 && (
                                     data.urls.map((url) => {
                                         return (
 
                                             <section>
-                                                <video src={url} controls/>
+                                                <video src={url} controls style={{marginBottom:'10px'}}/>
                                             </section>
                                         )
                                     })
@@ -886,7 +1056,7 @@ const ChatBotComposer = ({onClose}) => {
                     let docCaption = $.parseHTML(data.caption)
                     $(`#${data.id}---docCaption-${index}`).html(docCaption);
                     return (
-                        <div className="sub-img-tag">
+                        <div className="sub-img-tag" style={{marginTop:'10px', padding:'10px'}}>
                             {/*data.url !== "" ? data.url : */}
                             <div className="icon">
                                 {
@@ -894,7 +1064,7 @@ const ChatBotComposer = ({onClose}) => {
                                         data.urls.map((url) => {
                                             return (
                                                 <a download href={url}>
-                                                    <img alt={"#"} src={documentIcon}/>
+                                                    <img alt={"#"} src={documentIcon} style={{marginBottom:'10px'}}/>
                                                 </a>
                                             )
                                         })
@@ -909,13 +1079,13 @@ const ChatBotComposer = ({onClose}) => {
                     let cap = $.parseHTML(data.caption)
                     $(`#${data.id}--In${index}`).html(cap);
                     return (
-                        <div className="sub-img-tag">
+                        <div className="sub-img-tag" style={{marginTop:'10px', padding:'10px'}}>
                             {/*data.url !== "" ? data.url : */}
                             {
                                 data.urls.length > 0 && (
                                     data.urls.map((url) => {
                                         return (
-                                            <img alt={"#"} src={url !== "" ? url : defaultImage}/>
+                                            <img alt={"#"} src={url !== "" ? url : defaultImage} style={{marginBottom:'10px'}}/>
                                         )
                                     })
                                 )
@@ -929,74 +1099,165 @@ const ChatBotComposer = ({onClose}) => {
     }
 
     return (
-        <div className="chat-bot-container">
-            <div className="content-hld">
-                
-                <div className="cl">
-                    <IconButton onClick={() => onClose()}>
-                        <CancelIcon fontSize="large" style={{color: "black"}}/>
-                    </IconButton>
-                </div>
-                <div className="section">
-                    <div className="chat-body hide-scroll">
-                        {
-                            messages.length > 0 ? (
-                                messages.map((m, index) => {
-                                    return (
-                                        m.id === "me" ?
-                                            <div className="msg-row me">
-                                                <div className="msg-box me">
-                                                    <div className="msg">{m.text}</div>
-                                                    <div className="sub-text">
-                                                        {currentTime(new Date())}
-                                                    </div>
+    <div class="bg-front">
+
+        <div class="customabs_sec">
+                                                                <IconButton onClick={() => onClose()}>
+                                                                    <CancelIcon fontSize="large" style={{color: "black"}}/>
+                                                                </IconButton>
+                                                            </div>
+
+         <div class="mobWraper">
+            <div id="mockChat" class="mockchat">
+              <div class="device">
+                <div class="screen">
+                    <div class="whatsapp-preview">
+                      <div class="app1" style={{height:'100%'}} >
+                        <div class="page">
+                          <div class="marvel-device nexus5">
+                            <div class="screen" style={{width:'100%',height:'100%'}} >
+
+                            
+
+                              <div class="screen-container">
+                                <div class="chat-window" >
+                                  <div class="chat-container">
+                                    <div class="user-bar">
+                                      <div class="user_topTxt">
+                                            <div>
+                                                <span class="time" >12:00</span>
+                                            </div>
+                                            <div>
+                                            <span style={{fontSize:10,margin:'3px'}} ><i class="fas fa-signal"></i></span>
+                                                <span style={{fontSize:10,margin:'3px'}}><i class="fas fa-wifi"></i></span>
+                                            <span style={{fontSize:10,margin:'3px'}}><i class="fas fa-battery-full"></i></span>
+                                            </div>
+                                        </div>
+                                      <div class="user_midBar">
+                                          <div class="mob_topBar">
+                                          <div class="avatar">
+                                         
+                                            <img src={halfLogo} class="img-fluid" alt="Avatar" />
+                                          </div>
+                                          <div class="name">
+                                            <span>Chatbot</span>
+                                            <span class="status">online</span>
+                                          </div>
+                                          
+                                        </div>
+                                        <div class="mob_topIcon">
+                                            <span style={{margin:'0px 10px 0px 0px'}}><i class="fas fa-video"></i></span>
+                                            <span><i class="fas fa-phone" style={{transform:'rotate(104deg)'}} ></i></span>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="conversation">
+                                      <div class="conversation-container">
+                                        <div class="messages sent" style={{wordBreak:'word-break',flexDirection:'column'}} >
+                                          <div >
+                                            
+                                                <div className="chat-bot-container">
+                                                            <div className="content-hld">
+
+                                                            
+
+                                                                <div className="section">
+                                                                    <div className="chat-body hide-scroll">
+                                                                        {
+                                                                            messages.length > 0 ? (
+                                                                                messages.map((m, index) => {
+                                                                                    return (
+                                                                                        m.id === "me" ?
+                                                                                            <div className="msg-row me">
+                                                                                                <div className="msg-box me">
+                                                                                                    <div className="msg">{m.text}</div>
+                                                                                                    <div className="sub-text">
+                                                                                                        {currentTime(new Date())}
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div> :
+                                                                                            (
+                                                                                                <div className="msg-row">
+                                                                                                    <div className="msg-box frm">
+                                                                                                        <div className="msg">
+                                                                                                            {m.isFallBack === undefined && m.name}
+                                                                                                            {getContentByType(m, index)}
+                                                                                                        </div>
+                                                                                                        <div className="opt-hld">
+                                                                                                            {m.isFallBack === undefined &&
+                                                                                                            m.menus?.map((menu) => {
+                                                                                                                return (
+                                                                                                                    <Fragment>
+                                                                                                                        <button
+                                                                                                                            key={menu.toTriggerId}
+                                                                                                                            className="btn light-filled">{menu.text}
+                                                                                                                        </button>
+                                                                                                                    </Fragment>
+                                                                                                                )
+                                                                                                            })
+                                                                                                            }
+                                                                                                        </div>
+                                                                                                        <div className="sub-text">
+                                                                                                            {currentTime(new Date())}
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            )
+                                                                                    )
+                                                                                })
+                                                                            ) : <div className="no-data-found">No Data Found</div>
+                                                                        }
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
                                                 </div>
-                                            </div> :
-                                            (
-                                                <div className="msg-row">
-                                                    <div className="msg-box frm">
-                                                        <div className="msg">
-                                                            {m.isFallBack === undefined && m.name}
-                                                            {getContentByType(m, index)}
-                                                        </div>
-                                                        <div className="opt-hld">
-                                                            {m.isFallBack === undefined &&
-                                                            m.menus?.map((menu) => {
-                                                                return (
-                                                                    <Fragment>
-                                                                        <button
-                                                                            key={menu.toTriggerId}
-                                                                            className="btn light-filled">{menu.text}
-                                                                        </button>
-                                                                    </Fragment>
-                                                                )
-                                                            })
-                                                            }
-                                                        </div>
-                                                        <div className="sub-text">
-                                                            {currentTime(new Date())}
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            )
-                                    )
-                                })
-                            ) : <div className="no-data-found">No Data Found</div>
-                        }
-                    </div>
-                </div>
-                <div className="foot">
-                    <div className="msg-send-composer">
+
+                                        </div>
+                                      </div>
+                                      <div class="mobBottom_sec">
+                                        <div class="conversation-compose">
+                                          <div class="emoji">
+                                            <i class="far fa-smile"></i>
+                                          </div>
+
+                                            <div className="msg-send-composer">
                         
-                        <div className="txt-area">
-                            <form className="" onSubmit={handleSubmit}>
-                                <input className="inp" ref={msgArea} type="text" placeholder={"Type a message"}/>
-                            </form>
+                                                <div className="txt-area">
+                                                    <form className="" onSubmit={handleSubmit}>
+                                                        <input className="input-msg" ref={msgArea} type="text" placeholder={"Type a message"}/>
+                                                    </form>
+                                                </div>
+                        
+                                            </div>
+
+                                         
+                                          <div class="photo">
+                                            <i class="fas fa-camera"></i>
+                                          </div>
+                                          <button class="send">
+                                            <div class="circle">
+                                              <i class="fas fa-paper-plane"></i>
+                                            </div>
+                                          </button>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
                         </div>
-                        
+                      </div>
                     </div>
                 </div>
+              </div>
             </div>
+          </div>
+
+       
         </div>
     );
 };

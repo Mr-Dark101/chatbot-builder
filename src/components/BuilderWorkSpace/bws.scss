@@ -13,7 +13,7 @@
     padding: 1rem 0.5rem;
     box-shadow: 0 0 1px $shadow-bg, 3px 4px 8px $shadow-bg;
     z-index: 2;
-
+    background-color: #ffffff !important;
     .head-rt {
       display: flex;
 
@@ -33,21 +33,21 @@
         color: #10163a;
         font-weight: bolder;
         white-space: nowrap;
-        font-family: 'Segoe';
+        font-family: 'Segoe UI Regular';
       }
     }
 
     .head-center {
       display: flex;
       justify-content: center;
-      width: 100%;
+      
 
       .txt {
         color: $text-bg;
         font-weight: bolder;
         font-size: 18px;
         white-space: nowrap;
-        font-family: 'Segoe';
+        font-family: 'Segoe UI Regular';
 
         span {
           font-size: 18px;
@@ -63,10 +63,12 @@
 
     .head-lft {
       display: flex;
+      //width: 27.55%;
+      align-items: center;
 
       .btn-hld {
         display: flex;
-        justify-content: space-between;
+        justify-content: end;
         width: 100%;
         font-size: 14px;
         font-weight: bold;
@@ -79,7 +81,7 @@
           padding: 0.3rem 0.7rem;
           color: $text-bg;
           margin: 0 0.5rem;
-          font-family: 'Segoe';
+          font-family: 'Segoe UI Regular';
         }
 
         .btn-filled {
@@ -90,9 +92,15 @@
           padding: 0.3rem 0.7rem;
           color: white;
           margin: 0 0.5rem;
-          font-family: 'Segoe';
+          font-family: 'Segoe UI Regular';
         }
       }
+    }
+   
+  }
+  .first_divNone {
+    & div:first-child {
+      display: none;
     }
   }
 

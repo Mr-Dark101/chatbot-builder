@@ -41,7 +41,19 @@ const CrudUser = ({row,title,dataAttr,formSchema,serviceUrl,deleteAction,retriev
   const retrieveList = () => {
     const params = getRequestParams(searchTitle, page, pageSize);
  
-    CrudService.getAll(serviceUrl + '&tenent_id=' + row.id,master,params)
+    /*CrudService.getAll(serviceUrl + '&tenent_id=' + row.id,master,params)
+      .then(response => {
+         const { dataRow, totalPages } = response.data;
+
+        setListData(dataRow);
+        setCount(totalPages);
+        
+      })
+      .catch(e => {
+        console.log(e);
+      });*/
+
+      CrudService.getAll(serviceUrl + '&org=' + row.id,master,params)
       .then(response => {
          const { dataRow, totalPages } = response.data;
 
@@ -175,7 +187,8 @@ const initForm = async (formSchema) => {
 
     const onSubmit = (values, { setSubmitting, resetForm, setStatus }) => {
        
-        values.tenent_id = row.id
+        //values.tenent_id = row.id
+        values.org_unit_id = row.id
         CrudService.register(values,serviceUrl,master).then(
         (response) => {
           toast(response.data.message,{type: toast.TYPE.SUCCESS})

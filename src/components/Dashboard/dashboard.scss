@@ -5,6 +5,7 @@
   margin: 1rem;
   box-shadow: 0 1px 12px 9px #f7f4f4;
   border-radius: 8px;
+  overflow-x:hidden !important;
 
   .head {
     display: flex;
@@ -62,7 +63,7 @@
         display: flex;
         border: none;
         text-decoration: none;
-        background-color: #10163A;
+        background-color: #363a77;
         cursor: pointer;
         box-shadow: 1px 1px 2px #00000029, 1px 3px 12px #00000029;
         border-radius: 8px;
@@ -70,7 +71,7 @@
         padding: 12px 25px;
 
         &:hover {
-          background-color: #10163A;
+          background-color: #363a77;
           color: $text-color;
 
           .card-content {
@@ -130,7 +131,7 @@
             .txt {
               // white-space: nowrap;
               color: #fff;
-              font-family: "Segoe";
+              font-family: "Segoe UI Regular";
               font-weight: 400;
               font-size: 16px;
               line-height: 18px;
@@ -156,6 +157,17 @@
             .sub-txt.on {
               color: white;
             }
+            .channel_iconBox {
+              display: flex;
+              align-items: center;
+              justify-content: center;
+
+              img {
+                max-width: 25px;
+                width: 100%;
+            }
+          }
+          
           }
 
           .card-ends {
@@ -199,7 +211,7 @@
       }
 
       .card.on {
-        background-color: #10163A;
+        background-color: #363a77;
       }
       .card_box {
         display: flex;
@@ -210,12 +222,20 @@
         box-shadow: 1px 1px 2px #00000029, 1px 3px 12px #00000029;
         border-radius: 8px;
         margin: 0rem 1rem 0rem 0px;
-        padding: 12px 15px;
+        padding: 2px 5px 0 15px;;
+        // border:2px solid #35f5c6;
+        margin-bottom:15px;
+        border: 1px solid #363a77;
+        max-width: 14.5%;
+        width: 100%;
 
         &:hover {
           background-color: #fff;
           color: $text-color;
 
+          &:hover .currentPlan  {
+            color: #fff !important;
+          }
           .card-content {
 
             .card-center {
@@ -238,10 +258,10 @@
           align-items: center;
           width: 100%;
 
-          &.bots-box{
-            width: 160px;
-            min-height: 160px;
-          }
+          // &.bots-box{
+          //   width: 160px;
+          //   min-height: 160px;
+          // }
 
           .card-start {
             display: flex;
@@ -268,14 +288,14 @@
             display: flex;
             flex-direction: column;
             margin: 15px 0rem;
-            width: 85%;
-
+            // width: 85%;
+            width: 100%;
             .txt {
               // white-space: nowrap;
-              color: #10163a;
-              font-family: "Segoe";
+              color: #363a77;
+              font-family: "Segoe UI Regular";
               font-weight: 400;
-              font-size: 16px;
+              font-size: 14px;
               line-height: 18px;
 
               &.center{
@@ -299,12 +319,23 @@
             .sub-txt.on {
               color: white;
             }
+            .channel_iconBox {
+              display: flex;
+              align-items: center;
+              justify-content: center;
+
+              img {
+                max-width: 25px;
+                width: 100%;
+            }
+          }         
           }
 
+          
           .card-ends {
             display: flex;
             width: 100%;
-            justify-content: flex-end;
+            justify-content: space-between;
             align-items: center;
 
             .icon {
@@ -337,7 +368,31 @@
                 }
               }
             }
+            .currentPlan {
+              background: #666363;
+              font-size: 11px;
+              text-transform: capitalize;
+              padding: 2px 12px;
+              display: inline-block;
+              color: #fff;
+              font-weight: 600;
+              border-radius: 18px;
+              letter-spacing: 1.2px;
+           
+              &:hover {
+                color: #000 !important;
+            }
+            }
+            .currentPlan_bg {
+              background: #45c655 !important;
+            }
+            .currentPlan_blue {
+              background: #363A77 !important;
+            }
           }
+        }
+        &:hover .currentPlan {
+          color: #000 !important;
         }
       }
 

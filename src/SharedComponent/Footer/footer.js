@@ -3,7 +3,7 @@ import {STRINGS} from "../../utils/base";
 
 const Footer = () => {
     return (
-        <div className="footer-box">
+        <div className="footer-box d-none">
             <div className="footer-lft">
                 <div className="txt-hld">
                     <div className="lg-txt">{STRINGS.DEFAULTS.COPY_RIGHTS}</div>

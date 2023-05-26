@@ -9,7 +9,7 @@ import List from './List.js'
 
 
 
-const FormDetail = ({row,loadList}) => {
+const FormDetail = ({row,loadList,subPage}) => {
 
   const [contentPage, setContentPage] = useState('');
 
@@ -31,14 +31,14 @@ const { onDownload } = useDownloadExcel({
 
           <div className="row p-30 media-center">
                   <div className="col-sm-6">
-                    <h3 className="box-title m-0">Form {row.name} - Entries</h3>
+                    <h4 className="box-title m-0" style={{fontWeight:800}}>{row.name} - Entries</h4>
                   </div>
                   <div className="col-sm-6 text-end">
 
 
                    
-                  <button type="button" className="btn btn-secondary me-10">Back</button>
-                   <button type="button" className="btn btn-danger" onClick={onDownload}> Export excel </button>
+                  <button type="button" onClick={() => subPage(<List rs={loadList} subPage={subPage}  />)} className="btn btn-secondary me-10">Back</button>
+                   <button type="button" className="btn btn-danger" onClick={onDownload}> Export to excel </button>
 
                
                   </div>
@@ -50,7 +50,7 @@ const { onDownload } = useDownloadExcel({
               
 
 
-              <table className="table table-striped table-hover" ref={tableRef}>
+              <table className="table table-hover" ref={tableRef}>
                  <thead className="bg-primary">
                  <tr>
                     

@@ -6,6 +6,7 @@ const CustomRoutes = (props) => {
     const renderRoutes = () => {
         let isAuth = true
         let {path, exact, component, isPrivate} = props;
+        
         if (!isPrivate) {
             return <Route path={path} exact={exact} component={component}/>
         } else {

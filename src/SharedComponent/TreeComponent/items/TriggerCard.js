@@ -7,11 +7,16 @@ import documentIcon from "../../../assets/file.png";
 import AudioPlayerDefault from "../../AudioPlayer/audioPlayer";
 import $ from "jquery";
 
-const menusOptions = [{text: "Update", value: 1}, {text: "Delete", value: 2}]
+
 
 const TriggerCard = (props) => {
-    let {data, botId, userId, onDelete} = props;
+    let {data, botId, userId, onDelete,type_id} = props;
     let {name, response, startTrigger, toTrigger, menus, routeToAgent} = data;
+    let menusOptions = [];
+    if(type_id !== 3){
+        menusOptions = [{text: "Update", value: 1}, {text: "Delete", value: 2}]
+    }
+    
 
     const {trigger} = useSelector(({Reducers}) => Reducers);
     let {isZoomAble} = trigger;
@@ -238,7 +243,7 @@ const TriggerCard = (props) => {
                             {/*        color: "#5841ce",*/}
                             {/*    }}*/}
                             {/*/>*/}
-                            <span>Route to Agent</span>
+                            <span>Bot to Human Handover</span>
                         </div>
 
                     </div>)

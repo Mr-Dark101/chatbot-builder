@@ -25,15 +25,60 @@ const getAll = (listUrl,master,params=false) => {
 };
 
 
-const register = (data, postUrl,master) => {
-  let url =  API_URL + "/" + postUrl + "/register"
+const exportData = () => {
+
+  let url =  API_URL + "/master/export-data"
+
+  
+
+  return axios.get(url, { headers: authHeader() });
+};
+
+
+
+
+const getById = (listUrl,master) => {
+
+  let url =  API_URL + "/" + listUrl
+
+   
+  
   if(master === true){
-     url =  API_URL + "/master/register?type=" + postUrl
+   
+    let url =  API_URL + "/master/by-id?type=" + listUrl
+
+     
+      
+   
+    return axios.get(url, { headers: authHeader() });
+  }
+
+  return axios.get(url, { headers: authHeader() });
+};
+
+
+const register = (data, postUrl,master) => {
+  let orgUnitId = localStorage.getItem('org_unit_id');
+  console.log("Org: " + orgUnitId);
+  let url =  API_URL + "/" + postUrl + "/register?org="+orgUnitId
+  if(master === true){
+     url =  API_URL + "/master/register?type=" + postUrl + "&org=" + orgUnitId
   }
   
 
   return axios.post(url, data);
 };
+
+const createJsonData = () => {
+  let orgUnitId = localStorage.getItem('org_unit_id');
+ 
+     const url =  API_URL + "/chat-gpt/create-json-data"
+    const data = {}
+    
+
+    return axios.post(url,data);
+};
+
 
 
 const edit = (data, postUrl,master) => {
@@ -66,9 +111,12 @@ const ListValue= (listUrl) => {
 
 export default {
   getAll,
+  getById,
   register,
   edit,
   deleteRow,
   ListValue,
+  createJsonData,
+  exportData
   
 };

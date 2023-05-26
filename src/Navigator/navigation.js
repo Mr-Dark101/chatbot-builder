@@ -10,18 +10,33 @@ const Navigation = () => {
     const dashboard = useSelector(({Reducers})=> Reducers.dashboard)
    
     useEffect(() => {
-       
-        if(dashboard.currentUser !== 0 || localStorage.getItem("userId") !== null){
-            if(window.location.pathname === "/"){
-                window.onloadend = () => {
-                    history.push(`${STRINGS.ROUTES.ROOT}?org=${localStorage.getItem("userId")}`);
-                }
-            }else{
-                window.onload = () => {
-                    history.push(`${STRINGS.ROUTES.ROOT}?org=${localStorage.getItem("userId")}`);
-                    //history.push(`/settings?org=${localStorage.getItem("userId")}`);
-                }
-            }
+
+
+        //alert(dashboard.currentUser + " " + localStorage.getItem("userId"))
+        if(localStorage.getItem("userId") !== null){
+
+
+             const query = new URLSearchParams(history.location.search);
+             let _userName = query.get('username');;
+             if(_userName){
+               
+                history.push(`${STRINGS.ROUTES.AUTH.LOGIN}?username=${_userName}`);
+             }else{
+                
+                history.push(`${STRINGS.ROUTES.ROOT}?org=${localStorage.getItem("userId")}`);
+             }
+            
+            // history.push(`${STRINGS.ROUTES.ROOT}?org=${localStorage.getItem("userId")}`);
+            // if(window.location.pathname === "/"){
+            //     window.onloadend = () => {
+            //         history.push(`${STRINGS.ROUTES.ROOT}?org=${localStorage.getItem("userId")}`);
+            //     }
+            // }else{
+            //     window.onload = () => {
+            //         history.push(`${STRINGS.ROUTES.ROOT}?org=${localStorage.getItem("userId")}`);
+            //         //history.push(`/settings?org=${localStorage.getItem("userId")}`);
+            //     }
+            // }
         }
         else{
             window.onload = () => {
@@ -32,7 +47,7 @@ const Navigation = () => {
 
     return (
         <div className="content-hld">
-        
+           
             <Switch>
                 {
                     routes.map(({path, exact, component, isPrivate}) => {
