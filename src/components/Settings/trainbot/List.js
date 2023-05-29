@@ -4,6 +4,7 @@ import ModalPopup from '../../common/modal/ModalPopup';
 import SweetAlert from 'react-bootstrap-sweetalert';
 import Create from './Create';
 import CreateCat from './CreateCat';
+import EditCat from './EditCat';
 import CreateImport from './CreateImport';
 
 import CatList from './CatList';
@@ -19,7 +20,7 @@ const List = ({ rs, subPage, loadList }) => {
    const ref = useRef([]);
 
    const [listData, setListData] = useState([]);
-
+   const [refresh, setRefresh] = useState(false);
    const [modalValue, setModalValue] = useState('');
    const [show, setShow] = useState(true);
    const [showAlert, setShowAlert] = useState(false);
@@ -29,17 +30,19 @@ const List = ({ rs, subPage, loadList }) => {
 
    const [checkedAll, setCheckedAll] = useState(false);
   const [checked, setChecked] = useState(false);
-
+  const inputElement = useRef([]);
    useEffect(() => {
       retrieveList();
    }, []);
 
    const retrieveList = () => {
-
+      setSuccessful(false);
       CrudService.getAll('gptcat', true)
          .then((response) => {
             setListData(response.data);
             console.log(response.data);
+
+
          })
          .catch((e) => {
             console.log(e);
@@ -63,7 +66,7 @@ const List = ({ rs, subPage, loadList }) => {
    };
 
    const deleteRow = (id) => {
-      CrudService.deleteRow(id, 'trainbot', true).then(
+      CrudService.deleteRow(id, 'gptcat', true).then(
          (response) => {
             toast('Record has been deleted!', { type: toast.TYPE.SUCCESS });
             setMessage(response.data.message);
@@ -78,6 +81,9 @@ const List = ({ rs, subPage, loadList }) => {
          }
       );
    };
+
+
+  
 
    const deleteRowAll = async (id) => {
       await CrudService.deleteRow(id, 'trainbot', true)
@@ -97,23 +103,49 @@ const List = ({ rs, subPage, loadList }) => {
       );
    }
 
-   const deleteAll = () => {
-
-      for (const inputName in checked) {
-
-          if(checked[inputName]){
-               deleteRowAll(inputName)
-          }
-          
+   const deleteAll = async () => {
 
 
+      for (let i = 0; i < inputElement.current.length; i++) {
+         if(inputElement.current[i]){
+               if(inputElement.current[i].checked){
+                  await deleteRowAll(inputElement.current[i].value)
+               }
+         }
       }
 
+      setMessage("Record has been deleted");
+      setSuccessful(true);
+     
       
-      retrieveList();
    }
 
+   const selectAll = (check_status,value) => {
+        setCheckedAll(!checkedAll)
+
+
+        
+        for (let i = 0; i < inputElement.current.length; i++) {
+            
+            if(inputElement.current[i]){
+
+               let id  = inputElement.current[i].id
+               id = id.split('-')[0]
+               if(id == value){
+
+                  if(check_status) {
+                     inputElement.current[i].checked = true;
+                  }else{
+                     inputElement.current[i].checked = false;
+                  }
+               }
+            }
+            
+        }
+  };
+
    const toggleCheck = (inputName) => {
+   
     setChecked((prevState) => {
       const newState = { ...prevState };
       newState[inputName] = !prevState[inputName];
@@ -213,7 +245,13 @@ const List = ({ rs, subPage, loadList }) => {
                      </div>
                   </div>
                   <hr />
+
+                  
                   <div className="table-responsive px-30 py-15">
+
+                  
+
+                  {!successful && (
                      <table className="table table-hover" id="settingTbl">
                         
                         <tbody>
@@ -221,16 +259,51 @@ const List = ({ rs, subPage, loadList }) => {
                               listData.map((row, index) => (
                               <>
                                  <tr style={{backgroundColor:'#363A77',color:'#fff'}}>
-                                    <td>{row.name}</td>
+                                    <td width="5%">
+                                    <input type="checkbox" 
+                                    name={`c_${row.id}`}
+                                    onChange={(event) => selectAll(event.target.checked,event.target.value)}
+                                    value={row.id}
+
+                                     />
+                                    </td>
+                                    <td>
+
+                                    {row.name}
+
+                                    </td>
+                                     <td style={{ textAlign: 'end' }}>
+                                      
+                                       <button style={{ marginLeft: 5 }} className="btn btn-icon btn-icon rounded-circle btn-custom" onClick={() => subPage(<EditCat loadList={loadList} retrieveList={retrieveList} rs={row} />)}>
+                                          <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                       </button>
+                                       <button style={{ marginLeft: 5 }} className="btn btn-icon btn-icon rounded-circle btn-danger" onClick={() => deleteMe(row.id)}>
+                                          <i class="fa fa-trash" aria-hidden="true"></i>
+                                       </button>
+                                    </td>
                                     
                                  </tr>
                                  <tr>
-                                    <CatList id={row.id} checked={checked} toggleCheck={toggleCheck} rs={rs} subPage={subPage} loadList={loadList} />
+                                    <td colspan="3">
+                                    <CatList id={row.id} inputElement={inputElement} checked={checked} toggleCheck={toggleCheck} rs={rs} subPage={subPage} loadList={loadList} />
+                                    </td>
                                  </tr> 
                                  </>
                               ))}
                         </tbody>
                      </table>
+                  )}
+                  {successful && (
+                        <div className="form-group">
+                           <div className={successful ? 'alert alert-success' : 'alert alert-danger'} role="alert">
+                              {message}
+                                
+                              
+                           </div>
+
+                           <button type="button" className="btn primary" onClick={() => retrieveList()}>Back</button>
+                        </div>
+                     )}
                   </div>
                </>
             ) : (

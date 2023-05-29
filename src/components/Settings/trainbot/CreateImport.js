@@ -153,6 +153,7 @@ const [isSelected, setIsSelected] = useState(false)
                            <div className={successful ? 'alert alert-success' : 'alert alert-danger'} role="alert">
                               {message}
                            </div>
+                           <button type="button" className="btn primary" onClick={() => loadList()}>Back</button>
                         </div>
                      )}
                   </div>

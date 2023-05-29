@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect,useRef } from 'react';
 import CrudService from '../../../services/crud.service';
 import ModalPopup from '../../common/modal/ModalPopup';
 import SweetAlert from 'react-bootstrap-sweetalert';
@@ -10,7 +10,7 @@ import BlankMsg from '../../common/BlankMsg';
 import { toast } from 'react-toastify';
 import { Tooltip } from '@mui/material';
 
-const CatList = ({ rs, subPage, loadList,id,ref,toggleCheck,checked }) => {
+const CatList = ({ rs, subPage, loadList,id,ref,toggleCheck,checked,inputElement }) => {
 
    
    const [listData, setListData] = useState([]);
@@ -21,7 +21,7 @@ const CatList = ({ rs, subPage, loadList,id,ref,toggleCheck,checked }) => {
    const [successful, setSuccessful] = useState(false);
    const [message, setMessage] = useState();
    const [delId, setDelId] = useState(false);
-
+  
  
 
    useEffect(() => {
@@ -32,7 +32,9 @@ const CatList = ({ rs, subPage, loadList,id,ref,toggleCheck,checked }) => {
       CrudService.getAll('trainbot&category_id=' + id, true)
          .then((response) => {
             setListData(response.data);
-            console.log(response.data);
+            
+
+            
          })
          .catch((e) => {
             console.log(e);
@@ -109,12 +111,12 @@ const CatList = ({ rs, subPage, loadList,id,ref,toggleCheck,checked }) => {
             />
          )}
 
-         <div className="page_data_setting">
+         
             {listData.length > 0 ? (
                <>
                   
 
-                  <div className="table-responsive px-30">
+                  <div className="table-responsive">
                      <table className="table table-hover" id="settingTbl">
                         
                         <tbody>
@@ -128,9 +130,11 @@ const CatList = ({ rs, subPage, loadList,id,ref,toggleCheck,checked }) => {
 
                                        <input
           type="checkbox"
-          name={row.id}
-          onChange={() => toggleCheck(row.id)}
-          checked={checked[row.id]}
+          name={`r_${row.id}`}
+          value={row.id}
+          id={`${row.category_id}-${row.id}`}
+          
+          ref={(element) => { inputElement.current[row.id] = element }}
           />
 
                                     </td>
@@ -154,9 +158,9 @@ const CatList = ({ rs, subPage, loadList,id,ref,toggleCheck,checked }) => {
                   </div>
                </>
             ) : (
-               <BlankMsg message="There is no record added" icon="mdi mdi-phone-plus" buttonName="Add New Record" button={() => subPage(<Create loadList={loadList} retrieveList={retrieveList} rs={rs} />)} />
+               null
             )}
-         </div>
+         
       </>
    );
 };

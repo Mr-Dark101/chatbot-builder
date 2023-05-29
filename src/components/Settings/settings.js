@@ -40,7 +40,7 @@ const Settings = () => {
 
    useEffect(() => {
       //changeContent('FormBuilder');
-      changeContent('TrainBot');
+      changeContent('ChatGpt');
    }, []);
    const handleBack = () => {
       history.push(`${STRINGS.ROUTES.ROOT}?org=${localStorage.getItem('userId')}`);
@@ -98,7 +98,7 @@ const Settings = () => {
 
       { name: 'Form Builder', controller: 'FormBuilder', icon: form },
 
-      { name: 'GPT', controller: 'ChatGpt', icon: form },
+      { name: 'OpenAI GPT Integration', controller: 'ChatGpt', icon: form },
       { name: 'TrainBot', controller: 'TrainBot', icon: form },
 
       

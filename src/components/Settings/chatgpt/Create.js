@@ -80,7 +80,7 @@ const Create = ({rs}) => {
                         <Form enableReinitialize validationSchema={FormSchema} initialValues={formData} onSubmit={onSubmit}>
                            <div className="px-30 py-15">
                               <h4 class="box-title m-0" style={{ fontWeight: 800 }}>
-                                 GPT Integration
+                                 OpenAI GPT Integration
                               </h4>
                            </div>
 
@@ -92,7 +92,7 @@ const Create = ({rs}) => {
                                     <div className="row">
                                        <div className="col-6"> 
                                           <div className="field_section">
-                                          <SelectField name="version_id" label="GPT Version" options={versionList} />
+                                             <SelectField name="version_id" label="GPT Version" options={versionList} />
                                        </div>
                                        </div>
                                     </div>
@@ -100,7 +100,7 @@ const Create = ({rs}) => {
 
                                  <div className="col-5" style={{ paddingLeft: '0px'}}>
                                     <div className="field_section">
-                                       <p>GPT-3, GPT-3.5 Turbo</p>
+                                       <p></p>
                                     </div>
                                  </div>
 
@@ -139,14 +139,14 @@ const Create = ({rs}) => {
                                        <div className="field_section">
                                           <SelectField name="model_id" label="Model" options={modelList} />
                                           <span>Ada os the fastest and cheapest text model. Davinci is the most trained but more expensive.</span><br/>
-                                          <a href="#">Learn More <i className="fa fa-external-link"></i></a>
+                                          <a href="https://platform.openai.com/docs/models/overview" target="_blank">Learn More <i className="fa fa-external-link"></i></a>
                                        </div>
 
                                     </Tooltip>
 
                                     <div className="field_section">
                                         <br />
-                                       <a className="float-end" href="https://platform.openai.com/docs/models/overview"  target="_blank">Documentation <i className="fa fa-external-link"></i></a>
+                                       <a className="float-end" href="https://platform.openai.com/docs/models/gpt-3-5"  target="_blank">Documentation <i className="fa fa-external-link"></i></a>
                        
                                        <TextAreaField name="default_prompt" label="Bot Instructions (Prompt)" value="Answer as truthfully as possible using the provided context and in less than three sentences. If answer is not known or is not contained in the provided context, reply with 'Sorry, I think I am not trained to answer that question'. Dont make up any facts from your own."  placeholder="Marv is a chatbot that reluctantly answers questions with sarcastic responses." rows="3" />
                                     </div>
