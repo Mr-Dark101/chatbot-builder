@@ -27,7 +27,7 @@ const List = ({ rs, subPage, loadList }) => {
    const [successful, setSuccessful] = useState(false);
    const [message, setMessage] = useState();
    const [delId, setDelId] = useState(false);
-
+   const [showAlertAll, setShowAlertAll] = useState(false);
    const [checkedAll, setCheckedAll] = useState(false);
   const [checked, setChecked] = useState(false);
   const inputElement = useRef([]);
@@ -105,7 +105,16 @@ const List = ({ rs, subPage, loadList }) => {
 
    const deleteAll = async () => {
 
+      setShowAlertAll(true);
+     
+     
+      
+   }
 
+
+   const deleteAllSeleted = async () => {
+
+      
       for (let i = 0; i < inputElement.current.length; i++) {
          if(inputElement.current[i]){
                if(inputElement.current[i].checked){
@@ -113,9 +122,10 @@ const List = ({ rs, subPage, loadList }) => {
                }
          }
       }
-
-      setMessage("Record has been deleted");
       setSuccessful(true);
+      retrieveList()
+      //setMessage("Record has been deleted");
+     // setSuccessful(true);
      
       
    }
@@ -182,13 +192,35 @@ const List = ({ rs, subPage, loadList }) => {
                confirmBtnBsStyle="primary"
                cancelBtnBsStyle="light"
                customIcon=""
-               title="Are you sure?"
+               title="Are you sure delete this record?"
                onConfirm={() => {
                   setShowAlert(false);
                   deleteRow(delId);
                }}
                onCancel={() => {
                   setShowAlert(false);
+               }}
+            />
+         )}
+
+         {showAlertAll && (
+            <SweetAlert
+               custom
+               showCancel
+               showCloseButton
+               confirmBtnText="Yes"
+               cancelBtnText="No"
+               confirmBtnBsStyle="primary"
+               cancelBtnBsStyle="light"
+               customIcon=""
+               title="Are you sure delete selected record?"
+               onConfirm={ () => {
+                  setShowAlertAll(false);
+                  deleteAllSeleted();
+                  
+               }}
+               onCancel={() => {
+                  setShowAlertAll(false);
                }}
             />
          )}
@@ -307,7 +339,7 @@ const List = ({ rs, subPage, loadList }) => {
                   </div>
                </>
             ) : (
-               <BlankMsg message="There is no record added" icon="mdi mdi-phone-plus" buttonName="Add New Record" button={() => subPage(<Create loadList={loadList} retrieveList={retrieveList} rs={rs} />)} />
+               <BlankMsg message="There is no record added" icon="mdi mdi-phone-plus" buttonName="Add New Record" button={() => subPage(<CreateCat loadList={loadList} retrieveList={retrieveList} rs={rs} />)} />
             )}
          </div>
       </>

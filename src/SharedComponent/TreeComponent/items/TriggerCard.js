@@ -15,6 +15,8 @@ const TriggerCard = (props) => {
     let menusOptions = [];
     if(type_id !== 3){
         menusOptions = [{text: "Update", value: 1}, {text: "Delete", value: 2}]
+    }else{
+         menusOptions = [{text: "Update", value: 1}]
     }
     
 
@@ -26,7 +28,7 @@ const TriggerCard = (props) => {
        
         switch (value) {
             case 1:
-                dispatch(openUpdateTriggerCard({open: true, object: obj}))
+                dispatch(openUpdateTriggerCard({open: true, object: obj,type_id:type_id}))
                 break;
             case 2:
                 //handleDelete({botId: id})

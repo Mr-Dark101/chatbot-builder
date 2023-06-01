@@ -26,18 +26,25 @@ const AddTriggerComposer = (props) => {
       isUpdatedList: false,
       confirmationTxt: '',
       confirmationInfo: [],
+
    };
    const [init, setInit] = useState(defaultState);
    let { currentTriggerData, openChatBot, getAllTypes, isAlert, isUpdatedList, confirmationTxt, confirmationInfo } = init;
 
    useEffect(() => {
       let plan = localStorage.getItem('chatbot_plan');
-      if (plan.includes('ADVANCED')) {
-         document.getElementById('lockimage').style.display = 'none';
-      } else {
-         document.getElementById('lockimage').style.display = 'unset';
-      }
       let tVal = 'M';
+      if(props.type_id != 3){
+         if (plan.includes('ADVANCED')) {
+            document.getElementById('lockimage').style.display = 'none';
+         } else {
+            document.getElementById('lockimage').style.display = 'unset';
+         }
+         
+       }else{
+          tVal = 'ChatGPT'
+       }
+      
       setBtnMessageStyle({ backgroundColor: '#363a77', width: '100%', color: '#fff', borderRadius: '5px 5px 0px 0px' });
       setBtnApiStyle({ backgroundColor: '#fff', width: '100%', color: '#000', borderRadius: '5px 5px 0px 0px' });
       setBtnFormStyle({ backgroundColor: '#fff', width: '100%', color: '#000', borderRadius: '5px 5px 0px 0px' });
@@ -45,12 +52,21 @@ const AddTriggerComposer = (props) => {
       setBtnChatGPTStyle({ backgroundColor: '#fff', width: '100%', color: '#000', borderRadius: '5px 5px 0px 0px' });
       
       if (props.trigger.currentTriggerData.toTrigger) {
-         tVal = props.trigger.currentTriggerData.toTrigger.triggerType;
-
+         if(props.type_id != 3){
+            tVal = props.trigger.currentTriggerData.toTrigger.triggerType;
+         }else{
+            tVal = 'ChatGPT'
+         }
+         
          meClick(tVal);
          // setBtnMessageStyle({backgroundColor:'#fff',width:'100%',color:'#000',borderRadius: '5px 5px 0px 0px'})
          // setBtnApiStyle({backgroundColor:'#10163A',width:'100%',color:'#fff',borderRadius: '5px 5px 0px 0px'})
          // setBtnFormStyle({backgroundColor:'#fff',width:'100%',color:'#000',borderRadius: '5px 5px 0px 0px'})
+      }else{
+         if(props.type_id == 3){
+            tVal = 'ChatGPT'
+             meClick(tVal);
+          }
       }
       setTriggerType(tVal);
    }, []);
@@ -107,7 +123,10 @@ const AddTriggerComposer = (props) => {
       <>
          <ul className="right_bar_top_section activeUl">
             <AlertModal visible={isAlert} handleOk={alertClose} confirmLoading={!isUpdatedList} modalText={confirmationTxt} modalInfo={confirmationInfo} handleCancel={alertClose} />
-            <li>
+            {props.type_id != 3 ? (
+               <>
+
+                <li>
                <button onClick={() => meClick('M')} className="btn btn-block {btn-primary}" style={btnMessageStyle}>
                   Message
                </button>
@@ -128,9 +147,25 @@ const AddTriggerComposer = (props) => {
 
              <li>
                <button onClick={() => meClick('ChatGPT')} className="btn btn-block btn-secondry" style={btnChatGPTStyle}>
+                  ChatGPT {props.type_id}
+               </button>
+            </li>
+
+
+               </>
+               ) : (
+               <>
+
+                  <li>
+               <button onClick={() => meClick('ChatGPT')} className="btn btn-block {btn-primary}" style={btnChatGPTStyle}>
                   ChatGPT
                </button>
             </li>
+
+               </>
+
+               )}
+           
          </ul>
 
          <ByTypeComposer props={props} triggerType={triggerType} />

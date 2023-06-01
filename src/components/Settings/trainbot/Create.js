@@ -99,7 +99,7 @@ const Create = ({ rs, retrieveList, loadList }) => {
                            </h4>
 
                            <div className="row" style={{ marginLeft: '0px', marginRight: '0px' }}>
-                              <div className="col-9" style={{ paddingLeft: '0px', paddingRight: '0px' }}>
+                              <div className="col-4" style={{ paddingLeft: '0px', paddingRight: '0px' }}>
 
                                  <div className="field_section">
                                    <SelectField 
@@ -108,6 +108,13 @@ const Create = ({ rs, retrieveList, loadList }) => {
                                      options={gptCatList}
                                    />
                                  </div>
+                              </div>
+                           </div>
+
+                           <div className="row" style={{ marginLeft: '0px', marginRight: '0px' }}>
+                              <div className="col-9" style={{ paddingLeft: '0px', paddingRight: '0px' }}>
+
+                                
                                  
                                  <div className="field_section">
                                     <TextField name="question" label="Question" icon="check-square" placeholder="Please enter your question" />

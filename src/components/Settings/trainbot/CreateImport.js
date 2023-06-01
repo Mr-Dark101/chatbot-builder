@@ -102,7 +102,7 @@ const [isSelected, setIsSelected] = useState(false)
 
 
                                     <div className="drop-container"
-                   onClick={fileInputClicked}
+                  
                    
                 >
                     <div className="drop-message">

@@ -18,6 +18,7 @@ const CatList = ({ rs, subPage, loadList,id,ref,toggleCheck,checked,inputElement
    const [modalValue, setModalValue] = useState('');
    const [show, setShow] = useState(true);
    const [showAlert, setShowAlert] = useState(false);
+   
    const [successful, setSuccessful] = useState(false);
    const [message, setMessage] = useState();
    const [delId, setDelId] = useState(false);
@@ -100,7 +101,7 @@ const CatList = ({ rs, subPage, loadList,id,ref,toggleCheck,checked,inputElement
                confirmBtnBsStyle="primary"
                cancelBtnBsStyle="light"
                customIcon=""
-               title="Are you sure?"
+               title="Are you sure delete this record?"
                onConfirm={() => {
                   setShowAlert(false);
                   deleteRow(delId);
@@ -111,6 +112,9 @@ const CatList = ({ rs, subPage, loadList,id,ref,toggleCheck,checked,inputElement
             />
          )}
 
+
+         
+
          
             {listData.length > 0 ? (
                <>
@@ -118,7 +122,14 @@ const CatList = ({ rs, subPage, loadList,id,ref,toggleCheck,checked,inputElement
 
                   <div className="table-responsive">
                      <table className="table table-hover" id="settingTbl">
-                        
+                        <thead>
+                           <tr>
+                              <th></th>
+                              <th><b>User Question</b></th>
+                              <th><b>Bot Response</b></th>
+                              <th></th>
+                           </tr>
+                        </thead>
                         <tbody>
                            {listData &&
                               listData.map((row, index) => (

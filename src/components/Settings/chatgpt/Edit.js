@@ -84,7 +84,9 @@ const Edit = ({rs}) => {
       { value: 0.5, label: '1.0' }
    ];
 
-   
+   const countWord = (e) => {
+      console.log(e.target.value)
+   }
 
   return (
     <>
@@ -171,7 +173,11 @@ const Edit = ({rs}) => {
                                        <div className="col-6">
                                           <div className="field_section">
 
-                                             <TextField name="tokens_number" label="Maximum number of tokens in response" placeholder="" />
+                                             <TextField name="tokens_number" onBlur={(e) => {
+                                               
+                                                countWord(e)
+
+                                             }} label="Maximum number of tokens in response" placeholder="" />
 
                                           </div>
                                        </div>

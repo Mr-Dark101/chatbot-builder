@@ -573,7 +573,7 @@ const BuildWorkSpace = () => {
             {trigger.openAddBot && (
                <Drawer anchor={'right'} open={trigger.openAddBot} onClose={handleCloseAddTrigger}>
                   <div className="composer-hld">
-                     <AddTriggerComposer trigger={trigger} updateFun={updateFun} getAllTypes={getAllTypes} currentBotData={currentBotData} data={currentTriggerData} handleTriggerClose={handleCloseAddTrigger} submitTrigger={handleSubmitTrigger} />
+                     <AddTriggerComposer type_id={trigger.type_id} trigger={trigger} updateFun={updateFun} getAllTypes={getAllTypes} currentBotData={currentBotData} data={currentTriggerData} handleTriggerClose={handleCloseAddTrigger} submitTrigger={handleSubmitTrigger} />
                   </div>
                </Drawer>
             )}

@@ -246,9 +246,9 @@ export const isZoomD3 = (zoom) => (dispatch) => {
 };
 
 export const openUpdateTriggerCard =
-   ({ open, object }) =>
+   ({ open, object,type_id }) =>
    (dispatch) => {
-      dispatch(openUpdateBotComposer({ open, object }));
+      dispatch(openUpdateBotComposer({ open, object,type_id }));
    };
 export const onSuccessUpdateMenuText = () => (dispatch) => {
    dispatch(onMenuTextSuccessMessage());
@@ -273,6 +273,7 @@ const initialState = {
    childBotId: null,
    urls: [],
    isZoomAble: true,
+   type_id:"",
    getAllTypes: [],
 };
 
@@ -341,11 +342,12 @@ const trigger = createSlice({
          state.isZoomAble = payload;
       },
       openUpdateBotComposer: (state, { payload }) => {
-         // console.log("triggersList", payload);
+          
          state.openAddBot = payload.open;
          state.currentTriggerData = payload.object;
          state.isChild = null;
          state.url = '';
+         state.type_id = payload.type_id
       },
       openBotComposer: (state, { payload }) => {
          // console.log("childBotId", payload)
