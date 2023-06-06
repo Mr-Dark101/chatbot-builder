@@ -98,8 +98,8 @@ const Settings = () => {
 
       { name: 'Form Builder', controller: 'FormBuilder', icon: form },
 
-      { name: 'OpenAI GPT Integration', controller: 'ChatGpt', icon: form },
-      { name: 'TrainBot', controller: 'TrainBot', icon: form },
+      { name: 'OpenAI GPT', controller: 'ChatGpt', icon: form },
+      { name: 'Training Data', controller: 'TrainBot', icon: form },
 
       
    ];

@@ -94,10 +94,10 @@ Waves
 
 @import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Lexend+Deca&display=swap');
 @font-face {
-  font-family: "Segoe UI Regular";
-  src: url(../fonts/segoe-ui.ttf);
+  font-family: "Lexend Deca";
+  src: url(../fonts/LexendDeca-Regular.ttf);
 }
 
 html {
@@ -126,7 +126,7 @@ body {
   font-size: 1rem;
   font-style: normal;
   font-weight: 400;
-  font-family: "Segoe UI Regular";
+  font-family: "Lexend Deca";
   line-height: 1.5;
   background-color: #ffffff; }
 
@@ -139,7 +139,7 @@ a:hover, a:active, a:focus {
   text-decoration: none; }
 
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
-  font-family: "Segoe UI Regular", sans-serif;
+  font-family: "Lexend Deca", sans-serif;
   font-weight: 400;
   line-height: 1.2; }
 
@@ -181,10 +181,10 @@ img {
   vertical-align: sub; }
 
 .base-font {
-  font-family: "Segoe UI Regular", sans-serif !important; }
+  font-family: "Lexend Deca", sans-serif !important; }
 
 .heading-font {
-  font-family: "Segoe UI Regular", sans-serif !important; }
+  font-family: "Lexend Deca", sans-serif !important; }
 
 .fs-0 {
   font-size: 0rem!important; }
@@ -20486,7 +20486,7 @@ Height property
   height: 115px;
   width: 115px;
   line-height: 115px;
-  font-family: "Segoe UI Regular", sans-serif !important; }
+  font-family: "Lexend Deca", sans-serif !important; }
 
 .icon i {
   width: 60px;
@@ -22165,11 +22165,11 @@ body .main-header .navbar .nav > li.search-box > a:hover, body .main-header .nav
 
 .chat-logs::-webkit-scrollbar-track {
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-  background-color: #F5F5F5; }
+  background-color: #F0F8FE; }
 
 .chat-logs::-webkit-scrollbar {
   width: 5px;
-  background-color: #F5F5F5; }
+  background-color: #F0F8FE; }
 
 .chat-logs::-webkit-scrollbar-thumb {
   background-color: #5156be; }
@@ -23566,7 +23566,7 @@ ul.panel-actions > li {
       position: absolute;
       top: 15px;
       right: 30px;
-      font-family: "Segoe UI Regular";
+      font-family: "Lexend Deca";
       transition: all 300ms linear 0s; }
     .panel-group .panel-title:before {
       content: "\F415"; }
@@ -24004,7 +24004,7 @@ ul.panel-actions > li {
   margin-left: 0; }
 
 .avatar-add {
-  font-family: Segoe UI Regular;
+  font-family: Lexend Deca;
   background-color: transparent;
   border: 1px dashed #172b4c;
   color: #172b4c;
@@ -25338,7 +25338,7 @@ time {
 .grid-stack-item-content {
   background: #ffffff;
   color: #172b4c;
-  font-family: "Segoe UI Regular", sans-serif;
+  font-family: "Lexend Deca", sans-serif;
   text-align: center;
   font-size: 1.429rem; }
   .grid-stack-item-content .fa {
@@ -26913,7 +26913,7 @@ textarea.form-control {
   -webkit-box-direction: reverse;
   flex-direction: row-reverse; }
   .box-controls li > a {
-    font-family: Segoe UI Regular;
+    font-family: Lexend Deca;
     font-size: 0.8571rem;
     display: inline-block;
     padding: 0 4px;
@@ -26923,7 +26923,7 @@ textarea.form-control {
     -webkit-transition: 0.3s linear;
     transition: 0.3s linear; }
     .box-controls li > a i {
-      font-family: Segoe UI Regular;
+      font-family: Lexend Deca;
       font-size: 0.8571rem;
       display: inline-block;
       padding: 0 4px;
@@ -26942,7 +26942,7 @@ textarea.form-control {
     -webkit-transition: 0.3s linear;
     transition: 0.3s linear; }
     .box-controls li > button > i {
-      font-family: Segoe UI Regular; }
+      font-family: Lexend Deca; }
   .box-controls li:first-child > a {
     margin-right: 0; }
 
@@ -28039,7 +28039,7 @@ ul.flexbox {
 
 .collapse-arrow::before {
   content: "\e64b";
-  font-family: Segoe UI Regular;
+  font-family: Lexend Deca;
   display: inline-block;
   -webkit-transition: .4s;
   transition: .4s; }
@@ -31971,7 +31971,7 @@ img.away, img.busy, img.offline, img.online {
     font-weight: 400;
     font-size: 14px;
     line-height: 19px;
-    font-family: 'Segoe UI Regular';
+    font-family: 'Lexend Deca';
   }
   .align-end{
     align-items: end;
@@ -32042,7 +32042,7 @@ img.away, img.busy, img.offline, img.online {
   text-align: center;
 }
 .main-container .section-hld{
-  background-color: #f5f5f5;
+  background-color: #F0F8FE;
 }
 .dashboard-hld{
   margin: 30px !important;
@@ -32073,7 +32073,7 @@ img.away, img.busy, img.offline, img.online {
   margin-top: 30px;
 }
 .home_bot_modal .bot_name_section h5{
-  font-family: 'Segoe UI Regular' !important;
+  font-family: 'Lexend Deca' !important;
   font-size: 16px;
   line-height: 18px;
 }
@@ -32084,7 +32084,7 @@ img.away, img.busy, img.offline, img.online {
   margin-top: 30px;
 }
 .home_bot_modal .modal-header .txt{
-  font-family: 'Segoe UI Regular' !important;
+  font-family: 'Lexend Deca' !important;
   font-size: 16px !important;
   line-height: 18px;
 }
@@ -32135,7 +32135,7 @@ img.away, img.busy, img.offline, img.online {
   padding: 13.5px 30px !important;
   font-size: 13px !important;
   font-weight: 800 !important;
-  font-family: 'Segoe UI Regular';
+  font-family: 'Lexend Deca';
   line-height: 17px !important;
   background-color: #E7E7E7 !important;
 }
@@ -32253,7 +32253,7 @@ img.away, img.busy, img.offline, img.online {
   display: flex;
   align-items: center;
   padding: 10px;
-  font-family: "Segoe UI Regular";
+  font-family: "Lexend Deca";
   background: #f6f5f5;
   border-radius: 7px;
 }
@@ -32313,7 +32313,7 @@ img.away, img.busy, img.offline, img.online {
   font-weight: 400;
   font-size: 12px;
   line-height: 16px;
-  font-family: "Segoe UI Regular";
+  font-family: "Lexend Deca";
   margin: 0px;
   color: #767676;
 }
@@ -32330,7 +32330,7 @@ img.away, img.busy, img.offline, img.online {
   font-weight: 400;
   font-size: 14px;
   line-height: 19px;
-  font-family: "Segoe UI Regular";
+  font-family: "Lexend Deca";
   margin: 0px 0px 12px;
 }
 .api_form_section .main_heading{
@@ -32345,7 +32345,7 @@ img.away, img.busy, img.offline, img.online {
   line-height: 18px;
   color: #000;
   margin-bottom: 10px;
-  font-family: "Segoe UI Regular";
+  font-family: "Lexend Deca";
 }
 .primary{
   border: 1px solid #363a77 !important;
@@ -32388,14 +32388,14 @@ img.away, img.busy, img.offline, img.online {
   font-weight: 700;
   font-size: 14px;
   line-height: 16px;
-  font-family: 'Segoe UI Regular';
+  font-family: 'Lexend Deca';
   color: #363a77;
 }
 .integration_page .section_main_heading{
   font-weight: 700;
   font-size: 14px;
   line-height: 16px;
-  font-family: 'Segoe UI Regular';
+  font-family: 'Lexend Deca';
   color: #363a77;
   margin-top: 30px;
 }
@@ -32425,7 +32425,7 @@ img.away, img.busy, img.offline, img.online {
 .page_data_setting .btn_custom_api{
   background-color: #363a77 !important;
   border-radius: 6px;
-  font-family: "Segoe UI Regular";
+  font-family: "Lexend Deca";
   font-size: 16px;
   color: #fff !important;
   line-height: 18px;
@@ -32441,7 +32441,7 @@ img.away, img.busy, img.offline, img.online {
   font-weight: 700;
   font-size: 14px;
   line-height: 16px;
-  font-family: "Segoe UI Regular";
+  font-family: "Lexend Deca";
   color: #363a77;
 }
 .page_data_setting .api_list_page{
@@ -32457,14 +32457,14 @@ img.away, img.busy, img.offline, img.online {
   font-size: 14px;
   line-height: 16px;
   color: #363a77;
-  font-family: "Segoe UI Regular";
+  font-family: "Lexend Deca";
 }
 .page_data_setting .api_list_page .text_section p{
   font-weight: 400;
   font-size: 12px;
   line-height: 14px;
   color: #939393;
-  font-family: "Segoe UI Regular";
+  font-family: "Lexend Deca";
   margin-bottom: 0px;
 }
 .page_data_setting .api_list_page .api_edit_button{
@@ -32489,7 +32489,7 @@ img.away, img.busy, img.offline, img.online {
   font-weight: 800;
   font-size: 19px;
   line-height: 40px;
-  font-family: "Segoe UI Regular";
+  font-family: "Lexend Deca";
   color: #000;
   padding: 20px;
   margin-bottom: 0px;
@@ -32503,14 +32503,14 @@ img.away, img.busy, img.offline, img.online {
   font-size: 14px;
   line-height: 16px;
   color: #363a77;
-  font-family: "Segoe UI Regular";
+  font-family: "Lexend Deca";
 }
 .page_data_setting .available_api_section .text_section p{
   font-weight: 400;
   font-size: 12px;
   line-height: 14px;
   color: #939393;
-  font-family: "Segoe UI Regular";
+  font-family: "Lexend Deca";
   margin-bottom: 0px;
 }
 .page_data_setting .available_api_section .table{
@@ -32527,7 +32527,7 @@ img.away, img.busy, img.offline, img.online {
   font-size: 12px;
   line-height: 14px;
   color: #363A77;
-  font-family: "Segoe UI Regular";
+  font-family: "Lexend Deca";
 }
 .page_data_setting .available_api_section .table tr{
   border-bottom: 1px solid #ccc;
@@ -32543,7 +32543,7 @@ img.away, img.busy, img.offline, img.online {
     font-weight: 700;
     font-size: 20px;
     line-height: 24px;
-    font-family: "Segoe UI Regular";
+    font-family: "Lexend Deca";
     color: #363a77;
     margin-bottom: 0px;
     margin-top: 20px;
@@ -32551,7 +32551,7 @@ img.away, img.busy, img.offline, img.online {
 thead.bg-primary{
   background-color: #71728300 !important;
   color: #000;
-  font-family: 'Segoe UI Regular';
+  font-family: 'Lexend Deca';
 }
 /*.customer_technology_page{
   padding: 20px;
@@ -32597,7 +32597,7 @@ thead.bg-primary{
     line-height: 18px;
     color: #000;
     margin-bottom: 10px;
-    font-family: "Segoe UI Regular";
+    font-family: "Lexend Deca";
 }
 
 .home_top_section ul{
@@ -32616,14 +32616,14 @@ thead.bg-primary{
   font-weight: 700;
   font-size: 14px;
   line-height: 16px;
-  font-family: "Segoe UI Regular";
+  font-family: "Lexend Deca";
   color: #363a77;
 }
 .home_top_section ul li.dropdown-item a{
   font-weight: 700;
   font-size: 14px;
   line-height: 16px;
-  font-family: "Segoe UI Regular";
+  font-family: "Lexend Deca";
   color: #363a77;
   display: flex;
   align-items: center;
@@ -32658,7 +32658,7 @@ thead.bg-primary{
 .dashboard_setting{
   background-color: #363a77 !important;
   border-radius: 6px;
-  font-family: "Segoe UI Regular";
+  font-family: "Lexend Deca";
   font-size: 14px;
   color: #fff !important;
   line-height: 18px;
@@ -32683,14 +32683,14 @@ thead.bg-primary{
   color: #363a77;
   font-size: 18px;
   line-height: 22px;
-  font-family: "Segoe UI Regular";
+  font-family: "Lexend Deca";
 }
 .login_dropdown_menu .user_detail_section p{
   margin: 0px;
   color: #363a77;
   font-size: 14px;
   line-height: 18px;
-  font-family: "Segoe UI Regular";
+  font-family: "Lexend Deca";
 }
 .login_dropdown_menu li{
   padding: 15px;
@@ -32873,7 +32873,7 @@ ul#main-menu-navigation {
 }
 
 .navigation .navigation-header {
-  font-family: 'Montserrat', Helvetica, Arial, serif;
+  font-family: 'Lexend Deca', Helvetica, Arial, serif;
   font-weight: 500;
   line-height: 1.2;
   padding: 12px 22px;
@@ -32942,7 +32942,7 @@ ul#main-menu-navigation {
 }
 
 body, btn, p, div, a, button {
-  font-family: 'Montserrat' !important;
+  font-family: 'Lexend Deca' !important;
   font-weight: 800;
 }
 

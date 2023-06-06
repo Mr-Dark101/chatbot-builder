@@ -1139,7 +1139,7 @@ const ByTypeComposer = ({ props, triggerType, apiHandleConditionMaster }) => {
                         <div className="loop-back">
                            <div className="txt-field">
                               <div className="label">
-                                 <div className="sub-txt" style={{ fontFamily: 'Segoe UI Regular !important', fontWeight: 800, fontSize: '12px' }}>
+                                 <div className="sub-txt" style={{ fontFamily: 'Lexend Deca !important', fontWeight: 800, fontSize: '12px' }}>
                                     Template Name
                                  </div>
                               </div>
@@ -1314,7 +1314,7 @@ const ByTypeComposer = ({ props, triggerType, apiHandleConditionMaster }) => {
                                                    ) : (
                                                       <button
                                                          className="btn-primary btn"
-                                                         style={{ marginRight: '10px', fontFamily: 'Segoe UI Regular !important' }}
+                                                         style={{ marginRight: '10px', fontFamily: 'Lexend Deca !important' }}
                                                          onClick={() => {
                                                             setInit({
                                                                ...init,

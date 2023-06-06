@@ -124,7 +124,7 @@ const Edit = ({ rs, retrieveList, loadList }) => {
                                           </div>
 
                                           <Tooltip title={'You can authorize your API in this field and also press any additional parameters as headers in this section.'}>
-                                             <label style={{ marginBottom: '0px', fontWeight: '700px', fontFamily: 'Segoe UI Regular' }}>API Header</label>
+                                             <label style={{ marginBottom: '0px', fontWeight: '700px', fontFamily: 'Lexend Deca' }}>API Header</label>
                                           </Tooltip>
                                           {headerField &&
                                              headerField.map((x, i) => {

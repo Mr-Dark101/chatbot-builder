@@ -649,7 +649,7 @@ const ConditionList = ({ props, apiHandle, dataIndex, apiData, updatedTriggersVa
                   <div className="loop-back">
                      <div className="txt-field">
                         <div className="label">
-                           <div className="sub-txt" style={{ fontFamily: 'Segoe UI Regular !important', fontWeight: 800, fontSize: '12px' }}>
+                           <div className="sub-txt" style={{ fontFamily: 'Lexend Deca !important', fontWeight: 800, fontSize: '12px' }}>
                               Template Name
                            </div>
                         </div>

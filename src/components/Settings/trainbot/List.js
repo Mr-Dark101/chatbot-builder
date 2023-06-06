@@ -272,7 +272,7 @@ const List = ({ rs, subPage, loadList }) => {
                         </a>
 
                         <a class="primary" onClick={() => createJson()} style={{ marginLeft: '15px', textAlign: 'center' }}>
-                           Update Content
+                           Update Data
                         </a>                   
                      </div>
                   </div>

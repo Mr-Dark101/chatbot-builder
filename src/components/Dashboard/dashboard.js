@@ -6,6 +6,7 @@ import dashboard_customize from '../../assets/dashboard_customize.svg';
 import dashboard_customize_white from '../../assets/dashboard_customize.svg';
 import switch_icon from '../../assets/switch_icon.png';
 import notification_icon from '../../assets/notification.svg';
+import setting_icon from '../../assets/Image 1/settings.svg';
 import user_img from '../../assets/user_img.svg';
 import { useDispatch, useSelector } from 'react-redux';
 import { UserContext } from '../../context/UserContext';
@@ -56,14 +57,14 @@ const createArray = [
    },
    {
       id: 3,
-      name: 'Built GPT Bot',
+      name: 'Build GPT Bot',
       icon_1: built_add_icon,
       icon_2: built_add_icon_white,
    },
 
    {
       id: 4,
-      name: 'Built Hybrid Bot',
+      name: 'Build Hybrid Bot',
       icon_1: built_add_icon,
       icon_2: built_add_icon_white,
    },
@@ -385,8 +386,9 @@ const Dashboard = () => {
                   </div>
 
                   <div className="col-sm-2">
-                     <Link to="/settings" className="dashboard_setting float-end">
-                        Settings
+                    
+                    <Link to="/settings" className="float-end">
+                        <img src={setting_icon}  style={{ maxWidth: '37px', marginTop:'40px', marginRight:'30px'}} />
                      </Link>
                   </div>
                </div>

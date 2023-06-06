@@ -1260,7 +1260,7 @@ const ByTypeComposer = ({ props, triggerType }) => {
                   {triggerType == 'A' || triggerType == 'M' ? (
                      <>
                         <div className="row__" style={{ marginBottom: '0px' }}>
-                           <div className="sub-txt" style={{ marginTop: '10px', marginBottom: '5px', fontSize: '12px', color: '#000', fontFamily: 'Segoe UI Regular !important' }}>
+                           <div className="sub-txt" style={{ marginTop: '10px', marginBottom: '5px', fontSize: '12px', color: '#000', fontFamily: 'Lexend Deca !important' }}>
                               Bot Response
                            </div>
                            {triggerType == 'A' ? (
@@ -1542,7 +1542,7 @@ const ByTypeComposer = ({ props, triggerType }) => {
                               <div className="loop-back">
                                  <div className="txt-field">
                                     <div className="label">
-                                       <div className="sub-txt" style={{ fontFamily: 'Segoe UI Regular !important', fontWeight: 800, fontSize: '12px' }}>
+                                       <div className="sub-txt" style={{ fontFamily: 'Lexend Deca !important', fontWeight: 800, fontSize: '12px' }}>
                                           Template Name
                                        </div>
                                     </div>
@@ -1750,7 +1750,7 @@ const ByTypeComposer = ({ props, triggerType }) => {
                                                    ) : (
                                                       <button
                                                          className="btn-primary btn"
-                                                         style={{ marginRight: '10px', fontFamily: 'Segoe UI Regular !important' }}
+                                                         style={{ marginRight: '10px', fontFamily: 'Lexend Deca !important' }}
                                                          onClick={() => {
                                                             setInit({
                                                                ...init,
