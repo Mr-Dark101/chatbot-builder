@@ -95,7 +95,7 @@ const Create = ({rs}) => {
                                     <div className="row">
                                        <div className="col-6"> 
                                           <div className="field_section">
-                                             <SelectField name="version_id" label="GPT Version" options={versionList} />
+                                             <SelectField name="version_id" label="GPT Mode" options={versionList} />
                                        </div>
                                        </div>
                                     </div>
@@ -118,7 +118,7 @@ const Create = ({rs}) => {
                                     <div className="field_section">
                                      <TextField name="api_secret" label="API Secrets Key" placeholder="Please enter your ChatGPT API Key here" />
                                     
-                                       <a href="https://platform.openai.com/account/api-keys"  target="_blank">Signup for ChatGPT API Key <i className="fa fa-external-link"></i></a>
+                                     <h6 style={{marginTop:'15px'}}>Login to <a href="https://platform.openai.com/account/api-keys"  target="_blank">OpenAI Account</a> and get the API key and Organization ID</h6>
                                     </div>
                                  </div>
 
@@ -141,7 +141,7 @@ const Create = ({rs}) => {
                                     <Tooltip title={"Configure the type of API call you're looking to make - GET, POST,PUT."}>
                                        <div className="field_section">
                                           <SelectField name="model_id" label="Model" options={modelList} />
-                                          <span>Ada is the fastest and cheapest text model. Davinci is the most trained but more expensive.</span><br/>
+                                          <h6>The model based on which responses will be generated. Ada is the fastest and cheapest text model. Davinci is the most trained but more expensive.</h6>
                                           <a href="https://platform.openai.com/docs/models/overview" target="_blank">Learn More <i className="fa fa-external-link"></i></a>
                                        </div>
 
@@ -152,10 +152,12 @@ const Create = ({rs}) => {
                                        <a className="float-end" href="https://platform.openai.com/docs/models/gpt-3-5"  target="_blank">Documentation <i className="fa fa-external-link"></i></a>
                        
                                        <TextAreaField name="default_prompt" label="Bot Instructions (Prompt)" value="Answer as truthfully as possible using the provided context and in less than three sentences. If answer is not known or is not contained in the provided context, reply with 'Sorry, I think I am not trained to answer that question'. Dont make up any facts from your own."  placeholder="Marv is a chatbot that reluctantly answers questions with sarcastic responses." rows="6" />
+                                       <h6 style={{marginTop: '10px'}}>A bot prompt refers to the starting query or input given to a language-generation AI model. <a href="https://platform.openai.com/docs/models/overview" target="_blank">Learn More <i className="fa fa-external-link"></i></a></h6>
+                                       
                                     </div>
 
                                     <div className="row align-end">                 
-                                       <div className="col-6">
+                                       <div className="col-7">
                                           <div className="field_section">
 
                                              <TextField name="tokens_number"
@@ -170,13 +172,14 @@ const Create = ({rs}) => {
                                           </div>
                                        </div>
 
-                                       <div className="col-6">
+                                       <div className="col-5">
                                           <div className="field_section">
                                              <p>~ 24 words</p>
                                           </div>
                                        </div>
                                     </div>
-                                    <span>The more tokens, the more ‘cost’ of the request</span>
+                                    <h6 style={{marginTop: '10px'}}>Token is a part of a word used for natural language processing. For English text, 1 token equals approcimately 4 characters or .75 words. The more tokens, the more cost of the request.<a href="https://platform.openai.com/docs/models/overview" target="_blank">Learn More <i className="fa fa-external-link"></i></a></h6>
+                                    
                                     
 
                                     <div className="row">
@@ -186,7 +189,7 @@ const Create = ({rs}) => {
                                           </div>
                                        </div>
 
-                                       <span>This feature allows you to control the confidence level at which the model predicts answers.</span>
+                                       <h6 style={{marginTop: '10px'}}>The parameter allows you to control the randomness of the responses. A temperature of 0 means responses will be very straightforward, almost dtereministic. Choose a value between 0 and 2. <a href="https://platform.openai.com/docs/models/overview" target="_blank">Learn More <i className="fa fa-external-link"></i></a></h6>
                                     </div>
                                     
                                  </div>
