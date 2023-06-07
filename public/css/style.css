@@ -32044,6 +32044,10 @@ img.away, img.busy, img.offline, img.online {
 .main-container .section-hld{
   background-color: #F0F8FE;
 }
+.grey-wrapper {
+  background: #f0f0f0;
+}
+
 .dashboard-hld{
   margin: 30px !important;
 }

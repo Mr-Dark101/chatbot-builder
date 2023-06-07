@@ -317,7 +317,7 @@ const D3Tree = (props) => {
    const foreignObjectProps = { width: nodeSize.x, height: 700, x: -250, y: -105 };
 
    return (
-      <div className="d3tree-container">
+      <div className="d3tree-container grey-wrapper">
          <ConfirmModal visible={isConfirm} handleOk={handleSubmitTrigger} modalTitle="Delete trigger" okText={'Delete'} confirmLoading={false} modalText={confirmationTxt} handleCancel={confirmClose} />
          {isUpdatedList && (
             <Tree
