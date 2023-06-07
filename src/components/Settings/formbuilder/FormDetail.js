@@ -22,6 +22,12 @@ const { onDownload } = useDownloadExcel({
     })
 
 
+  const getFormData = (data,label) => {
+      const dataValue = JSON.parse(data)
+      let obj = dataValue.find(o => o.key === label);
+      return  obj?.value
+  }
+
   return (
     <>
     
@@ -48,23 +54,23 @@ const { onDownload } = useDownloadExcel({
           
             <div className="table-responsive mx-30">
               
-
+              
 
               <table className="table table-hover" ref={tableRef}>
                  <thead className="bg-primary">
                  <tr>
                     
                     {
-                      JSON.parse(row.Forms[0].form_data).map((rs, index) => (
+                      JSON.parse(row.form_data).map((rs, index) => (
                         <>
-                          <th>{rs.key}</th>
+                          <th>{rs.label}</th>
                         </>
 
                       ))
                     }
                     </tr>
                     </thead>
- <tbody>
+                 <tbody>
                     {
                       row.Forms.map((rs, index) => (
 
@@ -72,9 +78,9 @@ const { onDownload } = useDownloadExcel({
                       
                       {
                        
-                        JSON.parse(rs.form_data).map((ll,i) => (
+                        JSON.parse(row.form_data).map((rsHead, indexHead) => (
                           <>
-                            <td>{ll.value}</td>
+                            <td>{getFormData(rs.form_data,rsHead.label)}</td>
                           </>
 
                         ))
