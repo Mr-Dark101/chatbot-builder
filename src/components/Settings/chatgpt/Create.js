@@ -119,7 +119,7 @@ const Create = ({rs}) => {
                                  <div className="col-5" style={{ paddingLeft: '0px'}}>   
 
                                     <div className="field_section">
-                                     <TextField name="api_secret" label="API Secrets Key" placeholder="Please enter your ChatGPT API Key here" />
+                                     <TextField name="api_secret" label="API Secret Key" placeholder="Please enter your ChatGPT API Key here" />
                                     
                                      <h6 style={{marginTop:'15px'}}>Login to <a href="https://platform.openai.com/account/api-keys"  target="_blank">OpenAI Account</a> and get the API key and Organization ID</h6>
                                     </div>
