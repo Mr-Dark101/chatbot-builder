@@ -185,26 +185,28 @@ const Edit = ({rs}) => {
                                          
                                     </div>
 
-                                    <div className="row align-end">                 
-                                       <div className="col-6">
+                                    <div className="row align-end">  
+                                       <h6 style={{fontFamily: 'Lexend Deca',fontWeight: 700,fontSize: '16px',lineHeight: '18px',marginTop:'20px',marginBottom:'-12px'}}>Maximum number of tokens in response</h6>               
+                                       <div className="col-6" style={{marginBottom:'0px'}}>
                                           <div className="field_section">
-
+                                         
                                              <TextField name="tokens_number" onBlur={(e) => {
                                                
                                                 countWord(e)
 
-                                             }} label="Maximum number of tokens in response" placeholder="" />
+                                             }} placeholder="" />
 
                                           </div>
                                        </div>
 
-                                       <div className="col-6">
+                                       <div className="col-6" style={{marginBottom:'0px'}}>
                                           <div className="field_section">
                                           <p name="wordscount" id="wordscount">~ Approximately 500 words</p>
                                           </div>
                                        </div>
                                     </div>
-                                    <h6 style={{marginTop: '10px'}}>Token is a part of a word used for natural language processing. For English text, 1 token equals approcimately 4 characters or .75 words. The more tokens, the more cost of the request.  <a href="https://platform.openai.com/docs/models/overview" target="_blank">Learn More <i className="fa fa-external-link"></i></a></h6>
+                                    
+                                    <div className="field_section"><h6 style={{marginTop: '10px'}}>Token is a part of a word used for natural language processing. For English text, 1 token equals approcimately 4 characters or .75 words. The more tokens, the more cost of the request.  <a href="https://platform.openai.com/docs/models/overview" target="_blank">Learn More <i className="fa fa-external-link"></i></a></h6></div>
                                     
 
                                     <div className="row">
@@ -214,7 +216,7 @@ const Edit = ({rs}) => {
                                           </div>
                                        </div>
 
-                                       <h6 style={{marginTop: '10px'}}>The parameter allows you to control the randomness of the responses. A temperature of 0 means responses will be very straightforward, almost dtereministic. Choose a value between 0 and 2.  <a href="https://platform.openai.com/docs/models/overview" target="_blank">Learn More <i className="fa fa-external-link"></i></a></h6>
+                                       <div className="field_section"><h6 style={{marginTop: '10px'}}>The parameter allows you to control the randomness of the responses. A temperature of 0 means responses will be very straightforward, almost dtereministic. Choose a value between 0 and 2.  <a href="https://platform.openai.com/docs/models/overview" target="_blank">Learn More <i className="fa fa-external-link"></i></a></h6></div>
                                   </div>
                                     
                                  </div>
