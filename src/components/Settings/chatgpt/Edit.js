@@ -100,7 +100,7 @@ const Edit = ({rs}) => {
          <div class="row">
             <div class="col-12">
                <div>
-                  <div className="page_data_clinic api_form_section" style={{ overflowY: 'scroll', height: 800 }}>
+                  <div className="page_data_clinic api_form_section" style={{ height: 1100 }}>
                      {!successful && (
                         <Form enableReinitialize validationSchema={FormSchema} initialValues={formData} onSubmit={onSubmit}>
                             <div className="px-30 py-15">
@@ -112,7 +112,7 @@ const Edit = ({rs}) => {
 
                            <hr />
 
-                           <div className="api_form_section px-30" style={{ overflowY: 'scroll', height: 600,margin: 0 }}>
+                           <div className="api_form_section px-30" style={{ height: 1100,margin: 0 }}>
                               <div className="row d-flex align-end" style={{ marginLeft: '0px', marginRight: '0px' }}>
                                  <div className="col-10" style={{ paddingLeft: '0px'}}>
                                     <div className="row">
@@ -230,7 +230,7 @@ const Edit = ({rs}) => {
                            </div>
 
                            <div className="px-30 py-15 float-end">
-                              <SubmitButton title="Save" className="primary" />
+                              <SubmitButton title="Save" className="primary" style={{width:'100px'}} />
 
                               
                            </div>
