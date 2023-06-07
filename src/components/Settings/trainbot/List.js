@@ -248,20 +248,10 @@ const List = ({ rs, subPage, loadList }) => {
                             Action
                           </button>
                           <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                           <li><a class="dropdown-item" onClick={() => subPage(<CreateCat loadList={loadList} retrieveList={retrieveList} rs={rs} />)} href="#">Add Category</a></li>
-                            <li><a class="dropdown-item" href="#"
-
-                              onClick={() => downLoadCsv()}
-
-                            >Download Training Data</a></li>
-                            <li><a class="dropdown-item" href="#"
-
-                            onClick={() => subPage(<CreateImport loadList={loadList} retrieveList={retrieveList} rs={rs} />)}
-                            >Import Training Data</a></li>
-                            <li><a class="dropdown-item" href="#"
-                              onClick={() => downLoadTemplate()}
-
-                            >Download CSV Template</a></li>
+                          <li><a class="dropdown-item" href="#" onClick={() => downLoadCsv()}>Download Training Data</a></li>                  
+                          <li><a class="dropdown-item" href="#" onClick={() => subPage(<CreateImport loadList={loadList} retrieveList={retrieveList} rs={rs} />)}>Import Training Data</a></li>
+                          <li><a class="dropdown-item" href="#" onClick={() => downLoadTemplate()}>Download Sample CSV</a></li>
+                          <li><a class="dropdown-item" onClick={() => subPage(<CreateCat loadList={loadList} retrieveList={retrieveList} rs={rs} />)} href="#">Manage Data Categories</a></li> 
                           </ul>
                         </div>
 
