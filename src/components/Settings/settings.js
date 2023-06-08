@@ -40,7 +40,7 @@ const Settings = () => {
 
    useEffect(() => {
       //changeContent('FormBuilder');
-      changeContent('ChatGpt');
+      changeContent('TrainBot');
    }, []);
    const handleBack = () => {
       history.push(`${STRINGS.ROUTES.ROOT}?org=${localStorage.getItem('userId')}`);

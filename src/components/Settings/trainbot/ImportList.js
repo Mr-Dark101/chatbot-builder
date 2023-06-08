@@ -10,9 +10,8 @@ import List from './List'
 import BlankMsg from '../../common/BlankMsg';
 import { toast } from 'react-toastify';
 import { Tooltip } from '@mui/material';
-import editIcon from '../../../assets/edit.svg';
-import deleteIcon from '../../../assets/deleteicon.svg';
-const CatList = ({subPage }) => {
+
+const ImportList = ({subPage }) => {
 
    const ref = useRef([]);
    const inputElement = useRef([]);
@@ -34,7 +33,7 @@ const CatList = ({subPage }) => {
    }, []);
 
    const retrieveList = () => {
-      CrudService.getAll('gptcat', true)
+      CrudService.getAll('import-history', true)
          .then((response) => {
             setListData(response.data);
             
@@ -67,7 +66,7 @@ const CatList = ({subPage }) => {
    const deleteRow = (id) => {
       CrudService.deleteRow(id, 'gptcat', true).then(
          (response) => {
-            toast('Category has been deleted!', { type: toast.TYPE.SUCCESS });
+            toast('Record has been deleted!', { type: toast.TYPE.SUCCESS });
             setMessage(response.data.message);
             setSuccessful(true);
             retrieveList();
@@ -109,10 +108,9 @@ const CatList = ({subPage }) => {
                }
          }
       }
-      toast('Category has been deleted!', { type: toast.TYPE.SUCCESS });
       setSuccessful(true);
       retrieveList()
-      //setMessage("Category has been deleted");
+      //setMessage("Record has been deleted");
      // setSuccessful(true);
      
       
@@ -213,8 +211,8 @@ const selectAll = (check_status,value) => {
                custom
                showCancel
                showCloseButton
-               confirmBtnText="Delete"
-               cancelBtnText="Cancel"
+               confirmBtnText="Yes"
+               cancelBtnText="No"
                confirmBtnBsStyle="primary"
                cancelBtnBsStyle="light"
                customIcon=""
@@ -242,28 +240,17 @@ const selectAll = (check_status,value) => {
                         
                         <h5 className="box-title m-0" style={{ fontWeight: 800 }}>
                         <span onClick={() => subPage(<List subPage={subPage} />)} style={{marginRight:'5px'}} className="icon">
-                           <img alt={'#'} src={back_icon} /> 
+                           <img alt={'#'} src={back_icon} />
                         </span>
-                             Manage Categories
+                           Upload History
                         </h5>
                      </div>
 
                      <div className="col-sm-6 d-flex justify-content-end">
 
-                        {deleteShow && 
-
-                           <a class="danger" style={{ marginLeft: '15px', textAlign: 'center' }} 
-
-                           onClick={() => deleteAll()}>
-                           Delete All
-                        </a> 
-
-                        }
+                       
                         
-                        
-                        <a class="primary" onClick={() => createCatBody()} style={{ marginLeft: '15px', textAlign: 'center' }}>
-                           Add Category
-                        </a> 
+                     
                         
 
                        
@@ -282,62 +269,31 @@ const selectAll = (check_status,value) => {
                      <table className="table table-hover" id="settingTbl">
                         <thead>
                            <tr>
-                              <th>
-
-                              <input type="checkbox" 
-                                    name={`c_all`}
-                                    onChange={(event) => selectAll(event.target.checked,event.target.value)}
-                                    value='all'
-
-                                     />
-                              </th>
-                              <th><b>Category Name</b></th>
+                              
+                              <th><b>File Name</b></th>
+                              <th><b>Uploaded Mode</b></th>
+                              <th><b>Upload Time</b></th>
+                              <th><b>Record Count</b></th>
+                              <th><b>Status</b></th>
                             
-                              <th></th>
+                              
                            </tr>
                         </thead>
                         <tbody>
-                           
+                         
                            {listData &&
                               listData.map((row, index) => (
                                  <tr>
-                                    <td width="100">
-                                       
                                     
-                                       {row.name !== 'Default' && 
-
-                                          <input
-                                           type="checkbox"
-                                           name={`r_${row.id}`}
-                                           value={row.id}
-                                           id={`${row.id}`}
-                                          onChange={(event) => checkDelete()}
-                                           ref={(element) => { inputElement.current[row.id] = element }}
-                                           />
-
-                                       }
-
-                                       
-
-                                    </td>
-                                    <td>{row.name}</td>
+                                    <td>{row.file_name}</td>
+                                    <td>Formatted CSV</td>
+                                    <td>{row.created_at}</td>
+                                    <td>{row.record_count}</td>
+                                    <td>Completed</td>
                                     
                                    
                                     
-                                    <td style={{ textAlign: 'end' }}>
-                                      {row.name !== 'Default' ? 
-                                      (
-                                       <>
-                                       <a style={{ marginLeft: 5 }}  onClick={() => editCatBody(row)} >
-                                          <img alt={'#'} src={editIcon}  />
-                                       </a>
-                                       <a style={{ marginLeft: 5 }}  onClick={() => deleteMe(row.id)}>
-                                          <img alt={'#'} src={deleteIcon} width="20" />
-                                       </a>
-                                       </>
-                                       ) : null
-                                    }
-                                    </td>
+                                   
                                  </tr>
                               ))}
                         </tbody>
@@ -352,4 +308,4 @@ const selectAll = (check_status,value) => {
    );
 };
 
-export default CatList;
+export default ImportList;

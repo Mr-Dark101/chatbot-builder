@@ -5,8 +5,10 @@ import * as Yup from 'yup';
 import CrudService from '../../../services/crud.service';
 import { Link } from 'react-router-dom';
 import { Tooltip } from '@mui/material';
+import {toast } from 'react-toastify';
+const BASE_URL = process.env.REACT_APP_BACKEND_URl;
 
-const CreateImport = ({ rs, retrieveList, loadList }) => {
+const CreateImport = ({ retrieveList, loadList,closeModal }) => {
    const [validationSchema, setValidationSchema] = useState({});
 
    const [insuranceList, setInsuranceList] = useState([]);
@@ -62,14 +64,19 @@ const [isSelected, setIsSelected] = useState(false)
          (response) => {
             //setModalValue('')
             //loadList();
+            toast('Training data has been imported!', { type: toast.TYPE.SUCCESS });
+            retrieveList();
+
             setMessage(response.data.message);
             setSuccessful(true);
+            closeModal()
             //retrieveList();
          },
          (error) => {
             const resMessage = (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
 
             setMessage(resMessage);
+
             setSuccessful(false);
          }
       );
@@ -83,18 +90,22 @@ const [isSelected, setIsSelected] = useState(false)
       setHeaderField(list);
    };
 
+   const downLoadTemplate = () => {
+      document.location.href= BASE_URL + '/template.csv';
+  }
+
    return (
       <>
          <div class="row">
             <div class="col-12">
                <div>
-                  <div className="page_data_clinic api_form_section" style={{ overflowY: 'scroll', height: 800 }}>
+                  <div className="page_data_clinic api_form_section" >
                      {!successful && (
                         <Form enableReinitialize validationSchema={FormSchema} initialValues={formData} onSubmit={onSubmit}>
-                           <h4 class="box-title m-0" style={{ fontWeight: 800}}>
-                              Add Category
-                           </h4>
-
+                          
+                           <div>
+                              <a  href="#" onClick={() => downLoadTemplate()}>Download sample CSV file</a>
+                           </div>
                            <div className="row" style={{ marginLeft: '0px', marginRight: '0px' }}>
                               <div className="col-9" style={{ paddingLeft: '0px', paddingRight: '0px' }}>
                                  <div className="field_section">
@@ -106,9 +117,8 @@ const [isSelected, setIsSelected] = useState(false)
                    
                 >
                     <div className="drop-message">
-                        Drop a File here to upload.<br />
-                        or<br />
-                        <a href="#">Browse File</a>
+                       
+                        <a href="#">Data File</a>
                     </div>
                     <input type="file" 
                     ref={fileInputRef}
@@ -142,7 +152,7 @@ const [isSelected, setIsSelected] = useState(false)
                            <div>
                               <SubmitButton title="Upload" className="primary" />
 
-                              <button onClick={() => loadList()} type="button" className="secondary ms-10">
+                              <button onClick={() => closeModal()} type="button" className="secondary ms-10">
                                  Cancel
                               </button>
                            </div>

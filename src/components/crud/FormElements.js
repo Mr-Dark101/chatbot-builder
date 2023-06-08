@@ -157,6 +157,27 @@ export function TextField(props) {
     )
 }
 
+export function TextFieldModal(props) {
+    const { name, label, placeholder, ...rest } = props
+    return (
+        <>
+            
+            {label && <label htmlFor={name}>{label}</label>}
+            <Field
+                className="form-control"
+                type="text"
+                name={name}
+                id={name}
+                placeholder={placeholder || ""} 
+                {...rest}
+            />
+            <ErrorMessage name={name} render={msg => <div style={{ color: 'red' }} >{msg}</div>} />
+
+            
+        </>
+    )
+}
+
 export function TextPhoneField(props) {
     const { name, label, placeholder, ...rest } = props
     return (
@@ -273,6 +294,17 @@ export function SelectField(props) {
     )
 }
 
+export function SubmitButtonModal(props){
+    const { title, ...rest } = props;
+    const { isSubmitting } = useFormikContext();
+    
+    return (
+        <>
+        
+        <button type="submit" {...rest} disabled={isSubmitting}>{title}</button>
+        </>
+    )
+}
 export function SubmitButton(props){
     const { title, ...rest } = props;
     const { isSubmitting } = useFormikContext();

@@ -6,8 +6,13 @@ import Create from './Create';
 import CreateCat from './CreateCat';
 import EditCat from './EditCat';
 import CreateImport from './CreateImport';
+import editIcon from '../../../assets/edit.svg';
+import deleteIcon from '../../../assets/deleteicon.svg';
+import { Form, TextField, SelectField, SubmitButton, CheckBoxField, TextGroupField, TextAreaField } from '../../crud/FormElements';
+
 
 import CatList from './CatList';
+import ImportList from './ImportList';
 
 import Edit from './Edit';
 
@@ -20,6 +25,8 @@ const List = ({ rs, subPage, loadList }) => {
    const ref = useRef([]);
 
    const [listData, setListData] = useState([]);
+   const [listDataComplete, setListDataComplete] = useState([]);
+   const [gptCatList, setGptCatList] = useState([]);
    const [refresh, setRefresh] = useState(false);
    const [modalValue, setModalValue] = useState('');
    const [show, setShow] = useState(true);
@@ -30,22 +37,44 @@ const List = ({ rs, subPage, loadList }) => {
    const [showAlertAll, setShowAlertAll] = useState(false);
    const [checkedAll, setCheckedAll] = useState(false);
   const [checked, setChecked] = useState(false);
+  const [deleteShow, setDeleteShow] = useState(false);
+
+   const [showAlertSuccess, setShowAlertSuccess] = useState(false);
+
+  
+
   const inputElement = useRef([]);
    useEffect(() => {
+      retrieveMasterList('gptcat');
       retrieveList();
+
    }, []);
 
-   const retrieveList = () => {
-      setSuccessful(false);
-      CrudService.getAll('gptcat', true)
+   const retrieveMasterList = (url) => {
+      CrudService.ListValue('master/list-value?type=' + url)
          .then((response) => {
-            setListData(response.data);
-            console.log(response.data);
+            if (url == 'gptcat') {
+               setGptCatList(response.data);
+            }
 
-
+           
          })
          .catch((e) => {
             console.log(e);
+         });
+   };
+
+   const retrieveList = () => {
+      setSuccessful(false);
+      CrudService.getAll('trainbot', true)
+         .then((response) => {
+            setListDataComplete(response.data);
+            
+            setListData(response.data)
+
+         })
+         .catch((e) => {
+            
          });
    };
    const loadModal = (title, children) => {
@@ -66,9 +95,9 @@ const List = ({ rs, subPage, loadList }) => {
    };
 
    const deleteRow = (id) => {
-      CrudService.deleteRow(id, 'gptcat', true).then(
+      CrudService.deleteRow(id, 'trainbot', true).then(
          (response) => {
-            toast('Record has been deleted!', { type: toast.TYPE.SUCCESS });
+            toast('Training data has been deleted!', { type: toast.TYPE.SUCCESS });
             setMessage(response.data.message);
             setSuccessful(true);
             retrieveList();
@@ -94,8 +123,8 @@ const List = ({ rs, subPage, loadList }) => {
    const createJson = () => {
       CrudService.createJsonData().then(
          (response) => {
+            setShowAlertSuccess(true)
             
-            alert("Json Created")
          },
          (error) => {
             alert("Error")
@@ -123,8 +152,9 @@ const List = ({ rs, subPage, loadList }) => {
          }
       }
       setSuccessful(true);
+      toast('Training data has been deleted!', { type: toast.TYPE.SUCCESS });
       retrieveList()
-      //setMessage("Record has been deleted");
+      //setMessage("Training data has been deleted");
      // setSuccessful(true);
      
       
@@ -141,18 +171,38 @@ const List = ({ rs, subPage, loadList }) => {
 
                let id  = inputElement.current[i].id
                id = id.split('-')[0]
-               if(id == value){
+              
 
                   if(check_status) {
                      inputElement.current[i].checked = true;
+
                   }else{
                      inputElement.current[i].checked = false;
                   }
-               }
+               
             }
             
         }
+        setDeleteShow(check_status)
+       
   };
+
+  const checkDelete = () => {
+      let checkStatus = false;
+      for (let i = 0; i < inputElement.current.length; i++) {
+         
+         if(inputElement.current[i]){
+            if(inputElement.current[i].checked){
+               
+               checkStatus = true;
+               break
+            }
+         }
+
+      }
+       setDeleteShow(checkStatus)
+  }
+
 
    const toggleCheck = (inputName) => {
    
@@ -178,21 +228,59 @@ const List = ({ rs, subPage, loadList }) => {
          });
   }
 
-  
+ const searchData = (e) => {
+     const query = e.target.value;
 
+     const filteredRepositories = listDataComplete.filter((value) => {
+         return (
+            value?.question?.toLowerCase().includes(query?.toLowerCase())
+           
+         );
+      });
+     
+     
+    
+      setListData(filteredRepositories);
+ }
+
+const selCat = (e) => {
+     const query = e.target.value;
+     
+     const filteredRepositories = listDataComplete.filter((value) => {
+         return (
+           
+            value?.GptCat?.name?.toLowerCase().includes(query?.toLowerCase())
+           
+         );
+      });
+     
+     
+    
+      setListData(filteredRepositories);
+ }
+
+ 
+
+ const importData = () => {
+      
+      loadModal('Import Training Data',<CreateImport closeModal={closeModal} title="Import Training Data" retrieveList={retrieveList} loadList={loadList} />)
+ }
+ 
    return (
       <>
+         {modalValue}
          {showAlert && (
-            <SweetAlert
+             <SweetAlert
                custom
                showCancel
                showCloseButton
-               confirmBtnText="Yes"
-               cancelBtnText="No"
+               confirmBtnText="Delete"
+               cancelBtnText="Cancel"
                confirmBtnBsStyle="primary"
                cancelBtnBsStyle="light"
                customIcon=""
-               title="Are you sure delete this record?"
+               customClass="containerBoxAlert"
+               title="Delete Category"
                onConfirm={() => {
                   setShowAlert(false);
                   deleteRow(delId);
@@ -200,7 +288,39 @@ const List = ({ rs, subPage, loadList }) => {
                onCancel={() => {
                   setShowAlert(false);
                }}
-            />
+
+                reverseButtons={true}
+            >
+            Are you sure delete this record?
+            </SweetAlert>
+         )}
+
+
+         {showAlertSuccess && (
+             <SweetAlert
+               custom
+               hideCancel
+               showCloseButton
+               confirmBtnText="Close"
+               
+               confirmBtnBsStyle="primary"
+               cancelBtnBsStyle="light"
+               customIcon=""
+               customClass="containerBoxAlert"
+               title="Congratulation!"
+               onConfirm={() => {
+                  setShowAlertSuccess(false);
+               }}
+               onCancel={() => {
+                  setShowAlertSuccess(false);
+               }}
+
+                reverseButtons={true}
+
+                closeOnCancel={false}
+            >
+            Json has been created
+            </SweetAlert>
          )}
 
          {showAlertAll && (
@@ -208,12 +328,13 @@ const List = ({ rs, subPage, loadList }) => {
                custom
                showCancel
                showCloseButton
-               confirmBtnText="Yes"
-               cancelBtnText="No"
+               confirmBtnText="Delete"
+               cancelBtnText="Cancel"
                confirmBtnBsStyle="primary"
                cancelBtnBsStyle="light"
                customIcon=""
-               title="Are you sure delete selected record?"
+               customClass="containerBoxAlert"
+               title="Delete Category"
                onConfirm={ () => {
                   setShowAlertAll(false);
                   deleteAllSeleted();
@@ -222,38 +343,41 @@ const List = ({ rs, subPage, loadList }) => {
                onCancel={() => {
                   setShowAlertAll(false);
                }}
-            />
+
+               reverseButtons={true}
+            >
+             Are you sure delete selected record?
+            </SweetAlert>
          )}
 
+
+         
+
          <div className="page_data_setting">
-            {listData.length > 0 ? (
+            {setListDataComplete.length > 0 ? (
                <>
                   <div className="row px-30 py-15 media-center">
                      <div className="col-sm-4">
                         <h5 className="box-title m-0" style={{ fontWeight: 800 }}>
-                           Train Bot
+                           Training Data
                         </h5>
                      </div>
 
                      <div className="col-sm-8 d-flex justify-content-end">
-                        <a class="danger" style={{ marginLeft: '15px', textAlign: 'center' }} 
+
+                        {deleteShow && 
+
+                           <a class="danger" style={{ marginLeft: '15px', textAlign: 'center' }} 
 
                            onClick={() => deleteAll()}>
                            Delete All
                         </a> 
+
+                        }
                         
                         
-                        <div class="dropdown" style={{ marginLeft: '15px' }}>
-                          <button class="btn secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                            Action
-                          </button>
-                          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                          <li><a class="dropdown-item" href="#" onClick={() => downLoadCsv()}>Download Training Data</a></li>                  
-                          <li><a class="dropdown-item" href="#" onClick={() => subPage(<CreateImport loadList={loadList} retrieveList={retrieveList} rs={rs} />)}>Import Training Data</a></li>
-                          <li><a class="dropdown-item" href="#" onClick={() => downLoadTemplate()}>Download Sample CSV</a></li>
-                          <li><a class="dropdown-item" onClick={() => subPage(<CreateCat loadList={loadList} retrieveList={retrieveList} rs={rs} />)} href="#">Manage Data Categories</a></li> 
-                          </ul>
-                        </div>
+                        
+                        
 
                         <a class="secondary" style={{ marginLeft: '15px', textAlign: 'center' }} 
 
@@ -272,44 +396,103 @@ const List = ({ rs, subPage, loadList }) => {
                   <div className="table-responsive px-30 py-15">
 
                   
+                  <div className="row">
+                      <div className="col-sm-4">
+                        <input type="text" className="form-control"
+                         onChange={(e) => searchData(e)}
+                         placeholder="Type a few characters and hit enter to search" />
+                      </div>
+                      <div className="col-sm-4">
+                      <div class="dropdown" style={{ marginTop: '-15px' }}>
+                          <a style={{fontSize:'35px'}} id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                            ...
+                          </a>
+                          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                          <li><a class="dropdown-item" onClick={() => subPage(<CatList  subPage={subPage} />)} href="#">Manage Categories</a></li>
+                          <li><a class="dropdown-item" href="#" onClick={() => downLoadCsv()}>Download Training Data</a></li>                  
+                          <li><a class="dropdown-item" href="#" onClick={() => importData()}>Import Training Data</a></li>
+                          <li><hr /></li>
+                          
+                          <li><a class="dropdown-item" onClick={() => subPage(<ImportList  subPage={subPage} />)} href="#">Upload History</a></li>
+                          
+                           
+                          </ul>
+                        </div>
+                      </div>
+                      <div className="col-sm-4">
+                      
+                           <select onChange={(e) => selCat(e)}>
+                              <option value="">--Select Category ---</option>
+                              {gptCatList && gptCatList.map((rsCat) => {
 
+
+                              
+                                    return <option value={rsCat.label}>{rsCat.label}</option>
+
+                               })
+                              }
+                           </select>
+                      </div>
+
+                  </div>
                   {!successful && (
                      <table className="table table-hover" id="settingTbl">
                         
+                        <thead>
+                           <tr>
+                              <th>
+
+
+                              <input type="checkbox" 
+                                    name={`c_all`}
+                                    onChange={(event) => selectAll(event.target.checked,event.target.value)}
+                                    value='all'
+
+                                     />
+
+                              </th>
+                              <th><b>User Question</b></th>
+                              <th><b>Bot Response</b></th>
+                              <th><b>Category</b></th>
+                              <th></th>
+                           </tr>
+                        </thead>
                         <tbody>
                            {listData &&
                               listData.map((row, index) => (
                               <>
-                                 <tr style={{backgroundColor:'#363A77',color:'#fff'}}>
+                                 <tr >
                                     <td width="5%">
-                                    <input type="checkbox" 
-                                    name={`c_${row.id}`}
-                                    onChange={(event) => selectAll(event.target.checked,event.target.value)}
-                                    value={row.id}
+                                   
 
-                                     />
+                                          <input
+                                           type="checkbox"
+                                           name={`r_${row.id}`}
+                                           value={row.id}
+                                           id={`${row.id}`}
+                                          onChange={(event) => checkDelete()}
+                                           ref={(element) => { inputElement.current[row.id] = element }}
+                                           />
+
                                     </td>
-                                    <td>
-
-                                    {row.name}
-
-                                    </td>
-                                     <td style={{ textAlign: 'end' }}>
+                                    <td>{row.question}</td>
+                                    <td>{row.answer}</td>
+                                    <td>{(row.GptCat )  ? row.GptCat.name : 'Default'}</td>
+                                    
+                                    <td style={{ textAlign: 'end' }}>
                                       
-                                       <button style={{ marginLeft: 5 }} className="btn btn-icon btn-icon rounded-circle btn-custom" onClick={() => subPage(<EditCat loadList={loadList} retrieveList={retrieveList} rs={row} />)}>
-                                          <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                                       </button>
-                                       <button style={{ marginLeft: 5 }} className="btn btn-icon btn-icon rounded-circle btn-danger" onClick={() => deleteMe(row.id)}>
-                                          <i class="fa fa-trash" aria-hidden="true"></i>
-                                       </button>
+                                       <a style={{ marginLeft: 5 }}  onClick={() => subPage(<Edit loadList={loadList} retrieveList={retrieveList} rs={row} />)}>
+                                          
+                                          <img alt={'#'} src={editIcon}  />
+                                       </a>
+                                       <a style={{ marginLeft: 5 }}  onClick={() => deleteMe(row.id)}>
+                                          
+                                          <img alt={'#'} src={deleteIcon} width="20" />
+                                       </a>
                                     </td>
                                     
                                  </tr>
-                                 <tr>
-                                    <td colspan="3">
-                                    <CatList id={row.id} inputElement={inputElement} checked={checked} toggleCheck={toggleCheck} rs={rs} subPage={subPage} loadList={loadList} />
-                                    </td>
-                                 </tr> 
+                                 
                                  </>
                               ))}
                         </tbody>

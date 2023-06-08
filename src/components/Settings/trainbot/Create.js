@@ -5,7 +5,7 @@ import * as Yup from 'yup';
 import CrudService from '../../../services/crud.service';
 import { Link } from 'react-router-dom';
 import { Tooltip } from '@mui/material';
-
+import {toast } from 'react-toastify';
 const Create = ({ rs, retrieveList, loadList }) => {
    const [validationSchema, setValidationSchema] = useState({});
 
@@ -64,6 +64,7 @@ const Create = ({ rs, retrieveList, loadList }) => {
       CrudService.register(values, 'trainbot', true).then(
          (response) => {
             //setModalValue('')
+             toast("Training data been added",{type: toast.TYPE.SUCCESS})
             loadList();
             setMessage(response.data.message);
             setSuccessful(true);
@@ -142,7 +143,7 @@ const Create = ({ rs, retrieveList, loadList }) => {
                            <div>
                               <SubmitButton title="Create" className="primary" />
 
-                              <button onClick={() => loadList()} type="button" className="secondary ms-10">
+                              <button onClick={() => retrieveList()} type="button" className="secondary ms-10">
                                  Cancel
                               </button>
                            </div>

@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 
-import { Form, TextField, SelectField, SubmitButton, CheckBoxField, TextGroupField, TextAreaField } from '../../crud/FormElements';
+import { Form, TextField,TextFieldModal, SelectField, SubmitButtonModal, CheckBoxField, TextGroupField, TextAreaField } from '../../crud/FormElements';
 import * as Yup from 'yup';
 import CrudService from '../../../services/crud.service';
 import { Link } from 'react-router-dom';
 import { Tooltip } from '@mui/material';
-
-const CreateCat = ({ rs, retrieveList, loadList }) => {
+import {toast } from 'react-toastify';
+const CreateCat = ({ rs, retrieveList, loadList,closeModal }) => {
    const [validationSchema, setValidationSchema] = useState({});
 
    const [insuranceList, setInsuranceList] = useState([]);
@@ -41,7 +41,9 @@ const CreateCat = ({ rs, retrieveList, loadList }) => {
          (response) => {
             //setModalValue('')
             loadList();
+            closeModal()
             setMessage(response.data.message);
+            toast("Category data been created",{type: toast.TYPE.SUCCESS})
             setSuccessful(true);
             //retrieveList();
          },
@@ -67,40 +69,19 @@ const CreateCat = ({ rs, retrieveList, loadList }) => {
          <div class="row">
             <div class="col-12">
                <div>
-                  <div className="page_data_clinic api_form_section" style={{ overflowY: 'scroll', height: 800 }}>
+                  <div className="" >
                      {!successful && (
                         <Form enableReinitialize validationSchema={FormSchema} initialValues={formData} onSubmit={onSubmit}>
-                           <h4 class="box-title m-0" style={{ fontWeight: 800}}>
-                              Add Category
-                           </h4>
+                           
 
-                           <div className="row" style={{ marginLeft: '0px', marginRight: '0px' }}>
-                              <div className="col-9" style={{ paddingLeft: '0px', paddingRight: '0px' }}>
-                                 <div className="field_section">
-                                    <TextField name="name" label="Name" icon="check-square" placeholder="Name" />
-                                 </div>
-
-                               
-
-                                 
-
-                                
-
-                                
-                                
-
-                                
-
-                                
-                              </div>
-
-                              <div className="col-3" style={{ paddingLeft: '0px', paddingRight: '0px' }}></div>
-                           </div>
+                            <div className="field_section">
+                                 <TextFieldModal name="name" label="Name" icon="check-square" placeholder="Name" />
+                            </div>
 
                            <div>
-                              <SubmitButton title="Create" className="primary" />
+                              <SubmitButtonModal title="Save" className="primary" />
 
-                              <button onClick={() => loadList()} type="button" className="secondary ms-10">
+                              <button onClick={() => closeModal()} type="button" className="secondary ms-10">
                                  Cancel
                               </button>
                            </div>

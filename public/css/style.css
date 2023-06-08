@@ -32991,3 +32991,6 @@ body, btn, p, div, a, button {
 }
 .ant-modal-footer{text-align: left !important}
 
+.sweet-alert.containerBoxAlert h2{text-align: left !important;font-size:18px !important}
+.sweet-alert.containerBoxAlert div{text-align: left !important;font-size:14px !important}
+.sweet-alert.containerBoxAlert p{text-align: left !important;justify-content:start !important}

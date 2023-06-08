@@ -1,6 +1,6 @@
 import React,{useState,useContext,useMemo} from "react";
 import axios from "axios";
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer, toast,Slide } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {Provider} from "react-redux";
 import store from "./store";
@@ -88,6 +88,12 @@ axios.interceptors.response.use((response) => { // block to handle success case
                             <Navigation/>
                        
                     </Layout>
+                    <ToastContainer position="top-center"
+                        autoClose={3000} 
+                        hideProgressBar
+                        transition={Slide}
+
+                        />
                      </UserContext.Provider>
                 </Suspense>
             </BrowserRouter>

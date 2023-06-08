@@ -6,7 +6,7 @@ import CrudService from '../../../services/crud.service';
 import { Link } from 'react-router-dom';
 import { Tooltip } from '@mui/material';
 import { Formik, Form, Field, ErrorMessage, useFormikContext, useField, useFormik } from 'formik';
-
+import {toast } from 'react-toastify';
 const Edit = ({ rs, retrieveList, loadList }) => {
    const [validationSchema, setValidationSchema] = useState({});
 
@@ -54,11 +54,12 @@ const Edit = ({ rs, retrieveList, loadList }) => {
       CrudService.edit(values, 'trainbot', true).then(
          (response) => {
             //setModalValue('')
-
+            toast("Training data has been updated",{type: toast.TYPE.SUCCESS})
+            loadList();
             setMessage(response.data.message);
             setSuccessful(true);
 
-            loadList();
+            
          },
          (error) => {
             const resMessage = (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
@@ -116,7 +117,7 @@ const Edit = ({ rs, retrieveList, loadList }) => {
 
                                     <div className="mt-20">
                                        <SubmitButton title="Update" className="btn primary" />
-                                       <button onClick={() => loadList()} className="btn secondary ms-20">
+                                       <button onClick={() => retrieveList()} className="btn secondary ms-20">
                                           Cancel
                                        </button>
                                     </div>

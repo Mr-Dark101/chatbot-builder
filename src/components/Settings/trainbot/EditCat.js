@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 
-import { TextField, SelectField, SubmitButton, CheckBoxField, TextGroupField, TextAreaField, SwtichField } from '../../crud/FormElements';
+import { TextFieldModal, SelectField, SubmitButtonModal, CheckBoxField, TextGroupField, TextAreaField, SwtichField } from '../../crud/FormElements';
 import * as Yup from 'yup';
 import CrudService from '../../../services/crud.service';
 import { Link } from 'react-router-dom';
 import { Tooltip } from '@mui/material';
 import { Formik, Form, Field, ErrorMessage, useFormikContext, useField, useFormik } from 'formik';
-
-const EditCat = ({ rs, retrieveList, loadList }) => {
+import {toast } from 'react-toastify';
+const EditCat = ({ rs, retrieveList, loadList,closeModal }) => {
    const [validationSchema, setValidationSchema] = useState({});
 
    const [gptCatList, setGptCatList] = useState([]);
@@ -40,11 +40,12 @@ const EditCat = ({ rs, retrieveList, loadList }) => {
       CrudService.edit(values, 'gptcat', true).then(
          (response) => {
             //setModalValue('')
-
+            toast("Category has been updated",{type: toast.TYPE.SUCCESS})
             setMessage(response.data.message);
             setSuccessful(true);
 
             loadList();
+            closeModal();
          },
          (error) => {
             const resMessage = (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
@@ -61,36 +62,19 @@ const EditCat = ({ rs, retrieveList, loadList }) => {
       <>
          <div class="row">
             <div class="col-12">
-               <div class="page_data_clinic api_form_section">
+               <div class="">
                   <div>
                      {!successful && (
                         <>
                            <Formik enableReinitialize validationSchema={FormSchema} initialValues={formData} onSubmit={onSubmit}>
                               {({ setFieldValue, setFieldTouched, values, errors, touched }) => (
-                                 <Form className="av-tooltip tooltip-label-right" style={{ overflowY: 'scroll', height: '800px' }}>
-                                    <div className="row" style={{ marginLeft: '0px', marginRight: '0px' }}>
-                                       <div className="col-9" style={{ paddingLeft: '0px', paddingRight: '0px' }}>
-                                          
-
-
-                                         <div className="field_section">
-                                          <TextField name="name" label="Name" icon="check-square" placeholder="Name" />
+                                 <Form className="av-tooltip tooltip-label-right" >
+                                    <div className="field_section">
+                                          <TextFieldModal name="name" label="Name" icon="check-square" placeholder="Name" />
                                        </div>
-                                          
-                                         
-
-                                          
-                                           
-
-                                        
-                                       </div>
-
-                                       <div className="col-3" style={{ paddingLeft: '0px', paddingRight: '0px' }}></div>
-                                    </div>
-
                                     <div className="mt-20">
-                                       <SubmitButton title="Update" className="btn primary" />
-                                       <button onClick={() => loadList()} className="btn secondary ms-20">
+                                       <SubmitButtonModal title="Update" className="btn primary" />
+                                       <button onClick={() => closeModal()} className="btn secondary ms-20">
                                           Cancel
                                        </button>
                                     </div>
