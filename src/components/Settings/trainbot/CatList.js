@@ -12,7 +12,7 @@ import { toast } from 'react-toastify';
 import { Tooltip } from '@mui/material';
 import editIcon from '../../../assets/edit.svg';
 import deleteIcon from '../../../assets/deleteicon.svg';
-const CatList = ({subPage }) => {
+const CatList = ({loadList }) => {
 
    const ref = useRef([]);
    const inputElement = useRef([]);
@@ -241,7 +241,7 @@ const selectAll = (check_status,value) => {
 
                         
                         <h5 className="box-title m-0" style={{ fontWeight: 800 }}>
-                        <span onClick={() => subPage(<List subPage={subPage} />)} style={{marginRight:'5px'}} className="icon">
+                        <span onClick={() => loadList() } style={{marginRight:'5px'}} className="icon">
                            <img alt={'#'} src={back_icon} /> 
                         </span>
                              Manage Categories

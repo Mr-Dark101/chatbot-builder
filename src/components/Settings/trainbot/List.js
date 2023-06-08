@@ -245,16 +245,29 @@ const List = ({ rs, subPage, loadList }) => {
 
 const selCat = (e) => {
      const query = e.target.value;
-     
-     const filteredRepositories = listDataComplete.filter((value) => {
-         return (
+
+    
+     let filteredRepositories = listDataComplete.filter((value) => {
+         
+         
+               if(!value.GptCat){
+                  value.GptCat = {name:"Default"}
+               }
+
+
+               return (
+            
+                  value?.GptCat?.name?.toLowerCase().includes(query?.toLowerCase())
            
-            value?.GptCat?.name?.toLowerCase().includes(query?.toLowerCase())
-           
-         );
+               );
+
+         
+         
       });
      
-     
+     if(query == ""){
+          filteredRepositories = listDataComplete
+     }
     
       setListData(filteredRepositories);
  }
@@ -408,12 +421,12 @@ const selCat = (e) => {
                             ...
                           </a>
                           <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                          <li><a class="dropdown-item" onClick={() => subPage(<CatList  subPage={subPage} />)} href="#">Manage Categories</a></li>
+                          <li><a class="dropdown-item" onClick={() => subPage(<CatList  subPage={subPage} loadList={loadList} />)} href="#">Manage Categories</a></li>
                           <li><a class="dropdown-item" href="#" onClick={() => downLoadCsv()}>Download Training Data</a></li>                  
                           <li><a class="dropdown-item" href="#" onClick={() => importData()}>Import Training Data</a></li>
                           <li><hr /></li>
                           
-                          <li><a class="dropdown-item" onClick={() => subPage(<ImportList  subPage={subPage} />)} href="#">Upload History</a></li>
+                          <li><a class="dropdown-item" onClick={() => subPage(<ImportList  loadList={loadList} />)} href="#">Upload History</a></li>
                           
                            
                           </ul>

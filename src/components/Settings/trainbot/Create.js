@@ -66,8 +66,8 @@ const Create = ({ rs, retrieveList, loadList }) => {
             //setModalValue('')
              toast("Training data been added",{type: toast.TYPE.SUCCESS})
             loadList();
-            setMessage(response.data.message);
-            setSuccessful(true);
+            //setMessage(response.data.message);
+            //setSuccessful(true);
             //retrieveList();
          },
          (error) => {
@@ -143,7 +143,7 @@ const Create = ({ rs, retrieveList, loadList }) => {
                            <div>
                               <SubmitButton title="Create" className="primary" />
 
-                              <button onClick={() => retrieveList()} type="button" className="secondary ms-10">
+                              <button onClick={() => loadList()} type="button" className="secondary ms-10">
                                  Cancel
                               </button>
                            </div>

@@ -56,8 +56,8 @@ const Edit = ({ rs, retrieveList, loadList }) => {
             //setModalValue('')
             toast("Training data has been updated",{type: toast.TYPE.SUCCESS})
             loadList();
-            setMessage(response.data.message);
-            setSuccessful(true);
+            //setMessage(response.data.message);
+            //setSuccessful(true);
 
             
          },
@@ -117,7 +117,7 @@ const Edit = ({ rs, retrieveList, loadList }) => {
 
                                     <div className="mt-20">
                                        <SubmitButton title="Update" className="btn primary" />
-                                       <button onClick={() => retrieveList()} className="btn secondary ms-20">
+                                       <button onClick={() => loadList()} className="btn secondary ms-20">
                                           Cancel
                                        </button>
                                     </div>
