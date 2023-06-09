@@ -33001,10 +33001,10 @@ body, btn, p, div, a, button {
   color:#fff !important;
 }
 .ant-modal-footer{text-align: left !important}
-
-.sweet-alert.containerBoxAlert h2{text-align: left !important;font-size:18px !important}
-.sweet-alert.containerBoxAlert div{text-align: left !important;font-size:14px !important}
-.sweet-alert.containerBoxAlert p{text-align: left !important;justify-content:start !important}
+.sweet-alert.containerBoxAlert{padding:0px !important;}
+.sweet-alert.containerBoxAlert h2{text-align: left !important;font-size:18px !important;background: #363a77 !important;padding:10px !important;color:#fff !important}
+.sweet-alert.containerBoxAlert div{text-align: left !important;font-size:14px !important; padding:15px !important;}
+.sweet-alert.containerBoxAlert p{text-align: left !important;justify-content:start !important;padding-left:15px !important;padding-bottom:15px !important;}
 
 .btn-close{
   background-color: '#fff';
