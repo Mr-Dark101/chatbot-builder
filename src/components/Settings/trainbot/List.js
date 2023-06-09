@@ -39,9 +39,7 @@ const List = ({ rs, subPage, loadList }) => {
   const [checked, setChecked] = useState(false);
   const [deleteShow, setDeleteShow] = useState(false);
 
-   const [showAlertSuccess, setShowAlertSuccess] = useState(false);
-
-  
+  const [showAlertSuccess, setShowAlertSuccess] = useState(false);
 
   const inputElement = useRef([]);
    useEffect(() => {
@@ -332,7 +330,7 @@ const selCat = (e) => {
 
                 closeOnCancel={false}
             >
-            Json has been created
+            Data has been successfully updated
             </SweetAlert>
          )}
 
@@ -359,7 +357,7 @@ const selCat = (e) => {
 
                reverseButtons={true}
             >
-             Are you sure delete selected record?
+             Are you sure you want to delete selected record?
             </SweetAlert>
          )}
 
@@ -422,7 +420,7 @@ const selCat = (e) => {
                       </div>
                       <div className="col-sm-4">
                       <div class="dropdown" style={{ marginTop: '-15px' }}>
-                          <a style={{fontSize:'35px'}} id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                          <a style={{fontSize:'35px', color:'#000000'}} id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                             ...
                           </a>
                           <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
@@ -468,10 +466,10 @@ const selCat = (e) => {
                                      />
 
                               </th>
-                              <th><b>USER QUESTION</b></th>
-                              <th><b>BOT RESPONSE</b></th>
-                              <th><b>CATEGORY</b></th>
-                              <th><b>ACTION</b></th>
+                              <th style={{fontFamily: 'Lexend Deca Medium'}}><b>USER QUESTION</b></th>
+                              <th style={{fontFamily: 'Lexend Deca Medium'}}><b>BOT RESPONSE</b></th>
+                              <th style={{fontFamily: 'Lexend Deca Medium'}}><b>CATEGORY</b></th>
+                              <th style={{fontFamily: 'Lexend Deca Medium'}}><b>ACTION</b></th>
                            </tr>
                         </thead>
                         <tbody>
@@ -492,9 +490,9 @@ const selCat = (e) => {
                                            />
 
                                     </td>
-                                    <td width="32%">{row.question}</td>
-                                    <td width="55%">{row.answer}</td>
-                                    <td width="10%">{(row.GptCat )  ? row.GptCat.name : 'Default'}</td>
+                                    <td width="32%" style={{fontFamily: 'Lexend Deca Light'}}>{row.question}</td>
+                                    <td width="55%" style={{fontFamily: 'Lexend Deca Light'}}>{row.answer}</td>
+                                    <td width="10%" style={{fontFamily: 'Lexend Deca Light'}}>{(row.GptCat )  ? row.GptCat.name : 'Default'}</td>
                                     
                                     <td style={{ textAlign: 'end' }}>
                                       

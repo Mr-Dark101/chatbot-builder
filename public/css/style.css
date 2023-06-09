@@ -95,11 +95,22 @@ Waves
 @import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Lexend+Deca&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@300;500&display=swap');
+
 @font-face {
   font-family: "Lexend Deca";
-  src: url(../fonts/LexendDeca-Regular.ttf);
+  src: url(../fonts/LexendDeca-Light.ttf);
+}
+@font-face {
+  font-family: "Lexend Deca Light";
+  src: url(../fonts/LexendDeca-Light.ttf);
 }
 
+@font-face {
+  font-family: "Lexend Deca Medium";
+  src: url(../fonts/LexendDeca-Medium.ttf);
+}
 html {
   height: 100%;
   font-size: 14px; }
