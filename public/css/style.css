@@ -33005,7 +33005,5 @@ body, btn, p, div, a, button {
 .sweet-alert.containerBoxAlert h2{text-align: left !important;font-size:18px !important;background: #363a77 !important;padding:10px !important;color:#fff !important}
 .sweet-alert.containerBoxAlert div{text-align: left !important;font-size:14px !important; padding:15px !important;}
 .sweet-alert.containerBoxAlert p{text-align: left !important;justify-content:start !important;padding-left:15px !important;padding-bottom:15px !important;}
+.sweet-alert.containerBoxAlert span{color:#fff !important}
 
-.btn-close{
-  background-color: '#fff';
-}
