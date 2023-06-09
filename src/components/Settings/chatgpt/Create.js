@@ -188,7 +188,7 @@ const Create = ({rs}) => {
                                           </div>
                                        </div>
                                     </div>
-                                    <div className="field_section"><h6 style={{marginTop: '10px'}}>Token is a part of a word used for natural language processing. For English text, 1 token equals approcimately 4 characters or .75 words. The more tokens, the more cost of the request.  <a href="https://platform.openai.com/docs/models/overview" target="_blank">Learn More <i className="fa fa-external-link"></i></a></h6></div>
+                                    <div className="field_section"><h6 style={{marginTop: '10px'}}>Token is a part of a word used for natural language processing. For English text, 1 token equals approximately 4 characters or .75 words. The more tokens, the more cost of the request.  <a href="https://platform.openai.com/docs/models/overview" target="_blank">Learn More <i className="fa fa-external-link"></i></a></h6></div>
                                     
                                     
 
@@ -199,7 +199,7 @@ const Create = ({rs}) => {
                                           </div>
                                        </div>
 
-                                       <div className="field_section"><h6 style={{marginTop: '10px'}}>The parameter allows you to control the randomness of the responses. A temperature of 0 means responses will be very straightforward, almost dtereministic. Choose a value between 0 and 2.  <a href="https://platform.openai.com/docs/models/overview" target="_blank">Learn More <i className="fa fa-external-link"></i></a></h6></div>
+                                       <div className="field_section"><h6 style={{marginTop: '10px'}}>The parameter allows you to control the randomness of the responses. A temperature of 0 means responses will be very straightforward, almost deterministic. Choose a value between 0 and 2.  <a href="https://platform.openai.com/docs/models/overview" target="_blank">Learn More <i className="fa fa-external-link"></i></a></h6></div>
                                   </div>
                                     
                                  </div>

@@ -276,7 +276,7 @@ const selCat = (e) => {
 
  const importData = () => {
       
-      loadModal('Import Training Data',<CreateImport closeModal={closeModal} title="Import Training Data" retrieveList={retrieveList} loadList={loadList} />)
+      loadModal('Upload Training Data',<CreateImport closeModal={closeModal} title="Upload Training Data" retrieveList={retrieveList} loadList={loadList} />)
  }
  
    return (
@@ -392,13 +392,18 @@ const selCat = (e) => {
                         
                         
 
-                        <a class="secondary" style={{ marginLeft: '15px', textAlign: 'center' }} 
+                        <a class="primary" style={{ marginLeft: '15px', textAlign: 'center' }} 
 
                         onClick={() => subPage(<Create loadList={loadList} retrieveList={retrieveList} rs={rs} />)}>
                            Add Training Data
                         </a>
 
-                        <a class="primary" onClick={() => createJson()} style={{ marginLeft: '15px', textAlign: 'center' }}>
+                        <a class="primary" style={{ marginLeft: '15px', textAlign: 'center' }} 
+                        onClick={() => importData()}>
+                           Upload Training Data
+                        </a>
+                        
+                        <a class="secondary" onClick={() => createJson()} style={{ marginLeft: '15px', textAlign: 'center' }}>
                            Update Data
                         </a>                   
                      </div>
@@ -421,9 +426,8 @@ const selCat = (e) => {
                             ...
                           </a>
                           <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                          <li><a class="dropdown-item" onClick={() => subPage(<CatList  subPage={subPage} loadList={loadList} />)} href="#">Manage Categories</a></li>
-                          <li><a class="dropdown-item" href="#" onClick={() => downLoadCsv()}>Download Training Data</a></li>                  
-                          <li><a class="dropdown-item" href="#" onClick={() => importData()}>Import Training Data</a></li>
+                          <li><a class="dropdown-item" onClick={() => subPage(<CatList  subPage={subPage} />)} href="#">Manage Data Categories</a></li>
+                          <li><a class="dropdown-item" href="#" onClick={() => downLoadCsv()}>Download Training Data</a></li>                                         
                           <li><hr /></li>
                           
                           <li><a class="dropdown-item" onClick={() => subPage(<ImportList  loadList={loadList} />)} href="#">Upload History</a></li>
@@ -432,10 +436,10 @@ const selCat = (e) => {
                           </ul>
                         </div>
                       </div>
-                      <div className="col-sm-4">
+                      <div className="col-sm-3">
                       
                            <select onChange={(e) => selCat(e)}>
-                              <option value="">--Select Category ---</option>
+                              <option value="">Select Data Category</option>
                               {gptCatList && gptCatList.map((rsCat) => {
 
 
@@ -464,10 +468,10 @@ const selCat = (e) => {
                                      />
 
                               </th>
-                              <th><b>User Question</b></th>
-                              <th><b>Bot Response</b></th>
-                              <th><b>Category</b></th>
-                              <th></th>
+                              <th><b>USER QUESTION</b></th>
+                              <th><b>BOT RESPONSE</b></th>
+                              <th><b>CATEGORY</b></th>
+                              <th><b>ACTION</b></th>
                            </tr>
                         </thead>
                         <tbody>
@@ -475,7 +479,7 @@ const selCat = (e) => {
                               listData.map((row, index) => (
                               <>
                                  <tr >
-                                    <td width="5%">
+                                    <td width="3%">
                                    
 
                                           <input
@@ -488,9 +492,9 @@ const selCat = (e) => {
                                            />
 
                                     </td>
-                                    <td>{row.question}</td>
-                                    <td>{row.answer}</td>
-                                    <td>{(row.GptCat )  ? row.GptCat.name : 'Default'}</td>
+                                    <td width="32%">{row.question}</td>
+                                    <td width="55%">{row.answer}</td>
+                                    <td width="10%">{(row.GptCat )  ? row.GptCat.name : 'Default'}</td>
                                     
                                     <td style={{ textAlign: 'end' }}>
                                       
