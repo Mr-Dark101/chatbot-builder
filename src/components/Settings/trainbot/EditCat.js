@@ -73,8 +73,8 @@ const EditCat = ({ rs, retrieveList, loadList,closeModal }) => {
                                           <TextFieldModal name="name" label="Name" icon="check-square" placeholder="Name" />
                                        </div>
                                     <div className="mt-20">
-                                       <SubmitButtonModal title="Update" className="btn primary" />
-                                       <button onClick={() => closeModal()} className="btn secondary ms-20">
+                                       <SubmitButtonModal title="Update" className="ant-btn ant-btn-primary" />
+                                       <button onClick={() => closeModal()} className="ant-btn ant-btn-default ms-20">
                                           Cancel
                                        </button>
                                     </div>

@@ -79,9 +79,9 @@ const CreateCat = ({ rs, retrieveList, loadList,closeModal }) => {
                             </div>
 
                            <div>
-                              <SubmitButtonModal title="Save" className="primary" />
+                              <SubmitButtonModal title="Save" className="ant-btn ant-btn-primary" />
 
-                              <button onClick={() => closeModal()} type="button" className="secondary ms-10">
+                              <button onClick={() => closeModal()} type="button" className="ant-btn ant-btn-default ms-10">
                                  Cancel
                               </button>
                            </div>

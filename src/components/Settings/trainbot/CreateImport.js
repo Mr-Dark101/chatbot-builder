@@ -99,7 +99,7 @@ const [isSelected, setIsSelected] = useState(false)
          <div class="row">
             <div class="col-12">
                <div>
-                  <div className="page_data_clinic api_form_section" >
+                  <div className="" >
                      {!successful && (
                         <Form enableReinitialize validationSchema={FormSchema} initialValues={formData} onSubmit={onSubmit}>
                           
@@ -150,9 +150,9 @@ const [isSelected, setIsSelected] = useState(false)
                            </div>
 
                            <div>
-                              <SubmitButton title="Upload" className="primary" />
+                              <SubmitButton title="Upload" className="ant-btn ant-btn-primary" />
 
-                              <button onClick={() => closeModal()} type="button" className="secondary ms-10">
+                              <button onClick={() => closeModal()} type="button" className="ant-btn ant-btn-default ms-10">
                                  Cancel
                               </button>
                            </div>
