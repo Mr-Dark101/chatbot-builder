@@ -64,7 +64,7 @@ const [isSelected, setIsSelected] = useState(false)
          (response) => {
             //setModalValue('')
             //loadList();
-            toast('Training data has been imported!', { type: toast.TYPE.SUCCESS });
+            toast('Training data has been successfully uploaded!', { type: toast.TYPE.SUCCESS });
             retrieveList();
 
             setMessage(response.data.message);

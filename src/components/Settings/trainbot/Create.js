@@ -121,7 +121,7 @@ const Create = ({ rs, retrieveList, loadList }) => {
                                     <TextField name="question" label="Question" icon="check-square" placeholder="Please enter your question" />
                                  </div>
 
-                                 <div className="field_section">
+                                 <div className="field_section" style={{ marginTop: '10px'}}>
                                     <TextAreaField name="answer" label="Answer" placeholder="Please enter the response" rows="3" />
                                  </div>
 
@@ -141,7 +141,7 @@ const Create = ({ rs, retrieveList, loadList }) => {
                            </div>
 
                            <div>
-                              <SubmitButton title="Create" className="primary" />
+                              <SubmitButton title="Add" className="primary" />
 
                               <button onClick={() => loadList()} type="button" className="secondary ms-10">
                                  Cancel
