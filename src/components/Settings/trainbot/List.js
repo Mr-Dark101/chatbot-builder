@@ -424,7 +424,7 @@ const selCat = (e) => {
                             ...
                           </a>
                           <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                          <li><a class="dropdown-item" onClick={() => subPage(<CatList  subPage={subPage} />)} href="#">Manage Data Categories</a></li>
+                          <li><a class="dropdown-item" onClick={() => subPage(<CatList  loadList={loadList} subPage={subPage} />)} href="#">Manage Data Categories</a></li>
                           <li><a class="dropdown-item" href="#" onClick={() => downLoadCsv()}>Download Training Data</a></li>                                         
                           <li><hr /></li>
                           
