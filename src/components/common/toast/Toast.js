@@ -11,7 +11,7 @@ const Toast = ({ show, closeToast, msg, children,successful }) => {
 
 
   const type = (successful) ? 'success' : 'error';
-  const title = (successful) ? 'Congratulation!!' : 'Error';
+  const title = (successful) ? 'Submit Training Data' : 'Error';
   return (
     <>
      {

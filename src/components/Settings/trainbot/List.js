@@ -320,7 +320,7 @@ const selCat = (e) => {
                cancelBtnBsStyle="light"
                customIcon=""
                customClass="containerBoxAlert"
-               title="Congratulation!"
+               title="Submit Training Data"
                onConfirm={() => {
                   setShowAlertSuccess(false);
                }}
@@ -332,7 +332,7 @@ const selCat = (e) => {
 
                 closeOnCancel={false}
             >
-            Data has been successfully updated
+            Data has been successfully submitted for training to OpenAI
             </SweetAlert>
          )}
 
@@ -404,7 +404,7 @@ const selCat = (e) => {
                         </a>
                         
                         <a class="secondary" onClick={() => createJson()} style={{ marginLeft: '15px', textAlign: 'center' }}>
-                           Update Data
+                           Submit Training Data
                         </a>                   
                      </div>
                   </div>

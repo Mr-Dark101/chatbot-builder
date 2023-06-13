@@ -137,9 +137,9 @@ const Edit = ({rs}) => {
                                  <div className="col-5" style={{ paddingLeft: '0px'}}>   
 
                                     <div className="field_section">
-                                     <TextField name="api_secret" label="API Secret Key" placeholder="Please enter your ChatGPT API Key here" />
+                                     <TextField name="api_secret" label="API Secret Key" placeholder="Please enter your ChatGPT API Key here" style = {{fontSize: '12px !important'}} />
                                     
-                                     <h6 style={{marginTop:'15px'}}>Login to <a href="https://platform.openai.com/account/api-keys"  target="_blank">OpenAI Account</a> and get the API key and Organization ID</h6>
+                                     <h6 style={{marginTop:'15px', fontFamily:'Lexend Deca Light', fontSize: '13px'}}>Login to <a href="https://platform.openai.com/account/api-keys"  target="_blank">OpenAI Account</a> and get the API key and Organization ID</h6>
                                      </div>
                                  </div>
 
@@ -172,7 +172,7 @@ const Edit = ({rs}) => {
                                    
                                        <div className="field_section">
                                           <SelectField name="model_id" label="Model" options={modelList} />
-                                          <h6 style={{marginTop: '10px'}}>The model based on which responses will be generated. Ada is the fastest and cheapest text model. Davinci is the most trained but more expensive.  <a href="https://platform.openai.com/docs/models/overview" target="_blank">Learn More <i className="fa fa-external-link"></i></a></h6>
+                                          <h6 style={{marginTop: '10px', fontFamily:'Lexend Deca Light', fontSize: '13px'}}>The model based on which responses will be generated. Ada is the fastest and cheapest text model. Davinci is the most trained but more expensive.  <a href="https://platform.openai.com/docs/models/overview" target="_blank">Learn More <i className="fa fa-external-link"></i></a></h6>
                                          
                                        </div>
 
@@ -181,7 +181,7 @@ const Edit = ({rs}) => {
                                     <div className="field_section">
                                         <br />
                                        <TextAreaField name="default_prompt" label="Bot Instructions (Prompt)" value="Answer as truthfully as possible using the provided context and in less than three sentences. If answer is not known or is not contained in the provided context, reply with 'Sorry, I think I am not trained to answer that question'. Dont make up any facts from your own."  placeholder="Marv is a chatbot that reluctantly answers questions with sarcastic responses." rows="6" />
-                                       <h6 style={{marginTop: '10px'}}>A bot prompt refers to the starting query or input given to a language-generation AI model.  <a href="https://platform.openai.com/docs/models/overview" target="_blank">Learn More <i className="fa fa-external-link"></i></a></h6>
+                                       <h6 style={{marginTop: '10px', fontFamily:'Lexend Deca Light', fontSize: '13px'}}>A bot prompt refers to the starting query or input given to a language-generation AI model.  <a href="https://platform.openai.com/docs/models/overview" target="_blank">Learn More <i className="fa fa-external-link"></i></a></h6>
                                          
                                     </div>
 
@@ -206,7 +206,7 @@ const Edit = ({rs}) => {
                                        </div>
                                     </div>
                                     
-                                    <div className="field_section"><h6 style={{marginTop: '10px'}}>Token is a part of a word used for natural language processing. For English text, 1 token equals approximately 4 characters or .75 words. The more tokens, the more cost of the request.  <a href="https://platform.openai.com/docs/models/overview" target="_blank">Learn More <i className="fa fa-external-link"></i></a></h6></div>
+                                    <div className="field_section"><h6 style={{marginTop: '10px', fontFamily:'Lexend Deca Light', fontSize: '13px'}}>Token is a part of a word used for natural language processing. For English text, 1 token equals approximately 4 characters or .75 words. The more tokens, the more cost of the request.  <a href="https://platform.openai.com/docs/models/overview" target="_blank">Learn More <i className="fa fa-external-link"></i></a></h6></div>
                                     
 
                                     <div className="row">
@@ -216,7 +216,7 @@ const Edit = ({rs}) => {
                                           </div>
                                        </div>
 
-                                       <div className="field_section"><h6 style={{marginTop: '10px'}}>The parameter allows you to control the randomness of the responses. A temperature of 0 means responses will be very straightforward, almost deterministic. Choose a value between 0 and 2.  <a href="https://platform.openai.com/docs/models/overview" target="_blank">Learn More <i className="fa fa-external-link"></i></a></h6></div>
+                                       <div className="field_section"><h6 style={{marginTop: '10px', fontFamily:'Lexend Deca Light', fontSize: '13px'}}>The parameter allows you to control the randomness of the responses. A temperature of 0 means responses will be very straightforward, almost deterministic. Choose a value between 0 and 2.  <a href="https://platform.openai.com/docs/models/overview" target="_blank">Learn More <i className="fa fa-external-link"></i></a></h6></div>
                                   </div>
                                     
                                  </div>

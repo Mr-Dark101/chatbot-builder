@@ -116,10 +116,7 @@ const [isSelected, setIsSelected] = useState(false)
                   
                    
                 >
-                    <div className="drop-message">
-                       
-                        <a href="#">Data File</a>
-                    </div>
+                   
                     <input type="file" 
                     ref={fileInputRef}
                     className="file-input" name="file" onChange={changeHandler} />

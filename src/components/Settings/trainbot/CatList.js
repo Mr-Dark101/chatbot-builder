@@ -249,7 +249,7 @@ const selectAll = (check_status,value) => {
                         <span onClick={() => loadList() } style={{marginRight:'5px'}} className="icon">
                            <img alt={'#'} src={back_icon} /> 
                         </span>
-                             Manage Categories
+                             Manage Data Categories
                         </h5>
                      </div>
 
@@ -295,9 +295,9 @@ const selectAll = (check_status,value) => {
                                     value='all'
                               />
                               </th>
-                              <th><b>CATEGORY</b></th>
+                              <th style={{fontFamily: 'Lexend Deca Medium', fontSize: '12px'}}><b>CATEGORY</b></th>
                             
-                              <th><b>ACTION</b></th>
+                              <th style={{fontFamily: 'Lexend Deca Medium', fontSize: '12px'}}><b>ACTION</b></th>
                            </tr>
                         </thead>
                         <tbody>
