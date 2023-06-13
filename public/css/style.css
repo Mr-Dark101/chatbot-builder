@@ -33007,3 +33007,9 @@ body, btn, p, div, a, button {
 .sweet-alert.containerBoxAlert p{text-align: left !important;justify-content:start !important;padding-left:15px !important;padding-bottom:15px !important;}
 .sweet-alert.containerBoxAlert span{color:#fff !important}
 
+/* Custom-Input */
+input.custom-input {
+  min-height: 17px !important;
+  max-height: 40px !important;
+  padding: 5px !important;
+}

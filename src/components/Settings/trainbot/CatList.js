@@ -177,6 +177,11 @@ const selectAll = (check_status,value) => {
       loadModal('Edit Category',<Edit closeModal={closeModal} rs={rs}   title="Edit Category" loadList={retrieveList}  />)
  }
 
+ const deleteCatBody = (rs,id) => {
+   setDelId(id);
+   setShowAlert(true);
+   //loadModal('Delete Category',<Edit closeModal={closeModal} rs={rs}   title="Delete Category" loadList={retrieveList}  />)
+}
 
    return (
       <>
@@ -288,12 +293,11 @@ const selectAll = (check_status,value) => {
                                     name={`c_all`}
                                     onChange={(event) => selectAll(event.target.checked,event.target.value)}
                                     value='all'
-
-                                     />
+                              />
                               </th>
-                              <th><b>Category Name</b></th>
+                              <th><b>CATEGORY</b></th>
                             
-                              <th></th>
+                              <th><b>ACTION</b></th>
                            </tr>
                         </thead>
                         <tbody>
@@ -320,18 +324,18 @@ const selectAll = (check_status,value) => {
                                        
 
                                     </td>
-                                    <td>{row.name}</td>
+                                    <td width="95%" style={{fontFamily: 'Lexend Deca Light', fontSize:'12px'}}>{row.name}</td>
                                     
                                    
                                     
-                                    <td style={{ textAlign: 'end' }}>
+                                    <td width="5%" style={{ textAlign: 'end' }}>
                                       {row.name !== 'Default' ? 
                                       (
                                        <>
                                        <a style={{ marginLeft: 5 }}  onClick={() => editCatBody(row)} >
                                           <img alt={'#'} src={editIcon}  />
                                        </a>
-                                       <a style={{ marginLeft: 5 }}  onClick={() => deleteMe(row.id)}>
+                                       <a style={{ marginLeft: 5 }}  onClick={() => deleteCatBody(row,row.id)}>
                                           <img alt={'#'} src={deleteIcon} width="20" />
                                        </a>
                                        </>

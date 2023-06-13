@@ -51,8 +51,10 @@ const List = ({ rs, subPage, loadList }) => {
    const retrieveMasterList = (url) => {
       CrudService.ListValue('master/list-value?type=' + url)
          .then((response) => {
+            let parsedData = response.data;
+            parsedData.push({"label":"Default","value":0});
             if (url == 'gptcat') {
-               setGptCatList(response.data);
+               setGptCatList(parsedData);
             }
 
            
@@ -302,7 +304,7 @@ const selCat = (e) => {
 
                 reverseButtons={true}
             >
-            Are you sure delete this record?
+            Are you sure you want to delete this record?
             </SweetAlert>
          )}
 
@@ -414,17 +416,17 @@ const selCat = (e) => {
                   
                   <div className="row">
                       <div className="col-sm-4">
-                        <input type="text" className="form-control"
+                        <input style={{padding: '5px !important', maxHeight:'30px !important', minHeight:'10px !important', minWidth: '400px !important'}}  type="text" className="form-control custom-input"
                          onChange={(e) => searchData(e)}
                          placeholder="Type a few characters and hit enter to search" />
                       </div>
                       <div className="col-sm-4">
                       <div class="dropdown" style={{ marginTop: '-15px' }}>
-                          <a style={{fontSize:'35px', color:'#000000'}} id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                          <a style={{fontSize:'35px', color:'#000000', marginBottom:'25px !important',position: 'relative',top: '-8px'}} id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                             ...
                           </a>
                           <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                          <li><a class="dropdown-item" onClick={() => subPage(<CatList  loadList={loadList} subPage={subPage} />)} href="#">Manage Data Categories</a></li>
+						   <li><a class="dropdown-item" onClick={() => subPage(<CatList  loadList={loadList} subPage={subPage} />)} href="#">Manage Data Categories</a></li>
                           <li><a class="dropdown-item" href="#" onClick={() => downLoadCsv()}>Download Training Data</a></li>                                         
                           <li><hr /></li>
                           
@@ -436,7 +438,7 @@ const selCat = (e) => {
                       </div>
                       <div className="col-sm-3">
                       
-                           <select onChange={(e) => selCat(e)}>
+                           <select style={{padding: '5px', maxHeight:'30px !important', minHeight:'10px !important'}} onChange={(e) => selCat(e)}>
                               <option value="">Select Data Category</option>
                               {gptCatList && gptCatList.map((rsCat) => {
 
@@ -466,10 +468,10 @@ const selCat = (e) => {
                                      />
 
                               </th>
-                              <th style={{fontFamily: 'Lexend Deca Medium'}}><b>USER QUESTION</b></th>
-                              <th style={{fontFamily: 'Lexend Deca Medium'}}><b>BOT RESPONSE</b></th>
-                              <th style={{fontFamily: 'Lexend Deca Medium'}}><b>CATEGORY</b></th>
-                              <th style={{fontFamily: 'Lexend Deca Medium'}}><b>ACTION</b></th>
+                              <th style={{fontFamily: 'Lexend Deca Medium', fontSize: '12px'}}><b>USER QUESTION</b></th>
+                              <th style={{fontFamily: 'Lexend Deca Medium',fontSize: '12px'}}><b>BOT RESPONSE</b></th>
+                              <th style={{fontFamily: 'Lexend Deca Medium',fontSize: '12px'}}><b>CATEGORY</b></th>
+                              <th style={{fontFamily: 'Lexend Deca Medium',fontSize: '12px'}}><b>ACTION</b></th>
                            </tr>
                         </thead>
                         <tbody>
@@ -490,9 +492,9 @@ const selCat = (e) => {
                                            />
 
                                     </td>
-                                    <td width="32%" style={{fontFamily: 'Lexend Deca Light'}}>{row.question}</td>
-                                    <td width="55%" style={{fontFamily: 'Lexend Deca Light'}}>{row.answer}</td>
-                                    <td width="10%" style={{fontFamily: 'Lexend Deca Light'}}>{(row.GptCat )  ? row.GptCat.name : 'Default'}</td>
+                                    <td width="32%" style={{fontFamily: 'Lexend Deca Light', fontSize:'12px'}}>{row.question}</td>
+                                    <td width="55%" style={{fontFamily: 'Lexend Deca Light', fontSize:'12px'}}>{row.answer}</td>
+                                    <td width="10%" style={{fontFamily: 'Lexend Deca Light', fontSize:'12px'}}>{(row.GptCat )  ? row.GptCat.name : 'Default'}</td>
                                     
                                     <td style={{ textAlign: 'end' }}>
                                       

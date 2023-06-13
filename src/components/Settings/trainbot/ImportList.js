@@ -10,6 +10,7 @@ import List from './List'
 import BlankMsg from '../../common/BlankMsg';
 import { toast } from 'react-toastify';
 import { Tooltip } from '@mui/material';
+import moment from 'moment';
 
 const ImportList = ({loadList }) => {
 
@@ -270,11 +271,11 @@ const selectAll = (check_status,value) => {
                         <thead>
                            <tr>
                               
-                              <th><b>File Name</b></th>
-                              <th><b>Uploaded Mode</b></th>
-                              <th><b>Upload Time</b></th>
-                              <th><b>Record Count</b></th>
-                              <th><b>Status</b></th>
+                              <th style={{fontFamily: 'Lexend Deca Medium', fontSize: '12px'}} ><b>FILE NAME</b></th>
+                              <th style={{fontFamily: 'Lexend Deca Medium', fontSize: '12px'}} ><b>UPLOADED MODE</b></th>
+                              <th style={{fontFamily: 'Lexend Deca Medium', fontSize: '12px'}}><b>UPLOAD TIME</b></th>
+                              <th style={{fontFamily: 'Lexend Deca Medium', fontSize: '12px'}}><b>RECORD COUNT</b></th>
+                              <th style={{fontFamily: 'Lexend Deca Medium', fontSize: '12px'}}><b>STATUS</b></th>
                             
                               
                            </tr>
@@ -285,11 +286,11 @@ const selectAll = (check_status,value) => {
                               listData.map((row, index) => (
                                  <tr>
                                     
-                                    <td>{row.file_name}</td>
-                                    <td>Formatted CSV</td>
-                                    <td>{row.created_at}</td>
-                                    <td>{row.record_count}</td>
-                                    <td>Completed</td>
+                                    <td style={{fontFamily: 'Lexend Deca Light', fontSize:'12px'}}>{row.file_name}</td>
+                                    <td style={{fontFamily: 'Lexend Deca Light', fontSize:'12px'}}>Formatted CSV</td>
+                                    <td style={{fontFamily: 'Lexend Deca Light', fontSize:'12px'}}>{moment(row.created_at).format('MMM DD, YYYY hh:mm a')}</td>
+                                    <td style={{fontFamily: 'Lexend Deca Light', fontSize:'12px'}}>{row.record_count}</td>
+                                    <td style={{fontFamily: 'Lexend Deca Light', fontSize:'12px'}}>Completed</td>
                                     
                                    
                                     

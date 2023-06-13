@@ -64,7 +64,7 @@ const Create = ({ rs, retrieveList, loadList }) => {
       CrudService.register(values, 'trainbot', true).then(
          (response) => {
             //setModalValue('')
-             toast("Training data been added",{type: toast.TYPE.SUCCESS})
+             toast("Training data has been successfully added",{type: toast.TYPE.SUCCESS})
             loadList();
             //setMessage(response.data.message);
             //setSuccessful(true);
@@ -118,11 +118,11 @@ const Create = ({ rs, retrieveList, loadList }) => {
                                 
                                  
                                  <div className="field_section">
-                                    <TextField name="question" label="Question" icon="check-square" placeholder="Please enter your question" />
+                                    <TextField name="question" label="User Question" icon="check-square" placeholder="Please enter your question" />
                                  </div>
 
                                  <div className="field_section" style={{ marginTop: '10px'}}>
-                                    <TextAreaField name="answer" label="Answer" placeholder="Please enter the response" rows="3" />
+                                    <TextAreaField name="answer" label="Bot Response" placeholder="Please enter the response" rows="3" />
                                  </div>
 
                                  

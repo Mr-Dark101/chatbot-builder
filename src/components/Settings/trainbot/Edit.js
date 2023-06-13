@@ -26,11 +26,13 @@ const Edit = ({ rs, retrieveList, loadList }) => {
    const retrieveMasterList = (url) => {
       CrudService.ListValue('master/list-value?type=' + url)
          .then((response) => {
+            console.log(JSON.stringify(response));
+            let parsedData = response.data;
+            parsedData.push({"label":"Default","value":0});
             if (url == 'gptcat') {
-               setGptCatList(response.data);
-            }
-
-           
+              
+               setGptCatList(parsedData);
+            } 
          })
          .catch((e) => {
             console.log(e);
@@ -102,7 +104,7 @@ const Edit = ({ rs, retrieveList, loadList }) => {
 
                                          
 
-                                         <div className="field_section">
+                                         <div className="field_section" style={{marginTop:'15px'}}>
                                              <TextAreaField name="answer" label="Answer" placeholder="Please enter the response" rows="3" />
                                           </div>
 
