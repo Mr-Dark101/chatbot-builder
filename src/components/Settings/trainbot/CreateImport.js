@@ -104,7 +104,7 @@ const [isSelected, setIsSelected] = useState(false)
                         <Form enableReinitialize validationSchema={FormSchema} initialValues={formData} onSubmit={onSubmit}>
                           
                            <div>
-                              <a  href="#" onClick={() => downLoadTemplate()}>Download sample CSV file</a>
+                              <a  href="#" onClick={() => downLoadTemplate()} style={{color: '#000000'}}>Download sample CSV file</a>
                            </div>
                            <div className="row" style={{ marginLeft: '0px', marginRight: '0px' }}>
                               <div className="col-9" style={{ paddingLeft: '0px', paddingRight: '0px' }}>

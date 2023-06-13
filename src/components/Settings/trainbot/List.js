@@ -293,7 +293,7 @@ const selCat = (e) => {
                cancelBtnBsStyle="light"
                customIcon=""
                customClass="containerBoxAlert"
-               title="Delete Category"
+               title="Delete Record"
                onConfirm={() => {
                   setShowAlert(false);
                   deleteRow(delId);

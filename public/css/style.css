@@ -27704,7 +27704,11 @@ textarea.form-control {
     -webkit-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.125);
     box-shadow: 0 2px 3px rgba(0, 0, 0, 0.125); } }
 .modal-header {
-  border-bottom-color: #f3f6f9; }
+  border-bottom-color: #f3f6f9; 
+  .h3 {
+    font-family: 'Lexend Deca Light';
+  }
+}
 
 .modal-footer {
   border-top-color: #f3f6f9;
@@ -33002,7 +33006,7 @@ body, btn, p, div, a, button {
 }
 .ant-modal-footer{text-align: left !important}
 .sweet-alert.containerBoxAlert{padding:0px !important;}
-.sweet-alert.containerBoxAlert h2{text-align: left !important;font-size:18px !important;background: #363a77 !important;padding:10px !important;color:#fff !important}
+.sweet-alert.containerBoxAlert h2{text-align: left !important;font-size:17px !important;font-family:'Lexend Deca Light';background: #363a77 !important;padding:10px !important;color:#fff !important}
 .sweet-alert.containerBoxAlert div{text-align: left !important;font-size:14px !important; padding:15px !important;}
 .sweet-alert.containerBoxAlert p{text-align: left !important;justify-content:start !important;padding-left:15px !important;padding-bottom:15px !important;}
 .sweet-alert.containerBoxAlert span{color:#fff !important}
