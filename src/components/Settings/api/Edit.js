@@ -6,6 +6,7 @@ import CrudService from '../../../services/crud.service';
 import { Link } from 'react-router-dom';
 import { Tooltip } from '@mui/material';
 import { Formik, Form, Field, ErrorMessage, useFormikContext, useField, useFormik } from 'formik';
+import deleteIcon from '../../../assets/deleteicon.svg';
 
 const Edit = ({ rs, retrieveList, loadList }) => {
    const [validationSchema, setValidationSchema] = useState({});
@@ -109,22 +110,22 @@ const Edit = ({ rs, retrieveList, loadList }) => {
                                              <TextField name="name" label="API Name" placeholder="Give your API a suitable name to accurately reflect the product or service it provides." />
                                           </div>
 
-                                          <div className="field_section">
+                                          <div className="field_section mt-2">
                                              <TextAreaField name="description" label="API Description" placeholder="Provide a brief description about the intended use of the API." rows="3" />
                                           </div>
 
                                           <Tooltip title={"Configure the type of API call you're looking to make - GET, POST,PUT."}>
-                                             <div className="field_section" style={{ marginTop: '-20px' }}>
+                                             <div className="field_section" style={{ marginTop: '-10px' }}>
                                                 <SelectField name="api_type" label="API Type" options={typeList} />
                                              </div>
                                           </Tooltip>
 
-                                          <div className="field_section">
+                                          <div className="field_section" style={{ marginTop: '-10px' }}>
                                              <TextField name="url" label="API Endpoint URL" placeholder="Provide the endpoint URL here" />
                                           </div>
 
                                           <Tooltip title={'You can authorize your API in this field and also press any additional parameters as headers in this section.'}>
-                                             <label style={{ marginBottom: '0px', fontWeight: '700px', fontFamily: 'Lexend Deca' }}>API Header</label>
+                                             <label style={{ marginTop: '10px', fontWeight: '700px', fontFamily: 'Lexend Deca' }}>API Header</label>
                                           </Tooltip>
                                           {headerField &&
                                              headerField.map((x, i) => {
@@ -138,9 +139,10 @@ const Edit = ({ rs, retrieveList, loadList }) => {
                                                       </div>
 
                                                       <div className="col-sm-1 text-center">
-                                                         <a href="javascript:void(0)" className="link_delete_icon btn btn-icon btn-icon rounded-circle btn-danger mt-1" onClick={() => removeField(i, x.keyOther)}>
-                                                            <i className="fa fa-trash"></i>
-                                                         </a>
+                                                      <a style={{ marginLeft: 5 }}  onClick={() => removeField(i, x.keyOther)}>
+                                                      <img alt={'#'} src={deleteIcon} width="20" />
+                                                      </a>
+                                                        
                                                       </div>
                                                    </div>
                                                 );
@@ -170,7 +172,7 @@ const Edit = ({ rs, retrieveList, loadList }) => {
                                     <div className="mt-20">
                                        <SubmitButton title="Update" className="btn primary" />
                                        <button onClick={() => loadList()} className="btn secondary ms-20">
-                                          Cancel
+                                          Back
                                        </button>
                                     </div>
                                  </Form>

@@ -27707,6 +27707,7 @@ textarea.form-control {
   border-bottom-color: #f3f6f9; 
   .h3 {
     font-family: 'Lexend Deca Light';
+    font-size: '14px !important';
   }
 }
 
@@ -30239,7 +30240,7 @@ td .label {
     color: #ffffff;
     border: none; }
   .btn[class*=btn-outline-] {
-    border-color: #f3f6f9; }
+    border-color: #dc3545; }
   .btn.btn-outline {
     border-color: #f3f6f9;
     color: #172b4c; }
@@ -32360,7 +32361,7 @@ img.away, img.busy, img.offline, img.online {
 }
 .api_form_section label{
   font-weight: 700;
-  font-size: 16px;
+  font-size: 14px;
   line-height: 18px;
   color: #000;
   margin-bottom: 10px;
@@ -33006,7 +33007,7 @@ body, btn, p, div, a, button {
 }
 .ant-modal-footer{text-align: left !important}
 .sweet-alert.containerBoxAlert{padding:0px !important;}
-.sweet-alert.containerBoxAlert h2{text-align: left !important;font-size:17px !important;font-family:'Lexend Deca Light';background: #363a77 !important;padding:10px !important;color:#fff !important}
+.sweet-alert.containerBoxAlert h2{text-align: left !important;font-size:14px !important;font-family:'Lexend Deca Light';background: #363a77 !important;padding:10px !important;color:#fff !important}
 .sweet-alert.containerBoxAlert div{text-align: left !important;font-size:14px !important; padding:15px !important;}
 .sweet-alert.containerBoxAlert p{text-align: left !important;justify-content:start !important;padding-left:15px !important;padding-bottom:15px !important;}
 .sweet-alert.containerBoxAlert span{color:#fff !important}

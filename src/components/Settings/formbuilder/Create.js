@@ -5,6 +5,7 @@ import * as Yup from 'yup';
 import CrudService from '../../../services/crud.service';
 import { Link } from 'react-router-dom';
 import { Tooltip } from '@mui/material';
+import deleteIcon from '../../../assets/deleteicon.svg';
 const Create = ({ rs, retrieveList, loadList }) => {
    const [validationSchema, setValidationSchema] = useState({});
    const [insuranceList, setInsuranceList] = useState([]);
@@ -281,6 +282,7 @@ const Create = ({ rs, retrieveList, loadList }) => {
                                                          id="demo-simple-select-standard"
                                                          className="platform_select_field"
                                                          value={x.type}
+                                                         defaultValue= "text"
                                                          name="type"
                                                          onChange={(e) => handleInputChange(e, i, 'phone')}
                                                       >
@@ -290,10 +292,12 @@ const Create = ({ rs, retrieveList, loadList }) => {
                                                       </Select>
                                                    </div>
 
-                                                   <div className="col-sm-1 text-center">
-                                                      <a href="javascript:void(0)" className="link_delete_icon btn btn-icon btn-icon rounded-circle btn-danger" onClick={() => removeField(i, x.label)}>
-                                                         <i className="fa fa-trash"></i>
-                                                      </a>
+                                                   <div className="col-sm-1 text-center mt-3">
+                                                   <a style={{ marginLeft: 5}}  onClick={() => removeField(i, x.label)}>
+                                          
+                                          <img alt={'#'} src={deleteIcon} width="20" />
+                                       </a>
+                                                     
                                                    </div>
                                                 </div>
                                                 {x.type == 'option' ? (
@@ -310,10 +314,11 @@ const Create = ({ rs, retrieveList, loadList }) => {
                                                                   <div className="col-sm-7">
                                                                      <TextField name="value" placeholder="Value" value={o.value} onChange={(e) => handleInputChangeOption(e, io, 'phone', i)} />
                                                                   </div>
-                                                                  <div className="col-sm-1 text-center">
-                                                                     <a className="link_delete_icon btn btn-icon btn-icon rounded-circle btn-danger" href="javascript:void(0)" onClick={() => removeFieldOption(io, o.key, i)}>
-                                                                        <i className="fa fa-trash"></i>
-                                                                     </a>
+                                                                  <div className="col-sm-1 text-center mt-1">
+                                                                  <a style={{ marginLeft: 5}}  onClick={() => removeFieldOption(io, o.key, i)}>                                       
+                                          <img alt={'#'} src={deleteIcon} width="20" />
+                                       </a>
+                                                                    
                                                                   </div>
                                                                </div>
                                                             </>
@@ -338,9 +343,10 @@ const Create = ({ rs, retrieveList, loadList }) => {
                                                                      <TextField name="value" placeholder="Reg([/hello/])" value={o.value} onChange={(e) => handleInputChangeRegular(e, io, 'phone', i)} style={{ marginTop: '-10px' }} />
                                                                   </div>
                                                                   <div className="col-sm-1 text-center">
-                                                                     <a className="link_delete_icon btn btn-icon btn-icon rounded-circle btn-danger" href="javascript:void(0)" onClick={() => removeFieldRegular(io, o.key, i)}>
-                                                                        <i className="fa fa-trash"></i>
-                                                                     </a>
+                                                                  <a style={{ marginLeft: 5}}  onClick={() => removeFieldRegular(io, o.key, i)}>                                       
+                                          <img alt={'#'} src={deleteIcon} width="20" />
+                                       </a>
+                                                                  
                                                                   </div>
                                                                </div>
                                                             </>
@@ -367,10 +373,11 @@ const Create = ({ rs, retrieveList, loadList }) => {
                                                                   <div className="col-sm-7">
                                                                      <TextField name="value" placeholder="Button Text (Max 20 Characters)" value={o.value} onChange={(e) => handleInputChangeButton(e, io, 'phone', i)} />
                                                                   </div>
-                                                                  <div className="col-sm-1 text-center">
-                                                                     <a className="link_delete_icon btn btn-icon btn-icon rounded-circle btn-danger" href="javascript:void(0)" onClick={() => removeFieldInteractiveButton(io, o.key, i)}>
-                                                                        <i className="fa fa-trash"></i>
-                                                                     </a>
+                                                                  <div className="col-sm-1 text-center mt-3">
+                                                                  <a style={{ marginLeft: 5}}  onClick={() => removeFieldInteractiveButton(io, o.key, i)}>                                       
+                                          <img alt={'#'} src={deleteIcon} width="20" />
+                                       </a>
+                                                                    
                                                                   </div>
                                                                </div>
                                                             </>
@@ -407,10 +414,10 @@ const Create = ({ rs, retrieveList, loadList }) => {
                                                                   <div className="col-sm-5">
                                                                      <TextField name="description" placeholder="Provide Item Description" value={o.description} onChange={(e) => handleInputChangeList(e, io, 'phone', i)} />
                                                                   </div>
-                                                                  <div className="col-sm-1 text-center">
-                                                                     <a className="link_delete_icon btn btn-icon btn-icon rounded-circle btn-danger" href="javascript:void(0)" onClick={() => removeFieldInteractiveList(io, o.key, i)}>
-                                                                        <i className="fa fa-trash"></i>
-                                                                     </a>
+                                                                  <div className="col-sm-1 text-center mt-3">
+                                                                  <a style={{ marginLeft: 5}}  onClick={() => removeFieldInteractiveList(io, o.key, i)}>                                       
+                                                                   <img alt={'#'} src={deleteIcon} width="20" />
+                                                                   </a>
                                                                   </div>
                                                                </div>
                                                             </>

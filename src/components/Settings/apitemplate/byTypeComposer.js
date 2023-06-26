@@ -16,7 +16,7 @@ import documentIcon from '../../../assets/file.png';
 import defaultImage from '../../../assets/default_image.png';
 import ConfirmModal from '../../../SharedComponent/ConfirmModal/ConfirmModal';
 import AlertModal from '../../../SharedComponent/ConfirmModal/AlertModal';
-
+import deleteIcon from '../../../assets/deleteicon.svg';
 // import TriggerCard from "../TreeComponent/items/TriggerCard";
 import ConditionList from './ConditionList';
 
@@ -1341,20 +1341,18 @@ const ByTypeComposer = ({ props, triggerType, apiHandleConditionMaster }) => {
                                                       </button>
                                                    )}
                                                    {init.updateMenus.selectedMenuId === m.main_id && (
-                                                      <button
-                                                         className="btn btn-icon btn-danger rounded-circle"
-                                                         onClick={() => {
-                                                            setInit({
-                                                               ...init,
-                                                               currentData: {
-                                                                  ...init.currentData,
-                                                                  triggerMenus: init.currentData.triggerMenus.filter((d) => d.id !== m.id),
-                                                               },
-                                                            });
-                                                         }}
-                                                      >
-                                                         <i className="fa fa-trash"></i>
-                                                      </button>
+                                                      <a style={{ marginLeft: 5 }} 
+                                                      onClick={() => {
+                                                         setInit({
+                                                            ...init,
+                                                            currentData: {
+                                                               ...init.currentData,
+                                                               triggerMenus: init.currentData.triggerMenus.filter((d) => d.id !== m.id),
+                                                            },
+                                                         });
+                                                      }}>
+                                                      <img alt={'#'} src={deleteIcon} width="20" />
+                                                      </a>
                                                    )}
                                                 </React.Fragment>
                                              ) : (
@@ -1390,21 +1388,19 @@ const ByTypeComposer = ({ props, triggerType, apiHandleConditionMaster }) => {
                                                    });
                                                 }}
                                              />
-
-                                             <button
-                                                className="btn btn-icon btn-danger rounded-circle"
-                                                onClick={() => {
-                                                   setInit({
-                                                      ...init,
-                                                      currentData: {
-                                                         ...init.currentData,
-                                                         triggerMenus: init.currentData.triggerMenus.filter((d) => d.id !== m.id),
-                                                      },
-                                                   });
-                                                }}
-                                             >
-                                                <i className="fa fa-trash"></i>
-                                             </button>
+                                    
+                                             <a style={{ marginLeft: 5 }} 
+                                                      onClick={() => {
+                                                         setInit({
+                                                            ...init,
+                                                            currentData: {
+                                                               ...init.currentData,
+                                                               triggerMenus: init.currentData.triggerMenus.filter((d) => d.id !== m.id),
+                                                            },
+                                                         });
+                                                      }}>
+                                                      <img alt={'#'} src={deleteIcon} width="20" />
+                                                      </a>
                                           </div>
                                        </div>
                                     );

@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import trash_icon from '../../assets/Custom Size - 4/Icon metro-cancel.svg';
-import edit_icon from '../../assets/Custom Size - 4/edit.svg';
-import delete_icon from '../../assets/Group 4968.svg';
-import upload_icon from '../../assets/Icon metro-cloud-upload.svg';
 
+import upload_icon from '../../assets/Icon metro-cloud-upload.svg';
+import deleteIcon from '../../assets/deleteicon.svg';
 import $ from 'jquery';
 import { useDispatch } from 'react-redux';
 import { createGuid, getGeneratedId, STRINGS } from '../../utils/base';
@@ -19,6 +18,7 @@ import AlertModal from '../ConfirmModal/AlertModal';
 import { PublishedBot } from '../../components/BuilderWorkSpace/slices/workSpace.slice';
 // import TriggerCard from "../TreeComponent/items/TriggerCard";
 import ConditionList from './ConditionList';
+
 
 const defaultState = {
    isConfirm: false,
@@ -1037,9 +1037,10 @@ const ByTypeComposer = ({ props, triggerType }) => {
                                  <AudioPlayerDefault src={url} />
 
                                  <div>
-                                    <button className="btn btn-danger btn-icon rounded-circle media-remove" style={{ marginLeft: '5px' }} onClick={() => removeMedia(url)}>
-                                       <i className="fa fa-trash"></i>
-                                    </button>
+                                 <a style={{ marginLeft: 5}}  onClick={() => removeMedia(url)}>
+                                          
+                                          <img alt={'#'} src={deleteIcon} width="20" />
+                                       </a>
                                  </div>
                               </>
                            );
@@ -1059,9 +1060,11 @@ const ByTypeComposer = ({ props, triggerType }) => {
                                     </section>
 
                                     <div>
-                                       <button className="btn btn-danger btn-icon rounded-circle media-remove" style={{ marginLeft: '5px' }} onClick={() => removeMedia(url)}>
-                                          <i className="fa fa-trash"></i>
-                                       </button>
+                                    <a style={{ marginLeft: 5}}  onClick={() => removeMedia(url)}>
+                                          
+                                          <img alt={'#'} src={deleteIcon} width="20" />
+                                       </a>
+                                      
                                     </div>
                                  </>
                               );
@@ -1084,9 +1087,11 @@ const ByTypeComposer = ({ props, triggerType }) => {
                                  </div>
 
                                  <div>
-                                    <button className="btn btn-danger btn-icon rounded-circle media-remove" style={{ marginLeft: '5px' }} onClick={() => removeMedia(url)}>
-                                       <i className="fa fa-trash"></i>
-                                    </button>
+                                 <a style={{ marginLeft: 5}}  onClick={() => removeMedia(url)}>
+                                          
+                                          <img alt={'#'} src={deleteIcon} width="20" />
+                                       </a>
+                                   
                                  </div>
                               </>
                            );
@@ -1102,9 +1107,11 @@ const ByTypeComposer = ({ props, triggerType }) => {
                            return (
                               <>
                                  <div>
-                                    <button className="btn btn-danger btn-icon rounded-circle media-remove" style={{ marginLeft: '5px' }} onClick={() => removeMedia(url)}>
-                                       <i className="fa fa-trash"></i>
-                                    </button>
+                                    
+                                    <a style={{ marginLeft: 5}}  onClick={() => removeMedia(url)}>
+                                          
+                                          <img alt={'#'} src={deleteIcon} width="20" />
+                                       </a>
                                  </div>
                                  <div className="sub-img-tag">
                                     <img alt={'#'} src={url !== '' ? url : defaultImage} />
@@ -1797,12 +1804,11 @@ const ByTypeComposer = ({ props, triggerType }) => {
                                                 )
                                              )}
 
-                                             <button
-                                                className="btn btn-danger btn-icon rounded-circle"
-                                                style={{ width: '25px', height: '25px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
-     											onClick={() => handleMenuDelete(m)}>
-                                                <i className="fa fa-trash" style={{ fontSize: '12px' }}></i>
-                                             </button>
+                                             
+                                             <a style={{ marginLeft: 5,width: '25px', height: '25px', display: 'flex', alignItems: 'center', justifyContent: 'center'}}  onClick={() => handleMenuDelete(m)}>
+                                          
+                                          <img alt={'#'} src={deleteIcon} width="20" />
+                                       </a>
                                           </div>
                                        </div>
                                     );

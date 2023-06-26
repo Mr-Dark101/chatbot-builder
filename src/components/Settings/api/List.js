@@ -9,8 +9,8 @@ import BlankMsg from '../../common/BlankMsg';
 import { toast } from 'react-toastify';
 import plus_icon from '../../../assets/built_add_icon.svg';
 import api from '../../../assets/setting/api.png';
-import edit_icon from '../../../assets/Custom Size - 4/edit.svg';
-import delete_icon from '../../../assets/Custom Size - 4/Icon metro-cancel.svg';
+import editIcon from '../../../assets/edit.svg';
+import deleteIcon from '../../../assets/deleteicon.svg';
 
 const List = ({ rs, subPage, loadList }) => {
    const [listData, setListData] = useState([]);
@@ -146,10 +146,9 @@ const List = ({ rs, subPage, loadList }) => {
                         <table className="table">
                            <thead>
                               <tr>
-                                 <th>API Name</th>
-                                 <th>API Type</th>
-
-                                 <th></th>
+                                 <th>API NAME</th>
+                                 <th>API TYPE</th>
+                                 <th className='float-end'>ACTION</th>
                               </tr>
                            </thead>
                            <tbody>
@@ -175,22 +174,18 @@ const List = ({ rs, subPage, loadList }) => {
                                           </div>
                                        </td>
                                        <td>{row.api_type}</td>
-
                                        <td>
                                           <div className="button_section">
                                              {row.build_type == 'C' ? (
-                                                <button
-                                                   className="btn btn-icon btn-icon rounded-circle btn-custom"
-                                                   onClick={() => subPage(<Edit loadList={loadList} retrieveList={retrieveList} rs={row} />)}
-                                                   style={{ backgroundColor: '#35f5c6 !important', borderColor: '#35f5c6 !important' }}
-                                                >
-                                                   <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                                                </button>
+                                                <a style={{ marginLeft: 5 }}   onClick={() => subPage(<Edit loadList={loadList} retrieveList={retrieveList} rs={row} />)}>
+                                                <img alt={'#'} src={editIcon}  />
+                                                </a>
                                              ) : null}
 
-                                             <button style={{ marginLeft: 5 }} className="btn btn-icon btn-icon rounded-circle btn-danger" onClick={() => deleteMe(row.id)}>
-                                                <i class="fa fa-trash" aria-hidden="true"></i>
-                                             </button>
+                                            
+                                             <a style={{ marginLeft: 5 }}  onClick={() => deleteMe(row.id)}>
+                                                <img alt={'#'} src={deleteIcon} width="20" />
+                                             </a>
                                           </div>
                                        </td>
                                     </tr>

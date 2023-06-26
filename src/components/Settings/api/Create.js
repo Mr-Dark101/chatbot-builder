@@ -5,6 +5,7 @@ import * as Yup from 'yup';
 import CrudService from '../../../services/crud.service';
 import { Link } from 'react-router-dom';
 import { Tooltip } from '@mui/material';
+import deleteIcon from '../../../assets/deleteicon.svg';
 
 const Create = ({ rs, retrieveList, loadList }) => {
    const [validationSchema, setValidationSchema] = useState({});
@@ -98,9 +99,9 @@ const Create = ({ rs, retrieveList, loadList }) => {
                   <div className="page_data_clinic api_form_section" style={{ overflowY: 'scroll', height: 800 }}>
                      {!successful && (
                         <Form enableReinitialize validationSchema={FormSchema} initialValues={formData} onSubmit={onSubmit}>
-                           <h4 class="box-title m-0" style={{ fontWeight: 800 }}>
+                           <h5 class="box-title m-0" style={{ fontWeight: 800 }}>
                               Create custom API
-                           </h4>
+                           </h5>
 
                            <div className="row" style={{ marginLeft: '0px', marginRight: '0px' }}>
                               <div className="col-9" style={{ paddingLeft: '0px', paddingRight: '0px' }}>
@@ -108,27 +109,27 @@ const Create = ({ rs, retrieveList, loadList }) => {
                                     <TextField name="name" label="API Name" icon="check-square" placeholder="Give your API a suitable name to accurately reflect the product or service it provides." />
                                  </div>
 
-                                 <div className="field_section">
+                                 <div className="field_section mt-3">
                                     <TextAreaField name="description" label="API Description" placeholder="Provide a brief description about the intended use of the API." rows="3" />
                                  </div>
 
                                  <Tooltip title={"Configure the type of API call you're looking to make - GET, POST,PUT."}>
-                                    <div className="field_section" style={{ marginTop: '-20px' }}>
+                                    <div className="field_section" style={{ marginTop: '-10px' }}>
                                        <SelectField name="api_type" label="API Type" options={typeList} />
                                     </div>
                                  </Tooltip>
 
-                                 <div className="field_section">
+                                 <div className="field_section" style={{ marginTop: '-10px' }}>
                                     <TextField name="url" label="API Endpoint URL" placeholder="Provide the endpoint URL here" />
                                  </div>
 
                                  <Tooltip title={'You can authorize your API in this field and also press any additional parameters as headers in this section.'}>
-                                    <label style={{ marginBottom: '0px', fontWeight: '700px', fontFamily: 'Lexend Deca' }}>API Header</label>
+                                    <label style={{ marginTop: '10px', fontWeight: '700px', fontFamily: 'Lexend Deca' }}>API Header</label>
                                  </Tooltip>
                                  {headerField &&
                                     headerField.map((x, i) => {
                                        return (
-                                          <div className="row align-items-center" style={{ marginTop: '-10px' }}>
+                                          <div className="row align-items-center" style={{ marginTop: '-15px' }}>
                                              <div className="col-sm-4">
                                                 <TextField name="keyOther" placeholder="Key" value={x.key} onChange={(e) => handleInputChange(e, i, 'phone')} />
                                              </div>
@@ -137,9 +138,12 @@ const Create = ({ rs, retrieveList, loadList }) => {
                                              </div>
 
                                              <div className="col-sm-1 text-center">
-                                                <a href="javascript:void(0)" className="link_delete_icon btn btn-icon btn-icon rounded-circle btn-danger mt-1" onClick={() => removeField(i, x.keyOther)}>
-                                                   <i className="fa fa-trash"></i>
-                                                </a>
+                                           
+                                             <a style={{ marginLeft: 5 }}  onClick={() => removeField(i, x.keyOther)} className='mt-1'>
+                                                
+                                                <img alt={'#'} src={deleteIcon} width="20" />
+                                             </a>
+                                               
                                              </div>
                                           </div>
                                        );
@@ -168,7 +172,7 @@ const Create = ({ rs, retrieveList, loadList }) => {
                               <SubmitButton title="Update" className="primary" />
 
                               <button onClick={() => loadList()} type="button" className="secondary ms-10">
-                                 Cancel
+                                 Back
                               </button>
                            </div>
                         </Form>

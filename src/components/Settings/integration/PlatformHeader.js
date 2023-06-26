@@ -4,7 +4,7 @@ import {  TextField, SelectField, SubmitButton,CheckBoxField,TextGroupField,Text
 import * as Yup from 'yup';
 import CrudService from "../../../services/crud.service";
 import { Link } from "react-router-dom";
-
+import deleteIcon from '../../../assets/deleteicon.svg';
 import {
     Formik,
     Form,
@@ -233,8 +233,10 @@ const FormSchema = Yup.object().shape({
                              </div>
 
                              <div className="col-sm-1">
-
-                                <a href="javascript:void(0)" onClick={() => removeField(i,x.keyOther)} className="link_delete_icon btn btn-icon btn-icon rounded-circle btn-danger"><br /><i className="fa fa-trash"></i></a>
+                             <a style={{ marginLeft: 5 }} onClick={() => removeField(i,x.keyOther)}>
+                                                                                 <img alt={'#'} src={deleteIcon} width="20" />
+                                                                              </a>
+                      
                              </div>
                         
                       

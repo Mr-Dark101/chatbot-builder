@@ -21,7 +21,7 @@ const Toast = ({ show, closeToast, msg, children,successful }) => {
           <div class={`jq-toast-single jq-has-icon jq-icon-${type}`} >
             
             <span class="close-jq-toast-single" onClick={closeToast}>×</span>
-            <h2 class="jq-toast-heading">{title}</h2>
+            <h2 class="jq-toast-heading" style={{fontFamily:"Lexend Deca Light"}}>{title}</h2>
               {msg}.
           </div>
       </div>

@@ -75,7 +75,7 @@ const CreateCat = ({ rs, retrieveList, loadList,closeModal }) => {
                            
 
                             <div className="field_section">
-                                 <TextFieldModal name="name" label="Name" icon="check-square" placeholder="Name" />
+                                 <TextFieldModal name="name" icon="check-square" placeholder="Category Name" />
                             </div>
 
                            <div>

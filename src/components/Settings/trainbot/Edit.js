@@ -56,7 +56,7 @@ const Edit = ({ rs, retrieveList, loadList }) => {
       CrudService.edit(values, 'trainbot', true).then(
          (response) => {
             //setModalValue('')
-            toast("Training data has been updated",{type: toast.TYPE.SUCCESS})
+            toast("Training data has been updated",{type: toast.TYPE.SUCCESS,fontWeight:600})
             loadList();
             //setMessage(response.data.message);
             //setSuccessful(true);
@@ -85,6 +85,9 @@ const Edit = ({ rs, retrieveList, loadList }) => {
                            <Formik enableReinitialize validationSchema={FormSchema} initialValues={formData} onSubmit={onSubmit}>
                               {({ setFieldValue, setFieldTouched, values, errors, touched }) => (
                                  <Form className="av-tooltip tooltip-label-right" style={{ overflowY: 'scroll', height: '800px' }}>
+                                    <h5 class="box-title m-0" style={{ fontWeight: 800}}>
+                              Update Training Data
+                           </h5>
                                     <div className="row" style={{ marginLeft: '0px', marginRight: '0px' }}>
                                        <div className="col-9" style={{ paddingLeft: '0px', paddingRight: '0px' }}>
                                           
@@ -99,13 +102,13 @@ const Edit = ({ rs, retrieveList, loadList }) => {
                                           </div>
                                           
                                           <div className="field_section">
-                                             <TextField name="question" label="Question" icon="check-square" placeholder="Please enter your question" />
+                                             <TextField name="question" label="Question" icon="check-square" placeholder="Please enter user question" />
                                           </div>
 
                                          
 
                                          <div className="field_section" style={{marginTop:'15px'}}>
-                                             <TextAreaField name="answer" label="Answer" placeholder="Please enter the response" rows="3" />
+                                             <TextAreaField name="answer" label="Answer" placeholder="Please enter bot response" rows="3" />
                                           </div>
 
                                           

@@ -95,9 +95,9 @@ const Create = ({ rs, retrieveList, loadList }) => {
                   <div className="page_data_clinic api_form_section" style={{ overflowY: 'scroll', height: 800 }}>
                      {!successful && (
                         <Form enableReinitialize validationSchema={FormSchema} initialValues={formData} onSubmit={onSubmit}>
-                           <h4 class="box-title m-0" style={{ fontWeight: 800}}>
+                           <h5 class="box-title m-0" style={{ fontWeight: 800}}>
                               Add Training Data
-                           </h4>
+                           </h5>
 
                            <div className="row" style={{ marginLeft: '0px', marginRight: '0px' }}>
                               <div className="col-4" style={{ paddingLeft: '0px', paddingRight: '0px' }}>
@@ -118,11 +118,11 @@ const Create = ({ rs, retrieveList, loadList }) => {
                                 
                                  
                                  <div className="field_section">
-                                    <TextField name="question" label="User Question" icon="check-square" placeholder="Please enter your question" />
+                                    <TextField name="question" label="User Question" icon="check-square" placeholder="Please enter user question" />
                                  </div>
 
                                  <div className="field_section" style={{ marginTop: '10px'}}>
-                                    <TextAreaField name="answer" label="Bot Response" placeholder="Please enter the response" rows="3" />
+                                    <TextAreaField name="answer" label="Bot Response" placeholder="Please enter bot response" rows="3" />
                                  </div>
 
                                  
