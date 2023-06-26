@@ -103,25 +103,30 @@ const List = ({ rs, subPage, loadList }) => {
 
    return (
       <>
-         {showAlert && (
+            {showAlert && (
             <SweetAlert
-               custom
-               showCancel
-               showCloseButton
-               confirmBtnText="Yes"
-               cancelBtnText="No"
-               confirmBtnBsStyle="primary"
-               cancelBtnBsStyle="light"
-               customIcon=""
-               title="Are you sure?"
-               onConfirm={() => {
-                  setShowAlert(false);
-                  deleteRow(delId);
-               }}
-               onCancel={() => {
-                  setShowAlert(false);
-               }}
-            />
+            custom
+            showCancel
+            showCloseButton
+            confirmBtnText="Delete"
+            cancelBtnText="Cancel"
+            confirmBtnBsStyle="primary"
+            cancelBtnBsStyle="light"
+            customIcon=""
+            customClass="containerBoxAlert"
+            title="Delete API"
+            onConfirm={() => {
+               setShowAlert(false);
+               deleteRow(delId);
+            }}
+            onCancel={() => {
+               setShowAlert(false);
+            }}
+
+             reverseButtons={true}
+         >
+         Are you sure you want to delete this API?
+         </SweetAlert>  
          )}
 
          <div className="page_data_setting">
