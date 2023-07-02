@@ -61,6 +61,7 @@ const Create = ({rs}) => {
       { value: '2', label: 'Babbage' },
       { value: '3', label: 'Curie' },
       { value: '4', label: 'Davinci' },
+      { value: '5', label: 'ChatGPT (New)' },
    ];
 
    const predictionList = [
@@ -121,7 +122,7 @@ const Create = ({rs}) => {
                                  <div className="col-5" style={{ paddingLeft: '0px'}}>   
 
                                     <div className="field_section">
-                                     <TextField name="api_secret" label="API Secret Key" placeholder="Please enter your ChatGPT API Key here" />
+                                     <TextField name="api_secret" label="API Secret Key" placeholder="Please enter your GPT API Key here" />
                                     
                                      <h6 style={{marginTop:'15px'}}>Login to <a href="https://platform.openai.com/account/api-keys"  target="_blank">OpenAI Account</a> and get the API key and Organization ID</h6>
                                     </div>
@@ -138,7 +139,7 @@ const Create = ({rs}) => {
                               <div className="col-5" style={{ paddingLeft: '0px'}}>   
 
                               <div className="field_section">
-                              <TextField name="chatgpt_org_id" label="Organization ID" placeholder="Please enter your ChatGPT Organization ID here" />
+                              <TextField name="chatgpt_org_id" label="Organization ID" placeholder="Please enter your GPT Organization ID here" />
                                  
                               </div>
                               </div>

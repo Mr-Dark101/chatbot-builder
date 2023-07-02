@@ -32138,10 +32138,10 @@ img.away, img.busy, img.offline, img.online {
   padding: 0px 10px;
   list-style-type: none;
 }
-.right_bar_top_section li{
+.right_bar_top_section li {
   display: inline-block;
-  width: 21%;
-  margin: 7px;
+  width: 23%;
+  margin: 6px;
 }
 .right_bar_top_section li .btn:hover, .right_bar_top_section li .btn:focus{
   border-color: transparent;

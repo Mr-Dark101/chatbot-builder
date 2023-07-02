@@ -147,7 +147,7 @@ const AddTriggerComposer = (props) => {
 
              <li>
                <button onClick={() => meClick('ChatGPT')} className="btn btn-block btn-secondry" style={btnChatGPTStyle}>
-                  ChatGPT {props.type_id}
+                  GPT
                </button>
             </li>
 
@@ -158,7 +158,7 @@ const AddTriggerComposer = (props) => {
 
                   <li>
                <button onClick={() => meClick('ChatGPT')} className="btn btn-block {btn-primary}" style={btnChatGPTStyle}>
-                  ChatGPT
+                  GPT
                </button>
             </li>
 

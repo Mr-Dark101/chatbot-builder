@@ -128,8 +128,7 @@ const Create = ({ rs, retrieveList, loadList }) => {
       { value: 'date', label: 'Date' },
       { value: 'regularexpression', label: 'Regular Expression' },
       { value: 'interactivebutton', label: 'Interactive Buttons' },
-      { value: 'interactivelist', label: 'Interactive List' },
-      { value: 'catalog', label: 'Product Catalog' },
+      { value: 'interactivelist', label: 'Interactive List' }
    ];
 
    const [formData, setFormData] = useState({

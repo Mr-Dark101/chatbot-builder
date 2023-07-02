@@ -104,8 +104,7 @@ const Edit = ({ rs, retrieveList, loadList }) => {
       { value: 'document', label: 'Document' },
       { value: 'regularexpression', label: 'Regular Expression' },
       { value: 'interactivebutton', label: 'Interactive Buttons' },
-      { value: 'interactivelist', label: 'Interactive List' },
-      { value: 'catalog', label: 'Product Catalog' },
+      { value: 'interactivelist', label: 'Interactive List' }
    ];
 
    const retrieveMasterList = (url) => {
