@@ -68,21 +68,31 @@ const Edit = ({rs}) => {
    const versionList = [
       { value: '1', label: 'GPT-3' },
       { value: '2', label: 'GPT-3.5' },
-      { value: '3', label: 'GPT-3.5 Turbo' },
    ];
 
    const modelList = [
-      { value: 1, label: 'Ada' },
-      { value: 2, label: 'Babbage' },
-      { value: 3, label: 'Curie' },
-      { value: 4, label: 'Davinci' },
-      { value: 5, label: 'ChatGPT (New)' },
+      { value: 1, label: 'text-ada-001 (2,049 tokens)' },
+      { value: 2, label: 'text-babbage-001 (2,049 tokens)' },
+      { value: 3, label: 'text-curie-001 (2,049 tokens)' },
+      { value: 4, label: 'davinci (2,049 tokens)' },
+      { value: 5, label: 'curie (2,049 tokens)' },
+      { value: 6, label: 'babbage (2,049 tokens)' },
+      { value: 7, label: 'ada (2,049 tokens)' },
+      { value: 8, label: 'gpt-3.5-turbo (4,096 tokens)' },
+      { value: 9, label: 'gpt-3.5-turbo-16k (16,384 tokens)' },
+      { value: 10, label: 'gpt-3.5-turbo-0613 (4,096 tokens)' },
+      { value: 11, label: 'gpt-3.5-turbo-16k-0613 (16,384 tokens)' },
+      { value: 12, label: 'text-davinci-003 (4,097 tokens)' },
+      { value: 13, label: 'text-davinci-002 (4,097 tokens)' },
+      { value: 14, label: 'code-davinci-002 (8,001 tokens)' }
    ];
 
    const predictionList = [
       { value: 0, label: '0' },
       { value: 0.5, label: '0.5' },
-      { value: 0.5, label: '1.0' }
+      { value: 1.0, label: '1.0' },
+      { value: 1.0, label: '1.5' },
+      { value: 1.0, label: '2.0' }
    ];
 
    const countWord = (e) => {
@@ -91,6 +101,14 @@ const Edit = ({rs}) => {
          let wordsValue = parseInt(tokenValue) * 0.75;
          let wordsObject = document.getElementById("wordscount");
          wordsObject.innerText = `~ Approximately ${wordsValue} words`;
+      } catch(exc) {
+         console.log(exc.message);
+      }
+   }
+
+   const changeVersion = (e) => {
+      try {
+         console.log("Change Version");
       } catch(exc) {
          console.log(exc.message);
       }
@@ -120,7 +138,7 @@ const Edit = ({rs}) => {
                                     <div className="row">
                                        <div className="col-6"> 
                                           <div className="field_section">
-                                             <SelectField name="version_id" label="GPT Mode" options={versionList} />
+                                             <SelectField name="version_id" label="GPT Mode" options={versionList} onBlur ={(e) => { changeVersion(e)}} />
                                           </div>
                                        </div>
                                     </div>
