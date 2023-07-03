@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Form, TextField, SelectField, SubmitButton, CheckBoxField, TextGroupField, TextAreaField } from '../../crud/FormElements';
+import { Form, TextField, SelectField,SelectFieldVersion, SubmitButton, CheckBoxField, TextGroupField, TextAreaField } from '../../crud/FormElements';
 import CrudService from '../../../services/crud.service';
 import * as Yup from 'yup';
 import { Tooltip } from '@mui/material';
@@ -9,7 +9,7 @@ const Edit = ({rs}) => {
   const [successful, setSuccessful] = useState(false);
   const [message, setMessage] = useState();
   const [editData, setEditData] = useState();
-
+  const [modelListDynamic, setModelListDynamic] = useState([]);
 
   useEffect(() => {
       retrieveForm();
@@ -23,6 +23,35 @@ const Edit = ({rs}) => {
             
             setEditData(response.data);
             countWord();
+
+
+             if(rs.model_id == 1){
+
+
+               const modelList = [
+                  { value: 1, label: 'text-ada-001 (2,049 tokens)' },
+                  { value: 2, label: 'text-babbage-001 (2,049 tokens)' },
+                  { value: 3, label: 'text-curie-001 (2,049 tokens)' },
+                  { value: 4, label: 'davinci (2,049 tokens)' },
+                  { value: 5, label: 'curie (2,049 tokens)' },
+                  { value: 6, label: 'babbage (2,049 tokens)' },
+                  { value: 7, label: 'ada (2,049 tokens)' },
+                 
+               ];
+               setModelListDynamic(modelList)
+            }else{
+               const modelList = [
+                 
+                  { value: 8, label: 'gpt-3.5-turbo (4,096 tokens)' },
+                  { value: 9, label: 'gpt-3.5-turbo-16k (16,384 tokens)' },
+                  { value: 10, label: 'gpt-3.5-turbo-0613 (4,096 tokens)' },
+                  { value: 11, label: 'gpt-3.5-turbo-16k-0613 (16,384 tokens)' },
+                  { value: 12, label: 'text-davinci-003 (4,097 tokens)' },
+                  { value: 13, label: 'text-davinci-002 (4,097 tokens)' },
+                  { value: 14, label: 'code-davinci-002 (8,001 tokens)' }
+               ];
+               setModelListDynamic(modelList)
+            }
          })
          .catch((e) => {
             console.log(e);
@@ -75,22 +104,7 @@ const Edit = ({rs}) => {
       { value: '2', label: 'GPT-3.5' },
    ];
 
-   const modelList = [
-      { value: 1, label: 'text-ada-001 (2,049 tokens)' },
-      { value: 2, label: 'text-babbage-001 (2,049 tokens)' },
-      { value: 3, label: 'text-curie-001 (2,049 tokens)' },
-      { value: 4, label: 'davinci (2,049 tokens)' },
-      { value: 5, label: 'curie (2,049 tokens)' },
-      { value: 6, label: 'babbage (2,049 tokens)' },
-      { value: 7, label: 'ada (2,049 tokens)' },
-      { value: 8, label: 'gpt-3.5-turbo (4,096 tokens)' },
-      { value: 9, label: 'gpt-3.5-turbo-16k (16,384 tokens)' },
-      { value: 10, label: 'gpt-3.5-turbo-0613 (4,096 tokens)' },
-      { value: 11, label: 'gpt-3.5-turbo-16k-0613 (16,384 tokens)' },
-      { value: 12, label: 'text-davinci-003 (4,097 tokens)' },
-      { value: 13, label: 'text-davinci-002 (4,097 tokens)' },
-      { value: 14, label: 'code-davinci-002 (8,001 tokens)' }
-   ];
+
 
    const predictionList = [
       { value: 0, label: '0' },
@@ -113,12 +127,43 @@ const Edit = ({rs}) => {
 
    const changeVersion = (id) => {
       try {
+
          console.log("Change Version");
-         //let listValue =document.getElementById("version_id").value;
-         //console.log(listValue);
+         let listValue =document.getElementById("version_id").value;
+         console.log(listValue);
       } catch(exc) {
          console.log(exc.message);
       }
+   }
+
+   const customChange = (value) => {
+         if(value == 1){
+
+
+               const modelList = [
+                  { value: 1, label: 'text-ada-001 (2,049 tokens)' },
+                  { value: 2, label: 'text-babbage-001 (2,049 tokens)' },
+                  { value: 3, label: 'text-curie-001 (2,049 tokens)' },
+                  { value: 4, label: 'davinci (2,049 tokens)' },
+                  { value: 5, label: 'curie (2,049 tokens)' },
+                  { value: 6, label: 'babbage (2,049 tokens)' },
+                  { value: 7, label: 'ada (2,049 tokens)' },
+                 
+               ];
+               setModelListDynamic(modelList)
+         }else{
+            const modelList = [
+              
+               { value: 8, label: 'gpt-3.5-turbo (4,096 tokens)' },
+               { value: 9, label: 'gpt-3.5-turbo-16k (16,384 tokens)' },
+               { value: 10, label: 'gpt-3.5-turbo-0613 (4,096 tokens)' },
+               { value: 11, label: 'gpt-3.5-turbo-16k-0613 (16,384 tokens)' },
+               { value: 12, label: 'text-davinci-003 (4,097 tokens)' },
+               { value: 13, label: 'text-davinci-002 (4,097 tokens)' },
+               { value: 14, label: 'code-davinci-002 (8,001 tokens)' }
+            ];
+            setModelListDynamic(modelList)
+         }
    }
 
   return (
@@ -145,7 +190,7 @@ const Edit = ({rs}) => {
                                     <div className="row">
                                        <div className="col-6"> 
                                           <div className="field_section">
-                                             <SelectField name="version_id" id="version_id" label="GPT Mode" options={versionList} onChange={changeVersion()} onBlur ={changeVersion()} />
+                                             <SelectFieldVersion name="version_id" customChange={customChange} id="version_id" label="GPT Mode" options={versionList}   />
                                           </div>
                                        </div>
                                     </div>
@@ -198,7 +243,7 @@ const Edit = ({rs}) => {
 
                                    
                                        <div className="field_section">
-                                          <SelectField name="model_id" label="Model" options={modelList} />
+                                          <SelectField name="model_id" label="Model" options={modelListDynamic} />
                                           <h6 style={{marginTop: '10px', fontFamily:'Lexend Deca Light', fontSize: '13px'}}>The model based on which responses will be generated. Ada is the fastest and cheapest text model. Davinci is the most trained but more expensive.  <a href="https://platform.openai.com/docs/models/overview" target="_blank">Learn More <i className="fa fa-external-link"></i></a></h6>
                                          
                                        </div>

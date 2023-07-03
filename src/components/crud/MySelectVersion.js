@@ -6,7 +6,7 @@ function SelectField(props) {
   const [field, state, {setValue, setTouched}] = useField(props.field.name);
 
   const onChange = ({value}) => {
-   
+    props.customChange(value)
     setValue(value);
   };
 
