@@ -245,11 +245,7 @@ const Create = ({ rs, retrieveList, loadList }) => {
                                     Create form
                                  </h4>
                               </div>
-                              <div className="col-sm-6 text-end">
-                                 <button type="button" className="btn btn-secondary me-10">
-                                    Back
-                                 </button>
-                              </div>
+                             
                            </div>
 
                            <div className="row">
@@ -449,10 +445,10 @@ const Create = ({ rs, retrieveList, loadList }) => {
                                     </div>
                                  </div>
                                  <div className="text-end">
-                                    <SubmitButton title="Create" className="primary" />
+                                    <SubmitButton title="Create" className="btn btn-primary" />
 
-                                    <button onClick={() => loadList()} type="button" className="secondary ms-10">
-                                       Cancel
+                                    <button onClick={() => loadList()} type="button" className="btn btn-outline-danger ms-10">
+                                       Back
                                     </button>
                                  </div>
                               </div>

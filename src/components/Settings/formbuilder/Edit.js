@@ -426,8 +426,8 @@ const Edit = ({ rs, retrieveList, loadList }) => {
                                                 </div>
                                              </div>
                                              <div className="mt-20 text-end">
-                                                <SubmitButton title="Update" className="btn primary" />
-                                                <button onClick={() => loadList()} className="btn secondary ms-20">
+                                                <SubmitButton title="Update" className="btn btn-primary" />
+                                                <button onClick={() => loadList()} className="btn btn-outline-danger ms-20">
                                                    Cancel
                                                 </button>
                                              </div>

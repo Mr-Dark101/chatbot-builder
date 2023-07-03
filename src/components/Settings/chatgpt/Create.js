@@ -34,7 +34,7 @@ const Create = ({rs,retrieveForm}) => {
          (response) => {
             //setModalValue('')
            
-             toast("Record has been saved successfully",{type: toast.TYPE.SUCCESS})
+             toast("Data has been saved successfully",{type: toast.TYPE.SUCCESS})
            // loadList();
             //setMessage(response.data.message);
             setSuccessful(true);

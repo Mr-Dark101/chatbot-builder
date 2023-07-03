@@ -178,7 +178,7 @@ const List = ({ rs, subPage, loadList }) => {
                                              </div>
                                           </div>
                                        </td>
-                                       <td>{row.api_type}</td>
+                                       <td style={{ fontFamily: 'Lexend Deca Light', fontSize:'12px' }}>{row.api_type}</td>
                                        <td>
                                           <div className="button_section">
                                              {row.build_type == 'C' ? (
