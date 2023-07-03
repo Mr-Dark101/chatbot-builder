@@ -133,7 +133,7 @@ const ChatBotComposer = ({onClose}) => {
         e.preventDefault();
         let text = msgArea.current.value;
 
-        
+        console.log(JSON.stringify(data) + "new")
         
         if (data.length > 0) {
             for (let i = 0; i < data.length; i++) {
@@ -256,12 +256,13 @@ const ChatBotComposer = ({onClose}) => {
                    
                     if(triggerType == "ChatGPT"){
 
-
-            
+                           
+                           
                             const backMenu = (currentBotData.type_id == 4) ? [buildCustomMenu('Main Menu','M',backMenuId)] : [];
                            
                             const apiResponse = await ChatGPTApiData(text).then((rData) => {
                                             //console.log((rData.data.data.choices))
+
                                            if(rData.data){
                                                 return rData.data.data.message;
                                             }
@@ -347,12 +348,13 @@ const ChatBotComposer = ({onClose}) => {
 
             if(triggerType == 'ChatGPT'){
 
-                
+                console.log(backMenuId + "here to check")
                 //const backMenu = [buildCustomMenuBack('Back','99',backMenuId)]
                 const backMenu = (currentBotData.type_id == 4) ? [buildCustomMenu('Main Menu','M',backMenuId)] : [];
                
                 const apiResponse = await ChatGPTApiData(text).then((rData) => {
                                 //console.log((rData.data.data.choices))
+
                                 if(rData.data){
                                     return rData.data.data.message;
                                 }
@@ -371,13 +373,14 @@ const ChatBotComposer = ({onClose}) => {
                  var dv = ''
                  if(currentBotData.type_id == 4){
 
-                        const dv = !$.isEmptyObject(trigger) ? trigger.menus.length > 0 ? trigger.menus.map((d) => {
+                         dv = !$.isEmptyObject(trigger) ? trigger.menus.length > 0 ? trigger.menus.map((d) => {
+                           
                         if (d.toTrigger !== null) {
                             return d.toTrigger
                         }
                         }).filter((d) => d !== undefined) : [loopBackTrigger] : []
                  }else{
-                        const dv = [];
+                         dv = [];
                  }
                        
                 
