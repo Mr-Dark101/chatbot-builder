@@ -370,14 +370,15 @@
             }
             .currentPlan {
               background: #666363;
-              font-size: 11px;
+              font-size: 10px;
               text-transform: capitalize;
               padding: 2px 12px;
               display: inline-block;
               color: #fff;
-              font-weight: 600;
-              border-radius: 18px;
-              letter-spacing: 1.2px;
+              font-weight: 500;
+              font-family: 'Lexend Deca Light';
+              border-radius: 12px;
+              letter-spacing: 1.1px;
            
               &:hover {
                 color: #000 !important;

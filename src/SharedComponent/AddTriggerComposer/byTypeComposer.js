@@ -1799,13 +1799,13 @@ const ByTypeComposer = ({ props, triggerType }) => {
                                                          });
                                                       }}
                                                    >
-                                                      <i class="fa fa-pencil-square-o" aria-hidden="true" style={{ fontSize: '12px' }}></i>
+                                                      <i class="fa fa-pencil-square-o" aria-hidden="true" style={{ fontSize: '14px' }}></i>
                                                    </button>
                                                 )
                                              )}
 
                                              
-                                             <a style={{ marginLeft: 5,width: '25px', height: '25px', display: 'flex', alignItems: 'center', justifyContent: 'center'}}  onClick={() => handleMenuDelete(m)}>
+                                             <a style={{ marginLeft: -10,width: '25px', height: '25px', display: 'flex', alignItems: 'center', justifyContent: 'center'}}  onClick={() => handleMenuDelete(m)}>
                                           
                                           <img alt={'#'} src={deleteIcon} width="20" />
                                        </a>

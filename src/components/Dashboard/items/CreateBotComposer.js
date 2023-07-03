@@ -314,10 +314,10 @@ const CreateBotComposer = (props) => {
       <div className="modal-content home_bot_modal">
          <div className="modal-header">
             <div className="header-lft">
-               <h4 style={{ fontWeight: '800', color: '#000' }} class="box-title m-0">
+               <h5 style={{ fontWeight: '800', color: '#000' }} class="box-title m-0">
                   {data !== null ? 'Update Bot' : !selectCategory ? titleName : titleName}
                    
-               </h4>
+               </h5>
             </div>
             <div className="header-rt" />
          </div>
