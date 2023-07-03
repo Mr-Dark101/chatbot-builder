@@ -35,7 +35,7 @@ const ChatGpt = ({rs}) => {
 
   return (
     <>
-        {editData ? <Edit rs={editData} / > : <Create />}    
+        {editData ? <Edit rs={editData} / > : <Create retrieveForm={retrieveForm} />}    
     </>
   );
 };

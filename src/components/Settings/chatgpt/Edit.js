@@ -3,6 +3,7 @@ import { Form, TextField, SelectField, SubmitButton, CheckBoxField, TextGroupFie
 import CrudService from '../../../services/crud.service';
 import * as Yup from 'yup';
 import { Tooltip } from '@mui/material';
+import {toast } from 'react-toastify';
 const Edit = ({rs}) => {
   const [validationSchema, setValidationSchema] = useState({});
   const [successful, setSuccessful] = useState(false);
@@ -50,8 +51,12 @@ const Edit = ({rs}) => {
          (response) => {
             //setModalValue('')
            
-            setMessage(response.data.message);
+           toast("Record has been saved successfully",{type: toast.TYPE.SUCCESS})
+           // loadList();
+            //setMessage(response.data.message);
             setSuccessful(true);
+            setSubmitting(false)
+            retrieveForm()
             //retrieveList();
          },
          (error) => {
@@ -122,7 +127,7 @@ const Edit = ({rs}) => {
             <div class="col-12">
                <div>
                   <div className="page_data_clinic api_form_section" style={{ height: 1100 }}>
-                     {!successful && (
+                    
                         <Form enableReinitialize validationSchema={FormSchema} initialValues={formData} onSubmit={onSubmit}>
                             <div className="px-30 py-15">
                               <h5 class="box-title m-0" style={{ fontWeight: 600 }}>
@@ -257,14 +262,7 @@ const Edit = ({rs}) => {
                               <SubmitButton title="Save" className="primary" style={{width:'100px'}} />                            
                            </div>
                         </Form>
-                     )}
-                     {message && (
-                        <div className="form-group">
-                           <div className={successful ? 'alert alert-success' : 'alert alert-danger'} role="alert">
-                              {message}
-                           </div>
-                        </div>
-                     )}
+                     
                   </div>
                </div>
             </div>
