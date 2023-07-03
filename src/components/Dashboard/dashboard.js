@@ -25,6 +25,7 @@ import { STRINGS } from '../../utils/base';
 import { useHistory } from 'react-router-dom';
 import { resetPublish,PublishedBot } from '../BuilderWorkSpace/slices/workSpace.slice';
 import { Link } from 'react-router-dom';
+import {Tooltip} from '@mui/material';
 
 const defaultState = {
    isConfirm: false,
@@ -48,18 +49,21 @@ const createArray = [
       name: 'Build from scratch',
       icon_1: built_add_icon,
       icon_2: built_add_icon_white,
+      title: ''
    },
    {
       id: 2,
       name: 'Build from template',
       icon_1: built_add_icon,
       icon_2: built_add_icon_white,
+      title: ''
    },
    {
       id: 3,
       name: 'Build GPT Bot',
       icon_1: built_add_icon,
       icon_2: built_add_icon_white,
+      title: ""
    },
 
    {
@@ -67,6 +71,7 @@ const createArray = [
       name: 'Build Hybrid Bot',
       icon_1: built_add_icon,
       icon_2: built_add_icon_white,
+      title: ""
    },
 ];
 
@@ -314,6 +319,10 @@ const Dashboard = () => {
       }
    };
 
+   const doNone = () => {
+
+   };
+
    const logOut = () => {
       AuthService.logout();
       // document.location.href ='/login'
@@ -379,7 +388,12 @@ const Dashboard = () => {
                      <div className="dashboard-section">
                         <div className="cards-hld">
                            {createArray.map((d, index) => {
-                              return <CreateBotsCardItem onClick={handleCreateChatBot} dashboard={dashboard} key={index} data={d} />;
+                              if((index == 2 || index == 3) && localStorage.getItem('chatbot_plan').includes("BASIC")) {
+                                 d.title = "You don\'t have access to this feature. Please contact sales to upgrade your plan.";
+                                 return <CreateBotsCardItem onClick={doNone} key={index} data={d}/>;
+                              } else {
+                                 return <CreateBotsCardItem onClick={handleCreateChatBot} dashboard={dashboard} key={index} data={d}/>;
+                              } 
                            })}
                         </div>
                      </div>

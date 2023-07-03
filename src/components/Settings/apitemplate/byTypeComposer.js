@@ -1358,8 +1358,8 @@ const ByTypeComposer = ({ props, triggerType, apiHandleConditionMaster }) => {
                                              ) : (
                                                 isData && (
                                                    <button
-                                                      className="btn btn-custom btn-icon rounded-circle"
-                                                      style={{ marginRight: '10px' }}
+                                                      className="btn btn-icon"
+                                                      style={{ marginRight: '10px', color: '#000000' }}
                                                       onClick={() => {
                                                          setInit({
                                                             ...init,

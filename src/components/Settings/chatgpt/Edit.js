@@ -21,7 +21,7 @@ const Edit = ({rs}) => {
          .then((response) => {
             
             setEditData(response.data);
-            
+            countWord();
          })
          .catch((e) => {
             console.log(e);
@@ -97,7 +97,7 @@ const Edit = ({rs}) => {
 
    const countWord = (e) => {
       try {
-         let tokenValue =e.target.value;
+         let tokenValue =document.getElementById("tokens_number").value;
          let wordsValue = parseInt(tokenValue) * 0.75;
          let wordsObject = document.getElementById("wordscount");
          wordsObject.innerText = `~ Approximately ${wordsValue} words`;
@@ -106,9 +106,11 @@ const Edit = ({rs}) => {
       }
    }
 
-   const changeVersion = (e) => {
+   const changeVersion = (id) => {
       try {
          console.log("Change Version");
+         //let listValue =document.getElementById("version_id").value;
+         //console.log(listValue);
       } catch(exc) {
          console.log(exc.message);
       }
@@ -138,7 +140,7 @@ const Edit = ({rs}) => {
                                     <div className="row">
                                        <div className="col-6"> 
                                           <div className="field_section">
-                                             <SelectField name="version_id" label="GPT Mode" options={versionList} onBlur ={(e) => { changeVersion(e)}} />
+                                             <SelectField name="version_id" id="version_id" label="GPT Mode" options={versionList} onChange={changeVersion()} onBlur ={changeVersion()} />
                                           </div>
                                        </div>
                                     </div>
@@ -170,7 +172,6 @@ const Edit = ({rs}) => {
                                  </div>
                               </div>
 
-
                               <div className="row" style={{ marginLeft: '0px', marginRight: '0px' }}>
                               
 
@@ -186,6 +187,7 @@ const Edit = ({rs}) => {
 
                                  </div>
                               </div>
+
                               <div className="row" style={{ marginLeft: '0px', marginRight: '0px' }}>
                                  <div className="col-5" style={{ paddingLeft: '0px'}}>   
 
@@ -200,7 +202,7 @@ const Edit = ({rs}) => {
 
                                     <div className="field_section">
                                         <br />
-                                       <TextAreaField name="default_prompt" label="Bot Instructions (Prompt)" value="Answer as truthfully as possible using the provided context and in less than three sentences. If answer is not known or is not contained in the provided context, reply with 'Sorry, I think I am not trained to answer that question'. Dont make up any facts from your own."  placeholder="Marv is a chatbot that reluctantly answers questions with sarcastic responses." rows="6" />
+                                       <TextAreaField name="default_prompt" id ="default_prompt" label="Bot Instructions (Prompt)" rows="6" />
                                        <h6 style={{marginTop: '10px', fontFamily:'Lexend Deca Light', fontSize: '13px'}}>A bot prompt refers to the starting query or input given to a language-generation AI model.  <a href="https://platform.openai.com/docs/models/overview" target="_blank">Learn More <i className="fa fa-external-link"></i></a></h6>
                                          
                                     </div>
@@ -221,7 +223,7 @@ const Edit = ({rs}) => {
 
                                        <div className="col-6" style={{marginBottom:'0px'}}>
                                           <div className="field_section">
-                                          <p name="wordscount" id="wordscount">~ Approximately 500 words</p>
+                                          <p name="wordscount" id="wordscount">~ Approximately 0 words</p>
                                           </div>
                                        </div>
                                     </div>
@@ -252,9 +254,7 @@ const Edit = ({rs}) => {
                            </div>
 
                            <div className="px-30 py-15 float-end">
-                              <SubmitButton title="Save" className="primary" style={{width:'100px'}} />
-
-                              
+                              <SubmitButton title="Save" className="primary" style={{width:'100px'}} />                            
                            </div>
                         </Form>
                      )}

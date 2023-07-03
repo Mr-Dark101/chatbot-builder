@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import trash_icon from '../../assets/Custom Size - 4/Icon metro-cancel.svg';
-import delete_icon from '../../assets/Group 4968.svg';
+import delete_icon from '../../assets/deleteicon.svg';
 import TextEditor from '../Items/ReactTextEditor/TextEditor';
 import $ from 'jquery';
 import AudioPlayerDefault from '../AudioPlayer/audioPlayer';
@@ -698,7 +698,7 @@ const ConditionList = ({ props, apiHandle, dataIndex, apiData, updatedTriggersVa
                                  <button
                                     className="btn-outline"
                                     style={{
-                                       width: '220px',
+                                       width: '15%',
                                        whiteSpace: 'nowrap',
                                        textAlign: 'center',
                                        overflowX: 'auto',
@@ -726,7 +726,7 @@ const ConditionList = ({ props, apiHandle, dataIndex, apiData, updatedTriggersVa
                                  <button
                                     className="btn-outline"
                                     style={{
-                                       width: '220px',
+                                       width: '20%',
                                        whiteSpace: 'nowrap',
                                        textAlign: 'center',
                                        overflowX: 'auto',
@@ -754,7 +754,7 @@ const ConditionList = ({ props, apiHandle, dataIndex, apiData, updatedTriggersVa
                                  <button
                                     className="btn-outline"
                                     style={{
-                                       width: '220px',
+                                       width: '27%',
                                        whiteSpace: 'nowrap',
                                        textAlign: 'center',
                                        overflowX: 'auto',
@@ -790,7 +790,7 @@ const ConditionList = ({ props, apiHandle, dataIndex, apiData, updatedTriggersVa
                                     <button
                                        className="btn-outline"
                                        style={{
-                                          width: '220px',
+                                          width: '27%',
                                           whiteSpace: 'nowrap',
                                           textAlign: 'center',
                                           overflowX: 'auto',
@@ -824,7 +824,7 @@ const ConditionList = ({ props, apiHandle, dataIndex, apiData, updatedTriggersVa
                                     <button
                                        className="btn-outline"
                                        style={{
-                                          width: '220px',
+                                          width: '11%',
                                           whiteSpace: 'nowrap',
                                           textAlign: 'center',
                                           overflowX: 'auto',
@@ -896,6 +896,7 @@ const ConditionList = ({ props, apiHandle, dataIndex, apiData, updatedTriggersVa
                                           <img
                                              alt={'#'}
                                              src={trash_icon}
+                                             style = {{width:'15px'}}
                                              onClick={() => {
                                                 setInit({
                                                    ...init,
@@ -936,6 +937,7 @@ const ConditionList = ({ props, apiHandle, dataIndex, apiData, updatedTriggersVa
                                  <img
                                     alt={'#'}
                                     src={delete_icon}
+                                    style = {{width:'15px'}}
                                     onClick={() => {
                                        setInit({
                                           ...init,

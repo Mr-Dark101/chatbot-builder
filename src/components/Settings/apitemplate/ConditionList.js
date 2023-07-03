@@ -685,7 +685,7 @@ const ConditionList = ({ props, apiHandle, dataIndex, apiData, updatedTriggersVa
                                  <button
                                     className="btn-outline"
                                     style={{
-                                       width: '220px',
+                                       width: '170px !important',
                                        whiteSpace: 'nowrap',
                                        textAlign: 'center',
                                        overflowX: 'auto',
@@ -713,7 +713,7 @@ const ConditionList = ({ props, apiHandle, dataIndex, apiData, updatedTriggersVa
                                  <button
                                     className="btn-outline"
                                     style={{
-                                       width: '220px',
+                                       width: '170px !important',
                                        whiteSpace: 'nowrap',
                                        textAlign: 'center',
                                        overflowX: 'auto',
@@ -741,7 +741,7 @@ const ConditionList = ({ props, apiHandle, dataIndex, apiData, updatedTriggersVa
                                  <button
                                     className="btn-outline"
                                     style={{
-                                       width: '220px',
+                                       width: '170px !important',
                                        whiteSpace: 'nowrap',
                                        textAlign: 'center',
                                        overflowX: 'auto',
@@ -777,7 +777,7 @@ const ConditionList = ({ props, apiHandle, dataIndex, apiData, updatedTriggersVa
                                     <button
                                        className="btn-outline"
                                        style={{
-                                          width: '220px',
+                                          width: '170px !important',
                                           whiteSpace: 'nowrap',
                                           textAlign: 'center',
                                           overflowX: 'auto',
@@ -811,7 +811,7 @@ const ConditionList = ({ props, apiHandle, dataIndex, apiData, updatedTriggersVa
                                     <button
                                        className="btn-outline"
                                        style={{
-                                          width: '220px',
+                                          width: '170px !important',
                                           whiteSpace: 'nowrap',
                                           textAlign: 'center',
                                           overflowX: 'auto',

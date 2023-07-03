@@ -32146,10 +32146,24 @@ img.away, img.busy, img.offline, img.online {
 .right_bar_top_section li .btn:hover, .right_bar_top_section li .btn:focus{
   border-color: transparent;
 }
+
+.right_bar_top_section_api{
+  margin-left: 5px;
+  padding: 0px 10px;
+  list-style-type: none;
+}
+.right_bar_top_section_api li {
+  display: inline-block;
+  width: 40%;
+  margin: 6px;
+}
+.right_bar_top_section_api li .btn:hover, .right_bar_top_section li .btn:focus{
+  border-color: transparent;
+}
 .lockIcon i {
   font-size: 11px;
   margin: 0 0 0 5px;
-  color: #e7e7e7;
+  color: #949292;
 }
 .btn_add_option{
   padding: 13.5px 30px !important;

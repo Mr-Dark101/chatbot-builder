@@ -1272,7 +1272,7 @@ const ByTypeComposer = ({ props, triggerType }) => {
                            </div>
                            {triggerType == 'A' ? (
                               <>
-                                 <ul className="right_bar_top_section" style={{ paddingLeft: '0px', paddingRight: '0px', margin: '0' }}>
+                                 <ul className="right_bar_top_section_api" style={{ paddingLeft: '0px', paddingRight: '0px', margin: '0' }}>
                                     <li style={{ margin: '0' }}>
                                        <button onClick={() => meClickCondition('C')} className="btn btn-block {btn-primary}" style={btnConditionStyle}>
                                           Condition Response
@@ -1787,8 +1787,8 @@ const ByTypeComposer = ({ props, triggerType }) => {
                                              ) : (
                                                 isData && (
                                                    <button
-                                                      className="btn btn-custom btn-icon rounded-circle"
-                                                      style={{ marginRight: '10px', width: '25px', height: '25px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+                                                      className="btn btn-icon"
+                                                      style={{ marginRight: '10px', width: '25px', height: '25px', display: 'flex', alignItems: 'center', justifyContent: 'center',color: '#000000' }}
                                                       onClick={() => {
                                                          setInit({
                                                             ...init,

@@ -13,15 +13,13 @@ const Create = ({rs}) => {
   
 
    const [formData, setFormData] = useState({
-                  version_id: '',
-                  
+                  version_id: '1',
                   api_secret:'',
-                  model_id:"",
-                  default_prompt: '',
-                  tokens_number: '',
-                  prediction_risk: '',
+                  model_id:"12",
+                  default_prompt: "Answer as truthfully as possible using the provided context and in less than three sentences. If answer is not known or is not contained in the provided context, reply with 'Sorry, I think I am not trained to answer that question'. Dont make up any facts from your own.",
+                  tokens_number: '100',
+                  prediction_risk: 0,
                   chatgpt_org_id: '',
-                  
                });
 
    const FormSchema = Yup.object().shape({
@@ -112,7 +110,6 @@ const Create = ({rs}) => {
                                  OpenAI GPT Integration                               
                               </h5>      
                               <h6 style={{marginTop: '20px'}}>An artificial intelligence system that allows you to build conversational chatbots to respond to user queries in natural language. After enabling the integration, AI bot from OpenAI will respond to user input instead of the standard reply flow.</h6>
-                              <br />
                               <h6 style={{marginTop: '10px'}}>Your credit card will be charged whatever usage amounts you incur by Open AI to access the GPT API. Please check your OpenAI account for your monthly API usage and billing.</h6>
                            </div>
 
@@ -183,18 +180,16 @@ const Create = ({rs}) => {
                                    
                                     <div className="field_section">
                                         <br />
-                                       <TextAreaField name="default_prompt" label="Bot Instructions (Prompt)" value="Answer as truthfully as possible using the provided context and in less than three sentences. If answer is not known or is not contained in the provided context, reply with 'Sorry, I think I am not trained to answer that question'. Dont make up any facts from your own."  placeholder="Marv is a chatbot that reluctantly answers questions with sarcastic responses." rows="6" />
+                                       <TextAreaField name="default_prompt" id="default_prompt" label="Bot Instructions (Prompt)" rows="6" />
                                        <h6 style={{marginTop: '10px'}}>A bot prompt refers to the starting query or input given to a language-generation AI model. <a href="https://platform.openai.com/docs/models/overview" target="_blank">Learn More <i className="fa fa-external-link"></i></a></h6>
                                        
                                     </div>
                                    
 
                                     <div className="row align-end">  
-                                       <h6 style={{fontFamily: 'Lexend Deca',fontWeight: 700,fontSize: '16px',lineHeight: '18px',marginTop:'20px',marginBottom:'-12px'}}>Maximum number of tokens in response</h6>               
-                                                      
+                                       <h6 style={{fontFamily: 'Lexend Deca',fontWeight: 700,fontSize: '16px',lineHeight: '18px',marginTop:'20px',marginBottom:'-12px'}}>Maximum number of tokens in response</h6>                                                                    
                                        <div className="col-6">
                                           <div className="field_section">
-                                             <h4>Maximum number of tokens in response</h4>
                                              <TextField name="tokens_number"                                     
                                              onBlur={(e) => {                                       
                                                 countWord(e)
@@ -204,9 +199,9 @@ const Create = ({rs}) => {
                                           </div>
                                        </div>
 
-                                       <div className="col-6">
+                                       <div className="col-6" style={{marginBottom:'0px'}}>
                                           <div className="field_section">
-                                             <p name="wordscount" id="wordscount">~ Approximately 500 words</p>
+                                             <p name="wordscount" id="wordscount">~ Approximately 0 words</p>
                                           </div>
                                        </div>
                                     </div>

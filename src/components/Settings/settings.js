@@ -2,7 +2,7 @@ import React, { useEffect, useState, useContext } from 'react';
 import back_icon from '../../assets/back-icon.svg';
 import myprofile from '../../assets/setting/myprofile.svg';
 import channel from '../../assets/setting/channel.svg';
-import integration from '../../assets/setting/integration.svg';
+import integration from '../../assets/setting/openai.svg';
 import api from '../../assets/setting/api.svg';
 import form from '../../assets/setting/writing.svg';
 import api_white from '../../assets/setting/api_white.svg';
@@ -24,6 +24,7 @@ import TrainBot from './TrainBot';
 import Customer from './Customer';
 import { Link } from 'react-router-dom';
 import { UserContext } from '../../context/UserContext';
+import {Tooltip} from '@mui/material';
 const defaultState = {
    isAlert: false,
    isUpdatedList: false,
@@ -39,8 +40,8 @@ const Settings = () => {
    const [activeClass, setActiveClass] = useState('');
 
    useEffect(() => {
-      //changeContent('FormBuilder');
-      changeContent('TrainBot');
+      changeContent('FormBuilder');
+      //changeContent('TrainBot');
    }, []);
    const handleBack = () => {
       history.push(`${STRINGS.ROUTES.ROOT}?org=${localStorage.getItem('userId')}`);
@@ -93,15 +94,9 @@ const Settings = () => {
    let Menu = [
       /*{name:'Integration',controller:'Integration',icon:integration},*/
       { name: 'API', controller: 'Api', icon: api },
-
-
-
       { name: 'Form Builder', controller: 'FormBuilder', icon: form },
-
-      { name: 'OpenAI GPT', controller: 'ChatGpt', icon: form },
+      { name: 'OpenAI GPT', controller: 'ChatGpt', icon: integration },
       { name: 'Training Data', controller: 'TrainBot', icon: form },
-
-      
    ];
 
    if (localStorage.getItem('org_unit_id') == '') {
@@ -109,9 +104,7 @@ const Settings = () => {
          { name: 'Channels', controller: 'Channels', icon: myprofile },
          { name: 'Industry', controller: 'Industry', icon: myprofile },
          { name: 'Platform', controller: 'Platform', icon: myprofile },
-
          { name: 'API Template', controller: 'ApiTemplate', icon: api },
-
          { name: 'Customer', controller: 'Customer', icon: api },
       ];
    }
@@ -146,19 +139,40 @@ const Settings = () => {
                            {Menu.map((m, i) => (
                               <>
                                  {m.controller == activeClass ? (
-                                    <li>
-                                       <a href="#" className="active" onClick={() => changeContent(m.controller)}>
+                                    <>
+                                    {(m.name === "OpenAI GPT" || m.name === "Training Data") && localStorage.getItem('chatbot_plan').includes("BASIC") ? ( <li>
+                                       <a href="#" className="active">
                                           <img alt={'#'} src={m.icon} />
                                           {m.name}
+                                          <Tooltip title= {"You don\'t have access to this feature. Please contact sales to upgrade your plan."}><span id ="lockimage" className="lockIcon"><i class="fa fa-lock"></i></span></Tooltip>
                                        </a>
                                     </li>
+                                    ) : ( <li>
+                                       <a href="#" className="active" onClick={() => changeContent(m.controller)}>
+                                          <img alt={'#'} src={m.icon} />
+                                          {m.name}                                         
+                                       </a>
+                                    </li>)
+                                    }
+                                   </>
                                  ) : (
-                                    <li>
+                                    <>
+                                    {(m.name === "OpenAI GPT" || m.name === "Training Data") && localStorage.getItem('chatbot_plan').includes("BASIC") ? ( <li>
+                                       <a href="#" >
+                                          <img alt={'#'} src={m.icon} />
+                                          {m.name}
+                                          <Tooltip title= {"You don\'t have access to this feature. Please contact sales to upgrade your plan."}><span id ="lockimage" className="lockIcon"><i class="fa fa-lock"></i></span></Tooltip>
+                                       </a>
+                                    </li>
+                                    ) : (  <li>
                                        <a href="#" onClick={() => changeContent(m.controller)}>
                                           <img alt={'#'} src={m.icon} />
                                           {m.name}
                                        </a>
-                                    </li>
+                                    </li>)
+                                    }
+                                   </>
+                                   
                                  )}
                               </>
                            ))}

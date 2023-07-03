@@ -164,17 +164,8 @@ const initForm = async (formSchema) => {
         setSubmitting(false);
     }
 
-
-
-
-
-
   return (
     <>
-    
-
-
-     
         <Form
                 enableReinitialize
                 initialValues={(rs) ? rs : formData}
@@ -196,11 +187,6 @@ const initForm = async (formSchema) => {
               />
 
             </Form>
-           
-           
-    
-    
-      
     </>
   );
 };

@@ -37,8 +37,10 @@ const AddTriggerComposer = (props) => {
       if(props.type_id != 3){
          if (plan.includes('ADVANCED')) {
             document.getElementById('lockimage').style.display = 'none';
+            document.getElementById('lockgpt').style.display = 'none';
          } else {
             document.getElementById('lockimage').style.display = 'unset';
+            document.getElementById('lockgpt').style.display = 'unset';
          }
          
        }else{
@@ -99,11 +101,20 @@ const AddTriggerComposer = (props) => {
          setBtnChatGPTStyle({ backgroundColor: '#fff', width: '100%', color: '#000', borderRadius: '5px 5px 0px 0px' });
          setTriggerType(param);
       } else if (param == 'ChatGPT') {
-         setBtnMessageStyle({ backgroundColor: '#fff', width: '100%', color: '#000', borderRadius: '5px 5px 0px 0px' });
-         setBtnApiStyle({ backgroundColor: '#fff', width: '100%', color: '#000', borderRadius: '5px 5px 0px 0px' });
-         setBtnFormStyle({ backgroundColor: '#fff', width: '100%', color: '#000', borderRadius: '5px 5px 0px 0px' });
-         setBtnChatGPTStyle({ backgroundColor: '#363a77', width: '100%', color: '#fff', borderRadius: '5px 5px 0px 0px' });
-         setTriggerType(param);
+         let plan = localStorage.getItem('chatbot_plan');
+       
+         if (plan.includes('ADVANCED')) {
+            console.log('Advanced Version');
+            setBtnMessageStyle({ backgroundColor: '#fff', width: '100%', color: '#000', borderRadius: '5px 5px 0px 0px' });
+            setBtnApiStyle({ backgroundColor: '#fff', width: '100%', color: '#000', borderRadius: '5px 5px 0px 0px' });
+            setBtnFormStyle({ backgroundColor: '#fff', width: '100%', color: '#000', borderRadius: '5px 5px 0px 0px' });
+            setBtnChatGPTStyle({ backgroundColor: '#363a77', width: '100%', color: '#fff', borderRadius: '5px 5px 0px 0px' });
+            setTriggerType(param);
+         } else {
+
+         }
+
+        
       }
    };
 
@@ -147,7 +158,7 @@ const AddTriggerComposer = (props) => {
 
              <li>
                <button onClick={() => meClick('ChatGPT')} className="btn btn-block btn-secondry" style={btnChatGPTStyle}>
-                  GPT
+                  GPT <Tooltip title= {"You don\'t have access to this feature. Please contact sales to upgrade your plan."}><span id ="lockgpt" className="lockIcon"><i class="fa fa-lock"></i></span></Tooltip>
                </button>
             </li>
 

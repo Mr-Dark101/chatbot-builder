@@ -327,25 +327,21 @@ const CreateBotComposer = (props) => {
             {(botType == 3 || botType == 4) ? (
                <div className="row">
                   <div className="col-sm-12">
-                        <p>
-
+                        <h6 style={{fontFamily: 'Lexend Deca Light !important'}}>
                         This bot is powered by Open AI GPT technology. 
                         <br /><br />
                         This bot does not require a
 predetermined flow and uses your proprietary training data to provide human like responses to user queries in a conversational manner.
 <br /><br />
 This bot does not reply to the user input with dynamic data from third party systems.
-
-                          
-
-                        </p>
+                        </h6>
                   </div>
 
                   
                </div>
 
             ) : null}
-            <div className="row">
+            <div className="row mt-2">
                <div className="col-sm-12">
                   <label class="mb-2">Name your bot</label>
                   <input
@@ -364,8 +360,9 @@ This bot does not reply to the user input with dynamic data from third party sys
             <br />
 
             <label class="mb-2">Describe your bot</label>
+           
             <textarea
-               rows="6"
+               rows="3"
                placeholder={'Provide your chatbot description'}
                onChange={(e) => {
                   setInit({

@@ -4,6 +4,7 @@ import {useDispatch} from "react-redux";
 // import {SetUpdateBotData} from "../slices/dashboard.slice";
 // import $ from "jquery";
 import {Avatar as Av} from "@mui/material";
+import {Tooltip} from '@mui/material';
 // import MenusComponent from "../../../SharedComponent/Menus";
 
 const defaultState = {
@@ -14,7 +15,7 @@ const menusOptions = [{text: "Update", value: 1}, {text: "Delete", value: 2}, {t
 
 const CreateBotsCardItem = (props) => {
     let {selected, data, onClick} = props;
-    let {id, icon_1, icon_2, name, userId} = data;
+    let {id, icon_1, icon_2, name, userId,title} = data;
     const [init, setInit] = useState(defaultState);
     let {
         //openOpt, openComposer, currentUser,
@@ -72,7 +73,7 @@ const CreateBotsCardItem = (props) => {
     // }
 
 
-    return (
+    return (      
         <div className={`card ${selected && "on"}`} style={{
             // width: "170px",
         }} onClick={() => onClick(id)} onMouseOver={()=>{
@@ -80,36 +81,38 @@ const CreateBotsCardItem = (props) => {
                 ...init,
                 onHover: true
             });
+        }} onMouseOut={()=>{
+            setInit({
+                ...init,
+                onHover: false
+            })
         }}
-             onMouseOut={()=>{
-                 setInit({
-                     ...init,
-                     onHover: false
-                 })
-             }}
         >
-
-            <div className="card-content">
-                <div className="card-start justify-content-center" >
-                    <div className="card-circle on" style={{
-                        backgroundColor: "initial", border: "none",
-                        width: "18px", height: "18px"
-                    }}>
-                        <Av
-                            sx={{ width: 18, height: 18 }}
-                            src={!onHover ? icon_1 : icon_2}
-                        />
+        <Tooltip title= {title}>
+        <div className="card-content">
+                    <div className="card-start justify-content-center" >
+                        <div className="card-circle on" style={{
+                            backgroundColor: "initial", border: "none",
+                            width: "18px", height: "18px"
+                        }}>
+                            <Av
+                                sx={{ width: 18, height: 18 }}
+                                src={!onHover ? icon_1 : icon_2}
+                            />
+                        </div>
                     </div>
-                </div>
-                <div className="card-center">
-                    <div className="txt text-wrap text-center" style={{
-                        fontSize: "14px"
-                    }}>{name}</div>
-                    {/*<div className="sub-txt">{phoneNumber}</div>*/}
-                </div>
-                
-            </div>
+                    <div className="card-center">
+                        <div className="txt text-wrap text-center" style={{
+                            fontSize: "14px"
+                        }}>{name}</div>
+                        {/*<div className="sub-txt">{phoneNumber}</div>*/}
+                    </div>
+                    
+        </div> 
+        </Tooltip>
         </div>
+
+        
     );
 };
 
