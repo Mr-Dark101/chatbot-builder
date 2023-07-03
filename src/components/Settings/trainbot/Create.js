@@ -10,6 +10,7 @@ const Create = ({ rs, retrieveList, loadList }) => {
    const [validationSchema, setValidationSchema] = useState({});
 
    const [gptCatList, setGptCatList] = useState([]);
+   const [defaultCat, setDefaultCat] = useState('');
    const [insuranceTypeList, setInsuranceTypeList] = useState([]);
 
    const [successful, setSuccessful] = useState(false);
@@ -18,7 +19,8 @@ const Create = ({ rs, retrieveList, loadList }) => {
    useEffect(() => {
       //retrieveMasterList('insurance');
       retrieveMasterList('gptcat');
-   }, []);
+      formData.category_id = defaultCat;
+   }, [defaultCat]);
 
    const addField = (param) => {
       setHeaderField([...headerField, {}]);
@@ -32,11 +34,29 @@ const Create = ({ rs, retrieveList, loadList }) => {
       { value: 'put', label: 'PUT' },
    ];
 
+    const [formData, setFormData] = useState({
+      question: '',
+      answer: '',
+      category_id:'',
+      
+      file_type: 'C',
+   });
+
+
    const retrieveMasterList = (url) => {
       CrudService.ListValue('master/list-value?type=' + url)
          .then((response) => {
             if (url == 'gptcat') {
+               if(response.data.length == 0){
+                  response.data = [{value:0,label:"Default"}]
+               }
                setGptCatList(response.data);
+               
+               const catData = response.data
+               const xcat = catData.filter(x => x.label == 'Default');
+               
+               setDefaultCat(xcat[0].value)
+               
             }
 
            
@@ -46,14 +66,7 @@ const Create = ({ rs, retrieveList, loadList }) => {
          });
    };
 
-   const [formData, setFormData] = useState({
-      question: '',
-      answer: '',
-      category_id:'',
-      
-      file_type: 'C',
-   });
-
+  
    const FormSchema = Yup.object().shape({
       question: Yup.string().required('Required'),
       answer: Yup.string().required('Required'),
