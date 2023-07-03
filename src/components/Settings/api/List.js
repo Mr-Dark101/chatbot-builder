@@ -202,7 +202,7 @@ const List = ({ rs, subPage, loadList }) => {
                </div>
                <div className="col-sm-3 ps-0 pe-10">
                   <div className="available_api_section">
-                     <h5 class="box-title m-0" style={{ fontWeight: 800, height: '80px !important', fontSize: '19px !important', color: '#000', display: 'table-cell', verticalAlign: 'middle', overflow: 'hidden' }}>
+                     <h5 class="box-title m-0" style={{ fontWeight: 600, height: '80px !important', fontSize: '19px !important', color: '#000', display: 'table-cell', verticalAlign: 'middle', overflow: 'hidden' }}>
                         Open APIs
                      </h5>
 

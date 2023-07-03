@@ -169,9 +169,9 @@ const Create = ({ rs, retrieveList, loadList }) => {
                            </div>
 
                            <div>
-                              <SubmitButton title="Create" className="primary" />
+                              <SubmitButton title="Create" className="btn btn-primary" />
 
-                              <button onClick={() => loadList()} type="button" className="secondary ms-10">
+                              <button onClick={() => loadList()} type="button" className="btn btn-outline-danger ms-10">
                                  Back
                               </button>
                            </div>
