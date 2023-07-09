@@ -462,7 +462,7 @@ const BuildWorkSpace = () => {
 
             <div className="head-rt">
                <div onClick={handleBack} className="icon" style={{ width: '24px' }}>
-                  <img alt={'#'} src={back_icon} />
+                  <img style ={{ padding: "5px",marginTop: "-3px"}} alt={'#'} src={back_icon} />
                </div>
                <h5 class="box-title m-0" style={{ fontWeight: 800 }}>
                   Builder Workspace

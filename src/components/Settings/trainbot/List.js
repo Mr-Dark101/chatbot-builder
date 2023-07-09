@@ -347,7 +347,7 @@ const selCat = (e) => {
                cancelBtnBsStyle="light"
                customIcon=""
                customClass="containerBoxAlert"
-               title="Delete Category"
+               title="Delete Training Data"
                onConfirm={ () => {
                   setShowAlertAll(false);
                   deleteAllSeleted();

@@ -10,6 +10,15 @@ import { toast } from 'react-toastify';
 import { Tooltip } from '@mui/material';
 import editIcon from '../../../assets/edit.svg';
 import deleteIcon from '../../../assets/deleteicon.svg';
+import { createTheme, ThemeProvider, styled } from "@mui/material/styles";
+
+
+const BlueOnGreenTooltip = styled(({ className, ...props }) => (
+   <Tooltip {...props} componentsProps={{ tooltip: { className: className } }} />
+ ))(`
+     color: white;
+     background-color: black;
+ `);
 
 const List = ({ rs, subPage, loadList }) => {
    const [listData, setListData] = useState([]);
@@ -141,11 +150,11 @@ const List = ({ rs, subPage, loadList }) => {
                                     </td>
 
                                     <td width="20%" style={{ textAlign: 'end' }}>
-                                       <Tooltip title={'View Form Data'}>
+                                       <BlueOnGreenTooltip title={'View Form Data'}>
                                           <button className="btn btn-icon btn-icon" onClick={() => subPage(<FormDetail subPage={subPage} loadList={loadList} row={row} />)}>
                                              <i class="fa fa-external-link" aria-hidden="true" style={{ color: '#000', fontSize: '15px',marginTop: 2 }}></i>
                                           </button>
-                                       </Tooltip>
+                                       </BlueOnGreenTooltip>
                                        <a style={{ marginLeft: 2 }}  onClick={() => subPage(<Edit loadList={loadList} retrieveList={retrieveList} rs={row} />)}>
                                           
                                           <img alt={'#'} src={editIcon}  />

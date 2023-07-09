@@ -6,6 +6,14 @@ import CrudService from '../../../services/crud.service';
 import { Link } from 'react-router-dom';
 import { Tooltip } from '@mui/material';
 import deleteIcon from '../../../assets/deleteicon.svg';
+import { createTheme, ThemeProvider, styled } from "@mui/material/styles";
+
+const BlueOnGreenTooltip = styled(({ className, ...props }) => (
+   <Tooltip {...props} componentsProps={{ tooltip: { className: className } }} />
+ ))(`
+     color: white;
+     background-color: black;
+ `);
 
 const Create = ({ rs, retrieveList, loadList }) => {
    const [validationSchema, setValidationSchema] = useState({});
@@ -113,19 +121,19 @@ const Create = ({ rs, retrieveList, loadList }) => {
                                     <TextAreaField name="description" label="API Description" placeholder="Provide a brief description about the intended use of the API." rows="3" />
                                  </div>
 
-                                 <Tooltip title={"Configure the type of API call you're looking to make - GET, POST,PUT."}>
+                                 <BlueOnGreenTooltip title={"Configure the type of API call you're looking to make - GET, POST,PUT."}>
                                     <div className="field_section" style={{ marginTop: '-10px' }}>
                                        <SelectField name="api_type" label="API Type" options={typeList} />
                                     </div>
-                                 </Tooltip>
+                                 </BlueOnGreenTooltip>
 
                                  <div className="field_section" style={{ marginTop: '-10px' }}>
                                     <TextField name="url" label="API Endpoint URL" placeholder="Provide the endpoint URL here" />
                                  </div>
 
-                                 <Tooltip title={'You can authorize your API in this field and also press any additional parameters as headers in this section.'}>
+                                 <BlueOnGreenTooltip title={'You can authorize your API in this field and also press any additional parameters as headers in this section.'}>
                                     <label style={{ marginTop: '10px', fontWeight: '700px', fontFamily: 'Lexend Deca' }}>API Header</label>
-                                 </Tooltip>
+                                 </BlueOnGreenTooltip>
                                  {headerField &&
                                     headerField.map((x, i) => {
                                        return (

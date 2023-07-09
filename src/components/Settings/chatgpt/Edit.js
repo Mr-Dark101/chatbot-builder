@@ -42,10 +42,10 @@ const Edit = ({rs}) => {
             }else{
                const modelList = [
                  
-                  { value: 8, label: 'gpt-3.5-turbo (4,096 tokens)' },
+                  /*{ value: 8, label: 'gpt-3.5-turbo (4,096 tokens)' },
                   { value: 9, label: 'gpt-3.5-turbo-16k (16,384 tokens)' },
                   { value: 10, label: 'gpt-3.5-turbo-0613 (4,096 tokens)' },
-                  { value: 11, label: 'gpt-3.5-turbo-16k-0613 (16,384 tokens)' },
+                  { value: 11, label: 'gpt-3.5-turbo-16k-0613 (16,384 tokens)' },*/
                   { value: 12, label: 'text-davinci-003 (4,097 tokens)' },
                   { value: 13, label: 'text-davinci-002 (4,097 tokens)' },
                   { value: 14, label: 'code-davinci-002 (8,001 tokens)' }

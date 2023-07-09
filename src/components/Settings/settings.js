@@ -25,11 +25,21 @@ import Customer from './Customer';
 import { Link } from 'react-router-dom';
 import { UserContext } from '../../context/UserContext';
 import {Tooltip} from '@mui/material';
+import { createTheme, ThemeProvider, styled } from "@mui/material/styles";
+
 const defaultState = {
    isAlert: false,
    isUpdatedList: false,
    confirmationTxt: '',
 };
+
+
+const BlueOnGreenTooltip = styled(({ className, ...props }) => (
+   <Tooltip {...props} componentsProps={{ tooltip: { className: className } }} />
+ ))(`
+     color: white;
+     background-color: black;
+ `);
 
 const Settings = () => {
    const { user, setUser } = useContext(UserContext);
@@ -114,7 +124,7 @@ const Settings = () => {
          <div className="head">
             <div className="head-rt">
                <div onClick={handleBack} className="icon">
-                  <img alt={'#'} src={back_icon} />
+                  <img style ={{ padding: "5px"}}alt={'#'} src={back_icon} />
                </div>
                <div className="txt">Settings</div>
             </div>
@@ -144,7 +154,7 @@ const Settings = () => {
                                        <a href="#" className="active">
                                           <img alt={'#'} src={m.icon} />
                                           {m.name}
-                                          <Tooltip title= {"You don\'t have access to this feature. Please contact sales to upgrade your plan."}><span id ="lockimage" className="lockIcon"><i class="fa fa-lock"></i></span></Tooltip>
+                                          <BlueOnGreenTooltip title= {"You don\'t have access to this feature. Please contact sales to upgrade your plan."}><span id ="lockimage" className="lockIcon"><i class="fa fa-lock"></i></span></BlueOnGreenTooltip>
                                        </a>
                                     </li>
                                     ) : ( <li>
@@ -161,7 +171,7 @@ const Settings = () => {
                                        <a href="#" >
                                           <img alt={'#'} src={m.icon} />
                                           {m.name}
-                                          <Tooltip title= {"You don\'t have access to this feature. Please contact sales to upgrade your plan."}><span id ="lockimage" className="lockIcon"><i class="fa fa-lock"></i></span></Tooltip>
+                                          <BlueOnGreenTooltip title= {"You don\'t have access to this feature. Please contact sales to upgrade your plan."}><span id ="lockimage" className="lockIcon"><i class="fa fa-lock"></i></span></BlueOnGreenTooltip>
                                        </a>
                                     </li>
                                     ) : (  <li>

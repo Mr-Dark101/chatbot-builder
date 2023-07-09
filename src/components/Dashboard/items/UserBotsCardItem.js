@@ -15,7 +15,14 @@ import MessengerIcon from '../../../assets/Image 1/logos_messenger.svg';
 import InstagramIcon from '../../../assets/insta.png';
 import GoogleIcon from '../../../assets/google.png';
 import { Tooltip } from '@mui/material';
+import { createTheme, ThemeProvider, styled } from "@mui/material/styles";
 
+const BlueOnGreenTooltip = styled(({ className, ...props }) => (
+   <Tooltip {...props} componentsProps={{ tooltip: { className: className } }} />
+ ))(`
+     color: white;
+     background-color: black;
+ `);
 
 const defaultState = {
    openOpt: false,
@@ -182,7 +189,7 @@ const UserBotsCardItem = (props) => {
    return (
       <>
       
-      <Tooltip title={description}>
+      <BlueOnGreenTooltip title={description}>
          <div
             className={`card_box ${selected && 'on'}`}
             onMouseOver={() => {
@@ -282,7 +289,7 @@ const UserBotsCardItem = (props) => {
                </div>
             </div>
          </div>
-      </Tooltip>
+      </BlueOnGreenTooltip>
       </>
    );
 };

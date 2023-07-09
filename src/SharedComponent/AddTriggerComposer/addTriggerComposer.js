@@ -5,6 +5,14 @@ import React, { useEffect, useState } from 'react';
 import ByTypeComposer from './byTypeComposer';
 import AlertModal from '../../SharedComponent/ConfirmModal/AlertModal';
 import {Tooltip} from '@mui/material';
+import { createTheme, ThemeProvider, styled } from "@mui/material/styles";
+
+const BlueOnGreenTooltip = styled(({ className, ...props }) => (
+   <Tooltip {...props} componentsProps={{ tooltip: { className: className } }} />
+ ))(`
+     color: white;
+     background-color: black;
+ `);
 
 const AddTriggerComposer = (props) => {
    const [triggerType, setTriggerType] = useState('M');
@@ -145,7 +153,7 @@ const AddTriggerComposer = (props) => {
             <li>
                
                <button  onClick={() => meClick('A')} className="btn btn-block btn-secondry" style={btnApiStyle}>
-                  API <Tooltip title= {"You don\'t have access to this feature. Please contact sales to upgrade your plan."}><span id ="lockimage" className="lockIcon"><i class="fa fa-lock"></i></span></Tooltip>
+                  API <BlueOnGreenTooltip title= {"You don\'t have access to this feature. Please contact sales to upgrade your plan."}><span id ="lockimage" className="lockIcon"><i class="fa fa-lock"></i></span></BlueOnGreenTooltip>
                </button>
             </li>
 
@@ -158,7 +166,7 @@ const AddTriggerComposer = (props) => {
 
              <li>
                <button onClick={() => meClick('ChatGPT')} className="btn btn-block btn-secondry" style={btnChatGPTStyle}>
-                  GPT <Tooltip title= {"You don\'t have access to this feature. Please contact sales to upgrade your plan."}><span id ="lockgpt" className="lockIcon"><i class="fa fa-lock"></i></span></Tooltip>
+                  GPT <BlueOnGreenTooltip title= {"You don\'t have access to this feature. Please contact sales to upgrade your plan."}><span id ="lockgpt" className="lockIcon"><i class="fa fa-lock"></i></span></BlueOnGreenTooltip>
                </button>
             </li>
 

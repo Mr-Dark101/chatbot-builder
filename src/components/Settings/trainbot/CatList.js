@@ -247,7 +247,7 @@ const selectAll = (check_status,value) => {
                         
                         <h5 className="box-title m-0" style={{ fontWeight: 800 }}>
                         <span onClick={() => loadList() } style={{marginRight:'5px'}} className="icon">
-                           <img alt={'#'} src={back_icon} /> 
+                           <img style ={{ width: "15px", marginRight: "6px"}} alt={'#'} src={back_icon} /> 
                         </span>
                              Manage Data Categories
                         </h5>

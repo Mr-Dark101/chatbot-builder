@@ -6,6 +6,15 @@ import CrudService from '../../../services/crud.service';
 import { Link } from 'react-router-dom';
 import { Tooltip } from '@mui/material';
 import deleteIcon from '../../../assets/deleteicon.svg';
+import { createTheme, ThemeProvider, styled } from "@mui/material/styles";
+
+const BlueOnGreenTooltip = styled(({ className, ...props }) => (
+   <Tooltip {...props} componentsProps={{ tooltip: { className: className } }} />
+ ))(`
+     color: white;
+     background-color: black;
+ `);
+
 const Create = ({ rs, retrieveList, loadList }) => {
    const [validationSchema, setValidationSchema] = useState({});
    const [insuranceList, setInsuranceList] = useState([]);
@@ -258,9 +267,9 @@ const Create = ({ rs, retrieveList, loadList }) => {
                                     <TextAreaField name="description" label="Form Description" style={{ color: '#000' }} placeholder="Provide a description about the intended purpose of the form." rows="3" />
                                  </div>
 
-                                 <Tooltip title={'Add customer form and provide name and type for each field. For certain field types you can also add multiple options for your users to choose from.'}>
+                                 <BlueOnGreenTooltip title={'Add customer form and provide name and type for each field. For certain field types you can also add multiple options for your users to choose from.'}>
                                     <label style={{ marginBottom: '0px' }}>Form Fields</label>
-                                 </Tooltip>
+                                 </BlueOnGreenTooltip>
                                  {headerField &&
                                     headerField.map((x, i) => {
                                        return (

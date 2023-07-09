@@ -5,6 +5,7 @@ import {useDispatch} from "react-redux";
 // import $ from "jquery";
 import {Avatar as Av} from "@mui/material";
 import {Tooltip} from '@mui/material';
+import { createTheme, ThemeProvider, styled } from "@mui/material/styles";
 // import MenusComponent from "../../../SharedComponent/Menus";
 
 const defaultState = {
@@ -12,6 +13,13 @@ const defaultState = {
 }
 
 const menusOptions = [{text: "Update", value: 1}, {text: "Delete", value: 2}, {text: "Activate", value: 3}]
+
+const BlueOnGreenTooltip = styled(({ className, ...props }) => (
+    <Tooltip {...props} componentsProps={{ tooltip: { className: className } }} />
+  ))(`
+      color: white;
+      background-color: black;
+  `);
 
 const CreateBotsCardItem = (props) => {
     let {selected, data, onClick} = props;
@@ -88,7 +96,7 @@ const CreateBotsCardItem = (props) => {
             })
         }}
         >
-        <Tooltip title= {title}>
+        <BlueOnGreenTooltip title= {title}>
         <div className="card-content">
                     <div className="card-start justify-content-center" >
                         <div className="card-circle on" style={{
@@ -109,7 +117,7 @@ const CreateBotsCardItem = (props) => {
                     </div>
                     
         </div> 
-        </Tooltip>
+        </BlueOnGreenTooltip>
         </div>
 
         

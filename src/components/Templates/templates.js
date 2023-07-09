@@ -143,7 +143,7 @@ const Templates = () => {
          <div className="head">
             <div className="head-rt">
                <div onClick={handleBack} className="icon">
-                  <img alt={'#'} src={back_icon} />
+                  <img style ={{ padding: "5px"}} alt={'#'} src={back_icon} />
                </div>
                <div className="txt">Bot Template</div>
             </div>

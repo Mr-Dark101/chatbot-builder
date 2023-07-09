@@ -91,8 +91,6 @@ const Edit = ({ rs, retrieveList, loadList }) => {
                                     <div className="row" style={{ marginLeft: '0px', marginRight: '0px' }}>
                                        <div className="col-9" style={{ paddingLeft: '0px', paddingRight: '0px' }}>
                                           
-
-
                                           <div className="field_section">
                                             <SelectField 
                                               name="category_id"
@@ -105,25 +103,19 @@ const Edit = ({ rs, retrieveList, loadList }) => {
                                              <TextField name="question" label="Question" icon="check-square" placeholder="Please enter user question" />
                                           </div>
 
-                                         
-
                                          <div className="field_section" style={{marginTop:'15px'}}>
                                              <TextAreaField name="answer" label="Answer" placeholder="Please enter bot response" rows="3" />
                                           </div>
 
-                                          
-                                           
-
-                                        
                                        </div>
 
                                        <div className="col-3" style={{ paddingLeft: '0px', paddingRight: '0px' }}></div>
                                     </div>
 
                                     <div className="mt-20">
-                                       <SubmitButton title="Update" className="btn primary" />
-                                       <button onClick={() => loadList()} className="btn secondary ms-20">
-                                          Cancel
+                                       <SubmitButton title="Update" className="btn btn-primary" />
+                                       <button onClick={() => loadList()} className="btn btn-outline-danger ms-20">
+                                          Back
                                        </button>
                                     </div>
                                  </Form>
