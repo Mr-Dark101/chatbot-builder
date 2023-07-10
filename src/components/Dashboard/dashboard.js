@@ -390,9 +390,9 @@ const Dashboard = () => {
                            {createArray.map((d, index) => {
                               if((index == 2 || index == 3) && localStorage.getItem('chatbot_plan').includes("BASIC")) {
                                  d.title = "You don\'t have access to this feature. Please contact sales to upgrade your plan.";
-                                 return <CreateBotsCardItem onClick={doNone} key={index} data={d}/>;
+                                 return <CreateBotsCardItem bgColor="#686868" onClick={doNone} key={index} data={d}/>;
                               } else {
-                                 return <CreateBotsCardItem onClick={handleCreateChatBot} dashboard={dashboard} key={index} data={d}/>;
+                                 return <CreateBotsCardItem bgColor="#363a77" onClick={handleCreateChatBot} dashboard={dashboard} key={index} data={d}/>;
                               } 
                            })}
                         </div>

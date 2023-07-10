@@ -22,7 +22,7 @@ const BlueOnGreenTooltip = styled(({ className, ...props }) => (
   `);
 
 const CreateBotsCardItem = (props) => {
-    let {selected, data, onClick} = props;
+    let {selected, data, onClick,bgColor} = props;
     let {id, icon_1, icon_2, name, userId,title} = data;
     const [init, setInit] = useState(defaultState);
     let {
@@ -84,6 +84,7 @@ const CreateBotsCardItem = (props) => {
     return (      
         <div className={`card ${selected && "on"}`} style={{
             // width: "170px",
+            backgroundColor: `${bgColor}`
         }} onClick={() => onClick(id)} onMouseOver={()=>{
             setInit({
                 ...init,
@@ -97,7 +98,9 @@ const CreateBotsCardItem = (props) => {
         }}
         >
         <BlueOnGreenTooltip title= {title}>
-        <div className="card-content">
+        <div className="card-content"
+
+        >
                     <div className="card-start justify-content-center" >
                         <div className="card-circle on" style={{
                             backgroundColor: "initial", border: "none",
@@ -111,7 +114,8 @@ const CreateBotsCardItem = (props) => {
                     </div>
                     <div className="card-center">
                         <div className="txt text-wrap text-center" style={{
-                            fontSize: "14px"
+                            fontSize: "14px",
+                           
                         }}>{name}</div>
                         {/*<div className="sub-txt">{phoneNumber}</div>*/}
                     </div>
