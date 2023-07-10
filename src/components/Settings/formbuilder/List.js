@@ -64,7 +64,7 @@ const List = ({ rs, subPage, loadList }) => {
    const deleteRow = (id) => {
       CrudService.deleteRow(id, 'form_builder', true).then(
          (response) => {
-            toast('Record has been deleted!', { type: toast.TYPE.SUCCESS });
+            toast('Form has been deleted!', { type: toast.TYPE.SUCCESS });
             setMessage(response.data.message);
             setSuccessful(true);
             retrieveList();

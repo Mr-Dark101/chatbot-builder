@@ -300,12 +300,17 @@ const Edit = ({rs}) => {
                                  </div>
 
                                  <div className="col-2" style={{ paddingLeft: '0px', paddingRight: '0px' }}></div>
+
+                                
+                                
+                              </div>
+
+                              <div className="px-30 py-15 float-end">
+                                 <SubmitButton title="Save" className="primary" style={{width:'100px',marginBottom:"60px"}} />              
                               </div>
                            </div>
 
-                           <div className="px-30 py-15 float-end">
-                              <SubmitButton title="Save" className="primary" style={{width:'100px'}} />                            
-                           </div>
+                           
                         </Form>
                      
                   </div>

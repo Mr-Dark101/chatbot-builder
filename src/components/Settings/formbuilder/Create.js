@@ -22,7 +22,7 @@ const Create = ({ rs, retrieveList, loadList }) => {
 
    const [successful, setSuccessful] = useState(false);
    const [message, setMessage] = useState();
-   const [headerField, setHeaderField] = useState([{ label: '', type: '', option: [], regularexpression: '', interactivebutton: [], interactivelist: [] }]);
+   const [headerField, setHeaderField] = useState([{ label: '', type: 'text', option: [], regularexpression: '', interactivebutton: [], interactivelist: [] }]);
 
    const [optionField, setOptionField] = useState({ key: '', value: '' });
    useEffect(() => {
@@ -56,17 +56,17 @@ const Create = ({ rs, retrieveList, loadList }) => {
     
    };
 
-   const removeFieldInteractiveButton = (i, label, parentIndex) => {
+   const removeFieldInteractiveButton = (i, key, parentIndex) => {
       const list = [...headerField];
-      const newArray = headerField[parentIndex]['interactivebutton'].filter((d) => d.label !== label);
+      const newArray = headerField[parentIndex]['interactivebutton'].filter((d) => d.key !== key);
 
       list[parentIndex]['interactivebutton'] = newArray;
       setHeaderField(list);
    };
 
-   const removeFieldInteractiveList = (i, label, parentIndex) => {
+   const removeFieldInteractiveList = (i, key, parentIndex) => {
       const list = [...headerField];
-      const newArray = headerField[parentIndex]['interactivelist'].filter((d) => d.label !== label);
+      const newArray = headerField[parentIndex]['interactivelist'].filter((d) => d.key !== key);
 
       list[parentIndex]['interactivelist'] = newArray;
       setHeaderField(list);
@@ -89,24 +89,17 @@ const Create = ({ rs, retrieveList, loadList }) => {
    };
 
    const addFieldButton = (index) => {
-      if(index < 3) {
-         const list = [...headerField];
-
-         list[index]['interactivebutton'].push({ heading: '',key: '', value: '' });
-   
-         setHeaderField(list);
-      }
-      
+      const list = [...headerField];
+      list[index]['interactivebutton'].push({ heading: '',key: '', value: '' });
+      setHeaderField(list);
+       
    };
 
-   const addFieldList = (index) => {
-      if(index < 10) {
+   const addFieldList = (index) => { 
          const list = [...headerField];
-
-         list[index]['interactivelist'].push({heading: '', key: '', value: '', description: '',buttonText: '' });
-   
+         list[index]['interactivelist'].push({heading: '', key: '', value: '', description: '',buttonText: '' });  
          setHeaderField(list);
-      }  
+      
    };
 
    const retrieveMasterList = (url) => {
@@ -180,17 +173,14 @@ const Create = ({ rs, retrieveList, loadList }) => {
       if (value == 'option') {
          list[index]['option'] = [{ key: '', value: '' }];
       }
-      if (value == 'regularexpression') {
+      else if (value == 'regularexpression') {
          list[index]['regularexpression'] = [{ value: '' }];
       }
-      if (value == 'interactivebutton') {
+      else if (value == 'interactivebutton') {
          list[index]['interactivebutton'] = [{ key: '', value: '' }];
       }
-      if (value == 'interactivelist') {
+      else if (value == 'interactivelist') {
          list[index]['interactivelist'] = [{ key: '', value: '' }];
-      }
-      if (value == 'productcatalog') {
-         list[index]['productcatalog'] = [{ value: '' }];
       }
       setHeaderField(list);
    };
@@ -214,21 +204,31 @@ const Create = ({ rs, retrieveList, loadList }) => {
    };
 
    const handleInputChangeButton = (e, index, param, indexParent) => {
-      const { name, value } = e.target;
-
-      const list = [...headerField];
-      list[indexParent]['interactivebutton'][index][name] = value;
-
-      setHeaderField(list);
+      try{
+         const { name, value } = e.target;
+         console.log("Index: " + index + " Param: " + param + " indexParent: " + indexParent);
+         const list = [...headerField];
+         list[indexParent]['interactivebutton'][index][param] = value;
+   
+         setHeaderField(list);
+      } catch(exc) {
+         console.error(exc.message);
+      }
+    
    };
 
    const handleInputChangeList = (e, index, param, indexParent) => {
-      const { name, value } = e.target;
-
-      const list = [...headerField];
-      list[indexParent]['interactivelist'][index][name] = value;
-
-      setHeaderField(list);
+      try{
+         const { name, value } = e.target;
+         console.log("Index: " + index + " Param: " + param + " indexParent: " + indexParent);
+         const list = [...headerField];
+         list[indexParent]['interactivelist'][index][param] = value;
+   
+         setHeaderField(list);
+      } catch(exc) {
+         console.error(exc.message);
+      }
+     
    };
 
    const handleInputChangeCatalog = (e, index, param, indexParent) => {
@@ -270,15 +270,14 @@ const Create = ({ rs, retrieveList, loadList }) => {
                                  <BlueOnGreenTooltip title={'Add customer form and provide name and type for each field. For certain field types you can also add multiple options for your users to choose from.'}>
                                     <label style={{ marginBottom: '0px' }}>Form Fields</label>
                                  </BlueOnGreenTooltip>
-                                 {headerField &&
-                                    headerField.map((x, i) => {
+                                 {headerField && headerField.map((x, i) => {
                                        return (
                                           <>
                                              <div style={{ border: '1px solid #ccc', margin: '10px 0px', padding: 10 }}>
                                                 <div className="row">
                                                    <div className="col-sm-4">
-                                                      <TextAreaField name="label" placeholder="Provide a question you want to ask." value={x.label} onChange={(e) => handleInputChange(e, i, 'phone')} rows="4"
-                                                      style={{ margin: '5px 0px'}} />
+                                                      <TextAreaField name="label" placeholder="Provide a question you want to ask." value={x.label} onChange={(e) => handleInputChange(e, i, 'phone')} rows="3"
+                                                      style={{ margin: '8px 0px'}} />
                                                    </div>
                                                    <div className="col-sm-7">
                                                       <Select
@@ -286,7 +285,7 @@ const Create = ({ rs, retrieveList, loadList }) => {
                                                          id="demo-simple-select-standard"
                                                          className="platform_select_field"
                                                          value={x.type}
-                                                         defaultValue= "text"
+                                                         defaultValue= {typeList[0].value}
                                                          name="type"
                                                          onChange={(e) => handleInputChange(e, i, 'phone')}
                                                       >
@@ -297,11 +296,9 @@ const Create = ({ rs, retrieveList, loadList }) => {
                                                    </div>
 
                                                    <div className="col-sm-1 text-center mt-3">
-                                                   <a style={{ marginLeft: 5}}  onClick={() => removeField(i, x.label)}>
-                                          
-                                          <img alt={'#'} src={deleteIcon} width="20" />
-                                       </a>
-                                                     
+                                                      <a style={{ marginLeft: 5}}  onClick={() => removeField(i, x.label)}>
+                                                            <img alt={'#'} src={deleteIcon} width="20" />
+                                                      </a>
                                                    </div>
                                                 </div>
                                                 {x.type == 'option' ? (
@@ -320,9 +317,8 @@ const Create = ({ rs, retrieveList, loadList }) => {
                                                                   </div>
                                                                   <div className="col-sm-1 text-center mt-1">
                                                                   <a style={{ marginLeft: 5}}  onClick={() => removeFieldOption(io, o.key, i)}>                                       
-                                          <img alt={'#'} src={deleteIcon} width="20" />
-                                       </a>
-                                                                    
+                                                                        <img alt={'#'} src={deleteIcon} width="20" />
+                                                                  </a>
                                                                   </div>
                                                                </div>
                                                             </>
@@ -363,7 +359,7 @@ const Create = ({ rs, retrieveList, loadList }) => {
                                                    <>
                                                       <div style={{ marginTop: '20px', color: '#000' }}>Interactive Buttons</div>
                                                       <div className="col-sm-11">
-                                                                     <TextField name="heading" placeholder="Heading" value={headerField[i]['interactivebutton'].heading} onChange={(e) => handleInputChangeButton(e, 0, 'phone', 0)} />
+                                                          <TextField name="heading" placeholder="Heading" value={headerField[i]['interactivebutton'][0].heading} onChange={(e) => handleInputChangeButton(e, 0, 'heading', i)} />
                                                       </div>   
                                                       {headerField[i]['interactivebutton'].map((o, io) => {
                                                          return (
@@ -371,26 +367,29 @@ const Create = ({ rs, retrieveList, loadList }) => {
                                                                <div className="row align-items-center">    
                                                                                                                          
                                                                   <div className="col-sm-3">
-                                                                     <TextField name="key" placeholder="ID" value={o.key} onChange={(e) => handleInputChangeButton(e, io, 'phone', i)} />
+                                                                     <TextField name="key" placeholder="ID" value={o.key} onChange={(e) => handleInputChangeButton(e, io, 'key', i)} />
                                                                   </div>
                                                                 
                                                                   <div className="col-sm-7">
-                                                                     <TextField name="value" placeholder="Button Text (Max 20 Characters)" value={o.value} onChange={(e) => handleInputChangeButton(e, io, 'phone', i)} />
+                                                                     <TextField name="value" placeholder="Button Text (Max 20 Characters)" value={o.value} onChange={(e) => handleInputChangeButton(e, io, 'value', i)} />
                                                                   </div>
                                                                   <div className="col-sm-1 text-center mt-3">
-                                                                  <a style={{ marginLeft: 5}}  onClick={() => removeFieldInteractiveButton(io, o.key, i)}>                                       
-                                          <img alt={'#'} src={deleteIcon} width="20" />
-                                       </a>
-                                                                    
+                                                                     <a style={{ marginLeft: 5}}  onClick={() => removeFieldInteractiveButton(io, o.key, i)}>                                       
+                                                                           <img alt={'#'} src={deleteIcon} width="20" />
+                                                                     </a>
                                                                   </div>
                                                                </div>
+
+                                                              
                                                             </>
                                                          );
-                                                      })}
 
+                                                        
+                                                      })}
                                                       <button type="button" className="primary btn-danger mt-20" onClick={() => addFieldButton(i)}>
                                                          Add Button
                                                       </button>
+                                                      
                                                    </>
                                                 ) : null}
 
@@ -399,24 +398,25 @@ const Create = ({ rs, retrieveList, loadList }) => {
                                                    <>
                                                       <div style={{ marginTop: '20px', color: '#000' }}>Interactive List</div>
                                                       <div className="col-sm-6">
-                                                         <TextField name="heading" placeholder="Heading" value={headerField[i]['interactivelist'].heading} onChange={(e) => handleInputChangeButton(e, 0, 'phone', 0)} />
+                                                         <TextField name="heading" placeholder="Heading" value={headerField[i]['interactivelist'][0].heading} onChange={(e) => handleInputChangeList(e, 0, 'heading', i)} />
                                                       </div>
                                                       <div className="col-sm-6">
-                                                         <TextField name="buttonText" placeholder="Button Text" value={headerField[i]['interactivelist'].buttonText} onChange={(e) => handleInputChangeButton(e, 0, 'phone', 0)} />
+                                                         <TextField name="buttonText" placeholder="Button Text" value={headerField[i]['interactivelist'][0].buttonText} onChange={(e) => handleInputChangeList(e, 0, 'buttonText', i)} />
                                                       </div>
                                                       {headerField[i]['interactivelist'].map((o, io) => {
+                                                         console.log("Map: " + o + "IO: " + io);
                                                          return (
                                                             <>
                                                                <div className="row align-items-center">
                                                                  
                                                                   <div className="col-sm-2">
-                                                                     <TextField name="key" placeholder="ID" value={o.key} onChange={(e) => handleInputChangeList(e, io, 'phone', i)} />
+                                                                     <TextField name="key" placeholder="ID" value={o.key} onChange={(e) => handleInputChangeList(e, io, 'key', i)} required />
                                                                   </div>
                                                                   <div className="col-sm-4">
-                                                                     <TextField name="value" placeholder="List Item Text (Max 24 Characters)" value={o.value} onChange={(e) => handleInputChangeList(e, io, 'phone', i)} />
+                                                                     <TextField name="value" placeholder="List Item Text (Max 24 Characters)" value={o.value} onChange={(e) => handleInputChangeList(e, io, 'value', i)} required />
                                                                   </div>
                                                                   <div className="col-sm-5">
-                                                                     <TextField name="description" placeholder="Provide Item Description" value={o.description} onChange={(e) => handleInputChangeList(e, io, 'phone', i)} />
+                                                                     <TextField name="description" placeholder="Provide Item Description (Optional)" value={o.description} onChange={(e) => handleInputChangeList(e, io, 'description', i)} />
                                                                   </div>
                                                                   <div className="col-sm-1 text-center mt-3">
                                                                   <a style={{ marginLeft: 5}}  onClick={() => removeFieldInteractiveList(io, o.key, i)}>                                       
@@ -436,16 +436,18 @@ const Create = ({ rs, retrieveList, loadList }) => {
                                              </div>
                                           </>
                                        );
-                                    })}
+                                 })}
                                  <div className="my-20 text-end">
                                     <button type="button" className="primary" onClick={() => addField('email')}>
                                        Add Field
                                     </button>
                                  </div>
+
+                                 {/* Form Submission Email Section */}
                                  <label style={{ marginBottom: '10px' }}>On Form Submit</label>
-                                 <p style={{ marginBottom: '20px' }}>
+                                 <h6 style={{ marginBottom: '20px', fontFamily: 'Lexend Deca Light !important' }}>
                                     You can automatically allow form data to be sent to one or more email addresses when a customer completes the form. For your security, consider using this feature with only trusted email addresses.
-                                 </p>
+                                 </h6>
 
                                  <label style={{ marginBottom: '0px' }}>Enter Email Addresses (Optional)</label>
                                  <div className="row align-items-center">
@@ -453,9 +455,11 @@ const Create = ({ rs, retrieveList, loadList }) => {
                                        <TextAreaField name="receivers_emails" placeholder="john@companyname, peter@companyname.." rows="3" />
                                     </div>
                                  </div>
+
+
+                                 {/* Footer Button Section */}
                                  <div className="text-end">
                                     <SubmitButton title="Create" className="btn btn-primary" />
-
                                     <button onClick={() => loadList()} type="button" className="btn btn-outline-danger ms-10">
                                        Back
                                     </button>

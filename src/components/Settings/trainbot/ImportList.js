@@ -67,7 +67,7 @@ const ImportList = ({loadList }) => {
    const deleteRow = (id) => {
       CrudService.deleteRow(id, 'gptcat', true).then(
          (response) => {
-            toast('Record has been deleted!', { type: toast.TYPE.SUCCESS });
+            toast('Category has been deleted!', { type: toast.TYPE.SUCCESS });
             setMessage(response.data.message);
             setSuccessful(true);
             retrieveList();
