@@ -149,7 +149,7 @@ const BuildWorkSpace = () => {
 
    const saveUndoComplete = () => {
       //console.log(historyData)
-         console.log(historyData);
+        
          publishClose()
           var body = {
             triggersList: historyData,
@@ -183,7 +183,7 @@ const BuildWorkSpace = () => {
    }
 
    const saveHistory = (data) => {
-         console.log("test ed")
+        
          setHistoryData(data)
    }
 

@@ -58,7 +58,7 @@ const D3Tree = (props) => {
             
             if (triggersList.length > 0) {
                   
-
+                  updatedTriggers = []
                   triggersList.map((tl) => {
                      updatedTriggers.push({
                         ...tl,
