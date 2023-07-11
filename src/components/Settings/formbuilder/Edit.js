@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { MenuItem, Select } from '@mui/material';
-import { TextField, SelectField, SubmitButton, CheckBoxField, TextGroupField, TextAreaField, SwtichField } from '../../crud/FormElements';
+import { TextField, SelectField, SubmitButton, CheckBoxField, TextGroupField, TextAreaField, SwtichField,ButtonTextField,ListTextField} from '../../crud/FormElements';
 import * as Yup from 'yup';
 import CrudService from '../../../services/crud.service';
 import { Link } from 'react-router-dom';
@@ -58,21 +58,30 @@ const Edit = ({ rs, retrieveList, loadList }) => {
       setHeaderField(list);
    };
    
-   const removeFieldInteractiveButton = (i, label, parentIndex) => {
-      const list = [...headerField];
-      const newArray = headerField[parentIndex]['interactivebutton'].filter((d) => d.key !== label);
-
-      list[parentIndex]['interactivebutton'] = newArray;
-      setHeaderField(list);
-      //setHeaderField(headerField[parentIndex]['option'].filter((d) => d.key !== label))
-      //console.log(headerField)
+   const removeFieldInteractiveButton = (i, key, parentIndex) => {
+      try {
+         const list = [...headerField];
+         const newArray = headerField[parentIndex]['interactivebutton'].filter((d) => d.key !== key);
+   
+         list[parentIndex]['interactivebutton'] = newArray;
+         setHeaderField(list);
+      } catch(exc) {
+         console.log(exc.message);
+      }
+    
    };
 
    const removeFieldInteractiveList = (i, key, parentIndex) => {
-      const list = [...headerField];
-      const newArray = headerField[parentIndex]['interactivelist'].filter((d) => d.key !== key);
-      list[parentIndex]['interactivelist'] = newArray;
-      setHeaderField(list);
+      try {
+         const list = [...headerField];
+         const newArray = headerField[parentIndex]['interactivelist'].filter((d) => d.key !== key);
+   
+         list[parentIndex]['interactivelist'] = newArray;
+         setHeaderField(list);
+      } catch(exc) {
+         console.log(exc.message);
+      }
+     
    };
 
    const addFieldOption = (index) => {
@@ -107,8 +116,8 @@ const Edit = ({ rs, retrieveList, loadList }) => {
       { value: 'video', label: 'Video' },
       { value: 'document', label: 'Document' },
       { value: 'regularexpression', label: 'Regular Expression' },
-      { value: 'interactivebutton', label: 'Interactive Buttons' },
-      { value: 'interactivelist', label: 'Interactive List' }
+      { value: 'interactivebutton', label: 'Interactive Button Message' },
+      { value: 'interactivelist', label: 'Interactive List Message' }
    ];
 
    const retrieveMasterList = (url) => {
@@ -257,11 +266,11 @@ const Edit = ({ rs, retrieveList, loadList }) => {
                                                       <>
                                                          <div style={{ border: '1px solid #ccc', margin: '10px 0px', padding: 10 }}>
                                                             <div className="row">
-                                                               <div className="col-sm-4">
+                                                               <div className="col-sm-6">
                                                                   <TextAreaField name="label" placeholder="Provide a question you want to ask." value={x.label} onChange={(e) => handleInputChange(e, i, 'phone')} rows="3" 
                                                                    style={{ margin: '8px 0px'}}/>
                                                                </div>
-                                                               <div className="col-sm-7">
+                                                               <div className="col-sm-5">
                                                                   <Select
                                                                      labelId="demo-simple-select-standard-label"
                                                                      id="demo-simple-select-standard"
@@ -288,10 +297,10 @@ const Edit = ({ rs, retrieveList, loadList }) => {
                                                                      return (
                                                                         <>
                                                                            <div className="row align-items-center">
-                                                                              <div className="col-sm-4">
+                                                                              <div className="col-sm-6">
                                                                                  <TextField name="key" placeholder="Key" value={o.key} onChange={(e) => handleInputChangeOption(e, io, 'phone', i)} />
                                                                               </div>
-                                                                              <div className="col-sm-7">
+                                                                              <div className="col-sm-5">
                                                                                  <TextField name="value" placeholder="Value" value={o.value} onChange={(e) => handleInputChangeOption(e, io, 'phone', i)} />
                                                                               </div>
 
@@ -338,20 +347,20 @@ const Edit = ({ rs, retrieveList, loadList }) => {
                                                                {/* Adding Interactive Buttons */}
                                                  {x.type == 'interactivebutton' ? (
                                                    <>
-                                                      <div style={{ marginTop: '20px', color: '#000' }}>Interactive Buttons</div>
+                                                      <div style={{ marginTop: '20px', color: '#000' }}>Interactive Button Message</div>
                                                          <div className="col-sm-11">
-                                                               <TextField name="heading" placeholder="Heading" value={headerField[i]['interactivebutton'][0].heading} onChange={(e) => handleInputChangeButton(e, 0, 'heading', i)} />
+                                                               <TextField name="heading" placeholder="Enter the title for your message" value={headerField[i]['interactivebutton'][0].heading} onChange={(e) => handleInputChangeButton(e, 0, 'heading', i)} />
                                                          </div>
                                                       {headerField[i]['interactivebutton'].map((o, io) => {
                                                          return (
                                                             <>
                                                                <div className="row align-items-center">
-                                                                  <div className="col-sm-3">
-                                                                     <TextField name="key" placeholder="ID" value={o.key} onChange={(e) => handleInputChangeButton(e, io, 'key', i)} />
+                                                                  <div className="col-sm-5">
+                                                                     <ButtonTextField name="key" placeholder="Enter Button ID" value={o.key} onChange={(e) => handleInputChangeButton(e, io, 'key', i)} />
                                                                   </div>
                                                                 
-                                                                  <div className="col-sm-7">
-                                                                     <TextField name="value" placeholder="Button Text (Max 20 Characters)" value={o.value} onChange={(e) => handleInputChangeButton(e, io, 'value', i)} />
+                                                                  <div className="col-sm-6">
+                                                                     <ButtonTextField name="value" placeholder="Enter Button Text (Max 20 Characters)" value={o.value} onChange={(e) => handleInputChangeButton(e, io, 'value', i)} />
                                                                   </div>
                                                                   <div className="col-sm-1 text-center mt-3">
                                                                         <a style={{ marginLeft: 5 }} onClick={() => removeFieldInteractiveButton(io, o.key, i)}>
@@ -372,12 +381,12 @@ const Edit = ({ rs, retrieveList, loadList }) => {
                                                 {/* Adding Interactive List */}
                                                 {x.type == 'interactivelist' ? (
                                                    <>
-                                                      <div style={{ marginTop: '20px', color: '#000' }}>Interactive List</div>
+                                                      <div style={{ marginTop: '20px', color: '#000' }}>Interactive List Message</div>
                                                       <div className="col-sm-6">
-                                                         <TextField name="heading" placeholder="Heading" value={headerField[i]['interactivelist'][0].heading} onChange={(e) => handleInputChangeList(e, 0, 'heading', i)} />
+                                                         <TextField name="heading" placeholder="Enter the title for your message" value={headerField[i]['interactivelist'][0].heading} onChange={(e) => handleInputChangeList(e, 0, 'heading', i)} />
                                                       </div>
                                                       <div className="col-sm-6">
-                                                         <TextField name="buttonText" placeholder="Button Text" value={headerField[i]['interactivelist'][0].buttonText} onChange={(e) => handleInputChangeList(e, 0, 'buttonText', i)} />
+                                                         <ButtonTextField name="buttonText" placeholder="Enter Button Text (Max 20 characters allowed)" value={headerField[i]['interactivelist'][0].buttonText} onChange={(e) => handleInputChangeList(e, 0, 'buttonText', i)} />
                                                       </div>
                                                       {headerField[i]['interactivelist'].map((o, io) => {
                                                          return (
@@ -388,10 +397,10 @@ const Edit = ({ rs, retrieveList, loadList }) => {
                                                                      <TextField name="key" placeholder="ID" value={o.key} onChange={(e) => handleInputChangeList(e, io, 'key', i)} />
                                                                   </div>
                                                                   <div className="col-sm-4">
-                                                                     <TextField name="value" placeholder="List Item Text (Max 24 Characters)" value={o.value} onChange={(e) => handleInputChangeList(e, io, 'value', i)} />
+                                                                     <ListTextField name="value" placeholder="List Item Text (Max 24 characters allowed)" value={o.value} onChange={(e) => handleInputChangeList(e, io, 'value', i)} />
                                                                   </div>
                                                                   <div className="col-sm-5">
-                                                                     <TextField name="description" placeholder="Provide Item Description" value={o.description} onChange={(e) => handleInputChangeList(e, io, 'description', i)} />
+                                                                     <TextField name="description" placeholder="Add description for your menu option (Optional)" value={o.description} onChange={(e) => handleInputChangeList(e, io, 'description', i)} />
                                                                   </div>
                                                                   <div className="col-sm-1 text-center  mt-3">
                                                                     
