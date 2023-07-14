@@ -160,7 +160,14 @@ const Settings = () => {
                                     ) : ( <li>
                                        <a href="#" className="active" onClick={() => changeContent(m.controller)}>
                                           <img alt={'#'} src={m.icon} />
-                                          {m.name}                                         
+                                          {m.name}    
+                                          <>
+                                          {(m.name === "OpenAI GPT" || m.name === "Training Data") ? 
+                                          ( <span class="currentPlan" style={{backgroundColor: "#00baa3", marginLeft: "20px", fontFamily: 'Lexend Deca Light !important', fontSize: '9px'}} >New</span>   
+                                          ) : 
+                                          ( <span></span>   
+                                          )}
+                                          </>                     
                                        </a>
                                     </li>)
                                     }
@@ -178,6 +185,13 @@ const Settings = () => {
                                        <a href="#" onClick={() => changeContent(m.controller)}>
                                           <img alt={'#'} src={m.icon} />
                                           {m.name}
+                                          <>
+                                          {(m.name === "OpenAI GPT" || m.name === "Training Data") ? 
+                                          ( <span class="currentPlan" style={{backgroundColor: "#00baa3", marginLeft: "20px", fontFamily: 'Lexend Deca Light !important', fontSize: '9px'}} >New</span>   
+                                          ) : 
+                                          ( <span></span>   
+                                          )}
+                                          </>
                                        </a>
                                     </li>)
                                     }
