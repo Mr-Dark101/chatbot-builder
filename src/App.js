@@ -88,7 +88,7 @@ axios.interceptors.response.use((response) => { // block to handle success case
                             <Navigation/>
                        
                     </Layout>
-                    <ToastContainer position="top-center"
+                    <ToastContainer style={{width:'auto'}} position="top-center"
                         autoClose={3000} 
                         hideProgressBar
                         transition={Slide}
