@@ -120,12 +120,13 @@ const ByTypeComposer = ({ props, triggerType }) => {
                ...item.toTrigger,
                menus:
                   item.toTrigger.menus.length > 0 &&
-                  item.toTrigger.menus.map((mn) => {
+                  item.toTrigger.menus.map((mn,index) => {
                      return {
                         id: mn.id,
                         text: mn.text,
                         toTrigger: mn.toTrigger,
                         toTriggerId: mn.toTriggerId,
+                        sort_order:index
                      };
                   }),
             });
@@ -244,12 +245,13 @@ const ByTypeComposer = ({ props, triggerType }) => {
                ...tl,
                menus:
                   tl.menus.length > 0 &&
-                  tl.menus.map((mn) => {
+                  tl.menus.map((mn,index) => {
                      return {
                         id: mn.id,
                         text: mn.text,
                         toTrigger: mn.toTrigger,
                         toTriggerId: mn.toTriggerId,
+                        sort_order:index
                      };
                   }),
             });
@@ -629,10 +631,11 @@ const ByTypeComposer = ({ props, triggerType }) => {
          id: childBotId !== null ? childBotId : currentData.id,
          loopBackText: [loopBackText[0]],
          loopBackTriggerId: obj.loopBackId,
-         menus: obj.options.map((v) => {
+         menus: obj.options.map((v,index) => {
             return {
                text: v.name,
                toTriggerId: v.id,
+               sort_order:index,
             };
          }),
          name: obj.title,
@@ -932,8 +935,7 @@ const ByTypeComposer = ({ props, triggerType }) => {
       if (fApi.build_type == 'T') {
          const templateData = JSON.parse(fApi.template_data).simpleData;
          const templateCondition = JSON.parse(fApi.template_data).conditionType;
-         console.log(templateCondition);
-         console.log(templateData);
+        
          if (templateCondition == 'C') {
             setCondition(templateData.apiData);
             meClickCondition(templateCondition);
