@@ -288,7 +288,7 @@ const selectAll = (check_status,value) => {
                         <thead>
                            <tr>
                               <th>
-
+                              
                               <input type="checkbox" 
                                     name={`c_all`}
                                     onChange={(event) => selectAll(event.target.checked,event.target.value)}
@@ -305,7 +305,7 @@ const selectAll = (check_status,value) => {
                            {listData &&
                               listData.map((row, index) => (
                                  <tr>
-                                    <td width="100">
+                                    <td width="3%">
                                        
                                     
                                        {row.name !== 'Default' && 
