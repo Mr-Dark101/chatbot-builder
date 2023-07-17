@@ -179,6 +179,26 @@ export function ButtonTextField(props) {
     )
 }
 
+export function TitleTextField(props) {
+    const { name, label, placeholder, ...rest } = props
+    return (
+        <>
+            <br />
+            {label && <label htmlFor={name}>{label}</label>}
+            <Field
+                className="form-control"
+                type="text"
+                name={name}
+                maxLength={60}
+                id={name}
+                placeholder={placeholder || ""} 
+                {...rest}
+            />
+            <ErrorMessage name={name} render={msg => <div style={{ color: 'red' }} >{msg}</div>} />
+        </>
+    )
+}
+
 export function ListTextField(props) {
     const { name, label, placeholder, ...rest } = props
     return (

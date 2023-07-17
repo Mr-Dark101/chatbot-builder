@@ -330,7 +330,7 @@ const Dashboard = () => {
    };
 
    return (
-      <div className="dashboard-hld ov-des overflow-auto">
+      <div className="dashboard-hld ov-des overflow-auto" style={{marginTop:"-50px"}}>
          <div className="home_top_section text-end d-none" style={{ paddingRight: 10 }}>
             <div>
                <ul>
@@ -384,7 +384,7 @@ const Dashboard = () => {
                </div>
 
                <div className="row">
-                  <div className="col-sm-10">
+                  <div className="col-sm-11">
                      <div className="dashboard-section">
                         <div className="cards-hld">
                            {createArray.map((d, index) => {
@@ -399,10 +399,10 @@ const Dashboard = () => {
                      </div>
                   </div>
 
-                  <div className="col-sm-2">
+                  <div className="col-sm-1">
                     
                     <Link to="/settings" className="float-end">
-                        <img src={setting_icon}  style={{ maxWidth: '37px', marginTop:'40px', marginRight:'30px'}} />
+                        <img src={setting_icon}  style={{ maxWidth: '37px', marginTop:'20px', marginRight:'30px'}} />
                      </Link>
                   </div>
                </div>

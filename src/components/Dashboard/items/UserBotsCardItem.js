@@ -220,7 +220,7 @@ const UserBotsCardItem = (props) => {
                      {temp != undefined ? <span class="currentPlan" style={{ opacity: '0' }}></span> : data.published == 1 ? <span class="currentPlan currentPlan_bg">Published</span> : <span class="currentPlan">Draft</span>}
                      {data.type_id == 3 ? (<span class="currentPlan currentPlan_blue">GPT</span>) : null}
 
-                     {data.type_id == 4 ? (<span class="currentPlan currentPlan_blue">GPT Hybrid</span>) : null}
+                     {data.type_id == 4 ? (<span class="currentPlan currentPlan_blue">Hybrid</span>) : null}
                      
                      <div className="icon" onClick={handleMoreOpt}>
                         {temp ? <MenusComponent options={menusOptionsTemp} onSelect={handleMenuSelect} /> : <MenusComponent options={menusOptions} onSelect={handleMenuSelect} />}
@@ -254,9 +254,10 @@ const UserBotsCardItem = (props) => {
                      className={`sub-txt botDescription`}
                      style={{
                         whiteSpace: 'pre-wrap',
-                        fontSize: '11px',
+                        fontSize: '12px',
                         margin: '5px 0 20px',
                         color: '#000',
+                        fontWeight:'500',
                         textAlign: 'left',
                         padding: '0px 16px 0 0px',
                         display: 'block',

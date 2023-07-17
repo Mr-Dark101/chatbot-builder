@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Checkbox, MenuItem, Select } from '@mui/material';
-import { Form, TextField, SelectField, SubmitButton, CheckBoxField, TextGroupField, TextAreaField,ButtonTextField,ListTextField } from '../../crud/FormElements';
+import { Form, TextField, SelectField, SubmitButton, CheckBoxField, TextGroupField, TextAreaField,ButtonTextField,ListTextField,TitleTextField } from '../../crud/FormElements';
 import * as Yup from 'yup';
 import CrudService from '../../../services/crud.service';
 import { Link } from 'react-router-dom';
 import { Tooltip } from '@mui/material';
 import deleteIcon from '../../../assets/deleteicon.svg';
 import { createTheme, ThemeProvider, styled } from "@mui/material/styles";
+import back_icon from '../../../assets/back-icon.svg';
 
 const BlueOnGreenTooltip = styled(({ className, ...props }) => (
    <Tooltip {...props} componentsProps={{ tooltip: { className: className } }} />
@@ -260,9 +261,12 @@ const Create = ({ rs, retrieveList, loadList }) => {
                         <Form enableReinitialize validationSchema={FormSchema} initialValues={formData} onSubmit={onSubmit}>
                            <div className="row media-center">
                               <div className="col-sm-6">
-                                 <h4 class="box-heading" style={{ fontWeight: 800 }}>
+                                 <h5 class="box-heading" style={{ fontWeight: 800 }}>
+                                 <span onClick={() => loadList() } style={{marginRight:'5px'}} className="icon">
+                                    <img style ={{ width: "12px", marginRight: "6px",marginTop:'-5px'}} alt={'#'} src={back_icon} /> 
+                                  </span>
                                     Create form
-                                 </h4>
+                                 </h5>
                               </div>
                              
                            </div>
@@ -371,7 +375,7 @@ const Create = ({ rs, retrieveList, loadList }) => {
                                                              <div style={{ marginTop: '20px', color: '#000' }}>Interactive Button Message</div>
                                                       </BlueOnGreenTooltip>
                                                       <div className="col-sm-11">
-                                                          <TextField name="heading" placeholder="Enter the title for your message" value={headerField[i]['interactivebutton'][0].heading} onChange={(e) => handleInputChangeButton(e, 0, 'heading', i)} />
+                                                          <TitleTextField name="heading" placeholder="Enter the title for your message" value={headerField[i]['interactivebutton'][0].heading} onChange={(e) => handleInputChangeButton(e, 0, 'heading', i)} />
                                                       </div>   
                                                       {headerField[i]['interactivebutton'].map((o, io) => {
                                                          return (
@@ -412,7 +416,7 @@ const Create = ({ rs, retrieveList, loadList }) => {
                                                         <div style={{ marginTop: '20px', color: '#000' }}>Interactive List Message</div>
                                                        </BlueOnGreenTooltip>
                                                       <div className="col-sm-6">
-                                                         <TextField name="heading" placeholder="Enter the title for your message" value={headerField[i]['interactivelist'][0].heading} onChange={(e) => handleInputChangeList(e, 0, 'heading', i)} />
+                                                         <TitleTextField name="heading" placeholder="Enter the title for your message" value={headerField[i]['interactivelist'][0].heading} onChange={(e) => handleInputChangeList(e, 0, 'heading', i)} />
                                                       </div>
                                                       <div className="col-sm-6">
                                                          <ButtonTextField name="buttonText" placeholder="Enter Button Text (Max 20 characters allowed)" value={headerField[i]['interactivelist'][0].buttonText} onChange={(e) => handleInputChangeList(e, 0, 'buttonText', i)} />
@@ -424,7 +428,7 @@ const Create = ({ rs, retrieveList, loadList }) => {
                                                                <div className="row align-items-center">
                                                                  
                                                                   <div className="col-sm-2">
-                                                                     <TextField name="key" placeholder="List Option ID" value={o.key} onChange={(e) => handleInputChangeList(e, io, 'key', i)} required />
+                                                                     <ButtonTextField name="key" placeholder="List Option ID" value={o.key} onChange={(e) => handleInputChangeList(e, io, 'key', i)} required />
                                                                   </div>
                                                                   <div className="col-sm-4">
                                                                      <ListTextField name="value" placeholder="List Option Text (Max 24 characters allowed)" value={o.value} onChange={(e) => handleInputChangeList(e, io, 'value', i)} required />

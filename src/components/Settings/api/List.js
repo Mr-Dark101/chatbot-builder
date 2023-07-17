@@ -107,7 +107,6 @@ const List = ({ rs, subPage, loadList }) => {
             <SweetAlert
             custom
             showCancel
-            showCloseButton
             confirmBtnText="Delete"
             cancelBtnText="Cancel"
             confirmBtnBsStyle="primary"
@@ -151,16 +150,16 @@ const List = ({ rs, subPage, loadList }) => {
                         <table className="table">
                            <thead>
                               <tr>
-                                 <th>API NAME</th>
-                                 <th>API TYPE</th>
-                                 <th className='float-end'>ACTION</th>
+                                 <th width="60%">API NAME</th>
+                                 <th width="20%">API TYPE</th>
+                                 <th width="20%" style={{textAlign:'end'}}>ACTION</th>
                               </tr>
                            </thead>
                            <tbody>
                               {listData &&
                                  listData.map((row, index) => (
                                     <tr>
-                                       <td>
+                                       <td width="60%">
                                           <div className="api_box_section">
                                              <div className="img_box">
                                                 {row.build_type == 'C' ? (
@@ -178,8 +177,8 @@ const List = ({ rs, subPage, loadList }) => {
                                              </div>
                                           </div>
                                        </td>
-                                       <td style={{ fontFamily: 'Lexend Deca Light', fontSize:'12px' }}>{row.api_type}</td>
-                                       <td>
+                                       <td width="20%" style={{ fontFamily: 'Lexend Deca Light', fontSize:'12px' }}>{row.api_type}</td>
+                                       <td width="20%" style={{textAlign:'center'}}>
                                           <div className="button_section">
                                              {row.build_type == 'C' ? (
                                                 <a style={{ marginLeft: 5 }}   onClick={() => subPage(<Edit loadList={loadList} retrieveList={retrieveList} rs={row} />)}>

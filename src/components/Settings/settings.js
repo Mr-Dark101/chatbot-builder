@@ -136,7 +136,7 @@ const Settings = () => {
          <div className="ws-section">
             <div className="dashboard-hld setting_page_section">
                <div className="row me-0">
-                  <div className="col-xxl-2 col-xl-2 col-lg-2 col-sm-2 col-xs-3 p-0">
+                  <div className="col-xxl-3 col-xl-3 col-lg-3 col-sm-3 col-xs-3 p-0">
                      <div className="setting_left_bar_section">
                         <div className="mb-30">
                            <Link to={`${STRINGS.ROUTES.ROOT}?org=${localStorage.getItem('userId')}`} className="btn primary">
@@ -145,7 +145,7 @@ const Settings = () => {
                            </Link>
                         </div>
 
-                        <ul style={{ width: '175px' }}>
+                        <ul style={{ width: '208px' }}>
                            {Menu.map((m, i) => (
                               <>
                                  {m.controller == activeClass ? (
@@ -163,7 +163,7 @@ const Settings = () => {
                                           {m.name}    
                                           <>
                                           {(m.name === "OpenAI GPT" || m.name === "Training Data") ? 
-                                          ( <span class="currentPlan" style={{backgroundColor: "#00baa3", marginLeft: "20px", fontFamily: 'Lexend Deca Light !important', fontSize: '9px'}} >New</span>   
+                                          ( <span class="currentPlan" style={{backgroundColor: "#00baa3", marginLeft: "10px", fontFamily: 'Lexend Deca Light !important', fontSize: '9px'}} >New</span>   
                                           ) : 
                                           ( <span></span>   
                                           )}
@@ -187,7 +187,7 @@ const Settings = () => {
                                           {m.name}
                                           <>
                                           {(m.name === "OpenAI GPT" || m.name === "Training Data") ? 
-                                          ( <span class="currentPlan" style={{backgroundColor: "#00baa3", marginLeft: "20px", fontFamily: 'Lexend Deca Light !important', fontSize: '9px'}} >New</span>   
+                                          ( <span class="currentPlan" style={{backgroundColor: "#00baa3", marginLeft: "10px", fontFamily: 'Lexend Deca Light !important', fontSize: '9px'}} >New</span>   
                                           ) : 
                                           ( <span></span>   
                                           )}
@@ -203,7 +203,7 @@ const Settings = () => {
                         </ul>
                      </div>
                   </div>
-                  <div className="col-xxl-10 col-xl-10 col-lg-10 col-sm-10 col-xs-9 p-0">{contentPage}</div>
+                  <div className="col-xxl-9 col-xl-9 col-lg-9 col-sm-9 col-xs-9 p-0">{contentPage}</div>
                </div>
             </div>
          </div>

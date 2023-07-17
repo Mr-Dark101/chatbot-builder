@@ -91,7 +91,7 @@ const [isSelected, setIsSelected] = useState(false)
    };
 
    const downLoadTemplate = () => {
-      document.location.href= BASE_URL + '/template.csv';
+      document.location.href= BASE_URL + '/sampletrainingdata.csv';
   }
 
    return (
@@ -104,43 +104,20 @@ const [isSelected, setIsSelected] = useState(false)
                         <Form enableReinitialize validationSchema={FormSchema} initialValues={formData} onSubmit={onSubmit}>
                           
                            <div>
-                              <a  href="#" onClick={() => downLoadTemplate()} style={{color: '#000000'}}>Download sample CSV file</a>
+                              <a  href="#" onClick={() => downLoadTemplate()} style={{color: '#1890ff'}}>Download sample CSV file</a>
                            </div>
                            <div className="row" style={{ marginLeft: '0px', marginRight: '0px' }}>
                               <div className="col-9" style={{ paddingLeft: '0px', paddingRight: '0px' }}>
                                  <div className="field_section">
-                                    
-
-
-                                    <div className="drop-container"
-                  
-                   
-                >
-                   
-                    <input type="file" 
-                    ref={fileInputRef}
-                    className="file-input" name="file" onChange={changeHandler} />
-                   
-                </div>
-                <div className="file-display-container">
-                    
-                </div>
-
-
+                                    <div className="drop-container">
+                                       <input type="file" 
+                                       ref={fileInputRef}
+                                       className="file-input" name="file" onChange={changeHandler} />
+                                    </div>
+                                    <div className="file-display-container">
+                                       
+                                    </div>
                                  </div>
-
-                               
-
-                                 
-
-                                
-
-                                
-                                
-
-                                
-
-                                
                               </div>
 
                               <div className="col-3" style={{ paddingLeft: '0px', paddingRight: '0px' }}></div>

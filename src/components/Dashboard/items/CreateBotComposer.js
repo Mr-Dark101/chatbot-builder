@@ -43,9 +43,11 @@ const CreateBotComposer = (props) => {
    const dispatch = useDispatch();
 
 
-   let titleName = 'Create a bot';
-   if(botType == 3 || botType == 4){
-      titleName = 'Create a GPT bot'
+   let titleName = 'Create a Bot';
+   if(botType == 3){
+      titleName = 'Create a GPT Bot'
+   } else if(botType == 4){
+      titleName = 'Create a Hybrid Bot'
    }
 
    useEffect(() => {
@@ -174,7 +176,7 @@ const CreateBotComposer = (props) => {
    };
 
    const alertCloseLink = () => {
-      window.open('https://eoceanwabaqa.com/eoceanwab/channels/index', '_blank', 'noopener,noreferrer');
+      window.open('https://eoceanwab.com/eoceanwab/channels/index', '_blank', 'noopener,noreferrer');
       setInit({
          ...init,
          isAlert: false,
@@ -324,20 +326,32 @@ const CreateBotComposer = (props) => {
 
          <div className="modal-section">
 
-            {(botType == 3 || botType == 4) ? (
+            {(botType == 3) ? (
                <div className="row">
                   <div className="col-sm-12">
                         <h6 style={{fontFamily: 'Lexend Deca Light !important'}}>
-                        This bot is powered by Open AI GPT technology. 
+                        This bot is powered by OpenAI GPT technology. 
                         <br /><br />
+                        
                         This bot does not require a
 predetermined flow and uses your proprietary training data to provide human like responses to user queries in a conversational manner.
 <br /><br />
 This bot does not reply to the user input with dynamic data from third party systems.
                         </h6>
                   </div>
+               </div>
 
-                  
+            ) : null}
+
+{(botType == 4) ? (
+               <div className="row">
+                  <div className="col-sm-12">
+                        <h6 style={{fontFamily: 'Lexend Deca Light !important'}}>
+                        Hybrid chatbot is a combination of menu-based and GPT-based chatbot. 
+                        <br /><br />
+A menu-based chatbot presents users with a structured menu of options to choose from and responds according to pre-determined rules. Whereas a GPT-based chatbot uses natural language processing (NLP) to understand and respond to customer queries. Hybrid chatbot use a combination of both these technologies to deliver the best possible customer experience.
+                        </h6>
+                  </div>
                </div>
 
             ) : null}

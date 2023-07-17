@@ -7,6 +7,8 @@ import { Link } from 'react-router-dom';
 import { Tooltip } from '@mui/material';
 import { Formik, Form, Field, ErrorMessage, useFormikContext, useField, useFormik } from 'formik';
 import {toast } from 'react-toastify';
+import back_icon from '../../../assets/back-icon.svg';
+
 const Edit = ({ rs, retrieveList, loadList }) => {
    const [validationSchema, setValidationSchema] = useState({});
 
@@ -86,8 +88,11 @@ const Edit = ({ rs, retrieveList, loadList }) => {
                               {({ setFieldValue, setFieldTouched, values, errors, touched }) => (
                                  <Form className="av-tooltip tooltip-label-right" style={{ overflowY: 'scroll', height: '800px' }}>
                                     <h5 class="box-title m-0" style={{ fontWeight: 800}}>
-                              Update Training Data
-                           </h5>
+                                    <span onClick={() => loadList() } style={{marginRight:'5px'}} className="icon">
+                                      <img style ={{ width: "12px", marginRight: "6px",marginTop:'-5px'}} alt={'#'} src={back_icon} /> 
+                                    </span>
+                                      Update Training Data
+                                    </h5>
                                     <div className="row" style={{ marginLeft: '0px', marginRight: '0px' }}>
                                        <div className="col-9" style={{ paddingLeft: '0px', paddingRight: '0px' }}>
                                           

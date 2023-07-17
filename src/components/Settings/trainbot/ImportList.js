@@ -184,7 +184,6 @@ const selectAll = (check_status,value) => {
             <SweetAlert
                custom
                showCancel
-               showCloseButton
                confirmBtnText="Delete"
                cancelBtnText="Cancel"
                confirmBtnBsStyle="primary"
@@ -211,7 +210,6 @@ const selectAll = (check_status,value) => {
             <SweetAlert
                custom
                showCancel
-               showCloseButton
                confirmBtnText="Yes"
                cancelBtnText="No"
                confirmBtnBsStyle="primary"

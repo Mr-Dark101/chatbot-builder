@@ -58,7 +58,7 @@
       display: flex;
       width: 100%;
       flex-wrap: wrap;
-
+      margin-top:-20px;
       .card {
         display: flex;
         border: none;
@@ -228,7 +228,7 @@
         border: 0px solid #363a77;
         max-width: 15.5%;
         width: 100%;
-
+        zoom: 95%;
         &:hover {
           background-color: #fff;
           color: $text-color;

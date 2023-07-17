@@ -70,7 +70,6 @@ const retrieveList2 = () => {
     <SweetAlert
   custom
   showCancel
-  showCloseButton
   confirmBtnText="Yes"
   cancelBtnText="No"
   confirmBtnBsStyle="primary"

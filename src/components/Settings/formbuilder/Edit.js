@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { MenuItem, Select } from '@mui/material';
-import { TextField, SelectField, SubmitButton, CheckBoxField, TextGroupField, TextAreaField, SwtichField,ButtonTextField,ListTextField} from '../../crud/FormElements';
+import { TextField, SelectField, SubmitButton, CheckBoxField, TextGroupField, TextAreaField, SwtichField,ButtonTextField,ListTextField,TitleTextField} from '../../crud/FormElements';
 import * as Yup from 'yup';
 import CrudService from '../../../services/crud.service';
 import { Link } from 'react-router-dom';
@@ -349,7 +349,7 @@ const Edit = ({ rs, retrieveList, loadList }) => {
                                                    <>
                                                       <div style={{ marginTop: '20px', color: '#000' }}>Interactive Button Message</div>
                                                          <div className="col-sm-11">
-                                                               <TextField name="heading" placeholder="Enter the title for your message" value={headerField[i]['interactivebutton'][0].heading} onChange={(e) => handleInputChangeButton(e, 0, 'heading', i)} />
+                                                               <TitleTextField name="heading" placeholder="Enter the title for your message" value={headerField[i]['interactivebutton'][0].heading} onChange={(e) => handleInputChangeButton(e, 0, 'heading', i)} />
                                                          </div>
                                                       {headerField[i]['interactivebutton'].map((o, io) => {
                                                          return (
@@ -383,7 +383,7 @@ const Edit = ({ rs, retrieveList, loadList }) => {
                                                    <>
                                                       <div style={{ marginTop: '20px', color: '#000' }}>Interactive List Message</div>
                                                       <div className="col-sm-6">
-                                                         <TextField name="heading" placeholder="Enter the title for your message" value={headerField[i]['interactivelist'][0].heading} onChange={(e) => handleInputChangeList(e, 0, 'heading', i)} />
+                                                         <TitleTextField name="heading" placeholder="Enter the title for your message" value={headerField[i]['interactivelist'][0].heading} onChange={(e) => handleInputChangeList(e, 0, 'heading', i)} />
                                                       </div>
                                                       <div className="col-sm-6">
                                                          <ButtonTextField name="buttonText" placeholder="Enter Button Text (Max 20 characters allowed)" value={headerField[i]['interactivelist'][0].buttonText} onChange={(e) => handleInputChangeList(e, 0, 'buttonText', i)} />

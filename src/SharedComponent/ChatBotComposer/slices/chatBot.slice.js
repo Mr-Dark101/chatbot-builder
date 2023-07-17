@@ -34,12 +34,14 @@ export const ApiChatGpt = (text) => async dispatch => {
    
    
     let orgUnitId = localStorage.getItem('org_unit_id');
+    console.log(orgUnitId);
     var data = JSON.stringify({
                      
                       "question": text,
                       
                     });
-    let url =  API_URL + "/chat-gpt/final-reply?org=" + orgUnitId
+    let url =  API_URL + "/chat-gpt/final-reply?org=" + orgUnitId;
+    console.log(url);
     return axios.post(url, data,{}).then((res) => {
 
         return {message:'Found',data:res}

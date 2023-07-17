@@ -15,8 +15,8 @@ const ConfirmModal = ({visible, modalText, modalInfo, handleCancel, handleOk, co
                 confirmLoading={confirmLoading}
                 onCancel={handleCancel}
                 headerStyle={{ backgroundColor: '#000' }}
-                centered={`true`}
-
+                
+               
                 footer={[
                      
                       <Button key="button" type="primary"  onClick={handleOk}>

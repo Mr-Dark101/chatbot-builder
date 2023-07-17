@@ -189,6 +189,7 @@ const BuildWorkSpace = () => {
 
    const handlePublishBot = (obj) => {
       console.log(JSON.stringify(obj));
+      console.log("Bot Published");
       if (obj.isPublished) {
          setInit({
             ...init,

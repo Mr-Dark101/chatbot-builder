@@ -178,8 +178,8 @@ const Edit = ({rs}) => {
                               <h5 class="box-title m-0" style={{ fontWeight: 600 }}>
                                  OpenAI GPT Integration
                               </h5>
-                              <h6 style={{marginTop: '20px'}}>An artificial intelligence system that allows you to build conversational chatbots to respond to user queries in natural language. After enabling the integration, AI bot from OpenAI will respond to user input instead of the standard reply flow.</h6>
-                              <h6 style={{marginTop: '10px'}}>Your credit card will be charged whatever usage amounts you incur by Open AI to access the GPT API. Please check your OpenAI account for your monthly API usage and billing.</h6>
+                              <h6 style={{marginTop: '20px'}}>An artificial intelligence system that allows you to build conversational chatbots to respond to user queries in natural language. After <a href="https://help.eocean.net/knowledge/how-to-connect-gpt-technology-from-openai-to-your-chatbot" target="_blank">enabling the integration</a>, AI bot from OpenAI will respond to user input instead of the standard reply flow.</h6>
+                              <h6 style={{marginTop: '10px'}}>Your credit card will be charged whatever usage amounts you incur by OpenAI to access the GPT API. Please check your OpenAI account for your monthly API usage and <a href="https://platform.openai.com/account/usage" target="_blank">billing.</a></h6>
                            </div>
 
                            <hr />

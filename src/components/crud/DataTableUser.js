@@ -30,7 +30,6 @@ const cancelAlert = () => {
     <SweetAlert
   custom
   showCancel
-  showCloseButton
   confirmBtnText="Yes"
   cancelBtnText="No"
   confirmBtnBsStyle="primary"

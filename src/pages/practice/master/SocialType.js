@@ -146,7 +146,6 @@ const deleteMe  = (id) => {
     <SweetAlert
   custom
   showCancel
-  showCloseButton
   confirmBtnText="Yes"
   cancelBtnText="No"
   confirmBtnBsStyle="primary"

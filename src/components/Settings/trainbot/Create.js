@@ -6,6 +6,8 @@ import CrudService from '../../../services/crud.service';
 import { Link } from 'react-router-dom';
 import { Tooltip } from '@mui/material';
 import {toast } from 'react-toastify';
+import back_icon from '../../../assets/back-icon.svg';
+
 const Create = ({ rs, retrieveList, loadList }) => {
    const [validationSchema, setValidationSchema] = useState({});
 
@@ -109,6 +111,9 @@ const Create = ({ rs, retrieveList, loadList }) => {
                      {!successful && (
                         <Form enableReinitialize validationSchema={FormSchema} initialValues={formData} onSubmit={onSubmit}>
                            <h5 class="box-title m-0" style={{ fontWeight: 800}}>
+                           <span onClick={() => loadList() } style={{marginRight:'5px'}} className="icon">
+                                    <img style ={{ width: "12px", marginRight: "6px",marginTop:'-5px'}} alt={'#'} src={back_icon} /> 
+                                  </span>
                               Add Training Data
                            </h5>
 

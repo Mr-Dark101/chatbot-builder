@@ -7,10 +7,18 @@ import end_icon from '../../assets/flow-end.svg';
 import { DeleteBotTrigger, openTriggerCard } from '../AddTriggerComposer/slices/addTrigger.slice';
 import TriggerCard from './items/TriggerCard';
 import ConfirmModal from '../ConfirmModal/ConfirmModal';
+import { Tooltip } from '@mui/material';
+import { createTheme, ThemeProvider, styled } from "@mui/material/styles";
 
 import { getAllTriggersTypes, getBotTriggersHistoryDown,getBotTriggersHistoryUp, apiList, formList } from '../../SharedComponent/AddTriggerComposer/slices/addTrigger.slice';
 import $ from 'jquery';
 
+const BlueOnGreenTooltip = styled(({ className, ...props }) => (
+   <Tooltip {...props} componentsProps={{ tooltip: { className: className } }} />
+ ))(`
+     color: white;
+     background-color: black;
+ `);
 let orgChart2 = {};
 
 const defaultState = {
@@ -365,18 +373,21 @@ const D3Tree = (props) => {
             ) : null}
            
 
-            <div class="tag-box">
-               <a
-                  href="javascript:void(0)"
-                  class="btn position-absolute bottom-0 start-0"
-                  style={{ height: '30px', marginBottom: '100px', marginLeft: '20px', backgroundColor: '#ffffff', border: '1px solid #ffffff' }}
-                  onClick={() => {
-                     undo(botId);
-                  }}
-               >
-                  <i class="fa fa-undo" aria-hidden="true"></i>
-               </a>
-            </div>
+           <BlueOnGreenTooltip title="Undo">
+               <div class="tag-box">
+                  <a
+                     href="javascript:void(0)"
+                     class="btn position-absolute bottom-0 start-0"
+                     style={{ height: '30px', marginBottom: '100px', marginLeft: '20px', backgroundColor: '#ffffff', border: '1px solid #ffffff' }}
+                     onClick={() => {
+                        undo(botId);
+                     }}
+                  >
+                     <i class="fa fa-undo" aria-hidden="true"></i>
+                  </a>
+               </div>
+            </BlueOnGreenTooltip>
+            
             <div class="tag-box">
                <a
                   href="javascript:void(0)"

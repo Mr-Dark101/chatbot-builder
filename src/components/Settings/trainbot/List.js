@@ -214,7 +214,7 @@ const List = ({ rs, subPage, loadList }) => {
   };
 
   const downLoadTemplate = () => {
-      document.location.href= BASE_URL + '/template.csv';
+      document.location.href= BASE_URL + '/sampletrainingdata.csv';
   }
 
   const downLoadCsv = () => {
@@ -286,7 +286,6 @@ const selCat = (e) => {
              <SweetAlert
                custom
                showCancel
-               showCloseButton
                confirmBtnText="Delete"
                cancelBtnText="Cancel"
                confirmBtnBsStyle="primary"
@@ -313,7 +312,6 @@ const selCat = (e) => {
              <SweetAlert
                custom
                hideCancel
-               showCloseButton
                confirmBtnText="Close"
                
                confirmBtnBsStyle="primary"
@@ -340,7 +338,6 @@ const selCat = (e) => {
             <SweetAlert
                custom
                showCancel
-               showCloseButton
                confirmBtnText="Delete"
                cancelBtnText="Cancel"
                confirmBtnBsStyle="primary"
@@ -370,13 +367,13 @@ const selCat = (e) => {
             {setListDataComplete.length > 0 ? (
                <>
                   <div className="row px-30 py-15 media-center">
-                     <div className="col-sm-4">
-                        <h5 className="box-title m-0" style={{ fontWeight: 800 }}>
+                     <div className="col-sm-3">
+                        <h5 className="box-title m-0" style={{ fontWeight: 800,width:'200px' }}>
                            Training Data
                         </h5>
                      </div>
 
-                     <div className="col-sm-8 d-flex justify-content-end">
+                     <div className="col-sm-9 d-flex justify-content-end">
 
                         {deleteShow && 
 
@@ -418,7 +415,7 @@ const selCat = (e) => {
                       <div className="col-sm-4">
                         <input style={{padding: '5px !important', maxHeight:'30px !important', minHeight:'10px !important', minWidth: '400px !important'}}  type="text" className="form-control custom-input"
                          onChange={(e) => searchData(e)}
-                         placeholder="Type a few characters and hit enter to search" />
+                         placeholder="Search here" />
                       </div>
                       <div className="col-sm-4">
                       <div class="dropdown" style={{ marginTop: '-15px' }}>
@@ -438,7 +435,7 @@ const selCat = (e) => {
                       </div>
                       <div className="col-sm-3">
                       
-                           <select style={{padding: '5px', maxHeight:'30px !important', minHeight:'10px !important'}} onChange={(e) => selCat(e)}>
+                           <select style={{padding: '5px', maxHeight:'30px !important', minHeight:'10px !important', backgroundColor:'#ffffff'}} onChange={(e) => selCat(e)}>
                               <option value="">Select Data Category</option>
                               {gptCatList && gptCatList.map((rsCat) => {
 

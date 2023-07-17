@@ -6,7 +6,7 @@ import CrudService from "../../../services/crud.service";
 import { Link } from "react-router-dom";
 import { useDownloadExcel } from 'react-export-table-to-excel';
 import List from './List.js'
-
+import back_icon from '../../../assets/back-icon.svg';
 
 
 const FormDetail = ({row,loadList,subPage}) => {
@@ -37,7 +37,9 @@ const { onDownload } = useDownloadExcel({
 
           <div className="row p-30 media-center">
                   <div className="col-sm-6">
-                    <h4 className="box-title m-0" style={{fontWeight:800}}>{row.name} - Entries</h4>
+                    <h5 className="box-title m-0" style={{fontWeight:800}}>  <span onClick={() => loadList() } style={{marginRight:'5px'}} className="icon">
+                                    <img style ={{ width: "12px", marginRight: "6px",marginTop:'-3px'}} alt={'#'} src={back_icon} /> 
+                                  </span>{row.name} - Entries</h5>
                   </div>
                   <div className="col-sm-6 text-end">
 
