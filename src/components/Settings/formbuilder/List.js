@@ -129,7 +129,7 @@ const List = ({ rs, subPage, loadList }) => {
                            <tr>
                               <th width="21%" style={{fontFamily: 'Lexend Deca Medium', fontSize:'13px'}}>FORM NAME</th>
                               <th width="43%" style={{fontFamily: 'Lexend Deca Medium', fontSize:'13px'}}>FORM DESCRIPTION</th>
-                              <th width="28%" style={{textAlign:'center',fontFamily: 'Lexend Deca Medium', fontSize:'13px'}}>FORM ENTRIES</th>
+                              <th width="28%" style={{textAlign:'left',fontFamily: 'Lexend Deca Medium', fontSize:'13px'}}>SUBMISSIONS</th>
                               <th width="8%" style={{minWidth: '110px',textAlign:'start',fontFamily: 'Lexend Deca Medium', fontSize:'13px'}}>ACTION</th>
                            </tr>
                         </thead>
@@ -139,10 +139,10 @@ const List = ({ rs, subPage, loadList }) => {
                                  <tr>
                                     <td width="21%" style={{fontFamily: 'Lexend Deca Light', fontSize:'13px'}}>{row.name}</td>
                                     <td width="43%" style={{ maxWidth: '110px', minWidth: '110px',fontFamily: 'Lexend Deca Light', fontSize:'13px' }}>{row.description}</td>
-                                    <td width="28%" style={{textAlign:'center',fontFamily: 'Lexend Deca Light', fontSize:'13px'}}>
+                                    <td width="28%" style={{textAlign:'left',fontFamily: 'Lexend Deca Light', fontSize:'13px'}}>
                                        {row.Forms.length > 0 ? (
                                           <a href="#" onClick={() => subPage(<FormDetail subPage={subPage} loadList={loadList} row={row} />)}>
-                                             {row.Forms.length}
+                                             {row.Forms.length} (View Details)
                                           </a>
                                        ) : (
                                           0
@@ -152,14 +152,14 @@ const List = ({ rs, subPage, loadList }) => {
                                     <td width="8%" style={{ textAlign: 'start' }}>
                                        <BlueOnGreenTooltip title={'View Form Data'}>
                                           <button className="btn btn-icon btn-icon" onClick={() => subPage(<FormDetail subPage={subPage} loadList={loadList} row={row} />)}>
-                                             <i class="fa fa-external-link" aria-hidden="true" style={{ color: '#000', fontSize: '15px',marginTop: 2,marginLeft:'-8px' }}></i>
+                                             <i class="fa fa-external-link" aria-hidden="true" style={{ color: '#000', fontSize: '15px',paddingTop:'5px',marginLeft:'-6px' }}></i>
                                           </button>
                                        </BlueOnGreenTooltip>
-                                       <a style={{ marginLeft: 2 }}  onClick={() => subPage(<Edit loadList={loadList} retrieveList={retrieveList} rs={row} />)}>
+                                       <a style={{ marginLeft: -3 }} onClick={() => subPage(<Edit loadList={loadList} retrieveList={retrieveList} rs={row} />)}>
                                           
                                           <img alt={'#'} src={editIcon}  />
                                        </a>
-                                       <a style={{ marginLeft: 5 }}  onClick={() => deleteMe(row.id)}>
+                                       <a style={{ marginLeft: 3 }}  onClick={() => deleteMe(row.id)}>
                                           
                                           <img alt={'#'} src={deleteIcon} width="20" />
                                        </a>

@@ -150,16 +150,16 @@ const List = ({ rs, subPage, loadList }) => {
                         <table className="table">
                            <thead>
                               <tr>
-                                 <th width="60%">API NAME</th>
+                                 <th width="50%">API NAME</th>
                                  <th width="20%">API TYPE</th>
-                                 <th width="20%" style={{textAlign:'end'}}>ACTION</th>
+                                 <th width="30%" style={{textAlign:'end'}}>ACTION</th>
                               </tr>
                            </thead>
                            <tbody>
                               {listData &&
                                  listData.map((row, index) => (
                                     <tr>
-                                       <td width="60%">
+                                       <td width="50%">
                                           <div className="api_box_section">
                                              <div className="img_box">
                                                 {row.build_type == 'C' ? (
@@ -178,10 +178,10 @@ const List = ({ rs, subPage, loadList }) => {
                                           </div>
                                        </td>
                                        <td width="20%" style={{ fontFamily: 'Lexend Deca Light', fontSize:'12px' }}>{row.api_type}</td>
-                                       <td width="20%" style={{textAlign:'center'}}>
+                                       <td width="30%" style={{textAlign:'center'}}>
                                           <div className="button_section">
                                              {row.build_type == 'C' ? (
-                                                <a style={{ marginLeft: 5 }}   onClick={() => subPage(<Edit loadList={loadList} retrieveList={retrieveList} rs={row} />)}>
+                                                <a  onClick={() => subPage(<Edit loadList={loadList} retrieveList={retrieveList} rs={row} />)}>
                                                 <img alt={'#'} src={editIcon}  />
                                                 </a>
                                              ) : null}

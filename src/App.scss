@@ -324,6 +324,19 @@ body{
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
   color: #fff !important;
 }
+.custom {
+  border: 1px solid #363a77 !important;
+  border-radius: 6px;
+  padding: 7px 15px;
+  font-family: "Lexend Deca";
+  font-size: 13px;
+  line-height: 18px;
+  font-weight: 500;
+  height: 40px;
+  color: #363a77 !important;
+  background-color: #fff;
+}
+
 .secondary {
   border: 1px solid #363a77 !important;
   border-radius: 6px;

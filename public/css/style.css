@@ -32083,6 +32083,7 @@ img.away, img.busy, img.offline, img.online {
   padding: 30px 40px;
   width: 716px !important;
   height: auto !important;
+  margin-top: -190px !important;
 }
 ._modal .home_bot_modal.modal-content .modal-section .bot-category-holder .category-box{
   margin: 0px 20px 0px 0px;
@@ -32509,7 +32510,8 @@ img.away, img.busy, img.offline, img.online {
   border-radius: 5px;
 }
 .page_data_setting .api_list_page .button_section{
-  float: right;
+  /* float: right; */
+  text-align: end;
 }
 .page_data_setting .api_list_page .table{
   border-top: 1px solid #ccc;

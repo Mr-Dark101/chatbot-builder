@@ -117,12 +117,7 @@ const Create = ({rs,retrieveForm}) => {
                ];
                setModelListDynamic(modelList)
          }else{
-            const modelList = [
-              
-               /*{ value: 8, label: 'gpt-3.5-turbo (4,096 tokens)' },
-               { value: 9, label: 'gpt-3.5-turbo-16k (16,384 tokens)' },
-               { value: 10, label: 'gpt-3.5-turbo-0613 (4,096 tokens)' },
-               { value: 11, label: 'gpt-3.5-turbo-16k-0613 (16,384 tokens)' },*/
+            const modelList = [         
                { value: 12, label: 'text-davinci-003 (4,097 tokens)' },
                { value: 13, label: 'text-davinci-002 (4,097 tokens)' },
                { value: 14, label: 'code-davinci-002 (8,001 tokens)' }
@@ -222,7 +217,7 @@ const Create = ({rs,retrieveForm}) => {
 
                                     <div className="row align-end">  
                                        <h6 style={{fontFamily: 'Lexend Deca',fontWeight: 700,fontSize: '16px',lineHeight: '18px',marginTop:'20px',marginBottom:'-12px'}}>Maximum number of tokens in response</h6>                                                                    
-                                       <div className="col-6">
+                                       <div className="col-4">
                                           <div className="field_section">
                                              <TextField name="tokens_number"                                     
                                              onBlur={(e) => {                                       
@@ -233,7 +228,7 @@ const Create = ({rs,retrieveForm}) => {
                                           </div>
                                        </div>
 
-                                       <div className="col-6" style={{marginBottom:'0px'}}>
+                                       <div className="col-8" style={{marginBottom:'0px'}}>
                                           <div className="field_section">
                                              <p name="wordscount" id="wordscount">~ Approximately 0 words</p>
                                           </div>
