@@ -8,6 +8,8 @@ import InstagramIcon from '../../../assets/insta.png';
 import GoogleIcon from '../../../assets/google.png';
 // import facebookIcon from "../../../assets/facebook-icon.png";
 import comingSoonIcon from '../../../assets/whatsapp.png';
+import sampleExample from '../../../assets/example.jpeg';
+
 // import messengerIcon from "../../../assets/Icon awesome-facebook-messenger.svg";
 import $ from 'jquery';
 import { useDispatch } from 'react-redux';
@@ -15,6 +17,7 @@ import { createUserBot, updateUserBot, getChannelVerify } from '../slices/dashbo
 import AlertModal from '../../../SharedComponent/ConfirmModal/ChannelModal';
 import ConfirmModal from '../../../SharedComponent/ConfirmModal/ConfirmModal';
 import { fontWeight, width } from '@mui/system';
+import SweetAlert from 'react-bootstrap-sweetalert';
 const defaultState = {
    isConfirm: false,
    isAlert: false,
@@ -37,6 +40,8 @@ const defaultState = {
 
 const CreateBotComposer = (props) => {
    let { openModal, onClose, currentUser, data,botType } = props;
+
+   const [showAlert, setShowAlert] = useState(false);
 
    const [init, setInit] = useState(defaultState);
    let { selected, selectCategory, botName, botDescription, botPhoneNumber, botImage, botId, comingSoon, onHover, isAlert,isConfirm, isUpdatedList, confirmationTxt, icon, confirmationInfo, buttonText } = init;
@@ -312,7 +317,7 @@ const CreateBotComposer = (props) => {
    }
 
    const openExampleModal = () => {
-     
+     setShowAlert(true)
    }
 
    const body = (
@@ -527,6 +532,28 @@ A menu-based chatbot presents users with a structured menu of options to choose 
 
    return (
       <>
+         {showAlert && (
+         <SweetAlert
+               custom
+              
+               confirmBtnText="Close"
+               cancelBtnText="Cancel"
+               confirmBtnBsStyle="primary"
+               cancelBtnBsStyle="light"
+               customIcon=""
+               customClass="containerBoxAlert"
+               title="Sample Example"
+               onConfirm={() => {
+                  setShowAlert(false);
+                  
+               }}
+               
+
+                reverseButtons={true}
+            >
+            <img alt="Sample Example" src={sampleExample} style={{ width: '332px', height: '316px' }} />
+            </SweetAlert>
+            )}
          <AlertModal visible={isAlert} handleOk={alertCloseLink} confirmLoading={true} modalText={confirmationTxt} modalIcon={icon} modalInfo={confirmationInfo} buttonText={buttonText} handleCancel={alertClose} />
          <ConfirmModal visible={isConfirm} okText= {"Yes"} modalTitle= {(data != null) ? 'Update Bot' : 'Create Bot'} handleOk={handleCreateBotSubmit} modalText={confirmationTxt} handleCancel={alertConfirmClose} />
          
