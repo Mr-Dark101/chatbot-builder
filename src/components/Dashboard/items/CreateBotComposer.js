@@ -295,7 +295,6 @@ const CreateBotComposer = (props) => {
       }
    };
 
-
    const handleUpdate = () => {
       if (data !== null) {
          setInit({
@@ -310,6 +309,10 @@ const CreateBotComposer = (props) => {
          handleCreateBotSubmit();        
       }
    
+   }
+
+   const openExampleModal = () => {
+     
    }
 
    const body = (
@@ -349,8 +352,9 @@ This bot does not reply to the user input with dynamic data from third party sys
                         <h6 style={{fontFamily: 'Lexend Deca Light !important'}}>
                         Hybrid chatbot is a combination of menu-based and GPT-based chatbot. 
                         <br /><br />
-A menu-based chatbot presents users with a structured menu of options to choose from and responds according to pre-determined rules. Whereas a GPT-based chatbot uses natural language processing (NLP) to understand and respond to customer queries. Hybrid chatbot use a combination of both these technologies to deliver the best possible customer experience.
+A menu-based chatbot presents users with a structured menu of options to choose from and responds according to pre-determined rules. Whereas a GPT-based chatbot uses natural language processing (NLP) to understand and respond to customer queries. Hybrid chatbot use a combination of both these technologies to deliver the best possible customer experience.<a onClick={openExampleModal} href="#"> See example.</a>
                         </h6>
+                       
                   </div>
                </div>
 
@@ -499,7 +503,7 @@ A menu-based chatbot presents users with a structured menu of options to choose 
 
          <div className="modal-footer">
             <div className="actions">
-               <button style={{ textTransform: 'none', width: '100px',height: '34px', marginRight: 10 }} className="btn secondary" onClick={handleCloseModal}>
+               <button style={{ textTransform: 'none',paddingTop: '8px !important', width: '100px',height: '34px',fontSize:'13px', marginRight: 10,fontFamily: 'Lexend Deca' }} className="btn custom" onClick={handleCloseModal}>
                   Cancel
                </button>
 
@@ -529,6 +533,7 @@ A menu-based chatbot presents users with a structured menu of options to choose 
          <Modal open={openModal} onClose={handleCloseModal} aria-labelledby="create-bot" aria-describedby="create-the-new-bot" className={'_modal'}>
             {body}
          </Modal>
+
       </>
    );
 };
