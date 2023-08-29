@@ -312,13 +312,13 @@ const D3Tree = (props) => {
 
 
    const redo = (bot_id) => {
-      dispatch(getBotTriggersHistoryUp(bot_id,last_id));
+      //dispatch(getBotTriggersHistoryUp(bot_id,last_id));
    };
 
 
    const undo = (bot_id) => {
       
-      dispatch(getBotTriggersHistoryDown(bot_id,last_id));
+      //dispatch(getBotTriggersHistoryDown(bot_id,last_id));
    };
 
    const nodeSize = { x: 620, y: 350 };
@@ -353,7 +353,7 @@ const D3Tree = (props) => {
          </a>
          <div class="s-tags">
 
-            
+            {/*
             {(last_id > 0) ? (
 
 
@@ -371,8 +371,8 @@ const D3Tree = (props) => {
             </div>
 
             ) : null}
+          
            
-
            <BlueOnGreenTooltip title="Undo">
                <div class="tag-box">
                   <a
@@ -387,7 +387,7 @@ const D3Tree = (props) => {
                   </a>
                </div>
             </BlueOnGreenTooltip>
-            
+             */}
             <div class="tag-box">
                <a
                   href="javascript:void(0)"
