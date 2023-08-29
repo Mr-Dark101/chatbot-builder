@@ -148,7 +148,7 @@ const BuildWorkSpace = () => {
 
 
    const saveUndoComplete = () => {
-      //console.log(historyData)
+     console.log(historyData)
         
          publishClose()
           var body = {
