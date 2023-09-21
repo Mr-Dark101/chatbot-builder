@@ -35,8 +35,8 @@ const Login = (props) => {
       const query = new URLSearchParams(props.location.search);
 
       let _userName = JSON.stringify(props.location.search);
-      //console.log(_userName)
-      _userName = query.get('username'); //_userName.replace('?username=', '');
+      console.log(_userName)
+      _userName = query.get('access_token'); //_userName.replace('?access-token=', '');
 
       if (_userName) {
         

@@ -44,7 +44,7 @@ const loginbyuser = (username) => {
   
 
    return axios
-      .get(API_URL + 'signinuser?username=' + username)
+      .get(API_URL + 'signinuser?access_token=' + username)
       .then((response) => {
          console.log('here')
          if (response.data.accessToken) {

@@ -36,6 +36,7 @@ axios.interceptors.request.use(
     config => {
        // const token = localStorage.getItem('user');
         const user = JSON.parse(localStorage.getItem('user'));
+       
         setLoader(true)
         if (user) {
             config.headers['x-access-token'] =  user.accessToken;

@@ -93,7 +93,7 @@ const NavBar = () => {
 
    // )
    return (
-      <div className="nav-bar-cont left_navbar hide">
+      <div className="nav-bar-cont left_navbar">
          <div className="left_bar_top_section">
             <div className="nLink-group">
                <Link to={`${STRINGS.ROUTES.ROOT}?org=${localStorage.getItem('userId')}`} className="nLink">
