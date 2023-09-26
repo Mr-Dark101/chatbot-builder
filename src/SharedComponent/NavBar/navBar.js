@@ -18,7 +18,9 @@ import tags_icon from '../../assets/Image 1/contacts.svg';
 import star_icon from '../../assets/Image 1/star.png';
 import billing_icon from '../../assets/Image 1/billing.svg';
 import setting_icon from '../../assets/Image 1/settings.svg';
+import logo from '../../assets/dc-new-logo.png';
 import { STRINGS } from '../../utils/base';
+import '../../App.css';
 
 import { Link } from 'react-router-dom';
 
@@ -93,168 +95,162 @@ const NavBar = () => {
 
    // )
    return (
-      <div className="nav-bar-cont left_navbar">
-         <div className="left_bar_top_section">
-            <div className="nLink-group">
-               <Link to={`${STRINGS.ROUTES.ROOT}?org=${localStorage.getItem('userId')}`} className="nLink">
-                  <div className="icon">
-                     <img alt={'#'} src={home_icon} margin-top="20px" height={'42.4285rem'} width={'42.4285rem'} font-size={'1.45rem'} margin-right={'1.1rem'} />
-                  </div>
-                  <div />
-               </Link>
-            </div>
 
-            <div className="nLink-group">
-               <Link to={'https://eoceanwabaqa.com/eoceanwab/holisticanalysis/index'} target="_blank" rel="noopener noreferrer">
-                  <a href="https://eoceanwabaqa.com/eoceanwab/holisticanalysis/index">
-                     <div className="icon">
-                        <img alt={'#'} src={analysis_icon} height={'23.4285rem'} width={'23.4285rem'} font-size={'1.45rem'} margin-right={'1.1rem'} />
-                     </div>
-                     <div />
-                  </a>
-               </Link>
-            </div>
-
-            <div className="nLink-group">
-               <Link to={'https://eoceanwabaqa.com/eoceanwab/chatmanager/index'} target="_blank" rel="noopener noreferrer" className="nLink">
-                  <a href="https://eoceanwabaqa.com/eoceanwab/chatmanager/index">
-                     <div className="icon">
-                        <img alt={'#'} src={chat_icon} height={'23.4285rem'} width={'23.4285rem'} font-size={'1.45rem'} margin-right={'1.1rem'} />
-                     </div>
-                     <div />
-                  </a>
-               </Link>
-            </div>
-
-            <div className="nLink-group">
-               <Link to={`https://eoceanwabaqa.com/eoceanwab/campaignmessages/index?msgType=`} target="_blank" rel="noopener noreferrer" className="nLink active">
-                  <a href="https://eoceanwabaqa.com/eoceanwab/campaignmessages/index?msgType=">
-                     <div className="icon">
-                        <img alt={'#'} src={template_icon} height={'23.4285rem'} width={'23.4285rem'} font-size={'1.45rem'} margin-right={'1.1rem'} />
-                     </div>
-                     <div />{' '}
-                  </a>
-               </Link>
-            </div>
-            <div className="nLink-group">
-               <Link to={`https://eoceanwabaqa.com/eoceanwab/segments/index?segmentName=&segmentType=&createdOn=`} target="_blank" rel="noopener noreferrer" className="nLink">
-                  <a href="https://eoceanwabaqa.com/eoceanwab/segments/index?segmentName=&segmentType=&createdOn=">
-                     <div className="icon">
-                        <img alt={'#'} src={teams_icon} height={'23.4285rem'} width={'23.4285rem'} font-size={'1.45rem'} margin-right={'1.1rem'} />
-                     </div>
-                     <div />
-                  </a>
-               </Link>
-            </div>
-            <div className="nLink-group">
-               <Link to={`https://eoceanwabaqa.com/eoceanwab/WhatsappManager/profilesettings`} target="_blank" rel="noopener noreferrer" className="nLink">
-                  <a href="https://eoceanwabaqa.com/eoceanwab/WhatsappManager/profilesettings">
-                     <div className="icon">
-                        <img alt={'#'} src={users_icon} height={'23.4285rem'} width={'23.4285rem'} font-size={'1.45rem'} margin-right={'1.1rem'} />
-                     </div>
-                     <div />
-                  </a>
-               </Link>
-            </div>
-
-            <div className="nLink-group">
-               <Link to={`https://eoceanwabaqa.com/eoceanwab/contacts/index?name=&number=&email=&status=&customAttributes=&pageSize=`} target="_blank" rel="noopener noreferrer" className="nLink">
-                  <a href="https://eoceanwabaqa.com/eoceanwab/contacts/index?name=&number=&email=&status=&customAttributes=&pageSize=">
-                     <div className="icon">
-                        <img alt={'#'} src={tags_icon} height={'36.4285rem'} width={'36.4285rem'} font-size={'1.45rem'} margin-right={'1.1rem'} style={{ 'border-bottom': '1px solid #D0D0D0', 'padding-bottom': '15px' }} />
-                     </div>
-                     <div />
-                  </a>
-               </Link>
-            </div>
-
-            <div className="nLink-group">
-               <Link to={`https://eoceanwab.com/org=1`} target="_blank" rel="noopener noreferrer" className="nLink">
-                  <a href="https://eoceanwab.com/org=1">
-                     <div className="icon">
-                        <img alt={'#'} src={chatbot_builder} height={'23.4285rem'} width={'23.4285rem'} font-size={'1.45rem'} margin-right={'1.1rem'} />
-                     </div>
-                     <div />
-                  </a>
-               </Link>
-            </div>
-
-            <div className="nLink-group">
-               <Link to={`https://eoceanwabaqa.com/eoceanwab/channels/index`} target="_blank" rel="noopener noreferrer" className="nLink">
-                  <a href="https://eoceanwabaqa.com/eoceanwab/channels/index">
-                     <div className="icon">
-                        <img alt={'#'} src={share_icon} height={'23.4285rem'} width={'23.4285rem'} font-size={'1.45rem'} margin-right={'1.1rem'} />
-                     </div>
-                     <div />
-                  </a>
-               </Link>
-            </div>
-            <div className="nLink-group">
-               <Link to={`https://eoceanwabaqa.com/eoceanwab/integrations/index`} target="_blank" rel="noopener noreferrer" className="nLink">
-                  <a href="https://eoceanwabaqa.com/eoceanwab/integrations/index">
-                     <div className="icon">
-                        <img alt={'#'} src={tags_icon} height={'23.4285rem'} width={'23.4285rem'} font-size={'1.45rem'} margin-right={'1.1rem'} />
-                     </div>
-                     <div />
-                  </a>
-               </Link>
-            </div>
-            <div className="nLink-group">
-               <Link to={`https://eoceanwabaqa.com/eoceanwab/usermanagement/summary`} target="_blank" rel="noopener noreferrer" className="nLink">
-                  <a href="https://eoceanwabaqa.com/eoceanwab/usermanagement/summary">
-                     <div className="icon">
-                        <img alt={'#'} src={user_icon} height={'23.4285rem'} width={'23.4285rem'} font-size={'1.45rem'} margin-right={'1.1rem'} />
-                     </div>
-                     <div />
-                  </a>
-               </Link>
-            </div>
-            <div className="nLink-group">
-               <Link to={`https://eoceanwabaqa.com/eoceanwab/teammanagement/summary?teamName=&status=`} target="_blank" rel="noopener noreferrer" className="nLink">
-                  <a href="https://eoceanwabaqa.com/eoceanwab/teammanagement/summary?teamName=&status=">
-                     <div className="icon">
-                        <img alt={'#'} src={team_icon} height={'36.4285rem'} width={'36.4285rem'} font-size={'1.45rem'} margin-right={'1.1rem'} style={{ 'border-bottom': '1px solid #D0D0D0', 'padding-bottom': '15px' }} />
-                     </div>
-                     <div />
-                  </a>
-               </Link>
-            </div>
-         </div>
-
-         <div className="left_bar_end_section">
-            <div className="nLink-group">
-               <Link to={'https://eoceanwabaqa.com/eoceanwab/whatsnew/index'} target="_blank" rel="noopener noreferrer" className="nLink">
-                  <a href="https://eoceanwabaqa.com/eoceanwab/whatsnew/index">
-                     <div className="icon">
-                        <img alt={'#'} src={star_icon} height={'23.4285rem'} width={'23.4285rem'} font-size={'1.45rem'} margin-right={'1.1rem'} />
-                     </div>
-                     <div />
-                  </a>
-               </Link>
-            </div>
-
-            <div className="nLink-group">
-               <Link to={'https://eoceanwabaqa.com/eoceanwab/billing/index'} target="_blank" rel="noopener noreferrer" className="nLink">
-                  <a href="https://eoceanwabaqa.com/eoceanwab/billing/index">
-                     <div className="icon">
-                        <img alt={'#'} src={billing_icon} height={'23.4285rem'} width={'23.4285rem'} font-size={'1.45rem'} margin-right={'1.1rem'} />
-                     </div>
-                     <div />
-                  </a>
-               </Link>
-            </div>
-
-            <div className="nLink-group">
-               <Link to={'https://eoceanwabaqa.com/eoceanwab/accountsettings/index'} target="_blank" rel="noopener noreferrer" className="nLink">
-                  <a href="https://eoceanwabaqa.com/eoceanwab/accountsettings/index">
-                     <div className="icon">
-                        <img alt={'#'} src={setting_icon} height={'23.4285rem'} width={'23.4285rem'} font-size={'1.45rem'} margin-right={'1.1rem'} />
-                     </div>
-                     <div />
-                  </a>
-               </Link>
-            </div>
-         </div>
+      <div className="vertical-layout vertical-menu-modern content-left-sidebar navbar-floating footer-static menu-collapsed" data-open="click" data-menu="vertical-menu-modern" data-col="content-left-sidebar">
+      <div className="pace  pace-inactive"><div className="pace-progress" data-progress-text="100%" data-progress="99">
+  <div className="pace-progress-inner"></div>
+</div>
+<div className="pace-activity"></div></div>
+      <div className="main-menu menu-fixed menu-light menu-accordion menu-shadow menu-dark"
+         data-scroll-to-active="true">
+      <div className="navbar-header expanded">
+        <ul className="nav navbar-nav flex-row">
+          <li className="nav-item mr-auto">
+            <a className="navbar-brand m-0" href="../../../html/ltr/vertical-menu-template/index.html">
+              <span className="brand-logo" style={{ width: '190px' }}>
+                <img src={logo} alt="Chatbot" style={{ marginTop: '15px', maxWidth: '100%', width: '50%' }} className="half-logo d-none" />
+                <img src={logo} alt="Chatbot" style={{ maxWidth: '40px' }} className="full-logo" />
+              </span>
+            </a>
+          </li>
+          <li className="nav-item nav-toggle">
+            <a className="nav-link modern-nav-toggle pr-0" data-toggle="collapse">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-x d-block d-xl-none text-white toggle-icon font-medium-4">
+                <line x1="18" y1="6" x2="6" y2="18" />
+                <line x1="6" y1="6" x2="18" y2="18" />
+              </svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-disc d-none d-xl-block collapse-toggle-icon primary text-white font-medium-4">
+                <circle cx="12" cy="12" r="10" />
+                <circle cx="12" cy="12" r="3" />
+              </svg>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="shadow-bottom"></div>
+       <div class="main-menu-content ps ps--active-y">
+          <ul class="navigation navigation-main scroll_navBar" id="main-menu-navigation"
+             data-menu="menu-navigation">
+                <li id="statsLi" class="nav-item">
+                   <a
+                   class="d-flex align-items-center"
+                   href="#!"> <i class="far fa-chart-bar"></i> <span
+                      class="menu-item text-truncate" data-i18n="Analytics">Insights</span>
+                   </a>
+                </li>
+                <li id="chatmanagerLi" class="nav-item">
+                   <a id="chatAnchor"
+                   class="d-flex align-items-center"
+                   href="#!">
+                   <i class="fas fa-comments"></i> <span
+                      class="menu-title text-truncate" data-i18n="Chat">Chat
+                   Manager</span>
+                   </a>
+                </li>
+                <li id="chatbotManagerLi" class="nav-item">
+                   <a id="chatAnchor"
+                   class="d-flex align-items-center"
+                   href="#!"> <i
+                      class="fas fa-robot"></i> <span class="menu-title text-truncate"
+                      data-i18n="Chat"> Bot Conversations</span>
+                   </a>
+                </li>
+                <li id="templateManagerLi" class="nav-item">
+                   <a id="chatAnchor"
+                   class="d-flex align-items-center" href="#!"> <i
+                      class="far fa-file-alt"></i> <span
+                      class="menu-title text-truncate" data-i18n="Chat">Template
+                   Manager</span>
+                   </a>
+                </li>
+                <li id="campaignLi" class="nav-item">
+                   <a id="chatAnchor"
+                   class="d-flex align-items-center" href="#!"> <i
+                      class="fas fa-bullhorn"></i> <span
+                      class="menu-title text-truncate" data-i18n="Chat">Campaign
+                   Manager</span>
+                   </a>
+                </li>
+                <li id="profileSettingsli" class="nav-item">
+                   <a
+                   href="#!"
+                   class="d-flex align-items-center chatManagerAnc"> <i
+                      class="fab fa-whatsapp ml-25"></i><span class="nav-header-primary">WhatsApp Profile<span class="pull-right"><b class="caret"></b></span>
+                   </span>
+                   </a>
+                </li>
+                <li class="contactsLi nav-item">
+                   <a
+                   class="d-flex align-items-center"
+                   href="#!"><i class="fas fa-users"></i><span class="menu-title text-truncate"
+                      data-i18n="Contacts">Contacts</span></a>
+                </li>
+                <li id="chatobotBuilderLi" class="nav-item active">
+                   <a id="chatAnchor"
+                   class="d-flex align-items-center"
+                   href="#!"> <i
+                      class="fas fa-network-wired"></i> 
+                   <span class="menu-title text-truncate" 
+                      data-i18n="Chat">Chatbot Builder</span>&nbsp;  
+                   </a>
+                </li>
+                <li id="channelsLi" class=" nav-item">
+                   <a class="d-flex align-items-center"
+                   href="#!"><i data-feather='share-2'></i><span
+                      class="menu-title text-truncate" data-i18n="channels">Channels</span></a>
+                </li>
+            
+                <li id="integrationsLi" class="nav-item">
+                   <a class="d-flex align-items-center"
+                   href="#!">
+                    <i class="fas fa-cogs"></i>
+                    <span class="menu-title text-truncate" data-i18n="integrations">Integrations</span>
+                    </a>
+                </li>
+             
+               
+                <li id="usermanagementLi" class="nav-item">
+                   <a class="d-flex align-items-center"
+                   href="#!">
+                   <i data-feather='shield'></i>
+                    <span class="menu-title text-truncate" data-i18n="Calendar">Users</span>
+                   </a>
+                  </li>  
+              <li id="teammanagementLi" class=" nav-item"><a class="d-flex align-items-center"
+              href="#!"><i data-feather='users'></i><span
+                class="menu-title text-truncate" data-i18n="Todo">Teams</span></a></li>
+                <li id="billingLi" class="position_abs position_abs_b1 w-100 nav-item"
+                   >
+                   <a class="d-flex align-items-center"
+                   href="#!">
+                   <i class="fas fa-hand-holding-usd"></i> <span
+                      class="menu-title text-truncate" data-i18n="Kanban">Billing</span>
+                   </a>
+                </li>
+             <li id="accountSetLi" class="position_abs position_abs_b2 w-100 nav-item"
+                >
+                <a class="d-flex align-items-center"
+                href="#!">
+                <i class="fas fa-cog"></i> <span
+                   class="menu-title text-truncate" data-i18n="Kanban">Settings</span> 
+                </a>
+             </li>
+          
+              <li id="whatsNewLi" class="position_abs position_abs_b3 w-100 nav-item">
+                 <a class="d-flex align-items-center"
+                 id="example" data-title="Here's What's New!!"
+                 data-toggle="clickover" data-placement="right"
+                 href="#!">
+                 <i class="far fa-star"></i> <span class="menu-title text-truncate"
+                    data-i18n="Kanban">What's New</span>  &nbsp;
+                 <span>New</span><span
+                    class="badge badge-pill badge-primary float-right position-relative"
+                    >New</span>
+                 </a>
+              </li>
+          </ul>
+       </div>
+      </div>
       </div>
    );
 };

@@ -38,6 +38,11 @@ input[type=number] {
     .nav-bar-hld {
       display: flex;
       flex-direction: column;
+      width: 80px;
+    }
+    .nav-bar-hld:hover{
+      width: 300px;
+      transition: .4s;
     }
 
     .main-section {

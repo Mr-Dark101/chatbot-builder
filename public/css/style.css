@@ -32838,7 +32838,7 @@ a.navbar-brand {
 
 span.brand-logo {
   z-index: 99;
-  top: -16px;
+  top: 5px;
   position: relative;
 }
 
@@ -32875,12 +32875,8 @@ a.nav-link.modern-nav-toggle.pr-0 {
 .main-menu .main-menu-content {
   /* height: calc(100% - -10.55rem) !important; */
   position: relative;
-  background: #363a77 !important;
 }
 
-ul#main-menu-navigation {
-  margin-top: 20px;
-}
 
 .main-menu .navigation {
   overflow: visible;
@@ -32992,14 +32988,9 @@ body, btn, p, div, a, button {
   border-radius: 4px;
 }
 
-#chatobotBuilderLi #chatAnchor {
-  border-top: 1px solid #999999;
-  margin-top: 6%;
-}
 
-#teammanagementLi a.d-flex.align-items-center {
-  border-bottom: 1px solid #999999;
-}
+
+
 
 .ws-hld .head .head-rt .txt {
   font-size: 20px !important;
@@ -33036,3 +33027,61 @@ input.custom-input {
   padding: 5px !important;
 }
 .sweet-alert .btn-lg{font-size:1rem !important;padding:.375rem .75rem !important}
+
+
+/*Left Nav New Css*/
+
+.vertical-layout.vertical-menu-modern.menu-collapsed .main-menu:hover{
+  width: 260px;
+}
+.nav-bar-hld:hover{
+  width: 260px;
+}
+      body{
+         font-family: 'Lexend Deca', sans-serif;
+         }  
+         .main-menu.menu-dark .navigation > li.active > a {
+          background: #eef3f2 !important;
+          color: black !important;
+          box-shadow: 0 0 10px 1px rgb(214 219 218 / 35%) !important;
+      }
+         .vertical-layout.vertical-menu-modern .main-menu .navigation > li > a svg, .vertical-layout.vertical-menu-modern .main-menu .navigation > li > a i {
+         font-size: 1.2rem;
+         }
+         .main-menu.menu-dark, .main-menu.menu-dark .navigation {
+         color: black !important;
+         background: #10163a !important;
+         }
+         .main-menu.menu-dark .navigation li a {
+            padding: 7px 15px;
+         /* font-size: 14px; */
+         }
+         .position_abs_b1 {
+         bottom: 80px;
+         }
+         .position_abs {
+         position: absolute !important;
+         }
+         .position_abs_b2 {
+         bottom: 40px;
+         }
+         .position_abs_b3 {
+         bottom: -10px;
+         }
+        .nav-link.modern-nav-toggle {
+        color: #fff !important;
+    }
+    .vertical-layout.vertical-menu-modern .main-menu .navigation > li > a svg, .vertical-layout.vertical-menu-modern .main-menu .navigation > li > a i {
+        font-size: 1.2rem;
+    }
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/*Left Nav New Css*/
