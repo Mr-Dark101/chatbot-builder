@@ -175,7 +175,14 @@ const BuildWorkSpace = () => {
             });
                
             })
-            .catch((ex) => {});
+            .catch((ex) => {
+
+                  if(ex.response.status){
+                     window.location.replace('https://eoceanwab.com/eoceanwab/notification/errorMessage');
+                     return false
+                  }
+
+            });
      
       
      
@@ -243,7 +250,13 @@ const BuildWorkSpace = () => {
                confirmationTxt: confirmationText,
             });
          })
-         .catch((ex) => {});
+         .catch((ex) => {
+
+            if(ex.response.status){
+               window.location.replace('https://eoceanwab.com/eoceanwab/notification/errorMessage');
+               return false
+            }
+         });
    };
 
    const unpublishBot = () => {
@@ -282,6 +295,11 @@ const BuildWorkSpace = () => {
             );
          })
          .catch((ex) => {
+
+            if(ex.response.status){
+               window.location.replace('https://eoceanwab.com/eoceanwab/notification/errorMessage');
+               return false
+            }
             console.error(ex.message);
          });
    };
@@ -447,7 +465,14 @@ const BuildWorkSpace = () => {
                }
             }
          })
-         .catch((ex) => {});
+         .catch((ex) => {
+
+
+            if(ex.response.status){
+               window.location.replace('https://eoceanwab.com/eoceanwab/notification/errorMessage');
+               return false
+            }
+         });
    };
    return (
       <div className="ws-hld">

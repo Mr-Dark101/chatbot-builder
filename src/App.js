@@ -47,6 +47,7 @@ axios.interceptors.request.use(
     },
    
     error => {
+        alert("test s")
          setLoader(false)
         Promise.reject(error)
 });
@@ -58,12 +59,17 @@ axios.interceptors.response.use((response) => { // block to handle success case
 
     return response
  }, function (error) { // block to handle error case
+
+    alert("Test")
     const originalRequest = error.config;
      setLoader(false)
+
     if (error.response.status === 403 || error.response.status === 401) { // Added this condition to avoid infinite loop 
 
         
         localStorage.removeItem("user")
+        
+        window.location.replace('https://eoceanwab.com/eoceanwab/notification/errorMessage');
         // Redirect to any unauthorised route to avoid infinite loop...
         return Promise.reject(error);
     }

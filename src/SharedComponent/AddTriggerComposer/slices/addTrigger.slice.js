@@ -20,6 +20,10 @@ export const UpdateTrigger = (obj) => async (dispatch) => {
          }
       })
       .catch((ex) => {
+         if(ex.response.status){
+                     window.location.replace('https://eoceanwab.com/eoceanwab/notification/errorMessage');
+                     return false
+                  }
          dispatch(isError(ex));
       });
 };
@@ -36,6 +40,10 @@ export const getBotTriggers = (id) => async (dispatch) => {
          }
       })
       .catch((ex) => {
+         if(ex.response.status){
+                     window.location.replace('https://eoceanwab.com/eoceanwab/notification/errorMessage');
+                     return false
+                  }
          dispatch(isError(ex));
       });
 };
@@ -54,6 +62,10 @@ export const getAllTriggersTypes = (id) => async (dispatch) => {
          }
       })
       .catch((ex) => {
+         if(ex.response.status){
+                     window.location.replace('https://eoceanwab.com/eoceanwab/notification/errorMessage');
+                     return false
+                  }
          dispatch(isError(ex));
       });
 };
@@ -81,6 +93,10 @@ export const DeleteBotTrigger =
             }
          })
          .catch((ex) => {
+            if(ex.response.status){
+                     window.location.replace('https://eoceanwab.com/eoceanwab/notification/errorMessage');
+                     return false
+                  }
             return dispatch(userBotsError(ex));
          });
    };
@@ -99,6 +115,10 @@ export const getBotTriggersRecursive = (id) => async (dispatch) => {
          }
       })
       .catch((ex) => {
+         if(ex.response.status){
+                     window.location.replace('https://eoceanwab.com/eoceanwab/notification/errorMessage');
+                     return false
+                  }
          dispatch(isError(ex));
       });
 };
@@ -118,6 +138,10 @@ export const getBotTriggersHistoryDown = (id,last_id=0) => async (dispatch) => {
          }
       })
       .catch((ex) => {
+         if(ex.response.status){
+                     window.location.replace('https://eoceanwab.com/eoceanwab/notification/errorMessage');
+                     return false
+                  }
          dispatch(isError(ex));
       });
 };
@@ -138,6 +162,10 @@ export const getBotTriggersHistoryUp = (id,last_id=0) => async (dispatch) => {
          }
       })
       .catch((ex) => {
+         if(ex.response.status){
+                     window.location.replace('https://eoceanwab.com/eoceanwab/notification/errorMessage');
+                     return false
+                  }
          dispatch(isError(ex));
       });
 };
@@ -158,6 +186,10 @@ export const apiList = (userId) => async (dispatch) => {
          }
       })
       .catch((ex) => {
+         if(ex.response.status){
+                     window.location.replace('https://eoceanwab.com/eoceanwab/notification/errorMessage');
+                     return false
+                  }
          dispatch(isError(ex));
       });
 };
@@ -177,6 +209,10 @@ export const formList = (userId) => async (dispatch) => {
          }
       })
       .catch((ex) => {
+         if(ex.response.status){
+                     window.location.replace('https://eoceanwab.com/eoceanwab/notification/errorMessage');
+                     return false
+                  }
          dispatch(isError(ex));
       });
 };
@@ -203,6 +239,10 @@ export const uploadFile = (file) => (dispatch) => {
          }
       })
       .catch((ex) => {
+         if(ex.response.status){
+                     window.location.replace('https://eoceanwab.com/eoceanwab/notification/errorMessage');
+                     return false
+                  }
          dispatch(isError(ex));
       });
 };

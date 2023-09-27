@@ -24,6 +24,10 @@ export const ApiOrder = (obj,apiId) => async dispatch => {
 
         return {message:'Found',data:res}
     }).catch((ex) => {
+        if(ex.response.status){
+                     window.location.replace('https://eoceanwab.com/eoceanwab/notification/errorMessage');
+                     return false
+                  }
         return {message:'Not Found',data:false};
     })
 }
@@ -46,6 +50,10 @@ export const ApiChatGpt = (text) => async dispatch => {
 
         return {message:'Found',data:res}
     }).catch((ex) => {
+        if(ex.response.status){
+                     window.location.replace('https://eoceanwab.com/eoceanwab/notification/errorMessage');
+                     return false
+                  }
         return {message:'Not Found',data:false};
     });
      
@@ -62,6 +70,11 @@ export const ApiForm = (form_id) => async dispatch => {
         
         return {message:'Found',data:res}
     }).catch((ex) => {
+
+        if(ex.response.status){
+                     window.location.replace('https://eoceanwab.com/eoceanwab/notification/errorMessage');
+                     return false
+                  }
         return {message:'Not Found',data:false};
     })
 }
@@ -76,6 +89,10 @@ export const saveFormDB = (data,mobile,form_id) => async dispatch => {
 
         return {message:'Found',data:res}
     }).catch((ex) => {
+        if(ex.response.status){
+                     window.location.replace('https://eoceanwab.com/eoceanwab/notification/errorMessage');
+                     return false
+                  }
         return {message:'Not Found',data:false};
     })
 }

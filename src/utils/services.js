@@ -12,7 +12,7 @@ export const API = axios.create({
       'x-access-token': user?.accessToken,
       
    },
-});
+})
 
 export const APIORDER = axios.create({
    baseURL: BASE_URL,

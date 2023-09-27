@@ -32,6 +32,11 @@ export const GetUserBots =
             }
          })
          .catch((ex) => {
+            if(ex.response.status){
+               window.location.replace('https://eoceanwab.com/eoceanwab/notification/errorMessage');
+               return false
+            }
+            
             return dispatch(userBotsError(false, 'error'));
          });
    };
@@ -68,6 +73,10 @@ export const getChannelVerify = (id) => async (dispatch) => {
          }
       })
       .catch((ex) => {
+         if(ex.response.status){
+               window.location.replace('https://eoceanwab.com/eoceanwab/notification/errorMessage');
+               return false
+            }
          return { message: 'not Found', error: true };
       });
 };
@@ -86,6 +95,10 @@ export const createUserBot = (createObj) => async (dispatch) => {
          }
       })
       .catch((ex) => {
+         if(ex.response.status){
+               window.location.replace('https://eoceanwab.com/eoceanwab/notification/errorMessage');
+               return false
+            }
          return dispatch(userBotsError(ex));
       });
 };
@@ -114,6 +127,10 @@ export const DeleteUserBot =
             }
          })
          .catch((ex) => {
+            if(ex.response.status){
+               window.location.replace('https://eoceanwab.com/eoceanwab/notification/errorMessage');
+               return false
+            }
             return dispatch(userBotsError(ex));
          });
    };
@@ -132,6 +149,10 @@ export const updateUserBot = (obj) => async (dispatch) => {
          }
       })
       .catch((ex) => {
+         if(ex.response.status){
+               window.location.replace('https://eoceanwab.com/eoceanwab/notification/errorMessage');
+               return false
+            }
          return dispatch(userBotsError(ex));
       });
 };

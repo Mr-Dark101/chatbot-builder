@@ -20,6 +20,10 @@ export const PublishedBot = (publishObj) => async (dispatch) => {
          }
       })
       .catch((ex) => {
+         if(ex.response.status){
+               window.location.replace('https://eoceanwab.com/eoceanwab/notification/errorMessage');
+               return false
+            }
          console.error(ex.message);
       });
 };
@@ -38,6 +42,10 @@ export const addTemplateBotSlice = (publishObj) => async (dispatch) => {
          }
       })
       .catch((ex) => {
+         if(ex.response.status){
+               window.location.replace('https://eoceanwab.com/eoceanwab/notification/errorMessage');
+               return false
+            }
          dispatch(isError(ex));
       });
 };
