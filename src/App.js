@@ -47,7 +47,7 @@ axios.interceptors.request.use(
     },
    
     error => {
-        alert("test s")
+        
          setLoader(false)
         Promise.reject(error)
 });
@@ -60,7 +60,7 @@ axios.interceptors.response.use((response) => { // block to handle success case
     return response
  }, function (error) { // block to handle error case
 
-    alert("Test")
+    
     const originalRequest = error.config;
      setLoader(false)
 
