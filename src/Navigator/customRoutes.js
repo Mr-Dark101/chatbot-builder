@@ -7,6 +7,13 @@ const CustomRoutes = (props) => {
         let isAuth = true
         let {path, exact, component, isPrivate} = props;
         
+        const query = new URLSearchParams(props.location.search);
+        const urlAuthToken = query.get('access_token');
+        const loggedInToken = localStorage.getItem('user');
+        if(loggedInToken && urlAuthToken && (loggedInToken.accessToken !== urlAuthToken)){
+            localStorage.clear();
+        }
+        
         if (!isPrivate) {
             return <Route path={path} exact={exact} component={component}/>
         } else {
