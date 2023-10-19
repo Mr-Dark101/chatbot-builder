@@ -134,14 +134,14 @@ const NavBar = () => {
                 <li id="statsLi" class="nav-item">
                    <a
                    class="d-flex align-items-center"
-                   href="#!"> <i class="far fa-chart-bar"></i> <span
+                   href="https://eoceanwab.com/eoceanwab/holisticanalysis/index"> <i class="far fa-chart-bar"></i> <span
                       class="menu-item text-truncate" data-i18n="Analytics">Insights</span>
                    </a>
                 </li>
                 <li id="chatmanagerLi" class="nav-item">
                    <a id="chatAnchor"
                    class="d-flex align-items-center"
-                   href="#!">
+                   href="https://eoceanwab.com/eoceanwab/chatmanager/index?number=&type=&id=">
                    <i class="fas fa-comments"></i> <span
                       class="menu-title text-truncate" data-i18n="Chat">Chat
                    Manager</span>
@@ -150,14 +150,14 @@ const NavBar = () => {
                 <li id="chatbotManagerLi" class="nav-item">
                    <a id="chatAnchor"
                    class="d-flex align-items-center"
-                   href="#!"> <i
+                   href="https://eoceanwab.com/eoceanwab/chatbotmanager/index"> <i
                       class="fas fa-robot"></i> <span class="menu-title text-truncate"
                       data-i18n="Chat"> Bot Conversations</span>
                    </a>
                 </li>
                 <li id="templateManagerLi" class="nav-item">
                    <a id="chatAnchor"
-                   class="d-flex align-items-center" href="#!"> <i
+                   class="d-flex align-items-center" href="https://eoceanwab.com/eoceanwab/campaignmessages/index?msgType="> <i
                       class="far fa-file-alt"></i> <span
                       class="menu-title text-truncate" data-i18n="Chat">Template
                    Manager</span>
@@ -165,7 +165,7 @@ const NavBar = () => {
                 </li>
                 <li id="campaignLi" class="nav-item">
                    <a id="chatAnchor"
-                   class="d-flex align-items-center" href="#!"> <i
+                   class="d-flex align-items-center" href="https://eoceanwab.com/eoceanwab/segments/index?segmentName=&segmentType=&createdOn="> <i
                       class="fas fa-bullhorn"></i> <span
                       class="menu-title text-truncate" data-i18n="Chat">Campaign
                    Manager</span>
@@ -173,7 +173,7 @@ const NavBar = () => {
                 </li>
                 <li id="profileSettingsli" class="nav-item">
                    <a
-                   href="#!"
+                   href="https://eoceanwab.com/eoceanwab/WhatsappManager/profilesettings"
                    class="d-flex align-items-center chatManagerAnc"> <i
                       class="fab fa-whatsapp ml-25"></i><span class="nav-header-primary">WhatsApp Profile<span class="pull-right"><b class="caret"></b></span>
                    </span>
@@ -182,13 +182,13 @@ const NavBar = () => {
                 <li class="contactsLi nav-item">
                    <a
                    class="d-flex align-items-center"
-                   href="#!"><i class="fas fa-users"></i><span class="menu-title text-truncate"
+                   href="https://eoceanwab.com/eoceanwab/contacts/index?name=&number=&email=&status=&customAttributes=&pageSize="><i class="fas fa-users"></i><span class="menu-title text-truncate"
                       data-i18n="Contacts">Contacts</span></a>
                 </li>
                 <li id="chatobotBuilderLi" class="nav-item active">
                    <a id="chatAnchor"
                    class="d-flex align-items-center"
-                   href="#!"> <i
+                   href={`${STRINGS.ROUTES.ROOT}?org=${localStorage.getItem('userId')}`}> <i
                       class="fas fa-network-wired"></i> 
                    <span class="menu-title text-truncate" 
                       data-i18n="Chat">Chatbot Builder</span>&nbsp;  
@@ -196,13 +196,13 @@ const NavBar = () => {
                 </li>
                 <li id="channelsLi" class=" nav-item">
                    <a class="d-flex align-items-center"
-                   href="#!"><i data-feather='share-2'></i><span
+                   href="https://eoceanwab.com/eoceanwab/channels/index"><i data-feather='share-2'></i><span
                       class="menu-title text-truncate" data-i18n="channels">Channels</span></a>
                 </li>
             
                 <li id="integrationsLi" class="nav-item">
                    <a class="d-flex align-items-center"
-                   href="#!">
+                   href="https://eoceanwab.com/eoceanwab/integrations/index">
                     <i class="fas fa-cogs"></i>
                     <span class="menu-title text-truncate" data-i18n="integrations">Integrations</span>
                     </a>
@@ -211,18 +211,18 @@ const NavBar = () => {
                
                 <li id="usermanagementLi" class="nav-item">
                    <a class="d-flex align-items-center"
-                   href="#!">
+                   href="https://eoceanwab.com/eoceanwab/usermanagement/summary">
                    <i data-feather='shield'></i>
                     <span class="menu-title text-truncate" data-i18n="Calendar">Users</span>
                    </a>
                   </li>  
               <li id="teammanagementLi" class=" nav-item"><a class="d-flex align-items-center"
-              href="#!"><i data-feather='users'></i><span
+              href="https://eoceanwab.com/eoceanwab/teammanagement/summary?teamName=&status="><i data-feather='users'></i><span
                 class="menu-title text-truncate" data-i18n="Todo">Teams</span></a></li>
                 <li id="billingLi" class="position_abs position_abs_b1 w-100 nav-item"
                    >
                    <a class="d-flex align-items-center"
-                   href="#!">
+                   href="https://eoceanwab.com/eoceanwab/billing/index">
                    <i class="fas fa-hand-holding-usd"></i> <span
                       class="menu-title text-truncate" data-i18n="Kanban">Billing</span>
                    </a>
@@ -230,7 +230,7 @@ const NavBar = () => {
              <li id="accountSetLi" class="position_abs position_abs_b2 w-100 nav-item"
                 >
                 <a class="d-flex align-items-center"
-                href="#!">
+                href="https://eoceanwab.com/eoceanwab/accountsettings/index">
                 <i class="fas fa-cog"></i> <span
                    class="menu-title text-truncate" data-i18n="Kanban">Settings</span> 
                 </a>
@@ -240,7 +240,7 @@ const NavBar = () => {
                  <a class="d-flex align-items-center"
                  id="example" data-title="Here's What's New!!"
                  data-toggle="clickover" data-placement="right"
-                 href="#!">
+                 href="https://eoceanwab.com/eoceanwab/whatsnew/index">
                  <i class="far fa-star"></i> <span class="menu-title text-truncate"
                     data-i18n="Kanban">What's New</span>  &nbsp;
                  <span>New</span><span
