@@ -8,6 +8,8 @@ export function isLoggedIn() {
 		*  This app assume if local storage have roles it means
 		*  user is authenticated you can update this logic as per your app.
 	*/
+
+	console.log(localStorage.getItem('user'))
 	
 	return !!localStorage.getItem('user')
 }

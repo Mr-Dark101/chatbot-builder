@@ -3,7 +3,7 @@ import { API } from '../../../utils/services';
 import { STRINGS } from '../../../utils/base';
 
 export const PublishedBot = (publishObj) => async (dispatch) => {
-   console.log('Published Bot' + JSON.stringify(publishObj));
+   //console.log('Published Bot' + JSON.stringify(publishObj));
    let body = {
       userId: localStorage.getItem('userId'),
       botId: publishObj.botId,

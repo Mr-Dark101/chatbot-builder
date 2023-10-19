@@ -4,7 +4,7 @@ import NavBar from "../SharedComponent/NavBar/navBar";
 import CustomBreadcrumbs from "../SharedComponent/CustomBreadcrumbs/breadcrumbs";
 import {useSelector} from "react-redux";
 import Footer from "../SharedComponent/Footer/footer";
-
+import HeaderDC from './Headerdc'
 export default function Layout(props) {
 
     let {dashboard} = useSelector(({Reducers})=> Reducers)
@@ -33,9 +33,12 @@ export default function Layout(props) {
              <div className="section-hld">
                 <div className="nav-bar-hld">
                     <NavBar/>
+
+
                     
                 </div>
                 <div className="main-section">
+                    
                     {props.children}
                 </div>
             </div>

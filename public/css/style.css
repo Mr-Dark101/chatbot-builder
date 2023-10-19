@@ -32718,7 +32718,7 @@ thead.bg-primary{
 .login_dropdown_menu .user_detail_section h3{
   margin: 0px;
   color: #363a77;
-  font-size: 18px;
+  font-size: 13px;
   line-height: 22px;
   font-family: "Lexend Deca";
 }
@@ -33080,6 +33080,17 @@ input.custom-input {
   to {
     transform: rotate(360deg);
   }
+}
+.dash-avt{
+      display: inline-block;
+    background: orange;
+    height: 40px;
+    width: 40px;
+    line-height: 40px;
+    text-align: center;
+    border-radius: 50%;
+    color: #fff;
+    font-weight: 500;
 }
 
 /*Left Nav New Css*/

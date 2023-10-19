@@ -48,7 +48,7 @@ function PrivateRoutes() {
 
 	
 
-
+	
 
 	if (isLoggedIn()) allowedRoutes = getAllowedRoutes(newPreConfig);
 	else return <Redirect to="/login" />;

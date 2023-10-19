@@ -17,6 +17,7 @@ export const GetUserBots =
         return dispatch(userBotsError(false, "error"))
     });*/
       //userId = JSON.parse(userId);
+     
       API.get(`/user-bot?org=${userId}`)
          .then((res) => {
             //console.log('User ID: ' + userId);
@@ -33,7 +34,7 @@ export const GetUserBots =
          })
          .catch((ex) => {
             if(ex.response.status){
-               window.location.replace('https://eoceanwab.com/eoceanwab/notification/errorMessage');
+               //window.location.replace('https://eoceanwab.com/eoceanwab/notification/errorMessage');
                return false
             }
             

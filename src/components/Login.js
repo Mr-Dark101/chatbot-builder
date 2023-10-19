@@ -24,8 +24,8 @@ const Login = (props) => {
 
    //console.log(history)
 
-   const [username, setUsername] = useState('admin');
-   const [password, setPassword] = useState('hello123');
+   const [username, setUsername] = useState('');
+   const [password, setPassword] = useState('');
    const [loading, setLoading] = useState(false);
    const [message, setMessage] = useState('');
    const { user, setUser } = useContext(UserContext);

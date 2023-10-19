@@ -322,6 +322,9 @@ const Dashboard = () => {
    const doNone = () => {
 
    };
+   const inital = (name) => {
+         return name.substr(0,1);
+   }
 
    const logOut = () => {
       AuthService.logout();
@@ -329,30 +332,35 @@ const Dashboard = () => {
       document.location.href = 'https://eoceanwabaqa.com/eoceanwab';
    };
 
+   const userData = localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')) : {};
    return (
       <div className="dashboard-hld ov-des overflow-auto" style={{marginTop:"-50px"}}>
-         <div className="home_top_section text-end d-none" style={{ paddingRight: 10 }}>
+         
+         <div className="home_top_section text-end d-dnone" style={{ paddingRight: 10 }}>
             <div>
                <ul>
                   <li>
-                     <a href="#">
-                        <img src={notification_icon} />
-                     </a>
+                      
+                     <img src={notification_icon} />
                   </li>
 
                   <li>
-                     <a href="#">Eocean</a>
+                     <a href="#">{userData?.org_name}</a>
                   </li>
 
                   <li className="dropdown login_dropdown_menu">
                      <a className="dropdown dropdown-toggle" href="#" data-bs-toggle="dropdown">
-                        <img src={user_img} />
+                        
+
+                        <div className="dash-avt">
+                            {inital(userData?.org_name)}
+                        </div>
                      </a>
                      <ul className="dropdown-menu">
                         <li>
                            <div className="user_detail_section">
-                              <h3>Hassan Nasir</h3>
-                              <p>hassan.nasir@eocean.com.pk</p>
+                              <h3>{userData?.name}</h3>
+                              <p>{userData?.email}</p>
                            </div>
                         </li>
                         <li className="dropdown-item">

@@ -13,7 +13,7 @@ const Navigation = () => {
 
 
         //alert(dashboard.currentUser + " " + localStorage.getItem("userId"))
-        if(localStorage.getItem("userId") !== null){
+        if(localStorage.getItem("user") !== null){
 
 
              const query = new URLSearchParams(history.location.search);

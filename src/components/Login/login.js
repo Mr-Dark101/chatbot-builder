@@ -35,12 +35,15 @@ const Login = (props) => {
       const query = new URLSearchParams(props.location.search);
 
       let _userName = JSON.stringify(props.location.search);
-      console.log(_userName)
+      
       _userName = query.get('access_token'); //_userName.replace('?access-token=', '');
 
       if (_userName) {
         
          handleLoginbyuser(_userName);
+      }else{
+          window.location.replace('https://eoceanwab.com/eoceanwab/notification/errorMessage');
+               return false
       }
    }, []);
    const onChangeUsername = (e) => {
@@ -57,11 +60,18 @@ const Login = (props) => {
       
       AuthService.loginbyuser(username).then(
          (rData) => {
+
+           
             //history.push('/');
             window.location.href = '/?org=' + rData.org_unit_id;
             //window.location.href = '/?org=0';
          },
          (error) => {
+           // alert('ee')
+
+            window.location.replace('https://eoceanwab.com/eoceanwab/notification/errorMessage');
+               return false
+               
             const resMessage = (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
 
             setLoading(false);
@@ -86,7 +96,7 @@ const Login = (props) => {
                // setUser(rData)
                //console.log(this.props)
                //dispatch(updateToken(rData));
-               history.push('/');
+               //history.push('/');
                window.location.href = '/?org=' + rData.org_unit_id;
                //window.location.href = '/?org=0';
             },

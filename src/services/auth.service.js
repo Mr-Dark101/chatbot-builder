@@ -42,11 +42,11 @@ const login = (username, password) => {
 
 const loginbyuser = (username) => {
   
-
+   
    return axios
       .get(API_URL + 'signinuser?access_token=' + username)
       .then((response) => {
-         console.log('here')
+         //console.log('here')
          if (response.data.accessToken) {
             try {
                localStorage.setItem('user', JSON.stringify(response.data));
