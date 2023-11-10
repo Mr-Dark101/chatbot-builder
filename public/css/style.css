@@ -33072,6 +33072,81 @@ input.custom-input {
     .vertical-layout.vertical-menu-modern .main-menu .navigation > li > a svg, .vertical-layout.vertical-menu-modern .main-menu .navigation > li > a i {
         font-size: 1.2rem;
     }
+    .complain_data_section{
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      padding: 15px;
+      margin-bottom: 30px;
+    }
+    .complain_data_section .table tr th{
+      font-family: 'Lexend Deca Medium', sans-serif;
+    }
+    .complain_data_section .table tr td{
+      font-family: 'Lexend Deca Light', sans-serif;
+    }
+    .complain_box_section{
+      margin: 30px 30px 0px;
+    }
+    .complain_box_section ul{
+      margin: 0px;
+      padding: 0px;
+      list-style: none;
+    }
+    .complain_box_section li{
+      display: inline-block;
+      margin-right: 20px;    
+    }
+    .complain_box_section .complain_box{
+      width: 200px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      padding: 15px 10px;
+      margin-bottom: 20px;
+      background-color: #fff;
+    }
+    .complain_box_section .complain_box h1{
+      font-size: 32px;
+      font-weight: 400;
+      font-family: 'Lexend Deca', sans-serif;
+      margin: 0px 0px 5px;
+    }
+    .complain_box_section .complain_box p{
+      font-size: 12px;
+      font-weight: 400;
+      font-family: 'Lexend Deca', sans-serif;
+      margin: 0px;
+    }
+    .search_box_section{
+      margin: 0px 30px 20px;
+      background-color: #fff;
+      padding: 0px 20px 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    .search_box_section ul{
+      margin: 0px;
+      padding: 0px;
+      list-style: none;
+    }
+    .search_box_section ul li{
+      display: inline-block;
+      margin-right: 20px;
+    }
+    .search_box_section ul li:last-child{
+      margin-right: 0px;
+    }
+    .search_box_section .field_section label{
+      margin-top: 0px;
+      font-size: 12px;
+      font-weight: 400;
+    }
+    .search_box_section .primary{
+      font-size: 14px;
+      font-weight: 400;
+    }
+    .text_center{
+      text-align: center;
+    }
 
 @keyframes App-logo-spin {
   from {

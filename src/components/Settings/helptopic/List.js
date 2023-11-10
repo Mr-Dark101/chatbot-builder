@@ -462,7 +462,7 @@ const selCat = (e) => {
                                     <td width="20%" style={{fontFamily: 'Lexend Deca Light', fontSize:'12px'}}>{row.parent?.name}</td>
                                     <td width="10%" style={{fontFamily: 'Lexend Deca Light', fontSize:'12px'}}>{row.status_id}</td>
                                     <td width="15%" style={{fontFamily: 'Lexend Deca Light', fontSize:'12px'}}>{row.HelpDepartment?.name}</td>
-                                    <td width="30%" style={{fontFamily: 'Lexend Deca Light', fontSize:'12px'}}>
+                                    <td width="20%" style={{fontFamily: 'Lexend Deca Light', fontSize:'12px'}}>
                                        {getCustomfield(row.custom_field)}
                                     </td>
                                     <td style={{ textAlign: 'end' }}>

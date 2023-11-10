@@ -5,6 +5,18 @@ import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import CrudService from "../services/crud.service";
 import { CloseBotComposer, removingBreadcrumb, resetState } from './Dashboard/slices/dashboard.slice';
+import { Form, TextField, SelectField } from './crud/FormElements';
+import * as Yup from 'yup';
+import {
+    Formik,
+    Form as FormikForm,
+    Field,
+    ErrorMessage,
+    useFormikContext,
+    useField,
+    useFormik
+} from 'formik';
+
 const Complain = () => {
 	const history = useHistory();
 	const dispatch = useDispatch();
@@ -104,6 +116,24 @@ const Complain = () => {
   		}
   }
 
+  const [formData, setFormData] = useState({
+     
+      ticket_id:'',
+      priority:'',
+      help_topic:'',
+      status:'',
+      from:'',
+      date:'',
+      
+   });
+const onSubmit = (values, { setSubmitting, resetForm, setStatus }) => {
+      
+   };
+   const FormSchema = Yup.object().shape({
+      ticket_id: Yup.string().required('Required'),
+     
+   });
+
 	return (
 
 			<div className="ws-hld">
@@ -120,26 +150,99 @@ const Complain = () => {
 		            </div>
 		         </div>
 
+             <div className="complain_box_section">
+                  <ul>
+                    <li>
+                      <div className="complain_box">
+                        <h1>1000</h1>
 
-		         <div className="page_data_setting">
+                        <p>Total Tickets</p>
+                      </div>
+                    </li>
+
+                    <li>
+                      <div className="complain_box" style={{borderWidth: 1,borderColor: '#FF7272'}}>
+                        <h1>100</h1>
+
+                        <p>Open Tickets</p>
+                      </div>
+                    </li>
+
+                    <li>
+                      <div className="complain_box" style={{borderWidth: 1,borderColor: '#00BC57'}}>
+                        <h1>850</h1>
+
+                        <p>Closed Tickets</p>
+                      </div>
+                    </li>
+
+                    <li>
+                      <div className="complain_box" style={{borderWidth: 1,borderColor: '#DD9F00'}}>
+                        <h1>50</h1>
+
+                        <p>On Hold Tickets</p>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+
+                <Form enableReinitialize validationSchema={FormSchema} initialValues={formData} onSubmit={onSubmit}>
+                 <div className="search_box_section">
+                  <ul>
+                    <li style={{width: '10%'}}>
+                      <div className="field_section">                        
+                         <TextField name="ticket_id" label="Ticket #" placeholder="" />
+                      </div>
+                    </li>
+
+                    <li style={{width: '20%'}}>
+                      <div className="field_section">                        
+                         <TextField name="help_topic" label="Help Topic" placeholder="" />
+                      </div>
+                    </li>
+
+                    <li style={{width: '15%'}}>
+                      <div className="field_section">                        
+                         <TextField name="from" label="From" placeholder="" />
+                      </div>
+                    </li>
+
+                    <li style={{width: '10%'}}>
+                      <div className="field_section">                        
+                         <TextField name="priority" label="Priority" placeholder="" />
+                      </div>
+                    </li>
+
+                    <li style={{width: '12%'}}>
+                      <div className="field_section">                        
+                         <TextField name="date" label="Date Range" placeholder="" />
+                      </div>
+                    </li>
+
+                    <li style={{width: '10%'}}>
+                      <div className="field_section">                        
+                         <TextField name="status" label="Status" placeholder="" />
+                      </div>
+                    </li>
+
+                    <li style={{width: '12%'}}>
+                      <button className="primary">Apply Filter</button>
+                    </li>
+                  </ul>
+                 </div>
+                </Form>
+
+		         <div className="page_data_setting mx-30">
       {
                   (listData.length > 0) ? (
                     <>
-                      <div className="row p-30 media-center">
-                  <div className="col-sm-3">
-                    <h3 className="page_heading m-0">Complain</h3>
-                  </div>
 
-                  <div className="col-sm-9">
-                    
-                  </div>
-                </div>
-
-<div className="table-responsive mx-30">
-                <table className="table table-striped table-hover">
+                <div className="complain_data_section">
+<div className="table-responsive">
+                <table className="table table-hover">
                  <thead className="bg-primary">
                     <tr>
-                      <th>Ticket #</th>
+                      <th className="text_center">Ticket #</th>
                       <th>Help Topic</th>
                       
                       <th>Details</th>
@@ -155,7 +258,7 @@ const Complain = () => {
             listData.map((row, index) => (
 
                     <tr>
-                      <td>{row.id}</td>
+                      <td className="text_center">{row.id}</td>
                       <td>{getTopic(row)}</td>
                       <td>
 
@@ -180,6 +283,7 @@ const Complain = () => {
 </tbody>
                   
                   </table>
+                  </div>
                   </div>
                     </>
 

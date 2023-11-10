@@ -6,6 +6,8 @@ import Create from "./Create";
 import Edit from "./Edit";
 import BlankMsg from '../../common/BlankMsg';
 import {toast } from 'react-toastify';
+import editIcon from '../../../assets/edit.svg';
+import deleteIcon from '../../../assets/deleteicon.svg';
 
 const List = ({rs,subPage,loadList}) => {
 const [listData, setListData] = useState([]);
@@ -110,24 +112,26 @@ const deleteMe  = (id) => {
       {
                   (listData.length > 0) ? (
                     <>
-                      <div className="row p-30 media-center">
+                      <div className="row px-30 py-15 media-center">
                   <div className="col-sm-3">
-                    <h3 className="page_heading m-0">Custom Field</h3>
+                    <h5 className="box-title m-0" style={{ fontWeight: 800,width:'200px' }}>Departments</h5>
                   </div>
 
                   <div className="col-sm-9">
-                    <button type="button" onClick={() => subPage(<Create loadList={loadList} retrieveList={retrieveList} rs={rs} />)} className="btn primary float-end">Add New Custom Field</button>
+                    <button type="button" onClick={() => subPage(<Create loadList={loadList} retrieveList={retrieveList} rs={rs} />)} className="btn primary float-end">Add New Department</button>
                   </div>
                 </div>
 
-<div className="table-responsive mx-30">
-                <table className="table table-striped table-hover">
+                <hr />
+
+<div className="table-responsive px-30 py-15">
+                <table className="table table-hover">
                  <thead className="bg-primary">
                     <tr>
-                      <th>Name</th>
+                      <th style={{fontFamily: 'Lexend Deca Medium', fontSize: '12px'}}>Name</th>
                      
                       
-                      <th></th>
+                      <th style={{fontFamily: 'Lexend Deca Medium', fontSize: '12px'}}></th>
                     </tr>
                     </thead>
  <tbody>
@@ -135,12 +139,19 @@ const deleteMe  = (id) => {
             listData.map((row, index) => (
 
                     <tr>
-                      <td><a href="#">{row.name}</a></td>
+                      <td><a style={{fontFamily: 'Lexend Deca Light', fontSize:'12px',color: '#000',fontWeight: 400}} href="#">{row.name}</a></td>
                       
                      
-                      <td>
-                      <button className="warningsmall" onClick={() => subPage(<Edit  loadList={loadList} retrieveList={retrieveList} rs={row} />)} >Edit</button>
-                      <button style={{marginLeft:5}} className="warningsmall" onClick={() => deleteMe(row.id)} >Delete</button>
+                      <td style={{ textAlign: 'end' }}>
+                                      
+                         <a style={{ marginLeft: 5 }}  onClick={() => subPage(<Edit  loadList={loadList} retrieveList={retrieveList} rs={row} />)}>
+                            
+                            <img alt={'#'} src={editIcon}  />
+                         </a>
+                         <a style={{ marginLeft: 5 }}  onClick={() => deleteMe(row.id)}>
+                            
+                            <img alt={'#'} src={deleteIcon} width="20" />
+                         </a>
                       </td>
                     </tr>
                     ))}

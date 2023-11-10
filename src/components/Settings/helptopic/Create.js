@@ -52,6 +52,8 @@ const Create = ({ rs, retrieveList, loadList }) => {
       custom_field:'',
    });
 
+    
+
 
    const retrieveMasterList = (url) => {
       CrudService.ListValue('master/list-value?type=' + url)
