@@ -44,12 +44,13 @@ const Navigation = () => {
                 }
         }
     }, [history])
-
+   
     return (
         <div className="content-hld">
            
             <Switch>
                 {
+                    
                     routes.map(({path, exact, component, isPrivate}) => {
                         return (
                             <CustomRoutes

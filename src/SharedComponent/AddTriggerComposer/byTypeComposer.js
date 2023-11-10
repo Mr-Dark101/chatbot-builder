@@ -1642,7 +1642,26 @@ const ByTypeComposer = ({ props, triggerType }) => {
                               </>
                       ) : (
 
-                              <>
+                           <>
+                              {triggerType == 'Complain' ? (
+
+
+                                    <>
+                                    <div style={{ color: '#000', fontWeight: 800, marginTop: '10px', fontSize: '12px' }}>
+                                    <div className="sub-txt" style={{ marginBottom: '5px' }}>
+                                       Complaint Bot Greeting Message
+                                     </div>
+                                    <TextEditor type={'formStartText'} defaultText={formStartText} onSuccess={handleTextAreaChange} />
+                                    </div>
+                                    <br />
+                                    </>
+
+                              ) : (
+
+
+
+
+                                  <>
 
                                     <div style={{ color: '#000', fontWeight: 800, marginTop: '10px', fontSize: '12px' }}>
                                        <div className="sub-txt" style={{ marginBottom: '5px' }}>
@@ -1664,6 +1683,11 @@ const ByTypeComposer = ({ props, triggerType }) => {
                                     </div>
                                     <br />
                               </>
+
+                              )}
+                           </>
+
+                             
 
 
                       )}

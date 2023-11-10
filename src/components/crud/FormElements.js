@@ -10,6 +10,8 @@ import {
 } from 'formik';
 import MyPhone from './MyPhone';
 import MySelect from './MySelect';
+import MySelectMulti from './MySelectMulti';
+
 import MySelectVersion from './MySelectVersion';
 import MySwitch from './MySwitch';
 export function Form(props) {
@@ -347,6 +349,29 @@ export function SelectField(props) {
             {label && <label htmlFor={name}>{label} </label>}
 
              <Field component={MySelect} name={name} placeholder={placeholder}  options={options}/>
+      
+            
+            <ErrorMessage name={name} render={msg => <div style={{ color: 'red' }} >{msg}</div>} />
+
+            
+        </>
+    )
+}
+
+
+export function SelectFieldMulti(props) {
+    const { name, label, options,onChange,placeholder,customStyles } = props
+     
+
+    return (
+        <>
+
+        
+       {label && <br />}
+
+            {label && <label htmlFor={name}>{label} </label>}
+
+             <Field component={MySelectMulti} name={name} placeholder={placeholder}  options={options}/>
       
             
             <ErrorMessage name={name} render={msg => <div style={{ color: 'red' }} >{msg}</div>} />

@@ -15,7 +15,10 @@ import {useDispatch} from "react-redux";
 import {
     ApiOrder,
     ApiForm,
+    ApiComplain,
+    ApiComplainStatus,
     saveFormDB,
+    saveComplainDB,
     ApiChatGpt,
 } from "./slices/chatBot.slice";
 
@@ -50,9 +53,14 @@ const ChatBotComposer = ({onClose}) => {
     const [formId, setFormId] = useState(0);
     const [formEndText, setFormEndText] = useState('');
     const [formData, setFormData] = useState([]);
+    const [complainData, setComplainData] = useState([]);
     const [formDataSave, setFormDataSave] = useState([]);
 
-    console.log(currentBotData)
+    const [saveComplain, setSaveComplain] = useState({});
+    const [customFieldKey, setCustomFieldKey] = useState(0);
+    
+    const [complainMenuId, setComplainMenuId] = useState(''); 
+    
 
     //const formData = [{"label":"Name","type":"text","option":[]},{"label":"Father Name","type":"text","option":[]},{"label":"Gender","option":[{"key":"1","value":"Male"},{"key":"2","value":"Female"}],"type":"option"}];
 
@@ -133,11 +141,11 @@ const ChatBotComposer = ({onClose}) => {
         e.preventDefault();
         let text = msgArea.current.value;
 
-        console.log(JSON.stringify(data) + "new")
         
+
         if (data.length > 0) {
             for (let i = 0; i < data.length; i++) {
-                console.log(data[i]);
+               
                 if (data[i].values.map((a) => a.toLowerCase()).includes(text.toLowerCase())) {
                     
                     trigger = data[i];
@@ -149,6 +157,9 @@ const ChatBotComposer = ({onClose}) => {
                     setApiData(data[i].apiData);
                     setFormEndText(data[i].formEndText)
 
+
+                    
+
                     if(data[i].triggerType == 'F'){
                        
 
@@ -156,7 +167,7 @@ const ChatBotComposer = ({onClose}) => {
 
                                 return JSON.parse(rData.data.data.data.form_data);
                         });
-                       // console.log(data[i])
+                       
 
                          //trigger.name = data[i].name + '<br>' + data[i].formStartText;
                         setFormId(data[i].form_id)
@@ -170,6 +181,40 @@ const ChatBotComposer = ({onClose}) => {
                        
                         
                     }
+
+                    if(data[i].triggerType == 'Complain'){
+                       
+                        const complainMenu = [buildComplainMenu('Open Ticket','1','open-tiket'),buildComplainMenu('Ticket Status','2','tiket-status')]
+
+                        trigger = {
+                                id: createGuid(),
+                                response: "start",
+                                type:"TEXT",
+                                menus: complainMenu,
+                             }
+
+
+                            setComplainMenuId(data[i]);
+                        // const apiResponse = await ComplainApiData().then((rData) => {
+                        //         //console.log(rData.data.data)
+                        //         return rData.data.data;
+                        // });
+                       
+
+                         
+                       
+                        // setComplainData(apiResponse);
+
+
+                        // trigger = startFormComplain(data[i],apiResponse);
+                        
+
+                        
+                       
+                        
+                    }
+
+                    
 
 
                     if(data[i].triggerType == 'ChatGPT'){
@@ -189,7 +234,10 @@ const ChatBotComposer = ({onClose}) => {
                        
                         
                     }
-                   
+
+
+                    
+                    
 
                     if(data[i].startTrigger){
                         setBackMenuId(data[i].id);
@@ -208,13 +256,14 @@ const ChatBotComposer = ({onClose}) => {
                     
                   
                     let currentLoopBackPreview = updatedTriggers.filter((fl) => fl.id === trigger.loopBackTriggerId && trigger.loopBackText.length === 1).length > 0 ? updatedTriggers.filter((fl) => fl.id === trigger.loopBackTriggerId)[0] : {}
+                   
                     if(!$.isEmptyObject(currentLoopBackPreview)){
 
                         setApiId(currentLoopBackPreview.api_id)
                         setApiData(currentLoopBackPreview.apiData);
                         setTriggerType(currentLoopBackPreview.triggerType)
                     }
-                    // console.log("loopBackTrigger ^^",currentLoopBackPreview)
+                    
                     setInit({
                         ...init,
                         messages: !$.isEmptyObject(currentLoopBackPreview) ? [...init.messages, {
@@ -252,7 +301,7 @@ const ChatBotComposer = ({onClose}) => {
                     break;
                 } else {
 
-                    // console.log("loopBackTrigger", data[i])
+                    
                    
                     if(triggerType == "ChatGPT"){
 
@@ -261,7 +310,7 @@ const ChatBotComposer = ({onClose}) => {
                             const backMenu = (currentBotData.type_id == 4) ? [buildCustomMenu('Main Menu','M',backMenuId)] : [];
                            
                             const apiResponse = await ChatGPTApiData(text).then((rData) => {
-                                            //console.log((rData.data.data.choices))
+                                           
 
                                            if(rData.data){
                                                 return rData.data.data.message;
@@ -289,7 +338,7 @@ const ChatBotComposer = ({onClose}) => {
                                   
 
                                   //const dv = [];
-                                  console.log(JSON.stringify(dv) + "here new")
+                                  
                                 setInit({
                                             ...init,
                                             messages: !$.isEmptyObject(trigger) ? [...init.messages, {
@@ -346,14 +395,17 @@ const ChatBotComposer = ({onClose}) => {
             }
         } else {
 
+           
+
+
             if(triggerType == 'ChatGPT'){
 
-                console.log(backMenuId + "here to check")
+                
                 //const backMenu = [buildCustomMenuBack('Back','99',backMenuId)]
                 const backMenu = (currentBotData.type_id == 4) ? [buildCustomMenu('Main Menu','M',backMenuId)] : [];
                
                 const apiResponse = await ChatGPTApiData(text).then((rData) => {
-                                //console.log((rData.data.data.choices))
+                               
 
                                 if(rData.data){
                                     return rData.data.data.message;
@@ -419,6 +471,7 @@ const ChatBotComposer = ({onClose}) => {
                    
             }
 
+           
             if(Object.keys(loopBackTrigger).length > 0){
 
 
@@ -462,10 +515,10 @@ const ChatBotComposer = ({onClose}) => {
 
 
                         trigger = {
-                    id: createGuid(),
-                    response: "End",
-                    type:"TEXT"
-                }
+                            id: createGuid(),
+                            response: "End",
+                            type:"TEXT"
+                        }
                 trigger = loopBackTrigger
                 setInit({
                     ...init,
@@ -528,7 +581,306 @@ const ChatBotComposer = ({onClose}) => {
 
                }
                 
-                
+                 if(triggerType == 'Complain'){
+
+
+                     if(text == 1 && complainMenuId != '' && complainMenuId != 2){
+
+
+                        const apiResponse = await ComplainApiData().then((rData) => {
+                                //console.log(rData.data.data)
+                                return rData.data.data;
+                        });
+                       
+
+                         
+                       
+                        setComplainData(apiResponse);
+
+
+                        trigger = startFormComplain(complainMenuId,apiResponse);
+
+                        setInit({
+                                    ...init,
+                                        messages: !$.isEmptyObject(trigger) ? [...init.messages, {
+                                            text: text,
+                                            id: "me"
+                                        }, trigger] : [...init.messages, {text: text, id: "me"}],
+                                        data:  []
+                                    });
+                                 msgArea.current.value = "";
+
+                                 setComplainMenuId('');
+                                 scrollOnMessage();
+                                 return false;
+                     }
+
+                     if(complainMenuId == 2){
+                        const backMenu = [buildCustomMenu('Main Menu','M',backMenuId)]
+
+
+                        const apiResponse = await ComplainApiStatus(text).then((rData) => {
+                                //console.log(rData.data.data)
+                                return rData.data.data.data;
+                        });
+
+                                trigger = {
+                                    id: createGuid(),
+                                    response: `${apiResponse}`,
+                                    type:"TEXT",
+                                    menus: backMenu,
+                                 }
+                        
+
+                                
+
+
+                                 setInit({
+                                    ...init,
+                                        messages: !$.isEmptyObject(trigger) ? [...init.messages, {
+                                            text: text,
+                                            id: "me"
+                                        }, trigger] : [...init.messages, {text: text, id: "me"}],
+                                        data:  !$.isEmptyObject(trigger) ? trigger.menus.length > 0 ? trigger.menus.map((d) => {
+                                                if (d.toTrigger !== null) {
+                                                    return d.toTrigger
+                                                }
+                                            }).filter((d) => d !== undefined) : [loopBackTrigger] : []
+                                    });
+                                    trigger = {};
+                                    // updatedTriggers = [];
+                                    msgArea.current.value = "";
+
+
+                                 setComplainMenuId('');
+                                 scrollOnMessage();
+                                 return false;
+
+
+                     }
+
+                     if(text == 2 && complainMenuId != ''){
+
+
+                        
+                       
+
+                         
+                            trigger = {
+                                    id: createGuid(),
+                                    response: 'Please enter your Ticket #',
+                                    type:"TEXT",
+                                    menus: [],
+                                 }
+                        
+
+                                setInit({
+                                    ...init,
+                                        messages: !$.isEmptyObject(trigger) ? [...init.messages, {
+                                            text: text,
+                                            id: "me"
+                                        }, trigger] : [...init.messages, {text: text, id: "me"}],
+                                        data:  []
+                                    });
+                                 msgArea.current.value = "";
+
+                                 setComplainMenuId('2');
+                                 scrollOnMessage();
+                                 return false;
+                     }
+
+                      
+                      
+                      const childDataMain = complainData.filter(rs => rs.id == text)[0]?.child;
+                      
+
+                      const parentCustomField = complainData.filter(rs => rs.id == text)[0]?.custom_field;
+                      
+                      let formMenu = [];
+
+                      if(childDataMain && childDataMain.length > 0){
+
+                            setSaveComplain({
+
+                                  parent_id:text
+                              })
+                            childDataMain.map((oo,i) => {
+
+                                      formMenu.push(buildCustomMenu(oo.name,oo.id,oo.id))
+                                }); 
+
+                                trigger = {
+                                    id: createGuid(),
+                                    response: 'Please select an option to create a ticket',
+                                    type:"TEXT",
+                                    menus: formMenu,
+                                 }
+
+
+                                 setInit({
+                                    ...init,
+                                        messages: !$.isEmptyObject(trigger) ? [...init.messages, {
+                                            text: text,
+                                            id: "me"
+                                        }, trigger] : [...init.messages, {text: text, id: "me"}],
+                                        data:  []
+                                    });
+                                 msgArea.current.value = "";
+
+                      }else{
+                            
+                           
+                                 const childData = complainData.filter(rs => rs.id == saveComplain.parent_id)[0]?.child;
+                            
+                                 
+                           
+                            
+                            
+                            let customField = [];
+                            if(customFieldKey == 0){
+                                
+                                 if(!childData){
+                                    customField = parentCustomField;
+
+                                    
+                                 }else{
+                                    customField = childData.filter(rs => rs.id == text)[0]?.custom_field;
+                                 }
+                                 
+
+                                setSaveComplain(
+                                        {
+                                            ...saveComplain,
+                                            child_id:text,
+                                            data:[],
+
+                                        }
+                                    )
+                            }else{
+                                if(!childData){
+                                    customField = complainData.filter(rs => rs.id == saveComplain.child_id)[0]?.custom_field;
+                                    
+                                }else{
+                                    customField = childData.filter(rs => rs.id == saveComplain.child_id)[0]?.custom_field;
+                                }
+                                
+                                setSaveComplain(
+                                        {
+                                            ...saveComplain,
+                                            data:[...saveComplain.data,{value:text,name:customField[customFieldKey-1].name}]
+
+                                        }
+                                    )
+
+
+                                 
+                            }
+                            
+                            
+                            if(!customField){
+                                return false
+                            }
+                            if(customField.length != customFieldKey){
+                            
+                                        trigger = {
+                                            id: createGuid(),
+                                            response: 'Enter ' + customField[customFieldKey].name,
+
+                                            type:"TEXT",
+                                            menus: [],
+                                         }
+
+
+                                         setInit({
+                                            ...init,
+                                                messages: !$.isEmptyObject(trigger) ? [...init.messages, {
+                                                    text: text,
+                                                    id: "me"
+                                                }, trigger] : [...init.messages, {text: text, id: "me"}],
+                                                data:  []
+                                            });
+                                            //trigger = {};
+                                            // updatedTriggers = [];
+                                            msgArea.current.value = "";
+
+                                   
+                                        let newKey = Math.abs(customFieldKey) + 1;
+                                        setCustomFieldKey(newKey)
+                            }else{
+
+
+                                    
+
+                                    
+
+
+
+                                 const preDataLast = {
+                                    
+                                    value:text,
+                                    name: customField[customFieldKey - 1].name
+                                }
+
+                                //setFormDataSave([...formDataSave,preDataLast])
+
+                                let ff = saveComplain.data;
+                                ff.push(preDataLast)
+
+                                 let sub_category_id = saveComplain.child_id;
+                                 let category_id = saveComplain.parent_id;
+
+                                 if(!saveComplain.parent_id){
+                                     category_id = saveComplain.child_id
+                                     sub_category_id = 0;
+                                 }
+
+                                 const saveData = {category_id:category_id,sub_category_id:sub_category_id,data:ff,from:'0321'}
+                                
+
+                                 const complainRs = await saveComplainRs(saveData)
+
+                                 
+
+                                 const backMenu = [buildCustomMenu('Main Menu','M',backMenuId)]
+                                    trigger = {
+                                    id: createGuid(),
+                                    response: "Your ticket has been created successfully. <br /><br />Your Ticket # " + complainRs.data.data.data,
+
+                                    type:"TEXT",
+                                    menus: backMenu,
+                                 }
+
+
+                                 setInit({
+                                    ...init,
+                                        messages: !$.isEmptyObject(trigger) ? [...init.messages, {
+                                            text: text,
+                                            id: "me"
+                                        }, trigger] : [...init.messages, {text: text, id: "me"}],
+                                        data:  !$.isEmptyObject(trigger) ? trigger.menus.length > 0 ? trigger.menus.map((d) => {
+                                                if (d.toTrigger !== null) {
+                                                    return d.toTrigger
+                                                }
+                                            }).filter((d) => d !== undefined) : [loopBackTrigger] : []
+                                    });
+                                    trigger = {};
+                                    // updatedTriggers = [];
+                                    msgArea.current.value = "";
+
+
+                                    setCustomFieldKey(0)
+                                    setSaveComplain({});
+
+
+
+                            }
+
+                      }
+                      
+
+
+                      
+                 }
                  if(triggerType == 'F'){
 
                         if(formKey > 0){
@@ -655,6 +1007,47 @@ const ChatBotComposer = ({onClose}) => {
         }
 
     }
+
+    
+
+    const startFormComplain = (data,xformdata) => {
+
+        // const backMenu = [buildCustomMenu('Back','99',backMenuId)]
+            trigger = {
+            id: createGuid(),
+            response: data.name + "<br/>What can we help you with<br />",
+
+            type:"TEXT",
+            menus: [],
+         }
+
+        const preMsg = data.name + "<br/>What can we help you with<br />";      
+                       
+                        
+          
+                        let formMenu = [];
+                            
+                                xformdata.map((oo,i) => {
+
+                                      formMenu.push(buildCustomMenu(oo.name,oo.id,oo.id))
+                                }); 
+                           
+                            trigger = {
+                                    id: createGuid(),
+                                    response: preMsg + 'Enter ' + xformdata[formKey].label,
+
+                                    type:"TEXT",
+                                    menus: formMenu,
+                                 }
+
+
+                        
+                            
+                           
+         return trigger;
+
+    }
+
     const startForm = (data,xformdata) => {
 
         // const backMenu = [buildCustomMenu('Back','99',backMenuId)]
@@ -696,6 +1089,39 @@ const ChatBotComposer = ({onClose}) => {
 
     }
     const buildCustomMenu = (label,key,trigger_id) => {
+
+
+         return {
+                                                "id": createGuid(),
+                                                "text": key + ' - ' +  label,
+                                                "toTriggerId": createGuid(),
+                                                "toTrigger": {
+                                                    "id": createGuid(),
+                                                    "name": 'Back',
+                                                    "values": [
+                                                         key
+                                                    ],
+                                                    "fallBackResponse": "",
+                                                    "loopBackText": [
+                                                        ""
+                                                    ],
+                                                    "loopBackTriggerId": trigger_id,
+                                                    "menus": [],
+                                                    "startTrigger": false,
+                                                    
+                                                    "type": "TEXT",
+                                                    "routeToAgent": false,
+                                                    "response": "",
+                                                    "urls": [],
+                                                    "caption": ""
+                                                }
+                                            }
+
+    }
+
+
+
+    const buildComplainMenu = (label,key,trigger_id) => {
 
 
          return {
@@ -769,7 +1195,7 @@ const ChatBotComposer = ({onClose}) => {
          apiData.map((rsData,index) =>{
                  
                 const rs = rsData.dataValue;
-              // console.log(apiResponse.data.data.data)
+             
                
                let cField = apiResponse.data.data.data[rs.conditionLabel];
                let resonseData = apiResponse.data.data.data
@@ -947,7 +1373,7 @@ const ChatBotComposer = ({onClose}) => {
                                                 }
                                             })
             })
-            //console.log(apiData)
+            
             
             
 
@@ -970,11 +1396,32 @@ const ChatBotComposer = ({onClose}) => {
                 
     }
 
+
+    const saveComplainRs = async (data) => {
+        const apiReturn =  await dispatch(saveComplainDB(data))
+        return  apiReturn;
+    }
     
 
     const FormApiData =  async (form_id) => {
 
         const apiReturn =  await dispatch(ApiForm(form_id))
+        return  apiReturn;
+
+                
+    }
+
+    const ComplainApiData =  async () => {
+
+        const apiReturn =  await dispatch(ApiComplain())
+        return  apiReturn;
+
+                
+    }
+
+    const ComplainApiStatus =  async (ticket_id) => {
+
+        const apiReturn =  await dispatch(ApiComplainStatus(ticket_id))
         return  apiReturn;
 
                 

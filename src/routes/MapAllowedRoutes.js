@@ -7,7 +7,8 @@ import {
 	
 	Customer,
 	Setting,
-	Bot
+	Bot,
+	Complain,
 	
 } from '../components';
 

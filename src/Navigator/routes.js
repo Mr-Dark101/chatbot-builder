@@ -5,7 +5,7 @@ const Dashboard = lazy(() => import("../components/Dashboard/dashboard"));
 const BuildWorkSpace = lazy(() => import("../components/BuilderWorkSpace/buildWorkSpace"));
 const Templates = lazy(()=> import ("../components/Templates/templates"));
 const Settings = lazy(()=> import ("../components/Settings/settings"));
-
+const Complain = lazy(()=> import ("../components/Complain"));
 
 const Login = lazy(() => import("../components/Login/login"));
 
@@ -37,6 +37,14 @@ export const routes = [
         name: "Settings",
         path: `${STRINGS.ROUTES.SETTINGS}`,
         component: Settings,
+        isPrivate: false,
+        exact: true
+    },
+
+    {
+        name: "Complain",
+        path: `${STRINGS.ROUTES.COMPLAIN}`,
+        component: Complain,
         isPrivate: false,
         exact: true
     },

@@ -61,6 +61,41 @@ export const ApiChatGpt = (text) => async dispatch => {
 
 
 
+export const ApiComplainStatus = (ticket_id) => async dispatch => {
+    // dispatch(updateTriggersSuccess(obj))
+    // dispatch(openTriggerCard(false))
+   
+    return API.get(`/ticket-status?ticket_id=${ticket_id}`).then((res) => {
+        // console.log("updateTrigger", res);
+        
+        return {message:'Found',data:res}
+    }).catch((ex) => {
+
+        if(ex.response.status){
+                     window.location.replace('https://eoceanwab.com/eoceanwab/notification/errorMessage');
+                     return false
+                  }
+        return {message:'Not Found',data:false};
+    })
+}
+
+export const ApiComplain = () => async dispatch => {
+    // dispatch(updateTriggersSuccess(obj))
+    // dispatch(openTriggerCard(false))
+   
+    return API.get(`/complain-question`).then((res) => {
+        // console.log("updateTrigger", res);
+        
+        return {message:'Found',data:res}
+    }).catch((ex) => {
+
+        if(ex.response.status){
+                     window.location.replace('https://eoceanwab.com/eoceanwab/notification/errorMessage');
+                     return false
+                  }
+        return {message:'Not Found',data:false};
+    })
+}
 export const ApiForm = (form_id) => async dispatch => {
     // dispatch(updateTriggersSuccess(obj))
     // dispatch(openTriggerCard(false))
@@ -79,6 +114,23 @@ export const ApiForm = (form_id) => async dispatch => {
     })
 }
 
+
+export const saveComplainDB = (data) => async dispatch => {
+    // dispatch(updateTriggersSuccess(obj))
+    // dispatch(openTriggerCard(false))
+   
+    return API.post(`/complain-save`,data).then((res) => {
+        // console.log("updateTrigger", res);
+
+        return {message:'Found',data:res}
+    }).catch((ex) => {
+        if(ex.response.status){
+                     window.location.replace('https://eoceanwab.com/eoceanwab/notification/errorMessage');
+                     return false
+                  }
+        return {message:'Not Found',data:false};
+    })
+}
 
 export const saveFormDB = (data,mobile,form_id) => async dispatch => {
     // dispatch(updateTriggersSuccess(obj))

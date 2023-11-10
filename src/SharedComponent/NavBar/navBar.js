@@ -194,6 +194,9 @@ const NavBar = () => {
                       data-i18n="Chat">Chatbot Builder</span>&nbsp;  
                    </a>
                 </li>
+
+                
+
                 <li id="channelsLi" class=" nav-item">
                    <a class="d-flex align-items-center"
                    href="https://eoceanwab.com/eoceanwab/channels/index"><i data-feather='share-2'></i><span

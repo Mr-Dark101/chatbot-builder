@@ -6,6 +6,8 @@ const CustomRoutes = (props) => {
     const renderRoutes = () => {
         let isAuth = true
         let {path, exact, component, isPrivate} = props;
+
+        
         
         const query = new URLSearchParams(props.location.search);
         const urlAuthToken = query.get('access_token');

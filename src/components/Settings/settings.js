@@ -21,6 +21,9 @@ import ApiTemplate from './ApiTemplate';
 import FormBuilder from './FormBuilder';
 import ChatGpt from './ChatGpt';
 import TrainBot from './TrainBot';
+import HelpTopic from './HelpTopic';
+import HelpCustomField from './HelpCustomField';
+import HelpDepartment from './HelpDepartment';
 import Customer from './Customer';
 import { Link } from 'react-router-dom';
 import { UserContext } from '../../context/UserContext';
@@ -50,8 +53,8 @@ const Settings = () => {
    const [activeClass, setActiveClass] = useState('');
 
    useEffect(() => {
-      changeContent('FormBuilder');
-      //changeContent('TrainBot');
+      //changeContent('FormBuilder');
+      changeContent('HelpTopic');
    }, []);
    const handleBack = () => {
       history.push(`${STRINGS.ROUTES.ROOT}?org=${localStorage.getItem('userId')}`);
@@ -99,6 +102,20 @@ const Settings = () => {
       if (param === 'TrainBot') {
          setContentPage(<TrainBot />);
       }
+
+      if (param === 'HelpTopic') {
+         setContentPage(<HelpTopic />);
+      }
+
+      if (param === 'HelpCustomField') {
+         setContentPage(<HelpCustomField />);
+      }
+
+      if (param === 'HelpDepartment') {
+         setContentPage(<HelpDepartment />);
+      }
+
+      
    };
 
    let Menu = [
@@ -107,6 +124,10 @@ const Settings = () => {
       { name: 'Form Builder', controller: 'FormBuilder', icon: form },
       { name: 'OpenAI GPT', controller: 'ChatGpt', icon: integration },
       { name: 'Training Data', controller: 'TrainBot', icon: form },
+      { name: 'Help Desk', controller: 'TrainBot', icon: form },
+      { name: 'Help Topic', controller: 'HelpTopic', icon: form },
+      { name: 'Custom Fields', controller: 'HelpCustomField', icon: form },
+      { name: 'Department', controller: 'HelpDepartment', icon: form },
    ];
 
    if (localStorage.getItem('org_unit_id') == '') {
@@ -170,6 +191,11 @@ const Settings = () => {
                                           </>                     
                                        </a>
                                     </li>)
+
+
+                                   
+
+
                                     }
                                    </>
                                  ) : (

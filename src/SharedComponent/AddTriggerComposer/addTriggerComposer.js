@@ -23,6 +23,8 @@ const AddTriggerComposer = (props) => {
 
    const [btnChatGPTStyle, setBtnChatGPTStyle] = useState({ width: '100%' });
 
+   const [btnComplainStyle, setBtnComplainStyle] = useState({ width: '100%' });
+
    
    const defaultState = {
       isAlert: false,
@@ -60,6 +62,8 @@ const AddTriggerComposer = (props) => {
       setBtnFormStyle({ backgroundColor: '#fff', width: '100%', color: '#000', borderRadius: '5px 5px 0px 0px' });
 
       setBtnChatGPTStyle({ backgroundColor: '#fff', width: '100%', color: '#000', borderRadius: '5px 5px 0px 0px' });
+
+      setBtnComplainStyle({ backgroundColor: '#fff', width: '100%', color: '#000', borderRadius: '5px 5px 0px 0px' });
       
       if (props.trigger.currentTriggerData.toTrigger) {
          if(props.type_id != 3){
@@ -123,6 +127,24 @@ const AddTriggerComposer = (props) => {
          }
 
         
+      
+
+      } else if (param == 'Complain') {
+         let plan = localStorage.getItem('chatbot_plan');
+       
+         if (plan.includes('ADVANCED')) {
+            
+            setBtnMessageStyle({ backgroundColor: '#fff', width: '100%', color: '#000', borderRadius: '5px 5px 0px 0px' });
+            setBtnApiStyle({ backgroundColor: '#fff', width: '100%', color: '#000', borderRadius: '5px 5px 0px 0px' });
+            setBtnFormStyle({ backgroundColor: '#fff', width: '100%', color: '#000', borderRadius: '5px 5px 0px 0px' });
+            setBtnChatGPTStyle({ backgroundColor: '#fff', width: '100%', color: '#000', borderRadius: '5px 5px 0px 0px' });
+            setBtnComplainStyle({ backgroundColor: '#363a77', width: '100%', color: '#fff', borderRadius: '5px 5px 0px 0px' });
+            setTriggerType(param);
+         } else {
+
+         }
+
+        
       }
    };
 
@@ -167,6 +189,12 @@ const AddTriggerComposer = (props) => {
              <li>
                <button onClick={() => meClick('ChatGPT')} className="btn btn-block btn-secondry" style={btnChatGPTStyle}>
                   GPT <BlueOnGreenTooltip title= {"You don\'t have access to this feature. Please contact sales to upgrade your plan."}><span id ="lockgpt" className="lockIcon"><i class="fa fa-lock"></i></span></BlueOnGreenTooltip>
+               </button>
+            </li>
+
+            <li>
+               <button onClick={() => meClick('Complain')} className="btn btn-block btn-secondry" style={btnComplainStyle}>
+                  Complain 
                </button>
             </li>
 

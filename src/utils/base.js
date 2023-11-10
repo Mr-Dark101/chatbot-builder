@@ -5,6 +5,7 @@ export const STRINGS = {
         ROOT: `${DOMAIN_PREFIX}/`,
         BWS: `${DOMAIN_PREFIX}/bws`,
         SETTINGS: `${DOMAIN_PREFIX}/settings`,
+        COMPLAIN: `${DOMAIN_PREFIX}/complain`,
         TEMPLATES: `${DOMAIN_PREFIX}/dashboard`,
         ANALYTICS: `${DOMAIN_PREFIX}/analytics`,
         CHAT: `${DOMAIN_PREFIX}/chat_manager`,
