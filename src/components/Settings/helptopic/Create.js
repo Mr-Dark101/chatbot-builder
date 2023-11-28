@@ -98,7 +98,11 @@ const Create = ({ rs, retrieveList, loadList }) => {
 
    const onSubmit = (values, { setSubmitting, resetForm, setStatus }) => {
       const saveData = values;
-      saveData.custom_field = JSON.stringify(values.custom_field)
+      let cf_data = [];
+      if(values.custom_field != ""){
+         cf_data = values.custom_field
+      }
+      saveData.custom_field = JSON.stringify(cf_data)
       CrudService.register(saveData, 'helptopic', true).then(
          (response) => {
             //setModalValue('')
