@@ -691,8 +691,17 @@ const ChatBotComposer = ({onClose}) => {
 
                       
                       
-                      const childDataMain = complainData.filter(rs => rs.id == text)[0]?.child;
+                      let childDataMain = complainData.filter(rs => rs.parent_id == text);
+
                       
+                      if(childDataMain){
+                            console.log(childDataMain)
+                      }
+
+                       
+                      
+
+                     
 
                       const parentCustomField = complainData.filter(rs => rs.id == text)[0]?.custom_field;
                       
@@ -704,9 +713,11 @@ const ChatBotComposer = ({onClose}) => {
 
                                   parent_id:text
                               })
-                            childDataMain.map((oo,i) => {
+                                childDataMain.map((oo,i) => {
+                                    
 
                                       formMenu.push(buildCustomMenu(oo.name,oo.id,oo.id))
+                                    
                                 }); 
 
                                 trigger = {
@@ -729,10 +740,10 @@ const ChatBotComposer = ({onClose}) => {
 
                       }else{
                             
-                           
-                                 const childData = complainData.filter(rs => rs.id == saveComplain.parent_id)[0]?.child;
+                            const cRs = complainData.filter(rs => rs.id == saveComplain.parent_id)[0];
+                            const childData = complainData.filter(rs => rs.id == saveComplain.parent_id)[0]?.child;
                             
-                                 
+                           
                            
                             
                             
@@ -827,12 +838,12 @@ const ChatBotComposer = ({onClose}) => {
                                 ff.push(preDataLast)
 
                                  let sub_category_id = saveComplain.child_id;
-                                 let category_id = saveComplain.parent_id;
+                                 let category_id = saveComplain.child_id;
 
-                                 if(!saveComplain.parent_id){
-                                     category_id = saveComplain.child_id
-                                     sub_category_id = 0;
-                                 }
+                                 // if(!saveComplain.parent_id){
+                                 //     category_id = saveComplain.child_id
+                                 //     sub_category_id = 0;
+                                 // }
 
                                  const saveData = {category_id:category_id,sub_category_id:sub_category_id,data:ff,from:'0321'}
                                 
@@ -1028,8 +1039,9 @@ const ChatBotComposer = ({onClose}) => {
                         let formMenu = [];
                             
                                 xformdata.map((oo,i) => {
-
+                                    if(oo.parent_id == 0){
                                       formMenu.push(buildCustomMenu(oo.name,oo.id,oo.id))
+                                    }
                                 }); 
                            
                             trigger = {
