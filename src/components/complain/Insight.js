@@ -5,7 +5,7 @@ import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import CrudService from "../../services/crud.service";
 import { CloseBotComposer, removingBreadcrumb, resetState } from './../Dashboard/slices/dashboard.slice';
-
+import CountStatus from './charts/CountStatus'
 const Insight = () => {
 	return (
 
@@ -52,7 +52,7 @@ const Insight = () => {
               <p>Complaints Count by Status</p>
 
               <div className="chart_box"> 
-                
+                  <CountStatus />
               </div>
             </div>
 
