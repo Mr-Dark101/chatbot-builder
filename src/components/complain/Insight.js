@@ -6,6 +6,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import CrudService from "../../services/crud.service";
 import { CloseBotComposer, removingBreadcrumb, resetState } from './../Dashboard/slices/dashboard.slice';
 import CountStatus from './charts/CountStatus'
+import HelpTopic from './charts/HelpTopic'
+import Department from './charts/Department'
 const Insight = () => {
 	return (
 
@@ -65,7 +67,7 @@ const Insight = () => {
                 </div>
 
                 <div className="chart_box"> 
-                  
+                  <HelpTopic />
                 </div>
               </div>
 
@@ -73,7 +75,7 @@ const Insight = () => {
                 <p>Complaints by Department</p>
 
                 <div className="chart_box"> 
-
+                  <Department />
                 </div>
               </div>
             </div>
