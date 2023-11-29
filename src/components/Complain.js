@@ -154,7 +154,7 @@ const onSubmit = (values, { setSubmitting, resetForm, setStatus }) => {
                   <ul>
                     <li>
                       <div className="complain_box">
-                        <h1>1000</h1>
+                        <h1>10000</h1>
 
                         <p>Total Tickets</p>
                       </div>
