@@ -185,6 +185,7 @@ const NavBar = () => {
                    href="https://eoceanwab.com/eoceanwab/contacts/index?name=&number=&email=&status=&customAttributes=&pageSize="><i class="fas fa-users"></i><span class="menu-title text-truncate"
                       data-i18n="Contacts">Contacts</span></a>
                 </li>
+
                 <li id="chatobotBuilderLi" class="nav-item active">
                    <a id="chatAnchor"
                    class="d-flex align-items-center"
@@ -219,6 +220,8 @@ const NavBar = () => {
                     <span class="menu-title text-truncate" data-i18n="Calendar">Users</span>
                    </a>
                   </li>  
+
+                  
               <li id="teammanagementLi" class=" nav-item"><a class="d-flex align-items-center"
               href="https://eoceanwab.com/eoceanwab/teammanagement/summary?teamName=&status="><i data-feather='users'></i><span
                 class="menu-title text-truncate" data-i18n="Todo">Teams</span></a></li>

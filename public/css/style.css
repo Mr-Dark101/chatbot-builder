@@ -33074,9 +33074,8 @@ input.custom-input {
     }
     .complain_data_section{
       border: 1px solid #ccc;
-      border-radius: 5px;
+      border-radius: 0px 0px 5px 5px;
       padding: 15px;
-      margin-bottom: 30px;
     }
     .complain_data_section .table tr th{
       font-family: 'Lexend Deca Medium', sans-serif;
@@ -33085,7 +33084,7 @@ input.custom-input {
       font-family: 'Lexend Deca Light', sans-serif;
     }
     .complain_box_section{
-      margin: 30px 30px 0px;
+      margin: 0px 0px 0px;
     }
     .complain_box_section ul{
       margin: 0px;
@@ -33097,7 +33096,7 @@ input.custom-input {
       margin-right: 20px;    
     }
     .complain_box_section .complain_box{
-      width: 200px;
+      width: 160px;
       border: 1px solid #ccc;
       border-radius: 5px;
       padding: 15px 10px;
@@ -33117,11 +33116,12 @@ input.custom-input {
       margin: 0px;
     }
     .search_box_section{
-      margin: 0px 30px 20px;
+      margin: 0px 0px 0px;
       background-color: #fff;
       padding: 0px 20px 10px;
       border: 1px solid #ccc;
-      border-radius: 5px;
+      border-bottom: 0px;
+      border-radius: 0px 5px 0px 0px;
     }
     .search_box_section ul{
       margin: 0px;
@@ -33147,6 +33147,47 @@ input.custom-input {
     .text_center{
       text-align: center;
     }
+    .insight_page_section{
+      background-color: #fff;
+      border: 1px solid #ccc;
+      border-radius: 0px 5px 0px 0px;
+      padding: 30px;
+    }
+    .insight_page_section .chart_section{
+      margin-top: 40px;
+    }
+    .insight_page_section .chart_section p{
+      font-size: 16px;
+      font-weight: 400;
+      color: #000;
+      margin-bottom: 5px;
+    }
+    .insight_page_section .chart_section .chart_box{
+      border: 1px solid rgba(204, 204, 204, 1);
+      padding: 20px;
+      border-radius: 5px;
+    }
+    .tab_list_section{
+      margin: 0px;
+      padding: 0px;
+      list-style: none;
+      display: flex;
+    }
+    .tab_list_section li{
+      background-color: #fff;
+      padding: 15px 70px;
+      border: 1px solid #ccc;
+      border-radius: 5px 5px 0px 0px;
+      font-size: 12px;
+      font-weight: 400;
+      margin-right: 5px;
+      cursor: pointer;
+    }
+    .tab_list_section li.active{
+      background-color: #10163A;
+      color: #fff;
+    }
+
 
 @keyframes App-logo-spin {
   from {
