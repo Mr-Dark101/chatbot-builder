@@ -15,7 +15,6 @@ import BoardModerator from "../../components/BoardModerator";
 import BoardAdmin from "../../components/BoardAdmin";
 import Login from "../../components/Login";
 
-
 const RouteNav = () => {
   
 
