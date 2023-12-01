@@ -74,7 +74,7 @@ const List = () => {
 
    const loadModal = (title, children) => {
       setModalValue(
-         <ModalPopup show={'true'} close={closeModal} title={title}>
+         <ModalPopup show={'true'} close={closeModal} title={title} >
             {children}
          </ModalPopup>
       );

@@ -32281,6 +32281,10 @@ img.away, img.busy, img.offline, img.online {
 .setting_left_bar_section ul li{
   margin-bottom: 10px;
 }
+.setting_left_bar_section ul .submenu{
+  margin-top: 15px;
+  margin-left: 20px;
+}
 .setting_left_bar_section ul li a{
   color: #363a77;
   font-weight: 400;
@@ -33186,6 +33190,53 @@ input.custom-input {
     .tab_list_section li.active{
       background-color: #10163A;
       color: #fff;
+    }
+
+    .complain_ticket_section .box_section{
+      border: 1px solid #ccc;
+      background-color: #f5f5f5;
+      padding: 20px 20px 10px;
+      border-radius: 5px;
+      margin-bottom: 20px;
+    }
+    .complain_ticket_section .box_section .text_section{
+      width: 50%;
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    .complain_ticket_section .box_section .text_section p{
+      font-size: 14px;
+      font-weight: 400;
+      color: #000;
+      margin: 0px;
+    }
+    .modal_popup_section .modal-lg{
+      width: 800px;
+    }
+    .complain_ticket_section .text_section{
+      margin-bottom: 20px;
+    }
+    .complain_ticket_section .text_section p{
+      font-size: 14px;
+      font-weight: 400;
+      color: #000;
+      margin: 0px;
+    }
+    .complain_ticket_section .table_row_section{
+      display: flex;
+      width: 80%;
+      border-bottom: 1px solid #ccc;
+    }
+    .complain_ticket_section .table_row_section .column_section{
+      width: 50%;
+      padding: 10px 20px;
+    }
+    .complain_ticket_section .table_row_section .column_section p{
+      font-size: 14px;
+      font-weight: 400;
+      color: #000;
+      margin: 0px;
     }
 
 

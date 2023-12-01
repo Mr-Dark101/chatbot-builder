@@ -120,15 +120,28 @@ const Settings = () => {
 
    let Menu = [
       /*{name:'Integration',controller:'Integration',icon:integration},*/
-      { name: 'API', controller: 'Api', icon: api },
+      { name: 'API', controller: 'Api', icon: api, },
       { name: 'Form Builder', controller: 'FormBuilder', icon: form },
       { name: 'OpenAI GPT', controller: 'ChatGpt', icon: integration },
       { name: 'Training Data', controller: 'TrainBot', icon: form },
       { name: 'Help Desk', controller: 'TrainBot', icon: form },
-      { name: 'Help Topic', controller: 'HelpTopic', icon: form },
+      { name: 'Help Topic', controller: 'HelpTopic', icon: form},
       { name: 'Custom Fields', controller: 'HelpCustomField', icon: form },
       { name: 'Department', controller: 'HelpDepartment', icon: form },
    ];
+
+   let subMenu = [
+      {
+        name: 'Custom Fields',
+        controller: 'HelpCustomField',
+        icon: form,
+      },
+      {
+        name: 'Department',
+        controller: 'HelpDepartment',
+        icon: form,
+      },
+    ];
 
    if (localStorage.getItem('org_unit_id') == '') {
       Menu = [
@@ -177,11 +190,12 @@ const Settings = () => {
                                           {m.name}
                                           <BlueOnGreenTooltip title= {"You don\'t have access to this feature. Please contact sales to upgrade your plan."}><span id ="lockimage" className="lockIcon"><i class="fa fa-lock"></i></span></BlueOnGreenTooltip>
                                        </a>
+                                       
                                     </li>
                                     ) : ( <li>
                                        <a href="#" className="active" onClick={() => changeContent(m.controller)}>
                                           <img alt={'#'} src={m.icon} />
-                                          {m.name}    
+                                          {m.name}  
                                           <>
                                           {(m.name === "OpenAI GPT" || m.name === "Training Data") ? 
                                           ( <span class="currentPlan" style={{backgroundColor: "#00baa3", marginLeft: "10px", fontFamily: 'Lexend Deca Light !important', fontSize: '9px'}} >New</span>   
@@ -206,6 +220,18 @@ const Settings = () => {
                                           {m.name}
                                           <BlueOnGreenTooltip title= {"You don\'t have access to this feature. Please contact sales to upgrade your plan."}><span id ="lockimage" className="lockIcon"><i class="fa fa-lock"></i></span></BlueOnGreenTooltip>
                                        </a>
+
+                                       <ul className="submenu">
+                                          {subMenu.map((m, i) => (
+                                          <li>
+                                             <a href="#" className="active">
+                                                <img alt={'#'} src={m.icon} />
+                                                {m.name}
+                                                <BlueOnGreenTooltip title= {"You don\'t have access to this feature. Please contact sales to upgrade your plan."}><span id ="lockimage" className="lockIcon"><i class="fa fa-lock"></i></span></BlueOnGreenTooltip>
+                                             </a>
+                                          </li>
+                                          ))}
+                                       </ul>
                                     </li>
                                     ) : (  <li>
                                        <a href="#" onClick={() => changeContent(m.controller)}>
@@ -226,6 +252,24 @@ const Settings = () => {
                                  )}
                               </>
                            ))}
+
+                           <ul className="submenu">
+                              <li>
+                                 <a href="#" className="active">
+                                    <img alt={'#'} src={form} />
+                                    
+                                    Custom Fields
+                                 </a>
+                              </li>
+
+                              <li>
+                                 <a href="#">
+                                    <img alt={'#'} src={form} />
+                                    
+                                    Department
+                                 </a>
+                              </li>
+                           </ul>
                         </ul>
                      </div>
                   </div>

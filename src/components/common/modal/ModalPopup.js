@@ -12,7 +12,7 @@ const ModalPopup = ({ show, close, title, children }) => {
      show ?
      
       
-      <div className="modal fade bs-example-modal-lg show modal_popup_section" style={{display:'flex',alignItems:'center',marginTop:'-200px'}} tabIndex="-1" aria-labelledby="myLargeModalLabel"   aria-hidden="true">
+      <div className="modal fade bs-example-modal-lg show modal_popup_section" style={{display:'flex',alignItems:'center'}} tabIndex="-1" aria-labelledby="myLargeModalLabel"   aria-hidden="true">
     <div className="modal-dialog modal-lg">
     <div className="modal-content">
         <div className="modal-header px-15" style={{background:'#363a77'}}>
