@@ -106,7 +106,7 @@ const FormSchema = Yup.object().shape({
             onSubmit={onSubmit}
           >
 
-                <h5 className="main_heading">Add Custom Field</h5>
+                <h5 className="main_heading">Add Department</h5>
                 
                 <div className="row">
                     <div className="col-9">
@@ -143,7 +143,7 @@ const FormSchema = Yup.object().shape({
 
             <div>
                 <SubmitButton
-                 title="Update"
+                 title="Save"
                  className="primary"
                   
               />

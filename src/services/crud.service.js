@@ -24,6 +24,35 @@ const getAll = (listUrl,master,params=false) => {
   return axios.get(url, { headers: authHeader() });
 };
 
+const dashboardData = () => {
+
+  let url =  API_URL + "/api/dashboard"
+
+   
+  
+  
+    return axios.get(url, { headers: authHeader() });
+  
+
+  
+};
+
+const getAllComplainFilter = (data,params) => {
+
+  let url =  API_URL + "/api/dashboard/complain-filer"
+
+   url = url + '?page=' + params.page + '&size=' + params.size;
+  
+  
+    return axios.post(url, data);
+  
+
+  
+};
+
+
+
+
 
 const exportData = () => {
 
@@ -100,6 +129,15 @@ const deleteRow = (id, postUrl,master) => {
   return axios.get(url);
 };
 
+const deleteRowSoft = (id, postUrl,master) => {
+  let url =  API_URL + "/" + postUrl + "/delete-soft?id=" + id
+  if(master === true){
+     url =  API_URL + "/master/delete-soft?type=" + postUrl + "&id=" + id
+  }
+
+  return axios.get(url);
+};
+
 const ListValue= (listUrl) => {
 
   let url =  API_URL + "/" + listUrl
@@ -115,8 +153,11 @@ export default {
   register,
   edit,
   deleteRow,
+  deleteRowSoft,
   ListValue,
   createJsonData,
-  exportData
+  exportData,
+  dashboardData,
+  getAllComplainFilter,
   
 };

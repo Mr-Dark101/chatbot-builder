@@ -8,17 +8,36 @@ import { CloseBotComposer, removingBreadcrumb, resetState } from './../Dashboard
 import CountStatus from './charts/CountStatus'
 import HelpTopic from './charts/HelpTopic'
 import Department from './charts/Department'
+
 const Insight = () => {
+const [listData, setListData] = useState({});
+useEffect(() => {
+    loadData();
+   
+  }, []);
+
+
+const loadData = () => {
+    CrudService.dashboardData()
+      .then(response => {
+        setListData(response.data.data);
+        
+      })
+      .catch(e => {
+        console.log(e);
+      });
+  };
+
 	return (
 
 			<div className="ws-hld">
-
+        
           <div className="insight_page_section">
             <div className="complain_box_section">
               <ul>
                 <li>
                   <div className="complain_box">
-                    <h1>1000</h1>
+                    <h1>{listData?.total_complain}</h1>
 
                     <p>Total Tickets</p>
                   </div>
@@ -26,7 +45,7 @@ const Insight = () => {
 
                 <li>
                   <div className="complain_box" style={{borderWidth: 1,borderColor: '#FF7272'}}>
-                    <h1>100</h1>
+                    <h1>{listData?.complain_Open}</h1>
 
                     <p>Open Tickets</p>
                   </div>
@@ -34,7 +53,7 @@ const Insight = () => {
 
                 <li>
                   <div className="complain_box" style={{borderWidth: 1,borderColor: '#00BC57'}}>
-                    <h1>850</h1>
+                    <h1>{listData?.complain_close}</h1>
 
                     <p>Closed Tickets</p>
                   </div>
@@ -42,7 +61,7 @@ const Insight = () => {
 
                 <li>
                   <div className="complain_box" style={{borderWidth: 1,borderColor: '#DD9F00'}}>
-                    <h1>50</h1>
+                    <h1>{listData?.complain_hold}</h1>
 
                     <p>On Hold Tickets</p>
                   </div>
@@ -54,7 +73,7 @@ const Insight = () => {
               <p>Complaints Count by Status</p>
 
               <div className="chart_box"> 
-                  <CountStatus />
+                  <CountStatus listData={listData} />
               </div>
             </div>
 
@@ -67,7 +86,7 @@ const Insight = () => {
                 </div>
 
                 <div className="chart_box"> 
-                  <HelpTopic />
+                  <HelpTopic listData={listData} />
                 </div>
               </div>
 
@@ -75,7 +94,7 @@ const Insight = () => {
                 <p>Complaints by Department</p>
 
                 <div className="chart_box"> 
-                  <Department />
+                  <Department listData={listData} />
                 </div>
               </div>
             </div>

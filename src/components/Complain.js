@@ -43,9 +43,9 @@ function Complain(){
         </div>
 
         <div className="m-30">
-          <Tabs>
+          <Tabs defaultIndex={0} onSelect={(index) => console.log(index)} >
             <TabList className="tab_list_section">
-              <Tab value="1" className="active">Insights</Tab>
+              <Tab value="1" >Insights</Tab>
               <Tab value="2">Tickets</Tab>
             </TabList>
 

@@ -41,13 +41,17 @@ const typeList = [{value:'get',label:"GET"},{value:"post",label:'POST'}]
 
   
 
-
+const statusList = [
+      { value: 1, label: 'Active' },
+      { value: 0, label: 'Inactive' },
+      
+   ];
 
 
 
 const [formData, setFormData] = useState({
     name: rs.name,
-    
+    status_id:rs.status_id,
     id: rs.id
    
    
@@ -137,7 +141,7 @@ const FormSchema = Yup.object().shape({
             
 
           <Form className="av-tooltip tooltip-label-right">  
-                
+                <h5 className="main_heading">Edit Department</h5>
                 <div className="row">
                     <div className="col-9">
 
@@ -147,6 +151,20 @@ const FormSchema = Yup.object().shape({
                             label="Name"
                           />
                         </div>
+
+
+                         <div className="row" style={{ marginLeft: '0px', marginRight: '0px' }}>
+                              <div className="col-4" style={{ paddingLeft: '0px', paddingRight: '0px' }}>
+
+                                 <div className="field_section">
+                                   <SelectField 
+                                     name="status_id"
+                                     label="Status"
+                                     options={statusList}
+                                   />
+                                 </div>
+                              </div>
+                           </div>
 
 
                         

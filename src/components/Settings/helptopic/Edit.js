@@ -98,7 +98,7 @@ const Edit = ({ rs, retrieveList, loadList }) => {
    const onSubmit = (values, { setSubmitting, resetForm, setStatus }) => {
       const saveData = values;
       saveData.custom_field = JSON.stringify(values.custom_field)
-      
+      console.log(saveData)
       CrudService.edit(saveData, 'helptopic', true).then(
          (response) => {
             //setModalValue('')

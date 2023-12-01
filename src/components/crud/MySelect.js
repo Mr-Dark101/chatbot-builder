@@ -5,8 +5,10 @@ import {useField} from 'formik';
 function SelectField(props) {
   const [field, state, {setValue, setTouched}] = useField(props.field.name);
 
+  
+
   const onChange = ({value}) => {
-   
+    
     setValue(value);
   };
 
@@ -41,8 +43,10 @@ const customStyles = {
     defaultValue={props.options.find((option) => option.value === field.value)}
     value={props.options.find((option) => option.value === field.value)}
     
-    placeholder={props.placeholder}
+    placeholder={'Select'}
      classNamePrefix={'react-select'}
+
+     
     onChange={onChange} onBlur={setTouched}/>
     </>
   );

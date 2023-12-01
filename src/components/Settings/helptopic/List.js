@@ -101,9 +101,9 @@ const List = ({ rs, subPage, loadList }) => {
    };
 
    const deleteRow = (id) => {
-      CrudService.deleteRow(id, 'trainbot', true).then(
+      CrudService.deleteRowSoft(id, 'helptopic', true).then(
          (response) => {
-            toast('Training data has been deleted!', { type: toast.TYPE.SUCCESS });
+            toast('Help topic has been inactive!', { type: toast.TYPE.SUCCESS });
             setMessage(response.data.message);
             setSuccessful(true);
             retrieveList();
@@ -121,7 +121,7 @@ const List = ({ rs, subPage, loadList }) => {
   
 
    const deleteRowAll = async (id) => {
-      await CrudService.deleteRow(id, 'trainbot', true)
+      await CrudService.deleteRowSoft(id, 'helptopic', true)
 
       
    };
@@ -348,13 +348,13 @@ const selCat = (e) => {
             <SweetAlert
                custom
                showCancel
-               confirmBtnText="Delete"
+               confirmBtnText="Inactive"
                cancelBtnText="Cancel"
                confirmBtnBsStyle="primary"
                cancelBtnBsStyle="light"
                customIcon=""
                customClass="containerBoxAlert"
-               title="Delete Training Data"
+               title="Inactive Record"
                onConfirm={ () => {
                   setShowAlertAll(false);
                   deleteAllSeleted();
@@ -366,7 +366,7 @@ const selCat = (e) => {
 
                reverseButtons={true}
             >
-             Are you sure you want to delete selected record?
+             Are you sure you want to inactive selected record?
             </SweetAlert>
          )}
 
@@ -391,7 +391,7 @@ const selCat = (e) => {
                            <a class="danger" style={{ marginLeft: '15px', textAlign: 'center' }} 
 
                            onClick={() => deleteAll()}>
-                           Delete All
+                           Inactive All
                         </a> 
 
                         }
@@ -460,7 +460,7 @@ const selCat = (e) => {
                                     </td>
                                     <td width="20%" style={{fontFamily: 'Lexend Deca Light', fontSize:'12px'}}>{row.name}</td>
                                     <td width="20%" style={{fontFamily: 'Lexend Deca Light', fontSize:'12px'}}>{row.parent?.name}</td>
-                                    <td width="10%" style={{fontFamily: 'Lexend Deca Light', fontSize:'12px'}}>{row.status_id}</td>
+                                    <td width="10%" style={{fontFamily: 'Lexend Deca Light', fontSize:'12px'}}>{(row.status_id == 1) ? 'Active' : 'Inactive'}</td>
                                     <td width="15%" style={{fontFamily: 'Lexend Deca Light', fontSize:'12px'}}>{row.HelpDepartment?.name}</td>
                                     <td width="20%" style={{fontFamily: 'Lexend Deca Light', fontSize:'12px'}}>
                                        {getCustomfield(row.custom_field)}
@@ -471,10 +471,7 @@ const selCat = (e) => {
                                           
                                           <img alt={'#'} src={editIcon}  />
                                        </a>
-                                       <a style={{ marginLeft: 5 }}  onClick={() => deleteMe(row.id)}>
-                                          
-                                          <img alt={'#'} src={deleteIcon} width="20" />
-                                       </a>
+                                      
                                     </td>
                                     
                                  </tr>
