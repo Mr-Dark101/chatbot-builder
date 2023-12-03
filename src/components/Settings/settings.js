@@ -52,6 +52,10 @@ const Settings = () => {
    const history = useHistory();
    const [activeClass, setActiveClass] = useState('');
 
+   const [helpMenuStyle, setHelpMenuStyle] = useState('none');
+
+   
+
    useEffect(() => {
       //changeContent('FormBuilder');
       changeContent('HelpTopic');
@@ -64,6 +68,14 @@ const Settings = () => {
 
    const changeContent = (param, pageName, dataName) => {
       setActiveClass(param);
+      if(param == '#helpmenu'){
+            if(helpMenuStyle == 'none'){
+               setHelpMenuStyle('block')
+            }else{
+               setHelpMenuStyle('none')
+            }
+            
+      }
       if (param === 'Api') {
          setContentPage(<Api />);
       }
@@ -124,7 +136,7 @@ const Settings = () => {
       { name: 'Form Builder', controller: 'FormBuilder', icon: form,submenu:false,new:false },
       { name: 'OpenAI GPT', controller: 'ChatGpt', icon: integration,submenu:false,new:true },
       { name: 'Training Data', controller: 'TrainBot', icon: form,submenu:false,new:true },
-      { name: 'Help Desk', controller: '#', icon: form 
+      { name: 'Help Desk', controller: '#helpmenu', icon: form 
 
          ,submenu:
 
@@ -179,6 +191,11 @@ const Settings = () => {
                            </Link>
                         </div>
 
+
+                        
+
+
+
                         <ul style={{ width: '208px' }}>
                            {Menu.map((m, i) => (
                               <>
@@ -190,7 +207,12 @@ const Settings = () => {
                                        >
                                           <img alt={'#'} src={m.icon} />
                                           {m.name}
-                                           <span></span>
+                                          {m.new ?
+
+                                          (<span class="currentPlan" style={{backgroundColor: "#00baa3", marginLeft: "10px", fontFamily: 'Lexend Deca Light !important', fontSize: '9px'}} >New</span>)
+                                          :
+                                           (<span></span>)
+                                          }
                                        </a>
 
                                           {m.submenu &&
@@ -199,7 +221,10 @@ const Settings = () => {
                                                 (
 
 
-                                                       <ul className="submenu">
+                                                       <ul className="submenu"
+
+                                                       style={{display:helpMenuStyle}}
+                                                       >
                                                        {m.submenu.map((s, i) => (
 
                                                          <li>
