@@ -33088,7 +33088,7 @@ input.custom-input {
       font-family: 'Lexend Deca Light', sans-serif;
     }
     .complain_box_section{
-      margin: 0px 0px 0px;
+      margin: 0px 0px 10px;
     }
     .complain_box_section ul{
       margin: 0px;
@@ -33101,11 +33101,11 @@ input.custom-input {
     }
     .complain_box_section .complain_box{
       width: 160px;
-      border: 1px solid #ccc;
       border-radius: 5px;
       padding: 15px 10px;
       margin-bottom: 20px;
       background-color: #fff;
+      text-align: center;
     }
     .complain_box_section .complain_box h1{
       font-size: 32px;
@@ -33148,18 +33148,53 @@ input.custom-input {
       font-size: 14px;
       font-weight: 400;
     }
+    .search_box_section .rdrDateRangePickerWrapper{
+      position: absolute;
+      right: 400px;
+      top: 225px;
+      z-index: 1;
+      border: 1px solid #ccc;
+    }
     .text_center{
       text-align: center;
     }
     .insight_page_section{
       background-color: #fff;
+      box-shadow: rgba(0,0,0,0.2);
+      border-radius: 5px;
+      padding: 15px 30px;
+    }
+    .w_40{
+      width: 40%;
+    }
+    .insight_page_section.insight_field_section .field_section{
+      margin-bottom: 10px;
+    }
+    .insight_page_section.insight_field_section .field_section label{
+      margin-top: 0px;
+      font-size: 12px;
+      font-weight: 400;
+    }
+    .insight_field_section .rdrDateRangePickerWrapper{
+      position: absolute;
+      left: 110px;
+      top: 225px;
+      z-index: 1;
       border: 1px solid #ccc;
-      border-radius: 0px 5px 0px 0px;
-      padding: 30px;
+
     }
-    .insight_page_section .chart_section{
-      margin-top: 40px;
-    }
+    .insight_page_section.insight_field_section .btn_export{
+      background-color: #ccc;
+      color: #000;
+      border-radius: 6px;
+      font-family: "Lexend Deca";
+      font-size: 13px;
+      line-height: 18px;
+      font-weight: 500;
+      padding: 10px 15px;
+      height: 40px;
+      border: 1px solid #ccc;
+    }    
     .insight_page_section .chart_section p{
       font-size: 16px;
       font-weight: 400;
@@ -33178,18 +33213,16 @@ input.custom-input {
       display: flex;
     }
     .tab_list_section li{
-      background-color: #fff;
-      padding: 15px 70px;
-      border: 1px solid #ccc;
-      border-radius: 5px 5px 0px 0px;
-      font-size: 12px;
+      padding: 10px 50px;
+      border-bottom: 3px solid transparent;
+      font-size: 14px;
       font-weight: 400;
       margin-right: 5px;
       cursor: pointer;
+      color: #000;
     }
-    .tab_list_section li.active{
-      background-color: #10163A;
-      color: #fff;
+    .tab_list_section li.react-tabs__tab--selected{
+      border-bottom: 3px solid #10163a;
     }
 
     .complain_ticket_section .box_section{
@@ -33238,6 +33271,15 @@ input.custom-input {
       color: #000;
       margin: 0px;
     }
+    .complain_data_section .badge_box{
+      background-color: #C30000;
+      color: #fff;
+      padding: 3px 10px;
+      font-size: 12px;
+      display: inline-block;
+      font-weight: 400;
+      border-radius: 20px;
+    }
 
 
 @keyframes App-logo-spin {
@@ -33259,5 +33301,4 @@ input.custom-input {
     color: #fff;
     font-weight: 500;
 }
-.react-tabs__tab--selected{background-color: #10163A !important;color:#fff}
 /*Left Nav New Css*/

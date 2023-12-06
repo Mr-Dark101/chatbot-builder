@@ -69,6 +69,8 @@ Waves
 /****************************/
 /** Imports **/
 /****************************/
+@import 'react-date-range/dist/styles.css';
+@import 'react-date-range/dist/theme/default.css';
 @import url(vendors_css.css);
 @import url("https://fonts.googleapis.com/css?family=IBM+Plex+Sans:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i|Rubik:300,300i,400,400i,500,500i,700,700i,900,900i&display=swap");
 /*Social Media Colors*/
@@ -93,6 +95,7 @@ Waves
 /*@import url(assets/icons/iconsmind/style.css);*/
 /*@import url(assets/icons/icomoon/style.css);*/
 @import url(assets/vendor_components/animate/animate.css);
+
 html {
   height: 100%;
   font-size: 14px; }

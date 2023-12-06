@@ -56,6 +56,12 @@ const navbarData = [
       route: `https://eoceanwabaqa.com/eoceanwab/channels/index`,
    },
    {
+      icon: channel_icon,
+      value: 'Complain',
+      isBlank: true,
+      route: `https://eoceanwabaqa.com/eoceanwab/complain/index`,
+   },
+   {
       icon: teams_icon,
       value: 'Profile Settings',
       isBlank: true,
@@ -196,7 +202,11 @@ const NavBar = () => {
                    </a>
                 </li>
 
-                
+                <li id="channelsLi" class=" nav-item">
+                   <a class="d-flex align-items-center"
+                   href="https://eoceanwabaqa.com/eoceanwab/complain/index"><i data-feather='share-2'></i><span
+                      class="menu-title text-truncate" data-i18n="complain">Complain</span></a>
+                </li>
 
                 <li id="channelsLi" class=" nav-item">
                    <a class="d-flex align-items-center"

@@ -22,7 +22,7 @@ const Department = ({listData}) => {
 
 const options = {
     chart: {
-        type: 'bar'
+        type: 'column'
     },
     title: {
         text: '',

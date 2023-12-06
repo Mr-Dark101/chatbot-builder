@@ -6,6 +6,7 @@ import HighchartsReact from 'highcharts-react-official'
 
 
 const CountStatus = ({listData}) => {
+    
 const options = {
     chart: {
         type: 'area'

@@ -27,7 +27,7 @@ const HelpTopic = ({listData}) => {
 
 const options = {
     chart: {
-        type: 'bar'
+        type: 'column'
     },
     title: {
         text: '',

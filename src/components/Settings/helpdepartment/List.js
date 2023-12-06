@@ -2,6 +2,7 @@ import React, { useState, useEffect,useRef } from 'react';
 import CrudService from '../../../services/crud.service';
 import ModalPopup from '../../common/modal/ModalPopup';
 import SweetAlert from 'react-bootstrap-sweetalert';
+import Dropdown from 'react-multilevel-dropdown';
 import Create from './Create';
 
 import editIcon from '../../../assets/edit.svg';
@@ -369,12 +370,25 @@ const selCat = (e) => {
                      <div className="col-sm-9 d-flex justify-content-end">
 
                         {deleteShow && 
+                        <>
+                            
+                        
+                        <Dropdown className="secondary" style={{marginLeft: '15px'}}
+                             title='Action '
+                           >
+                             <Dropdown.Item
+                               
+                             >
+                               Mark as active
+                             </Dropdown.Item>
 
-                           <a class="danger" style={{ marginLeft: '15px', textAlign: 'center' }} 
-
-                           onClick={() => deleteAll()}>
-                           Inactive All
-                        </a> 
+                             <Dropdown.Item
+                               onClick={() => deleteAll()}
+                             >
+                               Mark as inactive
+                             </Dropdown.Item>
+                        </Dropdown>
+                        </>
 
                         }
                         

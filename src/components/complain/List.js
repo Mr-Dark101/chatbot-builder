@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import CrudService from "../../services/crud.service";
 import { CloseBotComposer, removingBreadcrumb, resetState } from './../Dashboard/slices/dashboard.slice';
 import { Form, TextField, SelectField } from './../crud/FormElements';
+import DateRangeField from './../crud/DateRangePicker';
 import Select from 'react-select';
 import {toast } from 'react-toastify';
 import ModalPopup from '../common/modal/ModalPopup';
@@ -24,6 +25,7 @@ import {
 
 const List = () => {
 	const history = useHistory();
+  const [open, setOpen] = useState(false);
 	const dispatch = useDispatch();
 	const [listData, setListData] = useState([]);
 	const [listCatData, setListCatData] = useState([]);
@@ -331,7 +333,11 @@ const onSubmit = (values, { setSubmitting, resetForm, setStatus }) => {
 
                     <li style={{width: '12%'}}>
                       <div className="field_section">                        
-                         <TextField name="date" label="Date Range" placeholder="" />
+                         <TextField name="date" onClick={() => setOpen(true)} label="Date Range" placeholder="" />
+
+                         {open && 
+                           <DateRangeField setOpen={setOpen} />
+                         }
                       </div>
                     </li>
 
@@ -394,7 +400,9 @@ const onSubmit = (values, { setSubmitting, resetForm, setStatus }) => {
                       	{row.from}
                       </td>
                       <td>
-                      	{getPriority(row)}
+                        <div className="badge_box">
+                      	 {getPriority(row)}
+                        </div>
                       </td>
                       <td>
                       	{getDepartment(row)}
