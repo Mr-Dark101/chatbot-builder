@@ -33183,7 +33183,7 @@ input.custom-input {
       border: 1px solid #ccc;
 
     }
-    .insight_page_section.insight_field_section .btn_export{
+    .search_box_section .btn_export{
       background-color: #ccc;
       color: #000;
       border-radius: 6px;
@@ -33279,6 +33279,9 @@ input.custom-input {
       display: inline-block;
       font-weight: 400;
       border-radius: 20px;
+    }
+    .react-datepicker__input-container .form-control{
+      margin-bottom: 0px !important;
     }
 
 

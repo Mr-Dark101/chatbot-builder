@@ -307,7 +307,7 @@ const onSubmit = (values, { setSubmitting, resetForm, setStatus }) => {
                       </div>
                     </li>
 
-                    <li style={{width: '20%'}}>
+                    <li style={{width: '15%'}}>
                       <div className="field_section">                        
                          
 
@@ -319,7 +319,7 @@ const onSubmit = (values, { setSubmitting, resetForm, setStatus }) => {
                       </div>
                     </li>
 
-                    <li style={{width: '15%'}}>
+                    <li style={{width: '12%'}}>
                       <div className="field_section">                        
                          
                           <TextField name="from" label="From" placeholder="" />
@@ -356,8 +356,14 @@ const onSubmit = (values, { setSubmitting, resetForm, setStatus }) => {
                       </div>
                     </li>
 
-                    <li style={{width: '12%'}}>
+                    <li style={{width: '10%'}}>
                       <button className="primary">Apply Filter</button>
+                    </li>
+
+                    <li style={{width: '8%'}}>
+                      <div className="text-right">
+                        <button className="btn_export">Export</button>
+                      </div>
                     </li>
                   </ul>
                  </div>

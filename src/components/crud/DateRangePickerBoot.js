@@ -17,7 +17,7 @@ function DateRangeField(props){
 
   return(
     <>
-      <DatePicker selected={startDate} 
+      <DatePicker className="form-control" selected={startDate} 
       value={field.value}
 
       onChange={(date) => onChange(date)} />

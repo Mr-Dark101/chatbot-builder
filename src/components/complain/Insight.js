@@ -63,23 +63,16 @@ const onSubmit = (values, { setSubmitting, resetForm, setStatus }) => {
 
 			<div className="ws-hld"> 
           <Form validationSchema={FormSchema} initialValues={formData} onSubmit={onSubmit}>
-          <div className="insight_page_section insight_field_section py-0 mb-30">
+          <div className="insight_page_section insight_field_section pt-20 pb-10 mb-30">
             <div className="d-flex justify-content-between align-items-center">
-              <div className="field_section w_40">                        
+              <div className="field_section w_40 d-flex justify-content-between align-items-center">                        
                  
-
-
-
                <DatePicker name="from" label="From" placeholder="From" />
 
                <DatePicker name="to" label="To" placeholder="To" />
 
                <SubmitButton title="Filter" className="btn btn-primary" />
 
-              </div>
-
-              <div>
-                <button className="btn_export">Export</button>
               </div>
             </div> 
           </div>
