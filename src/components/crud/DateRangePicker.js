@@ -14,11 +14,19 @@ function DateRangeField({setOpen}){
 
   const meSelect = (item) => {
 
+
+    console.log(item)
+
     setState([item.selection])
-    setOpen(false)
+    //setOpen(false)
+  }
+
+  const onChange = () => {
+    return true
   }
 
   return(
+    <>
       <DateRangePicker
         onChange={item => meSelect(item)}
         showSelectionPreview={true}
@@ -26,7 +34,11 @@ function DateRangeField({setOpen}){
         months={2}
         ranges={state}
         direction="horizontal"
+
+        
+
       />
+      </>
     )
   }
 

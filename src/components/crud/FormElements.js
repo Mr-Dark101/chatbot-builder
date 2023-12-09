@@ -11,7 +11,7 @@ import {
 import MyPhone from './MyPhone';
 import MySelect from './MySelect';
 import MySelectMulti from './MySelectMulti';
-import DateRangePicker from './DateRangePicker';
+import DateRangePickerBoot from './DateRangePickerBoot';
 import MySelectVersion from './MySelectVersion';
 import MySwitch from './MySwitch';
 export function Form(props) {
@@ -51,6 +51,27 @@ export function TextGroupField(props) {
             </div>
             <ErrorMessage name={name} render={msg => <div style={{ color: 'red' }} >{msg}</div>} />
         </div>
+            
+        </>
+    )
+}
+
+
+export function DatePicker(props) {
+    const { name, label,onChange,placeholder,customStyles } = props
+    
+
+    return (
+        <>
+
+        {label && <label htmlFor={name}>{label}</label>}
+     
+
+             <Field component={DateRangePickerBoot} name={name} placeholder={placeholder} />
+      
+            
+            <ErrorMessage name={name} render={msg => <div style={{ color: 'red' }} >{msg}</div>} />
+
             
         </>
     )

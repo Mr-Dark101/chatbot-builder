@@ -5,7 +5,7 @@ import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import CrudService from "../../services/crud.service";
 import { CloseBotComposer, removingBreadcrumb, resetState } from './../Dashboard/slices/dashboard.slice';
-import { Form, TextField, SelectField } from './../crud/FormElements';
+import { Form, TextField, SelectField,DatePicker } from './../crud/FormElements';
 import DateRangeField from './../crud/DateRangePicker';
 import Select from 'react-select';
 import {toast } from 'react-toastify';
@@ -13,6 +13,7 @@ import ModalPopup from '../common/modal/ModalPopup';
 import Detail from './Detail'
 import * as Yup from 'yup';
 import Pagination from "@material-ui/lab/Pagination";
+import moment from 'moment';
 import {
     Formik,
     Form as FormikForm,
@@ -20,7 +21,8 @@ import {
     ErrorMessage,
     useFormikContext,
     useField,
-    useFormik
+    useFormik,
+    
 } from 'formik';
 
 const List = () => {
@@ -188,6 +190,13 @@ const List = () => {
       
    });
 const onSubmit = (values, { setSubmitting, resetForm, setStatus }) => {
+
+        let date = values.date;
+
+        date = moment(date).format('YYYY-MM-DD');
+
+        values.date = date;
+
         const params = getRequestParams(page, pageSize);
         CrudService.getAllComplainFilter(values,params)
       .then(response => {
@@ -333,11 +342,7 @@ const onSubmit = (values, { setSubmitting, resetForm, setStatus }) => {
 
                     <li style={{width: '12%'}}>
                       <div className="field_section">                        
-                         <TextField name="date" onClick={() => setOpen(true)} label="Date Range" placeholder="" />
-
-                         {open && 
-                           <DateRangeField setOpen={setOpen} />
-                         }
+                         <DatePicker name="date" label="Date" placeholder="Date" />
                       </div>
                     </li>
 

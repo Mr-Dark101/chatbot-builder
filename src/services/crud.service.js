@@ -24,9 +24,9 @@ const getAll = (listUrl,master,params=false) => {
   return axios.get(url, { headers: authHeader() });
 };
 
-const dashboardData = () => {
+const dashboardData = (from="",to="") => {
 
-  let url =  API_URL + "/api/dashboard"
+  let url =  API_URL + "/api/dashboard?from=" + from + '&to=' + to
 
    
   

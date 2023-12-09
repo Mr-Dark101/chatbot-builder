@@ -8,8 +8,9 @@ import { CloseBotComposer, removingBreadcrumb, resetState } from './../Dashboard
 import CountStatus from './charts/CountStatus'
 import HelpTopic from './charts/HelpTopic'
 import Department from './charts/Department'
-import DateRangeField from '../crud/DateRangePicker'
-import { Form, TextField, SelectField } from './../crud/FormElements';
+import * as Yup from 'yup';
+import moment from 'moment';
+import { Form, TextField, SelectField,DatePicker,SubmitButton } from './../crud/FormElements';
 
 const Insight = () => {
 const [listData, setListData] = useState({});
@@ -20,8 +21,8 @@ useEffect(() => {
   }, []);
 
 
-const loadData = () => {
-    CrudService.dashboardData()
+const loadData = (from,to) => {
+    CrudService.dashboardData(from,to)
       .then(response => {
         setListData(response.data.data);
         
@@ -31,17 +32,50 @@ const loadData = () => {
       });
   };
 
+const [formData, setFormData] = useState({
+     
+      from:'',
+      to:'',
+    
+   });
+
+const FormSchema = Yup.object().shape({
+      from: Yup.string().required('Required'),
+      to: Yup.string().required('Required'),
+      
+   });
+
+const onSubmit = (values, { setSubmitting, resetForm, setStatus }) => {
+      let from = values.from;
+
+      from = moment(from).format('YYYY-MM-DD');
+
+      let to = values.to;
+
+      to = moment(to).format('YYYY-MM-DD');
+      
+      
+      setSubmitting(false)
+      loadData(from,to)
+   };
+
 	return (
 
 			<div className="ws-hld"> 
-          <Form>
+          <Form validationSchema={FormSchema} initialValues={formData} onSubmit={onSubmit}>
           <div className="insight_page_section insight_field_section py-0 mb-30">
             <div className="d-flex justify-content-between align-items-center">
               <div className="field_section w_40">                        
-                 <TextField name="date" onClick={() => setOpen(true)} label="Date Range" placeholder="" />
-                 {open && 
-                 <DateRangeField setOpen={setOpen} />
-               }
+                 
+
+
+
+               <DatePicker name="from" label="From" placeholder="From" />
+
+               <DatePicker name="to" label="To" placeholder="To" />
+
+               <SubmitButton title="Filter" className="btn btn-primary" />
+
               </div>
 
               <div>
