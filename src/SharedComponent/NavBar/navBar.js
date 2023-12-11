@@ -92,6 +92,9 @@ const NavBar = () => {
       dispatch(toggleNavbar(false));
    };
 
+
+   
+
    // return (
 
    //     <>
@@ -204,7 +207,7 @@ const NavBar = () => {
 
                 <li id="channelsLi" class=" nav-item">
                    <a class="d-flex align-items-center"
-                   href="https://eoceanwabaqa.com/eoceanwab/complain/index"><i data-feather='share-2'></i><span
+                   href={`${STRINGS.ROUTES.COMPLAIN}`}><i data-feather='share-2'></i><span
                       class="menu-title text-truncate" data-i18n="complain">Complain</span></a>
                 </li>
 

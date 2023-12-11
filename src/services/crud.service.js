@@ -129,10 +129,10 @@ const deleteRow = (id, postUrl,master) => {
   return axios.get(url);
 };
 
-const deleteRowSoft = (id, postUrl,master) => {
+const deleteRowSoft = (id, postUrl,master,status_id) => {
   let url =  API_URL + "/" + postUrl + "/delete-soft?id=" + id
   if(master === true){
-     url =  API_URL + "/master/delete-soft?type=" + postUrl + "&id=" + id
+     url =  API_URL + "/master/delete-soft?type=" + postUrl + "&id=" + id + "&status_id=" + status_id
   }
 
   return axios.get(url);

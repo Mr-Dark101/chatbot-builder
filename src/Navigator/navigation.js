@@ -23,7 +23,7 @@ const Navigation = () => {
                 history.push(`${STRINGS.ROUTES.AUTH.LOGIN}?username=${_userName}`);
              }else{
                 
-                history.push(`${STRINGS.ROUTES.ROOT}?org=${localStorage.getItem("userId")}`);
+                //history.push(`${STRINGS.ROUTES.ROOT}?org=${localStorage.getItem("userId")}`);
              }
             
             // history.push(`${STRINGS.ROUTES.ROOT}?org=${localStorage.getItem("userId")}`);

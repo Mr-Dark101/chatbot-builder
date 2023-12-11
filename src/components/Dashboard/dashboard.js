@@ -413,9 +413,7 @@ const Dashboard = () => {
                         <img src={setting_icon}  style={{ maxWidth: '37px', marginTop:'20px', marginRight:'30px'}} />
                      </Link>
 
-                     <Link to="/complain" className="float-end">
-                        <img src={setting_icon}  style={{ maxWidth: '37px', marginTop:'20px', marginRight:'30px'}} />
-                     </Link>
+                     
                   </div>
                </div>
 

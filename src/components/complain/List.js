@@ -14,6 +14,7 @@ import Detail from './Detail'
 import * as Yup from 'yup';
 import Pagination from "@material-ui/lab/Pagination";
 import moment from 'moment';
+import { CSVLink } from "react-csv";
 import {
     Formik,
     Form as FormikForm,
@@ -26,6 +27,7 @@ import {
 } from 'formik';
 
 const List = () => {
+  const BASE_URL = process.env.REACT_APP_BACKEND_URl;
 	const history = useHistory();
   const [open, setOpen] = useState(false);
 	const dispatch = useDispatch();
@@ -33,10 +35,11 @@ const List = () => {
 	const [listCatData, setListCatData] = useState([]);
   const [modalValue, setModalValue] = useState('');
   const [topicList, setTopicList] = useState([]);
+  const [filter, setFilter] = useState({});
 
   const [page, setPage] = useState(1);
   const [count, setCount] = useState(0);
-  const [pageSize, setPageSize] = useState(10);
+  const [pageSize, setPageSize] = useState(100);
 
   const pageSizes = [3, 6, 9];
 
@@ -54,13 +57,27 @@ const List = () => {
   }, [page, pageSize]);
 
 
+  
+
+  const downLoadCsv = () => {
+      CrudService.exportData()
+         .then((response) => {
+               let orgUnitId = localStorage.getItem('org_unit_id');
+               document.location.href= BASE_URL + '/export_ticket_' + orgUnitId + '.csv';
+         })
+         .catch((e) => {
+            console.log(e);
+         });
+  }
+
+
    const retrieveMasterList = (url) => {
       CrudService.ListValue('master/list-value?type=' + url)
          .then((response) => {
            
 
             if (url == 'helptopicparent') {
-               
+               response.data.push({value:'',label:'All'})
                setTopicList(response.data);
                
                
@@ -101,6 +118,7 @@ const List = () => {
   
 
   const retrieveList = () => {
+
     const params = getRequestParams(page, pageSize);
     CrudService.getAll('helpcomplain',true,params)
       .then(response => {
@@ -192,11 +210,12 @@ const List = () => {
 const onSubmit = (values, { setSubmitting, resetForm, setStatus }) => {
 
         let date = values.date;
-
+        if(date !== ""){
         date = moment(date).format('YYYY-MM-DD');
 
         values.date = date;
-
+      }
+      setFilter(values)
         const params = getRequestParams(page, pageSize);
         CrudService.getAllComplainFilter(values,params)
       .then(response => {
@@ -220,6 +239,7 @@ const onSubmit = (values, { setSubmitting, resetForm, setStatus }) => {
    });
 
    const statusList = [
+      { value: '', label: 'All' },
       { value: 1, label: 'Open' },
       { value: 5, label: 'Hold' },
       { value: 10, label: 'Close' },
@@ -227,6 +247,7 @@ const onSubmit = (values, { setSubmitting, resetForm, setStatus }) => {
    ];
 
    const priorityList = [
+    { value: '', label: 'All' },
       { value: '1', label: 'High' },
       { value: '2', label: 'Low' },
       { value: '3', label: 'Medium' },
@@ -242,7 +263,28 @@ const onSubmit = (values, { setSubmitting, resetForm, setStatus }) => {
          (response) => {
             //setModalValue('')
             toast("Ticket status has been updated",{type: toast.TYPE.SUCCESS,fontWeight:600})
-            //loadList();
+            //retrieveList()
+
+
+
+
+             const params = getRequestParams(page, pageSize);
+             const values = filter
+        CrudService.getAllComplainFilter(values,params)
+      .then(response => {
+       
+
+        const { dataRow, totalPages } = response.data;
+         console.log(dataRow)
+        setListData(dataRow);
+        setCount(totalPages);
+        
+      })
+      .catch(e => {
+        console.log(e);
+      });
+
+
             //setMessage(response.data.message);
             //setSuccessful(true);
 
@@ -290,7 +332,19 @@ const onSubmit = (values, { setSubmitting, resetForm, setStatus }) => {
   };
 
 
-
+const csvData = [
+    ["Ticket #","Help Topic","Detials","From","Priority","Department","Created On ","Status"],
+    ...listData?.map((row) => [
+      row.id,
+     getTopic(row),
+     getDetail(row.complain_data),
+     row.from,
+     getPriority(row),
+     getDepartment(row),
+     moment(row.created_at).format('DD-MMMM-YYYY'),
+     printStatus(row.status_id)
+    ]),
+  ];
 
 	return (
 
@@ -362,7 +416,13 @@ const onSubmit = (values, { setSubmitting, resetForm, setStatus }) => {
 
                     <li style={{width: '8%'}}>
                       <div className="text-right">
-                        <button className="btn_export">Export</button>
+                        
+
+
+                        <CSVLink className="btn_export" filename="ticket.csv" data={csvData}>
+                          Export
+                        </CSVLink>
+
                       </div>
                     </li>
                   </ul>
@@ -418,7 +478,7 @@ const onSubmit = (values, { setSubmitting, resetForm, setStatus }) => {
                       <td>
                       	{getDepartment(row)}
                       </td>
-                      <td>{row.created_at}</td>
+                      <td>{moment(row.created_at).format('DD-MMMM-YYYY')}</td>
                       <td>
                       	
                         

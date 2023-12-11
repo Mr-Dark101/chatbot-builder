@@ -37,6 +37,7 @@ const List = ({ rs, subPage, loadList }) => {
    const [checkedAll, setCheckedAll] = useState(false);
   const [checked, setChecked] = useState(false);
   const [deleteShow, setDeleteShow] = useState(false);
+  const [showAlertAllActive, setShowAlertAllActive] = useState(false);
 
   const [showAlertSuccess, setShowAlertSuccess] = useState(false);
 
@@ -103,8 +104,8 @@ const List = ({ rs, subPage, loadList }) => {
 
   
 
-   const deleteRowAll = async (id) => {
-      await CrudService.deleteRowSoft(id, 'helpdepartment', true)
+   const deleteRowAll = async (id,status_id) => {
+      await CrudService.deleteRowSoft(id, 'helpdepartment', true,status_id)
 
       
    };
@@ -120,28 +121,39 @@ const List = ({ rs, subPage, loadList }) => {
          }
       );
    }
+  const deleteAll = async (status_id) => {
 
-   const deleteAll = async () => {
+      if(status_id == 0){
+         setShowAlertAll(true);
+      }
 
-      setShowAlertAll(true);
+
+       if(status_id == 1){
+         setShowAlertAllActive(true);
+      }
+      
      
      
       
    }
 
 
-   const deleteAllSeleted = async () => {
+   const deleteAllSeleted = async (status_id) => {
 
       
       for (let i = 0; i < inputElement.current.length; i++) {
          if(inputElement.current[i]){
                if(inputElement.current[i].checked){
-                  await deleteRowAll(inputElement.current[i].value)
+                  await deleteRowAll(inputElement.current[i].value,status_id)
                }
          }
       }
+      let status_name = 'active';
+      if(status_id == 0){
+         status_name = " inactive"
+      }
       setSuccessful(true);
-      toast('Training data has been deleted!', { type: toast.TYPE.SUCCESS });
+      toast('Department  has been ' + status_name + '!', { type: toast.TYPE.SUCCESS });
       retrieveList()
       //setMessage("Training data has been deleted");
      // setSuccessful(true);
@@ -340,7 +352,7 @@ const selCat = (e) => {
                title="Inactive Record"
                onConfirm={ () => {
                   setShowAlertAll(false);
-                  deleteAllSeleted();
+                  deleteAllSeleted(0);
                   
                }}
                onCancel={() => {
@@ -352,6 +364,34 @@ const selCat = (e) => {
              Are you sure you want to inactive selected record?
             </SweetAlert>
          )}
+
+
+         {showAlertAllActive && (
+            <SweetAlert
+               custom
+               showCancel
+               confirmBtnText="Active"
+               cancelBtnText="Cancel"
+               confirmBtnBsStyle="primary"
+               cancelBtnBsStyle="light"
+               customIcon=""
+               customClass="containerBoxAlert"
+               title="Active Record"
+               onConfirm={ () => {
+                  setShowAlertAllActive(false);
+                  deleteAllSeleted(1);
+                  
+               }}
+               onCancel={() => {
+                  setShowAlertAllActive(false);
+               }}
+
+               reverseButtons={true}
+            >
+             Are you sure you want to active selected record?
+            </SweetAlert>
+         )}
+
 
 
          
@@ -377,13 +417,13 @@ const selCat = (e) => {
                              title='Action '
                            >
                              <Dropdown.Item
-                               
+                               onClick={() => deleteAll(1)}
                              >
                                Mark as active
                              </Dropdown.Item>
 
                              <Dropdown.Item
-                               onClick={() => deleteAll()}
+                               onClick={() => deleteAll(0)}
                              >
                                Mark as inactive
                              </Dropdown.Item>
