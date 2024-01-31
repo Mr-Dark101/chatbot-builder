@@ -109,6 +109,7 @@ const ByTypeComposer = ({ props, triggerType }) => {
 
    const [condition, setCondition] = useState([]);
    const [simpleCondition, setSimpleCondition] = useState([]);
+   const [msgType, setMsgType] = useState("SimpleText");
 
    let conditionArray = [];
    const [apiData, setApiData] = useState([]);
@@ -278,6 +279,28 @@ const ByTypeComposer = ({ props, triggerType }) => {
 
    useEffect(() => {
       if (isData) {
+            // Initialize a variable to store the bot trigger name
+            let botTriggerName = currentTriggerData.toTrigger !== undefined ? currentTriggerData.toTrigger.name : currentTriggerData.name;
+
+            // Check if the bot trigger name includes "InteractiveButton"
+            if(botTriggerName.includes("InteractiveButton")) {
+               // If true, set the message type to "InteractiveButton"
+               setMsgType("InteractiveButton");
+            } else if(botTriggerName.includes("InteractiveList")) {
+               // If false, check if the bot trigger name includes "InteractiveList"
+               // If true, set the message type to "InteractiveList"
+               setMsgType("InteractiveList");
+            } else {
+               // If both conditions above are false, set the message type to "SimpleText"
+               setMsgType("SimpleText");
+            }
+
+            // Check if botTriggerName is truthy and then update it by extracting the part before the colon
+            if(botTriggerName) {
+               botTriggerName = botTriggerName.split(":")[0];
+            }
+
+
          setInit({
             ...init,
             isText:
@@ -289,7 +312,7 @@ const ByTypeComposer = ({ props, triggerType }) => {
             openFallBackComposer: currentTriggerData.toTrigger !== undefined ? currentTriggerData.toTrigger.fallBackResponse !== '' : currentTriggerData.fallBackResponse !== '',
             currentData: {
                ...init.currentData,
-               name: currentTriggerData.toTrigger !== undefined ? currentTriggerData.toTrigger.name : currentTriggerData.name,
+               name: botTriggerName,
                id: currentTriggerData.toTrigger !== undefined ? currentTriggerData.toTrigger.id : currentTriggerData.id,
                loopBackId: currentTriggerData.toTrigger !== undefined ? currentTriggerData.toTrigger.loopBackTriggerId : currentTriggerData.loopBackTriggerId,
                loopBackText: currentTriggerData.toTrigger !== undefined ? currentTriggerData.toTrigger.loopBackText : currentTriggerData.loopBackText,
@@ -600,9 +623,24 @@ const ByTypeComposer = ({ props, triggerType }) => {
 
    const handleSubmitTrigger = () => {
 
+      // Initialize an empty string variable to store the name with type
+      let nameWithType = "";
+
+      // Check if the message type includes "SimpleText"
+      if(msgType.includes("SimpleText")){
+         // If true, extract the part of the name before the colon and assign it to currentData.name
+         currentData.name = currentData.name.split(":")[0];
+         // Assign the modified name to nameWithType
+         nameWithType = currentData.name;
+      }else{
+         // If false, concatenate the currentData.name with ": " and msgType, if currentData.name is truthy
+         // Otherwise, assign currentData.name to nameWithType
+         nameWithType = (currentData.name)? currentData.name + " : " + msgType : currentData.name;
+      }
+
 
       let obj = {
-         title: currentData.name,
+         title: nameWithType,
          type: currentData.type,
          description: currentData.description,
          fallBackResponse: currentData.fallBackResponse,
@@ -785,7 +823,46 @@ const ByTypeComposer = ({ props, triggerType }) => {
    };
 
    const handleAddOptions = () => {
+      
       if (triggerOpt !== '') {
+         debugger;
+
+         if(msgType !== "SimpleText"){
+            // Determine the maximum allowed lists and characters based on the message type
+            const maxLists = (msgType === "InteractiveList") ? 10 : 3;
+            const maxCharacters = (msgType === "InteractiveList") ? 24 : 20;
+            const msgtext =  (msgType === "InteractiveList") ? "interactive list" : "interactive button";
+            
+            // Check if the number of triggerMenus has reached the maximum allowed lists
+            if (init.currentData.triggerMenus.length === maxLists) {
+               // If true, set appropriate values in the state for alerting the user
+               setInit({
+                  ...init,
+                  isAlert: false,
+                  isDelete: false,
+                  isEmpty: true,
+                  confirmationTxt: `Maximum of ${maxLists} ${msgtext}s are allowed`,
+               });
+               // Exit the function to prevent further execution
+               return;
+            }
+   
+            // Check if the length of triggerOpt exceeds the maximum allowed characters
+            if (triggerOpt.length > maxCharacters) {
+               // If true, set appropriate values in the state for alerting the user
+               setInit({
+                  ...init,
+                  isAlert: false,
+                  isDelete: false,
+                  isEmpty: true,
+                  confirmationTxt: `Maximum of ${maxCharacters} characters are allowed.`,
+               });
+               // Exit the function to prevent further execution
+               return;
+            }
+         }
+
+         
          counter++;
          setInit({
             ...init,
@@ -1159,6 +1236,30 @@ const ByTypeComposer = ({ props, triggerType }) => {
                                  });
                               }}
                            />
+                        </div>
+                     </div>
+                  </div>
+                  <div className="row__">
+                     <div className="txt-field">
+                        <div className="label">
+                           <div className="sub-txt">Message Type</div>
+                        </div>
+                        <div >
+                           <Select
+                              style={{width: "100%"}}
+                              labelId="demo-simple-select-standard-label"
+                              id="demo-simple-select-standard"
+                              value={msgType}
+                              onChange={(e) => {
+                                 setMsgType(e.target.value);
+                                 e.preventDefault();
+                              }}
+                              label="Message Type"
+                           >
+                              <MenuItem value="SimpleText">Simple Text</MenuItem>;
+                              <MenuItem value="InteractiveButton">Interactive Button</MenuItem>;
+                              <MenuItem value="InteractiveList">Interactive List</MenuItem>;
+                           </Select>
                         </div>
                      </div>
                   </div>
