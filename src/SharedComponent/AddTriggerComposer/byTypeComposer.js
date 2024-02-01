@@ -1205,6 +1205,42 @@ const ByTypeComposer = ({ props, triggerType }) => {
       }
    };
 
+   const onUpdateTrigger = () => {
+      if(isData){
+         if(msgType.includes("InteractiveButton") && init.currentData.triggerMenus.length > 3) {
+            // If true, set appropriate values in the state for alerting the user
+            setInit({
+               ...init,
+               isAlert: false,
+               isDelete: false,
+               isEmpty: true,
+               confirmationTxt: `Maximum of 3 Buttons are allowed. Please remove the buttons to continue.`,
+            });
+            // Exit the function to prevent further execution
+            return;
+         } else {
+            setInit({
+               ...init,
+               isConfirm: true,
+               modalTitle: `Update Trigger`,
+               okText: `Update`,
+               isUpdatedList: false,
+               confirmationTxt: `Are you sure You want to update this trigger?`,
+            })
+         }
+      } else {
+         setInit({
+            ...init,
+            isConfirm: false,
+            isAdd: true,
+            modalTitle: `Add Trigger`,
+            okText: `Add`,
+            isUpdatedList: false,
+            confirmationTxt: `Are you sure you want to add this trigger?`,
+         });
+      }
+   }
+
    return (
       <div className="composer-container">
          <ConfirmModal visible={isConfirm} handleOk={handleSubmitTrigger} confirmLoading={!isUpdatedList} modalText={confirmationTxt} modalTitle="Update Trigger" okText={'Update'} handleCancel={confirmClose} />
@@ -1951,26 +1987,7 @@ const ByTypeComposer = ({ props, triggerType }) => {
                         {isUpdatedList ? (
                            <button
                               className="btn-filled"
-                              onClick={() => {
-                                 isData
-                                    ? setInit({
-                                         ...init,
-                                         isConfirm: true,
-                                         modalTitle: `Update Trigger`,
-                                         okText: `Update`,
-                                         isUpdatedList: false,
-                                         confirmationTxt: `Are you sure You want to update this trigger?`,
-                                      })
-                                    : setInit({
-                                         ...init,
-                                         isConfirm: false,
-                                         isAdd: true,
-                                         modalTitle: `Add Trigger`,
-                                         okText: `Add`,
-                                         isUpdatedList: false,
-                                         confirmationTxt: `Are you sure you want to add this trigger?`,
-                                      });
-                              }}
+                              onClick={onUpdateTrigger}
                            >
                               {' '}
                               {isData ? 'Update ' : 'Add '}
