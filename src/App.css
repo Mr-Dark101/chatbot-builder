@@ -1,0 +1,82 @@
+label {
+  display: block;
+  margin-top: 10px;
+}
+
+.card-container.card {
+  max-width: 350px !important;
+  padding: 40px 40px;
+}
+
+.card {
+  background-color: #f7f7f7;
+  padding: 20px 25px 30px;
+  margin: 0 auto 25px;
+  margin-top: 50px;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+  -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+}
+
+.profile-img-card {
+  width: 96px;
+  height: 96px;
+  margin: 0 auto 10px;
+  display: block;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+}
+
+.vertical-layout.vertical-menu-modern.menu-collapsed .main-menu:hover{
+  width: 260px;
+}
+      body{
+         font-family: 'Lexend Deca', sans-serif;
+         }  
+         .main-menu.menu-dark .navigation > li.active > a {
+          background: #eef3f2 !important;
+          color: black !important;
+          box-shadow: 0 0 10px 1px rgb(214 219 218 / 35%) !important;
+      }
+         .vertical-layout.vertical-menu-modern .main-menu .navigation > li > a svg, .vertical-layout.vertical-menu-modern .main-menu .navigation > li > a i {
+         font-size: 1.2rem;
+         }
+         .main-menu.menu-dark, .main-menu.menu-dark .navigation {
+         color: black !important;
+         background: #10163a !important;
+         }
+         .main-menu.menu-dark .navigation li a {
+            padding: 7px 15px;
+         /* font-size: 14px; */
+         }
+         .position_abs_b1 {
+         bottom: 80px;
+         }
+         .position_abs {
+         position: absolute !important;
+         }
+         .position_abs_b2 {
+         bottom: 40px;
+         }
+         .position_abs_b3 {
+         bottom: -10px;
+         }
+        .nav-link.modern-nav-toggle {
+        color: #fff !important;
+    }
+    .vertical-layout.vertical-menu-modern .main-menu .navigation > li > a svg, .vertical-layout.vertical-menu-modern .main-menu .navigation > li > a i {
+        font-size: 1.2rem;
+    }
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
