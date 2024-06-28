@@ -42,7 +42,7 @@ const login = (username, password) => {
 
 const loginbyuser = (username) => {
   
-   
+   debugger;
    return axios
       .get(API_URL + 'signinuser?access_token=' + username)
       .then((response) => {
@@ -67,6 +67,8 @@ const loginbyuser = (username) => {
          }
 
          return response.data;
+      }).catch((err)=>{
+         console.log(err)
       });
 };
 

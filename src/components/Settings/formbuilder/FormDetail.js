@@ -22,10 +22,11 @@ const { onDownload } = useDownloadExcel({
     })
 
 
-  const getFormData = (data,label) => {
-      const dataValue = JSON.parse(data)
+  const getFormData = (data,label, whatsappNumber) => {
+      const dataValue = JSON.parse(data);
+      
       let obj = dataValue.find(o => o.key === label);
-      return  obj?.value
+      return  (label === "WhatsApp Number")? whatsappNumber :  obj?.value;
   }
 
   return (
@@ -82,7 +83,7 @@ const { onDownload } = useDownloadExcel({
                        
                         JSON.parse(row.form_data).map((rsHead, indexHead) => (
                           <>
-                            <td style= {{fontFamily: 'Lexend Deca Light'}}>{getFormData(rs.form_data,rsHead.label)}</td>
+                            <td style= {{fontFamily: 'Lexend Deca Light'}}>{getFormData(rs.form_data,rsHead.label, rs.mobile_no)}</td>
                           </>
 
                         ))

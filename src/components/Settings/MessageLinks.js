@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import List from './helptopic/List'
+import List from './messageLinks/List'
 
-const HelpTopic = ({rs}) => {
+const MessageLinks = ({rs}) => {
 
 const subPage = (pageName) => {
   setViewPage(pageName)
@@ -13,16 +13,9 @@ const [viewPage, setViewPage] = useState(<List rs={rs} subPage={subPage} loadLis
 
   return (
     <>
-      
-      
-       
-          {viewPage}
-      
-          
-       
-   
+      {viewPage}   
     </>
   );
 };
 
-export default HelpTopic;
+export default MessageLinks;

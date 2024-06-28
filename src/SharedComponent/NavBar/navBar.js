@@ -22,7 +22,7 @@ import logo from '../../assets/dc-new-logo.png';
 import { STRINGS } from '../../utils/base';
 import '../../App.css';
 
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 const navbarData = [
    {
@@ -83,6 +83,8 @@ const navbarData = [
 ];
 
 const NavBar = () => {
+   const location = useLocation();
+   console.log(location.pathname);
    const navbar = useSelector(({ Reducers }) => Reducers.navbar);
    let { open } = navbar;
 
@@ -195,7 +197,9 @@ const NavBar = () => {
                       data-i18n="Contacts">Contacts</span></a>
                 </li>
 
-                <li id="chatobotBuilderLi" class="nav-item active">
+                <div className='nav-separator'></div>
+
+                <li id="chatobotBuilderLi" className={`nav-item ${location.pathname === "/" ? 'active' : ''}`}>
                    <a id="chatAnchor"
                    class="d-flex align-items-center"
                    href={`${STRINGS.ROUTES.ROOT}?org=${localStorage.getItem('userId')}`}> <i
@@ -205,16 +209,17 @@ const NavBar = () => {
                    </a>
                 </li>
 
-                <li id="channelsLi" class=" nav-item">
+                <li id="channelsLi" className={`nav-item ${location.pathname === "/complain" ? 'active' : ''}`}>
                    <a class="d-flex align-items-center"
-                   href={`${STRINGS.ROUTES.COMPLAIN}`}><i data-feather='share-2'></i><span
-                      class="menu-title text-truncate" data-i18n="complain">Complain</span></a>
+                   href={`${STRINGS.ROUTES.COMPLAIN}`}><i class="fa fa-exclamation" style={{"text-align": "center"}}></i><span
+                      class="menu-title text-truncate" data-i18n="complain">Complaint</span></a>
                 </li>
 
                 <li id="channelsLi" class=" nav-item">
                    <a class="d-flex align-items-center"
-                   href="https://eoceanwab.com/eoceanwab/channels/index"><i data-feather='share-2'></i><span
-                      class="menu-title text-truncate" data-i18n="channels">Channels</span></a>
+                   href="https://eoceanwab.com/eoceanwab/channels/index">
+                     <i class="fa fa-share-alt"></i>
+                     <span  class="menu-title text-truncate" data-i18n="channels">Channels</span></a>
                 </li>
             
                 <li id="integrationsLi" class="nav-item">
@@ -229,15 +234,20 @@ const NavBar = () => {
                 <li id="usermanagementLi" class="nav-item">
                    <a class="d-flex align-items-center"
                    href="https://eoceanwab.com/eoceanwab/usermanagement/summary">
-                   <i data-feather='shield'></i>
+                   <i className='fa fa-shield'></i>
                     <span class="menu-title text-truncate" data-i18n="Calendar">Users</span>
                    </a>
-                  </li>  
+               </li>  
 
                   
               <li id="teammanagementLi" class=" nav-item"><a class="d-flex align-items-center"
-              href="https://eoceanwab.com/eoceanwab/teammanagement/summary?teamName=&status="><i data-feather='users'></i><span
+              href="https://eoceanwab.com/eoceanwab/teammanagement/summary?teamName=&status=">
+               <i class="fas fa-user-friends"></i>               
+               <span
                 class="menu-title text-truncate" data-i18n="Todo">Teams</span></a></li>
+
+               <div className='nav-separator'></div>
+
                 <li id="billingLi" class="position_abs position_abs_b1 w-100 nav-item"
                    >
                    <a class="d-flex align-items-center"
@@ -262,8 +272,8 @@ const NavBar = () => {
                  href="https://eoceanwab.com/eoceanwab/whatsnew/index">
                  <i class="far fa-star"></i> <span class="menu-title text-truncate"
                     data-i18n="Kanban">What's New</span>  &nbsp;
-                 <span>New</span><span
-                    class="badge badge-pill badge-primary float-right position-relative"
+                     <span
+                    class="new-badge badge badge-pill badge-primary float-right position-relative"
                     >New</span>
                  </a>
               </li>

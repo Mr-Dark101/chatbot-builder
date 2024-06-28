@@ -484,19 +484,19 @@ const selCat = (e) => {
                                      />
 
                               </th>
-                              <th style={{fontFamily: 'Lexend Deca Medium', fontSize: '12px'}}><b>Help Topic</b></th>
-                              <th style={{fontFamily: 'Lexend Deca Medium', fontSize: '12px'}}><b>Parent Topic</b></th>
-                              <th style={{fontFamily: 'Lexend Deca Medium',fontSize: '12px'}}><b>Status</b></th>
-                              <th style={{fontFamily: 'Lexend Deca Medium',fontSize: '12px'}}><b>Deparatment</b></th>
-                              <th style={{fontFamily: 'Lexend Deca Medium',fontSize: '12px'}}><b>Custom Field</b></th>
-                              <th style={{fontFamily: 'Lexend Deca Medium',fontSize: '12px'}}></th>
+                              <th style={{fontFamily: 'Lexend Deca Medium', fontSize: '12px'}}><b>CHILD TOPIC</b></th>
+                              <th style={{fontFamily: 'Lexend Deca Medium', fontSize: '12px'}}><b>PARENT TOPIC</b></th>
+                              <th style={{fontFamily: 'Lexend Deca Medium',fontSize: '12px'}}><b>STATUS</b></th>
+                              <th style={{fontFamily: 'Lexend Deca Medium',fontSize: '12px'}}><b>DEPARTMENT</b></th>
+                              <th style={{fontFamily: 'Lexend Deca Medium',fontSize: '12px'}}><b>CUSTOM FIELDS</b></th>
+                              <th style={{fontFamily: 'Lexend Deca Medium',fontSize: '12px', 'textAlign': 'right'}}>ACTION</th>
                            </tr>
                         </thead>
                         <tbody>
                            {listData &&
                               listData.map((row, index) => (
                               <>
-                                 <tr >
+                                 <tr key={index}>
                                     <td width="3%">
                                    
 
@@ -512,7 +512,14 @@ const selCat = (e) => {
                                     </td>
                                     <td width="20%" style={{fontFamily: 'Lexend Deca Light', fontSize:'12px'}}>{row.name}</td>
                                     <td width="20%" style={{fontFamily: 'Lexend Deca Light', fontSize:'12px'}}>{row.parent?.name}</td>
-                                    <td width="10%" style={{fontFamily: 'Lexend Deca Light', fontSize:'12px'}}>{(row.status_id == 1) ? 'Active' : 'Inactive'}</td>
+
+                                    <td
+                                       width="10%"
+                                       style={{ fontFamily: 'Lexend Deca Light', fontSize: '12px' }}
+                                    >
+                                       <span className={row.status_id == 1 ? 'priority-field field-active' : 'priority-field priority-high'}>{row.status_id == 1 ? 'Active' : 'Inactive'}</span>
+                                    </td>
+
                                     <td width="15%" style={{fontFamily: 'Lexend Deca Light', fontSize:'12px'}}>{row.HelpDepartment?.name}</td>
                                     <td width="20%" style={{fontFamily: 'Lexend Deca Light', fontSize:'12px'}}>
                                        {getCustomfield(row.custom_field)}

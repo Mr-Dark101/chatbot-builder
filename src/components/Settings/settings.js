@@ -24,6 +24,7 @@ import TrainBot from './TrainBot';
 import HelpTopic from './HelpTopic';
 import HelpCustomField from './HelpCustomField';
 import HelpDepartment from './HelpDepartment';
+import MessageLinks from './MessageLinks';
 import Customer from './Customer';
 import { Link } from 'react-router-dom';
 import { UserContext } from '../../context/UserContext';
@@ -127,7 +128,9 @@ const Settings = () => {
          setContentPage(<HelpDepartment />);
       }
 
-      
+      if (param === 'MessageLinks') {
+         setContentPage(<MessageLinks />);
+      }
    };
 
    let Menu = [
@@ -137,20 +140,15 @@ const Settings = () => {
       { name: 'OpenAI GPT', controller: 'ChatGpt', icon: integration,submenu:false,new:true },
       { name: 'Training Data', controller: 'TrainBot', icon: form,submenu:false,new:true },
       { name: 'Help Desk', controller: '#helpmenu', icon: form 
-
          ,submenu:
-
-            [
-               { name: 'Help Topic', controller: 'HelpTopic', icon: form},
-               { name: 'Custom Fields', controller: 'HelpCustomField', icon: form },
-               { name: 'Department', controller: 'HelpDepartment', icon: form },
-
-
-            ]
-
-
+         [
+            { name: 'Help Topic', controller: 'HelpTopic', icon: form},
+            { name: 'Custom Fields', controller: 'HelpCustomField', icon: form },
+            { name: 'Department', controller: 'HelpDepartment', icon: form },
+            // Message link module added
+            { name: 'Message Links', controller: 'MessageLinks', icon: form },
+         ]
       },
-      
    ];
 
    
@@ -200,7 +198,7 @@ const Settings = () => {
                            {Menu.map((m, i) => (
                               <>
                                  
-                                    <li>
+                                    <li key={i}>
                                        <a href="#" onClick={() => changeContent(m.controller)}
 
                                           className={(m.controller == activeClass) ? 'active' : ''}
@@ -227,7 +225,7 @@ const Settings = () => {
                                                        >
                                                        {m.submenu.map((s, i) => (
 
-                                                         <li>
+                                                         <li  key={i}>
                                                             <a href="#" onClick={() => changeContent(s.controller)}
 
                                                                className={(s.controller == activeClass) ? 'active' : ''}

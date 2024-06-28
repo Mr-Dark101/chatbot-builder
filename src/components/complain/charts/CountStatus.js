@@ -13,7 +13,7 @@ const options = {
     },
     
     title: {
-        text: 'Complaints Count by Status'
+        text: ''
     },
     subtitle: {
         text: ''

@@ -12,7 +12,7 @@ const Detail  = ({rs,getDetail,getTopic,getDepartment,closeModal}) => {
 						</div>
 
 						<div style={{width: '60%'}}>
-							<p>Open</p>
+							<p>{rs.status}</p>
 						</div>
 					</div>
 
@@ -23,7 +23,7 @@ const Detail  = ({rs,getDetail,getTopic,getDepartment,closeModal}) => {
 							</div>
 
 							<div style={{width: '60%'}}>
-								<p>Normal</p>
+								<p>{rs.priority}</p>
 							</div>
 						</div>
 
@@ -33,7 +33,7 @@ const Detail  = ({rs,getDetail,getTopic,getDepartment,closeModal}) => {
 							</div>
 
 							<div style={{width: '60%'}}>
-								<p>+92 323 2986614</p>
+								<p>{rs.from}</p>
 							</div>
 						</div>
 					</div>
@@ -67,7 +67,7 @@ const Detail  = ({rs,getDetail,getTopic,getDepartment,closeModal}) => {
 							</div>
 
 							<div style={{width: '60%'}}>
-								<p>09/15/2023 10:00 AM</p>
+								<p>{rs.created_on}</p>
 							</div>
 						</div>
 

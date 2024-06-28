@@ -5,14 +5,16 @@ import CustomBreadcrumbs from "../SharedComponent/CustomBreadcrumbs/breadcrumbs"
 import {useSelector} from "react-redux";
 import Footer from "../SharedComponent/Footer/footer";
 import HeaderDC from './Headerdc'
+import { useLocation } from 'react-router-dom';
+
+
 export default function Layout(props) {
+    const location = useLocation();
 
     let {dashboard} = useSelector(({Reducers})=> Reducers)
 
-// console.log(window.location.pathname)
-
     return (
-        <div className="main-container">
+        <div className={location.pathname === '/settings' ? 'main-container settings-view' : 'main-container'}>
 
            {window.location.pathname == '/login' ? (<>
 

@@ -14,7 +14,9 @@ const getAll = (listUrl,master,params=false) => {
   if(master === true){
    
     let url =  API_URL + "/master/list?type=" + listUrl
-
+    if(params['from']){
+      url = url + '&from=' + params.from + '&to=' + params.to;
+    }
      if(params !== false){
        url = url + '&page=' + params.page + '&size=' + params.size;
     }
@@ -25,60 +27,32 @@ const getAll = (listUrl,master,params=false) => {
 };
 
 const dashboardData = (from="",to="") => {
-
   let url =  API_URL + "/api/dashboard?from=" + from + '&to=' + to
-
-   
-  
-  
-    return axios.get(url, { headers: authHeader() });
-  
-
-  
-};
-
-const getAllComplainFilter = (data,params) => {
-
-  let url =  API_URL + "/api/dashboard/complain-filer"
-
-   url = url + '?page=' + params.page + '&size=' + params.size;
-  
-  
-    return axios.post(url, data);
-  
-
-  
-};
-
-
-
-
-
-const exportData = () => {
-
-  let url =  API_URL + "/master/export-data"
-
-  
 
   return axios.get(url, { headers: authHeader() });
 };
 
+const getAllComplainFilter = (data, params) => {
+  let url =  API_URL + "/api/dashboard/complain-filer"
+  url = url + '?page=' + params.page + '&size=' + params.size;
 
+  return axios.post(url, data);
+};
+
+
+const exportData = () => {
+  let url =  API_URL + "/master/export-data"
+
+  return axios.get(url, { headers: authHeader() });
+};
 
 
 const getById = (listUrl,master) => {
 
   let url =  API_URL + "/" + listUrl
 
-   
-  
   if(master === true){
-   
     let url =  API_URL + "/master/by-id?type=" + listUrl
-
-     
-      
-   
     return axios.get(url, { headers: authHeader() });
   }
 
@@ -147,6 +121,31 @@ const ListValue= (listUrl) => {
   return axios.get(url, { headers: authHeader() });
 };
 
+
+
+const getQrCode = (data, postUrl,master) => {
+  const orgUnitId = localStorage.getItem('org_unit_id');
+  const url =  API_URL + "/api/qrcode?orgunit=eocean";
+  // const url =  API_URL + "/api/qrcode";
+  return axios.get(url, data);
+};
+
+const deleteQrCode = (data) => {
+  let url =  API_URL + "/api/qrcode";
+  console.log(data);
+  return axios.delete(url, { data: data });
+};
+
+const createQrCode = (data) => {
+  const orgUnitId = localStorage.getItem('org_unit_id');
+  let url =  API_URL + "/api/qrcode";
+  return axios.post(url, {
+    "prefilled_message": data,
+    "generate_qr_image": "PNG",
+    "org_unit_id": "eocean"
+  });
+};
+
 export default {
   getAll,
   getById,
@@ -159,5 +158,7 @@ export default {
   exportData,
   dashboardData,
   getAllComplainFilter,
-  
+  getQrCode,
+  deleteQrCode,
+  createQrCode
 };

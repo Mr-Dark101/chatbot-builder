@@ -1,29 +1,40 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,useRef } from "react";
 
-import { Form, TextField, SelectField, SubmitButton,CheckBoxField,TextGroupField,TextAreaField } from '../../crud/FormElements';
+import {  TextField, SelectField, SubmitButton,CheckBoxField,TextGroupField,TextAreaField,SwtichField } from '../../crud/FormElements';
 import * as Yup from 'yup';
 import CrudService from "../../../services/crud.service";
 import { Link } from "react-router-dom";
-const Create = ({rs,retrieveList,loadList}) => {
+
+import {
+    Formik,
+    Form,
+    Field,
+    ErrorMessage,
+    useFormikContext,
+    useField,
+    useFormik,
+} from 'formik';
+
+
+const Edit = ({rs,retrieveList,loadList}) => {
 
  
   const [validationSchema, setValidationSchema] = useState({});
 
-const [industryList, setIndustryList] = useState([]);
+  const [industryList, setIndustryList] = useState([]);
+
 
 const [successful, setSuccessful] = useState(false);
 const [message, setMessage] = useState();
+ const fileInputRef = useRef();
 
-useEffect(() => {
-   
-    
-    
-    //retrieveMasterList('insurance_type');
-    
 
-   
-    
-  }, []);
+ const [selectedFile, setSelectedFile] = useState();
+  const [isFilePicked, setIsFilePicked] = useState(false);
+const [isSelected, setIsSelected] = useState(false)
+
+
+
 
 
 const typeList = [{value:'get',label:"GET"},{value:"post",label:'POST'}]
@@ -35,13 +46,9 @@ const typeList = [{value:'get',label:"GET"},{value:"post",label:'POST'}]
 
 
 const [formData, setFormData] = useState({
-    name: "",
-   
+    name: rs.name,
     
-    
-    
-
-    
+    id: rs.id
    
    
     
@@ -51,10 +58,11 @@ const [formData, setFormData] = useState({
 const FormSchema = Yup.object().shape({
     name: Yup.string()
           .required('Required')
-  
+    
    
    
 });
+
 
 
 
@@ -64,15 +72,18 @@ const FormSchema = Yup.object().shape({
     
 
     const onSubmit = (values, { setSubmitting, resetForm, setStatus }) => {
-        
-    
-        CrudService.register(values,'helpcustomfield',true).then(
+
+
+     
+     
+        CrudService.edit(values,'helpcustomfield',true).then(
         (response) => {
           //setModalValue('')
-          loadList();
+          
           setMessage(response.data.message);
           setSuccessful(true);
-          //retrieveList();          
+          
+          loadList();
           
         },
         (error) => {
@@ -88,30 +99,49 @@ const FormSchema = Yup.object().shape({
         }
       );
     }
-
-
+ const changeHandler = (event) => {
+    setSelectedFile(event.target.files[0]);
+    setIsSelected(true);
+  };
+    
+ const fileInputClicked = () => {
+        fileInputRef.current.click();
+    }
 
   return (
-    <> 
+    <>
+    
+
+    
       <div class="row">       
         <div class="col-12">
+          <div class="page_data_clinic api_form_section">
           <div>
-          <div className="page_data_clinic api_form_section">
             
              {!successful && (
-            <Form
+<>
+<Formik
             enableReinitialize
             validationSchema={FormSchema}
             initialValues={formData}
             onSubmit={onSubmit}
           >
+          {({
+            setFieldValue,
+            setFieldTouched,
+            values,
+            errors,
+            touched,
+          }) => (
 
-                <h5 className="main_heading">Add Custom Field</h5>
+            
+
+          <Form className="av-tooltip tooltip-label-right">  
                 
                 <div className="row">
                     <div className="col-9">
 
-                       <div className="field_section">
+                          <div className="field_section mb-20">
                           <TextField 
                             name="name"
                             label="Name"
@@ -122,10 +152,16 @@ const FormSchema = Yup.object().shape({
                         
 
 
-                       
+                        <div>
+                
+                
+               
+                
+            </div>
 
 
-                       
+                        
+    
                         
                    
                 </div>
@@ -141,20 +177,22 @@ const FormSchema = Yup.object().shape({
                     
                 
 
-            <div>
+          <div className="mt-20">
                 <SubmitButton
-                 title="Create"
-                 className="primary"
+                 title="Update"
+                 className="btn primary"
                   
               />
-
-              <button onClick={ () => loadList()} type="button" className="secondary ms-20">Cancel</button>
-            </div>
-
+            <button onClick={ () => loadList()} className="btn secondary ms-10">Cancel</button>
+          </div>
             
 
             
           </Form>
+)}
+    </Formik>  
+    </>
+
           )}
             {message && (
             <div className="form-group">
@@ -180,4 +218,4 @@ const FormSchema = Yup.object().shape({
   );
 };
 
-export default Create;
+export default Edit;

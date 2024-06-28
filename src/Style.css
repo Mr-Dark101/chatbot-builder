@@ -32157,3 +32157,6 @@ img.away, img.busy, img.offline, img.online {
 
 
 
+.react-select__indicator-separator{
+  display: none !important;
+}

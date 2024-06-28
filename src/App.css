@@ -54,16 +54,16 @@ label {
          /* font-size: 14px; */
          }
          .position_abs_b1 {
-         bottom: 80px;
+         bottom: 101px;
          }
          .position_abs {
          position: absolute !important;
          }
          .position_abs_b2 {
-         bottom: 40px;
+         bottom: 61px;
          }
          .position_abs_b3 {
-         bottom: -10px;
+         bottom: 10px;
          }
         .nav-link.modern-nav-toggle {
         color: #fff !important;

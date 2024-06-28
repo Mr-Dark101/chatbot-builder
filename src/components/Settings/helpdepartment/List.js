@@ -468,9 +468,9 @@ const selCat = (e) => {
                                      />
 
                               </th>
-                              <th style={{fontFamily: 'Lexend Deca Medium', fontSize: '12px'}}><b>Name</b></th>
-                             <th style={{fontFamily: 'Lexend Deca Medium', fontSize: '12px'}}><b>Status</b></th>
-                              <th style={{fontFamily: 'Lexend Deca Medium',fontSize: '12px'}}></th>
+                              <th style={{fontFamily: 'Lexend Deca Medium', fontSize: '12px'}}><b>NAME</b></th>
+                             <th style={{fontFamily: 'Lexend Deca Medium', fontSize: '12px'}}><b>STATUS</b></th>
+                              <th style={{fontFamily: 'Lexend Deca Medium',fontSize: '12px', textAlign: 'right'}}>ACTIONS</th>
                            </tr>
                         </thead>
                         <tbody>
@@ -492,14 +492,22 @@ const selCat = (e) => {
 
                                     </td>
                                     <td width="20%" style={{fontFamily: 'Lexend Deca Light', fontSize:'12px'}}>{row.name}</td>
-                                    <td width="10%" style={{fontFamily: 'Lexend Deca Light', fontSize:'12px'}}>{(row.status_id == 1) ? 'Active' : 'Inactive'}</td>
+                                    <td
+                                       width="10%"
+                                       style={{ fontFamily: 'Lexend Deca Light', fontSize: '12px' }}
+                                    >
+                                       <span className={row.status_id == 1 ? 'priority-field field-active' : 'priority-field priority-high'}>{row.status_id == 1 ? 'Active' : 'Inactive'}</span>
+                                    </td>
+
                                     <td style={{ textAlign: 'end' }}>
                                       
                                        <a style={{ marginLeft: 5 }}  onClick={() => subPage(<Edit loadList={loadList} retrieveList={retrieveList} rs={row} />)}>
                                           
                                           <img alt={'#'} src={editIcon}  />
                                        </a>
-                                      
+                                       {/* <a style={{ marginLeft: 5 }}  onClick={() => deleteMe(row.id)}>
+                                          <img alt={'#'} src={deleteIcon} width="20" />
+                                       </a> */}
                                     </td>
                                     
                                  </tr>

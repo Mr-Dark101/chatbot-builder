@@ -14,6 +14,7 @@ import MySelectMulti from './MySelectMulti';
 import DateRangePickerBoot from './DateRangePickerBoot';
 import MySelectVersion from './MySelectVersion';
 import MySwitch from './MySwitch';
+import Select from 'react-select';
 export function Form(props) {
     return (
         <Formik
@@ -121,8 +122,72 @@ export function TextFieldColor(props) {
     )
 }
 
+
+function CustomSelectField(props) {
+    const [field, state, {setValue, setTouched}] = useField(props.field.name);
+  
+    const onChange = ({value}) => {
+      setValue(value);
+      props.onChange(value);
+    };
+  
+    const customStyles = {
+      option: (provided, state) => ({
+        ...provided,
+      }),
+  
+      singleValue: (provided, state) => {
+        const opacity = state.isDisabled ? 0.5 : 1;
+        const transition = 'opacity 300ms';
+        return { ...provided, opacity, transition };
+      }
+    }
+  
+    // Modify the options to disable the first one
+    const modifiedOptions = props.options.map((option, index) => ({
+      ...option,
+      isDisabled: (option && option.isDisabled)? true : false,
+    }));
+  
+    return (
+      <>
+        <Select {...props}  
+          defaultValue={props.options.find((option) => option.value === field.value)}
+          value={props.options.find((option) => option.value === field.value)}
+          placeholder={'Select'}
+          classNamePrefix={'react-select'}
+          onChange={onChange} onBlur={setTouched}
+        />
+      </>
+    );
+  }
+  export function CustomSelectFieldNoLabel(props) {
+    const { name, label, options,onChange,placeholder,customStyles, value } = props
+    
+    const handleOnChange = (e) =>{
+        console.log(e);
+        onChange({
+            label, name, value: e
+        })
+    }
+    return (
+        <>
+
+        
+      <br />
+
+             <Field component={CustomSelectField} name={name} placeholder={placeholder}  options={options} 
+             value ={value} onChange = {(e)=> handleOnChange(e)}/>
+      
+            
+            <ErrorMessage name={name} render={msg => <div style={{ color: 'red' }} >{msg}</div>} />
+
+            
+        </>
+    )
+}
 export function SelectFieldNoLabel(props) {
-    const { name, label, options,onChange,placeholder,customStyles } = props
+    const { name, label, options,onChange,placeholder,customStyles, value } = props
     
 
     return (
@@ -131,7 +196,8 @@ export function SelectFieldNoLabel(props) {
         
       <br />
 
-             <Field component={MySelect} name={name} placeholder={placeholder}  options={options}/>
+             <Field component={MySelect} name={name} placeholder={placeholder}  options={options} 
+             value ={value}/>
       
             
             <ErrorMessage name={name} render={msg => <div style={{ color: 'red' }} >{msg}</div>} />
@@ -181,6 +247,25 @@ export function TextField(props) {
     )
 }
 
+export function NumberField(props) {
+    const { name, label, placeholder, ...rest } = props;
+  
+    return (
+      <>
+        <br />
+        {label && <label htmlFor={name}>{label}</label>}
+        <Field
+          className="form-control"
+          type="number"
+          name={name}
+          id={name}
+          placeholder={placeholder || ""}
+          {...rest}
+        />
+        <ErrorMessage name={name} render={msg => <div style={{ color: 'red' }}>{msg}</div>} />
+      </>
+    );
+  }
 export function ButtonTextField(props) {
     const { name, label, placeholder, ...rest } = props
     return (

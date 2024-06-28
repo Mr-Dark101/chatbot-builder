@@ -31,10 +31,7 @@ function Complain(){
       <div className="ws-hld">
         <div className="head">
             <div className="head-rt">
-               <div onClick={handleBack} className="icon">
-                  <img style ={{ padding: "5px"}}alt={'#'} src={back_icon} />
-               </div>
-               <div className="txt">Complain</div>
+               <div className="txt" style={{"marginLeft": "2rem", fontSize: "18px !important"}}>Insights | Help Desk</div>
             </div>
 
             <div className="head-lft">
@@ -44,7 +41,7 @@ function Complain(){
 
         <div className="m-30">
           <Tabs defaultIndex={0} onSelect={(index) => console.log(index)} >
-            <TabList className="tab_list_section">
+            <TabList className="tab_list_section mb-20">
               <Tab value="1" >Insights</Tab>
               <Tab value="2">Tickets</Tab>
             </TabList>
