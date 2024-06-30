@@ -125,7 +125,7 @@ const ListValue= (listUrl) => {
 
 const getQrCode = (data, postUrl,master) => {
   const orgUnitId = localStorage.getItem('org_unit_id');
-  const url =  API_URL + "/api/qrcode?orgunit=eocean";
+  const url =  API_URL + "/api/qrcode?orgunit="+orgUnitId;
   // const url =  API_URL + "/api/qrcode";
   return axios.get(url, data);
 };
@@ -142,7 +142,7 @@ const createQrCode = (data) => {
   return axios.post(url, {
     "prefilled_message": data,
     "generate_qr_image": "PNG",
-    "org_unit_id": "eocean"
+    "org_unit_id": orgUnitId
   });
 };
 
