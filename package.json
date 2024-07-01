@@ -51,6 +51,7 @@
     "react-validation": "^3.0.7",
     "redux-logger": "^3.0.6",
     "sass": "^1.54.4",
+    "toastr": "^2.1.4",
     "validator": "^13.0.0",
     "yup": "^0.32.11"
   },

@@ -13,6 +13,8 @@ import moment from 'moment';
 import { CSVLink } from "react-csv";
 import ReactDataTables from '../../SharedComponent/DataTables';
 import DateRangePicker from './DateRangePicker';
+import toastr from 'toastr';
+import { generateToast } from '../../utils';
 
 
 const List = () => {
@@ -389,7 +391,8 @@ const List = () => {
      CrudService.edit(saveData, 'helpcomplain', true).then(
       (response) => {
         //setModalValue('')
-        toast("Ticket status has been updated",{type: toast.TYPE.SUCCESS,fontWeight:600})
+
+        generateToast('Ticket status has been updated', 'Success!');
         //retrieveList()
 
         let data = {};

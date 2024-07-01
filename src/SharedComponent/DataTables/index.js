@@ -24,7 +24,7 @@ export function ReactDataTables({ statusList, onChange, columns, data, viewDetai
                 const priorityClass = data === 'High' ? 'priority-high' :
                                       data === 'Medium' ? 'priority-medium' :
                                       data === 'Low' ? 'priority-low' : '';
-                return `<span class="priority-field ${priorityClass}">${data}</span>`;
+                return `<p class="priority-field ${priorityClass}">${data}</p>`;
               }
             };
         } else if (index === columns.length - 1) { // Customize last column

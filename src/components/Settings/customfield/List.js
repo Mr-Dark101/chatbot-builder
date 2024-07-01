@@ -442,7 +442,7 @@ const selCat = (e) => {
                                        width="10%"
                                        style={{ fontFamily: 'Lexend Deca Light', fontSize: '12px' }}
                                     >
-                                       <span className={row.status_id == 1 ? 'priority-field field-active' : 'priority-field priority-high'}>{row.status_id == 1 ? 'Active' : 'Inactive'}</span>
+                                       <p className={row.status_id == 1 ? 'priority-field field-active' : 'priority-field priority-high'}>{row.status_id == 1 ? 'Active' : 'Inactive'}</p>
                                     </td>
 
                                     <td style={{ textAlign: 'end' }}>
