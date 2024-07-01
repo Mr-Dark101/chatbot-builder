@@ -12,6 +12,7 @@ import { toast } from 'react-toastify';
 import { Tooltip } from '@mui/material';
 import editIcon from '../../../assets/edit.svg';
 import deleteIcon from '../../../assets/deleteicon.svg';
+import { generateToast } from '../../../utils';
 const CatList = ({loadList }) => {
 
    const ref = useRef([]);
@@ -67,7 +68,8 @@ const CatList = ({loadList }) => {
    const deleteRow = (id) => {
       CrudService.deleteRow(id, 'gptcat', true).then(
          (response) => {
-            toast('Category has been deleted!', { type: toast.TYPE.SUCCESS });
+            generateToast('Category has been deleted!', 'Success!');
+
             setMessage(response.data.message);
             setSuccessful(true);
             retrieveList();
@@ -109,7 +111,8 @@ const CatList = ({loadList }) => {
                }
          }
       }
-      toast('Category has been deleted!', { type: toast.TYPE.SUCCESS });
+
+      generateToast('Category has been deleted!', 'Success!');
       setSuccessful(true);
       retrieveList()
       //setMessage("Category has been deleted");

@@ -6,6 +6,7 @@ import CrudService from '../../../services/crud.service';
 import { Link } from 'react-router-dom';
 import { Tooltip } from '@mui/material';
 import {toast } from 'react-toastify';
+import { generateToast } from '../../../utils';
 const CreateCat = ({ rs, retrieveList, loadList,closeModal }) => {
    const [validationSchema, setValidationSchema] = useState({});
 
@@ -43,7 +44,8 @@ const CreateCat = ({ rs, retrieveList, loadList,closeModal }) => {
             loadList();
             closeModal()
             setMessage(response.data.message);
-            toast("Category data been created",{type: toast.TYPE.SUCCESS})
+
+            generateToast('Category data been created', 'Success!');
             setSuccessful(true);
             //retrieveList();
          },

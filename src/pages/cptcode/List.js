@@ -3,6 +3,7 @@ import DataService from "../../services/cptcode.service";
 import { Link } from "react-router-dom";
 import Modal from "../../components/common/modal/Modal";
 import {toast } from 'react-toastify';
+import { generateToast } from "../../utils";
 const List = ({loadPage}) => {
 
     const [data, setData] = useState([]);
@@ -56,12 +57,9 @@ const [isSelected, setIsSelected] = useState(false)
     DataService.importdata(formData).then(
         (response) => {
           setMessage(response.data.message);
-          //setSuccessful(true);
-          toast(response.data.message,{type: toast.TYPE.SUCCESS})
-         
+          //setSuccessful(true);         
+          generateToast(response.data.message, 'Success!');
 
-          
-          
           retrieve();
         },
         (error) => {
@@ -74,13 +72,9 @@ const [isSelected, setIsSelected] = useState(false)
 
           setMessage(resMessage);
           setSuccessful(false);
-          toast(resMessage,{type: toast.TYPE.ERROR})
          
+          generateToast(resMessage, 'Failed!', false);
 
-          
-
-
-          
         }
       );
   };

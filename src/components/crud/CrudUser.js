@@ -7,6 +7,7 @@ import { Form, TextField, SelectField, SubmitButton,CheckBoxField } from '../../
 import CrudService from "../../services/crud.service";
 import {toast } from 'react-toastify';
 import Pagination from "@material-ui/lab/Pagination";
+import { generateToast } from "../../utils";
 
 
 const CrudUser = ({row,title,dataAttr,formSchema,serviceUrl,deleteAction,retrieveRolePermission,master,subPage,loadPage,masterValue }) => {
@@ -191,7 +192,8 @@ const initForm = async (formSchema) => {
         values.org_unit_id = row.id
         CrudService.register(values,serviceUrl,master).then(
         (response) => {
-          toast(response.data.message,{type: toast.TYPE.SUCCESS})
+          generateToast(response.data.message, 'Success!');
+
           setMessage('');
           setSuccessful(false);
           retrieveList();
@@ -241,8 +243,7 @@ const initForm = async (formSchema) => {
 
         CrudService.edit(values,serviceUrl,master).then(
         (response) => {
-
-          toast(response.data.message,{type: toast.TYPE.SUCCESS})
+          generateToast(response.data.message, 'Success!');
           setMessage('');
           setSuccessful(false);
           retrieveList();

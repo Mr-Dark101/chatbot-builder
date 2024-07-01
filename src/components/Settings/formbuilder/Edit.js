@@ -8,6 +8,7 @@ import { Tooltip } from '@mui/material';
 import { Formik, Form, Field, ErrorMessage, useFormikContext, useField, useFormik } from 'formik';
 import deleteIcon from '../../../assets/deleteicon.svg';
 import { createTheme, ThemeProvider, styled } from "@mui/material/styles";
+import { generateToast } from '../../../utils';
 
 
 const BlueOnGreenTooltip = styled(({ className, ...props }) => (
@@ -155,7 +156,7 @@ const Edit = ({ rs, retrieveList, loadList }) => {
       CrudService.edit(values, 'form_builder', true).then(
          (response) => {
             //setModalValue('')
-
+            generateToast(response.data.message, 'Success!');
             setMessage(response.data.message);
             setSuccessful(true);
 

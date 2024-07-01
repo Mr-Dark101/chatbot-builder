@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import { Tooltip } from '@mui/material';
 import { Formik, Form, Field, ErrorMessage, useFormikContext, useField, useFormik } from 'formik';
 import {toast } from 'react-toastify';
+import { generateToast } from '../../../utils';
 const EditCat = ({ rs, retrieveList, loadList,closeModal }) => {
    const [validationSchema, setValidationSchema] = useState({});
 
@@ -40,7 +41,8 @@ const EditCat = ({ rs, retrieveList, loadList,closeModal }) => {
       CrudService.edit(values, 'gptcat', true).then(
          (response) => {
             //setModalValue('')
-            toast("Category has been updated",{type: toast.TYPE.SUCCESS})
+            generateToast('Category has been updated', 'Success!');
+
             setMessage(response.data.message);
             setSuccessful(true);
 

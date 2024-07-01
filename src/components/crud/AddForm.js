@@ -5,6 +5,7 @@ import * as Yup from 'yup';
 import { Form, TextField, SelectField, SubmitButton,CheckBoxField } from '../../components/crud/FormElements';
 import CrudService from "../../services/crud.service";
 import {toast } from 'react-toastify';
+import { generateToast } from "../../utils";
 
 
 
@@ -110,8 +111,8 @@ const initForm = async (formSchema) => {
         if(rs){
              CrudService.edit(values,serviceUrl,master).then(
                 (response) => {
-                  toast(response.data.message,{type: toast.TYPE.SUCCESS})
-                 
+                  generateToast(response.data.message, 'Success!');
+
                   setSuccessful(false);
                   retrieveList();
                   closeModal()
@@ -136,8 +137,8 @@ const initForm = async (formSchema) => {
             }
             CrudService.register(values,serviceUrl,master).then(
                 (response) => {
-                  toast(response.data.message,{type: toast.TYPE.SUCCESS})
-                 
+                  generateToast(response.data.message, 'Success!');
+
                   setSuccessful(false);
                   if(appointment_id){
                         retrieveList(provider_id);

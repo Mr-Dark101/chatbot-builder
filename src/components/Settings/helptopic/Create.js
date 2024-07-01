@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import { Tooltip } from '@mui/material';
 import {toast } from 'react-toastify';
 import back_icon from '../../../assets/back-icon.svg';
+import { generateToast } from '../../../utils';
 
 const Create = ({ rs, retrieveList, loadList }) => {
    const [validationSchema, setValidationSchema] = useState({});
@@ -106,7 +107,7 @@ const Create = ({ rs, retrieveList, loadList }) => {
       CrudService.register(saveData, 'helptopic', true).then(
          (response) => {
             //setModalValue('')
-             toast("Training data has been successfully added",{type: toast.TYPE.SUCCESS})
+            generateToast("Help topic has been successfully added", 'Success!');
             loadList();
             //setMessage(response.data.message);
             //setSuccessful(true);

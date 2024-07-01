@@ -11,6 +11,7 @@ import plus_icon from '../../../assets/built_add_icon.svg';
 import api from '../../../assets/setting/api.png';
 import editIcon from '../../../assets/edit.svg';
 import deleteIcon from '../../../assets/deleteicon.svg';
+import { generateToast } from '../../../utils';
 
 const List = ({ rs, subPage, loadList }) => {
    const [listData, setListData] = useState([]);
@@ -87,7 +88,8 @@ const List = ({ rs, subPage, loadList }) => {
    const deleteRow = (id) => {
       CrudService.deleteRow(id, 'api_bot', true).then(
          (response) => {
-            toast('Record has been deleted!', { type: toast.TYPE.SUCCESS });
+            generateToast('Record has been deleted!', 'Success!');
+
             setMessage(response.data.message);
             setSuccessful(true);
             retrieveList();

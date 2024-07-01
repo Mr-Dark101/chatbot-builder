@@ -44,7 +44,7 @@ export function getAllowedRoutes(routesd) {
 }
 
 
-export function generateToast(title, msg) {
+export function generateToast(title, msg, isSuccess = true) {
 	toastr.options = {
 		"closeButton": true,
 		"debug": false,
@@ -62,9 +62,15 @@ export function generateToast(title, msg) {
 		"hideMethod": "hide",
 		"positionClass": "toast-top-center"
 	};
-
-	toastr.success(title, msg, {
-		closeButton: true,
-		tapToDismiss: false,
-	});
+	if(isSuccess){
+		toastr.success(title, msg, {
+			closeButton: true,
+			tapToDismiss: false,
+		});
+	} else {
+		toastr.error(title, msg, {
+			closeButton: true,
+			tapToDismiss: false,
+		});
+	}
 }

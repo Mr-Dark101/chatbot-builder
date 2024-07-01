@@ -14,6 +14,7 @@ import moment from 'moment';
 import { CircularProgress } from '@mui/material';
 import { API } from '../../../utils/services';
 import { STRINGS } from '../../../utils/base';
+import { generateToast } from '../../../utils';
 const List = ({ rs, subPage, loadList }) => {
 
 const [listData, setListData] = useState([]);
@@ -49,6 +50,9 @@ const modalRef = useRef(null);
                if(result && result !== undefined){
                   setIsPublished(true);
                   retrieveList();
+               }else {
+                  setLoader(false);
+                  setIsPublished(false);
                }
             } else {
                setLoader(false);
@@ -104,7 +108,8 @@ const modalRef = useRef(null);
          org_unit_id: listData[0].ORG_UNIT_ID
    }).then(
          (response) => {
-            toast('QR Code has been deleted!', { type: toast.TYPE.SUCCESS });
+            generateToast('QR Code has been deleted!', 'Success!');
+
             setMessage(response.data.message);
             setSuccessful(true);
             setListData([]);
@@ -154,7 +159,8 @@ const modalRef = useRef(null);
          }
       }
       setSuccessful(true);
-      toast('Training data has been deleted!', { type: toast.TYPE.SUCCESS });
+      generateToast('Training data has been deleted!', 'Success!');
+
       retrieveList()
 
    }

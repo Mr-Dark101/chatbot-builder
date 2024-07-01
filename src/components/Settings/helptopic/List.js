@@ -17,6 +17,7 @@ import Edit from './Edit';
 import BlankMsg from '../../common/BlankMsg';
 import { toast } from 'react-toastify';
 import { Tooltip } from '@mui/material';
+import { generateToast } from '../../../utils';
 const BASE_URL = process.env.REACT_APP_BACKEND_URl;
 const List = ({ rs, subPage, loadList }) => {
 
@@ -105,7 +106,8 @@ const List = ({ rs, subPage, loadList }) => {
    const deleteRow = (id) => {
       CrudService.deleteRowSoft(id, 'helptopic', true).then(
          (response) => {
-            toast('Help topic has been inactive!', { type: toast.TYPE.SUCCESS });
+            generateToast('Help topic has been inactive!', 'Success!');
+
             setMessage(response.data.message);
             setSuccessful(true);
             retrieveList();
@@ -172,7 +174,7 @@ const List = ({ rs, subPage, loadList }) => {
          status_name = " inactive"
       }
       setSuccessful(true);
-      toast('Help Topic  has been ' + status_name + '!', { type: toast.TYPE.SUCCESS });
+      generateToast('Help Topic  has been ' + status_name + '!', 'Success!');
       retrieveList()
       //setMessage("Training data has been deleted");
      // setSuccessful(true);

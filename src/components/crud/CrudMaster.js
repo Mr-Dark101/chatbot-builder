@@ -8,6 +8,7 @@ import { Form, TextField, SelectFieldNoLabel, SubmitButton,TextFieldColor } from
 import CrudService from "../../services/crud.service";
 import {toast } from 'react-toastify';
 import Pagination from "@material-ui/lab/Pagination";
+import { generateToast } from "../../utils";
 
 const CrudMaster = ({title,dataAttr,formSchema,serviceUrl,deleteAction,retrieveRolePermission,master }) => {
 
@@ -176,8 +177,8 @@ const initForm = async (formSchema) => {
         (response) => {
           setMessage(response.data.message);
           //setSuccessful(true);
-          toast(response.data.message,{type: toast.TYPE.SUCCESS})
-         
+          generateToast(response.data.message, 'Success!');
+
 
           
           
@@ -193,8 +194,8 @@ const initForm = async (formSchema) => {
 
           setMessage(resMessage);
           setSuccessful(false);
-          toast(resMessage,{type: toast.TYPE.ERROR})
-         
+          generateToast(resMessage, 'Error!', false);
+
 
           
 
@@ -212,7 +213,8 @@ const initForm = async (formSchema) => {
            CrudService.deleteRow(id,serviceUrl,master).then(
             (response) => {
               setMessage(response.data.message);
-              toast(response.data.message,{type: toast.TYPE.SUCCESS})
+              generateToast(response.data.message, 'Success!');
+
               setSuccessful(true);
               retrieveList();
             },
@@ -242,7 +244,8 @@ const initForm = async (formSchema) => {
 
           
           setMessage('');
-          toast(response.data.message,{type: toast.TYPE.SUCCESS})
+          generateToast(response.data.message, 'Success!');
+
           setSuccessful(false);
           retrieveList();
           setModal(false)
@@ -256,7 +259,8 @@ const initForm = async (formSchema) => {
             error.toString();
 
           setMessage(resMessage);
-          toast(resMessage,{type: toast.TYPE.ERROR})
+          generateToast(resMessage, 'Failed!', false);
+
           setSuccessful(false);
         }
       );

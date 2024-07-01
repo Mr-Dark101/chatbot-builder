@@ -5,6 +5,7 @@ import ClinicDataService from "../../../services/clinic.service";
 import CrudService from "../../../services/crud.service";
 import { Link } from "react-router-dom";
 import {toast } from 'react-toastify';
+import { generateToast } from "../../../utils";
 function ContactDetail({getPage,clinicRs}){
 
 	const [message, setMessage] = useState("");
@@ -164,7 +165,7 @@ const retrieveCityList = () => {
         ClinicDataService.edit(values).then(
         (response) => {
        		setSubmitting(true);
-          toast("Record has been updated!",{type: toast.TYPE.SUCCESS})
+          generateToast("Record has been updated!", 'Success!');
           //getPage('owner',response.data.message.id);
           
         },
@@ -175,7 +176,7 @@ const retrieveCityList = () => {
               error.response.data.message) ||
             error.message ||
             error.toString();
-            toast(resMessage,{type: toast.TYPE.ERROR})
+            generateToast(resMessage, 'Failed!', false);
           //setMessage(<div className="text text-danger">{resMessage}</div>);
           setSubmitting(false);
         }

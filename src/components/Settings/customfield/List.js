@@ -17,6 +17,7 @@ import Edit from './Edit';
 import BlankMsg from '../../common/BlankMsg';
 import { toast } from 'react-toastify';
 import { Tooltip } from '@mui/material';
+import { generateToast } from '../../../utils';
 const BASE_URL = process.env.REACT_APP_BACKEND_URl;
 const List = ({ rs, subPage, loadList }) => {
 
@@ -85,7 +86,8 @@ const List = ({ rs, subPage, loadList }) => {
    const deleteRow = (id) => {
       CrudService.deleteRow(id, 'helpcustomfield', true).then(
          (response) => {
-            toast('Custom Field has been deleted!', { type: toast.TYPE.SUCCESS });
+            generateToast("Custom Field has been deleted!", 'Success!');
+
             setMessage(response.data.message);
             setSuccessful(true);
             retrieveList();
@@ -140,7 +142,8 @@ const List = ({ rs, subPage, loadList }) => {
          }
       }
       setSuccessful(true);
-      toast('Training data has been deleted!', { type: toast.TYPE.SUCCESS });
+      generateToast("Training data has been deleted!", 'Success!');
+
       retrieveList()
       //setMessage("Training data has been deleted");
      // setSuccessful(true);

@@ -6,6 +6,7 @@ import CrudService from '../../../services/crud.service';
 import { Link } from 'react-router-dom';
 import { Tooltip } from '@mui/material';
 import {toast } from 'react-toastify';
+import { generateToast } from '../../../utils';
 const BASE_URL = process.env.REACT_APP_BACKEND_URl;
 
 const CreateImport = ({ retrieveList, loadList,closeModal }) => {
@@ -64,7 +65,8 @@ const [isSelected, setIsSelected] = useState(false)
          (response) => {
             //setModalValue('')
             //loadList();
-            toast('Training data has been successfully uploaded!', { type: toast.TYPE.SUCCESS });
+            
+            generateToast('Training data has been successfully uploaded!', 'Success!');
             retrieveList();
 
             setMessage(response.data.message);

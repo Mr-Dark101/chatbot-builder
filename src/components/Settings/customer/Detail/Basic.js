@@ -4,6 +4,7 @@ import * as Yup from 'yup';
 import CustomerDataService from "../../../../services/clinic.service";
 import CrudService from "../../../../services/crud.service";
 import {toast } from 'react-toastify';
+import { generateToast } from "../../../../utils";
 function Basic({getPage,clinicRs}){
 
 
@@ -58,7 +59,8 @@ useEffect(() => {
        
         CustomerDataService.edit(values).then(
         (response) => {
-          toast("Record has been updated!",{type: toast.TYPE.SUCCESS})
+          generateToast("Record has been updated!", 'Success!');
+
           setSubmitting(false);
           //getPage('owner',response.data.message.id);
           

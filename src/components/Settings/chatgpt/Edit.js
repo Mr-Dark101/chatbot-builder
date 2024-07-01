@@ -4,6 +4,7 @@ import CrudService from '../../../services/crud.service';
 import * as Yup from 'yup';
 import { Tooltip } from '@mui/material';
 import {toast } from 'react-toastify';
+import { generateToast } from "../../../utils";
 const Edit = ({rs}) => {
   const [validationSchema, setValidationSchema] = useState({});
   const [successful, setSuccessful] = useState(false);
@@ -74,8 +75,7 @@ const Edit = ({rs}) => {
       CrudService.edit(values, 'chatgpt', true).then(
          (response) => {
             //setModalValue('')
-           
-           toast("Data has been saved successfully",{type: toast.TYPE.SUCCESS})
+            generateToast("Data has been saved successfully", 'Success!');
            // loadList();
             //setMessage(response.data.message);
             setSuccessful(true);

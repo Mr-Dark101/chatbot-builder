@@ -8,6 +8,7 @@ import { Tooltip } from '@mui/material';
 import { Formik, Form, Field, ErrorMessage, useFormikContext, useField, useFormik } from 'formik';
 import {toast } from 'react-toastify';
 import back_icon from '../../../assets/back-icon.svg';
+import { generateToast } from '../../../utils';
 
 const Edit = ({ rs, retrieveList, loadList }) => {
    const [validationSchema, setValidationSchema] = useState({});
@@ -58,7 +59,8 @@ const Edit = ({ rs, retrieveList, loadList }) => {
       CrudService.edit(values, 'trainbot', true).then(
          (response) => {
             //setModalValue('')
-            toast("Training data has been updated",{type: toast.TYPE.SUCCESS,fontWeight:600})
+            generateToast('Training data has been updated', 'Success!');
+
             loadList();
             //setMessage(response.data.message);
             //setSuccessful(true);

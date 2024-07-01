@@ -8,6 +8,7 @@ import { Tooltip } from '@mui/material';
 import deleteIcon from '../../../assets/deleteicon.svg';
 import { createTheme, ThemeProvider, styled } from "@mui/material/styles";
 import back_icon from '../../../assets/back-icon.svg';
+import { generateToast } from '../../../utils';
 
 const BlueOnGreenTooltip = styled(({ className, ...props }) => (
    <Tooltip {...props} componentsProps={{ tooltip: { className: className } }} />
@@ -162,13 +163,14 @@ const Create = ({ rs, retrieveList, loadList }) => {
          (response) => {
             //setModalValue('')
             loadList();
+            generateToast(response.data.message, 'Success!');
             setMessage(response.data.message);
             setSuccessful(true);
             //retrieveList();
          },
          (error) => {
             const resMessage = (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
-
+            generateToast(resMessage, 'Failed!', false);
             setMessage(resMessage);
             setSuccessful(false);
          }

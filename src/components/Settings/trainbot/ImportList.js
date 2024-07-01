@@ -11,6 +11,7 @@ import BlankMsg from '../../common/BlankMsg';
 import { toast } from 'react-toastify';
 import { Tooltip } from '@mui/material';
 import moment from 'moment';
+import { generateToast } from '../../../utils';
 
 const ImportList = ({loadList }) => {
 
@@ -67,7 +68,8 @@ const ImportList = ({loadList }) => {
    const deleteRow = (id) => {
       CrudService.deleteRow(id, 'gptcat', true).then(
          (response) => {
-            toast('Category has been deleted!', { type: toast.TYPE.SUCCESS });
+            generateToast('Category has been deleted', 'Success!');
+
             setMessage(response.data.message);
             setSuccessful(true);
             retrieveList();

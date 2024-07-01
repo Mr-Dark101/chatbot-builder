@@ -14,6 +14,7 @@ import {
     useField,
     useFormik,
 } from 'formik';
+import { generateToast } from "../../../utils";
 
 
 const Edit = ({rs,retrieveList,loadList}) => {
@@ -83,7 +84,7 @@ const FormSchema = Yup.object().shape({
         CrudService.edit(values,'helpdepartment',true).then(
         (response) => {
           //setModalValue('')
-          
+          generateToast(response.data.message, 'Success!');
           setMessage(response.data.message);
           setSuccessful(true);
           
@@ -97,7 +98,7 @@ const FormSchema = Yup.object().shape({
               error.response.data.message) ||
             error.message ||
             error.toString();
-
+          generateToast(resMessage, 'Failed!', false);
           setMessage(resMessage);
           setSuccessful(false);
         }

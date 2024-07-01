@@ -11,6 +11,7 @@ import { Tooltip } from '@mui/material';
 import editIcon from '../../../assets/edit.svg';
 import deleteIcon from '../../../assets/deleteicon.svg';
 import { createTheme, ThemeProvider, styled } from "@mui/material/styles";
+import { generateToast } from '../../../utils';
 
 
 const BlueOnGreenTooltip = styled(({ className, ...props }) => (
@@ -64,7 +65,8 @@ const List = ({ rs, subPage, loadList }) => {
    const deleteRow = (id) => {
       CrudService.deleteRow(id, 'form_builder', true).then(
          (response) => {
-            toast('Form has been deleted!', { type: toast.TYPE.SUCCESS });
+            generateToast("Form has been deleted!", 'Success!');
+
             setMessage(response.data.message);
             setSuccessful(true);
             retrieveList();

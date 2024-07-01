@@ -6,6 +6,7 @@ import Create from "./Create";
 import Edit from "./Edit";
 import BlankMsg from '../../common/BlankMsg';
 import {toast } from 'react-toastify';
+import { generateToast } from "../../../utils";
 
 const List = ({rs,subPage,loadList}) => {
 const [listData, setListData] = useState([]);
@@ -61,7 +62,8 @@ const deleteMe  = (id) => {
        
             CrudService.deleteRow(id,'patient_insurance',true).then(
             (response) => {
-              toast("Record has been deleted!",{type: toast.TYPE.SUCCESS})
+              generateToast('Record has been deleted!', 'Success!');
+
               setMessage(response.data.message);
               setSuccessful(true);
               retrieveList();

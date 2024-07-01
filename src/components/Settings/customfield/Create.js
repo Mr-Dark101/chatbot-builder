@@ -4,6 +4,7 @@ import { Form, TextField, SelectField, SubmitButton,CheckBoxField,TextGroupField
 import * as Yup from 'yup';
 import CrudService from "../../../services/crud.service";
 import { Link } from "react-router-dom";
+import { generateToast } from "../../../utils";
 const Create = ({rs,retrieveList,loadList}) => {
 
  
@@ -71,6 +72,7 @@ const FormSchema = Yup.object().shape({
           //setModalValue('')
           loadList();
           setMessage(response.data.message);
+          generateToast(response.data.message, 'Success!');
           setSuccessful(true);
           //retrieveList();          
           
