@@ -67,7 +67,7 @@ const Insight = (onChange) => {
 
       <div className="complain_box_section">
         <ul className=''>
-          <li className="col-12 col-lg-3 complain_box">
+          <li className="complain_box">
             <div>
               <p>Total Tickets</p>
               {
@@ -78,7 +78,7 @@ const Insight = (onChange) => {
             </div>
           </li>
 
-          <li className="col-12 col-lg-3 complain_box">
+          <li className="complain_box">
             <div>
               <p>Open Tickets</p>
               {
@@ -89,7 +89,7 @@ const Insight = (onChange) => {
             </div>
           </li>
 
-          <li className="col-12 col-lg-3 complain_box">
+          <li className="complain_box">
             <div>
               <p>Closed Tickets</p>
               {
@@ -100,7 +100,7 @@ const Insight = (onChange) => {
             </div>
           </li>
 
-          <li className="col-12 col-lg-3 complain_box">
+          <li className="complain_box">
             <div>
               <p>On Hold Tickets</p>
               {
