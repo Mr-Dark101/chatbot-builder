@@ -33880,3 +33880,19 @@ div.dt-container .dt-paging .dt-paging-button:not(.current){
   padding: 10px 15px;
   height: 40px;
 }
+
+.daterangepicker.show-calendar .ranges {
+  font-weight: 300 !important;
+}
+
+.daterangepicker .ranges{ 
+  font-weight: 400 !important;
+}
+.daterangepicker .ranges li.active {
+  background-color: #363a77 !important;
+  color: #fff !important;
+}
+
+.daterangepicker th.month {
+  font-weight: 500 !important;
+}
