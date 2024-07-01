@@ -256,7 +256,7 @@ const modalRef = useRef(null);
                <div className="row px-30 py-15 media-center">
                   <div className="col-sm-3">
                      <h5 className="box-title m-0" style={{ fontWeight: 800,width:'200px' }}>
-                        Create Link
+                        Message Link
 
                      </h5>
                   </div>
@@ -310,7 +310,7 @@ const modalRef = useRef(null);
                            <img src={linkIcon} />
                            <div className='qr-link-item'>
                               <h5>Create a Message Link</h5>
-                              <p class="mb-4" style={{"fontWeight": "500"}}>Create a link to trigger your Help desk bot flow.</p>
+                              <p class="mb-4" style={{"fontWeight": "500"}}>Create a link to trigger your help desk bot flow.</p>
                               {
                                  isPublished?
                                  (<button class="primary" onClick={() => importData(false)}>

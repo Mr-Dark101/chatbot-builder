@@ -141,7 +141,7 @@ const LinkModal = ({ retrieveList, loadList,closeModal, data, loadLinkViewCls, m
                         {showLinKView && (
                            <div className="form-group">
                               <div className='close-modal-btn' onClick={() => closeModal()}>x</div>
-                              <h4>Here is your WhatsApp Help desk bot link</h4>
+                              <h4>Here is your WhatsApp help desk bot link</h4>
                               <p>Copy and share it on your social media, websites, emails or<br/>
                               anywhere you want to be connected instantly by your customers</p>
                               <div className='qr-code-link'>
