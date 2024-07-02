@@ -133,7 +133,7 @@ const Detail  = ({rs,getDetail,getTopic,getDepartment,closeModal}) => {
 					})}
 				</div>
 
-				<div className="text_section mt-20">
+				{/* <div className="text_section mt-20">
 					<p className="mb-10"><b>Change History</b></p>
 				</div>
 
@@ -145,13 +145,13 @@ const Detail  = ({rs,getDetail,getTopic,getDepartment,closeModal}) => {
 				<div className="text_section">
 					<p><b>Status Updated to In Process</b></p>
 					<p>By Dilawar Abbas on Nov 01, 2023 at 11:00 AM</p>
-				</div>
+				</div> */}
 
 
 
-					<button onClick={() => closeModal()} type="button" className="ant-btn ant-btn-default ms-10">
-                                 Close
-                              </button>
+				<button onClick={() => closeModal()} type="button" className="ant-btn ant-btn-default ms-10">
+					Close
+				</button>
 
 			</div>
 		)

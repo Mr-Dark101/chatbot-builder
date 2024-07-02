@@ -33880,6 +33880,7 @@ div.dt-container .dt-paging .dt-paging-button:not(.current){
   font-weight: 500;
   padding: 10px 15px;
   height: 40px;
+  cursor: not-allowed !important;
 }
 
 .daterangepicker.show-calendar .ranges {

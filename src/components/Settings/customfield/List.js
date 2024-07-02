@@ -417,7 +417,7 @@ const selCat = (e) => {
                                      />
 
                               </th>
-                              <th style={{fontFamily: 'Lexend Deca Medium', fontSize: '12px'}}><b>NAME</b></th>
+                              <th style={{fontFamily: 'Lexend Deca Medium', fontSize: '12px'}}  width="20%"><b>NAME</b></th>
                              <th style={{fontFamily: 'Lexend Deca Medium', fontSize: '12px'}}><b>STATUS</b></th>
                               <th style={{fontFamily: 'Lexend Deca Medium',fontSize: '12px', textAlign: 'right'}}>ACTIONS</th>
                            </tr>
@@ -442,13 +442,13 @@ const selCat = (e) => {
                                     </td>
                                     <td width="20%" style={{fontFamily: 'Lexend Deca Light', fontSize:'12px'}}>{row.name}</td>
                                     <td
-                                       width="10%"
+                                       width="100%"
                                        style={{ fontFamily: 'Lexend Deca Light', fontSize: '12px' }}
                                     >
                                        <p className={row.status_id == 1 ? 'priority-field field-active' : 'priority-field priority-high'}>{row.status_id == 1 ? 'Active' : 'Inactive'}</p>
                                     </td>
 
-                                    <td style={{ textAlign: 'end' }}>
+                                    <td>
                                       
                                        <a style={{ marginLeft: 5 }}  onClick={() => subPage(<Edit loadList={loadList} retrieveList={retrieveList} rs={row} />)}>
                                           
