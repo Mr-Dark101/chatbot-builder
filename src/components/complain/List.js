@@ -225,6 +225,7 @@ const List = () => {
     ticket_id:'',
     priority:'',
     help_topic:'',
+    parent_id: "",
     status_id:'',
     from:'',
     date:'',
@@ -255,7 +256,15 @@ const List = () => {
     }
     data[name] = (name === "priority")?Number(value) : value;
     console.log(data);
-
+    debugger;
+    if(data && data.help_topic){
+      let topic = listCatData.find(res=> res.id === data.help_topic);
+      if(topic){
+        data.parent_id =  topic.parent_id;
+      }
+    }
+    debugger;
+    console.log(data);
     CrudService.getAllComplainFilter(data,params)
     .then(response => {
       let { dataRow, totalPages } = response.data;
@@ -405,7 +414,13 @@ const List = () => {
         }
         debugger;
         console.log(data);
-
+        if(data && data.help_topic){
+          let topic = listCatData.find(res=> res.id === data.help_topic);
+          if(topic){
+            data.parent_id =  topic.parent_id;
+          }
+        }
+        
         // values.date = date;
         CrudService.getAllComplainFilter(data,params)
         .then(response => {
