@@ -276,7 +276,7 @@ const modalRef = useRef(null);
                               <b>CREATED ON</b>
                             </th>
                             <th style={{ fontFamily: 'Lexend Deca Medium', fontSize: '12px', textAlign: 'right' }}>
-                              ACTION
+                              ACTIONS
                             </th>
                           </tr>
                         </thead>

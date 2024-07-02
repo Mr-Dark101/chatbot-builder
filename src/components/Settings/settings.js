@@ -5,6 +5,13 @@ import channel from '../../assets/setting/channel.svg';
 import integration from '../../assets/setting/openai.svg';
 import api from '../../assets/setting/api.svg';
 import form from '../../assets/setting/writing.svg';
+import department from '../../assets/setting/department-store.png';
+import CorporateFareIcon from '@mui/icons-material/CorporateFare';
+import LinkIcon from '@mui/icons-material/Link';
+import SettingsSuggestOutlinedIcon from '@mui/icons-material/SettingsSuggestOutlined';
+import TopicOutlinedIcon from '@mui/icons-material/TopicOutlined';
+import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
+
 import api_white from '../../assets/setting/api_white.svg';
 import left_circle_arrow_icon from '../../assets/setting/bi_arrow-down-circle-fill.png';
 import users from '../../assets/setting/user.svg';
@@ -53,7 +60,8 @@ const Settings = () => {
    const history = useHistory();
    const [activeClass, setActiveClass] = useState('');
 
-   const [helpMenuStyle, setHelpMenuStyle] = useState('none');
+   const [helpMenuStyle, setHelpMenuStyle] = useState({id: 4, display: "block"});
+   const [gptMenuStyle, setGptMenuStyle] = useState('none');
 
    
 
@@ -69,14 +77,31 @@ const Settings = () => {
 
    const changeContent = (param, pageName, dataName) => {
       setActiveClass(param);
+      debugger;
       if(param == '#helpmenu'){
-            if(helpMenuStyle == 'none'){
-               setHelpMenuStyle('block')
+         if(helpMenuStyle?.id !== 3){
+            if(helpMenuStyle.display == 'none' || !helpMenuStyle.display){
+               setHelpMenuStyle({display:'block', id: 4})
             }else{
-               setHelpMenuStyle('none')
+               setHelpMenuStyle({display:'none', id: 0})
             }
-            
+         } else {
+            setHelpMenuStyle({display:'block', id: 4})
+         }
       }
+
+      if(param == '#chatgpt'){
+         if(helpMenuStyle?.id !== 4){
+            if(helpMenuStyle.display == 'none' || !helpMenuStyle.display){
+               setHelpMenuStyle({display:'block', id: 3})
+            }else{
+               setHelpMenuStyle({display:'none', id: 0})
+            }
+         }else {
+            setHelpMenuStyle({display:'block', id: 3})
+         }
+      }
+
       if (param === 'Api') {
          setContentPage(<Api />);
       }
@@ -135,18 +160,23 @@ const Settings = () => {
 
    let Menu = [
       /*{name:'Integration',controller:'Integration',icon:integration},*/
-      { name: 'API', controller: 'Api', icon: api, submenu:false,new:false },
-      { name: 'Form Builder', controller: 'FormBuilder', icon: form,submenu:false,new:false },
-      { name: 'OpenAI GPT', controller: 'ChatGpt', icon: integration,submenu:false,new:true },
-      { name: 'Training Data', controller: 'TrainBot', icon: form,submenu:false,new:true },
-      { name: 'Help Desk', controller: '#helpmenu', icon: form 
+      { id: 1, name: 'API', controller: 'Api', icon: api, submenu:false,new:false },
+      { id: 2, name: 'Form Builder', controller: 'FormBuilder', icon: form,submenu:false,new:false },
+      { id: 3, name: 'OpenAI GPT', controller: '#chatgpt', icon: integration, submenu:true ,new:true 
          ,submenu:
          [
-            { name: 'Help Topic', controller: 'HelpTopic', icon: form},
-            { name: 'Custom Fields', controller: 'HelpCustomField', icon: form },
-            { name: 'Department', controller: 'HelpDepartment', icon: form },
+            { name: 'GPT Integration', controller: 'ChatGpt', icon: integration,submenu:false,new:true},
+            { name: 'Training Data', controller: 'TrainBot', icon: form,submenu:false,new:true },
+         ]
+      },
+      { id: 4, name: 'Help Desk', controller: '#helpmenu', icon: form, new:true, component: ()=> <HelpOutlineIcon style={{'marginRight': '16px'}} />
+         ,submenu:
+         [
+            { name: 'Help Topic', controller: 'HelpTopic', icon: form, component: ()=> <TopicOutlinedIcon style={{'marginRight': '16px'}} />},
+            { name: 'Custom Fields', controller: 'HelpCustomField', icon: form, component: ()=> <SettingsSuggestOutlinedIcon style={{'marginRight': '16px'}} /> },
+            { name: 'Department', controller: 'HelpDepartment', icon: "", component: ()=> <CorporateFareIcon style={{'marginRight': '16px'}} /> },
             // Message link module added
-            { name: 'Message Links', controller: 'MessageLinks', icon: form },
+            { name: 'Message Links', controller: 'MessageLinks', icon: form, component: ()=> <LinkIcon style={{'marginRight': '16px'}} />},
          ]
       },
    ];
@@ -203,7 +233,11 @@ const Settings = () => {
 
                                           className={(m.controller == activeClass) ? 'active' : ''}
                                        >
-                                          <img alt={'#'} src={m.icon} />
+                                          {
+                                             m.component? m.component() :
+                                             <img alt={'#'} src={m.icon} />
+                                          }
+
                                           {m.name}
                                           {m.new ?
 
@@ -221,7 +255,7 @@ const Settings = () => {
 
                                                        <ul className="submenu"
 
-                                                       style={{display:helpMenuStyle}}
+                                                       style={{ display: helpMenuStyle?.id === m.id ? 'block' : 'none' }}
                                                        >
                                                        {m.submenu.map((s, i) => (
 
@@ -230,7 +264,10 @@ const Settings = () => {
 
                                                                className={(s.controller == activeClass) ? 'active' : ''}
                                                             >
-                                                               <img alt={'#'} src={form} />
+                                                               {
+                                                                     s.component? s.component() :
+                                                                     <img alt={'#'} src={s.icon} />
+                                                               }
                                                                
                                                                {s.name}
                                                             </a>

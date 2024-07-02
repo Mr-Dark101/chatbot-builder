@@ -491,7 +491,7 @@ const selCat = (e) => {
                               <th style={{fontFamily: 'Lexend Deca Medium',fontSize: '12px'}}><b>STATUS</b></th>
                               <th style={{fontFamily: 'Lexend Deca Medium',fontSize: '12px'}}><b>DEPARTMENT</b></th>
                               <th style={{fontFamily: 'Lexend Deca Medium',fontSize: '12px'}}><b>CUSTOM FIELDS</b></th>
-                              <th style={{fontFamily: 'Lexend Deca Medium',fontSize: '12px', 'textAlign': 'right'}}>ACTION</th>
+                              <th style={{fontFamily: 'Lexend Deca Medium',fontSize: '12px', 'textAlign': 'right'}}>ACTIONS</th>
                            </tr>
                         </thead>
                         <tbody>

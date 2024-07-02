@@ -199,7 +199,7 @@ const NavBar = () => {
 
                 <div className='nav-separator'></div>
 
-                <li id="chatobotBuilderLi" className={`nav-item ${location.pathname === "/" ? 'active' : ''}`}>
+                <li id="chatobotBuilderLi" className={`nav-item ${(location.pathname === "/" || location.pathname.includes("/settings") )? 'active' : ''}`}>
                    <a id="chatAnchor"
                    class="d-flex align-items-center"
                    href={`${STRINGS.ROUTES.ROOT}?org=${localStorage.getItem('userId')}`}> <i

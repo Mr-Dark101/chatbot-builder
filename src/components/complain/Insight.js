@@ -114,35 +114,47 @@ const Insight = (onChange) => {
       </div>
 
       <div>
-        <div className="insight_page_section mb-30">
+        <div className="insight_page_section mb-30" style={{'height': '460px'}}>
           <div className="chart_section">
             <p>Complaints Count by Status</p>
 
-            <div className="chart_box">
-              <CountStatus listData={listData} />
+            <div className='chart_box'>
+              {
+                  loader ? 
+                  <div class="mt-2 chart-line"><CircularProgress size="30px" /></div> :
+                  <CountStatus listData={listData} />
+                }
             </div>
           </div>
         </div>
 
         <div className="d-flex">
-          <div className="insight_page_section me-30" style={{ width: '50%' }}>
+          <div className="insight_page_section me-30" style={{ width: '50%', 'height': '460px'}}>
             <div className="chart_section">
               <div className="d-flex justify-content-between">
                 <p>Complaints by Help Topic</p>
               </div>
 
               <div className="chart_box">
-                <HelpTopic listData={listData} />
+                {
+                  loader ? 
+                  <div class="mt-2 chart-line"><CircularProgress size="30px" /></div> :
+                  <HelpTopic listData={listData} />
+                }
               </div>
             </div>
           </div>
 
-          <div className="insight_page_section" style={{ width: '50%' }}>
+          <div className="insight_page_section" style={{ width: '50%', 'height': '460px' }}>
             <div className="chart_section">
               <p>Complaints by Department</p>
 
               <div className="chart_box">
-                <Department listData={listData} />
+                {
+                  loader ? 
+                  <div class="mt-2 chart-line"><CircularProgress size="30px" /></div> :
+                  <Department listData={listData} />
+                }
               </div>
             </div>
           </div>
