@@ -32060,6 +32060,9 @@ img.away, img.busy, img.offline, img.online {
 .main-container .section-hld{
   background-color: #F0F8FE;
 }
+.menu-space{
+  margin-left: 80px;
+}
 .grey-wrapper {
   background: #f0f0f0;
 }
@@ -33922,4 +33925,8 @@ div.dt-container .dt-paging .dt-paging-button:not(.current){
   align-items: center;
   justify-content: center;
 
+}
+
+.hide-menu {
+  display: none !important;
 }

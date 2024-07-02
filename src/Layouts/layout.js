@@ -33,13 +33,13 @@ export default function Layout(props) {
 
 
              <div className="section-hld">
-                <div className="nav-bar-hld">
+                <div className={`nav-bar-hld ${(location.pathname.includes("/bws") )? 'hide-menu' : ''}`}>
                     <NavBar/>
 
 
                     
                 </div>
-                <div className="main-section">
+                <div className={`main-section ${(location.pathname.includes("/bws") )? '' : 'menu-space'}`}>
                     
                     {props.children}
                 </div>

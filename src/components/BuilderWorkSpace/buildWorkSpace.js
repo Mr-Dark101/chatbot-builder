@@ -391,7 +391,7 @@ const BuildWorkSpace = () => {
       //window.location.reload();
       //dispatch(resetState());
       // dispatch(removingBreadcrumb());
-      window.location.reload();
+      window.location= "/";
    };
 
    const confirmClose = () => {
