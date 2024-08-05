@@ -35,6 +35,13 @@
 .mob_topBar {
     display: flex;
 }
+.mob_topBar {
+    .avatar {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
 .mob_topIcon {
     color: #1f68d2;
     width: 100%;
@@ -98,13 +105,13 @@
 .mockchat .device .screen {
     position: absolute;
     width: calc(100% - 20px);
-    height: calc(100% - 20px);
+    height: calc(100% - 13px);
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     background-image: linear-gradient(#dcdedf, #dcdedf);
     border-radius: 20px;
-    overflow: hidden;
+    // overflow: hidden;
     background-size: cover;
 }
 .app1 {
@@ -122,6 +129,7 @@
     padding: 1em;
     overflow-y: auto;
     transition: all 0.3s;
+    border-radius: 20px;
 }
 .page {
     width: 100%;
@@ -208,7 +216,7 @@ background: url("../../assets/whatsapp-bg.png") !important ;
     margin: unset;
     outline: unset;
     border-radius: 10px;
-    padding: 0 3px 5px;
+    padding: 2px 7px 3px;
     max-width: 9rem;
     width: 100% ;
 

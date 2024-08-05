@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 
-import { Form, TextField,TextFieldModal, SelectField, SubmitButtonModal, CheckBoxField, TextGroupField, TextAreaField } from '../../crud/FormElements';
+import { Form, TextFieldModal } from '../../crud/FormElements';
 import * as Yup from 'yup';
 import CrudService from '../../../services/crud.service';
-import { Link } from 'react-router-dom';
-import { Tooltip } from '@mui/material';
-import {toast } from 'react-toastify';
 import { generateToast } from '../../../utils';
-const CreateCat = ({ rs, retrieveList, loadList,closeModal }) => {
+import Modal from 'react-bootstrap/Modal';
+import { useFormikContext } from 'formik';
+
+const CreateCat = ({ rs, retrieveList, loadList,closeModal, visible, modalTitle, onHide }) => {
    const [validationSchema, setValidationSchema] = useState({});
 
    const [insuranceList, setInsuranceList] = useState([]);
@@ -24,7 +24,18 @@ const CreateCat = ({ rs, retrieveList, loadList,closeModal }) => {
   
   
 
-   
+   function SubmitButtonModal(props){
+      const { title, ...rest } = props;
+      const { isSubmitting } = useFormikContext();
+      
+      return (
+          <>
+            <button type="submit" class="btn-sm btn-primary customfontWeight border create-team-btn rounded-pill"  {...rest} disabled={isSubmitting}>
+               {title}
+            </button>	
+          </>
+      )
+  }
 
    const [formData, setFormData] = useState({
       name: '',
@@ -68,24 +79,33 @@ const CreateCat = ({ rs, retrieveList, loadList,closeModal }) => {
 
    return (
       <>
-         <div class="row">
-            <div class="col-12">
-               <div>
+      <Modal
+         onHide={onHide}
+         show={visible}
+         size="md"
+         aria-labelledby="contained-modal-title-vcenter"
+         centered
+      > 
+          <div class="modal-content modalBorderRadius">
+
+              <div className="modal-header bg-white modalBorderRadius" style={{padding: "0.5rem 1rem"}}>
+                  <h4 className="modal-title ">{modalTitle}</h4>
+                  <button type="button" className="close createuser-close text-dark mr-0 pt-25 shadow-none font-weight-light" onClick={closeModal}>&times;</button>
+              </div>
+              <div className="modalBorderSpacer mx-2"></div>
+              <div className="modal-body">
                   <div className="" >
                      {!successful && (
                         <Form enableReinitialize validationSchema={FormSchema} initialValues={formData} onSubmit={onSubmit}>
-                           
-
-                            <div className="field_section">
-                                 <TextFieldModal name="name" icon="check-square" placeholder="Category Name" />
-                            </div>
+                           <div className="field_section">
+                              <TextFieldModal name="name" icon="check-square" placeholder="Category Name" />
+                           </div>
 
                            <div>
-                              <SubmitButtonModal title="Save" className="ant-btn ant-btn-primary" />
-
-                              <button onClick={() => closeModal()} type="button" className="ant-btn ant-btn-default ms-10">
-                                 Cancel
-                              </button>
+                              <div className="modal-footer p-0 pt-3">
+                                 <button type="button" className="btn-sm border border-primary customfontWeight bg-white rounded-pill" onClick={closeModal}>Cancel</button>
+                                 <SubmitButtonModal title="create" className="ant-btn-primary btn-sm border border-primary customfontWeight rounded-pill" />
+                              </div>
                            </div>
                         </Form>
                      )}
@@ -97,9 +117,10 @@ const CreateCat = ({ rs, retrieveList, loadList,closeModal }) => {
                         </div>
                      )}
                   </div>
-               </div>
-            </div>
-         </div>
+              </div>
+          </div>
+      
+      </Modal>
       </>
    );
 };

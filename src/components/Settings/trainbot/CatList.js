@@ -13,10 +13,15 @@ import { Tooltip } from '@mui/material';
 import editIcon from '../../../assets/edit.svg';
 import deleteIcon from '../../../assets/deleteicon.svg';
 import { generateToast } from '../../../utils';
+import ConfirmModal from '../../../SharedComponent/ConfirmModal/Modal';
+
+
 const CatList = ({loadList }) => {
 
    const ref = useRef([]);
    const inputElement = useRef([]);
+   const allSelected = useRef("");
+
    const [listData, setListData] = useState([]);
 
    const [modalValue, setModalValue] = useState('');
@@ -29,6 +34,15 @@ const CatList = ({loadList }) => {
    const [deleteShow, setDeleteShow] = useState(false);
    const [checkedAll, setCheckedAll] = useState(false);
    const [showAlertAll, setShowAlertAll] = useState(false);
+
+
+   const [modalText, setModalText] = useState("");
+   const [modalType, setModalType] = useState("");
+   const [modalTitle, setModalTitle] = useState("");
+   const [okText, setOkText] = useState("");
+   const [modalId, setModalId] = useState("");
+   const [visible, setVisible] = useState(false);
+
 
    useEffect(() => {
       retrieveList();
@@ -46,16 +60,25 @@ const CatList = ({loadList }) => {
             console.log(e);
          });
    };
-   const loadModal = (title, children) => {
+   const loadModal = (visible) => {
       setModalValue(
-         <ModalPopup show={'true'} close={closeModal} title={title}>
-            {children}
-         </ModalPopup>
+         <CreateCat loadList={loadList} closeModal={closeModal} visible={visible}  modalTitle={"Add Category"}  />
       );
    };
 
    const closeModal = () => {
-      setModalValue('');
+      loadModal(false);
+   };
+
+
+   const loadEditModal = (rs, visible) => {
+      setModalValue(
+         <Edit closeModal={closeEditModal} rs={rs} visible={visible} modalTitle="Edit Category" loadList={retrieveList}  />
+      );
+   };
+
+   const closeEditModal = () => {
+      loadModal(false);
    };
 
    const deleteMe = (id) => {
@@ -72,7 +95,10 @@ const CatList = ({loadList }) => {
 
             setMessage(response.data.message);
             setSuccessful(true);
+            allSelected.current.checked = false;
             retrieveList();
+            setDeleteShow(false);
+
          },
          (error) => {
             const resMessage = (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
@@ -114,20 +140,21 @@ const CatList = ({loadList }) => {
 
       generateToast('Category has been deleted!', 'Success!');
       setSuccessful(true);
-      retrieveList()
+      retrieveList();
+      allSelected.current.checked = false;
+      setCheckedAll(false);
+      setDeleteShow(false);
+
       //setMessage("Category has been deleted");
      // setSuccessful(true);
      
       
    }
 
-const deleteAll = async () => {
+const deleteAll = async () => {     
+   modalSettings("deleteAllModal", "Delete Category", "Deleting the category will reassign all training data assigned to the category to default category.", "Delete");      
+}
 
-      setShowAlertAll(true);
-     
-     
-      
-   }
 const selectAll = (check_status,value) => {
         setCheckedAll(!checkedAll)
 
@@ -172,19 +199,28 @@ const selectAll = (check_status,value) => {
 
  const createCatBody = (rs) => {
       
-      loadModal('Add Category',<CreateCat closeModal={closeModal}   title="Add Category" loadList={retrieveList}  />)
+      loadModal(true ,<CreateCat closeModal={closeModal}   title="Add Category" loadList={retrieveList}  />)
  }
 
   const editCatBody = (rs) => {
       
-      loadModal('Edit Category',<Edit closeModal={closeModal} rs={rs}   title="Edit Category" loadList={retrieveList}  />)
+      loadModal(true ,<Edit closeModal={closeModal} rs={rs}   title="Edit Category" loadList={retrieveList}  />)
  }
 
  const deleteCatBody = (rs,id) => {
    setDelId(id);
-   setShowAlert(true);
-   //loadModal('Delete Category',<Edit closeModal={closeModal} rs={rs}   title="Delete Category" loadList={retrieveList}  />)
-}
+   // setShowAlert(true);
+   modalSettings("deleteModal", "Delete Category", "Deleting the category will reassign all training data assigned to the category to default category.", "Delete");
+};
+
+const modalSettings = (modalId, title, desc, okText) => {
+   setModalId(modalId);
+   setModalTitle(title);
+   setModalText(desc);
+   setOkText(okText);
+   setModalType(modalId);
+};
+
 
    return (
       <>
@@ -242,6 +278,25 @@ const selectAll = (check_status,value) => {
          )}
 
 
+
+         {/* Added DC COnfirmation Modal */}
+         <ConfirmModal 
+            modalText={modalText}
+            handleOk={
+               ()=>{
+                  if(modalType === "deleteAllModal"){
+                     deleteAllSeleted();
+                  }else{
+                     deleteRow(delId)
+                  }
+               }
+            } 
+            modalTitle={modalTitle}
+            okText={okText}
+            modalId={modalId}
+          />
+
+
             <div className="row px-30 py-15 media-center">
                      <div className="col-sm-6">
 
@@ -259,7 +314,7 @@ const selectAll = (check_status,value) => {
                         {deleteShow && 
 
                            <a class="danger" style={{ marginLeft: '15px', textAlign: 'center' }} 
-
+                           data-toggle="modal" data-target="#deleteAllModal" 
                            onClick={() => deleteAll()}>
                            Delete All
                         </a> 
@@ -267,7 +322,7 @@ const selectAll = (check_status,value) => {
                         }
                         
                         
-                        <a class="primary" onClick={() => createCatBody()} style={{ marginLeft: '15px', textAlign: 'center' }}>
+                        <a class="primary" onClick={() => loadModal(true)} style={{ marginLeft: '15px', textAlign: 'center' }}>
                            Add Category
                         </a> 
                         
@@ -290,7 +345,8 @@ const selectAll = (check_status,value) => {
                            <tr>
                               <th>
                               
-                              <input type="checkbox" 
+                              <input type="checkbox"
+                                    ref={allSelected} 
                                     name={`c_all`}
                                     onChange={(event) => selectAll(event.target.checked,event.target.value)}
                                     value='all'
@@ -333,10 +389,10 @@ const selectAll = (check_status,value) => {
                                       {row.name !== 'Default' ? 
                                       (
                                        <>
-                                       <a style={{ marginLeft: 5 }}  onClick={() => editCatBody(row)} >
+                                       <a style={{ marginLeft: 5 }}  onClick={() => loadEditModal(row, true)} >
                                           <img alt={'#'} src={editIcon}  />
                                        </a>
-                                       <a style={{ marginLeft: 5 }}  onClick={() => deleteCatBody(row,row.id)}>
+                                       <a data-toggle="modal" data-target="#deleteModal" style={{ marginLeft: 5 }}  onClick={() => deleteCatBody(row,row.id)}>
                                           <img alt={'#'} src={deleteIcon} width="20" />
                                        </a>
                                        </>

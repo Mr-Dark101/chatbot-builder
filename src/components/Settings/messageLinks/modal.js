@@ -1,18 +1,20 @@
 import React, { useState, useEffect,useRef } from 'react';
+
+import Modal from 'react-bootstrap/Modal';
 import logo from "../../../assets/eocean-logo-half.png";
 
-import { Form, TextField, SelectField, SubmitButton, CheckBoxField, TextGroupField, TextAreaField } from '../../crud/FormElements';
+import { Form, TextField, SelectField, CheckBoxField, TextGroupField, TextAreaField } from '../../crud/FormElements';
 import * as Yup from 'yup';
 import CrudService from '../../../services/crud.service';
-import { Link } from 'react-router-dom';
 import { CircularProgress, Tooltip } from '@mui/material';
-import {toast } from 'react-toastify';
+import { useFormikContext } from 'formik';
+
 const BASE_URL = process.env.REACT_APP_BACKEND_URl;
 const msg = "Complaint";
 
 
 
-const LinkModal = ({ retrieveList, loadList,closeModal, data, loadLinkViewCls, modalRef }) => {
+const LinkModal = ({ retrieveList, loadList,closeModal, data, loadLinkViewCls, modalTitle, show, onHide }) => {
    const [validationSchema, setValidationSchema] = useState({});
 
    const [insuranceList, setInsuranceList] = useState([]);
@@ -37,10 +39,13 @@ const LinkModal = ({ retrieveList, loadList,closeModal, data, loadLinkViewCls, m
 
 
    useEffect(() => {
-      if(data && data.length){
+      console.log("data:",data);
+      if(data && data.length > 0){
          setShowLinKView(true);
          loadLinkViewCls();
          setResult(data[0]);
+      }else {
+         setShowLinKView(false);
       }
 
    }, [data]);
@@ -70,10 +75,6 @@ const LinkModal = ({ retrieveList, loadList,closeModal, data, loadLinkViewCls, m
       .then(
          (response) => {
             if(response.data.data){
-               if (modalRef.current) {
-                  // Add a class to the parent div
-                  modalRef.current.classList.add('qr-view');
-               }
                setShowLinKView(true);
                setResult(response.data.data);
                setLoader(false);
@@ -100,77 +101,102 @@ const LinkModal = ({ retrieveList, loadList,closeModal, data, loadLinkViewCls, m
    const downLoadTemplate = () => {
       document.location.href= BASE_URL + '/sampletrainingdata.csv';
   }
+  
+  function SubmitButtonModal(props){
+      const { title, ...rest } = props;
+      const { isSubmitting } = useFormikContext();
+      
+      return (
+         <>
+            <button type="submit" className="btn-sm btn-primary customfontWeight border create-team-btn rounded-pill"  {...rest} disabled={isSubmitting}>
+               {title}
+            </button>	
+         </>
+      )
+   }
 
    return (
       <>
-         <div class="row">
-            <div class="col-12 px-3 py-0">
-               <div>
-                  {
-                     loader ?(<div className='h-200 d-flex justify-content-center align-items-center'>
-                        <CircularProgress />
-                     </div> ) : <div className="" >
-                        {!showLinKView && (
-                           <Form enableReinitialize validationSchema={FormSchema} initialValues={formData} onSubmit={onSubmit}>
-                              <div className='close-modal-btn' onClick={() => closeModal()}>x</div>
-                              <div>
-                                 <h4>Create Link</h4>
-                              </div>
+      <Modal
+         show={show}
+         size="md"
+         aria-labelledby="contained-modal-title-vcenter"
+         centered
+         className={`qr-view-modal ${showLinKView? 'qr-view' : ''}`}
+      > 
+          <div className="modal-content modalBorderRadius">
 
-                              <div className="row" style={{ marginLeft: '0px', marginRight: '0px' }}>
-                                 <div className="col-12" style={{ paddingLeft: '0px', paddingRight: '0px' }}>
-                                 <div className="field_section">
-                                       <label>Message</label>
-                                       <span className='fw-normal'>This keyword is to be pre-populated, and cannot be edited.</span>
-                                       <TextAreaField className="complaint-field" style={{"overflow":"auto","resize":"none"}} name="description" label="" value={msg} placeholder="" rows="3" disabled />
-                                 </div>
-                                 </div>
+              <div className="modal-header bg-white modalBorderRadius" style={{padding: "0.5rem 1rem"}}>
+                  <h4 className="modal-title ">{(showLinKView)? "Here is your WhatsApp help desk bot link" : modalTitle}</h4>
+                  <button type="button" className="close createuser-close text-dark mr-0 pt-25 shadow-none font-weight-light" onClick={()=>{closeModal();setMessage("")}}>&times;</button>
+              </div>
+              <div className="modalBorderSpacer mx-2"></div>
+              <div className="modal-body">
+                  <div className="row">
+                     <div className="col-12 px-3 py-0">
+                        <div>
+                           {
+                              loader ?(<div className='h-200 d-flex justify-content-center align-items-center'>
+                                 <CircularProgress />
+                              </div> ) : <div className="" >
+                                 {!showLinKView && (
+                                    <Form enableReinitialize validationSchema={FormSchema} initialValues={formData} onSubmit={onSubmit}>
+                                       <div className="row" style={{ marginLeft: '0px', marginRight: '0px' }}>
+                                          <div className="col-12" style={{ paddingLeft: '0px', paddingRight: '0px' }}>
+                                          <div className="field_section">
+                                                <label>Message</label>
+                                                <span className='fw-normal'>This keyword is to be pre-populated, and cannot be edited.</span>
+                                                <TextAreaField className="complaint-field" style={{"overflow":"auto","resize":"none"}} name="description" label="" value={msg} placeholder="" rows="3" disabled />
+                                          </div>
+                                          </div>
 
-                                 <div className="col-3" style={{ paddingLeft: '0px', paddingRight: '0px' }}></div>
-                              </div>
+                                          <div className="col-3" style={{ paddingLeft: '0px', paddingRight: '0px' }}></div>
+                                       </div>
 
-                              <div className='mt-2 d-flex justify-content-end'>
-                                 <button onClick={() => closeModal()} type="button" className="secondary btn-right">
-                                    Cancel
-                                 </button><br />
-                                 <SubmitButton title="Create" className="primary" />
 
+                                       <div className="modal-footer p-0 pt-3 mt-3">
+                                          <button type="button" class="btn-sm border border-primary customfontWeight bg-white rounded-pill" onClick={closeModal}>Cancel</button>
+                                          <SubmitButtonModal title="Create" className="ant-btn-primary btn-sm border border-primary customfontWeight rounded-pill" />
+                                       </div>
+
+                                    </Form>
+                                 )}
+                                 {showLinKView && (
+                                    <div className="form-group">
+                                       {/* <h4>Here is your WhatsApp help desk bot link</h4> */}
+                                       <p className='fw-normal' style={{fontSize: '12px'}}>Copy and share it on your social media, websites, emails or<br/>
+                                       anywhere you want to be connected instantly by your customers</p>
+                                       <div className='qr-code-link'>
+                                          <img src={logo} />
+                                          <a href={result.WA_URL} target="_blank">{result.WA_URL}</a>
+                                       </div>
+                                       <div className='qr-code-image'>
+                                          <img src={result.QR_IMAGE_URL} />
+                                       </div>
+                                       <div className="d-flex justify-content-between">
+                                          <button 
+                                             type="button" 
+                                             className="copy-btn" 
+                                             style={{"width": "179.5px"}}
+                                             onClick={() => copyLinkToClipBoard(result)}>
+                                             {copied ? 'COPIED' : 'COPY TO CLIPBOARD'}
+                                          </button>
+                                       
+                                          <a href={result.QR_IMAGE_URL} download="QR_Code.png">
+                                             <button type="button" className="btn primary">DOWNLOAD QR CODE</button>
+                                          </a>
+                                       </div>
+                                    </div>
+                                 )}
                               </div>
-                           </Form>
-                        )}
-                        {showLinKView && (
-                           <div className="form-group">
-                              <div className='close-modal-btn' onClick={() => closeModal()}>x</div>
-                              <h4>Here is your WhatsApp help desk bot link</h4>
-                              <p>Copy and share it on your social media, websites, emails or<br/>
-                              anywhere you want to be connected instantly by your customers</p>
-                              <div className='qr-code-link'>
-                                 <img src={logo} />
-                                 <a href={result.WA_URL} target="_blank">{result.WA_URL}</a>
-                              </div>
-                              <div className='qr-code-image'>
-                                 <img src={result.QR_IMAGE_URL} />
-                              </div>
-                              <div class="d-flex justify-content-between">
-                                 <button 
-                                    type="button" 
-                                    className="copy-btn" 
-                                    style={{"width": "179.5px"}}
-                                    onClick={() => copyLinkToClipBoard(result)}>
-                                    {copied ? 'COPIED' : 'COPY TO CLIPBOARD'}
-                                 </button>
-                              
-                                 <a href={result.QR_IMAGE_URL} download="QR_Code.png">
-                                    <button type="button" className="btn primary">DOWNLOAD QR CODE</button>
-                                 </a>
-                              </div>
-                           </div>
-                        )}
+                           }
+                        </div>
                      </div>
-                  }
-               </div>
-            </div>
-         </div>
+                  </div>
+              </div>
+          </div>
+      
+      </Modal>
       </>
    );
 };

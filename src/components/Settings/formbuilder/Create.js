@@ -258,7 +258,9 @@ const Create = ({ rs, retrieveList, loadList }) => {
          <div class="row">
             <div class="col-12">
                <div className="page_data_clinic">
-                  <div className="page_data_clinic api_form_section" style={{ overflowY: 'auto', height: 800, overflowX: 'hidden' }}>
+                  <div className="page_data_clinic api_form_section" 
+                  // style={{ overflowY: 'auto', height: 800, overflowX: 'hidden' }}
+                  >
                      {!successful && (
                         <Form enableReinitialize validationSchema={FormSchema} initialValues={formData} onSubmit={onSubmit}>
                            <div className="row media-center">

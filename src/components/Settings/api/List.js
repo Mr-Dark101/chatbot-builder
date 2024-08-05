@@ -12,6 +12,7 @@ import api from '../../../assets/setting/api.png';
 import editIcon from '../../../assets/edit.svg';
 import deleteIcon from '../../../assets/deleteicon.svg';
 import { generateToast } from '../../../utils';
+import ConfirmModal from '../../../SharedComponent/ConfirmModal/Modal';
 
 const List = ({ rs, subPage, loadList }) => {
    const [listData, setListData] = useState([]);
@@ -24,6 +25,13 @@ const List = ({ rs, subPage, loadList }) => {
    const [successful, setSuccessful] = useState(false);
    const [message, setMessage] = useState();
    const [delId, setDelId] = useState(false);
+
+   const [modalText, setModalText] = useState([]);
+   const [modalType, setModalType] = useState([]);
+   const [modalTitle, setModalTitle] = useState([]);
+   const [okText, setOkText] = useState([]);
+   const [modalId, setModalId] = useState([]);
+   
 
    const API_URL = process.env.REACT_APP_BACKEND_URl;
 
@@ -82,10 +90,19 @@ const List = ({ rs, subPage, loadList }) => {
 
    const deleteMe = (id) => {
       setDelId(id);
-      setShowAlert(true);
+      modalSettings("deleteModal", "Delete API", "Are you sure you want to delete this API?", "Delete");
+   };
+
+   const modalSettings = (modalId, title, desc, okText) => {
+      setModalId(modalId);
+      setModalTitle(title);
+      setModalText(desc);
+      setOkText(okText);
+      setModalType(modalId);
    };
 
    const deleteRow = (id) => {
+      debugger;
       CrudService.deleteRow(id, 'api_bot', true).then(
          (response) => {
             generateToast('Record has been deleted!', 'Success!');
@@ -130,6 +147,21 @@ const List = ({ rs, subPage, loadList }) => {
          </SweetAlert>  
          )}
 
+
+         {/* Added DC COnfirmation Modal */}
+         <ConfirmModal 
+            modalText={modalText}
+            handleOk={
+               ()=>{
+                  deleteRow(delId)
+               }
+            } 
+            modalTitle={modalTitle}
+            okText={okText}
+            modalId={modalId}
+          />
+
+
          <div className="page_data_setting">
             <div className="row">
                <div className="col-sm-9 p-0">
@@ -153,8 +185,8 @@ const List = ({ rs, subPage, loadList }) => {
                            <thead>
                               <tr>
                                  <th width="50%">API NAME</th>
-                                 <th width="20%">API TYPE</th>
-                                 <th width="30%" style={{textAlign:'end'}}>ACTION</th>
+                                 <th width="60%">API TYPE</th>
+                                 <th width="30%">ACTION</th>
                               </tr>
                            </thead>
                            <tbody>
@@ -180,8 +212,8 @@ const List = ({ rs, subPage, loadList }) => {
                                           </div>
                                        </td>
                                        <td width="20%" style={{ fontFamily: 'Lexend Deca Light', fontSize:'12px' }}>{row.api_type}</td>
-                                       <td width="30%" style={{textAlign:'center'}}>
-                                          <div className="button_section">
+                                       <td width="30%" style={{textAlign:'left'}}>
+                                          <div>
                                              {row.build_type == 'C' ? (
                                                 <a  onClick={() => subPage(<Edit loadList={loadList} retrieveList={retrieveList} rs={row} />)}>
                                                 <img alt={'#'} src={editIcon}  />
@@ -189,7 +221,7 @@ const List = ({ rs, subPage, loadList }) => {
                                              ) : null}
 
                                             
-                                             <a style={{ marginLeft: 5 }}  onClick={() => deleteMe(row.id)}>
+                                             <a data-toggle="modal" data-target="#deleteModal" style={{ marginLeft: 5 }}  onClick={() => deleteMe(row.id)}>
                                                 <img alt={'#'} src={deleteIcon} width="20" />
                                              </a>
                                           </div>

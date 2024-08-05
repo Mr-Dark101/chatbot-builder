@@ -88,8 +88,6 @@ const Dashboard = () => {
    const history = useHistory();
    let { success, dataNotFound, isError, data, currentUser, deleteSuccess, message, updateBotData, openBotComposer,botType } = dashboard;
 
-   const { user, setUser } = useContext(UserContext);
-
    //const location = localStorage.getItem('tenent_id');
    const location = localStorage.getItem('org_unit_id');
    useEffect(() => {
@@ -381,10 +379,10 @@ const Dashboard = () => {
 
          {localStorage.getItem('org_unit_id') != '' ? (
             <>
-               <CreateBotComposer botType={botType} currentUser={currentUser} data={updateBotData} openModal={openBotComposer} onClose={closeModal} />
-               <ConfirmModal visible={isConfirm} handleOk={handleSubmitTrigger} okText="Delete" modalTitle="Delete Bot" confirmLoading={!isUpdatedList} modalText={confirmationTxt} modalInfo={confirmationInfo} handleCancel={confirmClose} />
-              <ConfirmModalPublish visible={isConfirmPublish} publishStatus={publishStatus} handleOk={handleSubmitTriggerPublish} okText={okText} modalTitle={modalTitle} confirmLoading={!isUpdatedList} modalText={confirmationTxt} modalInfo={confirmationInfo} handleCancel={confirmClosePublish} />
-              <AlertModal visible={isAlert} handleOk={alertClose} confirmLoading={!isUpdatedList} modalText={confirmationTxt} okText={okText} modalTitle={modalTitle} modalInfo={confirmationInfo} handleCancel={alertClose} />
+              <CreateBotComposer botType={botType} currentUser={currentUser} data={updateBotData} openModal={openBotComposer} onClose={closeModal} />
+              <ConfirmModal isDelete visible={isConfirm} handleOk={handleSubmitTrigger} okText="Delete" modalTitle="Delete Bot" modalText={confirmationTxt} modalInfo={confirmationInfo} handleCancel={confirmClose} />
+              <ConfirmModalPublish isDelete={false} visible={isConfirmPublish} handleOk={handleSubmitTriggerPublish} okText={okText} modalTitle={modalTitle} modalText={confirmationTxt} modalInfo={confirmationInfo} handleCancel={confirmClosePublish} />
+              <AlertModal isDelete={false} visible={isAlert} handleOk={alertClose} confirmLoading={!isUpdatedList} modalText={confirmationTxt} okText={okText} modalTitle={modalTitle} modalInfo={confirmationInfo} handleCancel={alertClose} />
                <div className="head" style={{ display: 'none' }}>
                   <div className="head-rt">
                      <h4 class="box-title m-0">Create a bot</h4>
@@ -439,7 +437,7 @@ const Dashboard = () => {
                                           confirmationTxt: `You're about to delete this bot.`,
                                           confirmationInfo: ['The bot can not be retrieved once deleted.', 'However, you can still access your chat history with the bot.'],
                                           currentObject: obj,
-                                       });
+                                       });    
                                     }}
 
                                     onPublishCustom={(obj) => {

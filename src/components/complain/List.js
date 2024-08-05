@@ -516,7 +516,7 @@ const csvData = [
               initialEndDate={initialEndDate}
             />
             <CSVLink className="btn export-btn" filename="ticket.csv" data={csvData}>
-              <i class="fa fa-download"></i> Export
+              <i class="fa fa-download"></i> Download Report
             </CSVLink>
           </div>
         </div>

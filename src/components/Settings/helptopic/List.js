@@ -8,6 +8,7 @@ import editIcon from '../../../assets/edit.svg';
 import deleteIcon from '../../../assets/deleteicon.svg';
 import { Form, TextField, SelectField, SubmitButton, CheckBoxField, TextGroupField, TextAreaField } from '../../crud/FormElements';
 
+import ConfirmModal from '../../../SharedComponent/ConfirmModal/Modal';
 
 
 
@@ -35,6 +36,12 @@ const List = ({ rs, subPage, loadList }) => {
    const [delId, setDelId] = useState(false);
    const [showAlertAll, setShowAlertAll] = useState(false);
    const [showAlertAllActive, setShowAlertAllActive] = useState(false);
+
+   const [modalText, setModalText] = useState("");
+   const [modalType, setModalType] = useState("");
+   const [modalTitle, setModalTitle] = useState("");
+   const [okText, setOkText] = useState("");
+   const [modalId, setModalId] = useState(""); 
 
    const [checkedAll, setCheckedAll] = useState(false);
   const [checked, setChecked] = useState(false);
@@ -143,21 +150,22 @@ const List = ({ rs, subPage, loadList }) => {
    }
 
    const deleteAll = async (status_id) => {
-
       if(status_id == 0){
-         setShowAlertAll(true);
-      }
-
-
-       if(status_id == 1){
-         setShowAlertAllActive(true);
+         modalSettings("inActiveModal", "Inactive Record", "Are you sure you want to inactive selected record?", "Inactive");
       }
       
-     
-     
-      
+      if(status_id == 1){
+         modalSettings("activeModal", "Active Record", "Are you sure you want to active selected record?", "Active");
+      }      
    }
 
+   const modalSettings = (modalId, title, desc, okText) => {
+      setModalId(modalId);
+      setModalTitle(title);
+      setModalText(desc);
+      setOkText(okText);
+      setModalType(modalId);
+   };
 
    const deleteAllSeleted = async (status_id) => {
 
@@ -414,6 +422,22 @@ const selCat = (e) => {
          )}
 
 
+
+         <ConfirmModal 
+            modalText={modalText}
+            handleOk={
+               ()=>{
+                  if(modalType === "activeModal"){
+                     deleteAllSeleted(1);
+                  }else{
+                     deleteAllSeleted(0);
+                  }
+               }
+            } 
+            modalTitle={modalTitle}
+            okText={okText}
+            modalId={modalId}
+          />
          
 
          <div className="page_data_setting">
@@ -435,13 +459,15 @@ const selCat = (e) => {
                              title='Action '
                            >
                              <Dropdown.Item
-                               onClick={() => deleteAll(1)}
+                                 data-toggle="modal" data-target="#activeModal" 
+                                 onClick={() => deleteAll(1)}
                              >
                                Mark as active
                              </Dropdown.Item>
 
                              <Dropdown.Item
-                               onClick={() => deleteAll(0)}
+                                 data-toggle="modal" data-target="#inActiveModal"
+                                 onClick={() => deleteAll(0)}
                              >
                                Mark as inactive
                              </Dropdown.Item>
@@ -491,7 +517,7 @@ const selCat = (e) => {
                               <th style={{fontFamily: 'Lexend Deca Medium',fontSize: '12px'}}><b>STATUS</b></th>
                               <th style={{fontFamily: 'Lexend Deca Medium',fontSize: '12px'}}><b>DEPARTMENT</b></th>
                               <th style={{fontFamily: 'Lexend Deca Medium',fontSize: '12px'}}><b>CUSTOM FIELDS</b></th>
-                              <th style={{fontFamily: 'Lexend Deca Medium',fontSize: '12px', 'textAlign': 'right'}}>ACTIONS</th>
+                              <th style={{fontFamily: 'Lexend Deca Medium',fontSize: '12px'}}>ACTIONS</th>
                            </tr>
                         </thead>
                         <tbody>
@@ -526,9 +552,9 @@ const selCat = (e) => {
                                     <td width="20%" style={{fontFamily: 'Lexend Deca Light', fontSize:'12px'}}>
                                        {getCustomfield(row.custom_field)}
                                     </td>
-                                    <td style={{ textAlign: 'end' }}>
+                                    <td>
                                       
-                                       <a style={{ marginLeft: 5 }}  onClick={() => subPage(<Edit loadList={loadList} retrieveList={retrieveList} rs={row} />)}>
+                                       <a onClick={() => subPage(<Edit loadList={loadList} retrieveList={retrieveList} rs={row} />)}>
                                           
                                           <img alt={'#'} src={editIcon}  />
                                        </a>

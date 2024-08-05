@@ -7,6 +7,7 @@ import Create from './Create';
 import editIcon from '../../../assets/edit.svg';
 import deleteIcon from '../../../assets/deleteicon.svg';
 import { Form, TextField, SelectField, SubmitButton, CheckBoxField, TextGroupField, TextAreaField } from '../../crud/FormElements';
+import ConfirmModal from '../../../SharedComponent/ConfirmModal/Modal';
 
 
 
@@ -41,6 +42,12 @@ const List = ({ rs, subPage, loadList }) => {
   const [showAlertSuccess, setShowAlertSuccess] = useState(false);
 
   const [customFieldList, setCustomFieldList] = useState([]);
+
+  const [modalText, setModalText] = useState([]);
+  const [modalType, setModalType] = useState([]);
+  const [modalTitle, setModalTitle] = useState([]);
+  const [okText, setOkText] = useState([]);
+  const [modalId, setModalId] = useState([]);
 
   const inputElement = useRef([]);
    useEffect(() => {
@@ -80,10 +87,20 @@ const List = ({ rs, subPage, loadList }) => {
 
    const deleteMe = (id) => {
       setDelId(id);
-      setShowAlert(true);
+      modalSettings("deleteModal", "Delete Record", "Are you sure you want to delete this record?", "Delete");
+   };
+
+
+   const modalSettings = (modalId, title, desc, okText) => {
+      setModalId(modalId);
+      setModalTitle(title);
+      setModalText(desc);
+      setOkText(okText);
+      setModalType(modalId);
    };
 
    const deleteRow = (id) => {
+      debugger;
       CrudService.deleteRow(id, 'helpcustomfield', true).then(
          (response) => {
             generateToast("Custom Field has been deleted!", 'Success!');
@@ -122,12 +139,8 @@ const List = ({ rs, subPage, loadList }) => {
       );
    }
 
-   const deleteAll = async () => {
-
-      setShowAlertAll(true);
-     
-     
-      
+   const deleteAll = async () => {     
+      modalSettings("deleteAllModal", "Delete Record", "Are you sure you want to delete selected record?", "Delete");      
    }
 
 
@@ -142,7 +155,7 @@ const List = ({ rs, subPage, loadList }) => {
          }
       }
       setSuccessful(true);
-      generateToast("Training data has been deleted!", 'Success!');
+      generateToast("Custom fields has been deleted!", 'Success!');
 
       retrieveList()
       //setMessage("Training data has been deleted");
@@ -355,8 +368,22 @@ const selCat = (e) => {
             </SweetAlert>
          )}
 
+         <ConfirmModal 
+            modalText={modalText}
+            handleOk={
+               ()=>{
+                  if(modalType === "deleteAllModal"){
+                     deleteAllSeleted();
+                  }else{
+                     deleteRow(delId)
+                  }
+               }
+            } 
+            modalTitle={modalTitle}
+            okText={okText}
+            modalId={modalId}
+          />
 
-         
 
          <div className="page_data_setting">
             {setListDataComplete.length > 0 ? (
@@ -373,11 +400,14 @@ const selCat = (e) => {
 
                         {deleteShow && 
 
-                           <a class="danger" style={{ marginLeft: '15px', textAlign: 'center' }} 
-
-                           onClick={() => deleteAll()}>
-                           Delete All
-                        </a> 
+                           <a 
+                              class="danger" 
+                              style={{ marginLeft: '15px', textAlign: 'center' }} 
+                              data-toggle="modal" data-target="#deleteAllModal" 
+                              onClick={deleteAll}
+                              >
+                              Delete All
+                           </a> 
 
                         }
                         
@@ -455,7 +485,7 @@ const selCat = (e) => {
                                           <img alt={'#'} src={editIcon}  />
                                        </a>
 
-                                       <a style={{ marginLeft: 5 }}  onClick={() => deleteMe(row.id)}>
+                                       <a data-toggle="modal" data-target="#deleteModal" style={{ marginLeft: 5 }}  onClick={() => deleteMe(row.id)}>
                             
                                           <img alt={'#'} src={deleteIcon} width="20" />
                                        </a>

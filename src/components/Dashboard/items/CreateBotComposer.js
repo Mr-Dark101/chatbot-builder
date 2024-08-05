@@ -555,7 +555,7 @@ A menu-based chatbot presents users with a structured menu of options to choose 
             </SweetAlert>
             )}
          <AlertModal visible={isAlert} handleOk={alertCloseLink} confirmLoading={true} modalText={confirmationTxt} modalIcon={icon} modalInfo={confirmationInfo} buttonText={buttonText} handleCancel={alertClose} />
-         <ConfirmModal visible={isConfirm} okText= {"Yes"} modalTitle= {(data != null) ? 'Update Bot' : 'Create Bot'} handleOk={handleCreateBotSubmit} modalText={confirmationTxt} handleCancel={alertConfirmClose} />
+         <ConfirmModal style={{zIndex: '9999'}} visible={isConfirm} okText= {"Yes"} modalTitle= {(data != null) ? 'Update Bot' : 'Create Bot'} handleOk={handleCreateBotSubmit} modalText={confirmationTxt} handleCancel={alertConfirmClose} />
          
          <Modal open={openModal} onClose={handleCloseModal} aria-labelledby="create-bot" aria-describedby="create-the-new-bot" className={'_modal'}>
             {body}

@@ -111,7 +111,7 @@ const Edit = ({ rs, retrieveList, loadList }) => {
                         <>
                            <Formik enableReinitialize validationSchema={FormSchema} initialValues={formData} onSubmit={onSubmit}>
                               {({ setFieldValue, setFieldTouched, values, errors, touched }) => (
-                                 <Form className="av-tooltip tooltip-label-right" style={{ overflowY: 'scroll', height: '800px' }}>
+                                 <Form className="av-tooltip tooltip-label-right" style={{ overflowY: 'scroll'}}>
                                     <div className="row" style={{ marginLeft: '0px', marginRight: '0px' }}>
                                        <div className="col-9" style={{ paddingLeft: '0px', paddingRight: '0px' }}>
                                           <div className="field_section">

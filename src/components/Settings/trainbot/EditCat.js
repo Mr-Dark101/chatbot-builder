@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from 'react';
 
-import { TextFieldModal, SelectField, SubmitButtonModal, CheckBoxField, TextGroupField, TextAreaField, SwtichField } from '../../crud/FormElements';
+import { Form, TextFieldModal } from '../../crud/FormElements';
 import * as Yup from 'yup';
 import CrudService from '../../../services/crud.service';
-import { Link } from 'react-router-dom';
-import { Tooltip } from '@mui/material';
-import { Formik, Form, Field, ErrorMessage, useFormikContext, useField, useFormik } from 'formik';
-import {toast } from 'react-toastify';
 import { generateToast } from '../../../utils';
-const EditCat = ({ rs, retrieveList, loadList,closeModal }) => {
+import Modal from 'react-bootstrap/Modal';
+import { useFormikContext } from 'formik';
+
+const EditCat = ({ rs, retrieveList, loadList,closeModal, visible, modalTitle, onHide }) => {
    const [validationSchema, setValidationSchema] = useState({});
 
    const [gptCatList, setGptCatList] = useState([]);
@@ -23,7 +22,18 @@ const EditCat = ({ rs, retrieveList, loadList,closeModal }) => {
 
    
 
-   
+   function SubmitButtonModal(props){
+      const { title, ...rest } = props;
+      const { isSubmitting } = useFormikContext();
+      
+      return (
+          <>
+            <button type="save" class="btn-sm btn-primary customfontWeight border create-team-btn rounded-pill"  {...rest} disabled={isSubmitting}>
+               {title}
+            </button>	
+          </>
+      )
+  }
 
    const [formData, setFormData] = useState({
       name: rs.name,
@@ -62,40 +72,47 @@ const EditCat = ({ rs, retrieveList, loadList,closeModal }) => {
 
    return (
       <>
-         <div class="row">
-            <div class="col-12">
-               <div class="">
-                  <div>
-                     {!successful && (
-                        <>
-                           <Formik enableReinitialize validationSchema={FormSchema} initialValues={formData} onSubmit={onSubmit}>
-                              {({ setFieldValue, setFieldTouched, values, errors, touched }) => (
-                                 <Form className="av-tooltip tooltip-label-right" >
-                                    <div className="field_section">
-                                          <TextFieldModal name="name" label="Name" icon="check-square" placeholder="Name" />
-                                       </div>
-                                    <div className="mt-20">
-                                       <SubmitButtonModal title="Update" className="ant-btn ant-btn-primary" />
-                                       <button onClick={() => closeModal()} className="ant-btn ant-btn-default ms-20">
-                                          Cancel
-                                       </button>
-                                    </div>
-                                 </Form>
-                              )}
-                           </Formik>
-                        </>
-                     )}
-                     {message && (
-                        <div className="form-group">
-                           <div className={successful ? 'alert alert-success' : 'alert alert-danger'} role="alert">
-                              {message}
+         <Modal
+            onHide={onHide}
+            show={visible}
+            size="md"
+            aria-labelledby="contained-modal-title-vcenter"
+            centered
+         > 
+            <div class="modal-content modalBorderRadius">
+
+               <div class="modal-header bg-white modalBorderRadius" style={{padding: "0.5rem 1rem"}}>
+                     <h4 class="modal-title ">{modalTitle}</h4>
+                     <button type="button" class="close createuser-close text-dark mr-0 pt-25 shadow-none font-weight-light" onClick={closeModal}>&times;</button>
+               </div>
+               <div class="modalBorderSpacer mx-2"></div>
+               <div class="modal-body">
+                     <div className="" >
+                        {!successful && (
+                           <Form enableReinitialize validationSchema={FormSchema} initialValues={formData} onSubmit={onSubmit}>
+                              <div className="field_section">
+                                 <TextFieldModal name="name" icon="check-square" placeholder="Category Name" />
+                              </div>
+
+                              <div>
+                                 <div class="modal-footer p-0 pt-3">
+                                    <button type="button" class="btn-sm border border-primary customfontWeight bg-white rounded-pill" onClick={closeModal}>Cancel</button>
+                                    <SubmitButtonModal title="Save" className="ant-btn-primary btn-sm border border-primary customfontWeight rounded-pill" />
+                                 </div>
+                              </div>
+                           </Form>
+                        )}
+                        {message && (
+                           <div className="form-group">
+                              <div className={successful ? 'alert alert-success' : 'alert alert-danger'} role="alert">
+                                 {message}
+                              </div>
                            </div>
-                        </div>
-                     )}
-                  </div>
+                        )}
+                     </div>
                </div>
             </div>
-         </div>
+         </Modal>
       </>
    );
 };

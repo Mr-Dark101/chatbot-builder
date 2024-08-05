@@ -32062,13 +32062,14 @@ img.away, img.busy, img.offline, img.online {
 }
 .menu-space{
   margin-left: 80px;
+  transition: 0.5s;
 }
 .grey-wrapper {
   background: #f0f0f0;
 }
 
 .dashboard-hld{
-  margin: 30px !important;
+  margin: 30px 30px 0 30px !important;
 }
 .dashboard-hld .home_top_section{
   border: 1px solid #DCDEDF;
@@ -32366,9 +32367,9 @@ img.away, img.busy, img.offline, img.online {
 .api_form_section .field_section a i{
   margin-left: 5px;
 }
-.api_form_section .field_section .react-select__control{
+/* .api_form_section .field_section .react-select__control{
   height: 41px;
-}
+} */
 .api_form_section .field_section p{
   font-weight: 400;
   font-size: 14px;
@@ -32845,7 +32846,7 @@ a.navbar-brand {
 
 span.brand-logo {
   z-index: 99;
-  top: 14px;
+  top: 5px;
   position: relative;
 }
 
@@ -33084,7 +33085,7 @@ input.custom-input {
     .complain_data_section{
       /* border: 1px solid #ccc; */
       border-radius: 0px 0px 5px 5px;
-      padding: 15px 10px;
+      padding: 15px 0px;
       border-top: 0;
     }
     .complain_data_section .table tr th{
@@ -33136,7 +33137,7 @@ input.custom-input {
     .search_box_section{
       margin: 0px 0px 0px;
       background-color: #fff;
-      padding: 15px 20px 10px;
+      padding: 15px 0px 10px;
       /* border: 1px solid #ccc; */
       border-bottom: 0px;
       border-radius: 0px 5px 0px 0px;
@@ -33764,7 +33765,7 @@ div.dt-container .dt-paging .dt-paging-button:not(.current){
 @media (min-width: 1100px) and (max-width: 1199.98px) {
   .vertical-layout.vertical-menu-modern .main-menu, 
   .vertical-layout.vertical-menu-modern .navbar .navbar-header, 
-  .vertical-layout.vertical-menu-modern.menu-collapsed .main-menu {
+  .vertical-layout.vertical-menu-modern.menu-collapsed .menu-fixed {
     width: 80px !important;
   }
 }
@@ -33929,4 +33930,88 @@ div.dt-container .dt-paging .dt-paging-button:not(.current){
 
 .hide-menu {
   display: none !important;
+}
+
+.open-menu-space {
+  margin-left: 260px !important;
+  transition: 0.5s;
+}
+
+.main-menu, .menu-fixed {
+  transition: 0.5s;
+}
+
+/* Modal stylyes */
+
+/* .modal-footer {
+  border-top: 0 !important;
+} */
+
+
+.modal-footer button{
+  font-weight: 400;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+
+#addTeamModal > .modal-dialog  {
+  width: 450px !important;
+}
+
+#addTeamModal .modal-body p  {
+  font-weight: 400 !important;
+  margin: 0;
+  font-size: 16px;
+}
+
+#addTeamModal .modal-header  {
+  border: 0 !important;
+}
+
+#addTeamModal hr {
+  margin: 0 15px;
+}
+
+.createuser-close{
+  border: none;
+  padding-top: 0 !important;
+  background: 0;
+  padding: 0;
+  padding-bottom: 0 !IMPORTANT;
+  line-height: 15px;
+  font-weight: 300;
+  font-size: 27px;
+}
+
+.css-79ws1d-MuiModal-root {
+  z-index: 1000 !important;
+}
+
+.css-1u2w381-MuiModal-root-MuiDrawer-root{
+  z-index: 1050 !important;
+}
+
+.bot-drawer-spinner {
+  position: fixed;
+  left: 0;
+  right: 0;
+  width: 100%;
+  top: 0;
+  bottom: 0;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #ffffff75;
+  z-index: 9;
+}
+
+.api_box_section .img_box {
+  width: 50px !important;
+}
+
+.api_box_section .text_section {
+  width: 260px !important;
+  margin-right: 10px;
 }

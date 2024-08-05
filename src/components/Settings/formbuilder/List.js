@@ -12,6 +12,7 @@ import editIcon from '../../../assets/edit.svg';
 import deleteIcon from '../../../assets/deleteicon.svg';
 import { createTheme, ThemeProvider, styled } from "@mui/material/styles";
 import { generateToast } from '../../../utils';
+import ConfirmModal from '../../../SharedComponent/ConfirmModal/Modal';
 
 
 const BlueOnGreenTooltip = styled(({ className, ...props }) => (
@@ -30,6 +31,13 @@ const List = ({ rs, subPage, loadList }) => {
    const [successful, setSuccessful] = useState(false);
    const [message, setMessage] = useState();
    const [delId, setDelId] = useState(false);
+   const [modalText, setModalText] = useState([]);
+   const [modalType, setModalType] = useState([]);
+   const [modalTitle, setModalTitle] = useState([]);
+   const [okText, setOkText] = useState([]);
+   const [modalId, setModalId] = useState([]);
+
+
 
    useEffect(() => {
       retrieveList();
@@ -59,7 +67,15 @@ const List = ({ rs, subPage, loadList }) => {
 
    const deleteMe = (id) => {
       setDelId(id);
-      setShowAlert(true);
+      modalSettings("deleteModal", "Delete Form", "Are you sure you want to delete this form?", "Delete");
+   };
+
+   const modalSettings = (modalId, title, desc, okText) => {
+      setModalId(modalId);
+      setModalTitle(title);
+      setModalText(desc);
+      setOkText(okText);
+      setModalType(modalId);
    };
 
    const deleteRow = (id) => {
@@ -107,6 +123,20 @@ const List = ({ rs, subPage, loadList }) => {
          Are you sure you want to delete this form?
          </SweetAlert>  
          )}
+
+         {/* Added DC COnfirmation Modal */}
+         <ConfirmModal 
+            modalText={modalText}
+            handleOk={
+               ()=>{
+                  deleteRow(delId)
+               }
+            } 
+            modalTitle={modalTitle}
+            okText={okText}
+            modalId={modalId}
+          />
+
 
          <div className="page_data_setting">
             {listData.length > 0 ? (
@@ -161,7 +191,7 @@ const List = ({ rs, subPage, loadList }) => {
                                           
                                           <img alt={'#'} src={editIcon}  />
                                        </a>
-                                       <a style={{ marginLeft: 3 }}  onClick={() => deleteMe(row.id)}>
+                                       <a data-toggle="modal" data-target="#deleteModal" style={{ marginLeft: 3 }}  onClick={() => deleteMe(row.id)}>
                                           
                                           <img alt={'#'} src={deleteIcon} width="20" />
                                        </a>

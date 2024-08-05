@@ -9,6 +9,7 @@ import CreateImport from './CreateImport';
 import editIcon from '../../../assets/edit.svg';
 import deleteIcon from '../../../assets/deleteicon.svg';
 import { Form, TextField, SelectField, SubmitButton, CheckBoxField, TextGroupField, TextAreaField } from '../../crud/FormElements';
+import ConfirmModal from '../../../SharedComponent/ConfirmModal/Modal';
 
 
 import CatList from './CatList';
@@ -43,6 +44,15 @@ const List = ({ rs, subPage, loadList }) => {
   const [showAlertSuccess, setShowAlertSuccess] = useState(false);
 
   const inputElement = useRef([]);
+
+  const [modalText, setModalText] = useState("");
+  const [modalType, setModalType] = useState("");
+  const [modalTitle, setModalTitle] = useState("");
+  const [okText, setOkText] = useState("");
+  const [modalId, setModalId] = useState("");
+  const [visible, setVisible] = useState(false);
+
+
    useEffect(() => {
       retrieveMasterList('gptcat');
       retrieveList();
@@ -78,21 +88,28 @@ const List = ({ rs, subPage, loadList }) => {
             
          });
    };
-   const loadModal = (title, children) => {
+   const loadModal = (visible) => {
       setModalValue(
-         <ModalPopup show={'true'} close={closeModal} title={title}>
-            {children}
-         </ModalPopup>
+         <CreateImport visible={visible} closeModal={closeModal} modalTitle="Upload Training Data" retrieveList={retrieveList} loadList={loadList} />
       );
    };
 
    const closeModal = () => {
-      setModalValue('');
+      loadModal(false);
    };
 
    const deleteMe = (id) => {
       setDelId(id);
-      setShowAlert(true);
+      // setShowAlert(true);
+      modalSettings("deleteModal", "Delete Training Data", "Are you sure you want to delete this record?", "Delete");
+   };
+   
+   const modalSettings = (modalId, title, desc, okText) => {
+      setModalId(modalId);
+      setModalTitle(title);
+      setModalText(desc);
+      setOkText(okText);
+      setModalType(modalId);
    };
 
    const deleteRow = (id) => {
@@ -135,13 +152,8 @@ const List = ({ rs, subPage, loadList }) => {
    }
 
    const deleteAll = async () => {
-
-      setShowAlertAll(true);
-     
-     
-      
+      modalSettings("deleteAllModal", "Delete Training Data", "Are you sure you want to delete selected record?", "Delete");      
    }
-
 
    const deleteAllSeleted = async () => {
 
@@ -279,7 +291,7 @@ const selCat = (e) => {
 
  const importData = () => {
       
-      loadModal('Upload Training Data',<CreateImport closeModal={closeModal} title="Upload Training Data" retrieveList={retrieveList} loadList={loadList} />)
+      loadModal(true)
  }
  
    return (
@@ -364,7 +376,22 @@ const selCat = (e) => {
          )}
 
 
-         
+         {/* Added DC COnfirmation Modal */}
+         <ConfirmModal 
+            modalText={modalText}
+            handleOk={
+               ()=>{
+                  if(modalType === "deleteAllModal"){
+                     deleteAllSeleted();
+                  }else{
+                     deleteRow(delId)
+                  }
+               }
+            } 
+            modalTitle={modalTitle}
+            okText={okText}
+            modalId={modalId}
+          />
 
          <div className="page_data_setting">
             {setListDataComplete.length > 0 ? (
@@ -381,7 +408,7 @@ const selCat = (e) => {
                         {deleteShow && 
 
                            <a class="danger" style={{ marginLeft: '15px', textAlign: 'center' }} 
-
+                           data-toggle="modal" data-target="#deleteAllModal" 
                            onClick={() => deleteAll()}>
                            Delete All
                         </a> 
@@ -502,7 +529,7 @@ const selCat = (e) => {
                                           
                                           <img alt={'#'} src={editIcon}  />
                                        </a>
-                                       <a style={{ marginLeft: 5 }}  onClick={() => deleteMe(row.id)}>
+                                       <a data-toggle="modal" data-target="#deleteModal" style={{ marginLeft: 5 }}  onClick={() => deleteMe(row.id)}>
                                           
                                           <img alt={'#'} src={deleteIcon} width="20" />
                                        </a>

@@ -172,7 +172,9 @@ const apiHandleConditionMaster = (conditionType,triggerType,data) => {
     
       <div class="row">       
         <div class="col-12">
-          <div className="page_data_clinic api_form_section" style={{overflowY: 'scroll',height:800}}>
+          <div className="page_data_clinic api_form_section" 
+          // style={{overflowY: 'scroll',height:800}}
+          >
           <div>
             
              {!successful && (

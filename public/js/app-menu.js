@@ -661,20 +661,20 @@
             $('.main-menu-content').children('ul.menu-content').remove();
 
             // Title
-            var menuTitle = $this.find('span.menu-title').clone(),
-              tempTitle,
-              tempLink;
-            if (!$this.hasClass('has-sub')) {
-              tempTitle = $this.find('span.menu-title').text();
-              tempLink = $this.children('a').attr('href');
-              if (tempTitle !== '') {
-                menuTitle = $('<a>');
-                menuTitle.attr('href', tempLink);
-                menuTitle.attr('title', tempTitle);
-                menuTitle.text(tempTitle);
-                menuTitle.addClass('menu-title');
-              }
-            }
+            // var menuTitle = $this.find('span.menu-title').clone(),
+            //   tempTitle,
+            //   tempLink;
+            // if (!$this.hasClass('has-sub')) {
+            //   tempTitle = $this.find('span.menu-title').text();
+            //   tempLink = $this.children('a').attr('href');
+            //   if (tempTitle !== '') {
+            //     menuTitle = $('<a>');
+            //     menuTitle.attr('href', tempLink);
+            //     menuTitle.attr('title', tempTitle);
+            //     menuTitle.text(tempTitle);
+            //     menuTitle.addClass('menu-title');
+            //   }
+            // }
             // menu_header_height = ($('.main-menu-header').length) ? $('.main-menu-header').height() : 0,
             // fromTop = menu_header_height + $this.position().top + parseInt($this.css( "border-top" ),10);
             var fromTop;

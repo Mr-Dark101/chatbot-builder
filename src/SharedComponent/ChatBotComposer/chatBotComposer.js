@@ -47,6 +47,8 @@ const ChatBotComposer = ({onClose}) => {
     const [simpleValues, setSimpleValues] = useState([]);
 
     const [backMenuId, setBackMenuId] = useState('');
+    const [botId, setBotId] = useState([]);
+    const [botChildId, setBotChildId] = useState([]);
 
 
     const [formKey, setFormKey] = useState(0);
@@ -183,12 +185,12 @@ const ChatBotComposer = ({onClose}) => {
                     }
 
                     if(data[i].triggerType == 'Complain'){
-                       
+                       debugger;
                         const complainMenu = [buildComplainMenu('Open Ticket','1','open-tiket'),buildComplainMenu('Ticket Status','2','tiket-status')]
 
                         trigger = {
                                 id: createGuid(),
-                                response: "start",
+                                response: "Please type an option number of your desired service.",
                                 type:"TEXT",
                                 menus: complainMenu,
                              }
@@ -689,19 +691,28 @@ const ChatBotComposer = ({onClose}) => {
                                  return false;
                      }
 
+                      let childDataMain = "";
+                      let botText = "";
+                      if(botId && botId.length){
+                        botText = botId.find(res=> res.view_id === Number(text));
+                        if(botText) {
+                            text = String(botText.id);
+                        }
+                        childDataMain = complainData.filter(rs => rs.parent_id == text);
+                      } else {
+                        if(botChildId && botChildId.length){
+                            botText = botChildId.find(res=> res.view_id === Number(text));
+                            if(botText) {
+                                text = String(botText.id);
+                            }
+                            // childDataMain = complainData.filter(rs => rs.id == text);
+                        }
+                      }
                       
-                      
-                      let childDataMain = complainData.filter(rs => rs.parent_id == text);
-
                       
                       if(childDataMain){
-                            console.log(childDataMain)
+                        console.log(childDataMain)
                       }
-
-                       
-                      
-
-                     
 
                       const parentCustomField = complainData.filter(rs => rs.id == text)[0]?.custom_field;
                       
@@ -714,15 +725,26 @@ const ChatBotComposer = ({onClose}) => {
                                   parent_id:text
                               })
                                 childDataMain.map((oo,i) => {
-                                    
+                                    setBotChildId((res)=>[...res,{
+                                        view_id: oo.view_id,
+                                        id: oo.id
+                                    }]);
 
-                                      formMenu.push(buildCustomMenu(oo.name,oo.id,oo.id))
-                                    
+                                    formMenu.push(buildCustomMenu(oo.name,oo.view_id,oo.id))
                                 }); 
+                                formMenu.sort((a, b)=>{
+                                    if(a.view_id < b.view_id){
+                                        return -1;
+                                    }
+                                    if(a.view_id > b.view_id){
+                                        return 1;
+                                    }
+                                    return 0;
+                                })
 
                                 trigger = {
                                     id: createGuid(),
-                                    response: 'Please select an option to create a ticket',
+                                    response: 'Please type an option number from the list below.',
                                     type:"TEXT",
                                     menus: formMenu,
                                  }
@@ -731,9 +753,9 @@ const ChatBotComposer = ({onClose}) => {
                                  setInit({
                                     ...init,
                                         messages: !$.isEmptyObject(trigger) ? [...init.messages, {
-                                            text: text,
+                                            text: botText.view_id,
                                             id: "me"
-                                        }, trigger] : [...init.messages, {text: text, id: "me"}],
+                                        }, trigger] : [...init.messages, {text: botText.view_id, id: "me"}],
                                         data:  []
                                     });
                                  msgArea.current.value = "";
@@ -742,10 +764,6 @@ const ChatBotComposer = ({onClose}) => {
                             
                             const cRs = complainData.filter(rs => rs.id == saveComplain.parent_id)[0];
                             const childData = complainData.filter(rs => rs.id == saveComplain.parent_id)[0]?.child;
-                            
-                           
-                           
-                            
                             
                             let customField = [];
                             if(customFieldKey == 0){
@@ -888,9 +906,6 @@ const ChatBotComposer = ({onClose}) => {
 
                       }
                       
-
-
-                      
                  }
                  if(triggerType == 'F'){
 
@@ -1009,7 +1024,7 @@ const ChatBotComposer = ({onClose}) => {
                            
                     
 
-                
+                setBotId([]);
                 
             }
             
@@ -1024,46 +1039,56 @@ const ChatBotComposer = ({onClose}) => {
     const startFormComplain = (data,xformdata) => {
 
         // const backMenu = [buildCustomMenu('Back','99',backMenuId)]
-            trigger = {
+        trigger = {
             id: createGuid(),
             response: data.name + "<br/>What can we help you with<br />",
 
             type:"TEXT",
             menus: [],
-         }
+        }
 
         const preMsg = data.name + "<br/>What can we help you with<br />";      
                        
-                        
-          
-                        let formMenu = [];
-                            
-                                xformdata.map((oo,i) => {
-                                    if(oo.parent_id == 0){
-                                      formMenu.push(buildCustomMenu(oo.name,oo.id,oo.id))
-                                    }
-                                }); 
-                           
-                            trigger = {
-                                    id: createGuid(),
-                                    response: preMsg + 'Enter ' + xformdata[formKey].label,
+                    
+        setBotId([]);
+        let formMenu = [];
+            
+        xformdata.map((oo,i) => {
+            if(oo.parent_id == 0){
+                const view_id = (oo.view_id)? oo.view_id : oo.id;
+                setBotId((res)=>[...res,{
+                    view_id: view_id,
+                    id: oo.id
+                }]);
+                formMenu.push(buildCustomMenu(oo.name, view_id,oo.id))
+                formMenu.sort((a, b)=>{
+                    if(a.view_id < b.view_id){
+                        return -1;
+                    }
+                    if(a.view_id > b.view_id){
+                        return 1;
+                    }
+                    return 0;
+                })
+            }
+        }); 
+    
+        trigger = {
+            id: createGuid(),
+            response: preMsg,
+            // response: preMsg + 'Enter ' + xformdata[formKey].label,
+            type:"TEXT",
+            menus: formMenu,
+        }               
 
-                                    type:"TEXT",
-                                    menus: formMenu,
-                                 }
-
-
-                        
-                            
-                           
-         return trigger;
+        return trigger;
 
     }
 
     const startForm = (data,xformdata) => {
 
         // const backMenu = [buildCustomMenu('Back','99',backMenuId)]
-            trigger = {
+        trigger = {
             id: createGuid(),
             response: data.name + '<br/>' + data.formStartText + "<br />Enter any key",
 
@@ -1073,61 +1098,55 @@ const ChatBotComposer = ({onClose}) => {
 
         const preMsg = data.name + '<br/>' + data.formStartText + "<br />";      
                        
-                    
-                        
-                            let formMenu = [];
-                            if(xformdata[formKey].type == 'option'){
-                                xformdata[formKey].option.map((oo,i) => {
+        let formMenu = [];
+        if(xformdata[formKey].type == 'option'){
+            xformdata[formKey].option.map((oo,i) => {
+                formMenu.push(buildCustomMenu(oo.value,oo.key,oo.key))
+            }); 
+        }
+        trigger = {
+            id: createGuid(),
+            response: preMsg + 'Enter ' + xformdata[formKey].label,
 
-                                      formMenu.push(buildCustomMenu(oo.value,oo.key,oo.key))
-                                }); 
-                            }
-                            trigger = {
-                                    id: createGuid(),
-                                    response: preMsg + 'Enter ' + xformdata[formKey].label,
+            type:"TEXT",
+            menus: formMenu,
+        }
 
-                                    type:"TEXT",
-                                    menus: formMenu,
-                                 }
-
-
-                                
-
+        let newKey = Math.abs(formKey) + 1;
+        setFormKey(newKey)
                            
-                                let newKey = Math.abs(formKey) + 1;
-                                setFormKey(newKey)
-                           
-         return trigger;
+        return trigger;
 
     }
     const buildCustomMenu = (label,key,trigger_id) => {
 
 
-         return {
-                                                "id": createGuid(),
-                                                "text": key + ' - ' +  label,
-                                                "toTriggerId": createGuid(),
-                                                "toTrigger": {
-                                                    "id": createGuid(),
-                                                    "name": 'Back',
-                                                    "values": [
-                                                         key
-                                                    ],
-                                                    "fallBackResponse": "",
-                                                    "loopBackText": [
-                                                        ""
-                                                    ],
-                                                    "loopBackTriggerId": trigger_id,
-                                                    "menus": [],
-                                                    "startTrigger": false,
-                                                    
-                                                    "type": "TEXT",
-                                                    "routeToAgent": false,
-                                                    "response": "",
-                                                    "urls": [],
-                                                    "caption": ""
-                                                }
-                                            }
+        return {
+            view_id: key,
+            "id": createGuid(),
+            "text": key + ' - ' +  label,
+            "toTriggerId": createGuid(),
+            "toTrigger": {
+                "id": createGuid(),
+                "name": 'Back',
+                "values": [
+                        key
+                ],
+                "fallBackResponse": "",
+                "loopBackText": [
+                    ""
+                ],
+                "loopBackTriggerId": trigger_id,
+                "menus": [],
+                "startTrigger": false,
+                
+                "type": "TEXT",
+                "routeToAgent": false,
+                "response": "",
+                "urls": [],
+                "caption": ""
+            }
+        }
 
     }
 

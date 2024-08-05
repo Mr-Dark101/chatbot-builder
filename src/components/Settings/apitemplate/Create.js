@@ -122,7 +122,9 @@ const Create = ({ rs, retrieveList, loadList }) => {
          <div class="row">
             <div class="col-12">
                <div>
-                  <div className="page_data_clinic api_form_section" style={{ overflowY: 'scroll', height: 800 }}>
+                  <div className="page_data_clinic api_form_section" 
+                  // style={{ overflowY: 'scroll', height: 800 }}
+                  >
                      {!successful && (
                         <Form enableReinitialize validationSchema={FormSchema} initialValues={formData} onSubmit={onSubmit}>
                            <h5 className="main_heading">Add New API Template</h5>

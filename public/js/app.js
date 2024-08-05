@@ -1156,5 +1156,14 @@ var initial = GetInitial(initialName);
 var color = GetRandomColor(initial);
 $("#initials").append("<div class='"+color+"' style='height:80%;margin-top:1px'><span class='avatar-content'>"+ initial +"</span><span class='avatar-status-online'></span></div>");
 
-
-
+setTimeout(()=>{
+  debugger;
+  const doc = document.getElementById("main-menu");
+  doc.addEventListener('click',function(){
+    $("#main-menu").toggleClass("menu-fixed");
+    $(".main-section").toggleClass("open-menu-space");
+    $(".toggled-menu").toggleClass("d-none");
+    $(".full-logo").toggleClass("d-none");
+    $(".half-logo").toggleClass("d-none");
+  })
+},2000)

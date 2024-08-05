@@ -112,19 +112,24 @@ const NavBar = () => {
   <div className="pace-progress-inner"></div>
 </div>
 <div className="pace-activity"></div></div>
-      <div className="main-menu menu-fixed menu-light menu-accordion menu-shadow menu-dark"
+      <div id="main-menu" className="main-menu menu-fixed menu-light menu-accordion menu-shadow menu-dark"
          data-scroll-to-active="true">
-      <div className="navbar-header expanded">
+      <div className="navbar-header menu-collapsed">
         <ul className="nav navbar-nav flex-row">
-          <li className="nav-item mr-auto">
+          <li className="nav-item mr-auto" style={{marginRight: 'auto'}}>
+
+            <a className="navbar-brand m-0 p-0" href="../../../html/ltr/vertical-menu-template/index.html">
+              <span style={{ width: '190px' }}>
+                <img src={logo} alt="Chatbot" style={{ marginTop: '0px', maxWidth: '100%', width: '50%' }} className="half-logo d-none" />
+              </span>
+            </a>
             <a className="navbar-brand m-0" href="../../../html/ltr/vertical-menu-template/index.html">
               <span className="brand-logo" style={{ width: '190px' }}>
-                <img src={logo} alt="Chatbot" style={{ marginTop: '15px', maxWidth: '100%', width: '50%' }} className="half-logo d-none" />
                 <img src={logo} alt="Chatbot" style={{ maxWidth: '40px' }} className="full-logo" />
               </span>
             </a>
           </li>
-          <li className="nav-item nav-toggle">
+          {/* <li className="nav-item nav-toggle">
             <a className="nav-link modern-nav-toggle pr-0" data-toggle="collapse">
               <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-x d-block d-xl-none text-white toggle-icon font-medium-4">
                 <line x1="18" y1="6" x2="6" y2="18" />
@@ -135,7 +140,17 @@ const NavBar = () => {
                 <circle cx="12" cy="12" r="3" />
               </svg>
             </a>
-          </li>
+          </li> */}
+
+         <li class="nav-item nav-toggle">
+            <a class="nav-link modern-nav-toggle pr-0" data-toggle="collapse" style={{display: 'block', background: '#0000'}}>
+               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-circle d-none d-xl-block collapse-toggle-icon font-medium-4" style={{
+                  width: '19px'
+               }}>
+            <circle className='toggled-menu d-none' cx="12" cy="12" r="3"></circle>
+            <circle cx="12" cy="12" r="10"></circle></svg> </a>
+         </li>
+
         </ul>
       </div>
       <div class="shadow-bottom"></div>
@@ -205,15 +220,15 @@ const NavBar = () => {
                    href={`${STRINGS.ROUTES.ROOT}?org=${localStorage.getItem('userId')}`}> <i
                       class="fas fa-network-wired"></i> 
                    <span class="menu-title text-truncate" 
-                      data-i18n="Chat">Chatbot Builder</span>&nbsp;  
+                      data-i18n="Chat">Bot Builder</span>&nbsp;  
                    </a>
                 </li>
-
+{/* 
                 <li id="channelsLi" className={`nav-item ${location.pathname === "/complain" ? 'active' : ''}`}>
                    <a class="d-flex align-items-center"
                    href={`${STRINGS.ROUTES.COMPLAIN}`}><i class="fa fa-exclamation" style={{"text-align": "center"}}></i><span
                       class="menu-title text-truncate" data-i18n="complain">Complaint</span></a>
-                </li>
+                </li> */}
 
                 <li id="channelsLi" class=" nav-item">
                    <a class="d-flex align-items-center"
@@ -234,8 +249,9 @@ const NavBar = () => {
                 <li id="usermanagementLi" class="nav-item">
                    <a class="d-flex align-items-center"
                    href="https://eoceanwab.com/eoceanwab/usermanagement/summary">
-                   <i className='fa fa-shield'></i>
-                    <span class="menu-title text-truncate" data-i18n="Calendar">Users</span>
+                   {/* <i className='fa fa-shield'></i> */}
+                     <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shield"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                     <span class="menu-title text-truncate" data-i18n="Calendar">Users</span>
                    </a>
                </li>  
 

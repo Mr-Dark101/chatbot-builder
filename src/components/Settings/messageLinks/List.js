@@ -6,6 +6,7 @@ import SweetAlert from 'react-bootstrap-sweetalert';
 import editIcon from '../../../assets/edit.svg';
 import deleteIcon from '../../../assets/deleteicon.svg';
 import linkIcon from '../../../assets/link-icon.png';
+import ConfirmModal from '../../../SharedComponent/ConfirmModal/Modal';
 
 import Edit from './Edit';
 import { toast } from 'react-toastify';
@@ -30,6 +31,14 @@ const [showModalCls, setShowModalCls] = useState(false);
 const [loader, setLoader] = useState(false)
 const [isPublished, setIsPublished] = useState(false)
 const modalRef = useRef(null);
+
+const [modalText, setModalText] = useState([]);
+const [modalType, setModalType] = useState([]);
+const [modalTitle, setModalTitle] = useState([]);
+const [okText, setOkText] = useState([]);
+const [modalId, setModalId] = useState([]);
+
+
 
   const inputElement = useRef([]);
    useEffect(() => {
@@ -82,26 +91,37 @@ const modalRef = useRef(null);
          });
    };
    
-   const loadModal = (qrState, title, children) => {
-
+   const loadModal = (show, qrState) => {
       setModalValue(
-         <div ref={modalRef} className={`qr-link-modal ${qrState ? 'qr-view' : ''}`}>
-            <ModalPopup show={'true'} close={closeModal} title={title}>
-               {children}
-            </ModalPopup>
-         </div>
+         <LinkModal 
+            show={show}
+            loadLinkViewCls={retrieveList} 
+            closeModal={closeModal} 
+            modalTitle="Create Link" 
+            retrieveList={retrieveList} 
+            loadList={loadList} 
+            data={listData} 
+         />
       );
    };
 
    const closeModal = () => {
-      setModalValue('');
+      loadModal(false);
    };
 
    const deleteMe = (id) => {
       setDelId(id);
-      setShowAlert(true);
+      modalSettings("deleteModal", "Delete Qr Code", "Are you sure you want to delete this Qr Code?", "Delete");
    };
 
+   const modalSettings = (modalId, title, desc, okText) => {
+      setModalId(modalId);
+      setModalTitle(title);
+      setModalText(desc);
+      setOkText(okText);
+      setModalType(modalId);
+   };
+   
    const deleteRow = (id) => {
       CrudService.deleteQrCode({
          code: listData[0].CODE,
@@ -159,14 +179,14 @@ const modalRef = useRef(null);
          }
       }
       setSuccessful(true);
-      generateToast('Training data has been deleted!', 'Success!');
+      generateToast('QR Code has been deleted!', 'Success!');
 
       retrieveList()
 
    }
 
    const importData = (qrState) => {
-      loadModal(qrState, 'Create Link',<LinkModal modalRef={modalRef} loadLinkViewCls={retrieveList} closeModal={closeModal} title="Create Link" retrieveList={retrieveList} loadList={loadList} data={listData} />)
+      loadModal(true, qrState)
    }
 
    return (
@@ -250,6 +270,18 @@ const modalRef = useRef(null);
             </SweetAlert>
          )}
 
+         {/* Added DC COnfirmation Modal */}
+         <ConfirmModal 
+            modalText={modalText}
+            handleOk={
+               ()=>{
+                  deleteRow(delId)
+               }
+            } 
+            modalTitle={modalTitle}
+            okText={okText}
+            modalId={modalId}
+          />
 
          <div className="page_data_setting">
             <>
@@ -272,10 +304,10 @@ const modalRef = useRef(null);
                             <th width="450px" style={{ fontFamily: 'Lexend Deca Medium', fontSize: '12px' }}>
                               <b>LINK</b>
                             </th>
-                            <th width="250px" style={{ fontFamily: 'Lexend Deca Medium', fontSize: '12px' }}>
+                            <th width="400px" style={{ fontFamily: 'Lexend Deca Medium', fontSize: '12px' }}>
                               <b>CREATED ON</b>
                             </th>
-                            <th style={{ fontFamily: 'Lexend Deca Medium', fontSize: '12px', textAlign: 'right' }}>
+                            <th style={{ fontFamily: 'Lexend Deca Medium', fontSize: '12px' }}>
                               ACTIONS
                             </th>
                           </tr>
@@ -290,14 +322,14 @@ const modalRef = useRef(null);
                                 <td style={{ fontFamily: 'Lexend Deca Light', fontSize: '12px' }}>
                                   {(row.created_at)? moment(row.created_at).format("MMM DD, YYYY hh:mm A"): ""}
                                 </td>
-                                <td style={{ textAlign: 'end' }}>
-                                  <a style={{ marginLeft: 9, color: '#000' }} onClick={() => importData(true)}>
+                                <td>
+                                  <a onClick={() => importData(true)}>
                                     <i class="fa fa-eye"></i>
                                   </a>
                                   <a style={{ marginLeft: 9, color: '#000' }}  href={row.QR_IMAGE_URL} download="QR_Code.png">
                                     <i class="fa fa-download"></i>
                                   </a>
-                                  <a style={{ marginLeft: 9 }} onClick={() => deleteMe(row.ID)}>
+                                  <a data-toggle="modal" data-target="#deleteModal" style={{ marginLeft: 9 }} onClick={() => deleteMe(row.ID)}>
                                     <img alt="#" src={deleteIcon} width="17" />
                                   </a>
                                 </td>

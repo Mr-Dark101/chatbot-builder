@@ -11,7 +11,7 @@ import LinkIcon from '@mui/icons-material/Link';
 import SettingsSuggestOutlinedIcon from '@mui/icons-material/SettingsSuggestOutlined';
 import TopicOutlinedIcon from '@mui/icons-material/TopicOutlined';
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
-
+import PriorityHighOutlinedIcon from '@mui/icons-material/PriorityHighOutlined';
 import api_white from '../../assets/setting/api_white.svg';
 import left_circle_arrow_icon from '../../assets/setting/bi_arrow-down-circle-fill.png';
 import users from '../../assets/setting/user.svg';
@@ -37,6 +37,7 @@ import { Link } from 'react-router-dom';
 import { UserContext } from '../../context/UserContext';
 import {Tooltip} from '@mui/material';
 import { createTheme, ThemeProvider, styled } from "@mui/material/styles";
+import Complain from '../Complain';
 
 const defaultState = {
    isAlert: false,
@@ -156,6 +157,10 @@ const Settings = () => {
       if (param === 'MessageLinks') {
          setContentPage(<MessageLinks />);
       }
+
+      if (param === 'Complain') {
+         setContentPage(<Complain />);
+      }
    };
 
    let Menu = [
@@ -172,6 +177,7 @@ const Settings = () => {
       { id: 4, name: 'Help Desk', controller: '#helpmenu', icon: form, new:true, component: ()=> <HelpOutlineIcon style={{'marginRight': '16px'}} />
          ,submenu:
          [
+            { name: 'Insights', controller: 'Complain', icon: form, component: ()=> <PriorityHighOutlinedIcon style={{'marginRight': '16px'}} />},
             { name: 'Help Topic', controller: 'HelpTopic', icon: form, component: ()=> <TopicOutlinedIcon style={{'marginRight': '16px'}} />},
             { name: 'Custom Fields', controller: 'HelpCustomField', icon: form, component: ()=> <SettingsSuggestOutlinedIcon style={{'marginRight': '16px'}} /> },
             { name: 'Department', controller: 'HelpDepartment', icon: "", component: ()=> <CorporateFareIcon style={{'marginRight': '16px'}} /> },

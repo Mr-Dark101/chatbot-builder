@@ -159,6 +159,7 @@ const BuildWorkSpace = () => {
          let confirmationText = '';
          confirmationText = 'Your bot has been saved successfully';
          
+         console.log("historyData:",historyData);
          API.post(`/save-from-history`, body)
             .then((res) => {
                // console.log("updateTrigger", res);
@@ -387,11 +388,11 @@ const BuildWorkSpace = () => {
    };
 
    const handleBack = () => {
-      //history.push(`${STRINGS.ROUTES.ROOT}?org=${localStorage.getItem('userId')}`);
+      history.push(`${STRINGS.ROUTES.ROOT}?org=${localStorage.getItem('userId')}`);
+      // window.location.reload();
       //window.location.reload();
       //dispatch(resetState());
       // dispatch(removingBreadcrumb());
-      window.location= "/";
    };
 
    const confirmClose = () => {

@@ -29,7 +29,7 @@ function Complain(){
   return (
 
       <div className="ws-hld">
-        <div className="head">
+        {/* <div className="head">
             <div className="head-rt">
                <div className="txt" style={{"marginLeft": "2rem", fontSize: "18px !important"}}>Insights | Help Desk</div>
             </div>
@@ -37,12 +37,17 @@ function Complain(){
             <div className="head-lft">
                <div className="btn-hld"></div>
             </div>
+        </div> */}
+        <div className="row px-30 py-25 media-center">
+            <div className="head-rt">
+              <h5 class="box-title m-0" style={{"font-weight": "800", "width": "200px"}}>Insights</h5>
+            </div>
         </div>
-
+        <hr />
         <div className="m-30">
           <Tabs defaultIndex={0} onSelect={(index) => console.log(index)} >
             <TabList className="tab_list_section mb-20">
-              <Tab value="1" >Insights</Tab>
+              <Tab value="1" >Overview</Tab>
               <Tab value="2">Tickets</Tab>
             </TabList>
 

@@ -728,10 +728,11 @@ const ByTypeComposer = ({ props, triggerType }) => {
          dispatch(UpdateTrigger(updateObj));
          updatedTriggers = [];
       }
-
+      
       setInit({
          ...init,
          isConfirm: false,
+         isAdd: false,
          isUpdatedList: true,
          confirmationTxt: '',
       });
@@ -753,6 +754,7 @@ const ByTypeComposer = ({ props, triggerType }) => {
                currentData: {
                   ...init.currentData,
                   type: 'TEXT',
+                  loopBackId: "",
                },
             });
             // updatedTriggers = [];
@@ -768,6 +770,7 @@ const ByTypeComposer = ({ props, triggerType }) => {
                currentData: {
                   ...init.currentData,
                   type: '',
+                  loopBackId: "",
                },
             });
             // updatedTriggers = [];
@@ -798,6 +801,7 @@ const ByTypeComposer = ({ props, triggerType }) => {
                currentData: {
                   ...init.currentData,
                   type: 'TEMPLATE',
+                  loopBackId: "",
                },
             });
             // updatedTriggers = [];
@@ -1250,6 +1254,20 @@ const ByTypeComposer = ({ props, triggerType }) => {
          <AlertModal visible={isEmpty} handleOk={alertEmptyClose} confirmLoading={!isUpdatedList} modalText={confirmationTxt} modalTitle = {'Empty Field'} okText={'Ok'} handleCancel={alertEmptyClose} />
         
          <div className="composer-content">
+            {
+               !isUpdatedList &&
+               (
+                  <div className='bot-drawer-spinner'>
+                     <SyncOutlined
+                        spin
+                        style={{
+                           color: `#363a77`,
+                           fontSize : '30px'
+                        }}
+                     />
+                  </div>
+               )
+            }
             <div className="trigger-card">
                <div className="card-content">
                   <div className="row__">
@@ -1662,7 +1680,7 @@ const ByTypeComposer = ({ props, triggerType }) => {
                                     <Select
                                        labelId="demo-simple-select-standard-label"
                                        id="demo-simple-select-standard"
-                                       value={loopBackId}
+                                       value={(loopBackId)? loopBackId : ""}
                                        onChange={(e) => {
                                           setInit({
                                              ...init,
@@ -1673,8 +1691,9 @@ const ByTypeComposer = ({ props, triggerType }) => {
                                           });
                                           e.preventDefault();
                                        }}
-                                       label="Age"
+                                       displayEmpty
                                     >
+                                       <MenuItem value=""><em>Select Loop back</em></MenuItem>
                                        {updatedTriggers?.map((tr) => {
                                           return <MenuItem value={tr.id}>{tr.name}</MenuItem>;
                                        })}
